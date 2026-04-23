@@ -1,0 +1,22 @@
+{
+  "startMode": "test",
+  "startModeTestSave": "石像 石版集めてきた",
+  "startModeYuraA": 6,
+  "startModeYuraB": 5,
+  "editEventMode": false,
+  "language": 0,
+  "recordMode": 0,
+  "firstMembers": [
+    true,
+    false,
+    false,
+    false
+  ],
+  "tileC": false,
+  "testAuto": false,
+  "testAutoQuality": 10,
+  "battleSim": false,
+  "testInitDifficulty": 0,
+  "skillTest": 0,
+  "enemySkillTest": 0
+}

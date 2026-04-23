@@ -1,0 +1,792 @@
+﻿//=============================================================================
+// KNH_ZXC_SkillEditor.js
+//=============================================================================
+
+/*:
+ * @plugindesc [MV][Playtest] Skill memo live editor (skillEditMode) v0.1.0
+ * @author kagaya
+ *
+ * @help
+ * _debug.get('startMode') === 'skillEditMode' のとき、Scene_Map開始時に
+ * スキル編雁E��ミュレーション画面を起動します、E *
+ * - 1体�Eアクターと1体�E敵を表示
+ * - 使用老EActor/Enemy), Actor, Enemy, Skillを下部UIで選抁E * - 40fごとにスキル再生
+ * - メモ欁E��キー入力ごとに反映
+ * - 読み取り失敗時は最後に成功したメモ冁E��で再生
+ * - Copyでメモ欁E��クリチE�Eボ�Eドにコピ�E
+ */
+
+(function() {
+    'use strict';
+
+    var NS = window.KNH_ZXC_SkillEditor = window.KNH_ZXC_SkillEditor || {};
+    var CAST_INTERVAL = 40;
+    if (typeof Scene_NewBattle !== 'function') {
+        console.error('[KNH_ZXC_SkillEditor] Scene_NewBattle not found');
+        return;
+    }
+
+    function isPlaytest() {
+        try { return !!($gameTemp && $gameTemp.isPlaytest && $gameTemp.isPlaytest()); }
+        catch (_) { return false; }
+    }
+
+    function isSkillEditEnabled() {
+        try { return !!(window._debug && _debug.get && _debug.get('startMode') === 'skillEditMode'); }
+        catch (_) { return false; }
+    }
+
+    function clone(v) {
+        return JSON.parse(JSON.stringify(v));
+    }
+
+    function isTypingTargetElement(el) {
+        if (!el) return false;
+        if (el.isContentEditable) return true;
+        var tag = el.tagName ? String(el.tagName).toUpperCase() : '';
+        return tag === 'INPUT' || tag === 'TEXTAREA' || tag === 'SELECT';
+    }
+
+    function installInputPreventDefaultGuardForTextEditing() {
+        try {
+            if (typeof Input === 'undefined' || !Input || typeof Input._shouldPreventDefault !== 'function') return;
+            if (Input._seTextEditGuardInstalled) return;
+            Input._seTextEditGuardInstalled = true;
+            var _baseShouldPreventDefault = Input._shouldPreventDefault;
+            Input._shouldPreventDefault = function(keyCode) {
+                var ae = null;
+                try { ae = (typeof document !== 'undefined' && document) ? document.activeElement : null; } catch (_) { ae = null; }
+                if (isTypingTargetElement(ae)) return false;
+                return _baseShouldPreventDefault.call(this, keyCode);
+            };
+        } catch (_) {}
+    }
+
+    function extractMetadataSafe(obj) {
+        if (!obj) return;
+        if (obj.note == null) obj.note = '';
+        obj.note = String(obj.note);
+        if (DataManager && typeof DataManager.extractMetadata === 'function') {
+            DataManager.extractMetadata(obj);
+        } else if (!obj.meta || typeof obj.meta !== 'object') {
+            obj.meta = {};
+        }
+    }
+
+    function firstValidDataId(arr, startId) {
+        startId = Math.max(1, Math.floor(Number(startId || 1)));
+        if (!Array.isArray(arr)) return 1;
+        for (var i = startId; i < arr.length; i++) {
+            if (arr[i]) return i;
+        }
+        for (var j = 1; j < arr.length; j++) {
+            if (arr[j]) return j;
+        }
+        return 1;
+    }
+
+    function hasRenderableBattlerData(data, isEnemy) {
+        if (!data) return false;
+        var bname = String(data.battlerName || '').trim();
+        if (bname) return true;
+        if (isEnemy && data.meta && String(data.meta.live2d || '').trim()) return true;
+        return false;
+    }
+
+    function firstRenderableBattlerId(arr, startId, isEnemy) {
+        startId = Math.max(1, Math.floor(Number(startId || 1)));
+        if (!Array.isArray(arr)) return 1;
+        for (var i = startId; i < arr.length; i++) {
+            if (hasRenderableBattlerData(arr[i], !!isEnemy)) return i;
+        }
+        for (var j = 1; j < arr.length; j++) {
+            if (hasRenderableBattlerData(arr[j], !!isEnemy)) return j;
+        }
+        return firstValidDataId(arr, startId);
+    }
+
+    function skillSnapshot(skill) {
+        return {
+            note: String((skill && skill.note) || ''),
+            meta: clone((skill && skill.meta) || {})
+        };
+    }
+
+    function restoreSkillSnapshot(skill, snap) {
+        if (!skill || !snap) return;
+        skill.note = String(snap.note || '');
+        skill.meta = clone(snap.meta || {});
+    }
+
+    function Scene_SkillEditor() {
+        this.initialize.apply(this, arguments);
+    }
+
+    window.Scene_SkillEditor = Scene_SkillEditor;
+
+    Scene_SkillEditor.prototype = Object.create(Scene_NewBattle.prototype);
+    Scene_SkillEditor.prototype.constructor = Scene_SkillEditor;
+
+    Scene_SkillEditor.prototype.initialize = function() {
+        Scene_NewBattle.prototype.initialize.call(this);
+        installInputPreventDefaultGuardForTextEditing();
+
+        this._root = null;
+        this._statusEl = null;
+        this._casterTypeSelect = null;
+        this._actorCastCheckbox = null;
+        this._enemyCastCheckbox = null;
+        this._actorSelect = null;
+        this._enemySelect = null;
+        this._skillSelect = null;
+        this._noteArea = null;
+
+        this._casterType = 'actor';
+        this._actorId = firstRenderableBattlerId($dataActors, 2, false);
+        this._enemyId = firstRenderableBattlerId($dataEnemies, 13, true);
+        this._skillId = firstValidDataId($dataSkills, 1);
+
+        this._frame = 0;
+        this._nextCastAt = 0;
+        this._running = false;
+
+        this._backSprite = null;
+        this._battleContainer = null;
+        this._playAnimationSprite = null;
+        this._bulletSprites = [];
+        this._actorSprites = [];
+        this._enemySprites = [];
+        this._actorSprite = null;
+        this._enemySprite = null;
+        this._actorBattler = null;
+        this._enemyBattler = null;
+        this._turnActorIndex = 0;
+        this._targetIndex = 0;
+        this._inFinish = false;
+        this._buttonSprites = [];
+        this._combo = 0;
+        this._simMode = true;
+
+        this._noteDraftBySkillId = Object.create(null);
+        this._lastGoodBySkillId = Object.create(null);
+    };
+
+    Scene_SkillEditor.prototype.create = function() {
+        Scene_NewBattle.prototype.create.call(this);
+    };
+
+    Scene_SkillEditor.prototype.start = function() {
+        Scene_Base.prototype.start.call(this);
+        try {
+            if (AudioManager && typeof AudioManager.stopBgm === 'function') AudioManager.stopBgm();
+        } catch (_) {}
+        this.startFadeIn(this.fadeSpeed(), false);
+        this.createEditorDom();
+        this.refreshEditorOptions();
+        this.rebuildBattlers();
+        this.applySkillDraftForCurrentSelection(false);
+        this.startSimulation();
+    };
+
+    Scene_SkillEditor.prototype.update = function() {
+        var active = this.isActive();
+        $gameTimer.update(active);
+        $gameScreen.update();
+        Scene_Base.prototype.update.call(this);
+
+        if (this._battleContainer && this._battleContainer.children && this._battleContainer.children.length) {
+            this._battleContainer.children.sort(Tilemap.prototype._compareChildOrder.bind(this));
+        }
+        this.updateBullets();
+        this.updateSimulation();
+        this._frame++;
+    };
+
+    Scene_SkillEditor.prototype.terminate = function() {
+        this.destroyEditorDom();
+        this.stopSimulation();
+        Scene_Base.prototype.terminate.call(this);
+    };
+
+    Scene_SkillEditor.prototype.createDisplayObjects = function() {
+        var bs = this._backSprite = new Sprite();
+        bs.anchor.x = 0.5;
+        bs.anchor.y = 0.5;
+        bs.x = Graphics.boxWidth / 2;
+        bs.y = Graphics.boxHeight / 2;
+        this.addChild(bs);
+        this.refreshBattleback();
+
+        this._battleContainer = new Sprite();
+        this.addChild(this._battleContainer);
+
+        var pas = this._playAnimationSprite = new Sprite_Base();
+        pas.move(0, 0, Graphics.boxWidth, Graphics.boxHeight);
+        pas.z = 4;
+        this._battleContainer.addChild(pas);
+
+        // KNH_ZXC_Setting.js の Sprite_Particle は Scene._spriteset に addChild するため、E        // SkillEditor でめEScene_NewBattle と同じ受け皿を用意しておく、E        this._spriteset = new Spriteset_Base();
+        this.addChild(this._spriteset);
+        if (this._spriteset._baseSprite) this._spriteset._baseSprite.visible = false;
+    };
+
+    Scene_SkillEditor.prototype.refreshBattleback = function() {
+        if (!this._backSprite) return;
+        var name = 'back';
+        var enemy = $dataEnemies && $dataEnemies[this._enemyId];
+        if (enemy && enemy.meta && enemy.meta.back) name = String(enemy.meta.back || 'back');
+        this._backSprite.bitmap = ImageManager.loadBattleback1(name);
+    };
+
+    Scene_SkillEditor.prototype.rebuildBattlers = function() {
+        if (!this._battleContainer) return;
+
+        // Auto-fallback to renderable battlers so both sides are always visible by default.
+        var actorData = $dataActors && $dataActors[this._actorId];
+        if (!hasRenderableBattlerData(actorData, false)) {
+            this._actorId = firstRenderableBattlerId($dataActors, this._actorId + 1, false);
+            if (this._actorSelect) this._actorSelect.value = String(this._actorId);
+        }
+        var enemyData = $dataEnemies && $dataEnemies[this._enemyId];
+        if (!hasRenderableBattlerData(enemyData, true)) {
+            this._enemyId = firstRenderableBattlerId($dataEnemies, this._enemyId + 1, true);
+            if (this._enemySelect) this._enemySelect.value = String(this._enemyId);
+        }
+
+        this.refreshBattleback();
+
+        if (this._actorSprite && this._actorSprite.parent) this._actorSprite.parent.removeChild(this._actorSprite);
+        if (this._enemySprite && this._enemySprite.parent) this._enemySprite.parent.removeChild(this._enemySprite);
+
+        this._actorBattler = new Game_Actor(this._actorId);
+        this._enemyBattler = new Game_Enemy(this._enemyId, 0, 0);
+        if (this._actorBattler.recoverAll) this._actorBattler.recoverAll();
+        if (this._enemyBattler.recoverAll) this._enemyBattler.recoverAll();
+
+        if (typeof Sprite_NewActor === 'function') this._actorSprite = new Sprite_NewActor(this._actorBattler);
+        else this._actorSprite = new Sprite_Actor(this._actorBattler);
+        if (typeof Sprite_NewEnemy === 'function') this._enemySprite = new Sprite_NewEnemy(this._enemyBattler);
+        else this._enemySprite = new Sprite_Enemy(this._enemyBattler);
+
+        this._actorSprite._homeX = Math.floor(Graphics.boxWidth * 0.27);
+        this._actorSprite._homeY = Math.floor(Graphics.boxHeight * 0.56);
+        this._enemySprite._homeX = Math.floor(Graphics.boxWidth * 0.73);
+        this._enemySprite._homeY = Math.floor(Graphics.boxHeight * 0.52);
+        this._actorSprite.z = 3;
+        this._enemySprite.z = 3;
+
+        if (typeof this._actorSprite.forward === 'function') this._actorSprite.forward();
+
+        this._battleContainer.addChild(this._actorSprite);
+        this._battleContainer.addChild(this._enemySprite);
+        this._actorSprites = [this._actorSprite];
+        this._enemySprites = [this._enemySprite];
+        this._turnActorIndex = 0;
+        this._targetIndex = 0;
+
+        this._nextCastAt = this._frame + 1;
+    };
+
+    Scene_SkillEditor.prototype.turnActorSprite = function() {
+        return this._actorSprites[this._turnActorIndex] || this._actorSprite || null;
+    };
+
+    Scene_SkillEditor.prototype.targetEnemySprite = function() {
+        return this._enemySprites[this._targetIndex] || this._enemySprite || null;
+    };
+
+    Scene_SkillEditor.prototype.isBattleActive = function() {
+        return true;
+    };
+
+    Scene_SkillEditor.prototype.playAnimation = function(animation, x, y, mirror) {
+        return Scene_NewBattle.prototype.playAnimation.apply(this, arguments);
+    };
+
+    Scene_SkillEditor.prototype.playDamageAnimation = function(ssp, tsp, skillId, judgment) {
+        Scene_NewBattle.prototype.playDamageAnimation.apply(this, arguments);
+    };
+
+    Scene_SkillEditor.prototype.showTextPop = function() {
+    };
+
+    Scene_SkillEditor.prototype.applyDamage = function(subject, target, skillId) {
+        if (!subject || !target) return;
+        try {
+            if (subject.clearActions) subject.clearActions();
+            var action = new Game_Action(subject, true);
+            action.setSkill(skillId);
+            action.apply(target);
+            if (target.startDamagePopup) target.startDamagePopup();
+        } catch (_) {}
+    };
+
+    Scene_SkillEditor.prototype.actorGainHp = function(actor, value) {
+        if (!actor || actor.isDead && actor.isDead()) return;
+        var v = Math.max(0, Math.floor(Number(value || 0)));
+        if (v <= 0) return;
+        actor.clearResult();
+        actor.gainHp(v);
+        actor.startDamagePopup();
+        actor.performRecovery();
+    };
+
+    Scene_SkillEditor.prototype.newBullet = function(image, x, y, tx, ty, moveType, param1, param2, param3) {
+        return Scene_NewBattle.prototype.newBullet.apply(this, arguments);
+    };
+
+    Scene_SkillEditor.prototype.getBulletWait = function(image, x, y, tx, ty, moveType, param1, param2, param3) {
+        var v = Scene_NewBattle.prototype.getBulletWait.apply(this, arguments);
+        return Math.max(1, Math.floor(Number(v || 0)));
+    };
+
+    Scene_SkillEditor.prototype.updateBullets = function() {
+        Scene_NewBattle.prototype.updateBullets.apply(this, arguments);
+    };
+
+    Scene_SkillEditor.prototype.currentSkill = function() {
+        var id = Math.max(1, Math.floor(Number(this._skillId || 0)));
+        return ($dataSkills && $dataSkills[id]) ? $dataSkills[id] : null;
+    };
+
+    Scene_SkillEditor.prototype.currentCasterSprite = function() {
+        return this._casterType === 'enemy' ? this.targetEnemySprite() : this.turnActorSprite();
+    };
+
+    Scene_SkillEditor.prototype.currentTargetSprite = function() {
+        return this._casterType === 'enemy' ? this.turnActorSprite() : this.targetEnemySprite();
+    };
+
+    Scene_SkillEditor.prototype.ensureLastGoodSnapshot = function(skillId) {
+        skillId = Math.max(1, Math.floor(Number(skillId || 0)));
+        if (this._lastGoodBySkillId[skillId]) return;
+        var skill = $dataSkills && $dataSkills[skillId];
+        if (!skill) return;
+        this._lastGoodBySkillId[skillId] = skillSnapshot(skill);
+    };
+
+    Scene_SkillEditor.prototype.restoreLastGoodSnapshot = function(skillId) {
+        skillId = Math.max(1, Math.floor(Number(skillId || 0)));
+        var sk = $dataSkills && $dataSkills[skillId];
+        var snap = this._lastGoodBySkillId[skillId];
+        if (!sk || !snap) return false;
+        restoreSkillSnapshot(sk, snap);
+        return true;
+    };
+
+    Scene_SkillEditor.prototype.validateSkillPlayback = function(skillId) {
+        var caster = this.currentCasterSprite();
+        if (!caster || typeof caster.getActionWaits !== 'function') return true;
+        try {
+            caster.getActionWaits(skillId);
+            return true;
+        } catch (e) {
+            console.error('[SkillEditor] skill parse failed', e);
+            return false;
+        }
+    };
+
+    Scene_SkillEditor.prototype.applySkillDraftForCurrentSelection = function(showStatus) {
+        var skill = this.currentSkill();
+        if (!skill) return false;
+        var skillId = Math.max(1, Math.floor(Number(this._skillId || 0)));
+        this.ensureLastGoodSnapshot(skillId);
+        var txt = this._noteArea ? String(this._noteArea.value || '') : String(skill.note || '');
+        this._noteDraftBySkillId[skillId] = txt;
+
+        var backup = skillSnapshot(skill);
+        skill.note = txt;
+        extractMetadataSafe(skill);
+        if (this.validateSkillPlayback(skillId)) {
+            this._lastGoodBySkillId[skillId] = skillSnapshot(skill);
+            if (showStatus) this.setStatus('メモを反映しました');
+            this._nextCastAt = this._frame + 1;
+            return true;
+        }
+        restoreSkillSnapshot(skill, this._lastGoodBySkillId[skillId] || backup);
+        if (showStatus) this.setStatus('読み取り失敁E 最後に成功した冁E��で再生中');
+        return false;
+    };
+
+    Scene_SkillEditor.prototype.startSimulation = function() {
+        this._running = true;
+        this._nextCastAt = this._frame + 1;
+    };
+
+    Scene_SkillEditor.prototype.stopSimulation = function() {
+        this._running = false;
+    };
+
+    Scene_SkillEditor.prototype.recoverBattlers = function() {
+        if (this._actorBattler && this._actorBattler.recoverAll) this._actorBattler.recoverAll();
+        if (this._enemyBattler && this._enemyBattler.recoverAll) this._enemyBattler.recoverAll();
+        if (this._actorBattler && this._actorBattler.clearResult) this._actorBattler.clearResult();
+        if (this._enemyBattler && this._enemyBattler.clearResult) this._enemyBattler.clearResult();
+    };
+
+    Scene_SkillEditor.prototype.updateSimulation = function() {
+        if (!this._running) return;
+        var skill = this.currentSkill();
+        var caster = this.currentCasterSprite();
+        if (!skill || !caster) return;
+        if (this._frame < this._nextCastAt) return;
+
+        var skillId = Math.max(1, Math.floor(Number(this._skillId || 0)));
+        this.ensureLastGoodSnapshot(skillId);
+        if (!this.applySkillDraftForCurrentSelection(false)) {
+            this.restoreLastGoodSnapshot(skillId);
+        }
+
+        this.recoverBattlers();
+        try {
+            if (typeof caster.startAction === 'function') {
+                if (this._casterType === 'enemy') {
+                    caster.startAction(skillId, {
+                        enemy: this._enemyBattler,
+                        skillId: skillId,
+                        timing: 0,
+                        applyIndex: 0
+                    }, 2);
+                } else {
+                    caster.startAction(skillId, null, 2);
+                }
+            } else {
+                this.fallbackCast(skillId);
+            }
+        } catch (e) {
+            console.error('[SkillEditor] cast failed', e);
+            if (this.restoreLastGoodSnapshot(skillId)) {
+                try {
+                    if (typeof caster.startAction === 'function') {
+                        if (this._casterType === 'enemy') {
+                            caster.startAction(skillId, { enemy: this._enemyBattler, skillId: skillId, timing: 0, applyIndex: 0 }, 2);
+                        } else {
+                            caster.startAction(skillId, null, 2);
+                        }
+                    } else {
+                        this.fallbackCast(skillId);
+                    }
+                    this.setStatus('読み取り失敁E 最後に成功した冁E��で再生中');
+                } catch (_) {
+                    this.setStatus('再生エラー');
+                }
+            } else {
+                this.setStatus('再生エラー');
+            }
+        }
+
+        this._nextCastAt = this._frame + CAST_INTERVAL;
+    };
+
+    Scene_SkillEditor.prototype.fallbackCast = function(skillId) {
+        var skill = $dataSkills && $dataSkills[skillId];
+        var ssp = this.currentCasterSprite();
+        var tsp = this.currentTargetSprite();
+        if (!skill || !ssp || !tsp) return;
+        this.playDamageAnimation(ssp, tsp, skillId, 0);
+        this.applyDamage(this._casterType === 'enemy' ? this._enemyBattler : this._actorBattler,
+            this._casterType === 'enemy' ? this._actorBattler : this._enemyBattler,
+            skillId);
+        var aid = Math.max(0, Math.floor(Number(skill.animationId || 0)));
+        if (aid && $dataAnimations && $dataAnimations[aid] && tsp._battler && tsp._battler.startAnimation) {
+            tsp._battler.startAnimation(aid, false, 0);
+        }
+    };
+
+    Scene_SkillEditor.prototype.refreshEditorOptions = function() {
+        this.refreshActorOptions();
+        this.refreshEnemyOptions();
+        this.refreshSkillOptions();
+        this.syncCasterCheckboxes();
+        if (this._noteArea) {
+            var skill = this.currentSkill();
+            var id = Math.max(1, Math.floor(Number(this._skillId || 0)));
+            this._noteArea.value = (this._noteDraftBySkillId[id] != null) ? String(this._noteDraftBySkillId[id]) : String((skill && skill.note) || '');
+        }
+    };
+
+    Scene_SkillEditor.prototype.refreshActorOptions = function() {
+        if (!this._actorSelect) return;
+        this._actorSelect.innerHTML = '';
+        if (!$dataActors) return;
+        for (var i = 1; i < $dataActors.length; i++) {
+            var a = $dataActors[i];
+            if (!a) continue;
+            var op = document.createElement('option');
+            op.value = String(i);
+            op.textContent = i + ': ' + String(a.name || '(no name)');
+            this._actorSelect.appendChild(op);
+        }
+        this._actorSelect.value = String(this._actorId);
+    };
+
+    Scene_SkillEditor.prototype.refreshEnemyOptions = function() {
+        if (!this._enemySelect) return;
+        this._enemySelect.innerHTML = '';
+        if (!$dataEnemies) return;
+        for (var i = 1; i < $dataEnemies.length; i++) {
+            var e = $dataEnemies[i];
+            if (!e) continue;
+            var op = document.createElement('option');
+            op.value = String(i);
+            op.textContent = i + ': ' + String(e.name || '(no name)');
+            this._enemySelect.appendChild(op);
+        }
+        this._enemySelect.value = String(this._enemyId);
+    };
+
+    Scene_SkillEditor.prototype.refreshSkillOptions = function() {
+        if (!this._skillSelect) return;
+        this._skillSelect.innerHTML = '';
+        if (!$dataSkills) return;
+        for (var i = 1; i < $dataSkills.length; i++) {
+            var s = $dataSkills[i];
+            if (!s) continue;
+            var op = document.createElement('option');
+            op.value = String(i);
+            op.textContent = i + ': ' + String(s.name || '(no name)');
+            this._skillSelect.appendChild(op);
+        }
+        this._skillSelect.value = String(this._skillId);
+    };
+
+    Scene_SkillEditor.prototype.syncCasterCheckboxes = function() {
+        if (this._actorCastCheckbox) this._actorCastCheckbox.checked = (this._casterType === 'actor');
+        if (this._enemyCastCheckbox) this._enemyCastCheckbox.checked = (this._casterType === 'enemy');
+    };
+
+    Scene_SkillEditor.prototype.setCasterTypeFromCheckbox = function(type) {
+        this._casterType = (type === 'enemy') ? 'enemy' : 'actor';
+        this.syncCasterCheckboxes();
+        this.startSimulation();
+        this.setStatus('菴�E�逕ｨ閠・�E�譖ｴ譁E��');
+    };
+
+    Scene_SkillEditor.prototype.createEditorDom = function() {
+        if (typeof document === 'undefined' || !document || this._root) return;
+
+        var root = document.createElement('div');
+        root.style.position = 'fixed';
+        root.style.left = '0';
+        root.style.right = '0';
+        root.style.bottom = '0';
+        root.style.zIndex = '99999';
+        root.style.padding = '8px 10px';
+        root.style.background = 'rgba(0,0,0,0.78)';
+        root.style.borderTop = '1px solid rgba(255,255,255,0.18)';
+        root.style.color = '#fff';
+        root.style.font = '12px/1.4 monospace';
+        root.style.boxSizing = 'border-box';
+        root.style.pointerEvents = 'auto';
+
+        var row1 = document.createElement('div');
+        row1.style.display = 'flex';
+        row1.style.flexWrap = 'wrap';
+        row1.style.alignItems = 'center';
+        row1.style.gap = '8px';
+        row1.style.marginBottom = '6px';
+
+        function mkLabel(text) {
+            var lb = document.createElement('span');
+            lb.textContent = text;
+            lb.style.opacity = '0.9';
+            return lb;
+        }
+
+        function mkSelect(minW) {
+            var s = document.createElement('select');
+            s.style.minWidth = minW;
+            s.style.maxWidth = '420px';
+            s.style.background = '#101010';
+            s.style.color = '#fff';
+            s.style.border = '1px solid #666';
+            s.style.borderRadius = '4px';
+            s.style.padding = '2px 4px';
+            return s;
+        }
+
+        this._actorSelect = mkSelect('180px');
+        this._enemySelect = mkSelect('180px');
+        this._skillSelect = mkSelect('240px');
+
+        function mkCasterCheckbox(labelText) {
+            var wrap = document.createElement('label');
+            wrap.style.display = 'inline-flex';
+            wrap.style.alignItems = 'center';
+            wrap.style.gap = '4px';
+            wrap.style.cursor = 'pointer';
+
+            var cb = document.createElement('input');
+            cb.type = 'checkbox';
+            cb.style.margin = '0';
+            cb.style.verticalAlign = 'middle';
+            wrap.appendChild(cb);
+            wrap.appendChild(document.createTextNode(labelText));
+
+            return { wrap: wrap, cb: cb };
+        }
+
+        var actorCbPack = mkCasterCheckbox('Actor');
+        var enemyCbPack = mkCasterCheckbox('Enemy');
+        this._actorCastCheckbox = actorCbPack.cb;
+        this._enemyCastCheckbox = enemyCbPack.cb;
+
+        var copyBtn = document.createElement('button');
+        copyBtn.type = 'button';
+        copyBtn.textContent = 'Copy';
+        copyBtn.style.padding = '3px 10px';
+        copyBtn.style.borderRadius = '4px';
+        copyBtn.style.border = '1px solid #777';
+        copyBtn.style.background = '#1f1f1f';
+        copyBtn.style.color = '#fff';
+        copyBtn.style.cursor = 'pointer';
+
+        row1.appendChild(actorCbPack.wrap);
+        row1.appendChild(this._actorSelect);
+        row1.appendChild(enemyCbPack.wrap);
+        row1.appendChild(this._enemySelect);
+        row1.appendChild(mkLabel('Skill'));
+        row1.appendChild(this._skillSelect);
+        row1.appendChild(copyBtn);
+
+        this._noteArea = document.createElement('textarea');
+        this._noteArea.spellcheck = false;
+        this._noteArea.wrap = 'off';
+        this._noteArea.style.display = 'block';
+        this._noteArea.style.width = '100%';
+        this._noteArea.style.height = '180px';
+        this._noteArea.style.resize = 'vertical';
+        this._noteArea.style.background = '#0b0b0b';
+        this._noteArea.style.color = '#fff';
+        this._noteArea.style.border = '1px solid #555';
+        this._noteArea.style.borderRadius = '4px';
+        this._noteArea.style.padding = '6px';
+        this._noteArea.style.boxSizing = 'border-box';
+        this._noteArea.style.font = '12px/1.4 Consolas, monospace';
+
+        this._statusEl = document.createElement('div');
+        this._statusEl.style.marginTop = '6px';
+        this._statusEl.style.opacity = '0.9';
+        this._statusEl.textContent = 'ready';
+
+        root.appendChild(row1);
+        root.appendChild(this._noteArea);
+        root.appendChild(this._statusEl);
+        document.body.appendChild(root);
+        this._root = root;
+        this.syncCasterCheckboxes();
+
+        this._actorCastCheckbox.addEventListener('change', function() {
+            if (!this._actorCastCheckbox.checked) {
+                this.syncCasterCheckboxes();
+                return;
+            }
+            this.setCasterTypeFromCheckbox('actor');
+        }.bind(this));
+
+        this._enemyCastCheckbox.addEventListener('change', function() {
+            if (!this._enemyCastCheckbox.checked) {
+                this.syncCasterCheckboxes();
+                return;
+            }
+            this.setCasterTypeFromCheckbox('enemy');
+        }.bind(this));
+
+        this._actorSelect.addEventListener('change', function() {
+            this._actorId = Math.max(1, Math.floor(Number(this._actorSelect.value || 1)));
+            this.rebuildBattlers();
+            this.startSimulation();
+            this.setStatus('Actorを更新');
+        }.bind(this));
+
+        this._enemySelect.addEventListener('change', function() {
+            this._enemyId = Math.max(1, Math.floor(Number(this._enemySelect.value || 1)));
+            this.rebuildBattlers();
+            this.startSimulation();
+            this.setStatus('Enemyを更新');
+        }.bind(this));
+
+        this._skillSelect.addEventListener('change', function() {
+            this._skillId = Math.max(1, Math.floor(Number(this._skillSelect.value || 1)));
+            var sk = this.currentSkill();
+            var sid = this._skillId;
+            this._noteArea.value = (this._noteDraftBySkillId[sid] != null) ? String(this._noteDraftBySkillId[sid]) : String((sk && sk.note) || '');
+            this.applySkillDraftForCurrentSelection(true);
+            this.startSimulation();
+        }.bind(this));
+
+        this._noteArea.addEventListener('input', function() {
+            this.applySkillDraftForCurrentSelection(true);
+        }.bind(this));
+
+        copyBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            this.copyNoteToClipboard();
+        }.bind(this));
+    };
+
+    Scene_SkillEditor.prototype.destroyEditorDom = function() {
+        if (!this._root) return;
+        if (this._root.parentNode) this._root.parentNode.removeChild(this._root);
+        this._root = null;
+        this._statusEl = null;
+        this._casterTypeSelect = null;
+        this._actorCastCheckbox = null;
+        this._enemyCastCheckbox = null;
+        this._actorSelect = null;
+        this._enemySelect = null;
+        this._skillSelect = null;
+        this._noteArea = null;
+    };
+
+    Scene_SkillEditor.prototype.setStatus = function(text) {
+        if (!this._statusEl) return;
+        this._statusEl.textContent = String(text || '');
+    };
+
+    Scene_SkillEditor.prototype.copyNoteToClipboard = function() {
+        var text = this._noteArea ? String(this._noteArea.value || '') : '';
+        var done = function(ok) {
+            this.setStatus(ok ? 'コピ�Eしました' : 'コピ�E失敁E);
+        }.bind(this);
+
+        try {
+            if (navigator && navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(text).then(function() { done(true); }).catch(function() { done(false); });
+                return;
+            }
+        } catch (_) {}
+
+        try {
+            var ta = document.createElement('textarea');
+            ta.value = text;
+            ta.style.position = 'fixed';
+            ta.style.left = '-9999px';
+            ta.style.top = '-9999px';
+            document.body.appendChild(ta);
+            ta.focus();
+            ta.select();
+            var ok = false;
+            try { ok = !!document.execCommand('copy'); } catch (_) { ok = false; }
+            if (ta.parentNode) ta.parentNode.removeChild(ta);
+            done(ok);
+        } catch (_) {
+            done(false);
+        }
+    };
+
+    NS.enabled = function() {
+        return isPlaytest() && isSkillEditEnabled();
+    };
+
+    var _Scene_Map_start_SkillEditor = Scene_Map.prototype.start;
+    Scene_Map.prototype.start = function() {
+        _Scene_Map_start_SkillEditor.apply(this, arguments);
+        if (!NS.enabled()) return;
+        if (SceneManager.isSceneChanging && SceneManager.isSceneChanging()) return;
+        SceneManager.push(Scene_SkillEditor);
+    };
+})();
+
+

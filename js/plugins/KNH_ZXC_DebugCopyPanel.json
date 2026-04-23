@@ -1,0 +1,689 @@
+{
+  "version": 1,
+  "groups": [
+    {
+      "id": "g_mk2f7e3o_mr50te",
+      "name": "🤦イベント",
+      "color": "#ffe4e6",
+      "buttons": [
+        {
+          "id": "b_mk4ka9i3_wu21ib",
+          "name": "🤦debug",
+          "payload": {
+            "text": "",
+            "html": "",
+            "rtf": "",
+            "custom": {
+              "application/rpgmv-event": "eyJpZCI6MTcsIm5hbWUiOiJkZWJ1ZyIsIm5vdGUiOiIiLCJwYWdlcyI6W3siY29uZGl0aW9ucyI6eyJhY3RvcklkIjoxLCJhY3RvclZhbGlkIjpmYWxzZSwiaXRlbUlkIjoxLCJpdGVtVmFsaWQiOmZhbHNlLCJzZWxmU3dpdGNoQ2giOiJBIiwic2VsZlN3aXRjaFZhbGlkIjpmYWxzZSwic3dpdGNoMUlkIjoxLCJzd2l0Y2gxVmFsaWQiOmZhbHNlLCJzd2l0Y2gySWQiOjEsInN3aXRjaDJWYWxpZCI6ZmFsc2UsInZhcmlhYmxlSWQiOjEwLCJ2YXJpYWJsZVZhbGlkIjpmYWxzZSwidmFyaWFibGVWYWx1ZSI6NX0sImRpcmVjdGlvbkZpeCI6ZmFsc2UsImltYWdlIjp7InRpbGVJZCI6MCwiY2hhcmFjdGVyTmFtZSI6IkFjdG9yMSIsImRpcmVjdGlvbiI6MiwicGF0dGVybiI6MSwiY2hhcmFjdGVySW5kZXgiOjB9LCJsaXN0IjpbeyJjb2RlIjowLCJpbmRlbnQiOjAsInBhcmFtZXRlcnMiOltdfV0sIm1vdmVGcmVxdWVuY3kiOjMsIm1vdmVSb3V0ZSI6eyJsaXN0IjpbeyJjb2RlIjowLCJwYXJhbWV0ZXJzIjpbXX1dLCJyZXBlYXQiOnRydWUsInNraXBwYWJsZSI6ZmFsc2UsIndhaXQiOmZhbHNlfSwibW92ZVNwZWVkIjozLCJtb3ZlVHlwZSI6MCwicHJpb3JpdHlUeXBlIjoxLCJzdGVwQW5pbWUiOmZhbHNlLCJ0aHJvdWdoIjpmYWxzZSwidHJpZ2dlciI6MCwid2Fsa0FuaW1lIjp0cnVlfV0sIngiOjEyLCJ5IjoyM30="
+            },
+            "customKinds": {
+              "application/rpgmv-event": "System.IO.MemoryStream"
+            },
+            "_ole": true
+          }
+        },
+        {
+          "id": "b_mk30srwj_muk8ul",
+          "name": "🖼️characters",
+          "payload": {
+            "text": "",
+            "html": "",
+            "rtf": "",
+            "custom": {
+              "application/rpgmv-event": "eyJpZCI6OSwibmFtZSI6IkVWMDA5Iiwibm90ZSI6IiIsInBhZ2VzIjpbeyJjb25kaXRpb25zIjp7ImFjdG9ySWQiOjEsImFjdG9yVmFsaWQiOmZhbHNlLCJpdGVtSWQiOjEsIml0ZW1WYWxpZCI6ZmFsc2UsInNlbGZTd2l0Y2hDaCI6IkEiLCJzZWxmU3dpdGNoVmFsaWQiOmZhbHNlLCJzd2l0Y2gxSWQiOjEsInN3aXRjaDFWYWxpZCI6ZmFsc2UsInN3aXRjaDJJZCI6MSwic3dpdGNoMlZhbGlkIjpmYWxzZSwidmFyaWFibGVJZCI6MSwidmFyaWFibGVWYWxpZCI6ZmFsc2UsInZhcmlhYmxlVmFsdWUiOjB9LCJkaXJlY3Rpb25GaXgiOmZhbHNlLCJpbWFnZSI6eyJ0aWxlSWQiOjAsImNoYXJhY3Rlck5hbWUiOiJjaGFyYWN0ZXJzIiwiZGlyZWN0aW9uIjoyLCJwYXR0ZXJuIjowLCJjaGFyYWN0ZXJJbmRleCI6MH0sImxpc3QiOlt7ImNvZGUiOjM1NSwiaW5kZW50IjowLCJwYXJhbWV0ZXJzIjpbInRoaXMuc3RhcnRDaGFyYWN0ZXJTcHJpdGVTaGVldFRlc3QoKSJdfSx7ImNvZGUiOjAsImluZGVudCI6MCwicGFyYW1ldGVycyI6W119XSwibW92ZUZyZXF1ZW5jeSI6MywibW92ZVJvdXRlIjp7Imxpc3QiOlt7ImNvZGUiOjAsInBhcmFtZXRlcnMiOltdfV0sInJlcGVhdCI6dHJ1ZSwic2tpcHBhYmxlIjpmYWxzZSwid2FpdCI6ZmFsc2V9LCJtb3ZlU3BlZWQiOjMsIm1vdmVUeXBlIjowLCJwcmlvcml0eVR5cGUiOjEsInN0ZXBBbmltZSI6ZmFsc2UsInRocm91Z2giOmZhbHNlLCJ0cmlnZ2VyIjowLCJ3YWxrQW5pbWUiOnRydWV9XSwieCI6MiwieSI6M30="
+            },
+            "customKinds": {
+              "application/rpgmv-event": "System.IO.MemoryStream"
+            },
+            "_ole": true
+          }
+        },
+        {
+          "id": "b_mk30vsf8_f11551",
+          "name": "🖼️outsideObjects",
+          "payload": {
+            "text": "",
+            "html": "",
+            "rtf": "",
+            "custom": {
+              "application/rpgmv-event": "eyJpZCI6MTcsIm5hbWUiOiJFVjAxNyIsIm5vdGUiOiI8Q0dTaGlmdDpBLC03LC0xNT48Q0dPcmlnaW46QSw1MCw3MD48Y3NzUmVjdDoxNTgsMTAzLDE0NiwxMDM+IiwicGFnZXMiOlt7ImNvbmRpdGlvbnMiOnsiYWN0b3JJZCI6MSwiYWN0b3JWYWxpZCI6ZmFsc2UsIml0ZW1JZCI6MSwiaXRlbVZhbGlkIjpmYWxzZSwic2VsZlN3aXRjaENoIjoiQSIsInNlbGZTd2l0Y2hWYWxpZCI6ZmFsc2UsInN3aXRjaDFJZCI6MSwic3dpdGNoMVZhbGlkIjpmYWxzZSwic3dpdGNoMklkIjoxLCJzd2l0Y2gyVmFsaWQiOmZhbHNlLCJ2YXJpYWJsZUlkIjoxLCJ2YXJpYWJsZVZhbGlkIjpmYWxzZSwidmFyaWFibGVWYWx1ZSI6MH0sImRpcmVjdGlvbkZpeCI6ZmFsc2UsImltYWdlIjp7InRpbGVJZCI6MCwiY2hhcmFjdGVyTmFtZSI6Im91dHNpZGVPYmplY3QiLCJkaXJlY3Rpb24iOjYsInBhdHRlcm4iOjIsImNoYXJhY3RlckluZGV4Ijo0fSwibGlzdCI6W3siY29kZSI6MzU1LCJpbmRlbnQiOjAsInBhcmFtZXRlcnMiOlsidGhpcy5zdGFydENoYXJhY3RlclNwcml0ZVNoZWV0VGVzdCgpIl19LHsiY29kZSI6MCwiaW5kZW50IjowLCJwYXJhbWV0ZXJzIjpbXX1dLCJtb3ZlRnJlcXVlbmN5IjozLCJtb3ZlUm91dGUiOnsibGlzdCI6W3siY29kZSI6MCwicGFyYW1ldGVycyI6W119XSwicmVwZWF0Ijp0cnVlLCJza2lwcGFibGUiOmZhbHNlLCJ3YWl0IjpmYWxzZX0sIm1vdmVTcGVlZCI6MywibW92ZVR5cGUiOjAsInByaW9yaXR5VHlwZSI6MSwic3RlcEFuaW1lIjpmYWxzZSwidGhyb3VnaCI6ZmFsc2UsInRyaWdnZXIiOjAsIndhbGtBbmltZSI6dHJ1ZX1dLCJ4IjoxLCJ5IjozfQ=="
+            },
+            "customKinds": {
+              "application/rpgmv-event": "System.IO.MemoryStream"
+            },
+            "_ole": true
+          }
+        },
+        {
+          "id": "b_mktetz4z_4s50sj",
+          "name": "⏯️自動実行",
+          "payload": {
+            "text": "",
+            "html": "",
+            "rtf": "",
+            "custom": {
+              "application/rpgmv-event": "eyJpZCI6MTcsIm5hbWUiOiLoh6rli5Xlrp/ooYwiLCJub3RlIjoiPGltcG9ydGFudD4iLCJwYWdlcyI6W3siY29uZGl0aW9ucyI6eyJhY3RvcklkIjoxLCJhY3RvclZhbGlkIjpmYWxzZSwiaXRlbUlkIjoxLCJpdGVtVmFsaWQiOmZhbHNlLCJzZWxmU3dpdGNoQ2giOiJBIiwic2VsZlN3aXRjaFZhbGlkIjpmYWxzZSwic3dpdGNoMUlkIjoxLCJzd2l0Y2gxVmFsaWQiOmZhbHNlLCJzd2l0Y2gySWQiOjEsInN3aXRjaDJWYWxpZCI6ZmFsc2UsInZhcmlhYmxlSWQiOjEsInZhcmlhYmxlVmFsaWQiOmZhbHNlLCJ2YXJpYWJsZVZhbHVlIjowfSwiZGlyZWN0aW9uRml4IjpmYWxzZSwiaW1hZ2UiOnsiY2hhcmFjdGVySW5kZXgiOjAsImNoYXJhY3Rlck5hbWUiOiIiLCJkaXJlY3Rpb24iOjIsInBhdHRlcm4iOjAsInRpbGVJZCI6MH0sImxpc3QiOlt7ImNvZGUiOjAsImluZGVudCI6MCwicGFyYW1ldGVycyI6W119XSwibW92ZUZyZXF1ZW5jeSI6MywibW92ZVJvdXRlIjp7Imxpc3QiOlt7ImNvZGUiOjAsInBhcmFtZXRlcnMiOltdfV0sInJlcGVhdCI6dHJ1ZSwic2tpcHBhYmxlIjpmYWxzZSwid2FpdCI6ZmFsc2V9LCJtb3ZlU3BlZWQiOjMsIm1vdmVUeXBlIjowLCJwcmlvcml0eVR5cGUiOjAsInN0ZXBBbmltZSI6ZmFsc2UsInRocm91Z2giOmZhbHNlLCJ0cmlnZ2VyIjozLCJ3YWxrQW5pbWUiOnRydWV9XSwieCI6MTUsInkiOjEyfQ=="
+            },
+            "customKinds": {
+              "application/rpgmv-event": "System.IO.MemoryStream"
+            },
+            "_ole": true
+          }
+        },
+        {
+          "id": "b_ml6fylfg_zyl09n",
+          "name": "🗃️宝箱",
+          "payload": {
+            "text": "",
+            "html": "",
+            "rtf": "",
+            "custom": {
+              "application/rpgmv-event": "eyJpZCI6MTYsIm5hbWUiOiLlrp3nrrEiLCJub3RlIjoiPEhN5ouh5aSn6aCY5Z+fOjAuNSwxLDEsMC41PiIsInBhZ2VzIjpbeyJjb25kaXRpb25zIjp7ImFjdG9ySWQiOjEsImFjdG9yVmFsaWQiOmZhbHNlLCJpdGVtSWQiOjEsIml0ZW1WYWxpZCI6dHJ1ZSwic2VsZlN3aXRjaENoIjoiQSIsInNlbGZTd2l0Y2hWYWxpZCI6ZmFsc2UsInN3aXRjaDFJZCI6MSwic3dpdGNoMVZhbGlkIjpmYWxzZSwic3dpdGNoMklkIjoxLCJzd2l0Y2gyVmFsaWQiOmZhbHNlLCJ2YXJpYWJsZUlkIjoxLCJ2YXJpYWJsZVZhbGlkIjpmYWxzZSwidmFyaWFibGVWYWx1ZSI6MH0sImRpcmVjdGlvbkZpeCI6dHJ1ZSwiaW1hZ2UiOnsidGlsZUlkIjowLCJjaGFyYWN0ZXJOYW1lIjoiJHRyZWFzdXJlIiwiZGlyZWN0aW9uIjoyLCJwYXR0ZXJuIjowLCJjaGFyYWN0ZXJJbmRleCI6MH0sImxpc3QiOlt7ImNvZGUiOjI1MCwiaW5kZW50IjowLCJwYXJhbWV0ZXJzIjpbeyJuYW1lIjoiMDBfdHJlYXN1cmUiLCJ2b2x1bWUiOjEwMCwicGl0Y2giOjExMCwicGFuIjowfV19LHsiY29kZSI6MjUwLCJpbmRlbnQiOjAsInBhcmFtZXRlcnMiOlt7Im5hbWUiOiJDaGVzdDIiLCJ2b2x1bWUiOjcwLCJwaXRjaCI6MTEwLCJwYW4iOjB9XX0seyJjb2RlIjoyMDUsImluZGVudCI6MCwicGFyYW1ldGVycyI6WzAseyJsaXN0IjpbeyJjb2RlIjozNn0seyJjb2RlIjoxN30seyJjb2RlIjoxNSwicGFyYW1ldGVycyI6WzZdLCJpbmRlbnQiOm51bGx9LHsiY29kZSI6MTh9LHsiY29kZSI6MTUsInBhcmFtZXRlcnMiOls2XSwiaW5kZW50IjpudWxsfSx7ImNvZGUiOjE5LCJpbmRlbnQiOm51bGx9LHsiY29kZSI6MH1dLCJyZXBlYXQiOmZhbHNlLCJza2lwcGFibGUiOmZhbHNlLCJ3YWl0Ijp0cnVlfV19LHsiY29kZSI6NTA1LCJpbmRlbnQiOjAsInBhcmFtZXRlcnMiOlt7ImNvZGUiOjM2fV19LHsiY29kZSI6NTA1LCJpbmRlbnQiOjAsInBhcmFtZXRlcnMiOlt7ImNvZGUiOjE3fV19LHsiY29kZSI6NTA1LCJpbmRlbnQiOjAsInBhcmFtZXRlcnMiOlt7ImNvZGUiOjE1LCJwYXJhbWV0ZXJzIjpbNl0sImluZGVudCI6bnVsbH1dfSx7ImNvZGUiOjUwNSwiaW5kZW50IjowLCJwYXJhbWV0ZXJzIjpbeyJjb2RlIjoxOH1dfSx7ImNvZGUiOjUwNSwiaW5kZW50IjowLCJwYXJhbWV0ZXJzIjpbeyJjb2RlIjoxNSwicGFyYW1ldGVycyI6WzZdLCJpbmRlbnQiOm51bGx9XX0seyJjb2RlIjo1MDUsImluZGVudCI6MCwicGFyYW1ldGVycyI6W3siY29kZSI6MTksImluZGVudCI6bnVsbH1dfSx7ImNvZGUiOjIzMCwiaW5kZW50IjowLCJwYXJhbWV0ZXJzIjpbNl19LHsiY29kZSI6MzU1LCJpbmRlbnQiOjAsInBhcmFtZXRlcnMiOlsidmFyIGl0ZW0gPSAkZGF0YUl0ZW1zWzFdOyAvLyDjgqLjgqTjg4bjg6DlhaXmiYsiXX0seyJjb2RlIjo2NTUsImluZGVudCI6MCwicGFyYW1ldGVycyI6WyJ2YXIgZXYgPSAkZ2FtZU1hcC5wdXRJdGVtKGl0ZW0sICRnYW1lUGxheWVyLngsICRnYW1lUGxheWVyLnksIDEpOyJdfSx7ImNvZGUiOjY1NSwiaW5kZW50IjowLCJwYXJhbWV0ZXJzIjpbInRoaXMuc2V0dXBDaGlsZChldi5saXN0KCksIGV2LmV2ZW50SWQoKSk7Il19LHsiY29kZSI6MjMwLCJpbmRlbnQiOjAsInBhcmFtZXRlcnMiOls2XX0seyJjb2RlIjozNTYsImluZGVudCI6MCwicGFyYW1ldGVycyI6WyLjg5Xjgq3jg4DjgrfjgqbjgqPjg7Pjg4njgqbmnInlirnljJYgMCAxIl19LHsiY29kZSI6MTIzLCJpbmRlbnQiOjAsInBhcmFtZXRlcnMiOlsiQSIsMF19LHsiY29kZSI6MCwiaW5kZW50IjowLCJwYXJhbWV0ZXJzIjpbXX1dLCJtb3ZlRnJlcXVlbmN5IjozLCJtb3ZlUm91dGUiOnsibGlzdCI6W3siY29kZSI6MCwicGFyYW1ldGVycyI6W119XSwicmVwZWF0Ijp0cnVlLCJza2lwcGFibGUiOmZhbHNlLCJ3YWl0IjpmYWxzZX0sIm1vdmVTcGVlZCI6MywibW92ZVR5cGUiOjAsInByaW9yaXR5VHlwZSI6MSwic3RlcEFuaW1lIjpmYWxzZSwidGhyb3VnaCI6ZmFsc2UsInRyaWdnZXIiOjAsIndhbGtBbmltZSI6ZmFsc2V9LHsiY29uZGl0aW9ucyI6eyJhY3RvcklkIjoxLCJhY3RvclZhbGlkIjpmYWxzZSwiaXRlbUlkIjoxLCJpdGVtVmFsaWQiOmZhbHNlLCJzZWxmU3dpdGNoQ2giOiJBIiwic2VsZlN3aXRjaFZhbGlkIjp0cnVlLCJzd2l0Y2gxSWQiOjEsInN3aXRjaDFWYWxpZCI6ZmFsc2UsInN3aXRjaDJJZCI6MSwic3dpdGNoMlZhbGlkIjpmYWxzZSwidmFyaWFibGVJZCI6MSwidmFyaWFibGVWYWxpZCI6ZmFsc2UsInZhcmlhYmxlVmFsdWUiOjB9LCJkaXJlY3Rpb25GaXgiOnRydWUsImltYWdlIjp7InRpbGVJZCI6MCwiY2hhcmFjdGVyTmFtZSI6IiR0cmVhc3VyZSIsImRpcmVjdGlvbiI6MiwicGF0dGVybiI6MCwiY2hhcmFjdGVySW5kZXgiOjB9LCJsaXN0IjpbeyJjb2RlIjowLCJpbmRlbnQiOjAsInBhcmFtZXRlcnMiOltdfV0sIm1vdmVGcmVxdWVuY3kiOjMsIm1vdmVSb3V0ZSI6eyJsaXN0IjpbeyJjb2RlIjowLCJwYXJhbWV0ZXJzIjpbXX1dLCJyZXBlYXQiOnRydWUsInNraXBwYWJsZSI6ZmFsc2UsIndhaXQiOmZhbHNlfSwibW92ZVNwZWVkIjozLCJtb3ZlVHlwZSI6MCwicHJpb3JpdHlUeXBlIjoxLCJzdGVwQW5pbWUiOmZhbHNlLCJ0aHJvdWdoIjpmYWxzZSwidHJpZ2dlciI6MCwid2Fsa0FuaW1lIjpmYWxzZX1dLCJ4IjoxOCwieSI6MTh9"
+            },
+            "customKinds": {
+              "application/rpgmv-event": "System.IO.MemoryStream"
+            },
+            "_ole": true
+          }
+        }
+      ]
+    },
+    {
+      "id": "g_mk3188g6_7ffo89",
+      "name": "📢イベントコマンド",
+      "color": "#fef9c3",
+      "buttons": [
+        {
+          "id": "b_mk5xv1sc_u1pgdr",
+          "name": "🏳️rejudgeEvents",
+          "payload": {
+            "text": "",
+            "html": "",
+            "rtf": "",
+            "custom": {
+              "application/rpgmv-EventCommand": "W3siY29kZSI6MzU1LCJpbmRlbnQiOjAsInBhcmFtZXRlcnMiOlsiJGdhbWVNYXAucmVqdWRnZUV2ZW50cygpOyAvL+OCpOODmeODs+ODiOabtOaWsCJdfV0="
+            },
+            "customKinds": {
+              "application/rpgmv-EventCommand": "System.IO.MemoryStream"
+            },
+            "_ole": true
+          }
+        },
+        {
+          "id": "b_mk4m78sp_3dhvh7",
+          "name": "🔄プリロード",
+          "payload": {
+            "text": "",
+            "html": "",
+            "rtf": "",
+            "custom": {
+              "application/rpgmv-EventCommand": "W3siY29kZSI6MzU1LCJpbmRlbnQiOjAsInBhcmFtZXRlcnMiOlsiSW1hZ2VNYW5hZ2VyLmxvYWRDaGFyYWN0ZXIoJycpIC8v44OX44Oq44Ot44O844OJIl19XQ=="
+            },
+            "customKinds": {
+              "application/rpgmv-EventCommand": "System.IO.MemoryStream"
+            },
+            "_ole": true
+          }
+        },
+        {
+          "id": "b_mk8tucmu_a3lhra",
+          "name": "🚩テスト用セーブ",
+          "payload": {
+            "text": "",
+            "html": "",
+            "rtf": "",
+            "custom": {
+              "application/rpgmv-EventCommand": "W3siY29kZSI6MTA4LCJpbmRlbnQiOjAsInBhcmFtZXRlcnMiOlsiPT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT0iXX0seyJjb2RlIjozNTUsImluZGVudCI6MCwicGFyYW1ldGVycyI6WyJUZXN0UmVsb2FkLnNhdmVIZXJlKFwi44Op44Kk44Ki44Oz44Gu5a62XCIpOyJdfSx7ImNvZGUiOjEwOCwiaW5kZW50IjowLCJwYXJhbWV0ZXJzIjpbIj09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09Il19XQ=="
+            },
+            "customKinds": {
+              "application/rpgmv-EventCommand": "System.IO.MemoryStream"
+            },
+            "_ole": true
+          }
+        },
+        {
+          "id": "b_mk4lg052_v0c33z",
+          "name": "📷️scrollCamera",
+          "payload": {
+            "text": "",
+            "html": "",
+            "rtf": "",
+            "custom": {
+              "application/rpgmv-EventCommand": "W3siY29kZSI6MzU1LCJpbmRlbnQiOjAsInBhcmFtZXRlcnMiOlsiJGdhbWVNYXAuc2Nyb2xsQ2FtZXJhKHgsIHksIDYwKTsgLy/jgqvjg6Hjg6njgrnjgq/jg63jg7zjg6siXX1d"
+            },
+            "customKinds": {
+              "application/rpgmv-EventCommand": "System.IO.MemoryStream"
+            },
+            "_ole": true
+          }
+        },
+        {
+          "id": "b_mk4k766b_c8txkd",
+          "name": "📷️scrollCameraTo",
+          "payload": {
+            "text": "",
+            "html": "",
+            "rtf": "",
+            "custom": {
+              "application/rpgmv-EventCommand": "W3siY29kZSI6MzU1LCJpbmRlbnQiOjAsInBhcmFtZXRlcnMiOlsiJGdhbWVNYXAuc2Nyb2xsQ2FtZXJhVG8oeCwgeSwgNjApOyAvL+OCq+ODoeODqeOCueOCr+ODreODvOODqyJdfV0="
+            },
+            "customKinds": {
+              "application/rpgmv-EventCommand": "System.IO.MemoryStream"
+            },
+            "_ole": true
+          }
+        },
+        {
+          "id": "b_mk4kinoo_uhs7kq",
+          "name": "📷️resetCamera",
+          "payload": {
+            "text": "",
+            "html": "",
+            "rtf": "",
+            "custom": {
+              "application/rpgmv-EventCommand": "W3siY29kZSI6MzU1LCJpbmRlbnQiOjAsInBhcmFtZXRlcnMiOlsiJGdhbWVNYXAucmVzZXRDYW1lcmEoKTsgLy/jgqvjg6Hjg6njg6rjgrvjg4Pjg4giXX1d"
+            },
+            "customKinds": {
+              "application/rpgmv-EventCommand": "System.IO.MemoryStream"
+            },
+            "_ole": true
+          }
+        },
+        {
+          "id": "b_mk5wuwhs_g4s8vg",
+          "name": "🗨️tailDir",
+          "payload": {
+            "text": "",
+            "html": "",
+            "rtf": "",
+            "custom": {
+              "application/rpgmv-EventCommand": "W3siY29kZSI6MzU1LCJpbmRlbnQiOjAsInBhcmFtZXRlcnMiOlsiJGdhbWVNZXNzYWdlLl90YWlsRGlyID0gMjsgLy/jg5Xjgq3jg4DjgrfmlrnlkJHoqr/mlbQiXX1d"
+            },
+            "customKinds": {
+              "application/rpgmv-EventCommand": "System.IO.MemoryStream"
+            },
+            "_ole": true
+          }
+        },
+        {
+          "id": "b_mk5ww42z_4xrjkg",
+          "name": "🗨️popupFree(x,y)",
+          "payload": {
+            "text": "",
+            "html": "",
+            "rtf": "",
+            "custom": {
+              "application/rpgmv-EventCommand": "W3siY29kZSI6MzU1LCJpbmRlbnQiOjAsInBhcmFtZXRlcnMiOlsiJGdhbWVTeXN0ZW0uc2V0TWVzc2FnZVBvcHVwRnJlZSh4LCB5KTsgLy/jg5Xjgq3jg4DjgrfkvY3nva7mjIflrpoiXX1d"
+            },
+            "customKinds": {
+              "application/rpgmv-EventCommand": "System.IO.MemoryStream"
+            },
+            "_ole": true
+          }
+        },
+        {
+          "id": "b_mk9e2yqt_4i02k8",
+          "name": "🗨️clearPopupFree",
+          "payload": {
+            "text": "",
+            "html": "",
+            "rtf": "",
+            "custom": {
+              "application/rpgmv-EventCommand": "W3siY29kZSI6MzU1LCJpbmRlbnQiOjAsInBhcmFtZXRlcnMiOlsiJGdhbWVTeXN0ZW0uY2xlYXJNZXNzYWdlUG9wdXBGcmVlKCk7IC8v44OV44Kt44OA44K35L2N572u44Kv44Oq44KiIl19XQ=="
+            },
+            "customKinds": {
+              "application/rpgmv-EventCommand": "System.IO.MemoryStream"
+            },
+            "_ole": true
+          }
+        },
+        {
+          "id": "b_mk8u4qpk_oqka62",
+          "name": "⬜️FadeInZXC",
+          "payload": {
+            "text": "",
+            "html": "",
+            "rtf": "",
+            "custom": {
+              "application/rpgmv-EventCommand": "W3siY29kZSI6MzU1LCJpbmRlbnQiOjAsInBhcmFtZXRlcnMiOlsiJGdhbWVTY3JlZW4uc3RhcnRGYWRlSW5aWEMoNjApOyAvL+eJueauiuODleOCp+ODvOODieOCueOCv+ODvOODiCJdfV0="
+            },
+            "customKinds": {
+              "application/rpgmv-EventCommand": "System.IO.MemoryStream"
+            },
+            "_ole": true
+          }
+        },
+        {
+          "id": "b_mk8u5fcd_9mhz0t",
+          "name": "▢FadeOutZXC",
+          "payload": {
+            "text": "",
+            "html": "",
+            "rtf": "",
+            "custom": {
+              "application/rpgmv-EventCommand": "W3siY29kZSI6MzU1LCJpbmRlbnQiOjAsInBhcmFtZXRlcnMiOlsiJGdhbWVTY3JlZW4uc3RhcnRGYWRlT3V0WlhDKDYwKTsgLy/nibnmrorjg5Xjgqfjg7zjg4nntYLkuoYiXX1d"
+            },
+            "customKinds": {
+              "application/rpgmv-EventCommand": "System.IO.MemoryStream"
+            },
+            "_ole": true
+          }
+        },
+        {
+          "id": "b_mk60e47c_ya6saj",
+          "name": "↷ラベルジャンプ",
+          "payload": {
+            "text": "",
+            "html": "",
+            "rtf": "",
+            "custom": {
+              "application/rpgmv-EventCommand": "W3siY29kZSI6MTE5LCJpbmRlbnQiOjAsInBhcmFtZXRlcnMiOlsiZGVidWciXX0seyJjb2RlIjoxMTgsImluZGVudCI6MCwicGFyYW1ldGVycyI6WyJkZWJ1ZyJdfV0="
+            },
+            "customKinds": {
+              "application/rpgmv-EventCommand": "System.IO.MemoryStream"
+            },
+            "_ole": true
+          }
+        },
+        {
+          "id": "b_mk9f1wqy_3o01y1",
+          "name": "🤦仲間イベント生成",
+          "payload": {
+            "text": "",
+            "html": "",
+            "rtf": "",
+            "custom": {
+              "application/rpgmv-EventCommand": "W3siY29kZSI6MjE2LCJpbmRlbnQiOjAsInBhcmFtZXRlcnMiOlsxXX0seyJjb2RlIjoyMDUsImluZGVudCI6MCwicGFyYW1ldGVycyI6WzE4LHsibGlzdCI6W3siY29kZSI6NDUsInBhcmFtZXRlcnMiOlsidGhpcy5sb2NhdGVUb0NoYXJhY3RlcigkZ2FtZVBsYXllci5fZm9sbG93ZXJzLmZvbGxvd2VyKDEpKSJdLCJpbmRlbnQiOm51bGx9LHsiY29kZSI6NDAsImluZGVudCI6bnVsbH0seyJjb2RlIjowfV0sInJlcGVhdCI6ZmFsc2UsInNraXBwYWJsZSI6dHJ1ZSwid2FpdCI6dHJ1ZX1dfSx7ImNvZGUiOjUwNSwiaW5kZW50IjowLCJwYXJhbWV0ZXJzIjpbeyJjb2RlIjo0NSwicGFyYW1ldGVycyI6WyJ0aGlzLmxvY2F0ZVRvQ2hhcmFjdGVyKCRnYW1lUGxheWVyLl9mb2xsb3dlcnMuZm9sbG93ZXIoMSkpIl0sImluZGVudCI6bnVsbH1dfSx7ImNvZGUiOjUwNSwiaW5kZW50IjowLCJwYXJhbWV0ZXJzIjpbeyJjb2RlIjo0MCwiaW5kZW50IjpudWxsfV19XQ=="
+            },
+            "customKinds": {
+              "application/rpgmv-EventCommand": "System.IO.MemoryStream"
+            },
+            "_ole": true
+          }
+        },
+        {
+          "id": "b_mkqk5m53_x64x4r",
+          "name": "🤦仲間イベント帰還",
+          "payload": {
+            "text": "",
+            "html": "",
+            "rtf": "",
+            "custom": {
+              "application/rpgmv-EventCommand": "W3siY29kZSI6MjA1LCJpbmRlbnQiOjAsInBhcmFtZXRlcnMiOls4LHsibGlzdCI6W3siY29kZSI6NDUsInBhcmFtZXRlcnMiOlsidGhpcy5nb1RvQ2hhcmFjdGVyKCRnYW1lUGxheWVyLl9mb2xsb3dlcnMuZm9sbG93ZXIoMSkpIl0sImluZGVudCI6bnVsbH0seyJjb2RlIjowfV0sInJlcGVhdCI6ZmFsc2UsInNraXBwYWJsZSI6ZmFsc2UsIndhaXQiOnRydWV9XX0seyJjb2RlIjo1MDUsImluZGVudCI6MCwicGFyYW1ldGVycyI6W3siY29kZSI6NDUsInBhcmFtZXRlcnMiOlsidGhpcy5nb1RvQ2hhcmFjdGVyKCRnYW1lUGxheWVyLl9mb2xsb3dlcnMuZm9sbG93ZXIoMSkpIl0sImluZGVudCI6bnVsbH1dfSx7ImNvZGUiOjIxNiwiaW5kZW50IjowLCJwYXJhbWV0ZXJzIjpbMF19LHsiY29kZSI6MjA1LCJpbmRlbnQiOjAsInBhcmFtZXRlcnMiOls4LHsibGlzdCI6W3siY29kZSI6MzksImluZGVudCI6bnVsbH0seyJjb2RlIjowfV0sInJlcGVhdCI6ZmFsc2UsInNraXBwYWJsZSI6ZmFsc2UsIndhaXQiOnRydWV9XX0seyJjb2RlIjo1MDUsImluZGVudCI6MCwicGFyYW1ldGVycyI6W3siY29kZSI6MzksImluZGVudCI6bnVsbH1dfV0="
+            },
+            "customKinds": {
+              "application/rpgmv-EventCommand": "System.IO.MemoryStream"
+            },
+            "_ole": true
+          }
+        },
+        {
+          "id": "b_mkqjxgyt_kogt7c",
+          "name": "⏩️他イベント起動",
+          "payload": {
+            "text": "",
+            "html": "",
+            "rtf": "",
+            "custom": {
+              "application/rpgmv-EventCommand": "W3siY29kZSI6MzU1LCJpbmRlbnQiOjAsInBhcmFtZXRlcnMiOlsidmFyIGV2ID0gdGhpcy5jaGFyYWN0ZXIoMTQpOyJdfSx7ImNvZGUiOjY1NSwiaW5kZW50IjowLCJwYXJhbWV0ZXJzIjpbInRoaXMuc2V0dXBDaGlsZChldi5saXN0KCksIGV2LmV2ZW50SWQoKSk7Il19XQ=="
+            },
+            "customKinds": {
+              "application/rpgmv-EventCommand": "System.IO.MemoryStream"
+            },
+            "_ole": true
+          }
+        },
+        {
+          "id": "b_mkqmepud_4th2n5",
+          "name": "🥾移動待ち",
+          "payload": {
+            "text": "",
+            "html": "",
+            "rtf": "",
+            "custom": {
+              "application/rpgmv-EventCommand": "W3siY29kZSI6MzU1LCJpbmRlbnQiOjAsInBhcmFtZXRlcnMiOlsidGhpcy5fY2hhcmFjdGVyID0gJGdhbWVQbGF5ZXI7Il19LHsiY29kZSI6NjU1LCJpbmRlbnQiOjAsInBhcmFtZXRlcnMiOlsidGhpcy5zZXRXYWl0TW9kZSgnbW92ZScpOyJdfV0="
+            },
+            "customKinds": {
+              "application/rpgmv-EventCommand": "System.IO.MemoryStream"
+            },
+            "_ole": true
+          }
+        },
+        {
+          "id": "b_ml2uxntc_8y6k75",
+          "name": "💨player.shift",
+          "payload": {
+            "text": "",
+            "html": "",
+            "rtf": "",
+            "custom": {
+              "application/rpgmv-EventCommand": "W3siY29kZSI6MzU1LCJpbmRlbnQiOjAsInBhcmFtZXRlcnMiOlsiJGdhbWVQbGF5ZXIuc2hpZnRQb3MoMC41LCAwKTsgLy9zaGlmdCJdfSx7ImNvZGUiOjM1NSwiaW5kZW50IjowLCJwYXJhbWV0ZXJzIjpbIiRnYW1lUGxheWVyLnNoaWZ0UG9zKDAsIDAuNSk7IC8vc2hpZnQiXX1d"
+            },
+            "customKinds": {
+              "application/rpgmv-EventCommand": "System.IO.MemoryStream"
+            },
+            "_ole": true
+          }
+        },
+        {
+          "id": "b_ml5ra4z6_hdm6ww",
+          "name": "↔️character内分岐",
+          "payload": {
+            "text": "",
+            "html": "",
+            "rtf": "",
+            "custom": {
+              "application/rpgmv-EventCommand": "W3siY29kZSI6MTExLCJpbmRlbnQiOjAsInBhcmFtZXRlcnMiOlsxMiwiIXRoaXMuY2hhcmFjdGVyKDApLl9fYSJdfSx7ImNvZGUiOjM1NSwiaW5kZW50IjoxLCJwYXJhbWV0ZXJzIjpbInRoaXMuY2hhcmFjdGVyKDApLl9fYSA9IDE7Il19LHsiY29kZSI6MCwiaW5kZW50IjoxLCJwYXJhbWV0ZXJzIjpbXX0seyJjb2RlIjo0MTEsImluZGVudCI6MCwicGFyYW1ldGVycyI6W119LHsiY29kZSI6MCwiaW5kZW50IjoxLCJwYXJhbWV0ZXJzIjpbXX0seyJjb2RlIjo0MTIsImluZGVudCI6MCwicGFyYW1ldGVycyI6W119XQ=="
+            },
+            "customKinds": {
+              "application/rpgmv-EventCommand": "System.IO.MemoryStream"
+            },
+            "_ole": true
+          }
+        },
+        {
+          "id": "b_ml73nd1e_hljs24",
+          "name": "🎁アイテム入手",
+          "payload": {
+            "text": "",
+            "html": "",
+            "rtf": "",
+            "custom": {
+              "application/rpgmv-EventCommand": "W3siY29kZSI6MjMwLCJpbmRlbnQiOjEsInBhcmFtZXRlcnMiOlsxMl19LHsiY29kZSI6MzU1LCJpbmRlbnQiOjEsInBhcmFtZXRlcnMiOlsidmFyIGl0ZW0gPSAkZGF0YUl0ZW1zWzMzXTsgLy8g44Ki44Kk44OG44Og5YWl5omLIl19LHsiY29kZSI6NjU1LCJpbmRlbnQiOjEsInBhcmFtZXRlcnMiOlsidmFyIGV2ID0gJGdhbWVNYXAucHV0SXRlbShpdGVtLCAkZ2FtZVBsYXllci54LCAkZ2FtZVBsYXllci55LCA5OSk7Il19LHsiY29kZSI6NjU1LCJpbmRlbnQiOjEsInBhcmFtZXRlcnMiOlsidGhpcy5zZXR1cENoaWxkKGV2Lmxpc3QoKSwgZXYuZXZlbnRJZCgpKTsiXX0seyJjb2RlIjoyMzAsImluZGVudCI6MSwicGFyYW1ldGVycyI6WzEyXX0seyJjb2RlIjozNTYsImluZGVudCI6MSwicGFyYW1ldGVycyI6WyLjg5Xjgq3jg4DjgrfjgqbjgqPjg7Pjg4njgqbmnInlirnljJYgMCAxIl19XQ=="
+            },
+            "customKinds": {
+              "application/rpgmv-EventCommand": "System.IO.MemoryStream"
+            },
+            "_ole": true
+          }
+        },
+        {
+          "id": "b_mldgtzm2_z66kbv",
+          "name": "🚶場所移動前集合",
+          "payload": {
+            "text": "",
+            "html": "",
+            "rtf": "",
+            "custom": {
+              "application/rpgmv-EventCommand": "W3siY29kZSI6MTIyLCJpbmRlbnQiOjAsInBhcmFtZXRlcnMiOlszLDMsMCw0LCJbeCwgeSwgZGlyXSJdfSx7ImNvZGUiOjExNywiaW5kZW50IjowLCJwYXJhbWV0ZXJzIjpbN119XQ=="
+            },
+            "customKinds": {
+              "application/rpgmv-EventCommand": "System.IO.MemoryStream"
+            },
+            "_ole": true
+          }
+        },
+        {
+          "id": "b_mlvyttx0_qmguj1",
+          "name": "🎵マップBGM再生",
+          "payload": {
+            "text": "",
+            "html": "",
+            "rtf": "",
+            "custom": {
+              "application/rpgmv-EventCommand": "W3siY29kZSI6MzU1LCJpbmRlbnQiOjAsInBhcmFtZXRlcnMiOlsiJGdhbWVNYXAuYXV0b3BsYXkoKTsgLy/jg57jg4Pjg5dCR03lho3nlJ8iXX1d"
+            },
+            "customKinds": {
+              "application/rpgmv-EventCommand": "System.IO.MemoryStream"
+            },
+            "_ole": true
+          }
+        }
+      ]
+    },
+    {
+      "id": "g_mk5wx312_r9kep3",
+      "name": "📝プラグインコマンド",
+      "color": "#dcfce7",
+      "buttons": [
+        {
+          "id": "b_mk5wxkc7_e1cis5",
+          "name": "🗨️フキダシ有効化",
+          "payload": {
+            "text": "",
+            "html": "",
+            "rtf": "",
+            "custom": {
+              "application/rpgmv-EventCommand": "W3siY29kZSI6MzU2LCJpbmRlbnQiOjAsInBhcmFtZXRlcnMiOlsi44OV44Kt44OA44K344Km44Kj44Oz44OJ44Km5pyJ5Yq55YyWIOOBv+OBg+ODvCAxIl19XQ=="
+            },
+            "customKinds": {
+              "application/rpgmv-EventCommand": "System.IO.MemoryStream"
+            },
+            "_ole": true
+          }
+        },
+        {
+          "id": "b_mk5wzfp0_o7dyxz",
+          "name": "🗨️フキダシ位置調整",
+          "payload": {
+            "text": "",
+            "html": "",
+            "rtf": "",
+            "custom": {
+              "application/rpgmv-EventCommand": "W3siY29kZSI6MzU2LCJpbmRlbnQiOjAsInBhcmFtZXRlcnMiOlsi44OV44Kt44OA44K344Km44Kj44Oz44OJ44Km6Kq/5pW0IOS9jee9riAwIDAiXX1d"
+            },
+            "customKinds": {
+              "application/rpgmv-EventCommand": "System.IO.MemoryStream"
+            },
+            "_ole": true
+          }
+        }
+      ]
+    },
+    {
+      "id": "g_mk4m1kem_j1282r",
+      "name": "🥾移動ルートコマンド",
+      "color": "#dbeafe",
+      "buttons": [
+        {
+          "id": "b_mk9e8hj7_7i200e",
+          "name": "🥾goto(x,y)",
+          "payload": {
+            "text": "",
+            "html": "",
+            "rtf": "",
+            "custom": {
+              "application/rpgmv-MovementCommand": "W3siY29kZSI6NDUsInBhcmFtZXRlcnMiOlsidGhpcy5nb1RvKHgsIHkpOyJdLCJpbmRlbnQiOm51bGx9XQ=="
+            },
+            "customKinds": {
+              "application/rpgmv-MovementCommand": "System.IO.MemoryStream"
+            },
+            "_ole": true
+          }
+        },
+        {
+          "id": "b_mk9e900s_cnpnag",
+          "name": "🥾locateTo(x,y)",
+          "payload": {
+            "text": "",
+            "html": "",
+            "rtf": "",
+            "custom": {
+              "application/rpgmv-MovementCommand": "W3siY29kZSI6NDUsInBhcmFtZXRlcnMiOlsidGhpcy5sb2NhdGVUbyh4LCB5KTsiXSwiaW5kZW50IjpudWxsfV0="
+            },
+            "customKinds": {
+              "application/rpgmv-MovementCommand": "System.IO.MemoryStream"
+            },
+            "_ole": true
+          }
+        },
+        {
+          "id": "b_mk4m1qhr_yt2pl9",
+          "name": "🎨setImageZXC",
+          "payload": {
+            "text": "",
+            "html": "",
+            "rtf": "",
+            "custom": {
+              "application/rpgmv-MovementCommand": "W3siY29kZSI6NDUsInBhcmFtZXRlcnMiOlsidGhpcy5zZXRJbWFnZVpYQygnJDAwMScsIDAsIGRpcik7IC8v55S75YOP5aSJ5pu0Il0sImluZGVudCI6bnVsbH1d"
+            },
+            "customKinds": {
+              "application/rpgmv-MovementCommand": "System.IO.MemoryStream"
+            },
+            "_ole": true
+          }
+        },
+        {
+          "id": "b_mk4m35d8_jemp7c",
+          "name": "⏯️frameAnime",
+          "payload": {
+            "text": "",
+            "html": "",
+            "rtf": "",
+            "custom": {
+              "application/rpgmv-MovementCommand": "W3siY29kZSI6NDUsInBhcmFtZXRlcnMiOlsidGhpcy5zdGFydEZyYW1lQW5pbWF0aW9uKGNlbGxzLCB3YWl0LCB0cnVlKTsgLy/jg5Xjg6zjg7zjg6DjgqLjg4vjg6EiXSwiaW5kZW50IjpudWxsfV0="
+            },
+            "customKinds": {
+              "application/rpgmv-MovementCommand": "System.IO.MemoryStream"
+            },
+            "_ole": true
+          }
+        },
+        {
+          "id": "b_mk9egwbj_dmz6kv",
+          "name": "⏹️endFrameAnime",
+          "payload": {
+            "text": "",
+            "html": "",
+            "rtf": "",
+            "custom": {
+              "application/rpgmv-MovementCommand": "W3siY29kZSI6NDUsInBhcmFtZXRlcnMiOlsidGhpcy5lbmRGcmFtZUFuaW1hdGlvbigpOyAvL+ODleODrOODvOODoOOCouODi+ODoee1guS6hiJdLCJpbmRlbnQiOm51bGx9XQ=="
+            },
+            "customKinds": {
+              "application/rpgmv-MovementCommand": "System.IO.MemoryStream"
+            },
+            "_ole": true
+          }
+        },
+        {
+          "id": "b_mkvq1wux_jkuugr",
+          "name": "🥾移動速度変更",
+          "payload": {
+            "text": "",
+            "html": "",
+            "rtf": "",
+            "custom": {
+              "application/rpgmv-MovementCommand": "W3siY29kZSI6NDUsInBhcmFtZXRlcnMiOlsidGhpcy5fbGFzdE1vdmVTcGVlZCA9IHRoaXMuX21vdmVTcGVlZDsiXSwiaW5kZW50IjpudWxsfSx7ImNvZGUiOjI5LCJwYXJhbWV0ZXJzIjpbM10sImluZGVudCI6bnVsbH0seyJjb2RlIjo0LCJpbmRlbnQiOm51bGx9LHsiY29kZSI6NDUsInBhcmFtZXRlcnMiOlsidGhpcy5fbW92ZVNwZWVkID0gdGhpcy5fbGFzdE1vdmVTcGVlZDsiXSwiaW5kZW50IjowfV0="
+            },
+            "customKinds": {
+              "application/rpgmv-MovementCommand": "System.IO.MemoryStream"
+            },
+            "_ole": true
+          }
+        },
+        {
+          "id": "b_ml6fgy6x_cotmis",
+          "name": "⏩️起動後も続行",
+          "payload": {
+            "text": "",
+            "html": "",
+            "rtf": "",
+            "custom": {
+              "application/rpgmv-MovementCommand": "W3siY29kZSI6NDUsInBhcmFtZXRlcnMiOlsidGhpcy5fbW92ZVJvdXRlRm9yY2luZyA9IHRydWUiXSwiaW5kZW50IjowfV0="
+            },
+            "customKinds": {
+              "application/rpgmv-MovementCommand": "System.IO.MemoryStream"
+            },
+            "_ole": true
+          }
+        },
+        {
+          "id": "b_ml6fqn7s_vx7w0j",
+          "name": "⏯️cssRectアニメ",
+          "payload": {
+            "text": "",
+            "html": "",
+            "rtf": "",
+            "custom": {
+              "application/rpgmv-MovementCommand": "W3siY29kZSI6NDUsInBhcmFtZXRlcnMiOlsidmFyIGYgPSAyOyB0aGlzLl9jc3NSZWN0LnggPSAodGhpcy5fY3NzUmVjdC54ICsgdGhpcy5fY3NzUmVjdC53aWR0aCkgJSAodGhpcy5fY3NzUmVjdC53aWR0aCAqIGYpIl0sImluZGVudCI6bnVsbH0seyJjb2RlIjoxNSwicGFyYW1ldGVycyI6WzZdLCJpbmRlbnQiOm51bGx9XQ=="
+            },
+            "customKinds": {
+              "application/rpgmv-MovementCommand": "System.IO.MemoryStream"
+            },
+            "_ole": true
+          }
+        },
+        {
+          "id": "b_mlh6o6sg_6cy1hw",
+          "name": "🔃x,yのほうを向く",
+          "payload": {
+            "text": "",
+            "html": "",
+            "rtf": "",
+            "custom": {
+              "application/rpgmv-MovementCommand": "W3siY29kZSI6NDUsInBhcmFtZXRlcnMiOlsidGhpcy50dXJuVG93YXJkQ2hhcmFjdGVyKHtfcmVhbFggOiAyNSwgX3JlYWxZIDogMTR9KSJdLCJpbmRlbnQiOm51bGx9XQ=="
+            },
+            "customKinds": {
+              "application/rpgmv-MovementCommand": "System.IO.MemoryStream"
+            },
+            "_ole": true
+          }
+        },
+        {
+          "id": "b_mm6wif76_iid9ta",
+          "name": "😰ｶﾞﾀｶﾞﾀ震える",
+          "payload": {
+            "text": "",
+            "html": "",
+            "rtf": "",
+            "custom": {
+              "application/rpgmv-MovementCommand": "W3siY29kZSI6NDUsInBhcmFtZXRlcnMiOlsidGhpcy5zdGFydEdhdGFnYXRhKCk7IC8v44Ks44K/44Ks44K/6ZaL5aeLIl0sImluZGVudCI6bnVsbH1d"
+            },
+            "customKinds": {
+              "application/rpgmv-MovementCommand": "System.IO.MemoryStream"
+            },
+            "_ole": true
+          }
+        },
+        {
+          "id": "b_mm6win37_e5d985",
+          "name": "⏹️ｶﾞﾀｶﾞﾀ停止",
+          "payload": {
+            "text": "",
+            "html": "",
+            "rtf": "",
+            "custom": {
+              "application/rpgmv-MovementCommand": "W3siY29kZSI6NDUsInBhcmFtZXRlcnMiOlsidGhpcy5zdG9wR2F0YWdhdGEoKTsgLy/jgqzjgr/jgqzjgr/lgZzmraIiXSwiaW5kZW50IjpudWxsfV0="
+            },
+            "customKinds": {
+              "application/rpgmv-MovementCommand": "System.IO.MemoryStream"
+            },
+            "_ole": true
+          }
+        },
+        {
+          "id": "b_mm6wjvoo_rcgtga",
+          "name": "😰ﾗﾝﾀﾞﾑに震える",
+          "payload": {
+            "text": "",
+            "html": "",
+            "rtf": "",
+            "custom": {
+              "application/rpgmv-MovementCommand": "W3siY29kZSI6NDUsInBhcmFtZXRlcnMiOlsidGhpcy5zdGFydFNoaXZlclgoKTsgLy/jg6njg7Pjg4Djg6DpnIfjgYjplovlp4siXSwiaW5kZW50IjpudWxsfV0="
+            },
+            "customKinds": {
+              "application/rpgmv-MovementCommand": "System.IO.MemoryStream"
+            },
+            "_ole": true
+          }
+        },
+        {
+          "id": "b_mm6wk3iu_gzosan",
+          "name": "⏹️ﾗﾝﾀﾞﾑ停止",
+          "payload": {
+            "text": "",
+            "html": "",
+            "rtf": "",
+            "custom": {
+              "application/rpgmv-MovementCommand": "W3siY29kZSI6NDUsInBhcmFtZXRlcnMiOlsidGhpcy5zdG9wU2hpdmVyWCgpOyAvL+ODqeODs+ODgOODoOmch+OBiOWBnOatoiJdLCJpbmRlbnQiOm51bGx9XQ=="
+            },
+            "customKinds": {
+              "application/rpgmv-MovementCommand": "System.IO.MemoryStream"
+            },
+            "_ole": true
+          }
+        }
+      ]
+    }
+  ]
+}
