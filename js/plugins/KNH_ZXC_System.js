@@ -418,24 +418,35 @@ const _createOutlineFilter = function(w, h, bw, ww) {
         return false;
     };
 
+    function resetCharacterAnimationSync(character) {
+        if (!character) return;
+        character._animeCountNum = 0;
+        character._animeWait = null;
+        character._isAnimeFrame = false;
+    }
+
     Game_CharacterBase.prototype.updateAnimation = function () {
         if ($gameSwitches.value(1)) return;
         //足踏みアニメをゆらゆらに合わせる
         this._isAnimeFrame = false;
-        this._animeCountNum = this._animeCountNum || 0;
+        this._animeCountNum = Number(this._animeCountNum || 0);
+        if (!isFinite(this._animeCountNum)) this._animeCountNum = 0;
         if (this._cssRectFrameAnimation) return this.updateCssRectFrameAnimation();
         if (this._frameAnimation) return this.updateFrameAnimation();
         var stopCount = this._stopCount || 0;
         var isWalkAnimating = this.hasWalkAnime() && (this.isMoving() || stopCount <= 1);
         if (isWalkAnimating || this.hasStepAnime() || !this.isOriginalPattern()) {
             var wait = this.animationWait();
-            if (this._animeWait !== wait) {
+            var sceneCount = $gameSystem.sceneCount();
+            var nextFrame = this._animeCountNum * wait + wait - 1;
+            if (this._animeWait !== wait || nextFrame > sceneCount + wait) {
                 this._animeWait = wait;
-                this._animeCountNum = Math.max(0, Math.ceil($gameSystem.sceneCount() / wait) - 1);
+                this._animeCountNum = Math.max(0, Math.ceil(sceneCount / wait) - 1);
+                nextFrame = this._animeCountNum * wait + wait - 1;
             }
-            if ($gameSystem.sceneCount() >= this._animeCountNum * wait + wait - 1) {
+            if (sceneCount >= nextFrame) {
                 this.updatePattern();
-                this._animeCountNum = Math.ceil($gameSystem.sceneCount() / wait);
+                this._animeCountNum = Math.ceil(sceneCount / wait);
                 this._isAnimeFrame = true;
             }
         }
@@ -464,10 +475,10 @@ const _createOutlineFilter = function(w, h, bw, ww) {
     var _Game_System_onAfterLoad = Game_System.prototype.onAfterLoad;
     Game_System.prototype.onAfterLoad = function () {
         _Game_System_onAfterLoad.apply(this, arguments);
-        $gamePlayer._animeCountNum = 0;
-        $gamePlayer.followers().forEach(f => f._animeCountNum = 0);
+        resetCharacterAnimationSync($gamePlayer);
+        $gamePlayer.followers().forEach(resetCharacterAnimationSync);
         $gameMap._events.forEach(e => {
-            if (e) e._animeCountNum = 0;
+            resetCharacterAnimationSync(e);
         });
     };
 
