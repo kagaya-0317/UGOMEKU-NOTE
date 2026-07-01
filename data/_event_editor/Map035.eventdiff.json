@@ -1,0 +1,2730 @@
+{
+  "plugin": "KNH_ZXC_EventEditor",
+  "version": "0.1.0",
+  "savedAt": "2026-04-24T22:33:19.147Z",
+  "tracks": [
+    {
+      "eventId": 11,
+      "pageIndex": 3,
+      "list": [
+        {
+          "code": 108,
+          "indent": 0,
+          "parameters": [
+            "====================================================="
+          ]
+        },
+        {
+          "code": 355,
+          "indent": 0,
+          "parameters": [
+            "TestReload.saveHere(\"大きな橋 釣られる\");"
+          ]
+        },
+        {
+          "code": 108,
+          "indent": 0,
+          "parameters": [
+            "====================================================="
+          ]
+        },
+        {
+          "code": 216,
+          "indent": 0,
+          "parameters": [
+            1
+          ]
+        },
+        {
+          "code": 205,
+          "indent": 0,
+          "parameters": [
+            8,
+            {
+              "list": [
+                {
+                  "code": 45,
+                  "parameters": [
+                    "this.locateTo(29, 12)"
+                  ],
+                  "indent": null
+                },
+                {
+                  "code": 40,
+                  "indent": null
+                },
+                {
+                  "code": 18,
+                  "indent": null
+                },
+                {
+                  "code": 0
+                }
+              ],
+              "repeat": false,
+              "skippable": true,
+              "wait": true
+            }
+          ]
+        },
+        {
+          "code": 505,
+          "indent": 0,
+          "parameters": [
+            {
+              "code": 45,
+              "parameters": [
+                "this.locateTo(29, 12)"
+              ],
+              "indent": null
+            }
+          ]
+        },
+        {
+          "code": 505,
+          "indent": 0,
+          "parameters": [
+            {
+              "code": 40,
+              "indent": null
+            }
+          ]
+        },
+        {
+          "code": 505,
+          "indent": 0,
+          "parameters": [
+            {
+              "code": 18,
+              "indent": null
+            }
+          ]
+        },
+        {
+          "code": 121,
+          "indent": 0,
+          "parameters": [
+            2,
+            2,
+            0
+          ]
+        },
+        {
+          "code": 205,
+          "indent": 0,
+          "parameters": [
+            -1,
+            {
+              "list": [
+                {
+                  "code": 45,
+                  "parameters": [
+                    "this._customPriority = 5;"
+                  ],
+                  "indent": null
+                },
+                {
+                  "code": 16,
+                  "indent": null
+                },
+                {
+                  "code": 35,
+                  "indent": null
+                },
+                {
+                  "code": 45,
+                  "parameters": [
+                    "this.locateTo(this.x + 10, this.y + 10)"
+                  ],
+                  "indent": null
+                },
+                {
+                  "code": 32,
+                  "indent": null
+                },
+                {
+                  "code": 0
+                }
+              ],
+              "repeat": false,
+              "skippable": false,
+              "wait": false
+            }
+          ]
+        },
+        {
+          "code": 505,
+          "indent": 0,
+          "parameters": [
+            {
+              "code": 45,
+              "parameters": [
+                "this._customPriority = 5;"
+              ],
+              "indent": null
+            }
+          ]
+        },
+        {
+          "code": 505,
+          "indent": 0,
+          "parameters": [
+            {
+              "code": 16,
+              "indent": null
+            }
+          ]
+        },
+        {
+          "code": 505,
+          "indent": 0,
+          "parameters": [
+            {
+              "code": 35,
+              "indent": null
+            }
+          ]
+        },
+        {
+          "code": 505,
+          "indent": 0,
+          "parameters": [
+            {
+              "code": 45,
+              "parameters": [
+                "this.locateTo(this.x + 10, this.y + 10)"
+              ],
+              "indent": null
+            }
+          ]
+        },
+        {
+          "code": 505,
+          "indent": 0,
+          "parameters": [
+            {
+              "code": 32,
+              "indent": null
+            }
+          ]
+        },
+        {
+          "code": 230,
+          "indent": 0,
+          "parameters": [
+            2
+          ]
+        },
+        {
+          "code": 205,
+          "indent": 0,
+          "parameters": [
+            8,
+            {
+              "repeat": false,
+              "skippable": false,
+              "wait": false,
+              "list": [
+                {
+                  "code": 45,
+                  "parameters": [
+                    "this.setImageZXC('$002_3', 0, 2)"
+                  ]
+                },
+                {
+                  "code": 45,
+                  "parameters": [
+                    "this.startFrameAnimation([0], 6, false)"
+                  ]
+                },
+                {
+                  "code": 0,
+                  "parameters": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "code": 505,
+          "indent": 0,
+          "parameters": [
+            {
+              "code": 45,
+              "parameters": [
+                "this.setImageZXC('$002_3', 0, 2)"
+              ]
+            }
+          ]
+        },
+        {
+          "code": 505,
+          "indent": 0,
+          "parameters": [
+            {
+              "code": 45,
+              "parameters": [
+                "this.startFrameAnimation([0], 6, false)"
+              ]
+            }
+          ]
+        },
+        {
+          "code": 230,
+          "indent": 0,
+          "parameters": [
+            28
+          ]
+        },
+        {
+          "code": 117,
+          "indent": 0,
+          "parameters": [
+            2
+          ]
+        },
+        {
+          "code": 355,
+          "indent": 0,
+          "parameters": [
+            "this.character(9)._x = this.character(9)._realX = 23;"
+          ]
+        },
+        {
+          "code": 230,
+          "indent": 0,
+          "parameters": [
+            123
+          ]
+        },
+        {
+          "code": 205,
+          "indent": 0,
+          "parameters": [
+            8,
+            {
+              "repeat": false,
+              "skippable": false,
+              "wait": false,
+              "list": [
+                {
+                  "code": 45,
+                  "parameters": [
+                    "this.startFrameAnimation(6, 8, false)"
+                  ]
+                },
+                {
+                  "code": 0,
+                  "parameters": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "code": 505,
+          "indent": 0,
+          "parameters": [
+            {
+              "code": 45,
+              "parameters": [
+                "this.startFrameAnimation(6, 8, false)"
+              ]
+            }
+          ]
+        },
+        {
+          "code": 230,
+          "indent": 0,
+          "parameters": [
+            9
+          ]
+        },
+        {
+          "code": 250,
+          "indent": 0,
+          "parameters": [
+            {
+              "name": "00_kururi",
+              "volume": 90,
+              "pitch": 100,
+              "pan": 0
+            }
+          ]
+        },
+        {
+          "code": 230,
+          "indent": 0,
+          "parameters": [
+            24
+          ]
+        },
+        {
+          "code": 250,
+          "indent": 0,
+          "parameters": [
+            {
+              "name": "Water1",
+              "volume": 90,
+              "pitch": 100,
+              "pan": 0
+            }
+          ]
+        },
+        {
+          "code": 250,
+          "indent": 0,
+          "parameters": [
+            {
+              "name": "Wind7",
+              "volume": 89,
+              "pitch": 134,
+              "pan": 0
+            }
+          ]
+        },
+        {
+          "code": 230,
+          "indent": 0,
+          "parameters": [
+            6
+          ]
+        },
+        {
+          "code": 205,
+          "indent": 0,
+          "parameters": [
+            -1,
+            {
+              "list": [
+                {
+                  "code": 45,
+                  "parameters": [
+                    "this.jump(-10, -10, 1.5, 2)"
+                  ],
+                  "indent": null
+                },
+                {
+                  "code": 31,
+                  "indent": null
+                },
+                {
+                  "code": 36,
+                  "indent": null
+                },
+                {
+                  "code": 45,
+                  "parameters": [
+                    "this._customPriority = null;"
+                  ],
+                  "indent": null
+                },
+                {
+                  "code": 0
+                }
+              ],
+              "repeat": false,
+              "skippable": false,
+              "wait": false
+            }
+          ]
+        },
+        {
+          "code": 505,
+          "indent": 0,
+          "parameters": [
+            {
+              "code": 45,
+              "parameters": [
+                "this.jump(-10, -10, 1.5, 2)"
+              ],
+              "indent": null
+            }
+          ]
+        },
+        {
+          "code": 505,
+          "indent": 0,
+          "parameters": [
+            {
+              "code": 31,
+              "indent": null
+            }
+          ]
+        },
+        {
+          "code": 505,
+          "indent": 0,
+          "parameters": [
+            {
+              "code": 36,
+              "indent": null
+            }
+          ]
+        },
+        {
+          "code": 505,
+          "indent": 0,
+          "parameters": [
+            {
+              "code": 45,
+              "parameters": [
+                "this._customPriority = null;"
+              ],
+              "indent": null
+            }
+          ]
+        },
+        {
+          "code": 230,
+          "indent": 0,
+          "parameters": [
+            30
+          ]
+        },
+        {
+          "code": 355,
+          "indent": 0,
+          "parameters": [
+            "this._character = $gamePlayer;"
+          ]
+        },
+        {
+          "code": 655,
+          "indent": 0,
+          "parameters": [
+            "this.setWaitMode('move');"
+          ]
+        },
+        {
+          "code": 230,
+          "indent": 0,
+          "parameters": [
+            60
+          ]
+        },
+        {
+          "code": 205,
+          "indent": 0,
+          "parameters": [
+            8,
+            {
+              "list": [
+                {
+                  "code": 45,
+                  "parameters": [
+                    "this.setImageZXC('$002', 0, 4)"
+                  ]
+                },
+                {
+                  "code": 45,
+                  "parameters": [
+                    "this._patternFix = false"
+                  ]
+                },
+                {
+                  "code": 0
+                }
+              ],
+              "repeat": false,
+              "skippable": true,
+              "wait": false
+            }
+          ]
+        },
+        {
+          "code": 505,
+          "indent": 0,
+          "parameters": [
+            {
+              "code": 45,
+              "parameters": [
+                "this.setImageZXC('$002', 0, 4)"
+              ]
+            }
+          ]
+        },
+        {
+          "code": 505,
+          "indent": 0,
+          "parameters": [
+            {
+              "code": 45,
+              "parameters": [
+                "this._patternFix = false"
+              ]
+            }
+          ]
+        },
+        {
+          "code": 230,
+          "indent": 0,
+          "parameters": [
+            1
+          ]
+        },
+        {
+          "code": 121,
+          "indent": 0,
+          "parameters": [
+            2,
+            2,
+            1
+          ]
+        },
+        {
+          "code": 111,
+          "indent": 0,
+          "parameters": [
+            2,
+            "A",
+            1
+          ]
+        },
+        {
+          "code": 122,
+          "indent": 1,
+          "parameters": [
+            14,
+            14,
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "code": 355,
+          "indent": 1,
+          "parameters": [
+            "$gameSystem.clearMessagePopupFree()"
+          ]
+        },
+        {
+          "code": 356,
+          "indent": 1,
+          "parameters": [
+            "フキダシウィンドウ有効化 みぃー 1"
+          ]
+        },
+        {
+          "code": 355,
+          "indent": 1,
+          "parameters": [
+            "$gameMessage._tailDir = 1"
+          ]
+        },
+        {
+          "code": 101,
+          "indent": 1,
+          "parameters": [
+            "",
+            0,
+            0,
+            2
+          ]
+        },
+        {
+          "code": 401,
+          "indent": 1,
+          "parameters": [
+            "\\n[2]！"
+          ]
+        },
+        {
+          "code": 401,
+          "indent": 1,
+          "parameters": [
+            "大丈夫！？"
+          ]
+        },
+        {
+          "code": 230,
+          "indent": 1,
+          "parameters": [
+            60
+          ]
+        },
+        {
+          "code": 205,
+          "indent": 1,
+          "parameters": [
+            9,
+            {
+              "list": [
+                {
+                  "code": 45,
+                  "parameters": [
+                    "this.startFrameAnimation(10, 7, false); //フレームアニメ"
+                  ],
+                  "indent": null
+                },
+                {
+                  "code": 40,
+                  "indent": null
+                },
+                {
+                  "code": 0
+                }
+              ],
+              "repeat": false,
+              "skippable": false,
+              "wait": false
+            }
+          ]
+        },
+        {
+          "code": 505,
+          "indent": 1,
+          "parameters": [
+            {
+              "code": 45,
+              "parameters": [
+                "this.startFrameAnimation(10, 7, false); //フレームアニメ"
+              ],
+              "indent": null
+            }
+          ]
+        },
+        {
+          "code": 505,
+          "indent": 1,
+          "parameters": [
+            {
+              "code": 40,
+              "indent": null
+            }
+          ]
+        },
+        {
+          "code": 230,
+          "indent": 1,
+          "parameters": [
+            80
+          ]
+        },
+        {
+          "code": 355,
+          "indent": 1,
+          "parameters": [
+            "$gameMap.scrollCamera(-1.5, -1.5, 60); //カメラスクロール"
+          ]
+        },
+        {
+          "code": 230,
+          "indent": 1,
+          "parameters": [
+            90
+          ]
+        },
+        {
+          "code": 205,
+          "indent": 1,
+          "parameters": [
+            -1,
+            {
+              "list": [
+                {
+                  "code": 17,
+                  "indent": null
+                },
+                {
+                  "code": 0
+                }
+              ],
+              "repeat": false,
+              "skippable": false,
+              "wait": false
+            }
+          ]
+        },
+        {
+          "code": 505,
+          "indent": 1,
+          "parameters": [
+            {
+              "code": 17,
+              "indent": null
+            }
+          ]
+        },
+        {
+          "code": 355,
+          "indent": 1,
+          "parameters": [
+            "$gameSystem.clearMessagePopupFree()"
+          ]
+        },
+        {
+          "code": 356,
+          "indent": 1,
+          "parameters": [
+            "フキダシウィンドウ有効化 橋本 1"
+          ]
+        },
+        {
+          "code": 101,
+          "indent": 1,
+          "parameters": [
+            "",
+            0,
+            0,
+            2
+          ]
+        },
+        {
+          "code": 401,
+          "indent": 1,
+          "parameters": [
+            "橋本だ"
+          ]
+        },
+        {
+          "code": 230,
+          "indent": 1,
+          "parameters": [
+            24
+          ]
+        },
+        {
+          "code": 355,
+          "indent": 1,
+          "parameters": [
+            "$gameSystem.clearMessagePopupFree()"
+          ]
+        },
+        {
+          "code": 356,
+          "indent": 1,
+          "parameters": [
+            "フキダシウィンドウ有効化 みぃー 1"
+          ]
+        },
+        {
+          "code": 101,
+          "indent": 1,
+          "parameters": [
+            "",
+            0,
+            0,
+            2
+          ]
+        },
+        {
+          "code": 401,
+          "indent": 1,
+          "parameters": [
+            "橋本さん、"
+          ]
+        },
+        {
+          "code": 401,
+          "indent": 1,
+          "parameters": [
+            "釣り針をありがとう"
+          ]
+        },
+        {
+          "code": 230,
+          "indent": 1,
+          "parameters": [
+            24
+          ]
+        },
+        {
+          "code": 355,
+          "indent": 1,
+          "parameters": [
+            "$gameSystem.clearMessagePopupFree()"
+          ]
+        },
+        {
+          "code": 356,
+          "indent": 1,
+          "parameters": [
+            "フキダシウィンドウ有効化 橋本 1"
+          ]
+        },
+        {
+          "code": 101,
+          "indent": 1,
+          "parameters": [
+            "",
+            0,
+            0,
+            2
+          ]
+        },
+        {
+          "code": 401,
+          "indent": 1,
+          "parameters": [
+            "──オレも昔"
+          ]
+        },
+        {
+          "code": 401,
+          "indent": 1,
+          "parameters": [
+            "川に落ちたコトが"
+          ]
+        },
+        {
+          "code": 401,
+          "indent": 1,
+          "parameters": [
+            "ある"
+          ]
+        },
+        {
+          "code": 101,
+          "indent": 1,
+          "parameters": [
+            "",
+            0,
+            0,
+            2
+          ]
+        },
+        {
+          "code": 401,
+          "indent": 1,
+          "parameters": [
+            "見知らぬじいさんに"
+          ]
+        },
+        {
+          "code": 401,
+          "indent": 1,
+          "parameters": [
+            "釣り上げてもらった"
+          ]
+        },
+        {
+          "code": 101,
+          "indent": 1,
+          "parameters": [
+            "",
+            0,
+            0,
+            2
+          ]
+        },
+        {
+          "code": 401,
+          "indent": 1,
+          "parameters": [
+            "その時のことを"
+          ]
+        },
+        {
+          "code": 401,
+          "indent": 1,
+          "parameters": [
+            "ふと、思い出したさ"
+          ]
+        },
+        {
+          "code": 230,
+          "indent": 1,
+          "parameters": [
+            24
+          ]
+        },
+        {
+          "code": 355,
+          "indent": 1,
+          "parameters": [
+            "$gameSystem.clearMessagePopupFree()"
+          ]
+        },
+        {
+          "code": 356,
+          "indent": 1,
+          "parameters": [
+            "フキダシウィンドウ有効化 みぃー 1"
+          ]
+        },
+        {
+          "code": 101,
+          "indent": 1,
+          "parameters": [
+            "",
+            0,
+            0,
+            2
+          ]
+        },
+        {
+          "code": 401,
+          "indent": 1,
+          "parameters": [
+            "橋本さん…"
+          ]
+        },
+        {
+          "code": 101,
+          "indent": 1,
+          "parameters": [
+            "",
+            0,
+            0,
+            2
+          ]
+        },
+        {
+          "code": 401,
+          "indent": 1,
+          "parameters": [
+            "そんな所にいると"
+          ]
+        },
+        {
+          "code": 401,
+          "indent": 1,
+          "parameters": [
+            "また落ちちゃうよ"
+          ]
+        },
+        {
+          "code": 230,
+          "indent": 1,
+          "parameters": [
+            90
+          ]
+        },
+        {
+          "code": 205,
+          "indent": 1,
+          "parameters": [
+            9,
+            {
+              "list": [
+                {
+                  "code": 45,
+                  "parameters": [
+                    "this.startFrameAnimation([9,8,7,6,5,4,3,2,1], 6, false); //フレームアニメ"
+                  ],
+                  "indent": null
+                },
+                {
+                  "code": 15,
+                  "parameters": [
+                    52
+                  ]
+                },
+                {
+                  "code": 15,
+                  "parameters": [
+                    2
+                  ]
+                },
+                {
+                  "code": 39,
+                  "indent": null
+                },
+                {
+                  "code": 0,
+                  "parameters": []
+                }
+              ],
+              "repeat": false,
+              "skippable": false,
+              "wait": true
+            }
+          ]
+        },
+        {
+          "code": 505,
+          "indent": 1,
+          "parameters": [
+            {
+              "code": 45,
+              "parameters": [
+                "this.startFrameAnimation([9,8,7,6,5,4,3,2,1], 6, false); //フレームアニメ"
+              ],
+              "indent": null
+            }
+          ]
+        },
+        {
+          "code": 505,
+          "indent": 1,
+          "parameters": [
+            {
+              "code": 15,
+              "parameters": [
+                52
+              ]
+            }
+          ]
+        },
+        {
+          "code": 505,
+          "indent": 1,
+          "parameters": [
+            {
+              "code": 15,
+              "parameters": [
+                2
+              ]
+            }
+          ]
+        },
+        {
+          "code": 505,
+          "indent": 1,
+          "parameters": [
+            {
+              "code": 39,
+              "indent": null
+            }
+          ]
+        },
+        {
+          "code": 230,
+          "indent": 1,
+          "parameters": [
+            24
+          ]
+        },
+        {
+          "code": 355,
+          "indent": 1,
+          "parameters": [
+            "$gameMap.scrollCamera(0, 0, 60); //カメラスクロール"
+          ]
+        },
+        {
+          "code": 123,
+          "indent": 1,
+          "parameters": [
+            "A",
+            0
+          ]
+        },
+        {
+          "code": 412,
+          "indent": 0,
+          "parameters": []
+        },
+        {
+          "code": 205,
+          "indent": 0,
+          "parameters": [
+            8,
+            {
+              "list": [
+                {
+                  "code": 45,
+                  "parameters": [
+                    "$gamePlayer._followers.follower(1).locateToCharacter(this)"
+                  ],
+                  "indent": null
+                },
+                {
+                  "code": 0
+                }
+              ],
+              "repeat": false,
+              "skippable": false,
+              "wait": true
+            }
+          ]
+        },
+        {
+          "code": 505,
+          "indent": 0,
+          "parameters": [
+            {
+              "code": 45,
+              "parameters": [
+                "$gamePlayer._followers.follower(1).locateToCharacter(this)"
+              ],
+              "indent": null
+            }
+          ]
+        },
+        {
+          "code": 216,
+          "indent": 0,
+          "parameters": [
+            0
+          ]
+        },
+        {
+          "code": 205,
+          "indent": 0,
+          "parameters": [
+            8,
+            {
+              "list": [
+                {
+                  "code": 39,
+                  "indent": null
+                },
+                {
+                  "code": 0
+                }
+              ],
+              "repeat": false,
+              "skippable": false,
+              "wait": true
+            }
+          ]
+        },
+        {
+          "code": 505,
+          "indent": 0,
+          "parameters": [
+            {
+              "code": 39,
+              "indent": null
+            }
+          ]
+        },
+        {
+          "code": 122,
+          "indent": 0,
+          "parameters": [
+            49,
+            49,
+            0,
+            0,
+            6
+          ]
+        },
+        {
+          "code": 230,
+          "indent": 0,
+          "parameters": [
+            49
+          ]
+        },
+        {
+          "code": 0,
+          "indent": 0,
+          "parameters": []
+        }
+      ],
+      "timeline": [
+        {
+          "uid": 1,
+          "frame": 0,
+          "eventId": 11,
+          "pageIndex": 3,
+          "command": {
+            "code": 108,
+            "indent": 0,
+            "parameters": [
+              "====================================================="
+            ]
+          },
+          "wait": 0,
+          "rowType": "main",
+          "rowKey": "main",
+          "charId": null,
+          "isComment": true,
+          "commentLines": [
+            "====================================================="
+          ],
+          "isMemo": false,
+          "memoSize": "S",
+          "memoText": "",
+          "isMessage": false,
+          "messageLines": null,
+          "messageExt": null,
+          "isScrollMessage": false,
+          "scrollLines": null,
+          "isScript": false,
+          "scriptLines": null
+        },
+        {
+          "uid": 2,
+          "frame": 0,
+          "eventId": 11,
+          "pageIndex": 3,
+          "command": {
+            "code": 355,
+            "indent": 0,
+            "parameters": [
+              "TestReload.saveHere(\"大きな橋 釣られる\");"
+            ]
+          },
+          "wait": 0,
+          "rowType": "main",
+          "rowKey": "main",
+          "charId": null,
+          "isComment": false,
+          "commentLines": null,
+          "isMemo": false,
+          "memoSize": "S",
+          "memoText": "",
+          "isMessage": false,
+          "messageLines": null,
+          "messageExt": null,
+          "isScrollMessage": false,
+          "scrollLines": null,
+          "isScript": true,
+          "scriptLines": [
+            "TestReload.saveHere(\"大きな橋 釣られる\");"
+          ]
+        },
+        {
+          "uid": 3,
+          "frame": 0,
+          "eventId": 11,
+          "pageIndex": 3,
+          "command": {
+            "code": 108,
+            "indent": 0,
+            "parameters": [
+              "====================================================="
+            ]
+          },
+          "wait": 0,
+          "rowType": "main",
+          "rowKey": "main",
+          "charId": null,
+          "isComment": true,
+          "commentLines": [
+            "====================================================="
+          ],
+          "isMemo": false,
+          "memoSize": "S",
+          "memoText": "",
+          "isMessage": false,
+          "messageLines": null,
+          "messageExt": null,
+          "isScrollMessage": false,
+          "scrollLines": null,
+          "isScript": false,
+          "scriptLines": null
+        },
+        {
+          "uid": 4,
+          "frame": 0,
+          "eventId": 11,
+          "pageIndex": 3,
+          "command": {
+            "code": 216,
+            "indent": 0,
+            "parameters": [
+              1
+            ]
+          },
+          "wait": 0,
+          "rowType": "main",
+          "rowKey": "main",
+          "charId": null,
+          "isComment": false,
+          "commentLines": null,
+          "isMemo": false,
+          "memoSize": "S",
+          "memoText": "",
+          "isMessage": false,
+          "messageLines": null,
+          "messageExt": null,
+          "isScrollMessage": false,
+          "scrollLines": null,
+          "isScript": false,
+          "scriptLines": null
+        },
+        {
+          "uid": 5,
+          "frame": 0,
+          "eventId": 11,
+          "pageIndex": 3,
+          "command": {
+            "code": 205,
+            "indent": 0,
+            "parameters": [
+              8,
+              {
+                "list": [
+                  {
+                    "code": 45,
+                    "parameters": [
+                      "this.locateTo(29, 12)"
+                    ],
+                    "indent": null
+                  },
+                  {
+                    "code": 40,
+                    "indent": null
+                  },
+                  {
+                    "code": 18,
+                    "indent": null
+                  },
+                  {
+                    "code": 0
+                  }
+                ],
+                "repeat": false,
+                "skippable": true,
+                "wait": true
+              }
+            ]
+          },
+          "wait": 3,
+          "rowType": "char",
+          "rowKey": "char:8",
+          "charId": 8,
+          "isComment": false,
+          "commentLines": null,
+          "isMemo": false,
+          "memoSize": "S",
+          "memoText": "",
+          "isMessage": false,
+          "messageLines": null,
+          "messageExt": null,
+          "isScrollMessage": false,
+          "scrollLines": null,
+          "isScript": false,
+          "scriptLines": null
+        },
+        {
+          "uid": 6,
+          "frame": 3,
+          "eventId": 11,
+          "pageIndex": 3,
+          "command": {
+            "code": 121,
+            "indent": 0,
+            "parameters": [
+              2,
+              2,
+              0
+            ]
+          },
+          "wait": 0,
+          "rowType": "main",
+          "rowKey": "main",
+          "charId": null,
+          "isComment": false,
+          "commentLines": null,
+          "isMemo": false,
+          "memoSize": "S",
+          "memoText": "",
+          "isMessage": false,
+          "messageLines": null,
+          "messageExt": null,
+          "isScrollMessage": false,
+          "scrollLines": null,
+          "isScript": false,
+          "scriptLines": null
+        },
+        {
+          "uid": 7,
+          "frame": 3,
+          "eventId": 11,
+          "pageIndex": 3,
+          "command": {
+            "code": 205,
+            "indent": 0,
+            "parameters": [
+              -1,
+              {
+                "list": [
+                  {
+                    "code": 45,
+                    "parameters": [
+                      "this._customPriority = 5;"
+                    ],
+                    "indent": null
+                  },
+                  {
+                    "code": 16,
+                    "indent": null
+                  },
+                  {
+                    "code": 35,
+                    "indent": null
+                  },
+                  {
+                    "code": 45,
+                    "parameters": [
+                      "this.locateTo(this.x + 10, this.y + 10)"
+                    ],
+                    "indent": null
+                  },
+                  {
+                    "code": 32,
+                    "indent": null
+                  },
+                  {
+                    "code": 0
+                  }
+                ],
+                "repeat": false,
+                "skippable": false,
+                "wait": false
+              }
+            ]
+          },
+          "wait": 0,
+          "rowType": "char",
+          "rowKey": "char:-1",
+          "charId": -1,
+          "isComment": false,
+          "commentLines": null,
+          "isMemo": false,
+          "memoSize": "S",
+          "memoText": "",
+          "isMessage": false,
+          "messageLines": null,
+          "messageExt": null,
+          "isScrollMessage": false,
+          "scrollLines": null,
+          "isScript": false,
+          "scriptLines": null
+        },
+        {
+          "uid": 8,
+          "frame": 5,
+          "eventId": 11,
+          "pageIndex": 3,
+          "command": {
+            "code": 205,
+            "indent": 0,
+            "parameters": [
+              8,
+              {
+                "repeat": false,
+                "skippable": false,
+                "wait": false,
+                "list": [
+                  {
+                    "code": 45,
+                    "parameters": [
+                      "this.setImageZXC('$002_3', 0, 2)"
+                    ]
+                  },
+                  {
+                    "code": 45,
+                    "parameters": [
+                      "this.startFrameAnimation([0], 6, false)"
+                    ]
+                  },
+                  {
+                    "code": 0,
+                    "parameters": []
+                  }
+                ]
+              }
+            ]
+          },
+          "wait": 0,
+          "rowType": "char",
+          "rowKey": "char:8",
+          "charId": 8,
+          "isComment": false,
+          "commentLines": null,
+          "isMemo": false,
+          "memoSize": "S",
+          "memoText": "",
+          "isMessage": false,
+          "messageLines": null,
+          "messageExt": null,
+          "isScrollMessage": false,
+          "scrollLines": null,
+          "isScript": false,
+          "scriptLines": null
+        },
+        {
+          "uid": 9,
+          "frame": 33,
+          "eventId": 11,
+          "pageIndex": 3,
+          "command": {
+            "code": 117,
+            "indent": 0,
+            "parameters": [
+              2
+            ]
+          },
+          "wait": 30,
+          "rowType": "main",
+          "rowKey": "main",
+          "charId": null,
+          "isComment": false,
+          "commentLines": null,
+          "isMemo": false,
+          "memoSize": "S",
+          "memoText": "",
+          "isMessage": false,
+          "messageLines": null,
+          "messageExt": null,
+          "isScrollMessage": false,
+          "scrollLines": null,
+          "isScript": false,
+          "scriptLines": null
+        },
+        {
+          "uid": 10,
+          "frame": 63,
+          "eventId": 11,
+          "pageIndex": 3,
+          "command": {
+            "code": 355,
+            "indent": 0,
+            "parameters": [
+              "this.character(9)._x = this.character(9)._realX = 23;"
+            ]
+          },
+          "wait": 0,
+          "rowType": "main",
+          "rowKey": "main",
+          "charId": null,
+          "isComment": false,
+          "commentLines": null,
+          "isMemo": false,
+          "memoSize": "S",
+          "memoText": "",
+          "isMessage": false,
+          "messageLines": null,
+          "messageExt": null,
+          "isScrollMessage": false,
+          "scrollLines": null,
+          "isScript": true,
+          "scriptLines": [
+            "this.character(9)._x = this.character(9)._realX = 23;"
+          ]
+        },
+        {
+          "uid": 11,
+          "frame": 186,
+          "eventId": 11,
+          "pageIndex": 3,
+          "command": {
+            "code": 205,
+            "indent": 0,
+            "parameters": [
+              8,
+              {
+                "repeat": false,
+                "skippable": false,
+                "wait": false,
+                "list": [
+                  {
+                    "code": 45,
+                    "parameters": [
+                      "this.startFrameAnimation(6, 8, false)"
+                    ]
+                  },
+                  {
+                    "code": 0,
+                    "parameters": []
+                  }
+                ]
+              }
+            ]
+          },
+          "wait": 0,
+          "rowType": "char",
+          "rowKey": "char:8",
+          "charId": 8,
+          "isComment": false,
+          "commentLines": null,
+          "isMemo": false,
+          "memoSize": "S",
+          "memoText": "",
+          "isMessage": false,
+          "messageLines": null,
+          "messageExt": null,
+          "isScrollMessage": false,
+          "scrollLines": null,
+          "isScript": false,
+          "scriptLines": null
+        },
+        {
+          "uid": 12,
+          "frame": 195,
+          "eventId": 11,
+          "pageIndex": 3,
+          "command": {
+            "code": 250,
+            "indent": 0,
+            "parameters": [
+              {
+                "name": "00_kururi",
+                "volume": 90,
+                "pitch": 100,
+                "pan": 0
+              }
+            ]
+          },
+          "wait": 0,
+          "rowType": "main",
+          "rowKey": "main",
+          "charId": null,
+          "isComment": false,
+          "commentLines": null,
+          "isMemo": false,
+          "memoSize": "S",
+          "memoText": "",
+          "isMessage": false,
+          "messageLines": null,
+          "messageExt": null,
+          "isScrollMessage": false,
+          "scrollLines": null,
+          "isScript": false,
+          "scriptLines": null
+        },
+        {
+          "uid": 13,
+          "frame": 219,
+          "eventId": 11,
+          "pageIndex": 3,
+          "command": {
+            "code": 250,
+            "indent": 0,
+            "parameters": [
+              {
+                "name": "Water1",
+                "volume": 90,
+                "pitch": 100,
+                "pan": 0
+              }
+            ]
+          },
+          "wait": 0,
+          "rowType": "main",
+          "rowKey": "main",
+          "charId": null,
+          "isComment": false,
+          "commentLines": null,
+          "isMemo": false,
+          "memoSize": "S",
+          "memoText": "",
+          "isMessage": false,
+          "messageLines": null,
+          "messageExt": null,
+          "isScrollMessage": false,
+          "scrollLines": null,
+          "isScript": false,
+          "scriptLines": null
+        },
+        {
+          "uid": 14,
+          "frame": 219,
+          "eventId": 11,
+          "pageIndex": 3,
+          "command": {
+            "code": 250,
+            "indent": 0,
+            "parameters": [
+              {
+                "name": "Wind7",
+                "volume": 89,
+                "pitch": 134,
+                "pan": 0
+              }
+            ]
+          },
+          "wait": 0,
+          "rowType": "main",
+          "rowKey": "main",
+          "charId": null,
+          "isComment": false,
+          "commentLines": null,
+          "isMemo": false,
+          "memoSize": "S",
+          "memoText": "",
+          "isMessage": false,
+          "messageLines": null,
+          "messageExt": null,
+          "isScrollMessage": false,
+          "scrollLines": null,
+          "isScript": false,
+          "scriptLines": null
+        },
+        {
+          "uid": 15,
+          "frame": 225,
+          "eventId": 11,
+          "pageIndex": 3,
+          "command": {
+            "code": 205,
+            "indent": 0,
+            "parameters": [
+              -1,
+              {
+                "list": [
+                  {
+                    "code": 45,
+                    "parameters": [
+                      "this.jump(-10, -10, 1.5, 2)"
+                    ],
+                    "indent": null
+                  },
+                  {
+                    "code": 31,
+                    "indent": null
+                  },
+                  {
+                    "code": 36,
+                    "indent": null
+                  },
+                  {
+                    "code": 45,
+                    "parameters": [
+                      "this._customPriority = null;"
+                    ],
+                    "indent": null
+                  },
+                  {
+                    "code": 0
+                  }
+                ],
+                "repeat": false,
+                "skippable": false,
+                "wait": false
+              }
+            ]
+          },
+          "wait": 0,
+          "rowType": "char",
+          "rowKey": "char:-1",
+          "charId": -1,
+          "isComment": false,
+          "commentLines": null,
+          "isMemo": false,
+          "memoSize": "S",
+          "memoText": "",
+          "isMessage": false,
+          "messageLines": null,
+          "messageExt": null,
+          "isScrollMessage": false,
+          "scrollLines": null,
+          "isScript": false,
+          "scriptLines": null
+        },
+        {
+          "uid": 16,
+          "frame": 255,
+          "eventId": 11,
+          "pageIndex": 3,
+          "command": {
+            "code": 355,
+            "indent": 0,
+            "parameters": [
+              "this._character = $gamePlayer;"
+            ]
+          },
+          "wait": 0,
+          "rowType": "main",
+          "rowKey": "main",
+          "charId": null,
+          "isComment": false,
+          "commentLines": null,
+          "isMemo": false,
+          "memoSize": "S",
+          "memoText": "",
+          "isMessage": false,
+          "messageLines": null,
+          "messageExt": null,
+          "isScrollMessage": false,
+          "scrollLines": null,
+          "isScript": true,
+          "scriptLines": [
+            "this._character = $gamePlayer;",
+            "this.setWaitMode('move');"
+          ]
+        },
+        {
+          "uid": 17,
+          "frame": 315,
+          "eventId": 11,
+          "pageIndex": 3,
+          "command": {
+            "code": 205,
+            "indent": 0,
+            "parameters": [
+              8,
+              {
+                "list": [
+                  {
+                    "code": 45,
+                    "parameters": [
+                      "this.setImageZXC('$002', 0, 4)"
+                    ]
+                  },
+                  {
+                    "code": 45,
+                    "parameters": [
+                      "this._patternFix = false"
+                    ]
+                  },
+                  {
+                    "code": 0
+                  }
+                ],
+                "repeat": false,
+                "skippable": true,
+                "wait": false
+              }
+            ]
+          },
+          "wait": 0,
+          "rowType": "char",
+          "rowKey": "char:8",
+          "charId": 8,
+          "isComment": false,
+          "commentLines": null,
+          "isMemo": false,
+          "memoSize": "S",
+          "memoText": "",
+          "isMessage": false,
+          "messageLines": null,
+          "messageExt": null,
+          "isScrollMessage": false,
+          "scrollLines": null,
+          "isScript": false,
+          "scriptLines": null
+        },
+        {
+          "uid": 18,
+          "frame": 316,
+          "eventId": 11,
+          "pageIndex": 3,
+          "command": {
+            "code": 121,
+            "indent": 0,
+            "parameters": [
+              2,
+              2,
+              1
+            ]
+          },
+          "wait": 0,
+          "rowType": "main",
+          "rowKey": "main",
+          "charId": null,
+          "isComment": false,
+          "commentLines": null,
+          "isMemo": false,
+          "memoSize": "S",
+          "memoText": "",
+          "isMessage": false,
+          "messageLines": null,
+          "messageExt": null,
+          "isScrollMessage": false,
+          "scrollLines": null,
+          "isScript": false,
+          "scriptLines": null
+        },
+        {
+          "uid": 19,
+          "frame": 316,
+          "eventId": 11,
+          "pageIndex": 3,
+          "command": {
+            "code": 111,
+            "indent": 0,
+            "parameters": [
+              2,
+              "A",
+              1
+            ]
+          },
+          "wait": 0,
+          "rowType": "main",
+          "rowKey": "main",
+          "charId": null,
+          "isComment": false,
+          "commentLines": null,
+          "isMemo": false,
+          "memoSize": "S",
+          "memoText": "",
+          "isMessage": false,
+          "messageLines": null,
+          "messageExt": null,
+          "isScrollMessage": false,
+          "scrollLines": null,
+          "isScript": false,
+          "scriptLines": null
+        },
+        {
+          "uid": 24,
+          "frame": 316,
+          "eventId": 11,
+          "pageIndex": 3,
+          "command": {
+            "code": 101,
+            "indent": 1,
+            "parameters": [
+              "",
+              0,
+              0,
+              2
+            ]
+          },
+          "wait": 0,
+          "rowType": "main",
+          "rowKey": "main",
+          "charId": null,
+          "isComment": false,
+          "commentLines": null,
+          "isMemo": false,
+          "memoSize": "S",
+          "memoText": "",
+          "isMessage": true,
+          "messageLines": [
+            "\\n[2]！",
+            "大丈夫！？"
+          ],
+          "messageExt": {
+            "windowType": 0,
+            "tailDir": 1,
+            "targetMode": "char",
+            "targetCharId": 8,
+            "targetX": 0,
+            "targetY": 0,
+            "addX": 0,
+            "addY": 0
+          },
+          "isScrollMessage": false,
+          "scrollLines": null,
+          "isScript": false,
+          "scriptLines": null
+        },
+        {
+          "uid": 25,
+          "frame": 376,
+          "eventId": 11,
+          "pageIndex": 3,
+          "command": {
+            "code": 205,
+            "indent": 1,
+            "parameters": [
+              9,
+              {
+                "list": [
+                  {
+                    "code": 45,
+                    "parameters": [
+                      "this.startFrameAnimation(10, 7, false); //フレームアニメ"
+                    ],
+                    "indent": null
+                  },
+                  {
+                    "code": 40,
+                    "indent": null
+                  },
+                  {
+                    "code": 0
+                  }
+                ],
+                "repeat": false,
+                "skippable": false,
+                "wait": false
+              }
+            ]
+          },
+          "wait": 0,
+          "rowType": "char",
+          "rowKey": "char:9",
+          "charId": 9,
+          "isComment": false,
+          "commentLines": null,
+          "isMemo": false,
+          "memoSize": "S",
+          "memoText": "",
+          "isMessage": false,
+          "messageLines": null,
+          "messageExt": null,
+          "isScrollMessage": false,
+          "scrollLines": null,
+          "isScript": false,
+          "scriptLines": null
+        },
+        {
+          "uid": 26,
+          "frame": 456,
+          "eventId": 11,
+          "pageIndex": 3,
+          "command": {
+            "code": 355,
+            "indent": 1,
+            "parameters": [
+              "$gameMap.scrollCamera(-1.5, -1.5, 60); //カメラスクロール"
+            ]
+          },
+          "wait": 0,
+          "rowType": "main",
+          "rowKey": "main",
+          "charId": null,
+          "isComment": false,
+          "commentLines": null,
+          "isMemo": false,
+          "memoSize": "S",
+          "memoText": "",
+          "isMessage": false,
+          "messageLines": null,
+          "messageExt": null,
+          "isScrollMessage": false,
+          "scrollLines": null,
+          "isScript": true,
+          "scriptLines": [
+            "$gameMap.scrollCamera(-1.5, -1.5, 60); //カメラスクロール"
+          ]
+        },
+        {
+          "uid": 27,
+          "frame": 546,
+          "eventId": 11,
+          "pageIndex": 3,
+          "command": {
+            "code": 205,
+            "indent": 1,
+            "parameters": [
+              -1,
+              {
+                "list": [
+                  {
+                    "code": 17,
+                    "indent": null
+                  },
+                  {
+                    "code": 0
+                  }
+                ],
+                "repeat": false,
+                "skippable": false,
+                "wait": false
+              }
+            ]
+          },
+          "wait": 0,
+          "rowType": "char",
+          "rowKey": "char:-1",
+          "charId": -1,
+          "isComment": false,
+          "commentLines": null,
+          "isMemo": false,
+          "memoSize": "S",
+          "memoText": "",
+          "isMessage": false,
+          "messageLines": null,
+          "messageExt": null,
+          "isScrollMessage": false,
+          "scrollLines": null,
+          "isScript": false,
+          "scriptLines": null
+        },
+        {
+          "uid": 30,
+          "frame": 546,
+          "eventId": 11,
+          "pageIndex": 3,
+          "command": {
+            "code": 101,
+            "indent": 1,
+            "parameters": [
+              "",
+              0,
+              0,
+              2
+            ]
+          },
+          "wait": 0,
+          "rowType": "main",
+          "rowKey": "main",
+          "charId": null,
+          "isComment": false,
+          "commentLines": null,
+          "isMemo": false,
+          "memoSize": "S",
+          "memoText": "",
+          "isMessage": true,
+          "messageLines": [
+            "橋本だ"
+          ],
+          "messageExt": {
+            "windowType": 0,
+            "tailDir": 1,
+            "targetMode": "char",
+            "targetCharId": 9,
+            "targetX": 0,
+            "targetY": 0,
+            "addX": 0,
+            "addY": 0
+          },
+          "isScrollMessage": false,
+          "scrollLines": null,
+          "isScript": false,
+          "scriptLines": null
+        },
+        {
+          "uid": 33,
+          "frame": 570,
+          "eventId": 11,
+          "pageIndex": 3,
+          "command": {
+            "code": 101,
+            "indent": 1,
+            "parameters": [
+              "",
+              0,
+              0,
+              2
+            ]
+          },
+          "wait": 0,
+          "rowType": "main",
+          "rowKey": "main",
+          "charId": null,
+          "isComment": false,
+          "commentLines": null,
+          "isMemo": false,
+          "memoSize": "S",
+          "memoText": "",
+          "isMessage": true,
+          "messageLines": [
+            "橋本さん、",
+            "釣り針をありがとう"
+          ],
+          "messageExt": {
+            "windowType": 0,
+            "tailDir": 1,
+            "targetMode": "char",
+            "targetCharId": 8,
+            "targetX": 0,
+            "targetY": 0,
+            "addX": 0,
+            "addY": 0
+          },
+          "isScrollMessage": false,
+          "scrollLines": null,
+          "isScript": false,
+          "scriptLines": null
+        },
+        {
+          "uid": 36,
+          "frame": 594,
+          "eventId": 11,
+          "pageIndex": 3,
+          "command": {
+            "code": 101,
+            "indent": 1,
+            "parameters": [
+              "",
+              0,
+              0,
+              2
+            ]
+          },
+          "wait": 0,
+          "rowType": "main",
+          "rowKey": "main",
+          "charId": null,
+          "isComment": false,
+          "commentLines": null,
+          "isMemo": false,
+          "memoSize": "S",
+          "memoText": "",
+          "isMessage": true,
+          "messageLines": [
+            "──オレも昔",
+            "川に落ちたコトが",
+            "ある"
+          ],
+          "messageExt": {
+            "windowType": 0,
+            "tailDir": 1,
+            "targetMode": "char",
+            "targetCharId": 9,
+            "targetX": 0,
+            "targetY": 0,
+            "addX": 0,
+            "addY": 0
+          },
+          "isScrollMessage": false,
+          "scrollLines": null,
+          "isScript": false,
+          "scriptLines": null
+        },
+        {
+          "uid": 37,
+          "frame": 594,
+          "eventId": 11,
+          "pageIndex": 3,
+          "command": {
+            "code": 101,
+            "indent": 1,
+            "parameters": [
+              "",
+              0,
+              0,
+              2
+            ]
+          },
+          "wait": 0,
+          "rowType": "main",
+          "rowKey": "main",
+          "charId": null,
+          "isComment": false,
+          "commentLines": null,
+          "isMemo": false,
+          "memoSize": "S",
+          "memoText": "",
+          "isMessage": true,
+          "messageLines": [
+            "見知らぬじいさんに",
+            "釣り上げてもらった"
+          ],
+          "messageExt": {
+            "windowType": 0,
+            "tailDir": 1,
+            "targetMode": "char",
+            "targetCharId": 9,
+            "targetX": 0,
+            "targetY": 0,
+            "addX": 0,
+            "addY": 0
+          },
+          "isScrollMessage": false,
+          "scrollLines": null,
+          "isScript": false,
+          "scriptLines": null
+        },
+        {
+          "uid": 38,
+          "frame": 594,
+          "eventId": 11,
+          "pageIndex": 3,
+          "command": {
+            "code": 101,
+            "indent": 1,
+            "parameters": [
+              "",
+              0,
+              0,
+              2
+            ]
+          },
+          "wait": 0,
+          "rowType": "main",
+          "rowKey": "main",
+          "charId": null,
+          "isComment": false,
+          "commentLines": null,
+          "isMemo": false,
+          "memoSize": "S",
+          "memoText": "",
+          "isMessage": true,
+          "messageLines": [
+            "その時のことを",
+            "ふと、思い出したさ"
+          ],
+          "messageExt": {
+            "windowType": 0,
+            "tailDir": 1,
+            "targetMode": "char",
+            "targetCharId": 9,
+            "targetX": 0,
+            "targetY": 0,
+            "addX": 0,
+            "addY": 0
+          },
+          "isScrollMessage": false,
+          "scrollLines": null,
+          "isScript": false,
+          "scriptLines": null
+        },
+        {
+          "uid": 41,
+          "frame": 618,
+          "eventId": 11,
+          "pageIndex": 3,
+          "command": {
+            "code": 101,
+            "indent": 1,
+            "parameters": [
+              "",
+              0,
+              0,
+              2
+            ]
+          },
+          "wait": 0,
+          "rowType": "main",
+          "rowKey": "main",
+          "charId": null,
+          "isComment": false,
+          "commentLines": null,
+          "isMemo": false,
+          "memoSize": "S",
+          "memoText": "",
+          "isMessage": true,
+          "messageLines": [
+            "橋本さん…"
+          ],
+          "messageExt": {
+            "windowType": 0,
+            "tailDir": 1,
+            "targetMode": "char",
+            "targetCharId": 8,
+            "targetX": 0,
+            "targetY": 0,
+            "addX": 0,
+            "addY": 0
+          },
+          "isScrollMessage": false,
+          "scrollLines": null,
+          "isScript": false,
+          "scriptLines": null
+        },
+        {
+          "uid": 42,
+          "frame": 618,
+          "eventId": 11,
+          "pageIndex": 3,
+          "command": {
+            "code": 101,
+            "indent": 1,
+            "parameters": [
+              "",
+              0,
+              0,
+              2
+            ]
+          },
+          "wait": 0,
+          "rowType": "main",
+          "rowKey": "main",
+          "charId": null,
+          "isComment": false,
+          "commentLines": null,
+          "isMemo": false,
+          "memoSize": "S",
+          "memoText": "",
+          "isMessage": true,
+          "messageLines": [
+            "そんな所にいると",
+            "また落ちちゃうよ"
+          ],
+          "messageExt": {
+            "windowType": 0,
+            "tailDir": 1,
+            "targetMode": "char",
+            "targetCharId": 8,
+            "targetX": 0,
+            "targetY": 0,
+            "addX": 0,
+            "addY": 0
+          },
+          "isScrollMessage": false,
+          "scrollLines": null,
+          "isScript": false,
+          "scriptLines": null
+        },
+        {
+          "uid": 43,
+          "frame": 708,
+          "eventId": 11,
+          "pageIndex": 3,
+          "command": {
+            "code": 205,
+            "indent": 1,
+            "parameters": [
+              9,
+              {
+                "list": [
+                  {
+                    "code": 45,
+                    "parameters": [
+                      "this.startFrameAnimation([9,8,7,6,5,4,3,2,1], 6, false); //フレームアニメ"
+                    ],
+                    "indent": null
+                  },
+                  {
+                    "code": 15,
+                    "parameters": [
+                      52
+                    ]
+                  },
+                  {
+                    "code": 15,
+                    "parameters": [
+                      2
+                    ]
+                  },
+                  {
+                    "code": 39,
+                    "indent": null
+                  },
+                  {
+                    "code": 0,
+                    "parameters": []
+                  }
+                ],
+                "repeat": false,
+                "skippable": false,
+                "wait": true
+              }
+            ]
+          },
+          "wait": 56,
+          "rowType": "char",
+          "rowKey": "char:9",
+          "charId": 9,
+          "isComment": false,
+          "commentLines": null,
+          "isMemo": false,
+          "memoSize": "S",
+          "memoText": "",
+          "isMessage": false,
+          "messageLines": null,
+          "messageExt": null,
+          "isScrollMessage": false,
+          "scrollLines": null,
+          "isScript": false,
+          "scriptLines": null
+        },
+        {
+          "uid": 44,
+          "frame": 788,
+          "eventId": 11,
+          "pageIndex": 3,
+          "command": {
+            "code": 355,
+            "indent": 1,
+            "parameters": [
+              "$gameMap.scrollCamera(0, 0, 60); //カメラスクロール"
+            ]
+          },
+          "wait": 0,
+          "rowType": "main",
+          "rowKey": "main",
+          "charId": null,
+          "isComment": false,
+          "commentLines": null,
+          "isMemo": false,
+          "memoSize": "S",
+          "memoText": "",
+          "isMessage": false,
+          "messageLines": null,
+          "messageExt": null,
+          "isScrollMessage": false,
+          "scrollLines": null,
+          "isScript": true,
+          "scriptLines": [
+            "$gameMap.scrollCamera(0, 0, 60); //カメラスクロール"
+          ]
+        },
+        {
+          "uid": 45,
+          "frame": 788,
+          "eventId": 11,
+          "pageIndex": 3,
+          "command": {
+            "code": 123,
+            "indent": 1,
+            "parameters": [
+              "A",
+              0
+            ]
+          },
+          "wait": 0,
+          "rowType": "main",
+          "rowKey": "main",
+          "charId": null,
+          "isComment": false,
+          "commentLines": null,
+          "isMemo": false,
+          "memoSize": "S",
+          "memoText": "",
+          "isMessage": false,
+          "messageLines": null,
+          "messageExt": null,
+          "isScrollMessage": false,
+          "scrollLines": null,
+          "isScript": false,
+          "scriptLines": null
+        },
+        {
+          "uid": 46,
+          "frame": 788,
+          "eventId": 11,
+          "pageIndex": 3,
+          "command": {
+            "code": 412,
+            "indent": 0,
+            "parameters": []
+          },
+          "wait": 0,
+          "rowType": "main",
+          "rowKey": "main",
+          "charId": null,
+          "isComment": false,
+          "commentLines": null,
+          "isMemo": false,
+          "memoSize": "S",
+          "memoText": "",
+          "isMessage": false,
+          "messageLines": null,
+          "messageExt": null,
+          "isScrollMessage": false,
+          "scrollLines": null,
+          "isScript": false,
+          "scriptLines": null
+        },
+        {
+          "uid": 47,
+          "frame": 788,
+          "eventId": 11,
+          "pageIndex": 3,
+          "command": {
+            "code": 205,
+            "indent": 0,
+            "parameters": [
+              8,
+              {
+                "list": [
+                  {
+                    "code": 45,
+                    "parameters": [
+                      "$gamePlayer._followers.follower(1).locateToCharacter(this)"
+                    ],
+                    "indent": null
+                  },
+                  {
+                    "code": 0
+                  }
+                ],
+                "repeat": false,
+                "skippable": false,
+                "wait": true
+              }
+            ]
+          },
+          "wait": 1,
+          "rowType": "char",
+          "rowKey": "char:8",
+          "charId": 8,
+          "isComment": false,
+          "commentLines": null,
+          "isMemo": false,
+          "memoSize": "S",
+          "memoText": "",
+          "isMessage": false,
+          "messageLines": null,
+          "messageExt": null,
+          "isScrollMessage": false,
+          "scrollLines": null,
+          "isScript": false,
+          "scriptLines": null
+        },
+        {
+          "uid": 48,
+          "frame": 789,
+          "eventId": 11,
+          "pageIndex": 3,
+          "command": {
+            "code": 216,
+            "indent": 0,
+            "parameters": [
+              0
+            ]
+          },
+          "wait": 0,
+          "rowType": "main",
+          "rowKey": "main",
+          "charId": null,
+          "isComment": false,
+          "commentLines": null,
+          "isMemo": false,
+          "memoSize": "S",
+          "memoText": "",
+          "isMessage": false,
+          "messageLines": null,
+          "messageExt": null,
+          "isScrollMessage": false,
+          "scrollLines": null,
+          "isScript": false,
+          "scriptLines": null
+        },
+        {
+          "uid": 49,
+          "frame": 789,
+          "eventId": 11,
+          "pageIndex": 3,
+          "command": {
+            "code": 205,
+            "indent": 0,
+            "parameters": [
+              8,
+              {
+                "list": [
+                  {
+                    "code": 39,
+                    "indent": null
+                  },
+                  {
+                    "code": 0
+                  }
+                ],
+                "repeat": false,
+                "skippable": false,
+                "wait": true
+              }
+            ]
+          },
+          "wait": 1,
+          "rowType": "char",
+          "rowKey": "char:8",
+          "charId": 8,
+          "isComment": false,
+          "commentLines": null,
+          "isMemo": false,
+          "memoSize": "S",
+          "memoText": "",
+          "isMessage": false,
+          "messageLines": null,
+          "messageExt": null,
+          "isScrollMessage": false,
+          "scrollLines": null,
+          "isScript": false,
+          "scriptLines": null
+        },
+        {
+          "uid": 50,
+          "frame": 790,
+          "eventId": 11,
+          "pageIndex": 3,
+          "command": {
+            "code": 122,
+            "indent": 0,
+            "parameters": [
+              49,
+              49,
+              0,
+              0,
+              6
+            ]
+          },
+          "wait": 0,
+          "rowType": "main",
+          "rowKey": "main",
+          "charId": null,
+          "isComment": false,
+          "commentLines": null,
+          "isMemo": false,
+          "memoSize": "S",
+          "memoText": "",
+          "isMessage": false,
+          "messageLines": null,
+          "messageExt": null,
+          "isScrollMessage": false,
+          "scrollLines": null,
+          "isScript": false,
+          "scriptLines": null
+        }
+      ]
+    }
+  ],
+  "mode": "map",
+  "mapId": 35
+}

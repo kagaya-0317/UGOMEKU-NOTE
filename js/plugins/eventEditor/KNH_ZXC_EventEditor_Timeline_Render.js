@@ -5778,8 +5778,11 @@
         if (!name.length || typeof ImageManager === 'undefined' || !ImageManager || typeof ImageManager.loadCharacter !== 'function') return;
         var self = this;
         try {
-            var bmp = ImageManager.loadCharacter(name);
-            if (!bmp) return;
+            var bmp = (SH.loadCharacterBitmapIfExists ? SH.loadCharacterBitmapIfExists(name) : ImageManager.loadCharacter(name));
+            if (!bmp) {
+                if (this.eventSettingsImageInfo) this.eventSettingsImageInfo.textContent = '画像が見つかりません: ' + name;
+                return;
+            }
             if (!bmp.isReady || !bmp.isReady()) {
                 if (typeof bmp.addLoadListener === 'function') bmp.addLoadListener(function() { self.refreshEventSettingsImagePreview(); });
                 return;
@@ -6232,9 +6235,10 @@
         }
         var self = this;
         try {
-            var bmp = ImageManager.loadCharacter(name);
+            var bmp = (SH.loadCharacterBitmapIfExists ? SH.loadCharacterBitmapIfExists(name) : ImageManager.loadCharacter(name));
             this.eventSettingsImagePickerBitmap = bmp || null;
             if (!bmp) {
+                if (info) info.textContent = '画像が見つかりません: ' + name;
                 this.eventSettingsRefreshImagePickerCssRectUi();
                 this.scheduleEventSettingsImagePickerScrollSync();
                 return;

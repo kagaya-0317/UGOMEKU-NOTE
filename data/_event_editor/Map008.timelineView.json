@@ -1,0 +1,12 @@
+{
+  "41:1": {
+    "pxPerFrame": 8,
+    "scrollLeft": 0,
+    "scrollTop": 0,
+    "ifBranchModes": {
+      "1": "else",
+      "2": "else",
+      "3": "else"
+    }
+  }
+}

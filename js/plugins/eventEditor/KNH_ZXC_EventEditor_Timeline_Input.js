@@ -1405,14 +1405,58 @@
         this.openWaitInsertDialog(this.makeWaitInsertContextFromFrame(this.frame));
     };
 
+    EE.prototype.waitIndentForTrackInsertionIndex = function(tr, insertionIndex, fallbackIndent) {
+        fallbackIndent = Math.max(0, Math.floor(Number(fallbackIndent || 0)));
+        if (!tr || !Array.isArray(tr.commands) || typeof this.computeIfBranchDisplayInfoForTrack !== 'function') {
+            return fallbackIndent;
+        }
+        var info = this.computeIfBranchDisplayInfoForTrack(tr);
+        var list = Array.isArray(info && info.list) ? info.list : [];
+        var blocks = Array.isArray(info && info.blocks) ? info.blocks : [];
+        if (!list.length || !blocks.length) return fallbackIndent;
+        var pos = Math.max(0, Math.min(list.length, Math.floor(Number(insertionIndex || 0))));
+        var bestIndent = fallbackIndent;
+        var bestBlockIndent = -1;
+        for (var i = 0; i < blocks.length; i++) {
+            var b = blocks[i];
+            if (!b) continue;
+            var blockIndent = Math.max(0, Math.floor(Number(b.indent || 0)));
+            var ifIndex = Math.max(0, Math.floor(Number(b.ifIndex || 0)));
+            var elseIndex = Math.floor(Number(b.elseIndex == null ? -1 : b.elseIndex));
+            var endIndex = Math.floor(Number(b.endIndex == null ? list.length : b.endIndex));
+            if (endIndex < 0 || endIndex > list.length) endIndex = list.length;
+            var inBranch = false;
+            var thenStart = Math.max(0, Math.min(list.length, ifIndex + 1));
+            var thenStop = (elseIndex >= 0) ? elseIndex : endIndex;
+            thenStop = Math.max(thenStart, Math.min(list.length, thenStop));
+            if (pos >= thenStart && pos <= thenStop) inBranch = true;
+            if (!inBranch && elseIndex >= 0) {
+                var elseStart = Math.max(0, Math.min(list.length, elseIndex + 1));
+                var elseStop = Math.max(elseStart, Math.min(list.length, endIndex));
+                if (pos >= elseStart && pos <= elseStop) inBranch = true;
+            }
+            if (inBranch && blockIndent >= bestBlockIndent) {
+                bestBlockIndent = blockIndent;
+                bestIndent = blockIndent + 1;
+            }
+        }
+        return Math.max(0, Math.floor(Number(bestIndent || 0)));
+    };
+
     EE.prototype.listFromTrack = function(tr) {
         tr.commands.sort(function(a, b) { return compareEntriesByFrameWaitUid(a, b); });
         var out = [], lf = 0, prevMsgExt = null;
         for (var i = 0; i < tr.commands.length; i++) {
             var e = tr.commands[i];
             var f = Math.max(0, Math.floor(Number(e.frame || 0)));
-            if (f > lf) out.push({ code: 230, indent: 0, parameters: [f - lf] });
             var cmd = clone(e.command || { code: 0, indent: 0, parameters: [] });
+            if (f > lf) {
+                out.push({
+                    code: 230,
+                    indent: this.waitIndentForTrackInsertionIndex(tr, i, Number(cmd.indent || 0)),
+                    parameters: [f - lf]
+                });
+            }
             if (cmd.code === 205) {
                 if (!cmd.parameters) cmd.parameters = [0, { repeat: false, skippable: false, wait: false, list: [{ code: 0, parameters: [] }] }];
                 cmd.parameters[0] = this.normalizeMoveTarget(e.charId == null ? cmd.parameters[0] : e.charId);
@@ -1500,7 +1544,11 @@
         }
         var endFrame = this.normalizeTrackEndFrame(tr);
         if (endFrame > lf) {
-            out.push({ code: 230, indent: 0, parameters: [endFrame - lf] });
+            out.push({
+                code: 230,
+                indent: this.waitIndentForTrackInsertionIndex(tr, tr.commands.length, 0),
+                parameters: [endFrame - lf]
+            });
             lf = endFrame;
         }
         out.push({ code: 0, indent: 0, parameters: [] });

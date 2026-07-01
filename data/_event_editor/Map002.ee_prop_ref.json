@@ -1,0 +1,1134 @@
+{
+  "plugin": "KNH_ZXC_EventEditor",
+  "mapId": 2,
+  "targetEventId": 14,
+  "savedAt": "2026-03-08T23:13:11.518Z",
+  "frameCount": 5,
+  "frames": [
+    {
+      "frame": 0,
+      "eventId": 14,
+      "x": 14,
+      "y": 8,
+      "realX": 14,
+      "realY": 8,
+      "dir": 6,
+      "hash": "eb36f128",
+      "primitiveFlags": {
+        "_templateId": 5,
+        "_templateEvent": {
+          "id": 5,
+          "name": "木",
+          "note": "<pattern3><noYura><sizeBuffer:2><TE:木><TE上書き>",
+          "pages": [
+            {
+              "conditions": {
+                "actorId": 1,
+                "actorValid": false,
+                "itemId": 1,
+                "itemValid": false,
+                "selfSwitchCh": "A",
+                "selfSwitchValid": false,
+                "switch1Id": 1,
+                "switch1Valid": false,
+                "switch2Id": 1,
+                "switch2Valid": false,
+                "variableId": 1,
+                "variableValid": false,
+                "variableValue": 0
+              },
+              "directionFix": true,
+              "image": {
+                "tileId": 0,
+                "characterName": "!$tree1",
+                "direction": 8,
+                "pattern": 1,
+                "characterIndex": 0
+              },
+              "list": [
+                {
+                  "code": 0,
+                  "indent": 0,
+                  "parameters": []
+                }
+              ],
+              "moveFrequency": 5,
+              "moveRoute": {
+                "list": [
+                  {
+                    "code": 25,
+                    "indent": null
+                  },
+                  {
+                    "code": 0,
+                    "parameters": []
+                  }
+                ],
+                "repeat": true,
+                "skippable": false,
+                "wait": false
+              },
+              "moveSpeed": 3,
+              "moveType": 0,
+              "priorityType": 1,
+              "stepAnime": true,
+              "through": false,
+              "trigger": 0,
+              "walkAnime": false
+            }
+          ],
+          "x": 1,
+          "y": 5,
+          "meta": {
+            "pattern3": true,
+            "noYura": true,
+            "sizeBuffer": "2",
+            "TE": "木",
+            "TE上書き": true
+          },
+          "metaArray": {
+            "pattern3": [
+              true
+            ],
+            "noYura": [
+              true
+            ],
+            "sizeBuffer": [
+              "2"
+            ],
+            "TE": [
+              "木"
+            ],
+            "TE上書き": [
+              true
+            ]
+          }
+        },
+        "_override": true,
+        "_x": 14,
+        "_y": 8,
+        "_realX": 14,
+        "_realY": 8,
+        "_moveSpeed": 3,
+        "_moveFrequency": 5,
+        "_opacity": 255,
+        "_blendMode": 0,
+        "_direction": 6,
+        "_pattern": 1,
+        "_priorityType": 1,
+        "_tileId": 0,
+        "_characterName": "!$tree1",
+        "_characterIndex": 0,
+        "_isObjectCharacter": true,
+        "_walkAnime": false,
+        "_stepAnime": true,
+        "_directionFix": false,
+        "_through": false,
+        "_transparent": false,
+        "_bushDepth": 0,
+        "_animationId": 0,
+        "_balloonId": 0,
+        "_animationPlaying": false,
+        "_balloonPlaying": false,
+        "_animationCount": 0,
+        "_stopCount": 0,
+        "_jumpCount": 0,
+        "_jumpPeak": 0,
+        "_movementSuccess": true,
+        "_eventWidth": 0,
+        "_eventHeight": 0,
+        "_customExpansion": false,
+        "_frontDirection": 0,
+        "_size": [
+          0,
+          0
+        ],
+        "_customResource": null,
+        "_graphicColumns": 1,
+        "_graphicRows": 1,
+        "_additionalX": 0,
+        "_additionalY": 0,
+        "_customPriority": -1,
+        "_scaleX": 100,
+        "_scaleY": 100,
+        "_tileBlockWidth": 1,
+        "_tileBlockHeight": 1,
+        "_angle": 0,
+        "_originX": null,
+        "_originY": null,
+        "_absoluteX": null,
+        "_absoluteY": null,
+        "_maskFade": {
+          "active": false,
+          "dir": 0,
+          "queue": null,
+          "index": 0,
+          "frame": 0,
+          "stage": -1,
+          "hidden": false,
+          "endHold": 0
+        },
+        "_moveRouteForcing": false,
+        "_moveRoute": {
+          "list": [
+            {
+              "code": 25,
+              "indent": null
+            },
+            {
+              "code": 0,
+              "parameters": []
+            }
+          ],
+          "repeat": true,
+          "skippable": false,
+          "wait": false
+        },
+        "_moveRouteIndex": 0,
+        "_originalMoveRoute": null,
+        "_originalMoveRouteIndex": 0,
+        "_waitCount": 0,
+        "_moveType": 0,
+        "_trigger": 0,
+        "_starting": false,
+        "_erased": false,
+        "_pageIndex": 0,
+        "_originalPattern": 1,
+        "_originalDirection": 6,
+        "_prelockDirection": 0,
+        "_locked": false,
+        "_mapId": 2,
+        "_eventId": 14,
+        "_interpreter": null,
+        "_expansionArea": [
+          0.5,
+          1,
+          1,
+          0.5
+        ],
+        "_halfMoveRangeMap": null,
+        "_important": false,
+        "_sizeBuffer": 2,
+        "_triggerExpansion": true,
+        "_itemImageInfo": null,
+        "_enemySpriteInfo": null,
+        "_yurayura": false
+      },
+      "sourceRows": [
+        {
+          "key": "43:0",
+          "eventId": 43,
+          "pageIndex": 0,
+          "uid": 27,
+          "rowType": "main",
+          "rowKey": "main",
+          "charId": null,
+          "code": 122,
+          "wait": 0
+        },
+        {
+          "key": "43:0",
+          "eventId": 43,
+          "pageIndex": 0,
+          "uid": 28,
+          "rowType": "main",
+          "rowKey": "main",
+          "charId": null,
+          "code": 117,
+          "wait": 12
+        }
+      ]
+    },
+    {
+      "frame": 24,
+      "eventId": 14,
+      "x": 14,
+      "y": 8,
+      "realX": 14,
+      "realY": 8,
+      "dir": 6,
+      "hash": "eb36f128",
+      "primitiveFlags": {
+        "_templateId": 5,
+        "_templateEvent": {
+          "id": 5,
+          "name": "木",
+          "note": "<pattern3><noYura><sizeBuffer:2><TE:木><TE上書き>",
+          "pages": [
+            {
+              "conditions": {
+                "actorId": 1,
+                "actorValid": false,
+                "itemId": 1,
+                "itemValid": false,
+                "selfSwitchCh": "A",
+                "selfSwitchValid": false,
+                "switch1Id": 1,
+                "switch1Valid": false,
+                "switch2Id": 1,
+                "switch2Valid": false,
+                "variableId": 1,
+                "variableValid": false,
+                "variableValue": 0
+              },
+              "directionFix": true,
+              "image": {
+                "tileId": 0,
+                "characterName": "!$tree1",
+                "direction": 8,
+                "pattern": 1,
+                "characterIndex": 0
+              },
+              "list": [
+                {
+                  "code": 0,
+                  "indent": 0,
+                  "parameters": []
+                }
+              ],
+              "moveFrequency": 5,
+              "moveRoute": {
+                "list": [
+                  {
+                    "code": 25,
+                    "indent": null
+                  },
+                  {
+                    "code": 0,
+                    "parameters": []
+                  }
+                ],
+                "repeat": true,
+                "skippable": false,
+                "wait": false
+              },
+              "moveSpeed": 3,
+              "moveType": 0,
+              "priorityType": 1,
+              "stepAnime": true,
+              "through": false,
+              "trigger": 0,
+              "walkAnime": false
+            }
+          ],
+          "x": 1,
+          "y": 5,
+          "meta": {
+            "pattern3": true,
+            "noYura": true,
+            "sizeBuffer": "2",
+            "TE": "木",
+            "TE上書き": true
+          },
+          "metaArray": {
+            "pattern3": [
+              true
+            ],
+            "noYura": [
+              true
+            ],
+            "sizeBuffer": [
+              "2"
+            ],
+            "TE": [
+              "木"
+            ],
+            "TE上書き": [
+              true
+            ]
+          }
+        },
+        "_override": true,
+        "_x": 14,
+        "_y": 8,
+        "_realX": 14,
+        "_realY": 8,
+        "_moveSpeed": 3,
+        "_moveFrequency": 5,
+        "_opacity": 255,
+        "_blendMode": 0,
+        "_direction": 6,
+        "_pattern": 1,
+        "_priorityType": 1,
+        "_tileId": 0,
+        "_characterName": "!$tree1",
+        "_characterIndex": 0,
+        "_isObjectCharacter": true,
+        "_walkAnime": false,
+        "_stepAnime": true,
+        "_directionFix": false,
+        "_through": false,
+        "_transparent": false,
+        "_bushDepth": 0,
+        "_animationId": 0,
+        "_balloonId": 0,
+        "_animationPlaying": false,
+        "_balloonPlaying": false,
+        "_animationCount": 0,
+        "_stopCount": 0,
+        "_jumpCount": 0,
+        "_jumpPeak": 0,
+        "_movementSuccess": true,
+        "_eventWidth": 0,
+        "_eventHeight": 0,
+        "_customExpansion": false,
+        "_frontDirection": 0,
+        "_size": [
+          0,
+          0
+        ],
+        "_customResource": null,
+        "_graphicColumns": 1,
+        "_graphicRows": 1,
+        "_additionalX": 0,
+        "_additionalY": 0,
+        "_customPriority": -1,
+        "_scaleX": 100,
+        "_scaleY": 100,
+        "_tileBlockWidth": 1,
+        "_tileBlockHeight": 1,
+        "_angle": 0,
+        "_originX": null,
+        "_originY": null,
+        "_absoluteX": null,
+        "_absoluteY": null,
+        "_maskFade": {
+          "active": false,
+          "dir": 0,
+          "queue": null,
+          "index": 0,
+          "frame": 0,
+          "stage": -1,
+          "hidden": false,
+          "endHold": 0
+        },
+        "_moveRouteForcing": false,
+        "_moveRoute": {
+          "list": [
+            {
+              "code": 25,
+              "indent": null
+            },
+            {
+              "code": 0,
+              "parameters": []
+            }
+          ],
+          "repeat": true,
+          "skippable": false,
+          "wait": false
+        },
+        "_moveRouteIndex": 0,
+        "_originalMoveRoute": null,
+        "_originalMoveRouteIndex": 0,
+        "_waitCount": 0,
+        "_moveType": 0,
+        "_trigger": 0,
+        "_starting": false,
+        "_erased": false,
+        "_pageIndex": 0,
+        "_originalPattern": 1,
+        "_originalDirection": 6,
+        "_prelockDirection": 0,
+        "_locked": false,
+        "_mapId": 2,
+        "_eventId": 14,
+        "_interpreter": null,
+        "_expansionArea": [
+          0.5,
+          1,
+          1,
+          0.5
+        ],
+        "_halfMoveRangeMap": null,
+        "_important": false,
+        "_sizeBuffer": 2,
+        "_triggerExpansion": true,
+        "_itemImageInfo": null,
+        "_enemySpriteInfo": null,
+        "_yurayura": false
+      },
+      "sourceRows": [
+        {
+          "key": "43:0",
+          "eventId": 43,
+          "pageIndex": 0,
+          "uid": 30,
+          "rowType": "main",
+          "rowKey": "main",
+          "charId": null,
+          "code": 117,
+          "wait": 60
+        }
+      ]
+    },
+    {
+      "frame": 71,
+      "eventId": 14,
+      "x": 14,
+      "y": 8,
+      "realX": 14,
+      "realY": 8,
+      "dir": 6,
+      "hash": "eb36f128",
+      "primitiveFlags": {
+        "_templateId": 5,
+        "_templateEvent": {
+          "id": 5,
+          "name": "木",
+          "note": "<pattern3><noYura><sizeBuffer:2><TE:木><TE上書き>",
+          "pages": [
+            {
+              "conditions": {
+                "actorId": 1,
+                "actorValid": false,
+                "itemId": 1,
+                "itemValid": false,
+                "selfSwitchCh": "A",
+                "selfSwitchValid": false,
+                "switch1Id": 1,
+                "switch1Valid": false,
+                "switch2Id": 1,
+                "switch2Valid": false,
+                "variableId": 1,
+                "variableValid": false,
+                "variableValue": 0
+              },
+              "directionFix": true,
+              "image": {
+                "tileId": 0,
+                "characterName": "!$tree1",
+                "direction": 8,
+                "pattern": 1,
+                "characterIndex": 0
+              },
+              "list": [
+                {
+                  "code": 0,
+                  "indent": 0,
+                  "parameters": []
+                }
+              ],
+              "moveFrequency": 5,
+              "moveRoute": {
+                "list": [
+                  {
+                    "code": 25,
+                    "indent": null
+                  },
+                  {
+                    "code": 0,
+                    "parameters": []
+                  }
+                ],
+                "repeat": true,
+                "skippable": false,
+                "wait": false
+              },
+              "moveSpeed": 3,
+              "moveType": 0,
+              "priorityType": 1,
+              "stepAnime": true,
+              "through": false,
+              "trigger": 0,
+              "walkAnime": false
+            }
+          ],
+          "x": 1,
+          "y": 5,
+          "meta": {
+            "pattern3": true,
+            "noYura": true,
+            "sizeBuffer": "2",
+            "TE": "木",
+            "TE上書き": true
+          },
+          "metaArray": {
+            "pattern3": [
+              true
+            ],
+            "noYura": [
+              true
+            ],
+            "sizeBuffer": [
+              "2"
+            ],
+            "TE": [
+              "木"
+            ],
+            "TE上書き": [
+              true
+            ]
+          }
+        },
+        "_override": true,
+        "_x": 14,
+        "_y": 8,
+        "_realX": 14,
+        "_realY": 8,
+        "_moveSpeed": 3,
+        "_moveFrequency": 5,
+        "_opacity": 255,
+        "_blendMode": 0,
+        "_direction": 6,
+        "_pattern": 1,
+        "_priorityType": 1,
+        "_tileId": 0,
+        "_characterName": "!$tree1",
+        "_characterIndex": 0,
+        "_isObjectCharacter": true,
+        "_walkAnime": false,
+        "_stepAnime": true,
+        "_directionFix": false,
+        "_through": false,
+        "_transparent": false,
+        "_bushDepth": 0,
+        "_animationId": 0,
+        "_balloonId": 0,
+        "_animationPlaying": false,
+        "_balloonPlaying": false,
+        "_animationCount": 0,
+        "_stopCount": 0,
+        "_jumpCount": 0,
+        "_jumpPeak": 0,
+        "_movementSuccess": true,
+        "_eventWidth": 0,
+        "_eventHeight": 0,
+        "_customExpansion": false,
+        "_frontDirection": 0,
+        "_size": [
+          0,
+          0
+        ],
+        "_customResource": null,
+        "_graphicColumns": 1,
+        "_graphicRows": 1,
+        "_additionalX": 0,
+        "_additionalY": 0,
+        "_customPriority": -1,
+        "_scaleX": 100,
+        "_scaleY": 100,
+        "_tileBlockWidth": 1,
+        "_tileBlockHeight": 1,
+        "_angle": 0,
+        "_originX": null,
+        "_originY": null,
+        "_absoluteX": null,
+        "_absoluteY": null,
+        "_maskFade": {
+          "active": false,
+          "dir": 0,
+          "queue": null,
+          "index": 0,
+          "frame": 0,
+          "stage": -1,
+          "hidden": false,
+          "endHold": 0
+        },
+        "_moveRouteForcing": false,
+        "_moveRoute": {
+          "list": [
+            {
+              "code": 25,
+              "indent": null
+            },
+            {
+              "code": 0,
+              "parameters": []
+            }
+          ],
+          "repeat": true,
+          "skippable": false,
+          "wait": false
+        },
+        "_moveRouteIndex": 0,
+        "_originalMoveRoute": null,
+        "_originalMoveRouteIndex": 0,
+        "_waitCount": 0,
+        "_moveType": 0,
+        "_trigger": 0,
+        "_starting": false,
+        "_erased": false,
+        "_pageIndex": 0,
+        "_originalPattern": 1,
+        "_originalDirection": 6,
+        "_prelockDirection": 0,
+        "_locked": false,
+        "_mapId": 2,
+        "_eventId": 14,
+        "_interpreter": null,
+        "_expansionArea": [
+          0.5,
+          1,
+          1,
+          0.5
+        ],
+        "_halfMoveRangeMap": null,
+        "_important": false,
+        "_sizeBuffer": 2,
+        "_triggerExpansion": true,
+        "_itemImageInfo": null,
+        "_enemySpriteInfo": null,
+        "_yurayura": false
+      },
+      "sourceRows": []
+    },
+    {
+      "frame": 84,
+      "eventId": 14,
+      "x": 14,
+      "y": 8,
+      "realX": 14,
+      "realY": 8,
+      "dir": 6,
+      "hash": "eb36f128",
+      "primitiveFlags": {
+        "_templateId": 5,
+        "_templateEvent": {
+          "id": 5,
+          "name": "木",
+          "note": "<pattern3><noYura><sizeBuffer:2><TE:木><TE上書き>",
+          "pages": [
+            {
+              "conditions": {
+                "actorId": 1,
+                "actorValid": false,
+                "itemId": 1,
+                "itemValid": false,
+                "selfSwitchCh": "A",
+                "selfSwitchValid": false,
+                "switch1Id": 1,
+                "switch1Valid": false,
+                "switch2Id": 1,
+                "switch2Valid": false,
+                "variableId": 1,
+                "variableValid": false,
+                "variableValue": 0
+              },
+              "directionFix": true,
+              "image": {
+                "tileId": 0,
+                "characterName": "!$tree1",
+                "direction": 8,
+                "pattern": 1,
+                "characterIndex": 0
+              },
+              "list": [
+                {
+                  "code": 0,
+                  "indent": 0,
+                  "parameters": []
+                }
+              ],
+              "moveFrequency": 5,
+              "moveRoute": {
+                "list": [
+                  {
+                    "code": 25,
+                    "indent": null
+                  },
+                  {
+                    "code": 0,
+                    "parameters": []
+                  }
+                ],
+                "repeat": true,
+                "skippable": false,
+                "wait": false
+              },
+              "moveSpeed": 3,
+              "moveType": 0,
+              "priorityType": 1,
+              "stepAnime": true,
+              "through": false,
+              "trigger": 0,
+              "walkAnime": false
+            }
+          ],
+          "x": 1,
+          "y": 5,
+          "meta": {
+            "pattern3": true,
+            "noYura": true,
+            "sizeBuffer": "2",
+            "TE": "木",
+            "TE上書き": true
+          },
+          "metaArray": {
+            "pattern3": [
+              true
+            ],
+            "noYura": [
+              true
+            ],
+            "sizeBuffer": [
+              "2"
+            ],
+            "TE": [
+              "木"
+            ],
+            "TE上書き": [
+              true
+            ]
+          }
+        },
+        "_override": true,
+        "_x": 14,
+        "_y": 8,
+        "_realX": 14,
+        "_realY": 8,
+        "_moveSpeed": 3,
+        "_moveFrequency": 5,
+        "_opacity": 255,
+        "_blendMode": 0,
+        "_direction": 6,
+        "_pattern": 1,
+        "_priorityType": 1,
+        "_tileId": 0,
+        "_characterName": "!$tree1",
+        "_characterIndex": 0,
+        "_isObjectCharacter": true,
+        "_walkAnime": false,
+        "_stepAnime": true,
+        "_directionFix": false,
+        "_through": false,
+        "_transparent": false,
+        "_bushDepth": 0,
+        "_animationId": 0,
+        "_balloonId": 0,
+        "_animationPlaying": false,
+        "_balloonPlaying": false,
+        "_animationCount": 0,
+        "_stopCount": 0,
+        "_jumpCount": 0,
+        "_jumpPeak": 0,
+        "_movementSuccess": true,
+        "_eventWidth": 0,
+        "_eventHeight": 0,
+        "_customExpansion": false,
+        "_frontDirection": 0,
+        "_size": [
+          0,
+          0
+        ],
+        "_customResource": null,
+        "_graphicColumns": 1,
+        "_graphicRows": 1,
+        "_additionalX": 0,
+        "_additionalY": 0,
+        "_customPriority": -1,
+        "_scaleX": 100,
+        "_scaleY": 100,
+        "_tileBlockWidth": 1,
+        "_tileBlockHeight": 1,
+        "_angle": 0,
+        "_originX": null,
+        "_originY": null,
+        "_absoluteX": null,
+        "_absoluteY": null,
+        "_maskFade": {
+          "active": false,
+          "dir": 0,
+          "queue": null,
+          "index": 0,
+          "frame": 0,
+          "stage": -1,
+          "hidden": false,
+          "endHold": 0
+        },
+        "_moveRouteForcing": false,
+        "_moveRoute": {
+          "list": [
+            {
+              "code": 25,
+              "indent": null
+            },
+            {
+              "code": 0,
+              "parameters": []
+            }
+          ],
+          "repeat": true,
+          "skippable": false,
+          "wait": false
+        },
+        "_moveRouteIndex": 0,
+        "_originalMoveRoute": null,
+        "_originalMoveRouteIndex": 0,
+        "_waitCount": 0,
+        "_moveType": 0,
+        "_trigger": 0,
+        "_starting": false,
+        "_erased": false,
+        "_pageIndex": 0,
+        "_originalPattern": 1,
+        "_originalDirection": 6,
+        "_prelockDirection": 0,
+        "_locked": false,
+        "_mapId": 2,
+        "_eventId": 14,
+        "_interpreter": null,
+        "_expansionArea": [
+          0.5,
+          1,
+          1,
+          0.5
+        ],
+        "_halfMoveRangeMap": null,
+        "_important": false,
+        "_sizeBuffer": 2,
+        "_triggerExpansion": true,
+        "_itemImageInfo": null,
+        "_enemySpriteInfo": null,
+        "_yurayura": false
+      },
+      "sourceRows": [
+        {
+          "key": "43:0",
+          "eventId": 43,
+          "pageIndex": 0,
+          "uid": 31,
+          "rowType": "main",
+          "rowKey": "main",
+          "charId": null,
+          "code": 121,
+          "wait": 0
+        },
+        {
+          "key": "43:0",
+          "eventId": 43,
+          "pageIndex": 0,
+          "uid": 32,
+          "rowType": "main",
+          "rowKey": "main",
+          "charId": null,
+          "code": 201,
+          "wait": 12
+        }
+      ]
+    },
+    {
+      "frame": 96,
+      "eventId": 14,
+      "x": 14,
+      "y": 8,
+      "realX": 14,
+      "realY": 8,
+      "dir": 6,
+      "hash": "eb36f128",
+      "primitiveFlags": {
+        "_templateId": 5,
+        "_templateEvent": {
+          "id": 5,
+          "name": "木",
+          "note": "<pattern3><noYura><sizeBuffer:2><TE:木><TE上書き>",
+          "pages": [
+            {
+              "conditions": {
+                "actorId": 1,
+                "actorValid": false,
+                "itemId": 1,
+                "itemValid": false,
+                "selfSwitchCh": "A",
+                "selfSwitchValid": false,
+                "switch1Id": 1,
+                "switch1Valid": false,
+                "switch2Id": 1,
+                "switch2Valid": false,
+                "variableId": 1,
+                "variableValid": false,
+                "variableValue": 0
+              },
+              "directionFix": true,
+              "image": {
+                "tileId": 0,
+                "characterName": "!$tree1",
+                "direction": 8,
+                "pattern": 1,
+                "characterIndex": 0
+              },
+              "list": [
+                {
+                  "code": 0,
+                  "indent": 0,
+                  "parameters": []
+                }
+              ],
+              "moveFrequency": 5,
+              "moveRoute": {
+                "list": [
+                  {
+                    "code": 25,
+                    "indent": null
+                  },
+                  {
+                    "code": 0,
+                    "parameters": []
+                  }
+                ],
+                "repeat": true,
+                "skippable": false,
+                "wait": false
+              },
+              "moveSpeed": 3,
+              "moveType": 0,
+              "priorityType": 1,
+              "stepAnime": true,
+              "through": false,
+              "trigger": 0,
+              "walkAnime": false
+            }
+          ],
+          "x": 1,
+          "y": 5,
+          "meta": {
+            "pattern3": true,
+            "noYura": true,
+            "sizeBuffer": "2",
+            "TE": "木",
+            "TE上書き": true
+          },
+          "metaArray": {
+            "pattern3": [
+              true
+            ],
+            "noYura": [
+              true
+            ],
+            "sizeBuffer": [
+              "2"
+            ],
+            "TE": [
+              "木"
+            ],
+            "TE上書き": [
+              true
+            ]
+          }
+        },
+        "_override": true,
+        "_x": 14,
+        "_y": 8,
+        "_realX": 14,
+        "_realY": 8,
+        "_moveSpeed": 3,
+        "_moveFrequency": 5,
+        "_opacity": 255,
+        "_blendMode": 0,
+        "_direction": 6,
+        "_pattern": 1,
+        "_priorityType": 1,
+        "_tileId": 0,
+        "_characterName": "!$tree1",
+        "_characterIndex": 0,
+        "_isObjectCharacter": true,
+        "_walkAnime": false,
+        "_stepAnime": true,
+        "_directionFix": false,
+        "_through": false,
+        "_transparent": false,
+        "_bushDepth": 0,
+        "_animationId": 0,
+        "_balloonId": 0,
+        "_animationPlaying": false,
+        "_balloonPlaying": false,
+        "_animationCount": 0,
+        "_stopCount": 0,
+        "_jumpCount": 0,
+        "_jumpPeak": 0,
+        "_movementSuccess": true,
+        "_eventWidth": 0,
+        "_eventHeight": 0,
+        "_customExpansion": false,
+        "_frontDirection": 0,
+        "_size": [
+          0,
+          0
+        ],
+        "_customResource": null,
+        "_graphicColumns": 1,
+        "_graphicRows": 1,
+        "_additionalX": 0,
+        "_additionalY": 0,
+        "_customPriority": -1,
+        "_scaleX": 100,
+        "_scaleY": 100,
+        "_tileBlockWidth": 1,
+        "_tileBlockHeight": 1,
+        "_angle": 0,
+        "_originX": null,
+        "_originY": null,
+        "_absoluteX": null,
+        "_absoluteY": null,
+        "_maskFade": {
+          "active": false,
+          "dir": 0,
+          "queue": null,
+          "index": 0,
+          "frame": 0,
+          "stage": -1,
+          "hidden": false,
+          "endHold": 0
+        },
+        "_moveRouteForcing": false,
+        "_moveRoute": {
+          "list": [
+            {
+              "code": 25,
+              "indent": null
+            },
+            {
+              "code": 0,
+              "parameters": []
+            }
+          ],
+          "repeat": true,
+          "skippable": false,
+          "wait": false
+        },
+        "_moveRouteIndex": 0,
+        "_originalMoveRoute": null,
+        "_originalMoveRouteIndex": 0,
+        "_waitCount": 0,
+        "_moveType": 0,
+        "_trigger": 0,
+        "_starting": false,
+        "_erased": false,
+        "_pageIndex": 0,
+        "_originalPattern": 1,
+        "_originalDirection": 6,
+        "_prelockDirection": 0,
+        "_locked": false,
+        "_mapId": 2,
+        "_eventId": 14,
+        "_interpreter": null,
+        "_expansionArea": [
+          0.5,
+          1,
+          1,
+          0.5
+        ],
+        "_halfMoveRangeMap": null,
+        "_important": false,
+        "_sizeBuffer": 2,
+        "_triggerExpansion": true,
+        "_itemImageInfo": null,
+        "_enemySpriteInfo": null,
+        "_yurayura": false
+      },
+      "sourceRows": [
+        {
+          "key": "43:0",
+          "eventId": 43,
+          "pageIndex": 0,
+          "uid": 33,
+          "rowType": "main",
+          "rowKey": "main",
+          "charId": null,
+          "code": 222,
+          "wait": 30
+        }
+      ]
+    }
+  ]
+}

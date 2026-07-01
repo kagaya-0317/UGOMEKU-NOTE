@@ -1,0 +1,209 @@
+{
+	"Version": 3,
+	"Parameters": [
+		{
+			"Id": "Param8",
+			"GroupId": "",
+			"Name": "上下位置"
+		},
+		{
+			"Id": "Param9",
+			"GroupId": "",
+			"Name": "左右位置"
+		},
+		{
+			"Id": "Param24",
+			"GroupId": "",
+			"Name": "首の角度"
+		},
+		{
+			"Id": "Param20",
+			"GroupId": "",
+			"Name": "右腕の位置"
+		},
+		{
+			"Id": "Param21",
+			"GroupId": "",
+			"Name": "右腕の長さ"
+		},
+		{
+			"Id": "Param6",
+			"GroupId": "",
+			"Name": "右腕の角度"
+		},
+		{
+			"Id": "Param",
+			"GroupId": "",
+			"Name": "右手の角度"
+		},
+		{
+			"Id": "Param22",
+			"GroupId": "",
+			"Name": "右手のカーブ"
+		},
+		{
+			"Id": "Param23",
+			"GroupId": "",
+			"Name": "右手の大きさ"
+		},
+		{
+			"Id": "Param7",
+			"GroupId": "",
+			"Name": "左腕の角度"
+		},
+		{
+			"Id": "Param2",
+			"GroupId": "",
+			"Name": "左手の角度"
+		},
+		{
+			"Id": "Param11",
+			"GroupId": "",
+			"Name": "左手のカーブ"
+		},
+		{
+			"Id": "Param12",
+			"GroupId": "",
+			"Name": "左手の大きさ"
+		},
+		{
+			"Id": "Param3",
+			"GroupId": "",
+			"Name": "耳の角度"
+		},
+		{
+			"Id": "Param5",
+			"GroupId": "",
+			"Name": "姿勢"
+		},
+		{
+			"Id": "Param25",
+			"GroupId": "",
+			"Name": "姿勢2"
+		},
+		{
+			"Id": "Param4",
+			"GroupId": "",
+			"Name": "しっぽの曲がり"
+		},
+		{
+			"Id": "Param16",
+			"GroupId": "",
+			"Name": "ひっかきAの角度"
+		},
+		{
+			"Id": "Param14",
+			"GroupId": "",
+			"Name": "ひっかきAカーブ"
+		},
+		{
+			"Id": "Param15",
+			"GroupId": "",
+			"Name": "ひっかきA大きさ"
+		},
+		{
+			"Id": "Param17",
+			"GroupId": "",
+			"Name": "ひっかきBの角度"
+		},
+		{
+			"Id": "Param18",
+			"GroupId": "",
+			"Name": "ひっかきBカーブ"
+		},
+		{
+			"Id": "Param19",
+			"GroupId": "",
+			"Name": "ひっかきB大きさ"
+		},
+		{
+			"Id": "Param10",
+			"GroupId": "",
+			"Name": "アニメフレーム"
+		},
+		{
+			"Id": "Param13",
+			"GroupId": "",
+			"Name": "表情"
+		}
+	],
+	"ParameterGroups": [],
+	"Parts": [
+		{
+			"Id": "Part26",
+			"Name": "mii.psd"
+		},
+		{
+			"Id": "Part5",
+			"Name": "表情"
+		},
+		{
+			"Id": "Part4",
+			"Name": "エフェクト"
+		},
+		{
+			"Id": "Part14",
+			"Name": "グループ 11"
+		},
+		{
+			"Id": "Part15",
+			"Name": "グループ 10"
+		},
+		{
+			"Id": "Part16",
+			"Name": "グループ 9"
+		},
+		{
+			"Id": "Part17",
+			"Name": "グループ 8"
+		},
+		{
+			"Id": "Part18",
+			"Name": "グループ 7"
+		},
+		{
+			"Id": "Part19",
+			"Name": "グループ 6"
+		},
+		{
+			"Id": "Part20",
+			"Name": "グループ 5"
+		},
+		{
+			"Id": "Part21",
+			"Name": "グループ 4"
+		},
+		{
+			"Id": "Part22",
+			"Name": "グループ 3"
+		},
+		{
+			"Id": "Part23",
+			"Name": "グループ 2"
+		},
+		{
+			"Id": "Part24",
+			"Name": "グループ 1"
+		},
+		{
+			"Id": "Part6",
+			"Name": "表情_A"
+		},
+		{
+			"Id": "Part7",
+			"Name": "表情_B"
+		},
+		{
+			"Id": "Part8",
+			"Name": "表情_C"
+		},
+		{
+			"Id": "Part9",
+			"Name": "表情_D"
+		},
+		{
+			"Id": "Part10",
+			"Name": "表情_E"
+		}
+	]
+}

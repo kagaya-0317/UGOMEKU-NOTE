@@ -1,0 +1,262 @@
+{
+  "plugin": "KNH_ZXC_EventEditor",
+  "version": "0.1.0",
+  "mapId": 2,
+  "savedAt": "2026-03-08T23:13:11.668Z",
+  "tracks": [
+    {
+      "eventId": 43,
+      "pageIndex": 0,
+      "list": [
+        {
+          "code": 122,
+          "indent": 0,
+          "parameters": [
+            3,
+            3,
+            0,
+            4,
+            "[6.5, 23.5, 4]"
+          ]
+        },
+        {
+          "code": 117,
+          "indent": 0,
+          "parameters": [
+            7
+          ]
+        },
+        {
+          "code": 230,
+          "indent": 0,
+          "parameters": [
+            12
+          ]
+        },
+        {
+          "code": 117,
+          "indent": 0,
+          "parameters": [
+            1
+          ]
+        },
+        {
+          "code": 121,
+          "indent": 0,
+          "parameters": [
+            32,
+            32,
+            0
+          ]
+        },
+        {
+          "code": 201,
+          "indent": 0,
+          "parameters": [
+            0,
+            8,
+            13,
+            21,
+            8,
+            2
+          ]
+        },
+        {
+          "code": 222,
+          "indent": 0,
+          "parameters": []
+        },
+        {
+          "code": 0,
+          "indent": 0,
+          "parameters": []
+        }
+      ],
+      "timeline": [
+        {
+          "uid": 27,
+          "frame": 0,
+          "eventId": 43,
+          "pageIndex": 0,
+          "command": {
+            "code": 122,
+            "indent": 0,
+            "parameters": [
+              3,
+              3,
+              0,
+              4,
+              "[6.5, 23.5, 4]"
+            ]
+          },
+          "wait": 0,
+          "rowType": "main",
+          "rowKey": "main",
+          "charId": null,
+          "isComment": false,
+          "commentLines": null,
+          "isMemo": false,
+          "memoSize": "S",
+          "memoText": "",
+          "isMessage": false,
+          "messageLines": null,
+          "messageExt": null,
+          "isScrollMessage": false,
+          "scrollLines": null,
+          "isScript": false,
+          "scriptLines": null
+        },
+        {
+          "uid": 28,
+          "frame": 0,
+          "eventId": 43,
+          "pageIndex": 0,
+          "command": {
+            "code": 117,
+            "indent": 0,
+            "parameters": [
+              7
+            ]
+          },
+          "wait": 12,
+          "rowType": "main",
+          "rowKey": "main",
+          "charId": null,
+          "isComment": false,
+          "commentLines": null,
+          "isMemo": false,
+          "memoSize": "S",
+          "memoText": "",
+          "isMessage": false,
+          "messageLines": null,
+          "messageExt": null,
+          "isScrollMessage": false,
+          "scrollLines": null,
+          "isScript": false,
+          "scriptLines": null
+        },
+        {
+          "uid": 30,
+          "frame": 24,
+          "eventId": 43,
+          "pageIndex": 0,
+          "command": {
+            "code": 117,
+            "indent": 0,
+            "parameters": [
+              1
+            ]
+          },
+          "wait": 60,
+          "rowType": "main",
+          "rowKey": "main",
+          "charId": null,
+          "isComment": false,
+          "commentLines": null,
+          "isMemo": false,
+          "memoSize": "S",
+          "memoText": "",
+          "isMessage": false,
+          "messageLines": null,
+          "messageExt": null,
+          "isScrollMessage": false,
+          "scrollLines": null,
+          "isScript": false,
+          "scriptLines": null
+        },
+        {
+          "uid": 31,
+          "frame": 84,
+          "eventId": 43,
+          "pageIndex": 0,
+          "command": {
+            "code": 121,
+            "indent": 0,
+            "parameters": [
+              32,
+              32,
+              0
+            ]
+          },
+          "wait": 0,
+          "rowType": "main",
+          "rowKey": "main",
+          "charId": null,
+          "isComment": false,
+          "commentLines": null,
+          "isMemo": false,
+          "memoSize": "S",
+          "memoText": "",
+          "isMessage": false,
+          "messageLines": null,
+          "messageExt": null,
+          "isScrollMessage": false,
+          "scrollLines": null,
+          "isScript": false,
+          "scriptLines": null
+        },
+        {
+          "uid": 32,
+          "frame": 84,
+          "eventId": 43,
+          "pageIndex": 0,
+          "command": {
+            "code": 201,
+            "indent": 0,
+            "parameters": [
+              0,
+              8,
+              13,
+              21,
+              8,
+              2
+            ]
+          },
+          "wait": 12,
+          "rowType": "main",
+          "rowKey": "main",
+          "charId": null,
+          "isComment": false,
+          "commentLines": null,
+          "isMemo": false,
+          "memoSize": "S",
+          "memoText": "",
+          "isMessage": false,
+          "messageLines": null,
+          "messageExt": null,
+          "isScrollMessage": false,
+          "scrollLines": null,
+          "isScript": false,
+          "scriptLines": null
+        },
+        {
+          "uid": 33,
+          "frame": 96,
+          "eventId": 43,
+          "pageIndex": 0,
+          "command": {
+            "code": 222,
+            "indent": 0,
+            "parameters": []
+          },
+          "wait": 30,
+          "rowType": "main",
+          "rowKey": "main",
+          "charId": null,
+          "isComment": false,
+          "commentLines": null,
+          "isMemo": false,
+          "memoSize": "S",
+          "memoText": "",
+          "isMessage": false,
+          "messageLines": null,
+          "messageExt": null,
+          "isScrollMessage": false,
+          "scrollLines": null,
+          "isScript": false,
+          "scriptLines": null
+        }
+      ]
+    }
+  ]
+}

@@ -24,6 +24,40 @@
     var RE_COMPACT_TEXT_KEY = U.RE_COMPACT_TEXT_KEY || /id$|tag|code|label|name/i;
 
     var SH = NS._eeTimelineShared || (NS._eeTimelineShared = {});
+    if (!SH.characterImageFileExists) {
+        SH.characterImageFileExists = function(name) {
+            name = String(name || '');
+            if (!name.length) return false;
+            try {
+                if (typeof require !== 'function' || typeof process === 'undefined') return true;
+                var fs = require('fs');
+                var path = require('path');
+                var roots = [];
+                if (process && process.cwd) roots.push(process.cwd());
+                if (process && process.mainModule && process.mainModule.filename) {
+                    roots.push(path.dirname(process.mainModule.filename));
+                }
+                for (var i = 0; i < roots.length; i++) {
+                    var root = roots[i];
+                    if (!root) continue;
+                    var dir = path.resolve(root, 'img', 'characters');
+                    var base = path.resolve(dir, name);
+                    if (base.indexOf(dir + path.sep) !== 0) continue;
+                    if (fs.existsSync(base + '.png') || fs.existsSync(base + '.rpgmvp')) return true;
+                }
+                return false;
+            } catch (_) {
+                return true;
+            }
+        };
+    }
+    if (!SH.loadCharacterBitmapIfExists) {
+        SH.loadCharacterBitmapIfExists = function(name) {
+            if (!SH.characterImageFileExists(name)) return null;
+            if (typeof ImageManager === 'undefined' || !ImageManager || typeof ImageManager.loadCharacter !== 'function') return null;
+            return ImageManager.loadCharacter(name);
+        };
+    }
     var compareEntriesByFrameWaitUid = SH.compareEntriesByFrameWaitUid;
     if (!compareEntriesByFrameWaitUid) {
         compareEntriesByFrameWaitUid = function(a, b) {
@@ -633,7 +667,14 @@
             return;
         }
         var self = this;
-        var bmp = ImageManager.loadCharacter(name);
+        var bmp = SH.loadCharacterBitmapIfExists(name);
+        if (!bmp) {
+            canvas.width = 64;
+            canvas.height = 64;
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            infoEl.textContent = '画像が見つかりません: ' + name;
+            return;
+        }
         var draw = function() {
             if (!bmp || !bmp.width || !bmp.height) return;
             var src = bmp._canvas || bmp.canvas || bmp._image || null;

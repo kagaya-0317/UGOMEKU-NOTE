@@ -31,7 +31,7 @@ Object.defineProperty(window, '_lg', {
         try {
             if (window._debug && typeof window._debug.get === 'function') {
                 const debugLang = normalizeLang(window._debug.get('language'));
-                if (debugLang != null && debugLang !== 0) return debugLang;
+                if (debugLang != null) return debugLang;
             }
         } catch (e) {
             // noop
@@ -756,6 +756,14 @@ const _createOutlineFilter = function(w, h, bw, ww) {
     //-----------------------------------------------------------------------------
     // Game_Event
     //-----------------------------------------------------------------------------
+
+    Game_Event.prototype.setupCssRectFromMeta = function() {
+        if (this.event() && this.event().meta.cssRect && !this._setCss) {
+            var info = this.event().meta.cssRect.split(',').map(function(a) {return Number(a)});
+            this._cssRect = {x : info[0], y : info[1], width : info[2], height : info[3]};
+            this._setCss = true;
+        }
+    };
     
     var _Game_Event_update = Game_Event.prototype.update;
     Game_Event.prototype.update = function() {
@@ -769,11 +777,7 @@ const _createOutlineFilter = function(w, h, bw, ww) {
         if (this.event() && this.event().meta.noYura) this._noYura = true;
         
         //スプライトシート機能
-        if (this.event() && this.event().meta.cssRect && !this._setCss) {
-            var info = this.event().meta.cssRect.split(',').map(function(a) {return Number(a)});
-            this._cssRect = {x : info[0], y : info[1], width : info[2], height : info[3]};
-            this._setCss = true;
-        }
+        this.setupCssRectFromMeta();
         
         //パーティクル
         if (this.event() && this._pageIndex >= 0 && this.event().meta.particle && !this._particle && this.sprite()) {
@@ -1700,9 +1704,12 @@ const _createOutlineFilter = function(w, h, bw, ww) {
         sp._fukidashiAnimStartStep = this._fukidashiSpikeAnimStep();
         sp._fukidashiAnimLastStep = null;
         sp._fukidashiAnimLastKey = null;
+        sp._fukidashiGeomLock = null;
         if (this instanceof Window_Message) {
             if (drawType === 1) {
                 var profile = this._fukidashiSpikeAnimProfile(sp._fukidashiAnimStartStep, sp._fukidashiAnimStartStep);
+                sp._fukidashiGeomLock = {};
+                profile.lock = sp._fukidashiGeomLock;
                 this._drawHanddrawnFukidashi2(sp.bitmap, forceTailDir, profile);
                 sp._fukidashiAnimLastStep = sp._fukidashiAnimStartStep;
                 sp._fukidashiAnimLastKey = profile.key;
@@ -2013,13 +2020,14 @@ const _createOutlineFilter = function(w, h, bw, ww) {
     const FUKI_SPIKE_OUT = 12;
     const FUKI_SPIKE_IN = 8;
     const FUKI_SPIKE_PITCH = 18;
-    const FUKI_SPIKE_MIN = 12;
+    const FUKI_SPIKE_MIN = 16;
     const FUKI_SPIKE_DEBUG = false;
     const FUKI_TAIL_PULL = 0.65;
     const FUKI_SPIKE_ANIM_B_SCALE = 1.02;
     const FUKI_SPIKE_ANIM_C_SCALE = 1.04;
-    const FUKI_SPIKE_ANIM_C_OUT_ADD = 3;
-    const FUKI_SPIKE_ANIM_SEQ = ['C', 'B', 'A'];
+    const FUKI_SPIKE_ANIM_B_OUT_ADD = 1;
+    const FUKI_SPIKE_ANIM_C_OUT_ADD = 5;
+    const FUKI_SPIKE_ANIM_SEQ = ['A', 'B', 'C', 'B'];
     const FUKI_SPIKE_ANIM_SEQ_BATTLE = ['C', 'B', 'A', 'B'];
 
     var _fukiSign = function(v) { return v === 0 ? 0 : (v > 0 ? 1 : -1); };
@@ -2055,18 +2063,24 @@ const _createOutlineFilter = function(w, h, bw, ww) {
         var frame = Number($gameSystem && $gameSystem.animationWait ? $gameSystem.animationWait() : 10);
         if (!isFinite(frame) || frame <= 0) frame = 1;
         var count = ($gameSystem && $gameSystem.sceneCount) ? $gameSystem.sceneCount() : Graphics.frameCount;
-        return Math.floor(count / frame);
+        var meshStep = Math.floor(count / frame);
+        var phase = ((count % frame) + frame) % frame;
+        var halfStep = (phase * 2 >= frame) ? 1 : 0;
+        // Even step: synchronized with mesh pattern switch. Odd step: midpoint extra update.
+        return meshStep * 2 + halfStep;
     };
 
     Window_Base.prototype._fukidashiSpikeAnimProfile = function(step, startStep) {
         var seq = ($gameParty && $gameParty.inBattle && $gameParty.inBattle()) ? FUKI_SPIKE_ANIM_SEQ_BATTLE : FUKI_SPIKE_ANIM_SEQ;
         var base = (typeof startStep === 'number' && isFinite(startStep)) ? startStep : step;
-        var idx = ((step - base) % seq.length + seq.length) % seq.length;
+        var adv = step - base;
+        var idx = (adv % seq.length + seq.length) % seq.length;
         var key = seq[idx];
         var scale = 1;
         var spikeOutAdd = 0;
         if (key === 'B') {
             scale = FUKI_SPIKE_ANIM_B_SCALE;
+            spikeOutAdd = FUKI_SPIKE_ANIM_B_OUT_ADD;
         } else if (key === 'C') {
             scale = FUKI_SPIKE_ANIM_C_SCALE;
             spikeOutAdd = FUKI_SPIKE_ANIM_C_OUT_ADD;
@@ -2079,6 +2093,7 @@ const _createOutlineFilter = function(w, h, bw, ww) {
         var step = this._fukidashiSpikeAnimStep();
         if (sp._fukidashiAnimLastStep === step) return;
         var profile = this._fukidashiSpikeAnimProfile(step, sp._fukidashiAnimStartStep);
+        profile.lock = sp._fukidashiGeomLock || null;
         var targetBmp = sp._baseBitmap || sp.bitmap;
         if (!targetBmp || typeof targetBmp.clear !== 'function') return;
         targetBmp.clear();
@@ -2512,6 +2527,7 @@ const _createOutlineFilter = function(w, h, bw, ww) {
     Window_Base.prototype._drawHanddrawnFukidashi2 = function (bmp, tailDir, animProfile) {
         this._fukidashiTailDebug = null;
         const profile = animProfile || {};
+        const lock = profile.lock || null;
         const shapeScale = Math.max(0.5, Number(profile.scale || 1));
         const tailScale = Math.max(0.5, Number(profile.tailScale || shapeScale));
         const spikeOut = Math.max(0, FUKI_SPIKE_OUT + Number(profile.spikeOutAdd || 0));
@@ -2532,13 +2548,25 @@ const _createOutlineFilter = function(w, h, bw, ww) {
         let nearest = null;
         let rootSource = 'dirRay';
         if (tail) {
-            targetBmp = this._popupTailCharacterCenterToBmp(bmp);
-            if (targetBmp) {
-                nearest = this._fukidashiNearestBoundaryToPoint(CX, CY, shape, targetBmp, 180);
-                if (nearest && nearest.point) {
-                    angParam = ((nearest.t * 180 / Math.PI) % 360 + 360) % 360;
-                    angDir = (Math.atan2(targetBmp.y - nearest.point.y, targetBmp.x - nearest.point.x) * 180 / Math.PI + 360) % 360;
-                    rootSource = 'nearestToCharacterCenter';
+            if (lock && typeof lock.angParam === 'number' && isFinite(lock.angParam)) {
+                angParam = ((lock.angParam % 360) + 360) % 360;
+                if (typeof lock.angDir === 'number' && isFinite(lock.angDir)) {
+                    angDir = ((lock.angDir % 360) + 360) % 360;
+                }
+                rootSource = 'lockedRoot';
+            } else {
+                targetBmp = this._popupTailCharacterCenterToBmp(bmp);
+                if (targetBmp) {
+                    nearest = this._fukidashiNearestBoundaryToPoint(CX, CY, shape, targetBmp, 180);
+                    if (nearest && nearest.point) {
+                        angParam = ((nearest.t * 180 / Math.PI) % 360 + 360) % 360;
+                        angDir = (Math.atan2(targetBmp.y - nearest.point.y, targetBmp.x - nearest.point.x) * 180 / Math.PI + 360) % 360;
+                        rootSource = 'nearestToCharacterCenter';
+                    }
+                }
+                if (lock) {
+                    lock.angParam = angParam;
+                    lock.angDir = angDir;
                 }
             }
         }
@@ -2546,12 +2574,17 @@ const _createOutlineFilter = function(w, h, bw, ww) {
         const perimEllipse = Math.PI * (3 * (shape.a + shape.b) - Math.sqrt((3 * shape.a + shape.b) * (shape.a + 3 * shape.b)));
         const perimRect = 4 * (shape.aRect + shape.bRect);
         const perim = perimEllipse + (perimRect - perimEllipse) * shape.square;
-        let spikeCount = Math.max(FUKI_SPIKE_MIN, Math.round(perim / FUKI_SPIKE_PITCH));
+        let spikeCount = lock && typeof lock.spikeCount === 'number' && isFinite(lock.spikeCount)
+            ? Math.max(3, Math.floor(lock.spikeCount))
+            : Math.max(FUKI_SPIKE_MIN, Math.round(perim / FUKI_SPIKE_PITCH));
         if (tail) {
             if (spikeCount % 2 === 0) spikeCount++;
         } else {
             // No-tail seam uses peak endpoints (first/last), so keep odd count.
             if (spikeCount % 2 === 0) spikeCount++;
+        }
+        if (lock && !(typeof lock.spikeCount === 'number' && isFinite(lock.spikeCount))) {
+            lock.spikeCount = spikeCount;
         }
         const baseStep = 360 / spikeCount;
         const gap = tail ? baseStep * 0.6 : 0;
@@ -2605,6 +2638,10 @@ const _createOutlineFilter = function(w, h, bw, ww) {
         let tailUy = 0;
         let tailPeak = null;
         let phaseLen = 0;
+        const phaseLocked = !!(lock && typeof lock.phaseNorm === 'number' && isFinite(lock.phaseNorm));
+        if (phaseLocked) {
+            phaseLen = totalLen * lock.phaseNorm;
+        }
         if (tail) {
             if (nearest && nearest.point) {
                 angPeak = nearest.t;
@@ -2637,7 +2674,7 @@ const _createOutlineFilter = function(w, h, bw, ww) {
             const T = { x: baseTail.x + oux * tH, y: baseTail.y + ouy * tH };
             tailPeak = { x: T.x, y: T.y, peak: true };
 
-            if (spikeCount >= 5) {
+            if (!phaseLocked && spikeCount >= 5) {
                 const stepLen = totalLen / spikeCount;
                 const samples = 24;
                 let best = 0;
@@ -2653,7 +2690,7 @@ const _createOutlineFilter = function(w, h, bw, ww) {
                 }
                 phaseLen = best;
             }
-            if (spikeCount >= 3 && baseValley) {
+            if (!phaseLocked && spikeCount >= 3 && baseValley) {
                 // Keep existing spiky/rounded design, only align seam phase closer to tail root.
                 // Optimize for both proximity and left/right balance of the two seam-adjacent vertices.
                 const stepLen = totalLen / spikeCount;
@@ -2684,6 +2721,9 @@ const _createOutlineFilter = function(w, h, bw, ww) {
                 }
                 phaseLen += bestShift;
             }
+        }
+        if (lock && !phaseLocked && totalLen > 0) {
+            lock.phaseNorm = phaseLen / totalLen;
         }
 
         const pts = [];
@@ -3053,8 +3093,11 @@ const _createOutlineFilter = function(w, h, bw, ww) {
         sp._fukidashiAnimStartStep = this._fukidashiSpikeAnimStep();
         sp._fukidashiAnimLastStep = null;
         sp._fukidashiAnimLastKey = null;
+        sp._fukidashiGeomLock = null;
         if (drawType === 1) {
             var profile = this._fukidashiSpikeAnimProfile(sp._fukidashiAnimStartStep, sp._fukidashiAnimStartStep);
+            sp._fukidashiGeomLock = {};
+            profile.lock = sp._fukidashiGeomLock;
             this._drawHanddrawnFukidashi2(sp.bitmap, 2, profile);
             sp._fukidashiAnimLastStep = sp._fukidashiAnimStartStep;
             sp._fukidashiAnimLastKey = profile.key;

@@ -1,0 +1,25 @@
+{
+  "8:0": {
+    "pxPerFrame": 7.999999999999999,
+    "scrollLeft": 0,
+    "scrollTop": 0,
+    "ifBranchModes": {
+      "1": "auto"
+    }
+  },
+  "5:0": {
+    "pxPerFrame": 7.999999999999999,
+    "scrollLeft": 0,
+    "scrollTop": 0
+  },
+  "8:2": {
+    "pxPerFrame": 6.956521739130433,
+    "scrollLeft": 7168,
+    "scrollTop": 26
+  },
+  "8:1": {
+    "pxPerFrame": 7.999999999999999,
+    "scrollLeft": 0,
+    "scrollTop": 0
+  }
+}

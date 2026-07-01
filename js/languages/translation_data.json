@@ -1,0 +1,5900 @@
+{
+  "\\>\\v[3]を\n\\>\\v[4]こ 手に入れた\\<\\.\\.": [
+    "\\>\\v[3]を\n\\>\\v[4]こ 手に入れた\\<\\.\\.",
+    "\\>Acquired\n\\>\\v[4] \\v[3]\\<\\.\\.",
+    "",
+    ""
+  ],
+  "\\>\\v[3]を手に入れた\\<\\.\\.": [
+    "\\>\\v[3]を手に入れた\\<\\.\\.",
+    "\\>Acquired \\v[3]\\<\\.\\.",
+    "",
+    ""
+  ],
+  "セーブポイントを\n見つけた": [
+    "セーブポイントを\n見つけた",
+    "Found a save point!",
+    "",
+    ""
+  ],
+  "セーブポイントでは\nゲームデータをセーブする\nことができます": [
+    "セーブポイントでは\nゲームデータをセーブする\nことができます",
+    "At Save Points, you can\nsave your game data.",
+    "",
+    ""
+  ],
+  "あと、体力が\n全回復します": [
+    "あと、体力が\n全回復します",
+    "Also, your energy is\ncompletely recovered.",
+    "",
+    ""
+  ],
+  "セーブする？\\! ": [
+    "セーブする？\\! ",
+    "Wanna Save?\\! ",
+    "",
+    ""
+  ],
+  "はい\nいいえ": [
+    "はい\nいいえ",
+    "Yep\nNah",
+    "",
+    ""
+  ],
+  "セーブポイントだ\\! ": [
+    "セーブポイントだ\\! ",
+    "It’s a Save Point\\! ",
+    "",
+    ""
+  ],
+  "セーブ\nif(s[11])ワープ\nやめる": [
+    "セーブ\nif(s[11])ワープ\nやめる",
+    "Save\nif(s[11])Warp\nExit",
+    "",
+    ""
+  ],
+  "\\>\\{\\{\\y[6]\\x[100]\\sp[7]\\<第\\\\x[6]１\\\\x[6]章\\|\n\\>\\}\\}\\my[10]\\<～伝説の石板をあつめて～\\!\\em\\|\\^": [
+    "\\>\\{\\{\\y[6]\\x[100]\\sp[7]\\<第\\\\x[6]１\\\\x[6]章\\|\n\\>\\}\\}\\my[10]\\<～伝説の石板をあつめて～\\!\\em\\|\\^",
+    "\\>\\{\\{\\y[6]\\x[100]\\sp[5]\\<Chapter 1\\|\n\\>\\sp[3]\\}\\}\\my[10]\\<Collect the Legendary Stone Tablets\\!\\em\\|\\^",
+    "",
+    ""
+  ],
+  "おお！よくぞきた\n勇者よ！！": [
+    "おお！よくぞきた\n勇者よ！！",
+    "Oh! I’m glad you’re \nhere, brave Hero‼️",
+    "",
+    ""
+  ],
+  "モンスターにより\n人類は存続の危機を\n迎えている…っ！": [
+    "モンスターにより\n人類は存続の危機を\n迎えている…っ！",
+    "Humanity stands on the\nbrink of extinction at the\nhands of monsters!",
+    "",
+    ""
+  ],
+  "我々グリジャンの民は\nこの世界を守らねば\nならん！！！": [
+    "我々グリジャンの民は\nこの世界を守らねば\nならん！！！",
+    "We, the people of \nGurijan must protect \nthe world‼️",
+    "",
+    ""
+  ],
+  "さあ、ゆけ！\\.\n勇者よ！": [
+    "さあ、ゆけ！\\.\n勇者よ！",
+    "Go forth,\nour Hero!",
+    "",
+    ""
+  ],
+  "モンスターの王…「魔王」\nを倒し、\\.この世界に\n平和を取り戻すのじゃ！": [
+    "モンスターの王…「魔王」\nを倒し、\\.この世界に\n平和を取り戻すのじゃ！",
+    "Take down the king of\nmonsters… “Demon King”,\\. and\ntake back our freedom!",
+    "",
+    ""
+  ],
+  "←↑↓→ ： 移動\nEnter ： 決定\nEsc   ： メニュー": [
+    "←↑↓→ ： 移動\nEnter ： 決定\nEsc   ： メニュー",
+    "←↑↓→ : Move\nEnter : Confirm\nEsc : Menu",
+    "",
+    ""
+  ],
+  "移動は\nWASDキーでも可": [
+    "移動は\nWASDキーでも可",
+    "You can also move by\nusing WASD keys",
+    "",
+    ""
+  ],
+  "←↑↓→ ： 移動\n\\i[1] ： 決定\n\\i[2] ： メニュー": [
+    "←↑↓→ ： 移動\n\\i[1] ： 決定\n\\i[2] ： メニュー",
+    "←↑↓→ : Move\n\\i[1] : Confirm\n\\i[2] : Menu",
+    "",
+    ""
+  ],
+  "みなに知らせじゃ": [
+    "みなに知らせじゃ",
+    "Let it be\nknown to all.",
+    "",
+    ""
+  ],
+  "勇者は\n入院しました": [
+    "勇者は\n入院しました",
+    "Our hero was…\nhospitalized.",
+    "",
+    ""
+  ],
+  "頭から\nつま先まで": [
+    "頭から\nつま先まで",
+    "From the top of\nhis head to the\ntips of his toes…",
+    "",
+    ""
+  ],
+  "すべての骨が\nふくざつ骨折\nだそうじゃ": [
+    "すべての骨が\nふくざつ骨折\nだそうじゃ",
+    "...every bone in his \nbody has suffered \nmultiple fractures.",
+    "",
+    ""
+  ],
+  "マジで、全部の\n骨らしい": [
+    "マジで、全部の\n骨らしい",
+    "Seriously... Every. \nSingle. Bone.",
+    "",
+    ""
+  ],
+  "かわいそう…": [
+    "かわいそう…",
+    "That poor guy…",
+    "",
+    ""
+  ],
+  "なので、世界を救う勇者が\nおらんくなってしまった": [
+    "なので、世界を救う勇者が\nおらんくなってしまった",
+    "So it seems our hero\nwho will save the\nworld is gone.",
+    "",
+    ""
+  ],
+  "はあ～\\.\n困った困った": [
+    "はあ～\\.\n困った困った",
+    "Ah...～\\.\nThis will not do…",
+    "",
+    ""
+  ],
+  "こうなると…": [
+    "こうなると…",
+    "In such a grave\nsituation as this…",
+    "",
+    ""
+  ],
+  "誰か他のやつに\n勇者になってもらう\nしかないのう": [
+    "誰か他のやつに\n勇者になってもらう\nしかないのう",
+    "The only thing to do\nis have someone else\nbecome the hero.",
+    "",
+    ""
+  ],
+  "王様❗️\\.このわたしに\n行かせてくださいッ❗️": [
+    "王様❗️\\.このわたしに\n行かせてくださいッ❗️",
+    "Your Majesty❗️\\.\nPlease bestow the\nhonor upon me❗️",
+    "",
+    ""
+  ],
+  "何をッ⁉️この\nわたくしめが‼️": [
+    "何をッ⁉️この\nわたくしめが‼️",
+    "What⁉️ Don't look\nat me‼️",
+    "",
+    ""
+  ],
+  "いやいや❗️\nここはオレが‼️": [
+    "いやいや❗️\nここはオレが‼️",
+    "No, no❗️\nThis is a job for me‼️",
+    "",
+    ""
+  ],
+  "△６四歩\\.\n▲３六飛": [
+    "△６四歩\\.\n▲３六飛",
+    "△ Pawn to 6-4,\\.\n▲ Rook to 3-6.",
+    "",
+    ""
+  ],
+  "お、落ち着け！": [
+    "お、落ち着け！",
+    "C- calm down!",
+    "",
+    ""
+  ],
+  "みな世界の平和の\nためにそこまで…": [
+    "みな世界の平和の\nためにそこまで…",
+    "To think that you'd\noffer yourselves for \nthe sake of the world...",
+    "",
+    ""
+  ],
+  "う～む\nいい兵士たちに\n恵まれたもんじゃ": [
+    "う～む\nいい兵士たちに\n恵まれたもんじゃ",
+    "My, my… I truly have \nbeen blessed with\nfine soldiers indeed.",
+    "",
+    ""
+  ],
+  "ただ…\\.\nどうしたもんかのう": [
+    "ただ…\\.\nどうしたもんかのう",
+    "That being said...\\.\nwhat shall I do?",
+    "",
+    ""
+  ],
+  "勇者は一人しか\n選べないからのう": [
+    "勇者は一人しか\n選べないからのう",
+    "Only one must be\nentrusted to become\nthe hero...",
+    "",
+    ""
+  ],
+  "では、ルーレット\nで決めようっと": [
+    "では、ルーレット\nで決めようっと",
+    "I know. Let us decide\nwith the roulette wheel!",
+    "",
+    ""
+  ],
+  "新しい勇者は…\\.\nこのかたに\n決まりました！": [
+    "新しい勇者は…\\.\nこのかたに\n決まりました！",
+    "The new hero…\\.\n… shall be this\nfellow!",
+    "",
+    ""
+  ],
+  "さあ！": [
+    "さあ！",
+    "Now then!",
+    "",
+    ""
+  ],
+  "前にどうぞ！": [
+    "前にどうぞ！",
+    "Approach!",
+    "",
+    ""
+  ],
+  "おめでとう！": [
+    "おめでとう！",
+    "Congratulations!",
+    "",
+    ""
+  ],
+  "（誰だ？）": [
+    "（誰だ？）",
+    "(Who is he?)",
+    "",
+    ""
+  ],
+  "（△４三銀）": [
+    "（△４三銀）",
+    "(White Pawn to 4-3)",
+    "",
+    ""
+  ],
+  "…あ！\\.\n思い出した": [
+    "…あ！\\.\n思い出した",
+    "...ah!\\.\nCould it be...?",
+    "",
+    ""
+  ],
+  "キミはよくお城に\n見学に来てる\nぼうやだね": [
+    "キミはよくお城に\n見学に来てる\nぼうやだね",
+    "Why it's the boy\nwho often comes to\nlook around the castle.",
+    "",
+    ""
+  ],
+  "名前は\nなんていうの？": [
+    "名前は\nなんていうの？",
+    "What is your name,\nboy?",
+    "",
+    ""
+  ],
+  "その名前で\n間違いないのだな？\\! ": [
+    "その名前で\n間違いないのだな？\\! ",
+    "Are you truly certain\nthat is your name?\\! ",
+    "",
+    ""
+  ],
+  "ねえ本当の名前\nゆって": [
+    "ねえ本当の名前\nゆって",
+    "Ahhh boy, say your\ntrue name, then!",
+    "",
+    ""
+  ],
+  "では…\n改めて！": [
+    "では…\n改めて！",
+    "Alright then…\nOne more time!",
+    "",
+    ""
+  ],
+  "\\>\\{\\sp[1]\\<\\v[3]くん❗️": [
+    "\\>\\{\\sp[1]\\<\\v[3]くん❗️",
+    "\\>\\{\\sp[1]\\<\\v[3] the Lad❗️",
+    "",
+    ""
+  ],
+  "ごめんね\nまちがえた": [
+    "ごめんね\nまちがえた",
+    "Ah sorry, \nThat's not right.",
+    "",
+    ""
+  ],
+  "\\>\\{\\sp[1]\\<\\n[2]くん‼️": [
+    "\\>\\{\\sp[1]\\<\\n[2]くん‼️",
+    "\\>\\{\\sp[1]\\<\\n[2] the Lad‼️",
+    "",
+    ""
+  ],
+  "君が新しい\n勇者だ！": [
+    "君が新しい\n勇者だ！",
+    "You are…\nthe new hero!",
+    "",
+    ""
+  ],
+  "勇者として\n「魔王」を倒し、": [
+    "勇者として\n「魔王」を倒し、",
+    "As the hero, defeat \nDemon King,",
+    "",
+    ""
+  ],
+  "世界の平和を\n取り戻してね": [
+    "世界の平和を\n取り戻してね",
+    "and return peace\nto our dear world.",
+    "",
+    ""
+  ],
+  "そなたの働きに\n期待してるぞよ\\! ": [
+    "そなたの働きに\n期待してるぞよ\\! ",
+    "I am expecting great\nthings of you, lad\\! ",
+    "",
+    ""
+  ],
+  "がび～ん（笑）": [
+    "がび～ん（笑）",
+    "Gaaah! lol",
+    "",
+    ""
+  ],
+  "まあでも\nもう決定事項だから\n変えられないんだ": [
+    "まあでも\nもう決定事項だから\n変えられないんだ",
+    "Oh well. It’s already \nbeen decided, so \nit’s set in stone.",
+    "",
+    ""
+  ],
+  "よろしくね": [
+    "よろしくね",
+    "Everyone’s counting\non you!",
+    "",
+    ""
+  ],
+  "やったあ": [
+    "やったあ",
+    "Great!",
+    "",
+    ""
+  ],
+  "じゃあ\nよろしくね": [
+    "じゃあ\nよろしくね",
+    "Well then,\nget to it.",
+    "",
+    ""
+  ],
+  "は～い！\nみんな解散！": [
+    "は～い！\nみんな解散！",
+    "Very well!\nBegone, all of you!",
+    "",
+    ""
+  ],
+  "（もっちり）": [
+    "（もっちり）",
+    "(Puffy)",
+    "",
+    ""
+  ],
+  "勇者さま！\nご武運を！": [
+    "勇者さま！\nご武運を！",
+    "Oh, Noble hero!\nMay fate be in your favor!",
+    "",
+    ""
+  ],
+  "\\v[3]回も話しかけて\nくださるなんて\n光栄ですっ！": [
+    "\\v[3]回も話しかけて\nくださるなんて\n光栄ですっ！",
+    "I’m honored that you \nhave spoken to me\n\\v[3] times!",
+    "",
+    ""
+  ],
+  "ちょｗｗ": [
+    "ちょｗｗ",
+    "Wait wait lol",
+    "",
+    ""
+  ],
+  "知らないやつに\n勇者の代役奪われて\n顔ないｗｗｗ": [
+    "知らないやつに\n勇者の代役奪われて\n顔ないｗｗｗ",
+    "A randomer steals the\nrole of the hero, now\nI’m a laughingstock lol",
+    "",
+    ""
+  ],
+  "横転ｗｗ": [
+    "横転ｗｗ",
+    "I’m dead lmfao",
+    "",
+    ""
+  ],
+  "旅の準備をしっかり\n整えてくださいね！": [
+    "旅の準備をしっかり\n整えてくださいね！",
+    "Ensure you’re\nproperly equipped\nfor your journey!",
+    "",
+    ""
+  ],
+  "旅は何があるか\nわからないですから！": [
+    "旅は何があるか\nわからないですから！",
+    "There’s no way of\nknowing what lies\nahead!",
+    "",
+    ""
+  ],
+  "がんばれ♪\nがんばれ♪\n\\n[2]くん🎵": [
+    "がんばれ♪\nがんばれ♪\n\\n[2]くん🎵",
+    "Let’s go♪\nYou’re the best♪\n\\n[2] the Lad🎵",
+    "",
+    ""
+  ],
+  "ワーッ‼️": [
+    "ワーッ‼️",
+    "Wooo‼️",
+    "",
+    ""
+  ],
+  "勇者様の旅に\n神のご加護が\nあらんことを！": [
+    "勇者様の旅に\n神のご加護が\nあらんことを！",
+    "May the Lord’s \nblessings guide \nyour journey, hero!",
+    "",
+    ""
+  ],
+  "アーメン！": [
+    "アーメン！",
+    "Amen!",
+    "",
+    ""
+  ],
+  "魔王はとても\n恐ろしいけど": [
+    "魔王はとても\n恐ろしいけど",
+    "The Demon King\nis terrifying,",
+    "",
+    ""
+  ],
+  "キミならなんだか\n大丈夫な気が\nするよ": [
+    "キミならなんだか\n大丈夫な気が\nするよ",
+    "but something tells\nme you’ll be alright.",
+    "",
+    ""
+  ],
+  "勇者さんの分まで\nがんばってね": [
+    "勇者さんの分まで\nがんばってね",
+    "Please do all you\ncan as our hero.",
+    "",
+    ""
+  ],
+  "この世界を救うのは\nあなたです！！": [
+    "この世界を救うのは\nあなたです！！",
+    "The only one who can\nsave the world is you!",
+    "",
+    ""
+  ],
+  "何度でも\n言いましょう": [
+    "何度でも\n言いましょう",
+    "Let’s really hammer\nit home.",
+    "",
+    ""
+  ],
+  "△９六銀\\.\n▲４一玉": [
+    "△９六銀\\.\n▲４一玉",
+    "△ White to 9-6.\\.\n▲ King to 4-1.",
+    "",
+    ""
+  ],
+  "△７八歩\\.\n▲八飛成": [
+    "△７八歩\\.\n▲八飛成",
+    "△ Pawn to 7-8.\\.\n▲ Rook to 8, promoted.",
+    "",
+    ""
+  ],
+  "\\|…\\|…\\!\n詰んじゃった": [
+    "\\|…\\|…\\!\n詰んじゃった",
+    "\\|…\\|…\\! \nCheckmate.",
+    "",
+    ""
+  ],
+  "△６四歩…\\.\n▲３六飛…": [
+    "△６四歩…\\.\n▲３六飛…",
+    "△ Pawn to 6-4…\\.\n▲ Rook to 3-6…",
+    "",
+    ""
+  ],
+  "勇者さま！\\.\nいってらっしゃいませ！": [
+    "勇者さま！\\.\nいってらっしゃいませ！",
+    "Brave hero!\\.\nBest wishes on your\njourney!",
+    "",
+    ""
+  ],
+  "気をつけてね！": [
+    "気をつけてね！",
+    "Be careful okay!",
+    "",
+    ""
+  ],
+  "人生、山あり\n谷あり": [
+    "人生、山あり\n谷あり",
+    "Life has its highs\nand its lows.",
+    "",
+    ""
+  ],
+  "犬あり、猫あり": [
+    "犬あり、猫あり",
+    "Its dogs and\ncats too.",
+    "",
+    ""
+  ],
+  "わらわら": [
+    "わらわら",
+    "lolol",
+    "",
+    ""
+  ],
+  "いってらっしゃいませ！\\.\n勇者さま！": [
+    "いってらっしゃいませ！\\.\n勇者さま！",
+    "Best wishes on your\njourney!\\. Brave hero!",
+    "",
+    ""
+  ],
+  "最近、危険な車が\n目撃されてるようだ": [
+    "最近、危険な車が\n目撃されてるようだ",
+    "A dangerous carriage\nhas been sighted of late.",
+    "",
+    ""
+  ],
+  "お城を出るときは\n注意するんだぞ": [
+    "お城を出るときは\n注意するんだぞ",
+    "Be careful when \nyou leave the castle, \nunderstand?",
+    "",
+    ""
+  ],
+  "左右確認を\n怠るなよ": [
+    "左右確認を\n怠るなよ",
+    "And neglect not to \nlook both ways.",
+    "",
+    ""
+  ],
+  "危険な車は無事に\n捕まったが…": [
+    "危険な車は無事に\n捕まったが…",
+    "The dangerous carriage\nwas safely apprehended,\nhowever…",
+    "",
+    ""
+  ],
+  "なんと、無免許\n運転だったそうだ": [
+    "なんと、無免許\n運転だったそうだ",
+    "It looks as though the\ndriver didn’t have a license.",
+    "",
+    ""
+  ],
+  "ドライバーには\n罰としてこちょこちょ\nの刑を執行した": [
+    "ドライバーには\n罰としてこちょこちょ\nの刑を執行した",
+    "The driver was sentenced\nto tickling as punishment.",
+    "",
+    ""
+  ],
+  "これで街の平和は\n守られたな！": [
+    "これで街の平和は\n守られたな！",
+    "At that, the town’s\npeace is restored.",
+    "",
+    ""
+  ],
+  "さあ、ゆけ！\n勇者よ！": [
+    "さあ、ゆけ！\n勇者よ！",
+    "Go forth, \nour hero!",
+    "",
+    ""
+  ],
+  "モンスターの王…「魔王」\nを倒し、この世界に\n平和を取り戻すのじゃ！": [
+    "モンスターの王…「魔王」\nを倒し、この世界に\n平和を取り戻すのじゃ！",
+    "Defeat the ruler of\nmonsters, “Demon King”, and\ntake back our freedom!",
+    "",
+    ""
+  ],
+  "さあ、ゆけっ‼️\n‼️‼️‼️": [
+    "さあ、ゆけっ‼️\n‼️‼️‼️",
+    "Go on! Go forth‼️\n‼️‼️‼️",
+    "",
+    ""
+  ],
+  "‼️‼️‼️\n‼️‼️": [
+    "‼️‼️‼️\n‼️‼️",
+    "‼️‼️‼️\n‼️‼️",
+    "",
+    ""
+  ],
+  "おいおい❗️どこ見て\n歩いてんだよ～～ん⁉️": [
+    "おいおい❗️どこ見て\n歩いてんだよ～～ん⁉️",
+    "Oi❗️Watch where\nyou’re walking,\nwould you⁉️",
+    "",
+    ""
+  ],
+  "お前もひき逃げ\nしちゃうよ～～ん": [
+    "お前もひき逃げ\nしちゃうよ～～ん",
+    "I’m gonna end up\nhitting you too❗️",
+    "",
+    ""
+  ],
+  "ワシはものしり\n博士じゃ": [
+    "ワシはものしり\n博士じゃ",
+    "I am the\nKnow-It-All Professor.",
+    "",
+    ""
+  ],
+  "今から君にバトルの\nいろはにほへと\nちりぬるを": [
+    "今から君にバトルの\nいろはにほへと\nちりぬるを",
+    "I will now instruct you\nregarding the \nfundamentals of battle!",
+    "",
+    ""
+  ],
+  "わかよたれそ\nつねならむ": [
+    "わかよたれそ\nつねならむ",
+    "From A to Z, \nAlpha to Omega…",
+    "",
+    ""
+  ],
+  "うゐのおくやま\nけふこえて": [
+    "うゐのおくやま\nけふこえて",
+    "From the opening strike \nto the final blow, across \nthe mountains of combat…",
+    "",
+    ""
+  ],
+  "あさきゆめみし\nゑひもせす\nを教えてあげるぞい": [
+    "あさきゆめみし\nゑひもせす\nを教えてあげるぞい",
+    "...beyond fleeting\ndreams of victory, you\nshall master it all!",
+    "",
+    ""
+  ],
+  "まずはこの\nいかがわしい棒じゃ": [
+    "まずはこの\nいかがわしい棒じゃ",
+    "Firstly, lay your eyes on\nthis suspicious meter.",
+    "",
+    ""
+  ],
+  "この棒にはボタンを\n押すタイミングが\n記されているのじゃ": [
+    "この棒にはボタンを\n押すタイミングが\n記されているのじゃ",
+    "Note the markings which\nindicate the timing to \npress the button.",
+    "",
+    ""
+  ],
+  "タイミングよく\n\\i[7]キーを押すことで\n攻撃できるぞい\\| ": [
+    "タイミングよく\n\\i[7]キーを押すことで\n攻撃できるぞい\\| ",
+    "At the right moment, \npress the \\i[7] key to\nland a hit!\\| ",
+    "",
+    ""
+  ],
+  "タイミングよく\n\\i[1]ボタンを押すことで\n攻撃できるぞい\\| ": [
+    "タイミングよく\n\\i[1]ボタンを押すことで\n攻撃できるぞい\\| ",
+    "At the right moment, \npress the \\i[1] button to\nland a hit!\\| ",
+    "",
+    ""
+  ],
+  "さあ、とりあえず\nやってみよう！": [
+    "さあ、とりあえず\nやってみよう！",
+    "Well then... try it!",
+    "",
+    ""
+  ],
+  "痛いよ\nママーー‼️": [
+    "痛いよ\nママーー‼️",
+    "OUCH… \nmamaaa---‼️",
+    "",
+    ""
+  ],
+  "うまく攻撃\nできたようじゃな": [
+    "うまく攻撃\nできたようじゃな",
+    "Looks like you really\nshowed him who’s boss!",
+    "",
+    ""
+  ],
+  "タイミングがバッチリだと\nダメージもあがるぞい": [
+    "タイミングがバッチリだと\nダメージもあがるぞい",
+    "Get the timing just right,\nand you’ll cause\nmore damage.",
+    "",
+    ""
+  ],
+  "絶対に殺す。": [
+    "絶対に殺す。",
+    "I’ll kill you.",
+    "",
+    ""
+  ],
+  "向こうが攻撃を\nしかけてきそうじゃ": [
+    "向こうが攻撃を\nしかけてきそうじゃ",
+    "It seems the enemy\nis about to go on\nthe offensive.",
+    "",
+    ""
+  ],
+  "攻撃が当たる瞬間に\n\\i[8]キーを押すことで\nガードができるぞい\\| ": [
+    "攻撃が当たる瞬間に\n\\i[8]キーを押すことで\nガードができるぞい\\| ",
+    "At the moment of impact,\npress the \\i[8] key to defend\nagainst incoming attacks!|",
+    "",
+    ""
+  ],
+  "攻撃が当たる瞬間に\n\\i[2]ボタンを押すことで\nガードができるぞい\\| ": [
+    "攻撃が当たる瞬間に\n\\i[2]ボタンを押すことで\nガードができるぞい\\| ",
+    "At the moment of impact,\npress the \\i[8] button to defend\nagainst incoming attacks!|",
+    "",
+    ""
+  ],
+  "向こうの動きを\nよく見ておくのじゃぞ": [
+    "向こうの動きを\nよく見ておくのじゃぞ",
+    "Watch the movements\nof your opponent closely.",
+    "",
+    ""
+  ],
+  "さあ、やってみよう！": [
+    "さあ、やってみよう！",
+    "Well then... try it!",
+    "",
+    ""
+  ],
+  "なん…だと…！？": [
+    "なん…だと…！？",
+    "Wha- what the⁉️",
+    "",
+    ""
+  ],
+  "ガードが成功\nしたようじゃな": [
+    "ガードが成功\nしたようじゃな",
+    "It appears your guard\ntechnique worked!",
+    "",
+    ""
+  ],
+  "一度ガードが成功\nすると棒にもボタンが\n表示されるぞい": [
+    "一度ガードが成功\nすると棒にもボタンが\n表示されるぞい",
+    "Once you’ve successfully\nguarded, the button prompt\nappears on the meter too.",
+    "",
+    ""
+  ],
+  "相手は毎ターン\n同じタイミングで\n攻撃してくるのじゃ": [
+    "相手は毎ターン\n同じタイミングで\n攻撃してくるのじゃ",
+    "Enemies attack with the \nsame timing every turn.\nHow nice of them.",
+    "",
+    ""
+  ],
+  "早めにガードを成功\nさせてタイミングを\nつかむといいぞい": [
+    "早めにガードを成功\nさせてタイミングを\nつかむといいぞい",
+    "Get an early guard once to\ngrasp the rhythm.\nYou’ll master it soon enough.",
+    "",
+    ""
+  ],
+  "絶対に殺す\nよ～～～～ん‼️\n‼️‼️‼️‼️": [
+    "絶対に殺す\nよ～～～～ん‼️\n‼️‼️‼️‼️",
+    "I’m… gonna…\nKill you‼️\n‼️‼️‼️‼️",
+    "",
+    ""
+  ],
+  "攻撃とガードを続けて\n相手を倒すのじゃ！": [
+    "攻撃とガードを続けて\n相手を倒すのじゃ！",
+    "Keep up the guarding and\ndefending until you’ve\ndefeated your enemy!",
+    "",
+    ""
+  ],
+  "ファイト♪ファイト♪\nファイト♪♪": [
+    "ファイト♪ファイト♪\nファイト♪♪",
+    "Fight on♪ Fight on♪\nKnock him down♪♪♪",
+    "",
+    ""
+  ],
+  "お前、やるな\n小さいくせに": [
+    "お前、やるな\n小さいくせに",
+    "You’re pretty strong\ndespite your size...",
+    "",
+    ""
+  ],
+  "あの危険ドライバーを\nやっつけちまうなんて": [
+    "あの危険ドライバーを\nやっつけちまうなんて",
+    "You even \ntook down that \nreckless driver!",
+    "",
+    ""
+  ],
+  "…ああ\nわりい": [
+    "…ああ\nわりい",
+    "...Ah, sorry",
+    "",
+    ""
+  ],
+  "俺は通りすがりの\nただのがきんちょさ": [
+    "俺は通りすがりの\nただのがきんちょさ",
+    "I’m just a\nrandom brat\npassing through",
+    "",
+    ""
+  ],
+  "お前さあ\n冒険に行くの？": [
+    "お前さあ\n冒険に行くの？",
+    "Are you going on\nan adventure or\nsomething?",
+    "",
+    ""
+  ],
+  "じゃあお母さんに\nちゃんとあいさつ\nするんだぞ": [
+    "じゃあお母さんに\nちゃんとあいさつ\nするんだぞ",
+    "Just be sure to say \ngoodbye to your\nmama, alright?",
+    "",
+    ""
+  ],
+  "…じゃあな": [
+    "…じゃあな",
+    "… see ya.",
+    "",
+    ""
+  ],
+  "あら！あなたが\nウワサの小さい\n勇者さん？": [
+    "あら！あなたが\nウワサの小さい\n勇者さん？",
+    "Oh lord! You must\nbe the rumoured\nlittle hero.",
+    "",
+    ""
+  ],
+  "がんばってね！\n街中みんなが\n応援してるわよ！": [
+    "がんばってね！\n街中みんなが\n応援してるわよ！",
+    "Do us proud!\nEveryone in the town\nis rooting for you!",
+    "",
+    ""
+  ],
+  "それにしても\n丸くてもっちり\nした勇者さんね": [
+    "それにしても\n丸くてもっちり\nした勇者さんね",
+    "Having said that… you’re\nquite a round and puffy\nhero, aren’t you?",
+    "",
+    ""
+  ],
+  "あ、ゆうしゃの\nおにいさんだ！": [
+    "あ、ゆうしゃの\nおにいさんだ！",
+    "Wow! It’s big\nbrother hero!",
+    "",
+    ""
+  ],
+  "がんばれー\nゆうしゃさん！": [
+    "がんばれー\nゆうしゃさん！",
+    "Fight on, \nMr. Hero!",
+    "",
+    ""
+  ],
+  "ゆうしゃさんは\nとっても丸いんだね！": [
+    "ゆうしゃさんは\nとっても丸いんだね！",
+    "Wow Mr. Hero!\nYou’re eeextra round!",
+    "",
+    ""
+  ],
+  "いっそのこと\n殺してくれーッ‼️": [
+    "いっそのこと\n殺してくれーッ‼️",
+    "Oh god, just kill me‼️",
+    "",
+    ""
+  ],
+  "俺だってこんなこと\nやりたくてやってる\nわけじゃないんだーッ‼️": [
+    "俺だってこんなこと\nやりたくてやってる\nわけじゃないんだーッ‼️",
+    "It’s not like I’m doing all\nthis because I want to‼️",
+    "",
+    ""
+  ],
+  "…あれ？": [
+    "…あれ？",
+    "...Huh?",
+    "",
+    ""
+  ],
+  "な～んだ\n\\n[2]くんか♪": [
+    "な～んだ\n\\n[2]くんか♪",
+    "Oohhh, it’s just you,\n\\n[2]♪",
+    "",
+    ""
+  ],
+  "おはよう♪\n今日もいい天気だね♪": [
+    "おはよう♪\n今日もいい天気だね♪",
+    "Mornin’♪The weather \nis dazzling isn’t it♪",
+    "",
+    ""
+  ],
+  "\\n[2]くん\nごきげんよう♪": [
+    "\\n[2]くん\nごきげんよう♪",
+    "Good day, \n\\n[2]♪",
+    "",
+    ""
+  ],
+  "２年前に貸したＤＶＤ\nまだ持ってるかい？♪": [
+    "２年前に貸したＤＶＤ\nまだ持ってるかい？♪",
+    "Hey, have you still got\nthat DVD I lent to you\n2 years ago?♪",
+    "",
+    ""
+  ],
+  "いいなー\n冒険": [
+    "いいなー\n冒険",
+    "Ahh… It’d sure be\nnice to go on an\nadventure.",
+    "",
+    ""
+  ],
+  "お前、見かけに\nよらず強いから\nきっと大丈夫だよ": [
+    "お前、見かけに\nよらず強いから\nきっと大丈夫だよ",
+    "You’re stronger than\nyou look, so I’m sure\nyou’ll be fine.",
+    "",
+    ""
+  ],
+  "行ってらっ\nしゃーい": [
+    "行ってらっ\nしゃーい",
+    "Have a good trip.",
+    "",
+    ""
+  ],
+  "お母さんに\nいってきます\nしなかったでしょー": [
+    "お母さんに\nいってきます\nしなかったでしょー",
+    "Wait wait, you haven’t\ntold your mama you’re\nleaving yet, have you?",
+    "",
+    ""
+  ],
+  "だーめ\nなんだー": [
+    "だーめ\nなんだー",
+    "That’s\nbaaad",
+    "",
+    ""
+  ],
+  "お母さんに\n行ってきますした？": [
+    "お母さんに\n行ってきますした？",
+    "Have you told your\nmama that you’re\ngoing yet?",
+    "",
+    ""
+  ],
+  "お母さんに行ってきます\nしなきゃだめだって\n俺のお母さんゆってたぞ": [
+    "お母さんに行ってきます\nしなきゃだめだって\n俺のお母さんゆってたぞ",
+    "My mama told me you’ve\ngot to say goodbye,\ncome on! Do it!",
+    "",
+    ""
+  ],
+  "ここグリジャンの\n街に住む人々は…": [
+    "ここグリジャンの\n街に住む人々は…",
+    "So, you know we, the\npeople of Gurijan…",
+    "",
+    ""
+  ],
+  "「守る者」と\n呼ばれているんだヨ": [
+    "「守る者」と\n呼ばれているんだヨ",
+    "We’re known as the\n“Guardians”.",
+    "",
+    ""
+  ],
+  "キミもぼくも\n「守る者」さ": [
+    "キミもぼくも\n「守る者」さ",
+    "You and I, we’re both\n“Guardians”.",
+    "",
+    ""
+  ],
+  "何を守ればいいか\nわかんないけど\nがんばろうネ": [
+    "何を守ればいいか\nわかんないけど\nがんばろうネ",
+    "I’ve no idea what we’re\nguarding, but let’s do\nour best, alright?",
+    "",
+    ""
+  ],
+  "ぼくはとりあえず\nここ半径1メートル\nの平和を守ろうカナ": [
+    "ぼくはとりあえず\nここ半径1メートル\nの平和を守ろうカナ",
+    "For the time being, I’ll just\nguard the peace within\na 1-meter radius of myself.",
+    "",
+    ""
+  ],
+  "こんにちは": [
+    "こんにちは",
+    "Hello!",
+    "",
+    ""
+  ],
+  "ワシは、\n承認欲求の塊です": [
+    "ワシは、\n承認欲求の塊です",
+    "I like to think I’m\ngreat with people…",
+    "",
+    ""
+  ],
+  "「商人」だけに": [
+    "「商人」だけに",
+    "… mainly because\npeople tend to\ncarry wallets.",
+    "",
+    ""
+  ],
+  "な～～ん\nつってね": [
+    "な～～ん\nつってね",
+    "Hey, I’m a merchant.\nI’ve got priorities!",
+    "",
+    ""
+  ],
+  "…今後は\n言わないほうが\nいい？\\! ": [
+    "…今後は\n言わないほうが\nいい？\\! ",
+    "… you want me to skip\nthat bit next time?\\! ",
+    "",
+    ""
+  ],
+  "かしこまり\nました": [
+    "かしこまり\nました",
+    "Understood.",
+    "",
+    ""
+  ],
+  "やった～！\nこれからも\n言うぞい": [
+    "やった～！\nこれからも\n言うぞい",
+    "Woohoo!\nI’ll keep saying it then!",
+    "",
+    ""
+  ],
+  "…と、ゆうことで": [
+    "…と、ゆうことで",
+    "… and that's how it is.",
+    "",
+    ""
+  ],
+  "やあ！": [
+    "やあ！",
+    "Hey!",
+    "",
+    ""
+  ],
+  "腸活してる？": [
+    "腸活してる？",
+    "Are you taking\ncare of your gut health?",
+    "",
+    ""
+  ],
+  "「この先　おしろです」": [
+    "「この先　おしろです」",
+    "“Castle up ahead”",
+    "",
+    ""
+  ],
+  "「行列のできる\n ラーメン屋」": [
+    "「行列のできる\n ラーメン屋」",
+    "“The ramen place with\nlong queues”",
+    "",
+    ""
+  ],
+  "カギがかかって\nいるようだ": [
+    "カギがかかって\nいるようだ",
+    "Looks like it’s \nlocked.",
+    "",
+    ""
+  ],
+  "にょろにょろ": [
+    "にょろにょろ",
+    "Wriggle～wriggle",
+    "",
+    ""
+  ],
+  "ぼく、わるい\nモンスターじゃ\nないよ": [
+    "ぼく、わるい\nモンスターじゃ\nないよ",
+    "I’m not a bad monster.\nyou know.",
+    "",
+    ""
+  ],
+  "このおじさんに\n助けてもらったんだ": [
+    "このおじさんに\n助けてもらったんだ",
+    "This man was\nkind enough to save me",
+    "",
+    ""
+  ],
+  "\\efにょろ～～～～\n～～～～～～～\n～～～～ん❗️❗️\\ef": [
+    "\\efにょろ～～～～\n～～～～～～～\n～～～～ん❗️❗️\\ef",
+    "\\ef Wriggle～～～～\n～～～～～～～❗️❗️❗️\\ef",
+    "",
+    ""
+  ],
+  "この子？ 拾ったんだ\n道端で泣いててさ": [
+    "この子？ 拾ったんだ\n道端で泣いててさ",
+    "I found this little guy\ncrying, abandoned by\nthe side of the road.",
+    "",
+    ""
+  ],
+  "かわいそうだったよ\nストレスで髪がのこり\n１本になっちまってたんだ": [
+    "かわいそうだったよ\nストレスで髪がのこり\n１本になっちまってたんだ",
+    "The poor thing only had one\nhair left on his head due to\nthe stress of loneliness.",
+    "",
+    ""
+  ],
+  "お世話してやったら\nすごくなついちまってさ": [
+    "お世話してやったら\nすごくなついちまってさ",
+    "Since I've started taking\ncare of him, he's become \nreally attached to me.",
+    "",
+    ""
+  ],
+  "今やもう家族みたい\nなもんだよ": [
+    "今やもう家族みたい\nなもんだよ",
+    "He’s practically\nfamily now.",
+    "",
+    ""
+  ],
+  "モンスターか\nどうかなんて\nカンケーない": [
+    "モンスターか\nどうかなんて\nカンケーない",
+    "Him being a monster\nhas nothing to do with it.",
+    "",
+    ""
+  ],
+  "心が通じあうか\n通じあわないかだ": [
+    "心が通じあうか\n通じあわないかだ",
+    "What’s important is the\nconnection of our hearts.",
+    "",
+    ""
+  ],
+  "おかげで今は\nこのとおり！": [
+    "おかげで今は\nこのとおり！",
+    "Because of that connection,\nhe’s doing great now!",
+    "",
+    ""
+  ],
+  "髪の毛３本フサフサ！\nかなりの剛毛だ": [
+    "髪の毛３本フサフサ！\nかなりの剛毛だ",
+    "Now he has a glorious\nmop of three whole hairs!",
+    "",
+    ""
+  ],
+  "おれも髪の毛\n分けてほしい\nぐらいだぜ": [
+    "おれも髪の毛\n分けてほしい\nぐらいだぜ",
+    "He’s got so much hair, \nI wish he’d share some \nwith me.",
+    "",
+    ""
+  ],
+  "ははは…": [
+    "ははは…",
+    "Hahaha…",
+    "",
+    ""
+  ],
+  "キミもモンスターと\n友達になったのかい？": [
+    "キミもモンスターと\n友達になったのかい？",
+    "You’ve made a monster\nfriend too?",
+    "",
+    ""
+  ],
+  "奇遇だね！": [
+    "奇遇だね！",
+    "What a coincidence!",
+    "",
+    ""
+  ],
+  "おお…先人\nたちの魂よ": [
+    "おお…先人\nたちの魂よ",
+    "Hear me, spirits of\nour ancestors...",
+    "",
+    ""
+  ],
+  "災いの手が\n我らに届かぬよう": [
+    "災いの手が\n我らに届かぬよう",
+    "…allow not the grasp\nof calamity to reach us.",
+    "",
+    ""
+  ],
+  "どうか我らを\nお守りください…": [
+    "どうか我らを\nお守りください…",
+    "Please, protect us…",
+    "",
+    ""
+  ],
+  "あと、1000億円\n拾えますように": [
+    "あと、1000億円\n拾えますように",
+    "… and please bestow\nupon me 10 billion dollars.",
+    "",
+    ""
+  ],
+  "ていうか\n1000億円だけ\nでいいです": [
+    "ていうか\n1000億円だけ\nでいいです",
+    "To be honest, just\nthe 10 billion dollars\nwould be fine.",
+    "",
+    ""
+  ],
+  "ここは\n祈りの場": [
+    "ここは\n祈りの場",
+    "This is a place for\nprayer.",
+    "",
+    ""
+  ],
+  "人は忘れ\nがちです": [
+    "人は忘れ\nがちです",
+    "People forget\nso easily…",
+    "",
+    ""
+  ],
+  "今あるものが\n何の上に築かれて\nいるのかを": [
+    "今あるものが\n何の上に築かれて\nいるのかを",
+    "Everything we have\nnow was built on a\nsolid foundation.",
+    "",
+    ""
+  ],
+  "我々は守って\nいかねばなりません": [
+    "我々は守って\nいかねばなりません",
+    "We must preserve\nthe hope…",
+    "",
+    ""
+  ],
+  "過去から\n託された希望を…": [
+    "過去から\n託された希望を…",
+    "Hope that has been handed\ndown from the past…",
+    "",
+    ""
+  ],
+  "アーメン\nメ～ン": [
+    "アーメン\nメ～ン",
+    "Amen.\nA---men.",
+    "",
+    ""
+  ],
+  "どしたん？\n話、きこか\\! ": [
+    "どしたん？\n話、きこか\\! ",
+    "What’s up?\nTell me all about it.\\! ",
+    "",
+    ""
+  ],
+  "またね": [
+    "またね",
+    "See you later.",
+    "",
+    ""
+  ],
+  "へえ～": [
+    "へえ～",
+    "Ooohh, I see.",
+    "",
+    ""
+  ],
+  "それは彼氏\nくんが悪いね": [
+    "それは彼氏\nくんが悪いね",
+    "Yeah, your\nboyfriend is totally\nin the wrong there.",
+    "",
+    ""
+  ],
+  "じゃ、\n祈るね━━": [
+    "じゃ、\n祈るね━━",
+    "I'm off to pray\nfor you.",
+    "",
+    ""
+  ],
+  "彼は震え、涙を流し\n祈りを捧げている": [
+    "彼は震え、涙を流し\n祈りを捧げている",
+    "He prays while shaking, \nwith tears rolling down his face.",
+    "",
+    ""
+  ],
+  "僕は美食家\nハク・ソーだ": [
+    "僕は美食家\nハク・ソーだ",
+    "I’m Haku Sō,\nthe gourmet.",
+    "",
+    ""
+  ],
+  "う～ん\nここのラーメンは\n絶品だね": [
+    "う～ん\nここのラーメンは\n絶品だね",
+    "Woah… The ramen here\nis truly exquisite.",
+    "",
+    ""
+  ],
+  "美食家たるもの\nラーメンの食べ方\nにはうるさいんだ": [
+    "美食家たるもの\nラーメンの食べ方\nにはうるさいんだ",
+    "For a true gourmet, the way\nof consuming ramen must\nbe proper and well paced.",
+    "",
+    ""
+  ],
+  "ほら…\nこうやって…": [
+    "ほら…\nこうやって…",
+    "Just like this…\nPlease observe…",
+    "",
+    ""
+  ],
+  "舌の上でスープを\n転がすように\n味わうのさ": [
+    "舌の上でスープを\n転がすように\n味わうのさ",
+    "Allow the broth to flow\natop the tongue… to\nsavor the taste…",
+    "",
+    ""
+  ],
+  "ペチャ…\nペチャ……": [
+    "ペチャ…\nペチャ……",
+    "Smack… \nSlurp…",
+    "",
+    ""
+  ],
+  "ピチョ…": [
+    "ピチョ…",
+    "Drip…",
+    "",
+    ""
+  ],
+  "ペッチャ\nアァ……": [
+    "ペッチャ\nアァ……",
+    "Smack…\nAhhh…",
+    "",
+    ""
+  ],
+  "う～ん": [
+    "う～ん",
+    "Hmmm…",
+    "",
+    ""
+  ],
+  "鼻が詰まってて\nよくわからないや": [
+    "鼻が詰まってて\nよくわからないや",
+    "Honestly, my nose\nis clogged, so I can’t\ntaste anything.",
+    "",
+    ""
+  ],
+  "まあ、そういう\n日もあるよね": [
+    "まあ、そういう\n日もあるよね",
+    "Everyone has bad\ndays I suppose...",
+    "",
+    ""
+  ],
+  "\\>\\{\\sp[2]\\<星３つ‼️‼️": [
+    "\\>\\{\\sp[2]\\<星３つ‼️‼️",
+    "\\>\\{\\sp[2]\\< 3 stars‼️",
+    "",
+    ""
+  ],
+  "ゲホッ！！\nゲホッッ！！": [
+    "ゲホッ！！\nゲホッッ！！",
+    "Argha‼️\nAaarghhaaa‼️",
+    "",
+    ""
+  ],
+  "むせたッ！！！\n！！！！": [
+    "むせたッ！！！\n！！！！",
+    "I was choking‼️‼️",
+    "",
+    ""
+  ],
+  "\\>\\{\\sp[1]\\<いらっしゃい\nませーー‼️": [
+    "\\>\\{\\sp[1]\\<いらっしゃい\nませーー‼️",
+    "\\>\\{\\sp[1]\\<WELCOME TO\nOUR STORE‼️",
+    "",
+    ""
+  ],
+  "\\>\\{\\sp[1]\\<空いたお皿\nおさげしまァーす‼️": [
+    "\\>\\{\\sp[1]\\<空いたお皿\nおさげしまァーす‼️",
+    "\\>\\{\\sp[1]\\<ALLOW ME TO COLLECT\nTHE EMPTY PLATES‼️",
+    "",
+    ""
+  ],
+  "ぼくはあまり\n仕事できないかも\nしれないけど…": [
+    "ぼくはあまり\n仕事できないかも\nしれないけど…",
+    "I know I’m not\namazing at my job\nor anything…",
+    "",
+    ""
+  ],
+  "空いたお皿を下げるの\nだけは自信あるんだよな": [
+    "空いたお皿を下げるの\nだけは自信あるんだよな",
+    "… but I’m REALLY\nconfident in my\nplate-clearing abilities.",
+    "",
+    ""
+  ],
+  "アイヨ❗️\nアイヨ❗️": [
+    "アイヨ❗️\nアイヨ❗️",
+    "Aiyo❗️\nAiyo❗️",
+    "",
+    ""
+  ],
+  "う～む\n今日もうちは\n大人気店だな": [
+    "う～む\n今日もうちは\n大人気店だな",
+    "Well well, it’s\nanother full \nhouse today!",
+    "",
+    ""
+  ],
+  "回転が追いつか\nねェぜ": [
+    "回転が追いつか\nねェぜ",
+    "...can’t tend to the damn\ntables fast enough!",
+    "",
+    ""
+  ],
+  "アイヨ～\n～っと❗️": [
+    "アイヨ～\n～っと❗️",
+    "Aiyo❗️\n---woo❗️",
+    "",
+    ""
+  ],
+  "ヘイ❗️\nアイヨ❗️": [
+    "ヘイ❗️\nアイヨ❗️",
+    "Wahey❗️\nAiyo❗️",
+    "",
+    ""
+  ],
+  "アイヨ～～\nっとっとっと\nっと～～（笑）": [
+    "アイヨ～～\nっとっとっと\nっと～～（笑）",
+    "Aiyo～～\nっHuh, huh, huh\nWoah～～（lol）",
+    "",
+    ""
+  ],
+  "\\>\\{\\sp[1]\\ef\\<ラーメン最高～～\n～～～～～‼️‼️": [
+    "\\>\\{\\sp[1]\\ef\\<ラーメン最高～～\n～～～～～‼️‼️",
+    "\\>\\{\\sp[1]\\ef\\<Ramen is king～\n～～～～～～‼️",
+    "",
+    ""
+  ],
+  "あ、\\.どうも": [
+    "あ、\\.どうも",
+    "Ah...\\. hello.",
+    "",
+    ""
+  ],
+  "おつかれさま\nです": [
+    "おつかれさま\nです",
+    "Thank you for \nyour hard work.",
+    "",
+    ""
+  ],
+  "すみません\n気にしないで\nください": [
+    "すみません\n気にしないで\nください",
+    "Don’t concern\nyourself with me...",
+    "",
+    ""
+  ],
+  "ちょっと詰まった\nだけなんです…": [
+    "ちょっと詰まった\nだけなんです…",
+    "I’m just a little \nstuck here…",
+    "",
+    ""
+  ],
+  "ご、誤解しないで\nください！": [
+    "ご、誤解しないで\nください！",
+    "P-please don’t\nmisunderstand!",
+    "",
+    ""
+  ],
+  "私の体って\n水やバケツを\n通すんです": [
+    "私の体って\n水やバケツを\n通すんです",
+    "Buckets and water\npass right through me.",
+    "",
+    ""
+  ],
+  "だから井戸水を\n汲むのには何も\n支障をきたしません": [
+    "だから井戸水を\n汲むのには何も\n支障をきたしません",
+    "So I’m not preventing\nanyone from drawing\nwater from the well.",
+    "",
+    ""
+  ],
+  "つまりこの街の\n人たちに迷惑は\nかけてないはず！": [
+    "つまりこの街の\n人たちに迷惑は\nかけてないはず！",
+    "In other words, I’m not\ncausing any problems\nfor the townfolk!",
+    "",
+    ""
+  ],
+  "むしろ、私のからだを\n経由することで井戸水に\n少しセクシーな香りが…": [
+    "むしろ、私のからだを\n経由することで井戸水に\n少しセクシーな香りが…",
+    "In fact, the water passing\nthrough me might be giving \nit a … sexy… fragrance.",
+    "",
+    ""
+  ],
+  "\\efはっ❗️\\.私ったら\nなんて変なことを": [
+    "\\efはっ❗️\\.私ったら\nなんて変なことを",
+    "\\efAh❗️\\. Sorry, what\nam I talking about…",
+    "",
+    ""
+  ],
+  "\\efすすす\nすみません❗️": [
+    "\\efすすす\nすみません❗️",
+    "\\efE-e-e-\nexcuse me❗️",
+    "",
+    ""
+  ],
+  "え？\\.\n私ですか？": [
+    "え？\\.\n私ですか？",
+    "What?\\.\nYou’re asking about me?",
+    "",
+    ""
+  ],
+  "私、スライムの\nイドリンって\nいいます": [
+    "私、スライムの\nイドリンって\nいいます",
+    "Eh… I’m just a\nslime, called Idorin.",
+    "",
+    ""
+  ],
+  "もしよかったら…\\.\n仲良くしてくださいね": [
+    "もしよかったら…\\.\n仲良くしてくださいね",
+    "If you’d like...\\.\nI hope we can get along.",
+    "",
+    ""
+  ],
+  "さて…\\.ここから\n脱出する方法を\n考えないと…": [
+    "さて…\\.ここから\n脱出する方法を\n考えないと…",
+    "Anyway…\\.I’ll work on\nfinding a way out of\nhere…",
+    "",
+    ""
+  ],
+  "あ、どうも\nイドリンです": [
+    "あ、どうも\nイドリンです",
+    "Ah, hello.\nI’m Idorin.",
+    "",
+    ""
+  ],
+  "井戸汲みバケツが\n私の体をプルンッて\n貫通していくんです": [
+    "井戸汲みバケツが\n私の体をプルンッて\n貫通していくんです",
+    "No matter what I do\nthe bucket just goes\nsluuush through my body.",
+    "",
+    ""
+  ],
+  "おかげで…\\.\nなんかその…\\.\nえっと…": [
+    "おかげで…\\.\nなんかその…\\.\nえっと…",
+    "And because of that...\\.\nhow can I say...\\.\nUmmm…",
+    "",
+    ""
+  ],
+  "逆流性食道炎の\nメカニズムが\n理解できました！": [
+    "逆流性食道炎の\nメカニズムが\n理解できました！",
+    "Now I think I know\nhow acid reflux works!",
+    "",
+    ""
+  ],
+  "なにごとも\n経験ですねッ": [
+    "なにごとも\n経験ですねッ",
+    "There’s value in every\nexperience isn’t there.",
+    "",
+    ""
+  ],
+  "あら、\\n[2]！\\.\nおかえりなさい": [
+    "あら、\\n[2]！\\.\nおかえりなさい",
+    "Oh, \\n[2]!\\.\nWelcome home dear.",
+    "",
+    ""
+  ],
+  "\\n[2]！\\.\nおしろから\n戻ったんだな！": [
+    "\\n[2]！\\.\nおしろから\n戻ったんだな！",
+    "\\n[2]!\\.\nYou’re back from the\ncastle, are you!",
+    "",
+    ""
+  ],
+  "今日はたしか\n勇者さんが冒険に\n旅立つ日…": [
+    "今日はたしか\n勇者さんが冒険に\n旅立つ日…",
+    "Am I right thinking\nthat today’s the day\nour hero departs...?",
+    "",
+    ""
+  ],
+  "どうだった？\\.\n勇者さんは\nかっこよかったか？\\! ": [
+    "どうだった？\\.\n勇者さんは\nかっこよかったか？\\! ",
+    "How was he?\\.\nOur mighty infallible \nhero, was he cool?\\! ",
+    "",
+    ""
+  ],
+  "いいえ\nひかれた\n勇者です": [
+    "いいえ\nひかれた\n勇者です",
+    "Nope\nHe got run over\nI’m the hero",
+    "",
+    ""
+  ],
+  "え？事故に？\\.\nそれは大変だな": [
+    "え？事故に？\\.\nそれは大変だな",
+    "What? A car accident?\\.\nThat’s terrible…",
+    "",
+    ""
+  ],
+  "え？ひかれた？\\.\nそれは大変だな": [
+    "え？ひかれた？\\.\nそれは大変だな",
+    "What? He got run over?\\.\nThat’s terrible…",
+    "",
+    ""
+  ],
+  "左右確認は\n大事ね": [
+    "左右確認は\n大事ね",
+    "It’s very important\nto look both ways, dear.",
+    "",
+    ""
+  ],
+  "まあ ひき逃げ\nしたほうが\n悪いけどな": [
+    "まあ ひき逃げ\nしたほうが\n悪いけどな",
+    "Well, well, we must\nblame the driver though.",
+    "",
+    ""
+  ],
+  "え？\\n[2]が\n代わりに勇者に？": [
+    "え？\\n[2]が\n代わりに勇者に？",
+    "What? Then you were\nmade the hero, \\n[2]?",
+    "",
+    ""
+  ],
+  "え？\\n[2]が\n勇者に任命された？": [
+    "え？\\n[2]が\n勇者に任命された？",
+    "What? You were\nappointed hero,\n\\n[2]?",
+    "",
+    ""
+  ],
+  "あら！本当！？\\.\nすごいじゃない！": [
+    "あら！本当！？\\.\nすごいじゃない！",
+    "Wow! Really?!\\.\nThat’s amazing, dear!",
+    "",
+    ""
+  ],
+  "よかったな\n\\n[2]！": [
+    "よかったな\n\\n[2]！",
+    "Well look at you,\n\\n[2]!",
+    "",
+    ""
+  ],
+  "毎日おしろに\n通ったおかげだな": [
+    "毎日おしろに\n通ったおかげだな",
+    "All of those trips to the\ncastle really paid off huh...",
+    "",
+    ""
+  ],
+  "\\n[2]はおしろの\n兵士さんや勇者さんが\n大好きだものね": [
+    "\\n[2]はおしろの\n兵士さんや勇者さんが\n大好きだものね",
+    "You were always infatuated\nby soldiers and heroes,\nweren’t you \\n[2].",
+    "",
+    ""
+  ],
+  "でも、\\n[2]に\n勇者さんの代わりなんて\nつとまるかしら": [
+    "でも、\\n[2]に\n勇者さんの代わりなんて\nつとまるかしら",
+    "Even so, are you sure\nyou can take on the role\nof the hero, \\n[2]?",
+    "",
+    ""
+  ],
+  "わっはっは！\\.\nパパは心配\nしてないぞ": [
+    "わっはっは！\\.\nパパは心配\nしてないぞ",
+    "Wahaha!\\.\nI’m not worried at\nall, my boy!",
+    "",
+    ""
+  ],
+  "\\n[2]！\\.おまえの\nいちばんの長所は\n優しいところだ！": [
+    "\\n[2]！\\.おまえの\nいちばんの長所は\n優しいところだ！",
+    "\\n[2]!\\.\nyou’ve got your biggest\nstrength... your kindness!",
+    "",
+    ""
+  ],
+  "勇者にいちばん\n大切なものを\nおまえは持っている！": [
+    "勇者にいちばん\n大切なものを\nおまえは持っている！",
+    "That is the most\nimportant factor in\nbecoming a hero.",
+    "",
+    ""
+  ],
+  "そうね\\. その優しさを\n忘れちゃいけないよ": [
+    "そうね\\. その優しさを\n忘れちゃいけないよ",
+    "That’s right.\\. Never\nlose that kindness\nof yours, dear.",
+    "",
+    ""
+  ],
+  "おばあちゃんにも\n教えてあげましょう": [
+    "おばあちゃんにも\n教えてあげましょう",
+    "Let’s go tell your Grandma\nthe great news.",
+    "",
+    ""
+  ],
+  "ああ\nそうだな": [
+    "ああ\nそうだな",
+    "Yes, good idea.",
+    "",
+    ""
+  ],
+  "おばあちゃん\nおばあちゃん": [
+    "おばあちゃん\nおばあちゃん",
+    "Grandma,\nGrandma!",
+    "",
+    ""
+  ],
+  "\\efおやまあ\nみんなお揃いだ": [
+    "\\efおやまあ\nみんなお揃いだ",
+    "\\ef Oohhh…\nyou’ve all come!",
+    "",
+    ""
+  ],
+  "\\efどうしたの\nかい": [
+    "\\efどうしたの\nかい",
+    "\\ef Is something the\nmatter?",
+    "",
+    ""
+  ],
+  "おばあちゃん\nあのね": [
+    "おばあちゃん\nあのね",
+    "Hey Grandma,\nlisten to this…",
+    "",
+    ""
+  ],
+  "\\n[2]から\n大ニュースよ\\! ": [
+    "\\n[2]から\n大ニュースよ\\! ",
+    "We have huge \nnews from\n\\n[2]\\!!",
+    "",
+    ""
+  ],
+  "このたび\n勇者に\nなりました": [
+    "このたび\n勇者に\nなりました",
+    "I’ve just\nbeen chosen as\nthe new hero",
+    "",
+    ""
+  ],
+  "\\efこのたび\nどうしたの\nかい": [
+    "\\efこのたび\nどうしたの\nかい",
+    "\\ef You’ve just\nwhat now?",
+    "",
+    ""
+  ],
+  "\\ef勇者？": [
+    "\\ef勇者？",
+    "\\ef Been chosen?",
+    "",
+    ""
+  ],
+  "\\ef勇者って\nあの勇者\nかい": [
+    "\\ef勇者って\nあの勇者\nかい",
+    "\\ef Chosen to be\nwhat now?",
+    "",
+    ""
+  ],
+  "\\efなにに\nなったの\nかい": [
+    "\\efなにに\nなったの\nかい",
+    "\\ef New hero?\nHero of what?",
+    "",
+    ""
+  ],
+  "\\n[2]が\nおしろで勇者に\n任命されたんだ！": [
+    "\\n[2]が\nおしろで勇者に\n任命されたんだ！",
+    "\\n[2] was\nappointed to be the\nnew hero at the castle!",
+    "",
+    ""
+  ],
+  "\\efあらまあ\nそうなの": [
+    "\\efあらまあ\nそうなの",
+    "\\ef Oh gosh,\nis that true?",
+    "",
+    ""
+  ],
+  "\\efおめでとう\nすごいなあ": [
+    "\\efおめでとう\nすごいなあ",
+    "\\ef Congratulations,\nmagnificent!",
+    "",
+    ""
+  ],
+  "\\ef\\n[2]ちゃん\nがんばってね": [
+    "\\ef\\n[2]ちゃん\nがんばってね",
+    "\\ef \\n[2], do your\nbest, boy",
+    "",
+    ""
+  ],
+  "\\efおばあちゃん\n応援してるよ": [
+    "\\efおばあちゃん\n応援してるよ",
+    "\\ef Your old granny\nis rooting for you.",
+    "",
+    ""
+  ],
+  "\\ef…\\.ところで\n\\n[2]ちゃんが\nあんだって？": [
+    "\\ef…\\.ところで\n\\n[2]ちゃんが\nあんだって？",
+    "\\ef…\\.So…\nwhat was it about\n\\n[2]?",
+    "",
+    ""
+  ],
+  "おばあちゃんも\n応援してくれて\nよかったね": [
+    "おばあちゃんも\n応援してくれて\nよかったね",
+    "It’s great that\nGrandma is cheering\nyou on too isn’t it.",
+    "",
+    ""
+  ],
+  "でもしばらく\n会えなくなっ\nちゃうね\\! ": [
+    "でもしばらく\n会えなくなっ\nちゃうね\\! ",
+    "But it seems like\nwe won’t see one\nanother for a while\\!...",
+    "",
+    ""
+  ],
+  "長生きしてね\n元気でいてね": [
+    "長生きしてね\n元気でいてね",
+    "Live a long life, okay?\nTake care, alright?",
+    "",
+    ""
+  ],
+  "\\ef\\n[2]ちゃん\nありがとう": [
+    "\\ef\\n[2]ちゃん\nありがとう",
+    "\\ef\\n[2], dear…\nthank you.",
+    "",
+    ""
+  ],
+  "\\efあたしゃこんなに\n長生きすると\n思わなんだよ": [
+    "\\efあたしゃこんなに\n長生きすると\n思わなんだよ",
+    "\\ef I never thought\nI’d live long enough\nto see this day.",
+    "",
+    ""
+  ],
+  "\\ef隣町の佐藤さんは\n私とおんなじ歳なの\nにずいぶん前に…": [
+    "\\ef隣町の佐藤さんは\n私とおんなじ歳なの\nにずいぶん前に…",
+    "\\ef Mrs. Sato from one town \nover was the same age as \nme… she’s long gone now…",
+    "",
+    ""
+  ],
+  "\\efどこかに\n行くのかい": [
+    "\\efどこかに\n行くのかい",
+    "\\ef Are you off\nsomewhere, boy?",
+    "",
+    ""
+  ],
+  "\\efおばあちゃんも\n若い頃はいろんな\nところに旅をしたよ": [
+    "\\efおばあちゃんも\n若い頃はいろんな\nところに旅をしたよ",
+    "\\ef I went to many places\nwhen I was a young\nlassie.",
+    "",
+    ""
+  ],
+  "\\efそうそう\\. 卒業旅行で\n行った北インド山脈で\nヒグマに囲まれたときは…": [
+    "\\efそうそう\\. 卒業旅行で\n行った北インド山脈で\nヒグマに囲まれたときは…",
+    "\\ef That’s right\\. On my graduation trip\nin the North Indian mountains,\nI was surrounded by brown bears…",
+    "",
+    ""
+  ],
+  "おっと おばあちゃん\\.\n\\n[2]は旅の\n準備があるんだ": [
+    "おっと おばあちゃん\\.\n\\n[2]は旅の\n準備があるんだ",
+    "Hold it Grandma\\.\n\\n[2] still has a lot\nof preparation to do.",
+    "",
+    ""
+  ],
+  "話の続きは\n冒険が終わってから\nゆっくり聞かせてな": [
+    "話の続きは\n冒険が終わってから\nゆっくり聞かせてな",
+    "Tell him your stories\nonce he’s been on his\nadventure.",
+    "",
+    ""
+  ],
+  "\\n[2]\\.\n2階でしたく\nしておいで": [
+    "\\n[2]\\.\n2階でしたく\nしておいで",
+    "Go upstairs, \\n[2]\\.\nGet yourself ready\nto set off.",
+    "",
+    ""
+  ],
+  "忘れ物は\nないかな": [
+    "忘れ物は\nないかな",
+    "Are you forgetting\nanything, dear?",
+    "",
+    ""
+  ],
+  "準備ばっちり\nみたいだな": [
+    "準備ばっちり\nみたいだな",
+    "Seems like you’re\nall ready to go.",
+    "",
+    ""
+  ],
+  "いよいよ\nお別れだ": [
+    "いよいよ\nお別れだ",
+    "So… it’s time to\npart ways.",
+    "",
+    ""
+  ],
+  "いい？無理は\nしないでね\\. 怪我\nにも気をつけて": [
+    "いい？無理は\nしないでね\\. 怪我\nにも気をつけて",
+    "Look, \\. don’t put too\nmuch pressure on \nyourself. Take care, dear.",
+    "",
+    ""
+  ],
+  "ああ\\. 何があっても\n父さんと母さんは\nお前の味方だ": [
+    "ああ\\. 何があっても\n父さんと母さんは\nお前の味方だ",
+    "Yes.\\. Whatever happens,\nknow that your mama and\npapa are on your side.",
+    "",
+    ""
+  ],
+  "\\n[2] いいか\\.\n楽しいことも辛いことも\nまとめて冒険だ": [
+    "\\n[2] いいか\\.\n楽しいことも辛いことも\nまとめて冒険だ",
+    "\\n[2], listen up.\\.\nBoth the fun times and rough\ntimes make the adventure great.",
+    "",
+    ""
+  ],
+  "時には戦いたくない\n相手とも戦わなきゃ\nいけない時がくるだろう": [
+    "時には戦いたくない\n相手とも戦わなきゃ\nいけない時がくるだろう",
+    "There may be a day when\nyour enemy is someone\nyou don’t want to fight.",
+    "",
+    ""
+  ],
+  "そんなときは胸に\n手を当てて\\. お前の\n信念を思い出すんだ": [
+    "そんなときは胸に\n手を当てて\\. お前の\n信念を思い出すんだ",
+    "When that time comes, put \nyour hand on your heart and \nrecall what you believe in.",
+    "",
+    ""
+  ],
+  "信念を失えば\nそこで旅はおしまいだ\\.\nそれだけは忘れるな": [
+    "信念を失えば\nそこで旅はおしまいだ\\.\nそれだけは忘れるな",
+    "If you throw away your beliefs, \nyour journey will come to an\nend. Don’t forget that, lad.",
+    "",
+    ""
+  ],
+  "さあ 行ってこい！": [
+    "さあ 行ってこい！",
+    "Well then, hurry off!",
+    "",
+    ""
+  ],
+  "がんばってね！": [
+    "がんばってね！",
+    "Make us proud!",
+    "",
+    ""
+  ],
+  "\\ef ZZZ…": [
+    "\\ef ZZZ…",
+    "\\ef Zzz…",
+    "",
+    ""
+  ],
+  "\\efおばあちゃんは\n寝たっきりに\nなっちゃったけど": [
+    "\\efおばあちゃんは\n寝たっきりに\nなっちゃったけど",
+    "\\ef Your granny \nwill be sleeping \nall the while…",
+    "",
+    ""
+  ],
+  "\\efずっとずっと\n応援してるよ": [
+    "\\efずっとずっと\n応援してるよ",
+    "\\ef but I’ll be rooting\nfor you the whole time…",
+    "",
+    ""
+  ],
+  "勇者 \\n[2]…\nいい響きだな": [
+    "勇者 \\n[2]…\nいい響きだな",
+    "\\n[2] the Hero…\nIt has a good ring\nto it doesn’t it.",
+    "",
+    ""
+  ],
+  "おう！\n勇者\\n[2]！": [
+    "おう！\n勇者\\n[2]！",
+    "Hey! \n\\n[2] the Hero!",
+    "",
+    ""
+  ],
+  "冒険の準備は\nできたか？": [
+    "冒険の準備は\nできたか？",
+    "Are you ready to go\non your adventure?",
+    "",
+    ""
+  ],
+  "まあ 焦りは\nキンモツだ": [
+    "まあ 焦りは\nキンモツだ",
+    "Well… one must\nnot rush.",
+    "",
+    ""
+  ],
+  "勇者\\n[2]の\n冒険がいま\n幕をあける！": [
+    "勇者\\n[2]の\n冒険がいま\n幕をあける！",
+    "The adventure of \n\\n[2] the Hero\nbegins!",
+    "",
+    ""
+  ],
+  "友達を\nつれてきたのか？": [
+    "友達を\nつれてきたのか？",
+    "",
+    "",
+    ""
+  ],
+  "おう！\n最近みないが\nどうしたんだ？": [
+    "おう！\n最近みないが\nどうしたんだ？",
+    "",
+    "",
+    ""
+  ],
+  "お！旅の仲間が\nできたのか！！": [
+    "お！旅の仲間が\nできたのか！！",
+    "Wow! You even made\na travel buddy⁉️",
+    "",
+    ""
+  ],
+  "頼りになりそうな\n仲間だな！ワッハッハ": [
+    "頼りになりそうな\n仲間だな！ワッハッハ",
+    "Looks like a dependable\nbuddy indeed! Haha!",
+    "",
+    ""
+  ],
+  "たまには家で\nゴロゴロしても\nいいんだぞ": [
+    "たまには家で\nゴロゴロしても\nいいんだぞ",
+    "Feel free to take\na break here at home\nevery now and again.",
+    "",
+    ""
+  ],
+  "がんばってね": [
+    "がんばってね",
+    "Do your best, dear.",
+    "",
+    ""
+  ],
+  "何があっても\n母さんは\\n[2]の\n味方だよ": [
+    "何があっても\n母さんは\\n[2]の\n味方だよ",
+    "No matter what unfolds,\nyour dear mother is on\nyour side, \\n[2].",
+    "",
+    ""
+  ],
+  "あら、\nおかえり": [
+    "あら、\nおかえり",
+    "Oh, welcome\nback!",
+    "",
+    ""
+  ],
+  "忘れ物した？": [
+    "忘れ物した？",
+    "Forgotten something?",
+    "",
+    ""
+  ],
+  "それとも\nやっぱり寂しく\nなっちゃった？": [
+    "それとも\nやっぱり寂しく\nなっちゃった？",
+    "Or maybe… you were\ngetting lonely after all?",
+    "",
+    ""
+  ],
+  "\\n[2]なら\nきっと大丈夫": [
+    "\\n[2]なら\nきっと大丈夫",
+    "\\n[2], you can do anything\nyou set your mind to!",
+    "",
+    ""
+  ],
+  "冒険から帰ってきたら\n大好物のハンバーグ\n作ってあげる": [
+    "冒険から帰ってきたら\n大好物のハンバーグ\n作ってあげる",
+    "When you’ve returned from \nyour adventure, I’ll make that\nsteak that you love.",
+    "",
+    ""
+  ],
+  "肉汁があふれて\nくるタイプのやつね": [
+    "肉汁があふれて\nくるタイプのやつね",
+    "You know the one… exploding \nwith the juicy goodness.",
+    "",
+    ""
+  ],
+  "あら\nお友達？": [
+    "あら\nお友達？",
+    "Oh?\nA friend of yours?",
+    "",
+    ""
+  ],
+  "おかえり\n\\n[2]": [
+    "おかえり\n\\n[2]",
+    "Welcome back, \n\\n[2].",
+    "",
+    ""
+  ],
+  "あら…冒険の\n仲間ができたのね！": [
+    "あら…冒険の\n仲間ができたのね！",
+    "Oh… so you’ve found yourself a\ncompanion for your adventure!",
+    "",
+    ""
+  ],
+  "どうか\\n[2]の\nことをよろしくね": [
+    "どうか\\n[2]の\nことをよろしくね",
+    "Please look after \\n[2] \nfor me.",
+    "",
+    ""
+  ],
+  "ゆっくり休んで\nいきなさい": [
+    "ゆっくり休んで\nいきなさい",
+    "Please take your\ntime and rest.",
+    "",
+    ""
+  ],
+  "手に入れたブリーフは\nメニューの「そうび」から\n装備してみよう": [
+    "手に入れたブリーフは\nメニューの「そうび」から\n装備してみよう",
+    "Try equipping the briefs \nyou picked up from the \n“Equipment” menu.",
+    "",
+    ""
+  ],
+  "めぼしい服は\nなさそうだ": [
+    "めぼしい服は\nなさそうだ",
+    "Doesn’t look like there’s\nanything worth wearing here.",
+    "",
+    ""
+  ],
+  "ほんとに\n行くタコ？\\! ": [
+    "ほんとに\n行くタコ？\\! ",
+    "Are you really\nleaving?\\! ",
+    "",
+    ""
+  ],
+  "うん\n一緒にくる？": [
+    "うん\n一緒にくる？",
+    "Yes\nWill you tag along?",
+    "",
+    ""
+  ],
+  "ふ～ん": [
+    "ふ～ん",
+    "Hmm…",
+    "",
+    ""
+  ],
+  "まあせいぜい\nがんばるタコね": [
+    "まあせいぜい\nがんばるタコね",
+    "Do your best… \nno backing out-o-pus!",
+    "",
+    ""
+  ],
+  "え～いやタコよ\nめんどくさいし": [
+    "え～いやタコよ\nめんどくさいし",
+    "Ehh… I’ll octo-pass.\nSounds like too\nmuch trouble.",
+    "",
+    ""
+  ],
+  "るすばんは\n任せるタコ": [
+    "るすばんは\n任せるタコ",
+    "I’ll stick around and \nkeep things in order.",
+    "",
+    ""
+  ],
+  "おみやげは\n別にいらない\nけども": [
+    "おみやげは\n別にいらない\nけども",
+    "I don’t really\nneed any \nsouvenirs.",
+    "",
+    ""
+  ],
+  "…\\.おみやげ話は\n楽しみに\nしてるケロ": [
+    "…\\.おみやげ話は\n楽しみに\nしてるケロ",
+    "…but I’m excited \nto hear about \nribb-it.",
+    "",
+    ""
+  ],
+  "まちがった": [
+    "まちがった",
+    "Whoops.",
+    "",
+    ""
+  ],
+  "してるタコ": [
+    "してるタコ",
+    "I mean, keep yourself\nout of cloudy waters.",
+    "",
+    ""
+  ],
+  "タコの\nぬいぐるみだ": [
+    "タコの\nぬいぐるみだ",
+    "It’s a souvenir of\nan octopus.",
+    "",
+    ""
+  ],
+  "おかえりタコ": [
+    "おかえりタコ",
+    "Welcome back!",
+    "",
+    ""
+  ],
+  "冒険は\n楽しいタコ？\\! ": [
+    "冒険は\n楽しいタコ？\\! ",
+    "Are you having fun\non your adventure?\\! ",
+    "",
+    ""
+  ],
+  "楽しい\nつらい": [
+    "楽しい\nつらい",
+    "It’s fun\nIt’s rough",
+    "",
+    ""
+  ],
+  "よかった\nタコね": [
+    "よかった\nタコね",
+    "Well… that’s \ngood to hear.",
+    "",
+    ""
+  ],
+  "へ～": [
+    "へ～",
+    "Aww…",
+    "",
+    ""
+  ],
+  "かわいそうタコ": [
+    "かわいそうタコ",
+    "Poor guy.",
+    "",
+    ""
+  ],
+  "まあ…\\.怪我には\n気をつけるケロ": [
+    "まあ…\\.怪我には\n気をつけるケロ",
+    "Well… \\. Careful…\nlet’s not turn this\ninto a croak-astrophe.",
+    "",
+    ""
+  ],
+  "しまってた\nヘソクリを持っていこう": [
+    "しまってた\nヘソクリを持っていこう",
+    "I’ll grab the money\nI had set aside.",
+    "",
+    ""
+  ],
+  "めぼしい本は\nなさそうだ": [
+    "めぼしい本は\nなさそうだ",
+    "There don’t seem to be \nany useful books here.",
+    "",
+    ""
+  ],
+  "パーソナルスペースが\n広すぎる人がいて通れない": [
+    "パーソナルスペースが\n広すぎる人がいて通れない",
+    "Someone with an enormous \npersonal space is blocking the way.",
+    "",
+    ""
+  ],
+  "先にモンスター城の\nほうへ行ってみよう": [
+    "先にモンスター城の\nほうへ行ってみよう",
+    "Let’s head toward the \nMonster Castle for now.",
+    "",
+    ""
+  ],
+  "やあ❗️君は\n勇者の代わりに\n冒険に出る人だね❗️": [
+    "やあ❗️君は\n勇者の代わりに\n冒険に出る人だね❗️",
+    "Hey❗️You’re the one setting \nout in the hero’s stead❗️",
+    "",
+    ""
+  ],
+  "モンスターの王…\n通称「魔王」の居場所は\n謎に包まれているが": [
+    "モンスターの王…\n通称「魔王」の居場所は\n謎に包まれているが",
+    "The king of monsters… the one \nthey call the “Demon King”, \nhis location remains a mystery.",
+    "",
+    ""
+  ],
+  "ここを東に進んだ\n「モンスター城」にいる\nんじゃないかって噂だ": [
+    "ここを東に進んだ\n「モンスター城」にいる\nんじゃないかって噂だ",
+    "But there are rumours that \nhe may be in the “Monster \nCastle,” just east of here.",
+    "",
+    ""
+  ],
+  "なのでモンスター城\nに行ってみるといいぞ❗️": [
+    "なのでモンスター城\nに行ってみるといいぞ❗️",
+    "You’d better head to the Monster \nCastle and see for yourself❗️",
+    "",
+    ""
+  ],
+  "幸運を祈る❗️": [
+    "幸運を祈る❗️",
+    "I’m praying for you buddy❗️",
+    "",
+    ""
+  ],
+  "魔王はここを東に進んだ\n「モンスター城」にいる\nんじゃないかって噂だ": [
+    "魔王はここを東に進んだ\n「モンスター城」にいる\nんじゃないかって噂だ",
+    "Word is, the Demon King may \nbe hiding out in the “Monster \nCastle,” just east of here.",
+    "",
+    ""
+  ],
+  "おじさんのことは\n気にしないでくれ❗️": [
+    "おじさんのことは\n気にしないでくれ❗️",
+    "Oh yeah, pay no mind to \nthe old man❗️",
+    "",
+    ""
+  ],
+  "なにッ⁉️\nモンスター城に行くには\n7枚の石板がいるだと⁉️": [
+    "なにッ⁉️\nモンスター城に行くには\n7枚の石板がいるだと⁉️",
+    "What’s that⁉️ \nYou need seven stone tablets \nto enter Monster Castle⁉️",
+    "",
+    ""
+  ],
+  "それは大変だな❗️\nどこにあるのやら…": [
+    "それは大変だな❗️\nどこにあるのやら…",
+    "Sounds tricky❗️ Where are \nyou supposed to find them…?",
+    "",
+    ""
+  ],
+  "ちなみにここを南に\nいくとモンスターが\n出るぞ❗️気をつけよう❗️": [
+    "ちなみにここを南に\nいくとモンスターが\n出るぞ❗️気をつけよう❗️",
+    "If you head south from here, \nmonsters will start popping \nup❗️Stay alert, hero❗️",
+    "",
+    ""
+  ],
+  "風が──\\.\n風が泣いている": [
+    "風が──\\.\n風が泣いている",
+    "Oh the wind…\\.\nThe wind is cryin’",
+    "",
+    ""
+  ],
+  "俺には\nそう感じるぜ": [
+    "俺には\nそう感じるぜ",
+    "Oh yeah,\nThat’s how I’m feelin’",
+    "",
+    ""
+  ],
+  "そんなことより\n二日酔いが辛いぜ…": [
+    "そんなことより\n二日酔いが辛いぜ…",
+    "But forget all that,\nthis hangover’s got me cryin’",
+    "",
+    ""
+  ],
+  "おえ…\\.\n吐きそう…": [
+    "おえ…\\.\n吐きそう…",
+    "Ough...\\.\nI think I’m gonna hurl…",
+    "",
+    ""
+  ],
+  "ハァ、ハァ\n……": [
+    "ハァ、ハァ\n……",
+    "Huff… huff…",
+    "",
+    ""
+  ],
+  "吐いたら\n楽になったぜ": [
+    "吐いたら\n楽になったぜ",
+    "Man… I feel better after \ngetting that out.",
+    "",
+    ""
+  ],
+  "飲み過ぎには\n注意しねェとな": [
+    "飲み過ぎには\n注意しねェとな",
+    "I need to pay attention to \nhow much I’m drinkin’…",
+    "",
+    ""
+  ],
+  "この先は\nモンスターが\nでて危険だよ": [
+    "この先は\nモンスターが\nでて危険だよ",
+    "Past this point, monsters\nwill start popping up. It's\nvery dangerous!",
+    "",
+    ""
+  ],
+  "そうだ！！\nこれをあげるよ": [
+    "そうだ！！\nこれをあげるよ",
+    "Oh yeah‼️\nTake this.",
+    "",
+    ""
+  ],
+  "戦いでダメージを\nおったら回復！！": [
+    "戦いでダメージを\nおったら回復！！",
+    "If you take damage in \nbattle, recover‼️",
+    "",
+    ""
+  ],
+  "冒険の基本だね\n覚えておくといいよ": [
+    "冒険の基本だね\n覚えておくといいよ",
+    "That’s a basic adventuring \nprinciple… remember it well.",
+    "",
+    ""
+  ],
+  "あれ？\nもしかして…": [
+    "あれ？\nもしかして…",
+    "Oh? \nCould it be…",
+    "",
+    ""
+  ],
+  "もっと回復\nアイテムが欲しく\nなっちゃった？": [
+    "もっと回復\nアイテムが欲しく\nなっちゃった？",
+    "You’re in need of\nsome more\nrecovery items?",
+    "",
+    ""
+  ],
+  "しょうがないなあ\nこれをあげるよ": [
+    "しょうがないなあ\nこれをあげるよ",
+    "Well, I suppose I can help.\nHere, take this.",
+    "",
+    ""
+  ],
+  "有効活用\nしてね！！": [
+    "有効活用\nしてね！！",
+    "Use these\nresponsibly!",
+    "",
+    ""
+  ],
+  "「こちらは\n 看板の裏面です」": [
+    "「こちらは\n 看板の裏面です」",
+    "“This is the back of\nthe sign”",
+    "",
+    ""
+  ],
+  "「↑グリジャンの街」": [
+    "「↑グリジャンの街」",
+    "“↑Gurijan Town”",
+    "",
+    ""
+  ],
+  "「↓草原\n ※モンスターに注意！」": [
+    "「↓草原\n ※モンスターに注意！」",
+    "“↓Grasslands \n*Beware of Monsters!*”",
+    "",
+    ""
+  ],
+  "よお": [
+    "よお",
+    "Yo.",
+    "",
+    ""
+  ],
+  "俺はウラゴン\n看板の裏に住む\nドラゴンさ": [
+    "俺はウラゴン\n看板の裏に住む\nドラゴンさ",
+    "I’m Hindragon, the \ndragon who lives \nbehind this sign.",
+    "",
+    ""
+  ],
+  "悪いモンスター\nじゃないぜ": [
+    "悪いモンスター\nじゃないぜ",
+    "I’m not a bad \nmonster you know.",
+    "",
+    ""
+  ],
+  "ここでひっそり\n暮らしてるんだ\nみんなには内緒な": [
+    "ここでひっそり\n暮らしてるんだ\nみんなには内緒な",
+    "I just keep to myself \nback here. Let’s keep it \nour little secret, okay?",
+    "",
+    ""
+  ],
+  "よお\nウラゴンだ": [
+    "よお\nウラゴンだ",
+    "Yo. \nHindragon here.",
+    "",
+    ""
+  ],
+  "あんまり裏\nばっかり見よう\nとすんなよ": [
+    "あんまり裏\nばっかり見よう\nとすんなよ",
+    "Don’t go staring \nat the back side \ntoo much…",
+    "",
+    ""
+  ],
+  "疲れちまうぜ": [
+    "疲れちまうぜ",
+    "You’ll get all tired.",
+    "",
+    ""
+  ],
+  "「↑雪原」": [
+    "「↑雪原」",
+    "“↑Snowfields”",
+    "",
+    ""
+  ],
+  "「↘モンスター城」": [
+    "「↘モンスター城」",
+    "“↘Monster Castle”",
+    "",
+    ""
+  ],
+  "おーい❗️\nキミー‼️": [
+    "おーい❗️\nキミー‼️",
+    "Heyyy❗️\nYou over there‼️",
+    "",
+    ""
+  ],
+  "キミはたしか\n勇者の代わりに\n冒険に出る人だねー❗️": [
+    "キミはたしか\n勇者の代わりに\n冒険に出る人だねー❗️",
+    "You’re the one setting \nout in the hero’s stead, \naren’t you❗️",
+    "",
+    ""
+  ],
+  "モンスターの王…\n通称「魔王」の居場所は\n謎に包まれているがー❗️": [
+    "モンスターの王…\n通称「魔王」の居場所は\n謎に包まれているがー❗️",
+    "The king of monsters...the \nso-called “Demon King”, \nnobody knows where he is❗️",
+    "",
+    ""
+  ],
+  "ここを東に進んだ\n「モンスター城」にいる\nんじゃないかって噂だー❗️": [
+    "ここを東に進んだ\n「モンスター城」にいる\nんじゃないかって噂だー❗️",
+    "But there are rumours that \nhe may be in the “Monster \nCastle,” just east of here❗️",
+    "",
+    ""
+  ],
+  "なのでモンスター城\nに行ってみるといいぞー❗️": [
+    "なのでモンスター城\nに行ってみるといいぞー❗️",
+    "You should check out the\nMonster Castle first❗️",
+    "",
+    ""
+  ],
+  "幸運を祈るー❗️": [
+    "幸運を祈るー❗️",
+    "I’m praying for you buddyyy❗️",
+    "",
+    ""
+  ],
+  "……": [
+    "……",
+    "… …",
+    "",
+    ""
+  ],
+  "ウォォォ……": [
+    "ウォォォ……",
+    "Ahhh…",
+    "",
+    ""
+  ],
+  "この先は♪": [
+    "この先は♪",
+    "Up ahead♪",
+    "",
+    ""
+  ],
+  "橋があるよ♪": [
+    "橋があるよ♪",
+    "There’s a bridge♪",
+    "",
+    ""
+  ],
+  "その先には♪": [
+    "その先には♪",
+    "Beyond that♪",
+    "",
+    ""
+  ],
+  "モンスター城\nとかがあるよ♪\\! ": [
+    "モンスター城\nとかがあるよ♪\\! ",
+    "You’ll find the\nMonster Castle and\nother such things...♪\\! ",
+    "",
+    ""
+  ],
+  "ありゃ": [
+    "ありゃ",
+    "Oh really?",
+    "",
+    ""
+  ],
+  "ないっけか": [
+    "ないっけか",
+    "There’s not?",
+    "",
+    ""
+  ],
+  "\\>\\{\\{\\sp[1]\\<コラーー‼️": [
+    "\\>\\{\\{\\sp[1]\\<コラーー‼️",
+    "\\>\\{\\{\\sp[1]\\<HEY YOU‼️",
+    "",
+    ""
+  ],
+  "\\>\\{\\sp[1]\\<タダで通れる\nと思うなーーっ‼️": [
+    "\\>\\{\\sp[1]\\<タダで通れる\nと思うなーーっ‼️",
+    "\\>\\{\\sp[1]\\< Don’t go thinking you can\njust walk through for free‼️",
+    "",
+    ""
+  ],
+  "すまぬ…取り乱\nしてもうたな": [
+    "すまぬ…取り乱\nしてもうたな",
+    "Forgive me… I’ve allowed\nmyself to become unravelled.",
+    "",
+    ""
+  ],
+  "我は守護の石像\nイン・モータヴェールだ": [
+    "我は守護の石像\nイン・モータヴェールだ",
+    "I am the Guardian Statue, \nIn-Motavelle.",
+    "",
+    ""
+  ],
+  "ここから先に\n進むためには": [
+    "ここから先に\n進むためには",
+    "To pass beyond \nthis point...",
+    "",
+    ""
+  ],
+  "各地に散らばりし\n７まいの「伝説の石版」を\n集める必要性がある": [
+    "各地に散らばりし\n７まいの「伝説の石版」を\n集める必要性がある",
+    "...you must collect the seven\n“Legendary Stone Tablets” \nscattered across the world.",
+    "",
+    ""
+  ],
+  "それぞれの石版は\n世界各地に封印\nされており": [
+    "それぞれの石版は\n世界各地に封印\nされており",
+    "Each tablet is sealed \naway somewhere in \nthe land...",
+    "",
+    ""
+  ],
+  "封印を解くためには\nそれぞれに課される\n指令をクリアする必要がある": [
+    "封印を解くためには\nそれぞれに課される\n指令をクリアする必要がある",
+    "...and to break each seal, \nyou must complete the\ntrial assigned to it.",
+    "",
+    ""
+  ],
+  "まあ…いわば\n魔王様から人間どもへの\n挑戦状ってわけだな": [
+    "まあ…いわば\n魔王様から人間どもへの\n挑戦状ってわけだな",
+    "Well, simply put… it is a \nletter of challenge from the \nDemon King to you humans.",
+    "",
+    ""
+  ],
+  "\\>\\{\\sp[1]\\<挑戦状ーー‼️\n‼️‼️‼️‼️": [
+    "\\>\\{\\sp[1]\\<挑戦状ーー‼️\n‼️‼️‼️‼️",
+    "\\>\\{\\sp[1]\\<A CHALLENGE‼️\n‼️‼️",
+    "",
+    ""
+  ],
+  "\\>\\{\\sp[1]\\<‼️‼️‼️‼️\n‼️‼️‼️": [
+    "\\>\\{\\sp[1]\\<‼️‼️‼️‼️\n‼️‼️‼️",
+    "\\>\\{\\sp[1]\\<‼️‼️‼️‼️\n‼️‼️‼️",
+    "",
+    ""
+  ],
+  "\\>\\{\\sp[1]\\<‼️‼️‼️\n‼️": [
+    "\\>\\{\\sp[1]\\<‼️‼️‼️\n‼️",
+    "\\>\\{\\sp[1]\\<‼️‼️‼️\n‼️",
+    "",
+    ""
+  ],
+  "\\>\\{\\sp[1]\\<７まいの石版\nーーっ‼️‼️‼️‼️\n‼️‼️‼️‼️": [
+    "\\>\\{\\sp[1]\\<７まいの石版\nーーっ‼️‼️‼️‼️\n‼️‼️‼️‼️",
+    "\\>\\{\\sp[1]\\<THE SEVEN \nSTONE TABLETS‼️\n‼️‼️‼️‼️‼️‼️",
+    "",
+    ""
+  ],
+  "\\>\\{\\sp[1]\\<魔王様ーーっ‼️\n‼️‼️‼️‼️": [
+    "\\>\\{\\sp[1]\\<魔王様ーーっ‼️\n‼️‼️‼️‼️",
+    "\\>\\{\\sp[1]\\<LORD DEMON\nKIIING‼️‼️‼️",
+    "",
+    ""
+  ],
+  "\\>\\{\\sp[1]\\<お母さーん❗️\n‼️‼️‼️": [
+    "\\>\\{\\sp[1]\\<お母さーん❗️\n‼️‼️‼️",
+    "\\>\\{\\sp[1]\\<MOTHEEER‼️\n‼️‼️‼️",
+    "",
+    ""
+  ],
+  "\\>\\{\\sp[1]\\<すまぬ…取り\n乱してもうたな\nーーっ‼️‼️‼️‼️": [
+    "\\>\\{\\sp[1]\\<すまぬ…取り\n乱してもうたな\nーーっ‼️‼️‼️‼️",
+    "\\>\\{\\sp[1]\\<Forgive me… I’ve \nallowed myself to become\n unravelled… again.",
+    "",
+    ""
+  ],
+  "\\>\\{\\sp[1]\\<‼️‼️‼️\n‼️‼️‼️‼️": [
+    "\\>\\{\\sp[1]\\<‼️‼️‼️\n‼️‼️‼️‼️",
+    "\\>\\{\\sp[1]\\<‼️‼️\n‼️‼️",
+    "",
+    ""
+  ],
+  "あ、ごめんね！\n泣かないで！": [
+    "あ、ごめんね！\n泣かないで！",
+    "Oh, sorry about that!\nPlease don’t cry!",
+    "",
+    ""
+  ],
+  "というわけで！": [
+    "というわけで！",
+    "In any case!",
+    "",
+    ""
+  ],
+  "世界各地に散らばる\n石版は全部で７枚！": [
+    "世界各地に散らばる\n石版は全部で７枚！",
+    "There are seven stone\ntablets scattered\nthroughout the world!",
+    "",
+    ""
+  ],
+  "すべての石版を\n集めてきたら\nここを通してやろう！": [
+    "すべての石版を\n集めてきたら\nここを通してやろう！",
+    "Bring me every last \none, and I will grant \nyou passage!",
+    "",
+    ""
+  ],
+  "キャッ\nキャッ♪": [
+    "キャッ\nキャッ♪",
+    "Hah\nHah♪",
+    "",
+    ""
+  ],
+  "ぼくの体が\n反転してるよ♪": [
+    "ぼくの体が\n反転してるよ♪",
+    "My body’s flipped\nupside down♪",
+    "",
+    ""
+  ],
+  "反転といえば…": [
+    "反転といえば…",
+    "Speaking of flipping…",
+    "",
+    ""
+  ],
+  "戦闘中のキー入力は\n「左右反転」にすると\n両手で操作しやすいよ": [
+    "戦闘中のキー入力は\n「左右反転」にすると\n両手で操作しやすいよ",
+    "If you switch battle layout to \n“Left–Right Reversed,” it’s \neasier to use both hands.",
+    "",
+    ""
+  ],
+  "左右反転すると、キーボードの\nW、A、S、Dキーがそれぞれ\n\\n\\i[9]\\i[7]\\i[8]\\i[10]に対応するんだ": [
+    "左右反転すると、キーボードの\nW、A、S、Dキーがそれぞれ\n\\n\\i[9]\\i[7]\\i[8]\\i[10]に対応するんだ",
+    "With Left–Right Reversed,\nthe keyboard’s W, A, S, D keys\ncorrespond to \\n\\i[9]\\i[7]\\i[8]\\i[10].",
+    "",
+    ""
+  ],
+  "戦闘中のボタン入力は\n「左右反転」にすると\n両手で操作しやすいよ": [
+    "戦闘中のボタン入力は\n「左右反転」にすると\n両手で操作しやすいよ",
+    "If you switch battle layout to \n“Left–Right Reversed,” it’s \neasier to use both hands.",
+    "",
+    ""
+  ],
+  "左右反転すると、ゲームパッドの\n↑、←、↓、→ボタンがそれぞれ\n\\i[3]\\i[1]\\i[2]\\i[4]に対応するんだ": [
+    "左右反転すると、ゲームパッドの\n↑、←、↓、→ボタンがそれぞれ\n\\i[3]\\i[1]\\i[2]\\i[4]に対応するんだ",
+    "With Left–Right Reversed,\nthe gamepad’s ↑, ←, ↓, → buttons\ncorrespond to \\i[3]\\i[1]\\i[2]\\i[4].",
+    "",
+    ""
+  ],
+  "「左右反転」にする？\\! ": [
+    "「左右反転」にする？\\! ",
+    "Switch to\n“Left–Right Reversed”?\\! ",
+    "",
+    ""
+  ],
+  "変えといたよ！": [
+    "変えといたよ！",
+    "Okay, all done!",
+    "",
+    ""
+  ],
+  "そのままに\nするんだね": [
+    "そのままに\nするんだね",
+    "Oh, you don’t\nwant to change it.",
+    "",
+    ""
+  ],
+  "キミは…すでに\n「左右反転」に設定\nしてるね": [
+    "キミは…すでに\n「左右反転」に設定\nしてるね",
+    "Oh, you’re already\nusing that layout,\nI see!",
+    "",
+    ""
+  ],
+  "「オプション」から\nも変えられるからね": [
+    "「オプション」から\nも変えられるからね",
+    "You can change it from\nthe “Options” menu.",
+    "",
+    ""
+  ],
+  "入力のないんどが\n上がるほど両手操作\nが重要になるよね♪": [
+    "入力のないんどが\n上がるほど両手操作\nが重要になるよね♪",
+    "The higher your input difficulty \nlevel gets, the more important \ntwo-handed play becomes♪",
+    "",
+    ""
+  ],
+  "おいおい\n気をつけな": [
+    "おいおい\n気をつけな",
+    "Hey, hey\nwatch yourself.",
+    "",
+    ""
+  ],
+  "こっから先は\nモンスターがウロ\nウロしてる": [
+    "こっから先は\nモンスターがウロ\nウロしてる",
+    "Up ahead there\nare monsters\nroaming around.",
+    "",
+    ""
+  ],
+  "てめえみたいな\nチビっこはすぐ\nやられちまうぜ": [
+    "てめえみたいな\nチビっこはすぐ\nやられちまうぜ",
+    "A little pipsqueak like\nyou will be flattened \nin an instant.",
+    "",
+    ""
+  ],
+  "モンスターは\n歩いてると\n襲ってくるからな": [
+    "モンスターは\n歩いてると\n襲ってくるからな",
+    "Monsters will pile\non to you while you’re\nwalking around.",
+    "",
+    ""
+  ],
+  "俺は怖ェから\nここから一歩も\n動かねぇぜ": [
+    "俺は怖ェから\nここから一歩も\n動かねぇぜ",
+    "It’s scary as f… hell, so\neven I’m afraid of stepping \none foot out there.",
+    "",
+    ""
+  ],
+  "おい！コンボって\n知ってるか？\\! ": [
+    "おい！コンボって\n知ってるか？\\! ",
+    "Oi! Do you know\nabout combos?\\! ",
+    "",
+    ""
+  ],
+  "\\>\\{\\sp[1]\\<じゃあ話しかける\nんじゃねェーー‼️": [
+    "\\>\\{\\sp[1]\\<じゃあ話しかける\nんじゃねェーー‼️",
+    "\\>\\{\\sp[1]\\<Then don’t bother\ntalking to me‼️",
+    "",
+    ""
+  ],
+  "連続で攻撃や防御を\n成功させればコンボが\n続いていくぜ！": [
+    "連続で攻撃や防御を\n成功させればコンボが\n続いていくぜ！",
+    "If your successful attacks\nor guards continue, \nyour combo extends!",
+    "",
+    ""
+  ],
+  "コンボ数が増えれば\n増えるほど与える\nダメージが増えるんだ！": [
+    "コンボ数が増えれば\n増えるほど与える\nダメージが増えるんだ！",
+    "The higher the combo\ncount, the more damage\nyou’ll inflict!",
+    "",
+    ""
+  ],
+  "これは我々の先祖が\n長い年月をかけて\n建てた見張り塔だ": [
+    "これは我々の先祖が\n長い年月をかけて\n建てた見張り塔だ",
+    "This watchtower was\nbuilt up over many years\nby our ancestors.",
+    "",
+    ""
+  ],
+  "その見張り塔は\nある日一夜にして\n破壊されてしまった": [
+    "その見張り塔は\nある日一夜にして\n破壊されてしまった",
+    "And then, in a single\nnight it was brought\nto ruin.",
+    "",
+    ""
+  ],
+  "それも人間の手に\nよってな…": [
+    "それも人間の手に\nよってな…",
+    "By the hands of men…",
+    "",
+    ""
+  ],
+  "実に愚かな生き物だよ\n人間というのは…": [
+    "実に愚かな生き物だよ\n人間というのは…",
+    "Humans… are such \nfoolish beings…",
+    "",
+    ""
+  ],
+  "破壊という行為の\nなんと無意味なことか…": [
+    "破壊という行為の\nなんと無意味なことか…",
+    "Destruction is truly a\nfruitless endeavour…",
+    "",
+    ""
+  ],
+  "モンスターに\n襲われちゃったね": [
+    "モンスターに\n襲われちゃったね",
+    "It looks as if you’ve been\nattacked by a monster.",
+    "",
+    ""
+  ],
+  "こいつは悪い\nモンスターだから\nがんばって倒すのじゃ": [
+    "こいつは悪い\nモンスターだから\nがんばって倒すのじゃ",
+    "This one’s a real bad one,\nso do what you can\nto bring it down.",
+    "",
+    ""
+  ],
+  "その前に、これに\nついて詳しく\n解説してやろう": [
+    "その前に、これに\nついて詳しく\n解説してやろう",
+    "Before you continue,\nallow me to explain \nsomething.",
+    "",
+    ""
+  ],
+  "「ターン」はターン数\n「ないんど」はないんど\nじゃ": [
+    "「ターン」はターン数\n「ないんど」はないんど\nじゃ",
+    "“Turns” are the number of\nturns. “Difficulty” is the\ninput difficulty level.",
+    "",
+    ""
+  ],
+  "どうじゃ？": [
+    "どうじゃ？",
+    "So?",
+    "",
+    ""
+  ],
+  "ために\nなったかのう": [
+    "ために\nなったかのう",
+    "Was that of\nany use?",
+    "",
+    ""
+  ],
+  "ちなみに\n「ないんど」じゃが…": [
+    "ちなみに\n「ないんど」じゃが…",
+    "As for “Difficulty”…",
+    "",
+    ""
+  ],
+  "攻撃や防御をうまく\n連続で決めると\nどんどん上がっていくぞい": [
+    "攻撃や防御をうまく\n連続で決めると\nどんどん上がっていくぞい",
+    "If you successfully\nchain attacks or guards,\nit increases steadily.",
+    "",
+    ""
+  ],
+  "逆に失敗が続くと\n下がりやすくなって\nしまうぞ": [
+    "逆に失敗が続くと\n下がりやすくなって\nしまうぞ",
+    "And if you keep failing, \nit will drop more easily.",
+    "",
+    ""
+  ],
+  "ないんどが上がると\n攻撃ボタンが増えて\n難しくなるが": [
+    "ないんどが上がると\n攻撃ボタンが増えて\n難しくなるが",
+    "As your input difficulty rises, \nmore attack buttons appear \nand it becomes more difficult.",
+    "",
+    ""
+  ],
+  "そのぶん 1ターンに\nたくさん攻撃できる\nようになるぞい": [
+    "そのぶん 1ターンに\nたくさん攻撃できる\nようになるぞい",
+    "However, in return you’ll \nbe able to attack multiple\ntimes in a single turn.",
+    "",
+    ""
+  ],
+  "では、ワシは\n庭の草取りに行くの\nでさらばじゃ": [
+    "では、ワシは\n庭の草取りに行くの\nでさらばじゃ",
+    "Well then, I shall be \noff to pull weeds in \nthe garden. Farewell.",
+    "",
+    ""
+  ],
+  "さて…\n画面右下に注目！": [
+    "さて…\n画面右下に注目！",
+    "Now then… cast your\neyes to the lower-right\ncorner of the screen!",
+    "",
+    ""
+  ],
+  "今回は「コマンド」に\nついて解説するぞい": [
+    "今回は「コマンド」に\nついて解説するぞい",
+    "Today’s topic is the \n“Command” menu.",
+    "",
+    ""
+  ],
+  "待機中や戦闘中に\n\\i[12]を押すと\nコマンドが出てくるぞ": [
+    "待機中や戦闘中に\n\\i[12]を押すと\nコマンドが出てくるぞ",
+    "While waiting or during battle, \npress \\i[12] to bring up the\nCommand menu.",
+    "",
+    ""
+  ],
+  "待機中や戦闘中に\n\\i[6]を押すと\nコマンドが出てくるぞ": [
+    "待機中や戦闘中に\n\\i[6]を押すと\nコマンドが出てくるぞ",
+    "While waiting or during battle, \npress \\i[6] to bring up the\nCommand menu.",
+    "",
+    ""
+  ],
+  "コマンド表示中は\n戦闘が一時停止し、": [
+    "コマンド表示中は\n戦闘が一時停止し、",
+    "When the Command\nmenu is open, the\nbattle will pause.",
+    "",
+    ""
+  ],
+  "アイテムで回復したり\n設定を変更したり\nできるのじゃ": [
+    "アイテムで回復したり\n設定を変更したり\nできるのじゃ",
+    "While paused, you may \nrecover with items or \nadjust your settings.",
+    "",
+    ""
+  ],
+  "ただし、\n注意点じゃ": [
+    "ただし、\n注意点じゃ",
+    "However,\nplease take note.",
+    "",
+    ""
+  ],
+  "アイテムは\n「1ターンにつき1個まで」\nしか使用できないぞい": [
+    "アイテムは\n「1ターンにつき1個まで」\nしか使用できないぞい",
+    "Items may only \nbe used once \nper turn.",
+    "",
+    ""
+  ],
+  "人生そう簡単には\nいかんもんじゃのう": [
+    "人生そう簡単には\nいかんもんじゃのう",
+    "Life isn’t always \neasy, you see.",
+    "",
+    ""
+  ],
+  "戦況に応じて\nコマンドをうまく\n使ってみるのじゃ": [
+    "戦況に応じて\nコマンドをうまく\n使ってみるのじゃ",
+    "Take into account\nthe flow of battle when\nusing the Command menu.",
+    "",
+    ""
+  ],
+  "では、ワシは\nデイサービスに行くの\nでさらばじゃ": [
+    "では、ワシは\nデイサービスに行くの\nでさらばじゃ",
+    "Now then, I must be \noff to day care. \nFarewell.",
+    "",
+    ""
+  ],
+  "なんか今\nすごいかっこいい\nかんじだったのう": [
+    "なんか今\nすごいかっこいい\nかんじだったのう",
+    "That just now…\nWell it was pretty cool\nwasn’t it boy?",
+    "",
+    ""
+  ],
+  "あれは\n「フィニッシュ攻撃」に\n成功したのじゃ": [
+    "あれは\n「フィニッシュ攻撃」に\n成功したのじゃ",
+    "What you achieved was \na successful “Finish Attack.”",
+    "",
+    ""
+  ],
+  "ある条件を満たすと\nこういうかんじのが表示され\n「フィニッシュ状態」になる": [
+    "ある条件を満たすと\nこういうかんじのが表示され\n「フィニッシュ状態」になる",
+    "When certain conditions are met, \na display appears and \nyou’ll enter the “Finish State.”",
+    "",
+    ""
+  ],
+  "この状態のときは\n最後の敵がＨＰゼロに\nなっても戦闘が続行するぞ": [
+    "この状態のときは\n最後の敵がＨＰゼロに\nなっても戦闘が続行するぞ",
+    "In this state, even if the final \nenemy’s HP reaches zero, \nthe battle will continue.",
+    "",
+    ""
+  ],
+  "気がすむまでずっと攻撃を\n続けることができるぞい": [
+    "気がすむまでずっと攻撃を\n続けることができるぞい",
+    "You’ll be able to keep attacking\nto your heart’s content.",
+    "",
+    ""
+  ],
+  "そして、この\nフィニッシュ状態のときに…": [
+    "そして、この\nフィニッシュ状態のときに…",
+    "And while in the \nFinish State…",
+    "",
+    ""
+  ],
+  "\\i[10]キーを押すと、さっきの\n「フィニッシュ攻撃」じゃ！": [
+    "\\i[10]キーを押すと、さっきの\n「フィニッシュ攻撃」じゃ！",
+    "Press the \\i[10] key to perform \nthat “Finish Attack”!",
+    "",
+    ""
+  ],
+  "\\i[4]ボタンを押すと、さっきの\n「フィニッシュ攻撃」じゃ！": [
+    "\\i[4]ボタンを押すと、さっきの\n「フィニッシュ攻撃」じゃ！",
+    "Press the \\i[4] button to perform\nthat “Finish Attack”!",
+    "",
+    ""
+  ],
+  "これを決めれば\nもらえる経験値やお金が\n少し増えるぞい": [
+    "これを決めれば\nもらえる経験値やお金が\n少し増えるぞい",
+    "If you execute it properly,\nthe experience points and money\nyou earn will increase slightly.",
+    "",
+    ""
+  ],
+  "ここで\n注意点じゃ": [
+    "ここで\n注意点じゃ",
+    "Now then, \na word of warning.",
+    "",
+    ""
+  ],
+  "フィニッシュ状態の\nときにコンボが途切れると…": [
+    "フィニッシュ状態の\nときにコンボが途切れると…",
+    "If your combo breaks while\nin the Finish State…",
+    "",
+    ""
+  ],
+  "フィニッシュ攻撃できずに\n戦闘が終わってしまうぞい": [
+    "フィニッシュ攻撃できずに\n戦闘が終わってしまうぞい",
+    "...the battle will end without\nallowing you to perform\nthat Finish Attack.",
+    "",
+    ""
+  ],
+  "チャンスを無駄にしない\nよう注意するのじゃ": [
+    "チャンスを無駄にしない\nよう注意するのじゃ",
+    "Take care not to \nwaste the opportunity.",
+    "",
+    ""
+  ],
+  "では、ワシの解説も\nフィニッシュさせて\nもらうかのう": [
+    "では、ワシの解説も\nフィニッシュさせて\nもらうかのう",
+    "And with that, I shall \nend my “Finish \nExplanation”.",
+    "",
+    ""
+  ],
+  "オラオラ！": [
+    "オラオラ！",
+    "Yo, yo!",
+    "",
+    ""
+  ],
+  "このへなちょこ\n野郎が！！": [
+    "このへなちょこ\n野郎が！！",
+    "You pathetic little \nwimp‼️",
+    "",
+    ""
+  ],
+  "ギャハハハハ！！！": [
+    "ギャハハハハ！！！",
+    "GYAHAHAHAHA‼️",
+    "",
+    ""
+  ],
+  "ﾋﾟﾘﾘ\nﾋﾟﾘﾋﾟﾘ": [
+    "ﾋﾟﾘﾘ\nﾋﾟﾘﾋﾟﾘ",
+    "Bzzz...t.\nBzz...Bzzzt.",
+    "",
+    ""
+  ],
+  "あん？なんだ\nテメェは？\\! ": [
+    "あん？なんだ\nテメェは？\\! ",
+    "Huh? Who the \nhell are you?\\! ",
+    "",
+    ""
+  ],
+  "相手はこっちだ\n（いったん出直す）": [
+    "相手はこっちだ\n（いったん出直す）",
+    "I’m your opponent\n(Just let out a sound)",
+    "",
+    ""
+  ],
+  "あん？また\nテメェか？\\! ": [
+    "あん？また\nテメェか？\\! ",
+    "What⁉️ You\nagain⁉️",
+    "",
+    ""
+  ],
+  "うるせえ！テメェも\n同じ目に合わせてやる！": [
+    "うるせえ！テメェも\n同じ目に合わせてやる！",
+    "Shut your trap! You’ll get\nthe same treatment!",
+    "",
+    ""
+  ],
+  "ﾋﾟﾘﾋﾟﾘ": [
+    "ﾋﾟﾘﾋﾟﾘ",
+    "Bzzz… bzzz…",
+    "",
+    ""
+  ],
+  "…": [
+    "…",
+    "…",
+    "",
+    ""
+  ],
+  "ぼくを助けて\nくれたの？": [
+    "ぼくを助けて\nくれたの？",
+    "You… saved me?",
+    "",
+    ""
+  ],
+  "どうして？": [
+    "どうして？",
+    "Why would you do that?",
+    "",
+    ""
+  ],
+  "あなたもぼくを\nいじめるんでしょ？\\! ": [
+    "あなたもぼくを\nいじめるんでしょ？\\! ",
+    "You’re not going start \npicking on me too… right?\\! ",
+    "",
+    ""
+  ],
+  "…ありがとう": [
+    "…ありがとう",
+    "…Thank you.",
+    "",
+    ""
+  ],
+  "あなたは\n優しいんだね…": [
+    "あなたは\n優しいんだね…",
+    "You’re actually…\npretty kind…",
+    "",
+    ""
+  ],
+  "ぼくの名前はみぃー\nへなちょこモンスターさ": [
+    "ぼくの名前はみぃー\nへなちょこモンスターさ",
+    "My name is Mii. I’m just \na weak little monster.",
+    "",
+    ""
+  ],
+  "へなちょこだから\nみんなぼくを\nいじめるんだ": [
+    "へなちょこだから\nみんなぼくを\nいじめるんだ",
+    "I’m weak, so \neveryone likes to \npick on me.",
+    "",
+    ""
+  ],
+  "モンスターも\nにんげんも…": [
+    "モンスターも\nにんげんも…",
+    "Monsters… and \nhumans alike…",
+    "",
+    ""
+  ],
+  "あなたみたいに\nぼくを守ってくれた\n人は初めてだよ": [
+    "あなたみたいに\nぼくを守ってくれた\n人は初めてだよ",
+    "You’re the only\nperson who’s ever\nstood up for me.",
+    "",
+    ""
+  ],
+  "伝説の石版を\n集めているの？": [
+    "伝説の石版を\n集めているの？",
+    "Are you gathering the\nLegendary Stone Tablets?",
+    "",
+    ""
+  ],
+  "もしよかったら…\nぼくにも手伝わせて！": [
+    "もしよかったら…\nぼくにも手伝わせて！",
+    "If it’s okay with you…\nI’d like to help you out.",
+    "",
+    ""
+  ],
+  "\\n[2]さんに\n恩返しがしたいんだ": [
+    "\\n[2]さんに\n恩返しがしたいんだ",
+    "I want to repay your \nkindness, \\n[2].",
+    "",
+    ""
+  ],
+  "ぼくはへなちょこ\nだけど…役に立てる\nようにがんばるね！": [
+    "ぼくはへなちょこ\nだけど…役に立てる\nようにがんばるね！",
+    "I may be weak…\nBut I’ll do what I\ncan to assist you!",
+    "",
+    ""
+  ],
+  "みぃーが\n仲間になった！\\|\\|": [
+    "みぃーが\n仲間になった！\\|\\|",
+    "Mii became your ally! \\|\\|",
+    "",
+    ""
+  ],
+  "「スキルをたくさん\n 使うと…」": [
+    "「スキルをたくさん\n 使うと…」",
+    "“If you keep using skills…”",
+    "",
+    ""
+  ],
+  "「スキルレベルが上がって\n 威力も上がります」": [
+    "「スキルレベルが上がって\n 威力も上がります」",
+    "“Your skill level will rise, \nand their power will increase.”",
+    "",
+    ""
+  ],
+  "「…と思った\n そこのアナタ❗️」": [
+    "「…と思った\n そこのアナタ❗️」",
+    "“…That’s what you were\nexpecting, right❗️”",
+    "",
+    ""
+  ],
+  "「しゅき…♥」": [
+    "「しゅき…♥」",
+    "“Hehe…♥”",
+    "",
+    ""
+  ],
+  "「看板より」": [
+    "「看板より」",
+    "“From The Sign”",
+    "",
+    ""
+  ],
+  "おいおい！\nかばったつもりか！？": [
+    "おいおい！\nかばったつもりか！？",
+    "Hey, hey! You trying to\nplay hero or something⁉️",
+    "",
+    ""
+  ],
+  "そいつはへなちょこだから\n見てるとかわいがって\nあげたくなるのさ！": [
+    "そいつはへなちょこだから\n見てるとかわいがって\nあげたくなるのさ！",
+    "That weak little shrimp? \nHe’s so pathetic, you just \nwanna care for him!",
+    "",
+    ""
+  ],
+  "ﾋﾟﾘ\nﾋﾟﾘﾘ": [
+    "ﾋﾟﾘ\nﾋﾟﾘﾘ",
+    "Bzzz...t.\nBzz...Bzz.",
+    "",
+    ""
+  ],
+  "てめえも存分に\nかわいがってやるぜ！": [
+    "てめえも存分に\nかわいがってやるぜ！",
+    "We’ll make sure you get the \nsame kind of “care”. Got it⁉️",
+    "",
+    ""
+  ],
+  "殴られる準備はいいか！？\nギャハハハハ！！": [
+    "殴られる準備はいいか！？\nギャハハハハ！！",
+    "Ready to take a beating!?\nGYAHAHAHAHA!!",
+    "",
+    ""
+  ],
+  "おいてめえ！\n何すんだ！！": [
+    "おいてめえ！\n何すんだ！！",
+    "Oi you! What do you \nthink you’re doing!?",
+    "",
+    ""
+  ],
+  "ナマイキな野郎だ！\nミツヒコ、ちょっと痛い目\n見せてやろうぜ！": [
+    "ナマイキな野郎だ！\nミツヒコ、ちょっと痛い目\n見せてやろうぜ！",
+    "You’ve got some nerve!\nMitsuhiko, let’s serve this\nguy some pain!",
+    "",
+    ""
+  ],
+  "俺たちの攻撃は\nワンパターンじゃない！\n喰らえッ！！": [
+    "俺たちの攻撃は\nワンパターンじゃない！\n喰らえッ！！",
+    "Our attacks aren’t\nsimple single patterns!\nEat this‼️",
+    "",
+    ""
+  ],
+  "強敵は攻撃パターンを\n途中で変えてくること\nがある": [
+    "強敵は攻撃パターンを\n途中で変えてくること\nがある",
+    "Formidable foes may \nalter their attack \npatterns mid-battle.",
+    "",
+    ""
+  ],
+  "防御のタイミングが\n変わり、ボタン表示も\n消えてしまうぞい": [
+    "防御のタイミングが\n変わり、ボタン表示も\n消えてしまうぞい",
+    "The time for defending\nwill change, and the\nprompts will vanish.",
+    "",
+    ""
+  ],
+  "再び、よく見て\n防御を成功させるのじゃ！": [
+    "再び、よく見て\n防御を成功させるのじゃ！",
+    "Once again watch carefully\nand put up a good defense!",
+    "",
+    ""
+  ],
+  "\\>\\sp[24]\\{\\{\\<ファ・イ・ト・♥": [
+    "\\>\\sp[24]\\{\\{\\<ファ・イ・ト・♥",
+    "\\>\\sp[24]\\{\\{\\<You can do it! ♥",
+    "",
+    ""
+  ],
+  "\\>\\{\\ef\\<ﾋﾟﾘﾘ\nﾋﾟﾘﾋﾟﾘ": [
+    "\\>\\{\\ef\\<ﾋﾟﾘﾘ\nﾋﾟﾘﾋﾟﾘ",
+    "\\>\\{\\ef\\<Bzzzt\nBzz-bzz…",
+    "",
+    ""
+  ],
+  "\\>\\{\\ef\\<ﾋﾟﾘ\nﾋﾟﾘﾘ": [
+    "\\>\\{\\ef\\<ﾋﾟﾘ\nﾋﾟﾘﾘ",
+    "\\>\\{\\ef\\<Bz…\nBzzzzzz.",
+    "",
+    ""
+  ],
+  "チクショウ！\n許さねえ！！": [
+    "チクショウ！\n許さねえ！！",
+    "Goddamn it!\nI’ll make you pay for that‼️",
+    "",
+    ""
+  ],
+  "てめえ！この俺と\nタイマンだ！！": [
+    "てめえ！この俺と\nタイマンだ！！",
+    "You piece of-!\nIt’s just you and me now‼️",
+    "",
+    ""
+  ],
+  "おめでとう！\n仲間が増えたようじゃな": [
+    "おめでとう！\n仲間が増えたようじゃな",
+    "Congratulations! It seems\nyou’ve forged a new ally!",
+    "",
+    ""
+  ],
+  "仲間は、君と\nかわりばんこに\n前に出て戦うぞ": [
+    "仲間は、君と\nかわりばんこに\n前に出て戦うぞ",
+    "Your companion will\nalternate with you, \nstepping forward to fight.",
+    "",
+    ""
+  ],
+  "前に出ているキャラは\n今までどおり、\\i[7]キーで\n攻撃するが…": [
+    "前に出ているキャラは\n今までどおり、\\i[7]キーで\n攻撃するが…",
+    "The character in front\nattacks as usual with \nthe \\i[7] key, however...",
+    "",
+    ""
+  ],
+  "後ろにいるキャラは\n\\i[9]キーで遠距離攻撃\nできるぞい！": [
+    "後ろにいるキャラは\n\\i[9]キーで遠距離攻撃\nできるぞい！",
+    "The character in the back \ncan perform a ranged \nattack with the \\i[9] key.",
+    "",
+    ""
+  ],
+  "タイミングよく\n\\i[9]キーを押して\n遠距離攻撃じゃ": [
+    "タイミングよく\n\\i[9]キーを押して\n遠距離攻撃じゃ",
+    "Press the \\i[9] key with\nproper timing to execute\nthe ranged attack.",
+    "",
+    ""
+  ],
+  "前に出ているキャラは\n今までどおり、\\i[1]ボタンで\n攻撃するが…": [
+    "前に出ているキャラは\n今までどおり、\\i[1]ボタンで\n攻撃するが…",
+    "The character in front\nattacks as usual with \nthe \\i[1] key, however...",
+    "",
+    ""
+  ],
+  "後ろにいるキャラは\n\\i[3]ボタンで遠距離攻撃\nできるぞい！": [
+    "後ろにいるキャラは\n\\i[3]ボタンで遠距離攻撃\nできるぞい！",
+    "The character in the back \ncan perform a ranged \nattack with the \\i[3] key.",
+    "",
+    ""
+  ],
+  "タイミングよく\n\\i[3]ボタンを押して\n遠距離攻撃じゃ": [
+    "タイミングよく\n\\i[3]ボタンを押して\n遠距離攻撃じゃ",
+    "Press the \\i[3] key with\nproper timing to execute\nthe ranged attack.",
+    "",
+    ""
+  ],
+  "あと、敵からの攻撃は\n基本的に前に出ているキャラが\n受けることになるぞい": [
+    "あと、敵からの攻撃は\n基本的に前に出ているキャラが\n受けることになるぞい",
+    "Also, enemy attacks will\nusually hit the character\nout in the front.",
+    "",
+    ""
+  ],
+  "仲間のＨＰも\n気にしておくのじゃぞ": [
+    "仲間のＨＰも\n気にしておくのじゃぞ",
+    "Make sure to monitor your\ncompanion’s HP as well.",
+    "",
+    ""
+  ],
+  "じゃあ、ワシには\n仲間がおらんので\n一人で帰るとするぞい": [
+    "じゃあ、ワシには\n仲間がおらんので\n一人で帰るとするぞい",
+    "Well, I don’t actually\nhave a companion… so\nI’ll return alone now.",
+    "",
+    ""
+  ],
+  "ここの洞窟\n岩がたくさんあって\n道を塞いでるんだ": [
+    "ここの洞窟\n岩がたくさんあって\n道を塞いでるんだ",
+    "This cave has many\nrocks blocking \nthe way through.",
+    "",
+    ""
+  ],
+  "これじゃ先に\n進めないね…": [
+    "これじゃ先に\n進めないね…",
+    "There’s no way\nto move forward…",
+    "",
+    ""
+  ],
+  "詰んだね♪": [
+    "詰んだね♪",
+    "We’re stuck again♪",
+    "",
+    ""
+  ],
+  "\\>\\{\\{\\sp[1]\\<熱血ッ❗️": [
+    "\\>\\{\\{\\sp[1]\\<熱血ッ❗️",
+    "\\>\\{\\{\\sp[1]\\<Hot blooded❗️",
+    "",
+    ""
+  ],
+  "俺は岩を愛し\n岩に愛された男…": [
+    "俺は岩を愛し\n岩に愛された男…",
+    "I’m the man who loves rocks,\nand is loved by rocks…",
+    "",
+    ""
+  ],
+  "\\>\\{\\<「おさむ」だッ❗️": [
+    "\\>\\{\\<「おさむ」だッ❗️",
+    "\\>\\{\\<I am “Osamu”❗️",
+    "",
+    ""
+  ],
+  "\\>\\{\\<君たちッ❗️": [
+    "\\>\\{\\<君たちッ❗️",
+    "\\>\\{\\<Hey, you guys❗️",
+    "",
+    ""
+  ],
+  "サーモグラフィーを\nやったら血管が真っ赤に\n浮き出てくるかい⁉️": [
+    "サーモグラフィーを\nやったら血管が真っ赤に\n浮き出てくるかい⁉️",
+    "If we ran a thermography \nscan, would your veins \nshow up bright red⁉️",
+    "",
+    ""
+  ],
+  "つまり、血が\n熱を帯びている\n状態ッ‼️": [
+    "つまり、血が\n熱を帯びている\n状態ッ‼️",
+    "That means that your\nblood is boiling hot!",
+    "",
+    ""
+  ],
+  "煮えたぎる血は\n全身のパワーを\nみなぎらせッ❗️": [
+    "煮えたぎる血は\n全身のパワーを\nみなぎらせッ❗️",
+    "Boiling blood surges \nthrough your body \nwith power❗️",
+    "",
+    ""
+  ],
+  "どんなに重い岩をも\n押して動かせるのだッ❗️": [
+    "どんなに重い岩をも\n押して動かせるのだッ❗️",
+    "It’s hot enough to \nmove even the \nheaviest rocks❗️",
+    "",
+    ""
+  ],
+  "そう❗️\\.それはまるで…\\.\nえっと…\\.その…": [
+    "そう❗️\\.それはまるで…\\.\nえっと…\\.その…",
+    "Yes❗️\\.It’s just like…\\.\numm…\\.ermm…",
+    "",
+    ""
+  ],
+  "そう…❗️\\.あれ❗️\\.\n醤油の皿を少し奥に\n寄せるときみたいにッ‼️": [
+    "そう…❗️\\.あれ❗️\\.\n醤油の皿を少し奥に\n寄せるときみたいにッ‼️",
+    "Ah…❗️\\.that’s it❗️\\. It’s like nudging \nyour water glass a little farther\naway so you don’t knock it over‼️",
+    "",
+    ""
+  ],
+  "\\>\\{\\<さてとッ❗️": [
+    "\\>\\{\\<さてとッ❗️",
+    "\\>\\{\\<So then❗️",
+    "",
+    ""
+  ],
+  "君たちの成長ぶりに\n期待しているぞッ❗️": [
+    "君たちの成長ぶりに\n期待しているぞッ❗️",
+    "I have high hopes to\nsee how much you\nguys have grown❗️",
+    "",
+    ""
+  ],
+  "う～ん…": [
+    "う～ん…",
+    "Hmm…",
+    "",
+    ""
+  ],
+  "でも、岩を押すというのは\nいいアイディアかもね": [
+    "でも、岩を押すというのは\nいいアイディアかもね",
+    "Still, pushing rocks\nout of the way might\nbe a good idea.",
+    "",
+    ""
+  ],
+  "\\n[2]さん\nやってみようよ！": [
+    "\\n[2]さん\nやってみようよ！",
+    "\\n[2], let’s try it out!",
+    "",
+    ""
+  ],
+  "岩がさっきよりも\nたくさんある": [
+    "岩がさっきよりも\nたくさんある",
+    "There are even more\nrocks than before…",
+    "",
+    ""
+  ],
+  "これじゃ岩を押しても\n通れそうにないね…": [
+    "これじゃ岩を押しても\n通れそうにないね…",
+    "Even if we do push\nthem…it I don’t think\nwe can get through…",
+    "",
+    ""
+  ],
+  "岩が押せない❗️\\.\nならどうすればいい⁉️": [
+    "岩が押せない❗️\\.\nならどうすればいい⁉️",
+    "You can’t move the rocks❗️\\.\nSo what should be done⁉️",
+    "",
+    ""
+  ],
+  "岩の声に耳を\n傾けてみよッ‼️": [
+    "岩の声に耳を\n傾けてみよッ‼️",
+    "You must try listening\nto the rocks‼️",
+    "",
+    ""
+  ],
+  "はぁ…": [
+    "はぁ…",
+    "Ah…",
+    "",
+    ""
+  ],
+  "またポケットの中に\nティッシュ入れたまま\n洗濯機回しちゃった…": [
+    "またポケットの中に\nティッシュ入れたまま\n洗濯機回しちゃった…",
+    "I washed my clothes\nwith tissues in the\npocket again…",
+    "",
+    ""
+  ],
+  "またニキビ潰したら\n跡になっちゃった…": [
+    "またニキビ潰したら\n跡になっちゃった…",
+    "I popped a spot again\nand left a scar…",
+    "",
+    ""
+  ],
+  "また薬局に行った\nときおくすり手帳\n忘れちゃった…": [
+    "また薬局に行った\nときおくすり手帳\n忘れちゃった…",
+    "I went to the pharmacy\nagain and forgot my \nprescription…",
+    "",
+    ""
+  ],
+  "岩はただそこに\n転がってるので\nはない❗️": [
+    "岩はただそこに\n転がってるので\nはない❗️",
+    "Those rocks aren’t\nsimply lying around\nthere thoughtlessly❗️",
+    "",
+    ""
+  ],
+  "様々な悩みを\nかかえながら\n暮らしているのだッ❗️": [
+    "様々な悩みを\nかかえながら\n暮らしているのだッ❗️",
+    "They are living their\nlives, weighed down\nby many troubles❗️",
+    "",
+    ""
+  ],
+  "…そう❗️\nそのとおり❗️": [
+    "…そう❗️\nそのとおり❗️",
+    "That’s it❗️\nThat’s how it is❗️",
+    "",
+    ""
+  ],
+  "岩に必要なのは…\n「胴上げ」だッ❗️": [
+    "岩に必要なのは…\n「胴上げ」だッ❗️",
+    "What they really need is\na celebratory “victory toss”❗️",
+    "",
+    ""
+  ],
+  "そう❗️\\.例えば…\\.\nえっと…\\.その…\\.\nなんだろう…": [
+    "そう❗️\\.例えば…\\.\nえっと…\\.その…\\.\nなんだろう…",
+    "That’s right❗️\\.For \nexample…\\. Like…\\.\nhmm…\\. In sports…",
+    "",
+    ""
+  ],
+  "\\>\\ef\\<おめでとう、岩❗️\nおめでとう～～❗️": [
+    "\\>\\ef\\<おめでとう、岩❗️\nおめでとう～～❗️",
+    "\\>\\ef\\<Well done, Rock❗️\nCongratulations～❗️",
+    "",
+    ""
+  ],
+  "\\>\\ef\\<ワッショイ❗️\nワッショイ‼️": [
+    "\\>\\ef\\<ワッショイ❗️\nワッショイ‼️",
+    "\\>\\ef\\<Glory\nGlory‼️",
+    "",
+    ""
+  ],
+  "…っていう\nカンジで❗️": [
+    "…っていう\nカンジで❗️",
+    "… yeah,\njust like that❗️",
+    "",
+    ""
+  ],
+  "\\>\\{\\<ヨシッ❗️": [
+    "\\>\\{\\<ヨシッ❗️",
+    "\\>\\{\\<Right❗️",
+    "",
+    ""
+  ],
+  "という\nことでッ❗️": [
+    "という\nことでッ❗️",
+    "Just like that❗️",
+    "",
+    ""
+  ],
+  "諦めずに\n進むのだッ‼️": [
+    "諦めずに\n進むのだッ‼️",
+    "Do not give up, \npush on forward‼️",
+    "",
+    ""
+  ],
+  "でも胴上げ…つまり岩を\n持ち上げるというのは\n斬新なアイディアかもね": [
+    "でも胴上げ…つまり岩を\n持ち上げるというのは\n斬新なアイディアかもね",
+    "Well… trying to give the \nrocks a “Victory Lift” is \na novel idea isn’t it.",
+    "",
+    ""
+  ],
+  "\\n[1]さん\nやってみようよ！": [
+    "\\n[1]さん\nやってみようよ！",
+    "Let’s try it, \\n[1]!",
+    "",
+    ""
+  ],
+  "岩がすごい\nめっちゃある": [
+    "岩がすごい\nめっちゃある",
+    "Wow… there are so\nmany rocks now!",
+    "",
+    ""
+  ],
+  "これを全部\n投げてたら日が\n暮れちゃうね…": [
+    "これを全部\n投げてたら日が\n暮れちゃうね…",
+    "If we throw all of \nthese rocks, it’ll \ntake all day…",
+    "",
+    ""
+  ],
+  "ここが正念場だッ\nッッ‼️": [
+    "ここが正念場だッ\nッッ‼️",
+    "This is the\ncritical moment‼️",
+    "",
+    ""
+  ],
+  "行く手を阻む\n無数の岩たち…": [
+    "行く手を阻む\n無数の岩たち…",
+    "A multitude of rocks \nblock your path…",
+    "",
+    ""
+  ],
+  "これを打破する\n方法は一つのみ❗️": [
+    "これを打破する\n方法は一つのみ❗️",
+    "There’s only one way to \novercome this❗️",
+    "",
+    ""
+  ],
+  "今までの道のりを\n思い出せッ❗️": [
+    "今までの道のりを\n思い出せッ❗️",
+    "Think of all of\nyour hardships\nup until this point❗️",
+    "",
+    ""
+  ],
+  "ここまで来た\nキミたちなら\nわかるハズだッ❗️": [
+    "ここまで来た\nキミたちなら\nわかるハズだッ❗️",
+    "After suffering such \nhardships, you know\nwhat must be done❗️",
+    "",
+    ""
+  ],
+  "無数の岩を\n突破する方法…\\.\nそれはッ⁉️": [
+    "無数の岩を\n突破する方法…\\.\nそれはッ⁉️",
+    "The method to break \nthrough all these rocks…\\.\nwell, what is it⁉️",
+    "",
+    ""
+  ],
+  "さあッ❗️\\.みんなで\nせーので\n答えてみようッ❗️": [
+    "さあッ❗️\\.みんなで\nせーので\n答えてみようッ❗️",
+    "Now then❗️\\.Let’s\nall say it together\non three...❗️",
+    "",
+    ""
+  ],
+  "\\>\\{\\<せーのッ‼️": [
+    "\\>\\{\\<せーのッ‼️",
+    "\\>\\{\\<One, two… three‼️",
+    "",
+    ""
+  ],
+  "\\>\\{\\{\\sp[2]\\<岩で焼き鳥を\n作ろう～～‼️": [
+    "\\>\\{\\{\\sp[2]\\<岩で焼き鳥を\n作ろう～～‼️",
+    "\\>\\{\\sp[2]\\<Let’s grill up yakitori\non these rocks～‼️",
+    "",
+    ""
+  ],
+  "…え⁉️": [
+    "…え⁉️",
+    "…What⁉️",
+    "",
+    ""
+  ],
+  "…いや、\\.逆に、\\.\n焼き鳥以外ある⁉️": [
+    "…いや、\\.逆に、\\.\n焼き鳥以外ある⁉️",
+    "…No,\\.really,\\.what would \nbe better than yakitori⁉️",
+    "",
+    ""
+  ],
+  "聞いてくれッ❗️\\!\nあれは七歳の\n夏だった❗️": [
+    "聞いてくれッ❗️\\!\nあれは七歳の\n夏だった❗️",
+    "Listen to my tale❗️\\! \nIt was the summer\nwhen I was seven❗️",
+    "",
+    ""
+  ],
+  "BBQ中に親戚の\nおじさんが串と俺を\n間違えたのだッ❗️": [
+    "BBQ中に親戚の\nおじさんが串と俺を\n間違えたのだッ❗️",
+    "At a family barbeque, \nmy uncle mistook me\nfor a skewer❗️",
+    "",
+    ""
+  ],
+  "俺はそれでも何も\n言わずに3人分の\n砂肝を支えた…❗️": [
+    "俺はそれでも何も\n言わずに3人分の\n砂肝を支えた…❗️",
+    "Even in that situation,\nI held supported enough\ngizzard for three people❗️",
+    "",
+    ""
+  ],
+  "熱かったッ❗️\\.\n苦しかったッ❗️": [
+    "熱かったッ❗️\\.\n苦しかったッ❗️",
+    "I was on fire❗️\\. \nIt was unbearable❗️",
+    "",
+    ""
+  ],
+  "だけど俺は\nそこで悟った❗️": [
+    "だけど俺は\nそこで悟った❗️",
+    "However, I then reached\nenlightenment❗️",
+    "",
+    ""
+  ],
+  "人を笑顔にするのは\n岩と焼き鳥なんだッ‼️": [
+    "人を笑顔にするのは\n岩と焼き鳥なんだッ‼️",
+    "Rocks and yakitori are what\nmake people truly smile‼️",
+    "",
+    ""
+  ],
+  "君の前にあった\n行く手を阻む障害は…": [
+    "君の前にあった\n行く手を阻む障害は…",
+    "The obstacles that once\nblocked your way…",
+    "",
+    ""
+  ],
+  "今や、ただの\nやきとり盛り合わせ\nだッ‼️‼️‼️": [
+    "今や、ただの\nやきとり盛り合わせ\nだッ‼️‼️‼️",
+    "… are now nothing but an\nassortment of yakitori‼️‼️",
+    "",
+    ""
+  ],
+  "決まった！": [
+    "決まった！",
+    "Smashed it!",
+    "",
+    ""
+  ],
+  "でも岩を焼き鳥にする\nというのはなかなか\n筋が通った考え方だよね": [
+    "でも岩を焼き鳥にする\nというのはなかなか\n筋が通った考え方だよね",
+    "Actually, making yakitori\nfrom the rocks is actually\npretty logical, isn’t it?",
+    "",
+    ""
+  ],
+  "岩の焼き鳥は\n通りすがりのゴリラに\n盗まれてしまった…": [
+    "岩の焼き鳥は\n通りすがりのゴリラに\n盗まれてしまった…",
+    "The rock yakitori was \nsnatched by a random \ngorilla passing through…",
+    "",
+    ""
+  ],
+  "…\\n[2]さん": [
+    "…\\n[2]さん",
+    "…\\n[2].",
+    "",
+    ""
+  ],
+  "本当に\n詰んだね♪": [
+    "本当に\n詰んだね♪",
+    "We’re stuck \naren’t we...♪",
+    "",
+    ""
+  ],
+  "こういうときは…": [
+    "こういうときは…",
+    "In times like these…",
+    "",
+    ""
+  ],
+  "一回外に出てから\nまた洞窟に入って\nみようね": [
+    "一回外に出てから\nまた洞窟に入って\nみようね",
+    "Let’s go outside for a bit, \nthen come back into the \ncave and try again.",
+    "",
+    ""
+  ],
+  "残念ながら…": [
+    "残念ながら…",
+    "Regrettably…",
+    "",
+    ""
+  ],
+  "君たちをこの先へ\n通すことはできな\nいッ❗️": [
+    "君たちをこの先へ\n通すことはできな\nいッ❗️",
+    "I cannot allow \nyou guys to go \nany further❗️",
+    "",
+    ""
+  ],
+  "ええっ！\nどうして？": [
+    "ええっ！\nどうして？",
+    "What!\nWhy’s that?",
+    "",
+    ""
+  ],
+  "洞窟の進み方を\n色々教えてくれたのに": [
+    "洞窟の進み方を\n色々教えてくれたのに",
+    "But it was you who\ntaught  us how to\nget through!",
+    "",
+    ""
+  ],
+  "あれは教えたの\nではないッ❗️": [
+    "あれは教えたの\nではないッ❗️",
+    "I was not teaching\nyou about that❗️",
+    "",
+    ""
+  ],
+  "君たちの熱い情熱の\n導火線に火をつけて\nみたかっただけだ❗️": [
+    "君たちの熱い情熱の\n導火線に火をつけて\nみたかっただけだ❗️",
+    "My intention was to \nspark a fuse to unlock \nyour fiery passion❗️",
+    "",
+    ""
+  ],
+  "情熱の導火線…？": [
+    "情熱の導火線…？",
+    "The fuse of our\npassion…?",
+    "",
+    ""
+  ],
+  "情熱の導火線に…\\.\n火を？": [
+    "情熱の導火線に…\\.\n火を？",
+    "To spark our…\\.\nfiery passion?",
+    "",
+    ""
+  ],
+  "つけて…\\.\nみたかった…\\.\nだけだ？": [
+    "つけて…\\.\nみたかった…\\.\nだけだ？",
+    "You wanted to...\\.\nspark our passion.\\.\nIs that it?",
+    "",
+    ""
+  ],
+  "\\>\\{\\sp[1]\\<俺はッ❗️": [
+    "\\>\\{\\sp[1]\\<俺はッ❗️",
+    "\\>\\{\\sp[1]\\<I...❗️",
+    "",
+    ""
+  ],
+  "魔王様の命令でここを\n守るゴーレムだ❗️": [
+    "魔王様の命令でここを\n守るゴーレムだ❗️",
+    "… Am a golem, under \ncommand of Demon King\nto stand guard here❗️",
+    "",
+    ""
+  ],
+  "君たちを通す\nことはできないッ❗️": [
+    "君たちを通す\nことはできないッ❗️",
+    "And I cannot allow you\nguys to pass❗️",
+    "",
+    ""
+  ],
+  "そんなぁ…": [
+    "そんなぁ…",
+    "Oh man…",
+    "",
+    ""
+  ],
+  "お前たちは\n石版を集めたい\nのだろうッ⁉️": [
+    "お前たちは\n石版を集めたい\nのだろうッ⁉️",
+    "You brats are trying to \ncollect the stone tablets,\nisn’t that right⁉️",
+    "",
+    ""
+  ],
+  "その気持ちは\nわからんでもないッ❗️": [
+    "その気持ちは\nわからんでもないッ❗️",
+    "Look, it’s not that\nI don’t understand\nyour ambition❗️",
+    "",
+    ""
+  ],
+  "だが俺にも…\\.\n守らねばならぬ\n責務があるッ❗️": [
+    "だが俺にも…\\.\n守らねばならぬ\n責務があるッ❗️",
+    "However…\\.I also\nhave a sworn duty\nI must fulfill❗️",
+    "",
+    ""
+  ],
+  "どうしても\n通りたければ…": [
+    "どうしても\n通りたければ…",
+    "If your resolve to\npass through is strong…",
+    "",
+    ""
+  ],
+  "力ずくで\nこじ開けてみよッ❗️": [
+    "力ずくで\nこじ開けてみよッ❗️",
+    "Gather your power and \nbreak your way through❗️",
+    "",
+    ""
+  ],
+  "君たちの熱い\n情熱でな❗️": [
+    "君たちの熱い\n情熱でな❗️",
+    "Show me your fiery\npassion❗️",
+    "",
+    ""
+  ],
+  "\\n[2]さん…\nやるしかないよっ！": [
+    "\\n[2]さん…\nやるしかないよっ！",
+    "\\n[2]… we’ve got\nto do it!",
+    "",
+    ""
+  ],
+  "さあッ❗️\\.拳と拳で\n語り合おうッ‼️": [
+    "さあッ❗️\\.拳と拳で\n語り合おうッ‼️",
+    "Step forward❗️\\. Let’s\nhave our fists do the talking!",
+    "",
+    ""
+  ],
+  "オレの…\n負けだ…": [
+    "オレの…\n負けだ…",
+    "It’s…\nmy loss…",
+    "",
+    ""
+  ],
+  "通るが\nよい…": [
+    "通るが\nよい…",
+    "You can…\npass…",
+    "",
+    ""
+  ],
+  "なんとか\n倒せたね": [
+    "なんとか\n倒せたね",
+    "We beat him,\nsomehow!",
+    "",
+    ""
+  ],
+  "\\n[2]さん！\nやったね！": [
+    "\\n[2]さん！\nやったね！",
+    "Well done,\n\\n[2]!",
+    "",
+    ""
+  ],
+  "先に進もう！": [
+    "先に進もう！",
+    "Let’s get going!",
+    "",
+    ""
+  ],
+  "初めてだよ…": [
+    "初めてだよ…",
+    "It’s the first time…",
+    "",
+    ""
+  ],
+  "こんなに本気で\nやって負けたのは…": [
+    "こんなに本気で\nやって負けたのは…",
+    "… that… I gave it\nmy all and still lost...",
+    "",
+    ""
+  ],
+  "いや～": [
+    "いや～",
+    "Phew…",
+    "",
+    ""
+  ],
+  "キミたちとの戦い\nが良すぎてさあ": [
+    "キミたちとの戦い\nが良すぎてさあ",
+    "That battle with\nyou guys was almost\ntoo intense.",
+    "",
+    ""
+  ],
+  "なんか…\n燃え尽き症候群に\nなっちゃった": [
+    "なんか…\n燃え尽き症候群に\nなっちゃった",
+    "I think... \nI’ve totally burned out.",
+    "",
+    ""
+  ],
+  "まあたまには\nこうやってゴロゴロ\nするのも悪くないかな": [
+    "まあたまには\nこうやってゴロゴロ\nするのも悪くないかな",
+    "I guess sometimes…\nit’s not so bad to laze\naround like this…",
+    "",
+    ""
+  ],
+  "熱血～！": [
+    "熱血～！",
+    "Hot blooded!",
+    "",
+    ""
+  ],
+  "体験版は\nここでおしまいです": [
+    "体験版は\nここでおしまいです",
+    "The demo has\ncome to an end.",
+    "",
+    ""
+  ],
+  "プレイ\nありがとう！": [
+    "プレイ\nありがとう！",
+    "Thank you\nfor playing!",
+    "",
+    ""
+  ],
+  "体験版のおまけ\nとして…": [
+    "体験版のおまけ\nとして…",
+    "As a special \ndemo bonus…",
+    "",
+    ""
+  ],
+  "ここで、\nさうんどてすと\nができるよ": [
+    "ここで、\nさうんどてすと\nができるよ",
+    "Here, \nyou can try out \nthe Sound Test.",
+    "",
+    ""
+  ],
+  "さうんどてすと\nだよ\\! ": [
+    "さうんどてすと\nだよ\\! ",
+    "Welcome to the \nSound Test\\! ",
+    "",
+    ""
+  ],
+  "1.タイトル\n2.おしろ\n3.まちのBGM\n4.中ボスっぽい敵\n5.その辺の道\nつぎへ": [
+    "1.タイトル\n2.おしろ\n3.まちのBGM\n4.中ボスっぽい敵\n5.その辺の道\nつぎへ",
+    "1. Title Screen\n2. Castle Theme\n3. Town Theme\n4. Sort of Mid-Boss\n5. Somewhere on the Road\nNext",
+    "",
+    ""
+  ],
+  "タイトルの\nBGMだね": [
+    "タイトルの\nBGMだね",
+    "This is the title screen\nBGM track.",
+    "",
+    ""
+  ],
+  "おしろ\n実は3年前につくったよ": [
+    "おしろ\n実は3年前につくったよ",
+    "The castle theme.\nI actually made it\nthree years ago.",
+    "",
+    ""
+  ],
+  "街でながれる\nぼけ～っとした曲だよ": [
+    "街でながれる\nぼけ～っとした曲だよ",
+    "A track from town that lets\nyou zo～ne out.",
+    "",
+    ""
+  ],
+  "ドンドコドン♪\nドコドコドン♪": [
+    "ドンドコドン♪\nドコドコドン♪",
+    "Bom bada bom♪ \nBom bom bom♪",
+    "",
+    ""
+  ],
+  "とっても明るくて\n楽しい曲だよ": [
+    "とっても明るくて\n楽しい曲だよ",
+    "An extremely upbeat,\nbright song.",
+    "",
+    ""
+  ],
+  "2ページ目\nだよ\\! ": [
+    "2ページ目\nだよ\\! ",
+    "Page 2\\! ",
+    "",
+    ""
+  ],
+  "6.ざこ戦\n7.雨上がりの草原\n8.みぃーのテーマ\n9.洞窟\n10.熱血ッ！！！\nつぎへ": [
+    "6.ざこ戦\n7.雨上がりの草原\n8.みぃーのテーマ\n9.洞窟\n10.熱血ッ！！！\nつぎへ",
+    "6. Regular Battle \n7. Meadow After the Rain \n8. Mii’s Theme \n9. Cave\n10. Hot Blooded‼️ \nNext",
+    "",
+    ""
+  ],
+  "作者がお気に入りの\n曲なんだってさ": [
+    "作者がお気に入りの\n曲なんだってさ",
+    "This track is a personal\nfavorite of the creator.",
+    "",
+    ""
+  ],
+  "草原のBGMだよ\n幻想的っぽいね": [
+    "草原のBGMだよ\n幻想的っぽいね",
+    "The meadow theme. \nIt has a dream-like quality.",
+    "",
+    ""
+  ],
+  "へなちょこモンスター\nみぃーのテーマ曲だよ": [
+    "へなちょこモンスター\nみぃーのテーマ曲だよ",
+    "The theme of Mii, the\nwimpy little monster.",
+    "",
+    ""
+  ],
+  "洞窟の曲だよ\nそこを左に戻れば聴けるよ": [
+    "洞窟の曲だよ\nそこを左に戻れば聴けるよ",
+    "The cave theme. You can\nhear it in the back left area.",
+    "",
+    ""
+  ],
+  "そこに寝転んでる\nおさむとの戦闘曲だよ": [
+    "そこに寝転んでる\nおさむとの戦闘曲だよ",
+    "The battle theme for Osamu,\nwho’s found lying around.",
+    "",
+    ""
+  ],
+  "最後のページ\nだよ\\! ": [
+    "最後のページ\nだよ\\! ",
+    "Last page\\! ",
+    "",
+    ""
+  ],
+  "11.冒険のまくあけ\n12.レベルアップ\n13.ともだち\n14.(没)ざこ戦\nさいしょへ": [
+    "11.冒険のまくあけ\n12.レベルアップ\n13.ともだち\n14.(没)ざこ戦\nさいしょへ",
+    "11. Adventure’s Beginning\n12. Level Up\n13. Allies\n14. Regular Battle (Scrapped)\nBack to Start",
+    "",
+    ""
+  ],
+  "第１章のはじまりに\n流れたかも": [
+    "第１章のはじまりに\n流れたかも",
+    "This track probably played\nat the start of Chapter 1.",
+    "",
+    ""
+  ],
+  "レベルが上がると\n耳うるさく鳴るよ": [
+    "レベルが上がると\n耳うるさく鳴るよ",
+    "The sound that blasts in \nyour ears each level up.",
+    "",
+    ""
+  ],
+  "みぃーが仲間に\nなったときだね": [
+    "みぃーが仲間に\nなったときだね",
+    "This played when Mii \nbecomes an ally.",
+    "",
+    ""
+  ],
+  "ざこ戦の没曲だよ\nここで供養させてね": [
+    "ざこ戦の没曲だよ\nここで供養させてね",
+    "A scrapped regular battle\ntrack. Let it rest in peace here.",
+    "",
+    ""
+  ],
+  "再生終了": [
+    "再生終了",
+    "End of playback.",
+    "",
+    ""
+  ],
+  "本編を\nお楽しみに！": [
+    "本編を\nお楽しみに！",
+    "We hope you look\nforward to the full game!",
+    "",
+    ""
+  ],
+  "\\>\\{\\<「おさむ」だッ！": [
+    "\\>\\{\\<「おさむ」だッ！",
+    "\\>\\{\\<I am “Osamu”!",
+    "",
+    ""
+  ],
+  "俺の岩の拳に\nついてこれるか！？": [
+    "俺の岩の拳に\nついてこれるか！？",
+    "Think you can keep up\nwith my rapid fists⁉️",
+    "",
+    ""
+  ],
+  "\\>\\{\\<いち！にッ！\nいち！にッ！": [
+    "\\>\\{\\<いち！にッ！\nいち！にッ！",
+    "\\>\\{\\<One！Two！\nOne！Two！",
+    "",
+    ""
+  ],
+  "フンッ！なかなか\nやるではないか！": [
+    "フンッ！なかなか\nやるではないか！",
+    "Huh! You’re actually\npretty tough!",
+    "",
+    ""
+  ],
+  "しかしこれなら\nどうだッ！？": [
+    "しかしこれなら\nどうだッ！？",
+    "How about this⁉️",
+    "",
+    ""
+  ],
+  "うわっ！\n岩が！": [
+    "うわっ！\n岩が！",
+    "Watch out!\nA rock!",
+    "",
+    ""
+  ],
+  "巨大な岩は君たちの\n視界を奪うッ！": [
+    "巨大な岩は君たちの\n視界を奪うッ！",
+    "The gigantic rock \ncuts off your sight!",
+    "",
+    ""
+  ],
+  "さあ…実力を\n試させてもらおう！": [
+    "さあ…実力を\n試させてもらおう！",
+    "Now… let’s see what \nyou’re really capable of!",
+    "",
+    ""
+  ],
+  "\\n[2]さん！\n岩は連打で壊そう！": [
+    "\\n[2]さん！\n岩は連打で壊そう！",
+    "\\n[2]! Break\nthe rock by rapidly\nsmashing the button!",
+    "",
+    ""
+  ],
+  "まさか巨大な\n岩もろとも破壊\nしてしまうとは…": [
+    "まさか巨大な\n岩もろとも破壊\nしてしまうとは…",
+    "I can’t believe you\npulverized even that\nhuge boulder…",
+    "",
+    ""
+  ],
+  "\\>\\{\\sp[1]\\<ウオオオッ！": [
+    "\\>\\{\\sp[1]\\<ウオオオッ！",
+    "\\>\\{\\sp[1]\\<GRRRRAAA!",
+    "",
+    ""
+  ],
+  "\\>\\{\\sp[1]\\<熱いッ！\n熱いぞッ！": [
+    "\\>\\{\\sp[1]\\<熱いッ！\n熱いぞッ！",
+    "\\>\\{\\sp[1]\\<So hot! \nIt’s flaming!",
+    "",
+    ""
+  ],
+  "俺は…この気持ちを\n味わうために\n生きているのだッ！": [
+    "俺は…この気持ちを\n味わうために\n生きているのだッ！",
+    "I… live to taste\nthis feeling!",
+    "",
+    ""
+  ],
+  "さあ…\nもっとだッ！！": [
+    "さあ…\nもっとだッ！！",
+    "Come on… \nLet’s go further‼️",
+    "",
+    ""
+  ],
+  "もっとギアを\n上げるぞッ！！": [
+    "もっとギアを\n上げるぞッ！！",
+    "We’ll kick it up\ninto next gear‼️",
+    "",
+    ""
+  ],
+  "さらにデカ\nい岩が！": [
+    "さらにデカ\nい岩が！",
+    "An even more \ngigantic rock!",
+    "",
+    ""
+  ],
+  "さあッ！！\nついてこいッ！": [
+    "さあッ！！\nついてこいッ！",
+    "Come on‼️\nBring it on!",
+    "",
+    ""
+  ],
+  "愛ッ！優しさッ！\n温もりッ！": [
+    "愛ッ！優しさッ！\n温もりッ！",
+    "Love! Affection!\nWarmth!",
+    "",
+    ""
+  ],
+  "そんな生ぬるい\nものは俺には\n必要ないッ！": [
+    "そんな生ぬるい\nものは俺には\n必要ないッ！",
+    "I don’t need any\nof that half-hearted\nnonsense!",
+    "",
+    ""
+  ],
+  "熱い勝負からしか\n得られない栄養素的\nなものッ！": [
+    "熱い勝負からしか\n得られない栄養素的\nなものッ！",
+    "What gets me fired up, you\ncan only obtain from an\nfull-blown, blazing showdown!",
+    "",
+    ""
+  ],
+  "それが俺を突き\n動かしてきたのだ…": [
+    "それが俺を突き\n動かしてきたのだ…",
+    "That’s the force that’s\npushed me forward…",
+    "",
+    ""
+  ],
+  "まさしくこういう\n勝負のことだッ！！": [
+    "まさしくこういう\n勝負のことだッ！！",
+    "This is exactly the \nkind of battle I crave‼️",
+    "",
+    ""
+  ],
+  "\\>\\{\\sp[1]\\<ウオオオッ！！": [
+    "\\>\\{\\sp[1]\\<ウオオオッ！！",
+    "\\>\\{\\sp[1]\\<GRRRRAAA!",
+    "",
+    ""
+  ],
+  "\\>\\{\\sp[1]\\<最高だッ！！": [
+    "\\>\\{\\sp[1]\\<最高だッ！！",
+    "\\>\\{\\sp[1]\\<THIS IS IT‼️",
+    "",
+    ""
+  ],
+  "これぞ魂と魂の\nぶつかり合いッ！": [
+    "これぞ魂と魂の\nぶつかり合いッ！",
+    "This is true\nsoul-on-soul collision!",
+    "",
+    ""
+  ],
+  "さあ\nいくぞッ！": [
+    "さあ\nいくぞッ！",
+    "Bring it on!\nLet’s do it‼️",
+    "",
+    ""
+  ],
+  "俺のすべてを\nこの技にかけるッ！": [
+    "俺のすべてを\nこの技にかけるッ！",
+    "I’m unleashing my full\npower with this one blow!",
+    "",
+    ""
+  ],
+  "キミのすべてを\nかけてかかって\nこいッ！": [
+    "キミのすべてを\nかけてかかって\nこいッ！",
+    "Throw everything \nyou have at me!",
+    "",
+    ""
+  ],
+  "\\>\\{\\{\\sp[1]\\<熱血ッ！": [
+    "\\>\\{\\{\\sp[1]\\<熱血ッ！",
+    "\\>\\{\\{\\sp[1]\\<Hot blooded!",
+    "",
+    ""
+  ],
+  "ちぢれ毛": [
+    "ちぢれ毛",
+    "Curly Hair",
+    "",
+    ""
+  ],
+  "かすかに温もりを感じる　HPが %1 回復する": [
+    "かすかに温もりを感じる　HPが %1 回復する",
+    "This hair emits a faint warmth. Restores %1 HP.",
+    "",
+    ""
+  ],
+  "%1は %2を\\n1本使った！": [
+    "%1は %2を\\n1本使った！",
+    "%1 used 1 %2!",
+    "",
+    ""
+  ],
+  "ぬれおかき": [
+    "ぬれおかき",
+    "Damp Rice Cracker",
+    "",
+    ""
+  ],
+  "しっとりしている　HPが %1 回復する": [
+    "しっとりしている　HPが %1 回復する",
+    "Tender and slightly damp. Restores %1 HP.",
+    "",
+    ""
+  ],
+  "%1は おやつに\\n%2を食べた！": [
+    "%1は おやつに\\n%2を食べた！",
+    "%1 snacked on the %2!",
+    "",
+    ""
+  ],
+  "ぬた": [
+    "ぬた",
+    "Nuta",
+    "",
+    ""
+  ],
+  "すっぱくてねっとり　HPが %1 回復する": [
+    "すっぱくてねっとり　HPが %1 回復する",
+    "Tangy and sticky. \nRestores %1 HP.",
+    "",
+    ""
+  ],
+  "%1は %2を\\nちゅるりとすすった！": [
+    "%1は %2を\\nちゅるりとすすった！",
+    "%1 gulped down the %2!",
+    "",
+    ""
+  ],
+  "ごり煮": [
+    "ごり煮",
+    "Gori Stew",
+    "",
+    ""
+  ],
+  "名前ほどごりごりしてない　HPが %1 回復する": [
+    "名前ほどごりごりしてない　HPが %1 回復する",
+    "Not as tough as its name implies. Restores %1 HP.",
+    "",
+    ""
+  ],
+  "%1は %2を\\nごりごり噛んだ！": [
+    "%1は %2を\\nごりごり噛んだ！",
+    "%1 chewed on the %2!",
+    "",
+    ""
+  ],
+  "ゆべし": [
+    "ゆべし",
+    "Yubeshi",
+    "",
+    ""
+  ],
+  "お茶が欲しくなる　HPが %1 回復する": [
+    "お茶が欲しくなる　HPが %1 回復する",
+    "Best enjoyed with a warm cup of tea. Restores %1 HP.",
+    "",
+    ""
+  ],
+  "%1は %2を\\n口の中に放り込んだ！": [
+    "%1は %2を\\n口の中に放り込んだ！",
+    "%1 threw the %2 straight into their mouth!",
+    "",
+    ""
+  ],
+  "わゴム": [
+    "わゴム",
+    "Rubber Band",
+    "",
+    ""
+  ],
+  "よくのびるわゴム　攻撃力が %1 あがるよ": [
+    "よくのびるわゴム　攻撃力が %1 あがるよ",
+    "Nice and stretchy. Attack +%1.",
+    "",
+    ""
+  ],
+  "つまようじ": [
+    "つまようじ",
+    "Toothpick",
+    "",
+    ""
+  ],
+  "歯クソがよくとれる　攻撃力が %1 あがるよ": [
+    "歯クソがよくとれる　攻撃力が %1 あがるよ",
+    "Great for picking out gunk. Attack +%1.",
+    "",
+    ""
+  ],
+  "ブリーフ": [
+    "ブリーフ",
+    "Briefs",
+    "",
+    ""
+  ],
+  "生乾きのブリーフ　防御力が %2 あがる": [
+    "生乾きのブリーフ　防御力が %2 あがる",
+    "Slightly damp briefs. Defense +%2.",
+    "",
+    ""
+  ],
+  "あみタイツ": [
+    "あみタイツ",
+    "Fishnet Stockings",
+    "",
+    ""
+  ],
+  "ちょっとセクシー　防御力が %2 あがるよ": [
+    "ちょっとセクシー　防御力が %2 あがるよ",
+    "A little bit sexy. Defense +%2.",
+    "",
+    ""
+  ],
+  "温しっぷ": [
+    "温しっぷ",
+    "Warm Compress",
+    "",
+    ""
+  ],
+  "かぶれにくい　戦闘終了時にＨＰが <gainHpBattleEnd>％ 回復する": [
+    "かぶれにくい　戦闘終了時にＨＰが <gainHpBattleEnd>％ 回復する",
+    "Gentle on the skin. Restores <gainHpBattleEnd>% HP after battle.",
+    "",
+    ""
+  ],
+  "アルミホイル": [
+    "アルミホイル",
+    "Aluminium Foil",
+    "",
+    ""
+  ],
+  "巻けば安心　毎ターンＨＰが <gainHpRateTurn>％ 回復するよ": [
+    "巻けば安心　毎ターンＨＰが <gainHpRateTurn>％ 回復するよ",
+    "Wrap it around for peace of mind. Restores <gainHpRateTurn>% HP each turn.",
+    "",
+    ""
+  ],
+  "つけまつげ": [
+    "つけまつげ",
+    "False Eyelashes",
+    "",
+    ""
+  ],
+  "略してつけま　たまにクリティカル攻撃が出るよ（<criticalRate>％）": [
+    "略してつけま　たまにクリティカル攻撃が出るよ（<criticalRate>％）",
+    "Also known as falsies. Occasionally deals a critical hit (<criticalRate>%).",
+    "",
+    ""
+  ],
+  "なべ敷き": [
+    "なべ敷き",
+    "Hot Pad",
+    "",
+    ""
+  ],
+  "少し匂うぞ　アイテムのＨＰ回復量が <recoveryRate>％ 上がる": [
+    "少し匂うぞ　アイテムのＨＰ回復量が <recoveryRate>％ 上がる",
+    "Smells a bit. Item HP recovery +<recoveryRate>%.",
+    "",
+    ""
+  ],
+  "旅立ちの帽子": [
+    "旅立ちの帽子",
+    "Adventurer’s Cap",
+    "",
+    ""
+  ],
+  "防御力が %2 あがるよ": [
+    "防御力が %2 あがるよ",
+    "Defense +%2.",
+    "",
+    ""
+  ],
+  "冒険のつるぎ": [
+    "冒険のつるぎ",
+    "Adventurer’s Sword",
+    "",
+    ""
+  ],
+  "攻撃力が %1 あがるよ": [
+    "攻撃力が %1 あがるよ",
+    "Attack +%1.",
+    "",
+    ""
+  ],
+  "兵士の服": [
+    "兵士の服",
+    "Soldier’s Uniform",
+    "",
+    ""
+  ],
+  "危険ドライバー": [
+    "危険ドライバー",
+    "Reckless Driver",
+    "",
+    ""
+  ],
+  "ムシシッピ": [
+    "ムシシッピ",
+    "Bugston",
+    "",
+    ""
+  ],
+  "けつ山ごんぞう": [
+    "けつ山ごんぞう",
+    "Ass Mountain Gonzo",
+    "",
+    ""
+  ],
+  "トーテムポーク": [
+    "トーテムポーク",
+    "Totem Pork",
+    "",
+    ""
+  ],
+  "ムノエ": [
+    "ムノエ",
+    "Munoe",
+    "",
+    ""
+  ],
+  "わるわる軍団A": [
+    "わるわる軍団A",
+    "Wicked Troop A",
+    "",
+    ""
+  ],
+  "わるわる軍団B": [
+    "わるわる軍団B",
+    "Wicked Troop B",
+    "",
+    ""
+  ],
+  "おさむ": [
+    "おさむ",
+    "Osamu",
+    "",
+    ""
+  ],
+  "\\v[3]は Lv.\\v[4]に\nレベルアップした！\\!\\cl[3]\\!": [
+    "\\v[3]は Lv.\\v[4]に\nレベルアップした！\\!\\cl[3]\\!",
+    "\\v[3] levelled up\nto Lv.\\v[4]!\\!\\cl[3]\\! ",
+    "",
+    ""
+  ],
+  "\\v[3]は 新しいわざ\n「\\v[4]」を覚えた！\\!\\cl[6]\\!": [
+    "\\v[3]は 新しいわざ\n「\\v[4]」を覚えた！\\!\\cl[6]\\!",
+    "\\v[3] learned the new skill,\n”\\v[4]”!\\!\\cl[6]\\! ",
+    "",
+    ""
+  ],
+  "\\v[3]は「\\>\\v[4]\\<」の　\nスキルレベルが\n\\v[5] に上がった！": [
+    "\\v[3]は「\\>\\v[4]\\<」の　\nスキルレベルが\n\\v[5] に上がった！",
+    "\\v[3]’s ”\\>\\v[4]\\<”\nskill level rose to \\v[5]!",
+    "",
+    ""
+  ],
+  "\\v[3]\\g 手に入れた": [
+    "\\v[3]\\g 手に入れた",
+    "Acquired \\v[3] \\g!",
+    "",
+    ""
+  ],
+  "覚えたスキルの一覧は\nメニューの「スキル」\nからも見れるぞ": [
+    "覚えたスキルの一覧は\nメニューの「スキル」\nからも見れるぞ",
+    "View the skills you’ve\nlearned from the “Skill”\noption in the menu.",
+    "",
+    ""
+  ],
+  "\\v[3]は\n何かを落としていった！": [
+    "\\v[3]は\n何かを落としていった！",
+    "\\v[3] dropped\nsomething!",
+    "",
+    ""
+  ],
+  "\\v[3]を手に入れた\\!\\cd[2] ": [
+    "\\v[3]を手に入れた\\!\\cd[2] ",
+    "Acquired \\v[3]!\\!\\cd[2]",
+    "",
+    ""
+  ],
+  "頭": [
+    "頭",
+    "Head",
+    "",
+    ""
+  ],
+  "腕": [
+    "腕",
+    "Arm",
+    "",
+    ""
+  ],
+  "身体": [
+    "身体",
+    "Body",
+    "",
+    ""
+  ],
+  "左尻": [
+    "左尻",
+    "L Buttock",
+    "",
+    ""
+  ],
+  "右尻": [
+    "右尻",
+    "R Buttock",
+    "",
+    ""
+  ],
+  "太もも": [
+    "太もも",
+    "Thighs",
+    "",
+    ""
+  ],
+  "しっぽ": [
+    "しっぽ",
+    "Tail",
+    "",
+    ""
+  ],
+  "左耳穴": [
+    "左耳穴",
+    "L Earhole",
+    "",
+    ""
+  ],
+  "右耳穴": [
+    "右耳穴",
+    "R Earhole",
+    "",
+    ""
+  ],
+  "威力": [
+    "威力",
+    "Power",
+    "",
+    ""
+  ],
+  "優しさ": [
+    "優しさ",
+    "Kindness",
+    "",
+    ""
+  ],
+  "知識": [
+    "知識",
+    "Knowledge",
+    "",
+    ""
+  ],
+  "魅力": [
+    "魅力",
+    "Attractiveness",
+    "",
+    ""
+  ],
+  "度胸": [
+    "度胸",
+    "Bravery",
+    "",
+    ""
+  ],
+  "注意力": [
+    "注意力",
+    "Attentiveness",
+    "",
+    ""
+  ],
+  "楽しさ": [
+    "楽しさ",
+    "Fun",
+    "",
+    ""
+  ],
+  "切なさ": [
+    "切なさ",
+    "Sadness",
+    "",
+    ""
+  ],
+  "エンゲル係数": [
+    "エンゲル係数",
+    "Engel Coefficient",
+    "",
+    ""
+  ],
+  "もっちり感": [
+    "もっちり感",
+    "Puffiness",
+    "",
+    ""
+  ],
+  "へなちょこ度": [
+    "へなちょこ度",
+    "Wimpiness",
+    "",
+    ""
+  ],
+  "寂しがり": [
+    "寂しがり",
+    "Loneliness",
+    "",
+    ""
+  ],
+  "毛なみ": [
+    "毛なみ",
+    "Fur Type",
+    "",
+    ""
+  ],
+  "夜間排尿回数": [
+    "夜間排尿回数",
+    "Night Urination\nCount",
+    "",
+    ""
+  ],
+  "歌唱力": [
+    "歌唱力",
+    "Singing Ability",
+    "",
+    ""
+  ],
+  "表示言語": [
+    "表示言語",
+    "Display Language",
+    "",
+    ""
+  ],
+  "言語を変更するよ": [
+    "言語を変更するよ",
+    "Switch the display language.",
+    "",
+    ""
+  ],
+  "メッセージ速度": [
+    "メッセージ速度",
+    "Text Speed",
+    "",
+    ""
+  ],
+  "メッセージの表示速度を選べるよ": [
+    "メッセージの表示速度を選べるよ",
+    "Set how quickly messages appear.",
+    "",
+    ""
+  ],
+  "ボタン表示": [
+    "ボタン表示",
+    "Button Layout",
+    "",
+    ""
+  ],
+  "操作ボタンの表示タイプを\n「キーボード」か「ゲームパッド」かで選べるよ": [
+    "操作ボタンの表示タイプを\n「キーボード」か「ゲームパッド」かで選べるよ",
+    "Choose \"Keyboard\" or \"Gamepad\"\\n button prompts",
+    "",
+    ""
+  ],
+  "AB反転": [
+    "AB反転",
+    "A/B Swap",
+    "",
+    ""
+  ],
+  "ゲームパッドでプレイ時\nAボタンとBボタンを反転して入力処理するよ": [
+    "ゲームパッドでプレイ時\nAボタンとBボタンを反転して入力処理するよ",
+    "When using a gamepad, reverses \\n the A and B button inputs.",
+    "",
+    ""
+  ],
+  "XY反転": [
+    "XY反転",
+    "X/Y Swap",
+    "",
+    ""
+  ],
+  "ゲームパッドでプレイ時\nXボタンとYボタンを反転して入力処理するよ": [
+    "ゲームパッドでプレイ時\nXボタンとYボタンを反転して入力処理するよ",
+    "When using a gamepad, reverses \\n the X and Y button inputs.",
+    "",
+    ""
+  ],
+  "左手反転": [
+    "左手反転",
+    "Left-Hand Reverse",
+    "",
+    ""
+  ],
+  "戦闘中、左手操作を左右反転するよ　キーボードの\nW、A、S、Dキーがそれぞれ\n\\i[9]\\i[7]\\i[8]\\i[10]に対応するよ": [
+    "戦闘中、左手操作を左右反転するよ　キーボードの\nW、A、S、Dキーがそれぞれ\n\\i[9]\\i[7]\\i[8]\\i[10]に対応するよ",
+    "During battle, left handed inputs are flipped horizontally. On keyboard,\\nW, A, S, D map to\\n\\i[9]\\i[7]\\i[8]\\i[10].",
+    "",
+    ""
+  ],
+  "戦闘中、左手操作を左右反転するよ　ゲームパッドの\n↑、←、↓、→ボタンがそれぞれ\n\\i[3]\\i[1]\\i[2]\\i[4]に対応するよ": [
+    "戦闘中、左手操作を左右反転するよ　ゲームパッドの\n↑、←、↓、→ボタンがそれぞれ\n\\i[3]\\i[1]\\i[2]\\i[4]に対応するよ",
+    "During battle, left handed inputs are flipped horizontally. On gamepad,\\n↑, ←, ↓, → map to\\n\\i[3]\\i[1]\\i[2]\\i[4].",
+    "",
+    ""
+  ],
+  "全体音量": [
+    "全体音量",
+    "Master Volume",
+    "",
+    ""
+  ],
+  "マスターボリュームを変更するよ": [
+    "マスターボリュームを変更するよ",
+    "Adjust the master volume level.",
+    "",
+    ""
+  ],
+  "BGMの音量": [
+    "BGMの音量",
+    "Music Volume",
+    "",
+    ""
+  ],
+  "BGM/MEの音量を変更するよ": [
+    "BGM/MEの音量を変更するよ",
+    "Adjust the volume for BGM/ME.",
+    "",
+    ""
+  ],
+  "効果音の音量": [
+    "効果音の音量",
+    "SFX Volume",
+    "",
+    ""
+  ],
+  "BGS/SEの音量を変更するよ": [
+    "BGS/SEの音量を変更するよ",
+    "Adjust the volume for BGS/SFX.",
+    "",
+    ""
+  ],
+  "どこにセーブする？": [
+    "どこにセーブする？",
+    "Which save slot?",
+    "",
+    ""
+  ],
+  "どれをロードする？": [
+    "どれをロードする？",
+    "Which would you like to load?",
+    "",
+    ""
+  ],
+  "(外す)": [
+    "(外す)",
+    "(Unequip)",
+    "",
+    ""
+  ],
+  "所持金": [
+    "所持金",
+    "Money",
+    "",
+    ""
+  ],
+  "なんか\n買うかい\\! ": [
+    "なんか\n買うかい\\! ",
+    "Care to buy\nsomething?\\!",
+    "",
+    ""
+  ],
+  "他にもなんか\n用かい\\! ": [
+    "他にもなんか\n用かい\\! ",
+    "Need anything\nelse?\\! ",
+    "",
+    ""
+  ],
+  "買う": [
+    "買う",
+    "Buy",
+    "",
+    ""
+  ],
+  "売る": [
+    "売る",
+    "Sell",
+    "",
+    ""
+  ],
+  "去る": [
+    "去る",
+    "Exit",
+    "",
+    ""
+  ],
+  "%1だね\n買うかい\\! ": [
+    "%1だね\n買うかい\\! ",
+    "It’s %1.\nInterested?\\! ",
+    "",
+    ""
+  ],
+  "はい": [
+    "はい",
+    "Yes",
+    "",
+    ""
+  ],
+  "いいえ": [
+    "いいえ",
+    "No",
+    "",
+    ""
+  ],
+  "まいどあり": [
+    "まいどあり",
+    "Much appreciated!",
+    "",
+    ""
+  ],
+  "%1だね\n%2\\gだよ\n本当に売るかい\\! ": [
+    "%1だね\n%2\\gだよ\n本当に売るかい\\! ",
+    "It’s %1.\nThat’ll be %2\\\\g.\nSure you want to sell\\! ",
+    "",
+    ""
+  ],
+  "%1だね\n1つ %2\\gだよ\nいくつ売るかい\\! ": [
+    "%1だね\n1つ %2\\gだよ\nいくつ売るかい\\! ",
+    "It’s %1.\n%2\\\\g apiece.\nHow many will you sell\\! ",
+    "",
+    ""
+  ],
+  "1つ": [
+    "1つ",
+    "One",
+    "",
+    ""
+  ],
+  "ぜんぶ": [
+    "ぜんぶ",
+    "All",
+    "",
+    ""
+  ],
+  "やめる": [
+    "やめる",
+    "Cancel",
+    "",
+    ""
+  ],
+  "ありがとう": [
+    "ありがとう",
+    "Thank you!",
+    "",
+    ""
+  ],
+  "また来てね": [
+    "また来てね",
+    "Stop by again!",
+    "",
+    ""
+  ],
+  "アイテム": [
+    "アイテム",
+    "Items",
+    "",
+    ""
+  ],
+  "そうび品": [
+    "そうび品",
+    "Gear",
+    "",
+    ""
+  ],
+  "所持数": [
+    "所持数",
+    "In Stock",
+    "",
+    ""
+  ],
+  "Enter：決定 / Esc：キャンセル / F4：フルスクリーン": [
+    "Enter：決定 / Esc：キャンセル / F4：フルスクリーン",
+    "Enter: Confirm / Esc: Cancel / F4: Fullscreen",
+    "",
+    ""
+  ],
+  "A：決定 / B：キャンセル / F4：フルスクリーン": [
+    "A：決定 / B：キャンセル / F4：フルスクリーン",
+    "A: Confirm / B: Cancel / F4: Fullscreen",
+    "",
+    ""
+  ],
+  "Enter or ←→：変更 / Esc：保存して戻る": [
+    "Enter or ←→：変更 / Esc：保存して戻る",
+    "Enter or ←→: Change / Esc: Save and Return",
+    "",
+    ""
+  ],
+  "A or ←→：変更 / B：保存して戻る": [
+    "A or ←→：変更 / B：保存して戻る",
+    "A or ←→: Change / B: Save and Return",
+    "",
+    ""
+  ],
+  "C：クレジット(利用素材)": [
+    "C：クレジット(利用素材)",
+    "C: Credits",
+    "",
+    ""
+  ],
+  "R：クレジット(利用素材)": [
+    "R：クレジット(利用素材)",
+    "R: Credits",
+    "",
+    ""
+  ],
+  "クレジット(利用素材)": [
+    "クレジット(利用素材)",
+    "Credits",
+    "",
+    ""
+  ],
+  "はじめから": [
+    "はじめから",
+    "New Game",
+    "",
+    ""
+  ],
+  "つづきから": [
+    "つづきから",
+    "Continue",
+    "",
+    ""
+  ],
+  "オプション": [
+    "オプション",
+    "Option",
+    "",
+    ""
+  ],
+  "復活する": [
+    "復活する",
+    "Recovery",
+    "",
+    ""
+  ],
+  "最後のセーブポイントから復活する\nゲームの進行や経験値、お金、アイテムなどが\n引き継がれるよ": [
+    "最後のセーブポイントから復活する\nゲームの進行や経験値、お金、アイテムなどが\n引き継がれるよ",
+    "You will start from the last save point. \nYour progress, experience points, money \nand items will come with you!",
+    "",
+    ""
+  ],
+  "時を戻す": [
+    "時を戻す",
+    "Turn Back Time",
+    "",
+    ""
+  ],
+  "最後のセーブまで時を戻す\nゲームの進行や経験値、お金、アイテムなどは\nセーブした状態へリセットされるよ": [
+    "最後のセーブまで時を戻す\nゲームの進行や経験値、お金、アイテムなどは\nセーブした状態へリセットされるよ",
+    "You will start from your last save data. Your \nprogress, experience points, money and\nitems won’t go with you!",
+    "",
+    ""
+  ],
+  "リトライ": [
+    "リトライ",
+    "Retry",
+    "",
+    ""
+  ],
+  "最後のセーブからリトライする\nゲームの進行や経験値、お金、アイテムなどは\nセーブした状態へリセットされるよ": [
+    "最後のセーブからリトライする\nゲームの進行や経験値、お金、アイテムなどは\nセーブした状態へリセットされるよ",
+    "Restart from your most recent save. Progress, \nEXP, gold, items, and everything else will \nrevert to how they were at the time of saving.",
+    "",
+    ""
+  ],
+  "タイトル画面に戻る": [
+    "タイトル画面に戻る",
+    "Return to the Title Screen",
+    "",
+    ""
+  ],
+  "諦める": [
+    "諦める",
+    "Give up",
+    "",
+    ""
+  ],
+  "以下のエラーが発生しました\n申し訳ございません\nお手数ですが 以下のフォームへ ご報告いただけますと幸いです": [
+    "以下のエラーが発生しました\n申し訳ございません\nお手数ですが 以下のフォームへ ご報告いただけますと幸いです",
+    "The below error occurred. We apologize\nfor the inconvenience. We would appreciate \nit greatly if you could send a report with\nthe form below.",
+    "",
+    ""
+  ],
+  "エラーメッセージ": [
+    "エラーメッセージ",
+    "Error Message",
+    "",
+    ""
+  ],
+  "コピー": [
+    "コピー",
+    "Copy",
+    "",
+    ""
+  ],
+  "コピーしました": [
+    "コピーしました",
+    "Message Copied",
+    "",
+    ""
+  ],
+  "逃げる": [
+    "逃げる",
+    "Run",
+    "",
+    ""
+  ],
+  "敵の攻撃パターンが変化した！": [
+    "敵の攻撃パターンが変化した！",
+    "The enemy’s attack pattern changed!",
+    "",
+    ""
+  ],
+  "コマンド入力中": [
+    "コマンド入力中",
+    "Inputting Command…",
+    "",
+    ""
+  ],
+  "待機中": [
+    "待機中",
+    "Waiting…",
+    "",
+    ""
+  ],
+  "ターン": [
+    "ターン",
+    "Turn",
+    "",
+    ""
+  ],
+  "ないんど": [
+    "ないんど",
+    "Difficulty",
+    "",
+    ""
+  ],
+  "コマンド\n  呼び出し中…": [
+    "コマンド\n  呼び出し中…",
+    "Command\\n\nDeploying…",
+    "",
+    ""
+  ],
+  "\\i[%1]コマンド": [
+    "\\i[%1]コマンド",
+    "\\i[%1] Command",
+    "",
+    ""
+  ],
+  "%1は %2を使った！": [
+    "%1は %2を使った！",
+    "%1used %2！",
+    "",
+    ""
+  ],
+  "方向キー長押し": [
+    "方向キー長押し",
+    "Hold Direction",
+    "",
+    ""
+  ],
+  "方向ボタン長押し": [
+    "方向ボタン長押し",
+    "Hold Direction",
+    "",
+    ""
+  ],
+  "岩を押す": [
+    "岩を押す",
+    "Push the rock",
+    "",
+    ""
+  ],
+  "Enterキー": [
+    "Enterキー",
+    "Enter Key",
+    "",
+    ""
+  ],
+  "岩をおろす": [
+    "岩をおろす",
+    "Drop the rock",
+    "",
+    ""
+  ],
+  "岩を持ち上げる": [
+    "岩を持ち上げる",
+    "Lift the rock",
+    "",
+    ""
+  ],
+  "Eキー": [
+    "Eキー",
+    "E Key",
+    "",
+    ""
+  ],
+  "焼き鳥をふる": [
+    "焼き鳥をふる",
+    "Shake the yakitori",
+    "",
+    ""
+  ],
+  "岩を串に刺す": [
+    "岩を串に刺す",
+    "Skewer the rock",
+    "",
+    ""
+  ],
+  "グリジャン城": [
+    "グリジャン城",
+    "Gurijan Castle",
+    "",
+    ""
+  ],
+  "グリジャンの街": [
+    "グリジャンの街",
+    "Gurijan Town",
+    "",
+    ""
+  ],
+  "民家": [
+    "民家",
+    "Private Residence",
+    "",
+    ""
+  ],
+  "教会": [
+    "教会",
+    "Church",
+    "",
+    ""
+  ],
+  "ラーメン屋": [
+    "ラーメン屋",
+    "Ramen Shop",
+    "",
+    ""
+  ],
+  "井戸の中": [
+    "井戸の中",
+    "Inside the Well",
+    "",
+    ""
+  ],
+  "じぶんち": [
+    "じぶんち",
+    "My House",
+    "",
+    ""
+  ],
+  "\\n[2]の部屋": [
+    "\\n[2]の部屋",
+    "\\n[2]’s Room",
+    "",
+    ""
+  ],
+  "わかれみち": [
+    "わかれみち",
+    "Forked Road",
+    "",
+    ""
+  ],
+  "橋の入り口": [
+    "橋の入り口",
+    "Bridge Entrance",
+    "",
+    ""
+  ],
+  "雨あがりの草原": [
+    "雨あがりの草原",
+    "Meadow After the Rain",
+    "",
+    ""
+  ],
+  "岩山の洞窟": [
+    "岩山の洞窟",
+    "Rocky Mountain Cave",
+    "",
+    ""
+  ],
+  "岩山の洞窟　最深部": [
+    "岩山の洞窟　最深部",
+    "Rocky Mountain Cave - Deepest Depths",
+    "",
+    ""
+  ],
+  "パンチ": [
+    "パンチ",
+    "Punch",
+    "",
+    ""
+  ],
+  "キック": [
+    "キック",
+    "Kick",
+    "",
+    ""
+  ],
+  "弓矢": [
+    "弓矢",
+    "Bow and Arrow",
+    "",
+    ""
+  ],
+  "怪力": [
+    "怪力",
+    "Superhuman Strength​",
+    "",
+    ""
+  ],
+  "ハエたたき": [
+    "ハエたたき",
+    "Fly Swatter",
+    "",
+    ""
+  ],
+  "ためパンチ": [
+    "ためパンチ",
+    "Power-Up Punch",
+    "",
+    ""
+  ],
+  "タライ": [
+    "タライ",
+    "Metal Basin",
+    "",
+    ""
+  ],
+  "連続パンチ": [
+    "連続パンチ",
+    "Combo Punch",
+    "",
+    ""
+  ],
+  "ボウリング": [
+    "ボウリング",
+    "Bowling",
+    "",
+    ""
+  ],
+  "手をグーにして相手をなぐる": [
+    "手をグーにして相手をなぐる",
+    "Punch the enemy with a clenched fist.",
+    "",
+    ""
+  ],
+  "足をすばやく相手にぶつける": [
+    "足をすばやく相手にぶつける",
+    "Deliver a rapid kick to the enemy.",
+    "",
+    ""
+  ],
+  "矢を上空に放ち敵の頭上にぶっ刺す": [
+    "矢を上空に放ち敵の頭上にぶっ刺す",
+    "Shoot an arrow high up and have it plunge into the enemy from overhead.",
+    "",
+    ""
+  ],
+  "鍛え上げた腕を生やして相手をつぶす": [
+    "鍛え上げた腕を生やして相手をつぶす",
+    "Grow a muscular arm and pound the enemy flat.",
+    "",
+    ""
+  ],
+  "持ってたハエたたきを使って高速でなぐる": [
+    "持ってたハエたたきを使って高速でなぐる",
+    "Rapidly strike the enemy with your fly swatter.",
+    "",
+    ""
+  ],
+  "ふりかぶって力をためてからぶん殴る": [
+    "ふりかぶって力をためてからぶん殴る",
+    "Wind up and unleash a charged punch.",
+    "",
+    ""
+  ],
+  "相手の頭上に固めのタライを落とす": [
+    "相手の頭上に固めのタライを落とす",
+    "Drop a hard washbasin down onto the enemy from up above.",
+    "",
+    ""
+  ],
+  "連続でパンチを放ちボコボコにする": [
+    "連続でパンチを放ちボコボコにする",
+    "Hit the enemy in succession with a flurry of punches.",
+    "",
+    ""
+  ],
+  "高スコアを目指してボールを転がす": [
+    "高スコアを目指してボールを転がす",
+    "Roll a bowling ball, aiming for a high score.",
+    "",
+    ""
+  ],
+  "左ひっかき": [
+    "左ひっかき",
+    "Left Scratch",
+    "",
+    ""
+  ],
+  "右ひっかき": [
+    "右ひっかき",
+    "Right Scratch",
+    "",
+    ""
+  ],
+  "電撃弾": [
+    "電撃弾",
+    "Thunder Bullet",
+    "",
+    ""
+  ],
+  "雷おとし": [
+    "雷おとし",
+    "Lightning Strike",
+    "",
+    ""
+  ],
+  "スライディング": [
+    "スライディング",
+    "Slide Attack",
+    "",
+    ""
+  ],
+  "電撃波": [
+    "電撃波",
+    "Electric Wave",
+    "",
+    ""
+  ],
+  "ムーンサルト": [
+    "ムーンサルト",
+    "Moonsault",
+    "",
+    ""
+  ],
+  "切り刻み": [
+    "切り刻み",
+    "Shredding Slash",
+    "",
+    ""
+  ],
+  "双電撃弾": [
+    "双電撃弾",
+    "Dual Electric Bullets",
+    "",
+    ""
+  ],
+  "左手でひっかく": [
+    "左手でひっかく",
+    "Claw at the enemy with your left hand.",
+    "",
+    ""
+  ],
+  "右手でひっかく": [
+    "右手でひっかく",
+    "Claw at the enemy with your right hand.",
+    "",
+    ""
+  ],
+  "なんか電撃弾とかいうのをはなつ": [
+    "なんか電撃弾とかいうのをはなつ",
+    "Launch a... “Thunder Bullet” at the enemy.",
+    "",
+    ""
+  ],
+  "相手の頭上に空から雷を落とす": [
+    "相手の頭上に空から雷を落とす",
+    "Summon a bolt of lightning from the sky to strike the enemy.",
+    "",
+    ""
+  ],
+  "うつくしいフォームでスライディングを決める": [
+    "うつくしいフォームでスライディングを決める",
+    "Execute a slide with beautiful form.",
+    "",
+    ""
+  ],
+  "電気をチャージしてから一気にはなつ": [
+    "電気をチャージしてから一気にはなつ",
+    "Build up an electric charge and release it all at once.",
+    "",
+    ""
+  ],
+  "二回宙返り一回ひねりを決める": [
+    "二回宙返り一回ひねりを決める",
+    "Perform a double somersault into a twist.",
+    "",
+    ""
+  ],
+  "連続でひっかきまくってみる": [
+    "連続でひっかきまくってみる",
+    "Go wild while scratching repeatedly.",
+    "",
+    ""
+  ],
+  "なんと、電撃弾をいちどに２つも出す": [
+    "なんと、電撃弾をいちどに２つも出す",
+    "Defying all odds, fire two electric bullets at once.",
+    "",
+    ""
+  ],
+  "伝説の石版": [
+    "伝説の石版",
+    "Legendary Stone Tablets",
+    "",
+    ""
+  ],
+  "伝説の石版　モンスター城へ行くのに 7枚必要": [
+    "伝説の石版　モンスター城へ行くのに 7枚必要",
+    "Legendary Stone Tablets - 7 are required to enter Monster Castle",
+    "",
+    ""
+  ],
+  "ポーション": [
+    "ポーション",
+    "Potion",
+    "",
+    ""
+  ],
+  "傷を癒やす薬　HPが %1 回復する": [
+    "傷を癒やす薬　HPが %1 回復する",
+    "A healing medicine - Recovers %1 HP.",
+    "",
+    ""
+  ],
+  "%1は %2を\n1本使った！": [
+    "%1は %2を\n1本使った！",
+    "%1 used a %2!",
+    "",
+    ""
+  ],
+  "%1は おやつに\n%2を食べた！": [
+    "%1は おやつに\n%2を食べた！",
+    "%1 snacked \non the %2!",
+    "",
+    ""
+  ],
+  "%1は %2を\nちゅるりとすすった！": [
+    "%1は %2を\nちゅるりとすすった！",
+    "%1 gulped down \nthe %2!",
+    "",
+    ""
+  ],
+  "%1は %2を\nごりごり噛んだ！": [
+    "%1は %2を\nごりごり噛んだ！",
+    "%1 chewed \non the %2!",
+    "",
+    ""
+  ],
+  "%1は %2を\n口の中に放り込んだ！": [
+    "%1は %2を\n口の中に放り込んだ！",
+    "%1 threw the %2 \nstraight into their mouth!",
+    "",
+    ""
+  ],
+  "にょろ～～～ん": [
+    "にょろ～～～ん",
+    "Wri～～～ggle",
+    "",
+    ""
+  ],
+  "にょろ～～ん": [
+    "にょろ～～ん",
+    "Wri～～ggle",
+    "",
+    ""
+  ],
+  "おそってやるにょん": [
+    "おそってやるにょん",
+    "I'll get you! ～Wriggle",
+    "",
+    ""
+  ],
+  "おヌシ何者だッ\\i[16]": [
+    "おヌシ何者だッ\\i[16]",
+    "What ARE you, \\i[16]\\i[18]",
+    "",
+    ""
+  ],
+  "尻は好きかッ\\i[17]": [
+    "尻は好きかッ\\i[17]",
+    "Are you into butts \\i[17]\\i[18]",
+    "",
+    ""
+  ],
+  "わが尻を見よッ\\i[16]": [
+    "わが尻を見よッ\\i[16]",
+    "Fawn over my backside!\\i[16]",
+    "",
+    ""
+  ],
+  "ブヒヒ\\.ブヒヒ": [
+    "ブヒヒ\\.ブヒヒ",
+    "Oink oink \\. Oink oink",
+    "",
+    ""
+  ],
+  "ブヒ～\\.ブヒ～": [
+    "ブヒ～\\.ブヒ～",
+    "O～ink \\. O～～ink",
+    "",
+    ""
+  ],
+  "ブヒッ\\.ブヒッ": [
+    "ブヒッ\\.ブヒッ",
+    "Snort! \\. Oink!",
+    "",
+    ""
+  ],
+  "あの…\\.えと…": [
+    "あの…\\.えと…",
+    "Umm…\\. Erm…",
+    "",
+    ""
+  ],
+  "その…\\.えっと…": [
+    "その…\\.えっと…",
+    "Erm…\\.Well…",
+    "",
+    ""
+  ],
+  "あ…\\.あのう…": [
+    "あ…\\.あのう…",
+    "So…\\.Excuse me…",
+    "",
+    ""
+  ],
+  "\\>%1が あらわれた！": [
+    "\\>%1が あらわれた！",
+    "\\>%1 appeared!",
+    "",
+    ""
+  ],
+  "%1の しょうり！\\.": [
+    "%1の しょうり！\\.",
+    "%1 claimed victory!",
+    "",
+    ""
+  ],
+  "%1の 敗北！": [
+    "%1の 敗北！",
+    "%1 loses!",
+    "",
+    ""
+  ],
+  "%2を %1 もらった": [
+    "%2を %1 もらった",
+    "Received %1 %2!",
+    "",
+    ""
+  ],
+  "お金を %1\\G もらった": [
+    "お金を %1\\G もらった",
+    "Acquired %1 \\G!",
+    "",
+    ""
+  ],
+  "%1は 逃げました": [
+    "%1は 逃げました",
+    "%1 fled.",
+    "",
+    ""
+  ],
+  "%1たち": [
+    "%1たち",
+    "%1's posse",
+    "",
+    ""
+  ],
+  "そうび": [
+    "そうび",
+    "Equipment",
+    "",
+    ""
+  ],
+  "スキル": [
+    "スキル",
+    "Skills",
+    "",
+    ""
+  ],
+  "ステータス": [
+    "ステータス",
+    "Status",
+    "",
+    ""
+  ],
+  "ゲーム終了": [
+    "ゲーム終了",
+    "Exit Game",
+    "",
+    ""
+  ],
+  "ぷれいや": [
+    "ぷれいや",
+    "Player",
+    "",
+    ""
+  ],
+  "ゆうしゃ": [
+    "ゆうしゃ",
+    "Hero",
+    "",
+    ""
+  ],
+  "みぃー": [
+    "みぃー",
+    "Mii",
+    "",
+    ""
+  ],
+  "最大HP": [
+    "最大HP",
+    "Max HP",
+    "",
+    ""
+  ],
+  "攻撃力": [
+    "攻撃力",
+    "Strength",
+    "",
+    ""
+  ],
+  "防御力": [
+    "防御力",
+    "Defense",
+    "",
+    ""
+  ],
+  "ギザ": [
+    "ギザ",
+    "Gizar",
+    "",
+    ""
+  ],
+  "ファイル": [
+    "ファイル",
+    "File",
+    "",
+    ""
+  ],
+  "オープニング": [
+    "オープニング",
+    "Opening",
+    "",
+    ""
+  ],
+  "第１章": [
+    "第１章",
+    "Chapter 1",
+    "",
+    ""
+  ],
+  "日本語": [
+    "日本語",
+    "Japanese",
+    "",
+    ""
+  ],
+  "英語": [
+    "英語",
+    "English",
+    "",
+    ""
+  ],
+  "はやい": [
+    "はやい",
+    "Fast",
+    "",
+    ""
+  ],
+  "ふつう": [
+    "ふつう",
+    "Standard",
+    "",
+    ""
+  ],
+  "おそい": [
+    "おそい",
+    "Slow",
+    "",
+    ""
+  ],
+  "ゲームパッド": [
+    "ゲームパッド",
+    "Gamepad",
+    "",
+    ""
+  ],
+  "キーボード": [
+    "キーボード",
+    "Keyboard",
+    "",
+    ""
+  ],
+  "\\>タイトル画面へ戻る？\n\\>（セーブしていない\n\\> 進行は失われます）\\! ": [
+    "\\>タイトル画面へ戻る？\n\\>（セーブしていない\n\\> 進行は失われます）\\! ",
+    "\\>Return to the title screen?\n\\> (Any unsaved progress\n\\> will be lost)\\! ",
+    "",
+    ""
+  ],
+  "フォント": [
+    "フォント",
+    "Font",
+    "",
+    ""
+  ],
+  "効果音": [
+    "効果音",
+    "SFX",
+    "",
+    ""
+  ],
+  "プラグイン": [
+    "プラグイン",
+    "Plugin",
+    "",
+    ""
+  ],
+  "様": [
+    "様",
+    " ",
+    "",
+    ""
+  ],
+  "ディレクター": [
+    "ディレクター",
+    "Director",
+    "",
+    ""
+  ],
+  "シナリオ": [
+    "シナリオ",
+    "Scenario",
+    "",
+    ""
+  ],
+  "グラフィック": [
+    "グラフィック",
+    "Graphics",
+    "",
+    ""
+  ],
+  "キャラクターデザイン": [
+    "キャラクターデザイン",
+    "Character Design",
+    "",
+    ""
+  ],
+  "モンスター設計": [
+    "モンスター設計",
+    "Monster Design",
+    "",
+    ""
+  ],
+  "マップ設計": [
+    "マップ設計",
+    "Map Design",
+    "",
+    ""
+  ],
+  "UIデザイン": [
+    "UIデザイン",
+    "UI Design",
+    "",
+    ""
+  ],
+  "システム設計": [
+    "システム設計",
+    "System Design",
+    "",
+    ""
+  ],
+  "プログラミング": [
+    "プログラミング",
+    "Programming",
+    "",
+    ""
+  ],
+  "デバッグ": [
+    "デバッグ",
+    "Debugging",
+    "",
+    ""
+  ],
+  "クロノ・スタジオ\nサム・クロノ": [
+    "クロノ・スタジオ\nサム・クロノ",
+    "Kurono Studios\nSam L. Kurono",
+    "",
+    ""
+  ],
+  "グッズ購入者": [
+    "グッズ購入者",
+    "Merchandise Customers",
+    "",
+    ""
+  ]
+}

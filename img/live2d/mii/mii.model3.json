@@ -1,0 +1,76 @@
+{
+	"Version": 3,
+	"FileReferences": {
+		"Moc": "mii.moc3",
+		"Textures": [
+			"mii.2048/texture_00.png"
+		],
+		"DisplayInfo": "mii.cdi3.json",
+		"Expressions": [
+			{
+				"Name": "exp_01",
+				"File": "exp_01.exp3.json"
+			},
+			{
+				"Name": "exp_02",
+				"File": "exp_02.exp3.json"
+			},
+			{
+				"Name": "exp_03",
+				"File": "exp_03.exp3.json"
+			},
+			{
+				"Name": "exp_04",
+				"File": "exp_04.exp3.json"
+			},
+			{
+				"Name": "exp_05",
+				"File": "exp_05.exp3.json"
+			}
+		],
+		"Motions": {
+			"": [
+				{
+					"File": "../attack1.motion3.json"
+				},
+				{
+					"File": "../attack2.motion3.json"
+				},
+				{
+					"File": "../attack3.motion3.json"
+				},
+				{
+					"File": "../lastAttack1.motion3.json"
+				},
+				{
+					"File": "../lastAttack2.motion3.json"
+				},
+				{
+					"File": "../lastAttack3.motion3.json"
+				},
+				{
+					"File": "../lastAttack4.motion3.json"
+				},
+				{
+					"File": "../wait.motion3.json"
+				},
+				{
+					"File": "../wait_sad.motion3.json"
+				}
+			]
+		}
+	},
+	"Groups": [
+		{
+			"Target": "Parameter",
+			"Name": "LipSync",
+			"Ids": []
+		},
+		{
+			"Target": "Parameter",
+			"Name": "EyeBlink",
+			"Ids": []
+		}
+	],
+	"HitAreas": []
+}

@@ -1551,6 +1551,304 @@ function Sprite_Particle() {
     };
 
     //メモリリーク防止用
+    //-----------------------------------------------------------------------------
+    // Current whole-map PNG snapshot
+    //-----------------------------------------------------------------------------
+
+    window.KNH_MapSnapshot = window.KNH_MapSnapshot || {};
+
+    KNH_MapSnapshot.save = function(options) {
+        options = this.normalizeOptions(options);
+        var scene = SceneManager._scene;
+        if (!(scene instanceof Scene_Map) || !scene._spriteset || !scene._spriteset._tilemap) {
+            throw new Error('Map snapshot can be saved only on Scene_Map.');
+        }
+        if (!StorageManager.isLocalMode()) {
+            throw new Error('Map snapshot requires local NW.js mode.');
+        }
+        if (ImageManager.isReady && !ImageManager.isReady()) {
+            throw new Error('Map snapshot assets are still loading.');
+        }
+
+        var spriteset = scene._spriteset;
+        var tileWidth = $gameMap.tileWidth();
+        var tileHeight = $gameMap.tileHeight();
+        var width = Math.max(1, Math.ceil($gameMap.width() * tileWidth));
+        var height = Math.max(1, Math.ceil($gameMap.height() * tileHeight));
+        var canvas = document.createElement('canvas');
+        canvas.width = width;
+        canvas.height = height;
+        var context = canvas.getContext('2d');
+        var state = this.beginSnapshot(scene, spriteset);
+
+        try {
+            var renderer = Graphics._renderer;
+            var chunkWidth = Math.max(1, Math.min(Graphics.width, width));
+            var chunkHeight = Math.max(1, Math.min(Graphics.height, height));
+            for (var y = 0; y < height; y += chunkHeight) {
+                for (var x = 0; x < width; x += chunkWidth) {
+                    var cw = Math.min(chunkWidth, width - x);
+                    var ch = Math.min(chunkHeight, height - y);
+                    this.setCaptureDisplay(x / tileWidth, y / tileHeight);
+                    this.updateSpritesetForSnapshot(spriteset);
+                    this.renderChunk(renderer, spriteset, context, x, y, cw, ch);
+                    this.renderWhiteLineChunk(renderer, scene, context, x, y, cw, ch);
+                }
+            }
+        } finally {
+            this.endSnapshot(scene, spriteset, state);
+        }
+
+        if (options.includeUi) {
+            this.renderUiAtCurrentMapPosition(scene, context, state, tileWidth, tileHeight);
+        }
+
+        var filePath = this.writePng(canvas, options);
+        console.log('Map snapshot saved: ' + filePath);
+        return filePath;
+    };
+
+    KNH_MapSnapshot.normalizeOptions = function(options) {
+        if (typeof options === 'string') options = { fileName: options };
+        options = options || {};
+        return {
+            fileName: options.fileName || options.name || this.defaultFileName(),
+            directory: options.directory || options.dir || options.location || '../captures',
+            path: options.path || options.filePath || '',
+            includeUi: options.includeUi !== false
+        };
+    };
+
+    KNH_MapSnapshot.defaultFileName = function() {
+        var date = new Date();
+        return 'map_snapshot_Map' + String($gameMap.mapId()).padZero(3) + '_' +
+            date.getFullYear() + String(date.getMonth() + 1).padZero(2) + String(date.getDate()).padZero(2) + '_' +
+            String(date.getHours()).padZero(2) + String(date.getMinutes()).padZero(2) + String(date.getSeconds()).padZero(2);
+    };
+
+    KNH_MapSnapshot.beginSnapshot = function(scene, spriteset) {
+        var state = {
+            displayX: $gameMap._displayX,
+            displayY: $gameMap._displayY,
+            parallaxX: $gameMap._parallaxX,
+            parallaxY: $gameMap._parallaxY,
+            tileOriginX: spriteset._tilemap.origin.x,
+            tileOriginY: spriteset._tilemap.origin.y,
+            sprites: [],
+            createdSprites: []
+        };
+
+        this.ensureAllEventSprites(spriteset, state);
+
+        spriteset._characterSprites.forEach(function(sprite) {
+            if (!sprite) return;
+            state.sprites.push({
+                sprite: sprite,
+                parent: sprite.parent,
+                index: sprite.parent ? sprite.parent.getChildIndex(sprite) : -1,
+                shadowSprite: sprite._shadowSprite || null,
+                shadowParent: sprite._shadowSprite && sprite._shadowSprite.parent ? sprite._shadowSprite.parent : null,
+                shadowIndex: sprite._shadowSprite && sprite._shadowSprite.parent ? sprite._shadowSprite.parent.getChildIndex(sprite._shadowSprite) : -1,
+                drawed: sprite._drawed,
+                opacity: sprite.opacity,
+                visible: sprite.visible
+            });
+            if (sprite.parent !== spriteset._tilemap) {
+                if (sprite.parent) sprite.parent.removeChild(sprite);
+                spriteset._tilemap.addChild(sprite);
+            }
+            sprite._drawed = true;
+        });
+        return state;
+    };
+
+    KNH_MapSnapshot.ensureAllEventSprites = function(spriteset, state) {
+        var sprites = spriteset._characterSprites || (spriteset._characterSprites = []);
+        $gameMap.events(true).forEach(function(event) {
+            if (event.setupCssRectFromMeta) event.setupCssRectFromMeta();
+            var exists = sprites.some(function(sprite) {
+                return sprite && sprite._character === event;
+            });
+            if (!exists) {
+                var sprite = new Sprite_Character(event);
+                sprites.push(sprite);
+                state.createdSprites.push(sprite);
+            }
+        });
+    };
+
+    KNH_MapSnapshot.setCaptureDisplay = function(displayX, displayY) {
+        $gameMap._displayX = displayX;
+        $gameMap._displayY = displayY;
+        $gameMap._parallaxX = displayX;
+        $gameMap._parallaxY = displayY;
+    };
+
+    KNH_MapSnapshot.updateSpritesetForSnapshot = function(spriteset) {
+        if (spriteset.updateTileset) spriteset.updateTileset();
+        if (spriteset.updateParallax) spriteset.updateParallax();
+        if (spriteset.updateTilemap) spriteset.updateTilemap();
+        if (spriteset.updateShadow) spriteset.updateShadow();
+        if (spriteset.updateWeather) spriteset.updateWeather();
+        (spriteset._characterSprites || []).forEach(function(sprite) {
+            if (!sprite) return;
+            if (sprite.updateBitmap) sprite.updateBitmap();
+            if (sprite.updateFrame) sprite.updateFrame();
+            if (sprite.updatePosition) sprite.updatePosition();
+            if (sprite.updateOther) sprite.updateOther();
+            if (sprite.updateHalfBodySprites) sprite.updateHalfBodySprites();
+            if (sprite.parent && sprite.updateShadow) sprite.updateShadow();
+        });
+        if (spriteset._tilemap && spriteset._tilemap._sortChildren) spriteset._tilemap._sortChildren();
+    };
+
+    KNH_MapSnapshot.renderChunk = function(renderer, spriteset, context, x, y, width, height) {
+        var renderTexture = PIXI.RenderTexture.create(width, height);
+        var chunkCanvas = null;
+        try {
+            renderer.render(spriteset, renderTexture);
+            spriteset.worldTransform.identity();
+            if (Graphics.isWebGL()) {
+                chunkCanvas = renderer.extract.canvas(renderTexture);
+            } else {
+                chunkCanvas = renderTexture.baseTexture._canvasRenderTarget.canvas;
+            }
+            context.drawImage(chunkCanvas, 0, 0, width, height, x, y, width, height);
+        } finally {
+            renderTexture.destroy({ destroyBase: true });
+        }
+    };
+
+    KNH_MapSnapshot.renderWhiteLineChunk = function(renderer, scene, context, x, y, width, height) {
+        if (!scene._whiteLine || !scene._whiteLine.visible) return;
+        this.renderDisplayObjectChunk(renderer, scene._whiteLine, context, x, y, width, height);
+    };
+
+    KNH_MapSnapshot.renderUiAtCurrentMapPosition = function(scene, context, state, tileWidth, tileHeight) {
+        var renderTexture = PIXI.RenderTexture.create(Graphics.width, Graphics.height);
+        var hidden = [];
+        var renderer = Graphics._renderer;
+        var uiCanvas = null;
+        try {
+            this.hideForUiSnapshot(hidden, scene._spriteset);
+            this.hideForUiSnapshot(hidden, scene._whiteLine);
+            this.hideForUiSnapshot(hidden, scene._noteLine);
+            this.hideForUiSnapshot(hidden, scene._noteEffect);
+            renderer.render(scene, renderTexture);
+            scene.worldTransform.identity();
+            if (Graphics.isWebGL()) {
+                uiCanvas = renderer.extract.canvas(renderTexture);
+            } else {
+                uiCanvas = renderTexture.baseTexture._canvasRenderTarget.canvas;
+            }
+            context.drawImage(
+                uiCanvas,
+                Math.round(state.displayX * tileWidth),
+                Math.round(state.displayY * tileHeight)
+            );
+        } finally {
+            hidden.forEach(function(item) {
+                item.target.visible = item.visible;
+            });
+            renderTexture.destroy({ destroyBase: true });
+        }
+    };
+
+    KNH_MapSnapshot.renderDisplayObjectChunk = function(renderer, object, context, x, y, width, height) {
+        var renderTexture = PIXI.RenderTexture.create(width, height);
+        var chunkCanvas = null;
+        try {
+            renderer.render(object, renderTexture);
+            object.worldTransform.identity();
+            if (Graphics.isWebGL()) {
+                chunkCanvas = renderer.extract.canvas(renderTexture);
+            } else {
+                chunkCanvas = renderTexture.baseTexture._canvasRenderTarget.canvas;
+            }
+            context.drawImage(chunkCanvas, 0, 0, width, height, x, y, width, height);
+        } finally {
+            renderTexture.destroy({ destroyBase: true });
+        }
+    };
+
+    KNH_MapSnapshot.hideForUiSnapshot = function(hidden, target) {
+        if (!target) return;
+        hidden.push({ target: target, visible: target.visible });
+        target.visible = false;
+    };
+
+    KNH_MapSnapshot.endSnapshot = function(scene, spriteset, state) {
+        this.setCaptureDisplay(state.displayX, state.displayY);
+        $gameMap._parallaxX = state.parallaxX;
+        $gameMap._parallaxY = state.parallaxY;
+        if (spriteset._tilemap) {
+            spriteset._tilemap.origin.x = state.tileOriginX;
+            spriteset._tilemap.origin.y = state.tileOriginY;
+        }
+
+        state.sprites.forEach(function(info) {
+            var sprite = info.sprite;
+            if (!sprite) return;
+            if (sprite.parent) sprite.parent.removeChild(sprite);
+            if (sprite._shadowSprite && sprite._shadowSprite.parent) sprite._shadowSprite.parent.removeChild(sprite._shadowSprite);
+            if (info.parent) {
+                var index = Math.max(0, Math.min(info.index, info.parent.children.length));
+                info.parent.addChildAt(sprite, index);
+            }
+            if (info.shadowSprite && info.shadowParent) {
+                var shadowIndex = Math.max(0, Math.min(info.shadowIndex, info.shadowParent.children.length));
+                info.shadowParent.addChildAt(info.shadowSprite, shadowIndex);
+            } else if (!info.shadowSprite) {
+                sprite._shadowSprite = null;
+            }
+            sprite._drawed = info.drawed;
+            sprite.opacity = info.opacity;
+            sprite.visible = info.visible;
+        });
+
+        state.createdSprites.forEach(function(sprite) {
+            if (sprite.parent) sprite.parent.removeChild(sprite);
+            var index = spriteset._characterSprites.indexOf(sprite);
+            if (index >= 0) spriteset._characterSprites.splice(index, 1);
+        });
+
+        this.updateSpritesetForSnapshot(spriteset);
+        if ($gameMap.rejudgeEvents) $gameMap.rejudgeEvents();
+    };
+
+    KNH_MapSnapshot.writePng = function(canvas, options) {
+        var fs = require('fs');
+        var path = require('path');
+        var filePath = options.path ? options.path : path.join(this.resolveDirectory(options.directory), this.ensurePngExt(options.fileName));
+        if (!path.isAbsolute(filePath)) filePath = path.join(path.dirname(process.mainModule.filename), filePath);
+        this.ensureDirectory(path.dirname(filePath));
+        var data = canvas.toDataURL('image/png').replace(/^.*,/, '');
+        fs.writeFileSync(filePath, Buffer.from(data, 'base64'));
+        return filePath;
+    };
+
+    KNH_MapSnapshot.resolveDirectory = function(directory) {
+        var path = require('path');
+        if (path.isAbsolute(directory)) return directory;
+        return path.join(path.dirname(process.mainModule.filename), directory);
+    };
+
+    KNH_MapSnapshot.ensurePngExt = function(fileName) {
+        return /\.png$/i.test(fileName) ? fileName : fileName + '.png';
+    };
+
+    KNH_MapSnapshot.ensureDirectory = function(directory) {
+        var fs = require('fs');
+        var path = require('path');
+        if (fs.existsSync(directory)) return;
+        this.ensureDirectory(path.dirname(directory));
+        fs.mkdirSync(directory);
+    };
+
+    SceneManager.saveMapSnapshot = function(options) {
+        return KNH_MapSnapshot.save(options);
+    };
+
     var _DataManager_loadMapData = DataManager.loadMapData;
     DataManager.loadMapData = function(mapId) {
         if ($dataMap) $dataMap = null;
