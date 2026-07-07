@@ -2,7 +2,7 @@
   "plugin": "KNH_ZXC_EventEditor",
   "mapId": 43,
   "targetEventId": 14,
-  "savedAt": "2026-07-01T22:15:28.988Z",
+  "savedAt": "2026-07-02T21:38:08.703Z",
   "frameCount": 1,
   "frames": [
     {
@@ -123,10 +123,21 @@
       },
       "sourceRows": [
         {
-          "key": "21:0",
-          "eventId": 21,
-          "pageIndex": 0,
+          "key": "22:1",
+          "eventId": 22,
+          "pageIndex": 1,
           "uid": 1,
+          "rowType": "main",
+          "rowKey": "main",
+          "charId": null,
+          "code": 111,
+          "wait": 0
+        },
+        {
+          "key": "22:1",
+          "eventId": 22,
+          "pageIndex": 1,
+          "uid": 2,
           "rowType": "main",
           "rowKey": "main",
           "charId": null,
@@ -134,14 +145,80 @@
           "wait": 0
         },
         {
-          "key": "21:0",
-          "eventId": 21,
-          "pageIndex": 0,
-          "uid": 2,
+          "key": "22:1",
+          "eventId": 22,
+          "pageIndex": 1,
+          "uid": 3,
           "rowType": "main",
           "rowKey": "main",
           "charId": null,
           "code": 101,
+          "wait": 0
+        },
+        {
+          "key": "22:1",
+          "eventId": 22,
+          "pageIndex": 1,
+          "uid": 4,
+          "rowType": "main",
+          "rowKey": "main",
+          "charId": null,
+          "code": 101,
+          "wait": 0
+        },
+        {
+          "key": "22:1",
+          "eventId": 22,
+          "pageIndex": 1,
+          "uid": 5,
+          "rowType": "main",
+          "rowKey": "main",
+          "charId": null,
+          "code": 101,
+          "wait": 0
+        },
+        {
+          "key": "22:1",
+          "eventId": 22,
+          "pageIndex": 1,
+          "uid": 6,
+          "rowType": "main",
+          "rowKey": "main",
+          "charId": null,
+          "code": 355,
+          "wait": 0
+        },
+        {
+          "key": "22:1",
+          "eventId": 22,
+          "pageIndex": 1,
+          "uid": 7,
+          "rowType": "main",
+          "rowKey": "main",
+          "charId": null,
+          "code": 411,
+          "wait": 0
+        },
+        {
+          "key": "22:1",
+          "eventId": 22,
+          "pageIndex": 1,
+          "uid": 8,
+          "rowType": "main",
+          "rowKey": "main",
+          "charId": null,
+          "code": 101,
+          "wait": 0
+        },
+        {
+          "key": "22:1",
+          "eventId": 22,
+          "pageIndex": 1,
+          "uid": 9,
+          "rowType": "main",
+          "rowKey": "main",
+          "charId": null,
+          "code": 412,
           "wait": 0
         }
       ]

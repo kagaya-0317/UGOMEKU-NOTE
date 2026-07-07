@@ -1296,6 +1296,7 @@ const _createOutlineFilter = function(w, h, bw, ww) {
     var _Sprite_update = Sprite.prototype.update;
     Sprite.prototype.update = function () {
         _Sprite_update.call(this);
+        if (this._yuraFilterInfo || this._yuraFilterZXC) this.updateYuraFilterZXC();
 
         const yura = this._yuraInfo, mesh = this._meshSprite, frame = this._frame;
         const bitmapReady = this.bitmap && this.bitmap.isReady();
@@ -1531,6 +1532,153 @@ const _createOutlineFilter = function(w, h, bw, ww) {
         if (this.geometry && this.geometry.invalidate) this.geometry.invalidate();
     };
 
+    // Filter based yura. This is for already composed display objects.
+    const _kggYuraFilterFragmentSrc =
+        'precision mediump float;' +
+        'varying vec2 vTextureCoord;' +
+        'uniform sampler2D uSampler;' +
+        'uniform vec4 filterArea;' +
+        'uniform float blockSize;' +
+        'uniform float maxShake;' +
+        'uniform float stepCount;' +
+        'uniform float seed;' +
+        'uniform float pixelSnap;' +
+        'uniform vec2 noiseOffset;' +
+        'vec2 mapCoord(vec2 coord){coord*=filterArea.xy;coord+=filterArea.zw;return coord;}' +
+        'vec2 unmapCoord(vec2 coord){coord-=filterArea.zw;coord/=filterArea.xy;return coord;}' +
+        'float hash(vec2 p){return fract(sin(dot(p,vec2(127.1,311.7)))*43758.5453123);}' +
+        'vec2 rand2(vec2 p){return vec2(hash(p+seed),hash(p+seed+19.19))*2.0-1.0;}' +
+        'vec2 yuraNoise(vec2 p){vec2 i=floor(p);vec2 f=fract(p);f=f*f*(3.0-2.0*f);' +
+        'vec2 a=rand2(i);vec2 b=rand2(i+vec2(1.0,0.0));vec2 c=rand2(i+vec2(0.0,1.0));vec2 d=rand2(i+vec2(1.0,1.0));' +
+        'return mix(mix(a,b,f.x),mix(c,d,f.x),f.y);}' +
+        'void main(void){' +
+        'vec2 px=mapCoord(vTextureCoord);' +
+        'vec2 cell=(px+noiseOffset)/max(blockSize,1.0);' +
+        'vec2 offset=yuraNoise(cell+vec2(stepCount*13.0,stepCount*17.0))*(maxShake/5.0);' +
+        'vec2 samplePx=px+offset;' +
+        'if(pixelSnap>0.5){samplePx=floor(samplePx)+vec2(0.5);}' +
+        'vec2 uv=clamp(unmapCoord(samplePx),vec2(0.0),vec2(1.0));' +
+        'gl_FragColor=texture2D(uSampler,uv);' +
+        '}';
+
+    function Filter_Yurayura() {
+        PIXI.Filter.call(this, PIXI.Filter.defaultVertexSrc, _kggYuraFilterFragmentSrc, {
+            blockSize: 12,
+            maxShake: 10,
+            stepCount: 0,
+            seed: 0,
+            pixelSnap: 1,
+            noiseOffset: [0, 0]
+        });
+        this.padding = 32;
+    }
+    Filter_Yurayura.prototype = Object.create(PIXI.Filter.prototype);
+    Filter_Yurayura.prototype.constructor = Filter_Yurayura;
+    window.Filter_Yurayura = Filter_Yurayura;
+
+    function kggYuraFilterNumber(value, fallback) {
+        const n = Number(value);
+        return isFinite(n) ? n : fallback;
+    }
+
+    function kggNormalizeYuraFilterInfo(info) {
+        if (!info) return null;
+        if (Array.isArray(info)) {
+            return {
+                blockSize: kggYuraFilterNumber(info[0], 12),
+                maxShake: kggYuraFilterNumber(info[1], 10),
+                frame: Math.max(1, kggYuraFilterNumber(info[2], 10)),
+                pixelSnap: info[3] !== false,
+                seed: kggYuraFilterNumber(info[4], 0),
+                filterArea: info[5] || null,
+                offsetX: kggYuraFilterNumber(info[6], 0),
+                offsetY: kggYuraFilterNumber(info[7], 0)
+            };
+        }
+        if (info.enabled === false) return null;
+        return {
+            blockSize: kggYuraFilterNumber(info.blockSize, 12),
+            maxShake: kggYuraFilterNumber(info.maxShake, 10),
+            frame: Math.max(1, kggYuraFilterNumber(info.frame, 10)),
+            pixelSnap: info.pixelSnap !== false,
+            seed: kggYuraFilterNumber(info.seed, 0),
+            filterArea: info.filterArea || null,
+            offsetX: kggYuraFilterNumber(info.offsetX, 0),
+            offsetY: kggYuraFilterNumber(info.offsetY, 0)
+        };
+    }
+
+    function kggCanUseYuraFilter() {
+        const graphics = typeof Graphics !== 'undefined' ? Graphics : null;
+        return !!PIXI.Filter && !(graphics && typeof graphics.isWebGL === 'function' && !graphics.isWebGL());
+    }
+
+    function kggRemoveYuraFilter(target) {
+        const filter = target._yuraFilterZXC;
+        if (!filter || !target.filters) return;
+        const filters = target.filters.slice();
+        const index = filters.indexOf(filter);
+        if (index >= 0) filters.splice(index, 1);
+        target.filters = filters.length ? filters : null;
+    }
+
+    function kggEnsureYuraFilter(target) {
+        if (!target._yuraFilterZXC) target._yuraFilterZXC = new Filter_Yurayura();
+        const filter = target._yuraFilterZXC;
+        const filters = target.filters ? target.filters.slice() : [];
+        if (filters.indexOf(filter) < 0) {
+            filters.push(filter);
+            target.filters = filters;
+        }
+        return filter;
+    }
+
+    function kggYuraFilterFrameCount(info) {
+        const gameSystem = typeof $gameSystem !== 'undefined' ? $gameSystem : null;
+        const graphics = typeof Graphics !== 'undefined' ? Graphics : null;
+        const base = gameSystem && gameSystem.sceneCount ? gameSystem.sceneCount() : (graphics && graphics.frameCount || 0);
+        const frameValue = gameSystem && gameSystem.animationWait ? gameSystem.animationWait() : info.frame;
+        const frame = Math.max(1, Number(frameValue) || 1);
+        return Math.floor(base / frame);
+    }
+
+    function kggUpdateYuraFilter(target) {
+        const info = kggNormalizeYuraFilterInfo(target._yuraFilterInfo);
+        if (!info || !kggCanUseYuraFilter()) {
+            kggRemoveYuraFilter(target);
+            return;
+        }
+        const filter = kggEnsureYuraFilter(target);
+        filter.uniforms.blockSize = Math.max(1, info.blockSize);
+        filter.uniforms.maxShake = info.maxShake;
+        if (typeof $gameSwitches === 'undefined' || !$gameSwitches || !$gameSwitches.value(1)) {
+            filter.uniforms.stepCount = kggYuraFilterFrameCount(info);
+        }
+        filter.uniforms.seed = info.seed;
+        filter.uniforms.pixelSnap = info.pixelSnap ? 1 : 0;
+        const offset = target._yuraFilterOffset || null;
+        const noiseOffset = filter.uniforms.noiseOffset || (filter.uniforms.noiseOffset = [0, 0]);
+        noiseOffset[0] = offset ? kggYuraFilterNumber(offset[0], 0) : info.offsetX;
+        noiseOffset[1] = offset ? kggYuraFilterNumber(offset[1], 0) : info.offsetY;
+        filter.padding = Math.max(0, Math.ceil(Math.abs(info.maxShake) + info.blockSize));
+        target.filterArea = info.filterArea || target._yuraFilterArea || target.filterArea || null;
+    }
+
+    function kggSetYuraFilterInfo(info) {
+        this._yuraFilterInfo = info || null;
+        this.updateYuraFilterZXC();
+    }
+
+    function kggClearYuraFilterInfo() {
+        this._yuraFilterInfo = null;
+        this.updateYuraFilterZXC();
+    }
+
+    Sprite.prototype.setYuraFilterZXC = kggSetYuraFilterInfo;
+    Sprite.prototype.clearYuraFilterZXC = kggClearYuraFilterInfo;
+    Sprite.prototype.updateYuraFilterZXC = function() {
+        kggUpdateYuraFilter(this);
+    };
 
     function _kggCurrentLanguageIdForMask() {
         try {
@@ -1609,9 +1757,16 @@ const _createOutlineFilter = function(w, h, bw, ww) {
     };
 
     //TilingSpriteにもゆらゆらを適用可
+    TilingSprite.prototype.setYuraFilterZXC = kggSetYuraFilterInfo;
+    TilingSprite.prototype.clearYuraFilterZXC = kggClearYuraFilterInfo;
+    TilingSprite.prototype.updateYuraFilterZXC = function() {
+        kggUpdateYuraFilter(this);
+    };
+
     var _TilingSprite_update = TilingSprite.prototype.update;
     TilingSprite.prototype.update = function() {
         _TilingSprite_update.call(this);
+        if (this._yuraFilterInfo || this._yuraFilterZXC) this.updateYuraFilterZXC();
 
         const yura = this._yuraInfo;
         const mesh = this._meshSprite;
@@ -4117,20 +4272,43 @@ const _createOutlineFilter = function(w, h, bw, ww) {
     // 暗闇
     //-----------------------------------------------------------------------------
 
-    const DARKNESS_COLOR = '#474e51';
     const PLAYER_LIGHT_RADIUS = 100;
-    const LIGHT_SHEET_FRAMES = 3;
-    const LIGHT_SHEET_FRAME_WAIT = 10;
-    const PLAYER_LIGHT_UPDATE_WAIT = 1;
-    const DARKNESS_SCALE = 0.5;
-    const PRELOAD_RADII = [100, 200, 400];
-    const PLAYER_LIGHT_DIR_OFFSETS = { // プレイヤーの向きごとの光源位置補正（px）
-        2: [-36, -64],   // 下
-        4: [-47, -64],   // 左
-        6: [35, -64],    // 右
-        8: [30, -78]     // 上
+    const DARKNESS_CELL_SIZE = 2;
+    const DARKNESS_PATTERN_SCALE = 2;
+    const DARKNESS_YURA_FILTER_INFO = {
+        blockSize: 5,
+        maxShake: 10,
+        frame: 10,
+        pixelSnap: true,
+        seed: 43
     };
-    function toDark(v) { return v * DARKNESS_SCALE; }
+    const DARKNESS_SHEET_COLUMNS = 3;
+    const DARKNESS_SHEET_ROWS = 3;
+    const DARKNESS_LAYERS = [
+        { brightness: 0, frameIndex: 8 },
+        { brightness: 1, frameIndex: 6 },
+        { brightness: 2, frameIndex: 4 },
+        { brightness: 3, frameIndex: 2 }
+    ];
+    const PLAYER_LIGHT_DIR_OFFSETS = {
+        2: [-36, -64],
+        4: [-47, -64],
+        6: [35, -64],
+        8: [30, -78]
+    };
+
+    function darknessNumber(value, fallback) {
+        const n = Number(value);
+        return isFinite(n) ? n : fallback;
+    }
+
+    function darknessScreenWidth() {
+        return Math.max(1, Math.ceil(Graphics.width || Graphics.boxWidth || 1));
+    }
+
+    function darknessScreenHeight() {
+        return Math.max(1, Math.ceil(Graphics.height || Graphics.boxHeight || 1));
+    }
 
     function Sprite_Darkness() {
         this.initialize.apply(this, arguments);
@@ -4140,188 +4318,295 @@ const _createOutlineFilter = function(w, h, bw, ww) {
 
     Sprite_Darkness.prototype.initialize = function () {
         Sprite.prototype.initialize.call(this);
-        this._lightBitmapCache = {};
-        this._patternBitmaps = [];
-        this._dynamicBitmap = null;
-        this._lastStaticHash = null;
-        this._lastPlayerLight = null;
-        this._lastPlayerLightTick = null;
-        this._lastFrameIndex = null;
-        this._mapWidth = 0;
-        this._mapHeight = 0;
-        this._dispX = 0;
-        this._dispY = 0;
-        this._pendingPreload = new Set();
-        this._refreshSize();
+        this._sourceBitmap = ImageManager.loadSystem('fadeBlack');
+        this._layers = [];
+        this._maskW = 0;
+        this._maskH = 0;
+        this._screenW = 0;
+        this._screenH = 0;
+        this._brightness = null;
+        this._lastFrameWidth = 0;
+        this._lastFrameHeight = 0;
+        this._lastLightHash = null;
+        this._darknessView = new Sprite();
+        this._darknessView._yuraFilterOffset = [0, 0];
+        this._darknessView.setYuraFilterZXC(DARKNESS_YURA_FILTER_INFO);
+        this.addChild(this._darknessView);
+        this._createLayers();
+        this._sourceBitmap.addLoadListener(this._refreshPatternFrames.bind(this));
         this.visible = false;
-        this._preloadLightBitmaps();
     };
-    Sprite_Darkness.prototype._refreshSize = function () {
-        const baseW = Math.max($gameMap.width() * $gameMap.tileWidth(), Graphics.boxWidth);
-        const baseH = Math.max($gameMap.height() * $gameMap.tileHeight(), Graphics.boxHeight);
-        const mapW = Math.max(1, Math.round(baseW * DARKNESS_SCALE));
-        const mapH = Math.max(1, Math.round(baseH * DARKNESS_SCALE));
-        if (this._mapWidth === mapW && this._mapHeight === mapH && this._patternBitmaps.length === LIGHT_SHEET_FRAMES) return;
-        this._mapWidth = mapW;
-        this._mapHeight = mapH;
-        this._patternBitmaps = [];
-        for (let i = 0; i < LIGHT_SHEET_FRAMES; i++) this._patternBitmaps.push(new Bitmap(mapW, mapH));
-        this._dynamicBitmap = new Bitmap(mapW, mapH);
-        this.bitmap = this._patternBitmaps[0];
-        this.setFrame(0, 0, mapW, mapH);
-        const scale = DARKNESS_SCALE > 0 ? 1 / DARKNESS_SCALE : 1;
-        this.scale.x = scale;
-        this.scale.y = scale;
-        this._lastStaticHash = null;
-        this._lastPlayerLight = null;
-        this._lastPlayerLightTick = null;
-        this._lastFrameIndex = null;
+
+    Sprite_Darkness.prototype._createLayers = function () {
+        for (let i = 0; i < DARKNESS_LAYERS.length; i++) {
+            const info = DARKNESS_LAYERS[i];
+            const sprite = new TilingSprite(this._sourceBitmap);
+            const mask = new Sprite();
+            sprite.tileScale.x = DARKNESS_PATTERN_SCALE;
+            sprite.tileScale.y = DARKNESS_PATTERN_SCALE;
+            mask.visible = true;
+            mask.renderable = false;
+            sprite.mask = mask;
+            this._darknessView.addChild(sprite);
+            this._darknessView.addChild(mask);
+            this._layers.push({
+                brightness: info.brightness,
+                frameIndex: info.frameIndex,
+                sprite: sprite,
+                mask: mask,
+                maskBitmap: null,
+                imageData: null
+            });
+        }
     };
+
     Sprite_Darkness.prototype._isDarkMap = function () {
         return !!($dataMap && $dataMap.meta && $dataMap.meta.dark);
     };
-    Sprite_Darkness.prototype._screenPos = function (ch) {
-        const th = $gameMap.tileHeight();
-        const dispX = this._dispX || 0;
-        const dispY = this._dispY || 0;
-        return { x: toDark(ch.screenX() + dispX), y: toDark(ch.screenY() - th / 2 + dispY) };
-    };
-    Sprite_Darkness.prototype._updatePosition = function () {
-        const dx = $gameMap.displayX() * $gameMap.tileWidth();
-        const dy = $gameMap.displayY() * $gameMap.tileHeight();
-        this._dispX = Math.round(dx);
-        this._dispY = Math.round(dy);
-        this.x = -this._dispX;
-        this.y = -this._dispY;
-    };
-    Sprite_Darkness.prototype._getLightBitmap = function (radius) {
-        const key = String(radius);
-        if (!this._lightBitmapCache[key]) {
-            this._lightBitmapCache[key] = ImageManager.loadPicture('light' + key);
+
+    Sprite_Darkness.prototype._refreshPatternFrames = function () {
+        if (!this._sourceBitmap || !this._sourceBitmap.isReady()) return;
+        const frameW = Math.floor(this._sourceBitmap.width / DARKNESS_SHEET_COLUMNS);
+        const frameH = Math.floor(this._sourceBitmap.height / DARKNESS_SHEET_ROWS);
+        if (frameW <= 0 || frameH <= 0) return;
+        if (this._lastFrameWidth === frameW && this._lastFrameHeight === frameH) return;
+        this._lastFrameWidth = frameW;
+        this._lastFrameHeight = frameH;
+        for (let i = 0; i < this._layers.length; i++) {
+            const layer = this._layers[i];
+            const sx = (layer.frameIndex % DARKNESS_SHEET_COLUMNS) * frameW;
+            const sy = Math.floor(layer.frameIndex / DARKNESS_SHEET_COLUMNS) * frameH;
+            layer.sprite.bitmap = this._sourceBitmap;
+            layer.sprite.setFrame(sx, sy, frameW, frameH);
         }
-        return this._lightBitmapCache[key];
     };
-    Sprite_Darkness.prototype._preloadLightBitmaps = function () {
-        PRELOAD_RADII.forEach(radius => {
-            const bmp = this._getLightBitmap(radius);
-            if (bmp.isReady()) return;
-            const key = String(radius);
-            if (this._pendingPreload.has(key)) return;
-            this._pendingPreload.add(key);
-            bmp.addLoadListener(() => this._onLightBitmapPreloaded(radius));
-        });
-    };
-    Sprite_Darkness.prototype._onLightBitmapPreloaded = function (radius) {
-        const key = String(radius);
-        if (!this._pendingPreload.has(key)) return;
-        this._pendingPreload.delete(key);
-        this._lastStaticHash = null;
-        this._refreshPatterns(this._collectStaticLights());
-    };
-    Sprite_Darkness.prototype._refreshPatterns = function (staticLights) {
-        for (let i = 0; i < LIGHT_SHEET_FRAMES; i++) this._drawLights(staticLights, i);
-    };
-    Sprite_Darkness.prototype._collectStaticLights = function () {
-        const lights = [], events = $gameMap.events();
-        for (let i = 0; i < events.length; i++) {
-            const ev = events[i];
-            if (!ev) continue;
-            let r = 0, dx = 0, dy = 0, meta;
-            if (ev._lightRadius != null) {
-                r = Number(ev._lightRadius) || 0;
-                dx = toDark(Number(ev._lightOffsetX) || 0);
-                dy = toDark(Number(ev._lightOffsetY) || 0);
-            } else if (ev.event() && (meta = ev.event().meta.light) != null) {
-                meta = String(meta).split(',');
-                r = Number(meta[0]) || 0;
-                dx = toDark(Number(meta[1]) || 0);
-                dy = toDark(Number(meta[2]) || 0);
-            }
-            if (r > 0) {
-                const pos = this._screenPos(ev);
-                lights.push({ x: pos.x + dx, y: pos.y + dy, r: r });
-            }
+
+    Sprite_Darkness.prototype._refreshLayout = function () {
+        const screenW = darknessScreenWidth();
+        const screenH = darknessScreenHeight();
+        const maskW = Math.max(1, Math.ceil(screenW / DARKNESS_CELL_SIZE));
+        const maskH = Math.max(1, Math.ceil(screenH / DARKNESS_CELL_SIZE));
+        if (this._screenW === screenW && this._screenH === screenH &&
+                this._maskW === maskW && this._maskH === maskH) {
+            return false;
         }
-        return lights;
-    };
-    Sprite_Darkness.prototype._areLightsReady = function (lights) {
-        for (let i = 0; i < lights.length; i++) {
-            const radius = Math.max(0, Math.round(lights[i].r));
-            if (radius <= 0) continue;
-            const bmp = this._getLightBitmap(radius);
-            if (!bmp || !bmp.isReady()) return false;
+        this._screenW = screenW;
+        this._screenH = screenH;
+        this._maskW = maskW;
+        this._maskH = maskH;
+        this._brightness = new Uint8Array(maskW * maskH);
+        this._darknessView.x = 0;
+        this._darknessView.y = 0;
+
+        for (let i = 0; i < this._layers.length; i++) {
+            const layer = this._layers[i];
+            const sprite = layer.sprite;
+            sprite.move(0, 0, screenW, screenH);
+
+            const maskBitmap = new Bitmap(maskW, maskH);
+            maskBitmap.smooth = false;
+            const imageData = maskBitmap._context.createImageData(maskW, maskH);
+            const data = imageData.data;
+            for (let p = 0; p < data.length; p += 4) {
+                data[p] = 255;
+                data[p + 1] = 255;
+                data[p + 2] = 255;
+                data[p + 3] = 0;
+            }
+            maskBitmap._context.putImageData(imageData, 0, 0);
+            maskBitmap._setDirty();
+
+            layer.maskBitmap = maskBitmap;
+            layer.imageData = imageData;
+            layer.mask.bitmap = maskBitmap;
+            layer.mask.x = 0;
+            layer.mask.y = 0;
+            layer.mask.scale.x = DARKNESS_CELL_SIZE;
+            layer.mask.scale.y = DARKNESS_CELL_SIZE;
         }
         return true;
     };
-    Sprite_Darkness.prototype._collectPlayerLight = function () {
-        if (!$gamePlayer) return null;
+
+    Sprite_Darkness.prototype._updateTileOrigins = function () {
+        const ox = $gameMap.displayX() * $gameMap.tileWidth();
+        const oy = $gameMap.displayY() * $gameMap.tileHeight();
+        for (let i = 0; i < this._layers.length; i++) {
+            this._layers[i].sprite.origin.x = ox;
+            this._layers[i].sprite.origin.y = oy;
+        }
+    };
+
+    Sprite_Darkness.prototype._updateYuraFilter = function () {
+        const view = this._darknessView;
+        if (!view) return;
+        const pad = Math.ceil(Math.abs(DARKNESS_YURA_FILTER_INFO.maxShake) + DARKNESS_YURA_FILTER_INFO.blockSize);
+        const width = this._screenW + pad * 2;
+        const height = this._screenH + pad * 2;
+        let area = view._yuraFilterArea;
+        if (!area) {
+            area = view._yuraFilterArea = new PIXI.Rectangle(-pad, -pad, width, height);
+        } else {
+            area.x = -pad;
+            area.y = -pad;
+            area.width = width;
+            area.height = height;
+        }
+        view._yuraFilterInfo = DARKNESS_YURA_FILTER_INFO;
+        view._yuraFilterOffset[0] = $gameMap.displayX() * $gameMap.tileWidth();
+        view._yuraFilterOffset[1] = $gameMap.displayY() * $gameMap.tileHeight();
+        view.updateYuraFilterZXC();
+    };
+
+    Sprite_Darkness.prototype._screenPos = function (ch) {
+        const th = $gameMap.tileHeight();
+        return { x: ch.screenX(), y: ch.screenY() - th / 2 };
+    };
+
+    Sprite_Darkness.prototype._pushLight = function (lights, ch, radius, offsetX, offsetY) {
+        if (!ch) return;
+        const r = Math.max(0, darknessNumber(radius, 0));
+        if (r <= 0) return;
+        const dx = darknessNumber(offsetX, 0);
+        const dy = darknessNumber(offsetY, 0);
+        const pos = this._screenPos(ch);
+        const x = pos.x + dx;
+        const y = pos.y + dy;
+        if (x + r < 0 || x - r > this._screenW || y + r < 0 || y - r > this._screenH) return;
+        lights.push({ x: x, y: y, r: r });
+    };
+
+    Sprite_Darkness.prototype._collectPlayerLight = function (lights) {
+        if (!$gamePlayer) return;
         let r = PLAYER_LIGHT_RADIUS;
-        let dx = Number($gamePlayer._lightOffsetX) || 0;
-        let dy = Number($gamePlayer._lightOffsetY) || 0;
+        let dx = darknessNumber($gamePlayer._lightOffsetX, 0);
+        let dy = darknessNumber($gamePlayer._lightOffsetY, 0);
         const dir = ($gamePlayer.direction && $gamePlayer.direction()) || 0;
         const dirOffset = PLAYER_LIGHT_DIR_OFFSETS[dir] || [0, 0];
         dx += dirOffset[0];
         dy += dirOffset[1];
-        dx = toDark(dx);
-        dy = toDark(dy);
-        if ($gamePlayer._lightRadius != null) r = Number($gamePlayer._lightRadius) || 0;
-        if (r <= 0) return null;
-        const pos = this._screenPos($gamePlayer);
-        return { x: pos.x + dx, y: pos.y + dy, r: r };
+        if ($gamePlayer._lightRadius != null) r = darknessNumber($gamePlayer._lightRadius, 0);
+        this._pushLight(lights, $gamePlayer, r, dx, dy);
     };
-    Sprite_Darkness.prototype._drawLights = function (lights, frameIndex) {
-        const bmp = this._patternBitmaps[frameIndex];
-        const ctx = bmp._context;
-        ctx.save();
-        ctx.globalCompositeOperation = 'source-over';
-        ctx.globalAlpha = 1;
-        ctx.fillStyle = DARKNESS_COLOR;
-        ctx.fillRect(0, 0, bmp.width, bmp.height);
-        ctx.globalCompositeOperation = 'destination-out';
-        ctx.fillStyle = 'black';
-        for (let i = 0; i < lights.length; i++) {
-            const l = lights[i];
-            const radius = Math.max(0, Math.round(l.r));
-            if (radius <= 0) continue;
-            const lightBmp = this._getLightBitmap(radius);
-            if (!lightBmp || !lightBmp.isReady()) continue;
-            const frameW = Math.floor(lightBmp.width / LIGHT_SHEET_FRAMES);
-            const frameH = lightBmp.height;
-            if (frameW <= 0 || frameH <= 0) continue;
-            const sx = frameW * frameIndex;
-            const dx = Math.round(l.x - frameW / 2);
-            const dy = Math.round(l.y - frameH / 2);
-            ctx.drawImage(lightBmp._canvas, sx, 0, frameW, frameH, dx, dy, frameW, frameH);
+
+    Sprite_Darkness.prototype._collectCharacterLight = function (lights, ch) {
+        if (!ch || ch._lightRadius == null) return;
+        const r = darknessNumber(ch._lightRadius, 0);
+        const dx = darknessNumber(ch._lightOffsetX, 0);
+        const dy = darknessNumber(ch._lightOffsetY, 0);
+        this._pushLight(lights, ch, r, dx, dy);
+    };
+
+    Sprite_Darkness.prototype._collectEventLight = function (lights, ev) {
+        if (!ev || ev._erased) return;
+        if (ev._lightRadius != null) {
+            this._collectCharacterLight(lights, ev);
+            return;
         }
-        ctx.restore();
-        bmp._setDirty();
+        if (!ev.event || !ev.event()) return;
+        const meta = ev.event().meta && ev.event().meta.light;
+        if (meta == null) return;
+        const args = String(meta).split(',');
+        const r = darknessNumber(args[0], 0);
+        const dx = darknessNumber(args[1], 0);
+        const dy = darknessNumber(args[2], 0);
+        this._pushLight(lights, ev, r, dx, dy);
     };
-    Sprite_Darkness.prototype._composeDynamic = function (frameIndex, playerLight) {
-        if (!this._patternBitmaps[frameIndex] || !this._dynamicBitmap) return;
-        const base = this._patternBitmaps[frameIndex];
-        this._dynamicBitmap.clear();
-        this._dynamicBitmap.blt(base, 0, 0, base.width, base.height, 0, 0);
-        if (playerLight) this._drawPlayerLight(playerLight, frameIndex);
-        this._dynamicBitmap._setDirty();
+
+    Sprite_Darkness.prototype._collectLights = function () {
+        const lights = [];
+        this._collectPlayerLight(lights);
+
+        if ($gamePlayer && $gamePlayer.followers) {
+            const followers = $gamePlayer.followers().visibleFollowers();
+            for (let i = 0; i < followers.length; i++) this._collectCharacterLight(lights, followers[i]);
+        }
+
+        const events = $gameMap.events();
+        for (let i = 0; i < events.length; i++) this._collectEventLight(lights, events[i]);
+
+        const vehicles = $gameMap.vehicles ? $gameMap.vehicles() : [];
+        for (let i = 0; i < vehicles.length; i++) this._collectCharacterLight(lights, vehicles[i]);
+        return lights;
     };
-    Sprite_Darkness.prototype._drawPlayerLight = function (light, frameIndex) {
-        const radius = Math.max(0, Math.round(light.r));
-        if (radius <= 0) return;
-        const lightBmp = this._getLightBitmap(radius);
-        if (!lightBmp || !lightBmp.isReady()) return;
-        const frameW = Math.floor(lightBmp.width / LIGHT_SHEET_FRAMES);
-        const frameH = lightBmp.height;
-        if (frameW <= 0 || frameH <= 0) return;
-        const sx = frameW * frameIndex;
-        const dx = light.x - frameW / 2;
-        const dy = light.y - frameH / 2;
-        const ctx = this._dynamicBitmap._context;
-        ctx.save();
-        ctx.globalCompositeOperation = 'destination-out';
-        ctx.imageSmoothingEnabled = false;
-        ctx.drawImage(lightBmp._canvas, sx, 0, frameW, frameH, dx, dy, frameW, frameH);
-        ctx.restore();
+
+    Sprite_Darkness.prototype._makeLightHash = function (lights) {
+        let hash = '';
+        for (let i = 0; i < lights.length; i++) {
+            const light = lights[i];
+            hash += Math.round(light.x * 100) + ',' +
+                Math.round(light.y * 100) + ',' +
+                Math.round(light.r * 100) + ';';
+        }
+        return hash;
     };
+
+    Sprite_Darkness.prototype._clearBrightness = function () {
+        if (this._brightness) this._brightness.fill(0);
+    };
+
+    Sprite_Darkness.prototype._applyLight = function (light) {
+        const r = light.r;
+        const full = r * 0.5;
+        const outer = Math.max(1, r - full);
+        const r2 = r * r;
+        const full2 = full * full;
+        const cell = DARKNESS_CELL_SIZE;
+        const minX = Math.max(0, Math.floor((light.x - r) / cell));
+        const maxX = Math.min(this._maskW - 1, Math.floor((light.x + r) / cell));
+        const minY = Math.max(0, Math.floor((light.y - r) / cell));
+        const maxY = Math.min(this._maskH - 1, Math.floor((light.y + r) / cell));
+
+        for (let y = minY; y <= maxY; y++) {
+            const py = y * cell + cell / 2;
+            const dy = py - light.y;
+            const dy2 = dy * dy;
+            if (dy2 > r2) continue;
+            let index = y * this._maskW + minX;
+            for (let x = minX; x <= maxX; x++, index++) {
+                const current = this._brightness[index];
+                if (current >= 4) continue;
+                const px = x * cell + cell / 2;
+                const dx = px - light.x;
+                const d2 = dx * dx + dy2;
+                if (d2 > r2) continue;
+
+                let add = 0;
+                if (d2 <= full2) {
+                    add = 4;
+                } else {
+                    const t = (Math.sqrt(d2) - full) / outer;
+                    add = 4 - Math.ceil(t * 3);
+                    if (add < 1) add = 1;
+                    if (add > 3) add = 3;
+                }
+                const next = current + add;
+                this._brightness[index] = next >= 4 ? 4 : next;
+            }
+        }
+    };
+
+    Sprite_Darkness.prototype._applyLights = function (lights) {
+        for (let i = 0; i < lights.length; i++) this._applyLight(lights[i]);
+    };
+
+    Sprite_Darkness.prototype._writeMasks = function () {
+        const count = this._maskW * this._maskH;
+        for (let i = 0; i < count; i++) {
+            const b = this._brightness[i];
+            const p = i * 4 + 3;
+            for (let j = 0; j < this._layers.length; j++) {
+                const layer = this._layers[j];
+                layer.imageData.data[p] = b === layer.brightness ? 255 : 0;
+            }
+        }
+        for (let i = 0; i < this._layers.length; i++) {
+            const layer = this._layers[i];
+            layer.maskBitmap._context.putImageData(layer.imageData, 0, 0);
+            layer.maskBitmap._setDirty();
+            layer.maskBitmap.checkDirty();
+        }
+    };
+
     Sprite_Darkness.prototype.update = function () {
         Sprite.prototype.update.call(this);
         if (!this._isDarkMap()) {
@@ -4329,46 +4614,17 @@ const _createOutlineFilter = function(w, h, bw, ww) {
             return;
         }
         this.visible = true;
-        this._refreshSize();
-        const staticLights = this._collectStaticLights();
-        const staticHash = staticLights.map(l => [Math.round(l.x), Math.round(l.y), Math.round(l.r)].join(':')).join('|');
-        const sc = $gameSystem.sceneCount();
-        const frameIndex = Math.floor(sc / LIGHT_SHEET_FRAME_WAIT) % LIGHT_SHEET_FRAMES;
-        const lightTick = Math.floor(sc / PLAYER_LIGHT_UPDATE_WAIT);
-        let staticChanged = false;
-        const lightsReady = this._areLightsReady(staticLights);
-        const frameChanged = this._lastFrameIndex !== frameIndex;
-        const lightTickChanged = this._lastPlayerLightTick !== lightTick;
-        if (!lightsReady) {
-            this._lastStaticHash = null;
-        } else if (this._lastStaticHash === null || staticHash !== this._lastStaticHash) {
-            this._refreshPatterns(staticLights);
-            this._lastStaticHash = staticHash;
-            staticChanged = true;
-        } else if (frameChanged) {
-            this._drawLights(staticLights, frameIndex);
-        }
-        const playerLight = this._collectPlayerLight();
-        if (playerLight) {
-            if (frameChanged || staticChanged || lightTickChanged) {
-                this._composeDynamic(frameIndex, playerLight);
-            }
-            if (this.bitmap !== this._dynamicBitmap) {
-                this.bitmap = this._dynamicBitmap;
-                this.setFrame(0, 0, this._mapWidth, this._mapHeight);
-            }
-            this._lastPlayerLight = { x: playerLight.x, y: playerLight.y, r: playerLight.r };
-            this._lastPlayerLightTick = lightTick;
-        } else {
-            if (this.bitmap !== this._patternBitmaps[frameIndex]) {
-                this.bitmap = this._patternBitmaps[frameIndex];
-                this.setFrame(0, 0, this._mapWidth, this._mapHeight);
-            }
-            this._lastPlayerLight = null;
-            this._lastPlayerLightTick = null;
-        }
-        this._lastFrameIndex = frameIndex;
-        this._updatePosition();
+        this._refreshPatternFrames();
+        const layoutChanged = this._refreshLayout();
+        this._updateTileOrigins();
+        this._updateYuraFilter();
+        const lights = this._collectLights();
+        const lightHash = this._makeLightHash(lights);
+        if (!layoutChanged && this._lastLightHash === lightHash) return;
+        this._lastLightHash = lightHash;
+        this._clearBrightness();
+        this._applyLights(lights);
+        this._writeMasks();
     };
     const _Spriteset_Map_createWeather = Spriteset_Map.prototype.createWeather;
     Spriteset_Map.prototype.createWeather = function () {

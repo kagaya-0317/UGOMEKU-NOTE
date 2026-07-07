@@ -39,6 +39,7 @@ var $plugins =
 {"name":"KNH_ZXC_Menu","status":true,"description":"ZXCメニュー画面系","parameters":{}},
 {"name":"KNH_ZXC_Data","status":true,"description":"ZXCデータ管理","parameters":{}},
 {"name":"KNH_ZXC_Translation","status":true,"description":"Export JP texts (Show Text / Show Choices) from Maps + Troops into ONE column and copy to clipboard. v2.1 (1-column)","parameters":{}},
+{"name":"KNH_ZXC_PlayerDrawing","status":true,"description":"Scene_Map player drawing editor and dynamic drawing bitmaps.","parameters":{}},
 {"name":"KNH_ZXC_Endroll","status":true,"description":"ZXCエンドロール表示","parameters":{}},
 {"name":"KNH_ZXC_Gimmick_Rock","status":true,"description":"岩","parameters":{}},
 {"name":"KNH_ZXC_Gimmick_Trampoline","status":true,"description":"(MV) Scene_Map継承：線を引いてトランポリンで跳ねる縦スクロール擬似物理ミニゲーム v0.1","parameters":{}},

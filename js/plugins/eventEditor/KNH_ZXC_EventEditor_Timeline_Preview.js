@@ -3187,7 +3187,7 @@
                 self.msg('Play ON (ctrl+r)');
                 return;
             }
-            if (!e.ctrlKey) return;
+            if (isTypingTarget || !e.ctrlKey) return;
             var k = key;
             if (k === 'a') {
                 e.preventDefault();

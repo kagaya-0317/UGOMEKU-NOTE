@@ -1,15 +1,30 @@
 {
   "plugin": "KNH_ZXC_EventEditor",
   "version": "0.1.0",
-  "savedAt": "2026-07-01T22:15:29.001Z",
+  "savedAt": "2026-07-02T21:38:08.731Z",
   "tracks": [
     {
-      "eventId": 21,
-      "pageIndex": 0,
+      "eventId": 22,
+      "pageIndex": 1,
       "list": [
         {
-          "code": 122,
+          "code": 108,
           "indent": 0,
+          "parameters": [
+            "<EE_SCRIPT_COND:$gameMap._events.reduce((n,e)=>n+!!(e&&!e._erased&&+e._lightRadius>0),0) >= 5>"
+          ]
+        },
+        {
+          "code": 111,
+          "indent": 0,
+          "parameters": [
+            12,
+            "!this.character(0).__a"
+          ]
+        },
+        {
+          "code": 122,
+          "indent": 1,
           "parameters": [
             14,
             14,
@@ -20,35 +35,28 @@
         },
         {
           "code": 355,
-          "indent": 0,
+          "indent": 1,
           "parameters": [
             "$gameSystem.clearMessagePopupFree()"
           ]
         },
         {
           "code": 356,
-          "indent": 0,
+          "indent": 1,
           "parameters": [
-            "フキダシウィンドウ有効化 牢屋の声 1"
-          ]
-        },
-        {
-          "code": 356,
-          "indent": 0,
-          "parameters": [
-            "フキダシウィンドウ調整 位置 0 -48"
+            "フキダシウィンドウ有効化 ペナピ 1"
           ]
         },
         {
           "code": 355,
-          "indent": 0,
+          "indent": 1,
           "parameters": [
             "$gameMessage._tailDir = 1"
           ]
         },
         {
           "code": 101,
-          "indent": 0,
+          "indent": 1,
           "parameters": [
             "",
             0,
@@ -58,14 +66,21 @@
         },
         {
           "code": 401,
-          "indent": 0,
+          "indent": 1,
           "parameters": [
-            "は～い"
+            "やあ！ぼくは"
+          ]
+        },
+        {
+          "code": 401,
+          "indent": 1,
+          "parameters": [
+            "光の妖精ペナピ＾＾"
           ]
         },
         {
           "code": 101,
-          "indent": 0,
+          "indent": 1,
           "parameters": [
             "",
             0,
@@ -75,10 +90,127 @@
         },
         {
           "code": 401,
-          "indent": 0,
+          "indent": 1,
           "parameters": [
-            "入ってます"
+            "明るいところが"
           ]
+        },
+        {
+          "code": 401,
+          "indent": 1,
+          "parameters": [
+            "大好きな妖精さ！"
+          ]
+        },
+        {
+          "code": 101,
+          "indent": 1,
+          "parameters": [
+            "",
+            0,
+            0,
+            2
+          ]
+        },
+        {
+          "code": 401,
+          "indent": 1,
+          "parameters": [
+            "暗いと、なんだか"
+          ]
+        },
+        {
+          "code": 401,
+          "indent": 1,
+          "parameters": [
+            "悲しい気持ちに"
+          ]
+        },
+        {
+          "code": 401,
+          "indent": 1,
+          "parameters": [
+            "なるよネ…"
+          ]
+        },
+        {
+          "code": 101,
+          "indent": 1,
+          "parameters": [
+            "",
+            0,
+            0,
+            2
+          ]
+        },
+        {
+          "code": 401,
+          "indent": 1,
+          "parameters": [
+            "でも、明るいと、"
+          ]
+        },
+        {
+          "code": 401,
+          "indent": 1,
+          "parameters": [
+            "とっても楽しい気持ち"
+          ]
+        },
+        {
+          "code": 401,
+          "indent": 1,
+          "parameters": [
+            "になるよネ＾＾"
+          ]
+        },
+        {
+          "code": 355,
+          "indent": 1,
+          "parameters": [
+            "this.character(0).__a = 1;"
+          ]
+        },
+        {
+          "code": 411,
+          "indent": 0,
+          "parameters": []
+        },
+        {
+          "code": 101,
+          "indent": 1,
+          "parameters": [
+            "",
+            0,
+            0,
+            2
+          ]
+        },
+        {
+          "code": 401,
+          "indent": 1,
+          "parameters": [
+            "ペナピ、次はもっと"
+          ]
+        },
+        {
+          "code": 401,
+          "indent": 1,
+          "parameters": [
+            "明るい場所に"
+          ]
+        },
+        {
+          "code": 401,
+          "indent": 1,
+          "parameters": [
+            "行ってみたいナ＾＾"
+          ]
+        },
+        {
+          "code": 412,
+          "indent": 0,
+          "parameters": []
         },
         {
           "code": 0,
@@ -90,16 +222,14 @@
         {
           "uid": 1,
           "frame": 0,
-          "eventId": 21,
-          "pageIndex": 0,
+          "eventId": 22,
+          "pageIndex": 1,
           "command": {
-            "code": 101,
+            "code": 111,
             "indent": 0,
             "parameters": [
-              "",
-              0,
-              0,
-              2
+              12,
+              "!this.character(0).__a"
             ]
           },
           "wait": 0,
@@ -111,20 +241,9 @@
           "isMemo": false,
           "memoSize": "S",
           "memoText": "",
-          "isMessage": true,
-          "messageLines": [
-            "は～い"
-          ],
-          "messageExt": {
-            "windowType": 0,
-            "tailDir": 1,
-            "targetMode": "char",
-            "targetCharId": 21,
-            "targetX": 0,
-            "targetY": 0,
-            "addX": 0,
-            "addY": -48
-          },
+          "isMessage": false,
+          "messageLines": null,
+          "messageExt": null,
           "isScrollMessage": false,
           "scrollLines": null,
           "isScript": false,
@@ -133,11 +252,11 @@
         {
           "uid": 2,
           "frame": 0,
-          "eventId": 21,
-          "pageIndex": 0,
+          "eventId": 22,
+          "pageIndex": 1,
           "command": {
             "code": 101,
-            "indent": 0,
+            "indent": 1,
             "parameters": [
               "",
               0,
@@ -156,18 +275,283 @@
           "memoText": "",
           "isMessage": true,
           "messageLines": [
-            "入ってます"
+            "やあ！ぼくは",
+            "光の妖精ペナピ＾＾"
           ],
           "messageExt": {
             "windowType": 0,
             "tailDir": 1,
             "targetMode": "char",
-            "targetCharId": 21,
+            "targetCharId": 22,
             "targetX": 0,
             "targetY": 0,
             "addX": 0,
-            "addY": -48
+            "addY": 0
           },
+          "isScrollMessage": false,
+          "scrollLines": null,
+          "isScript": false,
+          "scriptLines": null
+        },
+        {
+          "uid": 3,
+          "frame": 0,
+          "eventId": 22,
+          "pageIndex": 1,
+          "command": {
+            "code": 101,
+            "indent": 1,
+            "parameters": [
+              "",
+              0,
+              0,
+              2
+            ]
+          },
+          "wait": 0,
+          "rowType": "main",
+          "rowKey": "main",
+          "charId": null,
+          "isComment": false,
+          "commentLines": null,
+          "isMemo": false,
+          "memoSize": "S",
+          "memoText": "",
+          "isMessage": true,
+          "messageLines": [
+            "明るいところが",
+            "大好きな妖精さ！"
+          ],
+          "messageExt": {
+            "windowType": 0,
+            "tailDir": 1,
+            "targetMode": "char",
+            "targetCharId": 22,
+            "targetX": 0,
+            "targetY": 0,
+            "addX": 0,
+            "addY": 0
+          },
+          "isScrollMessage": false,
+          "scrollLines": null,
+          "isScript": false,
+          "scriptLines": null
+        },
+        {
+          "uid": 4,
+          "frame": 0,
+          "eventId": 22,
+          "pageIndex": 1,
+          "command": {
+            "code": 101,
+            "indent": 1,
+            "parameters": [
+              "",
+              0,
+              0,
+              2
+            ]
+          },
+          "wait": 0,
+          "rowType": "main",
+          "rowKey": "main",
+          "charId": null,
+          "isComment": false,
+          "commentLines": null,
+          "isMemo": false,
+          "memoSize": "S",
+          "memoText": "",
+          "isMessage": true,
+          "messageLines": [
+            "暗いと、なんだか",
+            "悲しい気持ちに",
+            "なるよネ…"
+          ],
+          "messageExt": {
+            "windowType": 0,
+            "tailDir": 1,
+            "targetMode": "char",
+            "targetCharId": 22,
+            "targetX": 0,
+            "targetY": 0,
+            "addX": 0,
+            "addY": 0
+          },
+          "isScrollMessage": false,
+          "scrollLines": null,
+          "isScript": false,
+          "scriptLines": null
+        },
+        {
+          "uid": 5,
+          "frame": 0,
+          "eventId": 22,
+          "pageIndex": 1,
+          "command": {
+            "code": 101,
+            "indent": 1,
+            "parameters": [
+              "",
+              0,
+              0,
+              2
+            ]
+          },
+          "wait": 0,
+          "rowType": "main",
+          "rowKey": "main",
+          "charId": null,
+          "isComment": false,
+          "commentLines": null,
+          "isMemo": false,
+          "memoSize": "S",
+          "memoText": "",
+          "isMessage": true,
+          "messageLines": [
+            "でも、明るいと、",
+            "とっても楽しい気持ち",
+            "になるよネ＾＾"
+          ],
+          "messageExt": {
+            "windowType": 0,
+            "tailDir": 1,
+            "targetMode": "char",
+            "targetCharId": 22,
+            "targetX": 0,
+            "targetY": 0,
+            "addX": 0,
+            "addY": 0
+          },
+          "isScrollMessage": false,
+          "scrollLines": null,
+          "isScript": false,
+          "scriptLines": null
+        },
+        {
+          "uid": 6,
+          "frame": 0,
+          "eventId": 22,
+          "pageIndex": 1,
+          "command": {
+            "code": 355,
+            "indent": 1,
+            "parameters": [
+              "this.character(0).__a = 1;"
+            ]
+          },
+          "wait": 0,
+          "rowType": "main",
+          "rowKey": "main",
+          "charId": null,
+          "isComment": false,
+          "commentLines": null,
+          "isMemo": false,
+          "memoSize": "S",
+          "memoText": "",
+          "isMessage": false,
+          "messageLines": null,
+          "messageExt": null,
+          "isScrollMessage": false,
+          "scrollLines": null,
+          "isScript": true,
+          "scriptLines": [
+            "this.character(0).__a = 1;"
+          ]
+        },
+        {
+          "uid": 7,
+          "frame": 0,
+          "eventId": 22,
+          "pageIndex": 1,
+          "command": {
+            "code": 411,
+            "indent": 0,
+            "parameters": []
+          },
+          "wait": 0,
+          "rowType": "main",
+          "rowKey": "main",
+          "charId": null,
+          "isComment": false,
+          "commentLines": null,
+          "isMemo": false,
+          "memoSize": "S",
+          "memoText": "",
+          "isMessage": false,
+          "messageLines": null,
+          "messageExt": null,
+          "isScrollMessage": false,
+          "scrollLines": null,
+          "isScript": false,
+          "scriptLines": null
+        },
+        {
+          "uid": 8,
+          "frame": 0,
+          "eventId": 22,
+          "pageIndex": 1,
+          "command": {
+            "code": 101,
+            "indent": 1,
+            "parameters": [
+              "",
+              0,
+              0,
+              2
+            ]
+          },
+          "wait": 0,
+          "rowType": "main",
+          "rowKey": "main",
+          "charId": null,
+          "isComment": false,
+          "commentLines": null,
+          "isMemo": false,
+          "memoSize": "S",
+          "memoText": "",
+          "isMessage": true,
+          "messageLines": [
+            "ペナピ、次はもっと",
+            "明るい場所に",
+            "行ってみたいナ＾＾"
+          ],
+          "messageExt": {
+            "windowType": 0,
+            "tailDir": 1,
+            "targetMode": "char",
+            "targetCharId": 22,
+            "targetX": 0,
+            "targetY": 0,
+            "addX": 0,
+            "addY": 0
+          },
+          "isScrollMessage": false,
+          "scrollLines": null,
+          "isScript": false,
+          "scriptLines": null
+        },
+        {
+          "uid": 9,
+          "frame": 0,
+          "eventId": 22,
+          "pageIndex": 1,
+          "command": {
+            "code": 412,
+            "indent": 0,
+            "parameters": []
+          },
+          "wait": 0,
+          "rowType": "main",
+          "rowKey": "main",
+          "charId": null,
+          "isComment": false,
+          "commentLines": null,
+          "isMemo": false,
+          "memoSize": "S",
+          "memoText": "",
+          "isMessage": false,
+          "messageLines": null,
+          "messageExt": null,
           "isScrollMessage": false,
           "scrollLines": null,
           "isScript": false,
