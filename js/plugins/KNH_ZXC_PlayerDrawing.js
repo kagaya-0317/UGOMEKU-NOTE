@@ -9,6 +9,7 @@
  * @help
  * Script examples:
  *   this.openPlayerDrawing({ background: "transparent" });
+ *   this.openPlayerDrawing({ background: "transparent", showCancelButton: true });
  *   // In a later event command after the editor closes:
  *   KNH_PlayerDrawing.putItem(this.lastPlayerDrawingId(), 1, $gamePlayer.x, $gamePlayer.y);
  *   ImageManager.loadPlayerDrawing(1);
@@ -24,12 +25,118 @@
     var DOC_H = 72;
     var DISPLAY_SCALE = 6;
     var OUTPUT_SIZE = 144;
+    var HISTORY_LIMIT = 10;
     var TRANSPARENT_CHECKER_CELLS = 4;
-    var TRANSPARENT_HATCH_COLOR = '#474e51';
+    var DISPLAY_UPDATE_MARGIN = 2;
+    var DISPLAY_DIAGONAL_BRIDGE_SIZE = 2;
+    var DONE_CONFIRM_TEXT = '\u3053\u308c\u3067\u3044\u3044\uff1f';
+    var DONE_CONFIRM_YES = '\u306f\u3044';
+    var DONE_CONFIRM_NO = '\u3044\u3044\u3048';
+    var GAME_BLACK_COLOR = '#474e51';
+    var TRANSPARENT_HATCH_COLOR = GAME_BLACK_COLOR;
+    var TOOL_ICON_SIZE = 48;
+    var TOOL_BUTTON_SIZE = TOOL_ICON_SIZE;
+    var TOOL_BUTTON_GAP = 7;
+    var TOOL_ICON_OFFSET = Math.floor((TOOL_BUTTON_SIZE - TOOL_ICON_SIZE) / 2);
+    var PROMPT_MARGIN = 8;
+    var PROMPT_MIN_FONT_SIZE = 18;
+    var SIZE_BUTTON_SIZE = 24;
+    var SIZE_BUTTON_GAP = 6;
+    var SIZE_SELECT_GAP = 2;
+    var SIZE_SELECT_BORDER = 3;
+    var SIZE_SELECT_OUTSET = SIZE_SELECT_GAP + SIZE_SELECT_BORDER;
+    var TOOLBAR_W = 128;
+    var ACTION_BUTTON_GAP = 4;
+    var ACTION_H = 84;
+    var COLOR_WINDOW_W = 64;
+    var COLOR_WINDOW_H = 64;
+    var COLOR_BIG_SIZE = 38;
+    var COLOR_SMALL_SIZE = 28;
+    var COLOR_WHITE_BORDER = 4;
+    var COLOR_BLACK_BORDER = 6;
     var PIXEL_TRANSPARENT = 0;
     var PIXEL_WHITE = 1;
     var PIXEL_BLACK = 2;
     var DRAWING_NAME_RE = /^PD:(\d+)$/i;
+    var DISPLAY_CORNERS = [
+        { dx: -1, dy: -1 },
+        { dx: 1, dy: -1 },
+        { dx: -1, dy: 1 },
+        { dx: 1, dy: 1 }
+    ];
+    var DRAWING_TOOL_KEYS = ['pen', 'eraser', 'fill', 'picker'];
+    var TOOLBAR_BUTTONS = [
+        { key: 'pen', icon: 0, type: 'tool' },
+        { key: 'eraser', icon: 1, type: 'tool' },
+        { key: 'fill', icon: 2, type: 'tool' },
+        { key: 'picker', icon: 3, type: 'tool' },
+        { key: 'clear', icon: 4, type: 'action' },
+        { key: 'undo', icon: 5, type: 'action' },
+        { key: 'redo', icon: 6, type: 'action' }
+    ];
+    var ACTION_BUTTONS = [
+        { key: 'done', icon: 7 },
+        { key: 'cancel_draw', icon: 8 }
+    ];
+    var ACTION_DONE_BUTTONS = [ACTION_BUTTONS[0]];
+    var CURSOR_TOOL_ICONS = {
+        pen: 0,
+        eraser: 1,
+        fill: 2,
+        picker: 3
+    };
+
+    function toolbarIndexForKey(key) {
+        for (var i = 0; i < TOOLBAR_BUTTONS.length; i++) {
+            if (TOOLBAR_BUTTONS[i].key === key) return i;
+        }
+        return -1;
+    }
+
+    function toolbarCommandForButton(button) {
+        if (!button) return null;
+        return button.type === 'tool' ? 'tool_' + button.key : button.key;
+    }
+
+    function cursorIconForTool(tool) {
+        return Object.prototype.hasOwnProperty.call(CURSOR_TOOL_ICONS, tool) ? CURSOR_TOOL_ICONS[tool] : -1;
+    }
+
+    function toolbarWindowHeight() {
+        var contentH = TOOLBAR_BUTTONS.length * TOOL_BUTTON_SIZE + (TOOLBAR_BUTTONS.length - 1) * TOOL_BUTTON_GAP;
+        return contentH + Window_Base.prototype.standardPadding() * 2;
+    }
+
+    function actionButtonsForEditor(editor) {
+        return editor && editor.showCancelButton ? ACTION_BUTTONS : ACTION_DONE_BUTTONS;
+    }
+
+    function actionWindowWidth(editor) {
+        var buttons = actionButtonsForEditor(editor);
+        var contentW = buttons.length * TOOL_BUTTON_SIZE + Math.max(0, buttons.length - 1) * ACTION_BUTTON_GAP;
+        return contentW + Window_Base.prototype.standardPadding() * 2;
+    }
+
+    function booleanOption(value, defaultValue) {
+        if (value == null) return !!defaultValue;
+        if (value === true || value === false) return value;
+        var text = String(value).toLowerCase();
+        if (text === 'true' || text === 'on' || text === 'yes' || text === '1') return true;
+        if (text === 'false' || text === 'off' || text === 'no' || text === '0') return false;
+        return !!value;
+    }
+
+    function pdText(text) {
+        return typeof _tl === 'function' ? _tl(text) : text;
+    }
+
+    function optionText(options, keys) {
+        for (var i = 0; i < keys.length; i++) {
+            var value = options[keys[i]];
+            if (value != null && value !== '') return String(value);
+        }
+        return '';
+    }
 
     function clampInt(value, min, max) {
         value = Math.floor(Number(value) || 0);
@@ -100,6 +207,79 @@
         return match ? Number(match[1]) : 0;
     }
 
+    function isPlayerDrawingActive() {
+        var scene = SceneManager && SceneManager._scene;
+        return !!(scene && scene._sceneInfo && scene._sceneInfo.type === 'playerDrawing');
+    }
+
+    PD._shortcutQueue = PD._shortcutQueue || {};
+    PD._shortcutQueue.undo = !!PD._shortcutQueue.undo;
+    PD._shortcutQueue.redo = !!PD._shortcutQueue.redo;
+    PD._shortcutQueue.toolbarPrev = !!PD._shortcutQueue.toolbarPrev;
+    PD._shortcutQueue.toolbarNext = !!PD._shortcutQueue.toolbarNext;
+    PD._shortcutQueue.brushSmaller = !!PD._shortcutQueue.brushSmaller;
+    PD._shortcutQueue.brushLarger = !!PD._shortcutQueue.brushLarger;
+    PD._lastPadShortcut = PD._lastPadShortcut || {};
+
+    if (!PD._shortcutListenerReady && typeof document !== 'undefined' && document.addEventListener) {
+        PD._shortcutListenerReady = true;
+        document.addEventListener('keydown', function(event) {
+            if (!isPlayerDrawingActive()) return;
+            if (event.altKey || event.metaKey) return;
+            var key = String(event.key || '').toLowerCase();
+            if (event.ctrlKey) {
+                if (event.repeat) return;
+                if (key === 'z') {
+                    PD._shortcutQueue.undo = true;
+                    event.preventDefault();
+                } else if (key === 'y') {
+                    PD._shortcutQueue.redo = true;
+                    event.preventDefault();
+                }
+                return;
+            }
+            if (key === 'arrowup' || key === 'w') {
+                PD._shortcutQueue.toolbarPrev = true;
+                event.preventDefault();
+            } else if (key === 'arrowdown' || key === 's') {
+                PD._shortcutQueue.toolbarNext = true;
+                event.preventDefault();
+            } else if (key === 'q') {
+                PD._shortcutQueue.brushSmaller = true;
+                event.preventDefault();
+            } else if (key === 'e') {
+                PD._shortcutQueue.brushLarger = true;
+                event.preventDefault();
+            }
+        });
+    }
+
+    function consumeKeyboardShortcut(name) {
+        if (!PD._shortcutQueue || !PD._shortcutQueue[name]) return false;
+        PD._shortcutQueue[name] = false;
+        return true;
+    }
+
+    function isAnyGamepadButtonPressed(buttonIds) {
+        var states = Input && Input._gamepadStates;
+        if (!states) return false;
+        for (var i = 0; i < states.length; i++) {
+            var state = states[i];
+            if (!state) continue;
+            for (var j = 0; j < buttonIds.length; j++) {
+                if (state[buttonIds[j]]) return true;
+            }
+        }
+        return false;
+    }
+
+    function isGamepadButtonTriggered(name, buttonIds) {
+        var pressed = isAnyGamepadButtonPressed(buttonIds);
+        var last = !!PD._lastPadShortcut[name];
+        PD._lastPadShortcut[name] = pressed;
+        return pressed && !last;
+    }
+
     function markBitmapDirty(bitmap) {
         if (!bitmap) return;
         if (bitmap._setDirty) bitmap._setDirty();
@@ -127,6 +307,48 @@
         }
     }
 
+    function markYuraSpriteBitmapChanged(sprite, bitmap) {
+        markBitmapDirty(bitmap);
+        if (!sprite || !sprite._meshSprite) return;
+        if (sprite._yuraDirect) {
+            if (sprite._meshSprite._bitmap !== bitmap ||
+                    !sprite._meshSprite.texture ||
+                    sprite._meshSprite.texture.baseTexture !== bitmap._baseTexture) {
+                sprite._meshSprite._bitmap = bitmap;
+                sprite._meshSprite.texture = new PIXI.Texture(bitmap._baseTexture);
+                sprite._meshSprite.texture.baseTexture.scaleMode = PIXI.SCALE_MODES.NEAREST;
+            }
+            sprite._meshSprite._meshDirty = true;
+            if (sprite._meshSprite.updateMesh) sprite._meshSprite.updateMesh();
+            return;
+        }
+        sprite._lastFrame = null;
+        sprite._meshSprite._meshDirty = true;
+        sprite._meshSprite._lastPattern = null;
+        sprite._meshSprite._lastMeshStep = null;
+    }
+
+    function dirtyBounds(x, y) {
+        return { minX: x, minY: y, maxX: x, maxY: y };
+    }
+
+    function addDirtyPoint(bounds, x, y) {
+        if (!bounds) return dirtyBounds(x, y);
+        if (x < bounds.minX) bounds.minX = x;
+        if (y < bounds.minY) bounds.minY = y;
+        if (x > bounds.maxX) bounds.maxX = x;
+        if (y > bounds.maxY) bounds.maxY = y;
+        return bounds;
+    }
+
+    function mergeDirtyBounds(a, b) {
+        if (!b) return a || null;
+        if (!a) return { minX: b.minX, minY: b.minY, maxX: b.maxX, maxY: b.maxY };
+        addDirtyPoint(a, b.minX, b.minY);
+        addDirtyPoint(a, b.maxX, b.maxY);
+        return a;
+    }
+
     function DrawingDocument(entry) {
         this.initialize(entry);
     }
@@ -136,8 +358,9 @@
         this.height = DOC_H;
         this.background = entry && entry.background === 'white' ? 'white' : 'transparent';
         this.pixels = new Uint8Array(this.width * this.height);
-        this._undo = null;
-        this._redo = null;
+        this._undoStack = [];
+        this._redoStack = [];
+        this._pendingSnapshot = null;
         if (entry && entry.pixels) this.unpack(entry.pixels);
     };
 
@@ -193,46 +416,70 @@
         this.unpack(snapshot.pixels);
     };
 
+    DrawingDocument.prototype.pushHistory = function(stack, snapshot) {
+        stack.push(snapshot);
+        while (stack.length > HISTORY_LIMIT) stack.shift();
+    };
+
     DrawingDocument.prototype.beginOperation = function() {
-        this._undo = this.snapshot();
-        this._redo = null;
+        if (!this._pendingSnapshot) this._pendingSnapshot = this.snapshot();
+    };
+
+    DrawingDocument.prototype.commitOperation = function() {
+        if (!this._pendingSnapshot) return false;
+        this.pushHistory(this._undoStack, this._pendingSnapshot);
+        this._pendingSnapshot = null;
+        this._redoStack.length = 0;
+        return true;
+    };
+
+    DrawingDocument.prototype.cancelOperation = function() {
+        this._pendingSnapshot = null;
     };
 
     DrawingDocument.prototype.canUndo = function() {
-        return !!this._undo;
+        return this._undoStack.length > 0;
     };
 
     DrawingDocument.prototype.canRedo = function() {
-        return !!this._redo;
+        return this._redoStack.length > 0;
     };
 
     DrawingDocument.prototype.undo = function() {
-        if (!this._undo) return false;
+        if (!this.canUndo()) return false;
+        this.cancelOperation();
         var now = this.snapshot();
-        this.restore(this._undo);
-        this._undo = null;
-        this._redo = now;
+        var previous = this._undoStack.pop();
+        this.pushHistory(this._redoStack, now);
+        this.restore(previous);
         return true;
     };
 
     DrawingDocument.prototype.redo = function() {
-        if (!this._redo) return false;
+        if (!this.canRedo()) return false;
+        this.cancelOperation();
         var now = this.snapshot();
-        this.restore(this._redo);
-        this._redo = null;
-        this._undo = now;
+        var next = this._redoStack.pop();
+        this.pushHistory(this._undoStack, now);
+        this.restore(next);
         return true;
     };
 
-    DrawingDocument.prototype.brush = function(cx, cy, size, value) {
+    DrawingDocument.prototype.brushBounds = function(cx, cy, size, value) {
         size = clampInt(size, 1, 3);
-        var changed = false;
+        var bounds = null;
         for (var y = 0; y < size; y++) {
             for (var x = 0; x < size; x++) {
-                changed = this.set(cx + x, cy + y, value) || changed;
+                var px = cx + x;
+                var py = cy + y;
+                if (this.set(px, py, value)) bounds = addDirtyPoint(bounds, px, py);
             }
         }
-        return changed;
+        return bounds;
+    };
+
+    DrawingDocument.prototype.brush = function(cx, cy, size, value) {
+        return !!this.brushBounds(cx, cy, size, value);
     };
 
     DrawingDocument.prototype.fill = function(x, y, value) {
@@ -262,7 +509,16 @@
     };
 
     DrawingDocument.prototype.clear = function() {
+        var changed = false;
+        for (var i = 0; i < this.pixels.length; i++) {
+            if (this.pixels[i] !== PIXEL_TRANSPARENT) {
+                changed = true;
+                break;
+            }
+        }
+        if (!changed) return false;
         this.pixels.fill(PIXEL_TRANSPARENT);
+        return true;
     };
 
     DrawingDocument.prototype.toEntry = function(id, name) {
@@ -289,8 +545,14 @@
         this.doc = new DrawingDocument(entry);
         if (!entry && options.background === 'white') this.doc.background = 'white';
         this.tool = options.tool || 'pen';
+        this.toolbarIndex = Math.max(0, toolbarIndexForKey(this.tool));
         this.color = options.color === 'white' ? PIXEL_WHITE : PIXEL_BLACK;
-        this.size = clampInt(options.size || 2, 1, 3);
+        this.penSize = clampInt(options.penSize || options.size || 2, 1, 3);
+        this.eraserSize = clampInt(options.eraserSize || options.size || 2, 1, 3);
+        this.showCancelButton = booleanOption(
+                options.showCancelButton != null ? options.showCancelButton : options.cancelButton,
+                false);
+        this.promptText = optionText(options, ['promptText', 'guideText', 'titleText', 'prompt']);
         this._painting = false;
         this._changedInOperation = false;
         this._lastPixel = null;
@@ -302,14 +564,52 @@
 
     DrawingEditor.prototype.setTool = function(tool) {
         this.tool = tool;
+        var index = toolbarIndexForKey(tool);
+        if (index >= 0) this.toolbarIndex = index;
+    };
+
+    DrawingEditor.prototype.setToolbarIndex = function(index) {
+        index = clampInt(index, 0, TOOLBAR_BUTTONS.length - 1);
+        this.toolbarIndex = index;
+        var button = TOOLBAR_BUTTONS[index];
+        if (button && button.type === 'tool') this.tool = button.key;
+    };
+
+    DrawingEditor.prototype.nudgeToolbarIndex = function(delta) {
+        var length = TOOLBAR_BUTTONS.length;
+        var index = Number(this.toolbarIndex);
+        if (isNaN(index)) index = Math.max(0, toolbarIndexForKey(this.tool));
+        this.setToolbarIndex((index + delta + length) % length);
+        return true;
+    };
+
+    DrawingEditor.prototype.toolbarCommand = function() {
+        return toolbarCommandForButton(TOOLBAR_BUTTONS[this.toolbarIndex]);
     };
 
     DrawingEditor.prototype.toggleColor = function() {
         this.color = this.color === PIXEL_BLACK ? PIXEL_WHITE : PIXEL_BLACK;
     };
 
-    DrawingEditor.prototype.cycleSize = function() {
-        this.size = this.size >= 3 ? 1 : this.size + 1;
+    DrawingEditor.prototype.usesBrushSize = function() {
+        return this.tool === 'pen' || this.tool === 'eraser';
+    };
+
+    DrawingEditor.prototype.brushSize = function() {
+        return this.tool === 'eraser' ? this.eraserSize : this.penSize;
+    };
+
+    DrawingEditor.prototype.setBrushSize = function(size) {
+        size = clampInt(size, 1, 3);
+        if (this.tool === 'eraser') this.eraserSize = size;
+        else this.penSize = size;
+    };
+
+    DrawingEditor.prototype.nudgeBrushSize = function(delta) {
+        var next = clampInt(this.brushSize() + delta, 1, 3);
+        if (next === this.brushSize()) return false;
+        this.setBrushSize(next);
+        return true;
     };
 
     DrawingEditor.prototype.toggleBackground = function() {
@@ -322,15 +622,16 @@
     };
 
     DrawingEditor.prototype.finishDraw = function() {
-        if (!this._changedInOperation) this.doc._undo = null;
+        if (this._changedInOperation) this.doc.commitOperation();
+        else this.doc.cancelOperation();
         this._painting = false;
         this._lastPixel = null;
     };
 
     DrawingEditor.prototype.drawAt = function(x, y) {
-        var changed = this.doc.brush(x, y, this.size, this.paintValue());
-        this._changedInOperation = this._changedInOperation || changed;
-        return changed;
+        var bounds = this.doc.brushBounds(x, y, this.brushSize(), this.paintValue());
+        this._changedInOperation = this._changedInOperation || !!bounds;
+        return bounds;
     };
 
     DrawingEditor.prototype.drawLine = function(from, to) {
@@ -338,13 +639,13 @@
         var dx = to.x - from.x;
         var dy = to.y - from.y;
         var steps = Math.max(Math.abs(dx), Math.abs(dy), 1);
-        var changed = false;
+        var bounds = null;
         for (var i = 0; i <= steps; i++) {
             var x = Math.round(from.x + dx * i / steps);
             var y = Math.round(from.y + dy * i / steps);
-            changed = this.drawAt(x, y) || changed;
+            bounds = mergeDirtyBounds(bounds, this.drawAt(x, y));
         }
-        return changed;
+        return bounds;
     };
 
     DrawingEditor.prototype.save = function() {
@@ -376,42 +677,232 @@
         return ctx.createPattern(patternCanvas, 'repeat');
     }
 
-    function fillTransparentPreviewBackground(ctx, w, h, scale) {
-        var cell = Math.max(scale, Math.floor(w / TRANSPARENT_CHECKER_CELLS));
-        var sparsePattern = createTransparentHatchPattern(ctx, false);
-        var densePattern = createTransparentHatchPattern(ctx, true);
+    function transparentPreviewPatterns(bitmap, ctx) {
+        if (bitmap && bitmap._pdTransparentPreviewPatterns) return bitmap._pdTransparentPreviewPatterns;
+        var patterns = {
+            sparse: createTransparentHatchPattern(ctx, false),
+            dense: createTransparentHatchPattern(ctx, true)
+        };
+        if (bitmap) bitmap._pdTransparentPreviewPatterns = patterns;
+        return patterns;
+    }
+
+    function transparentPreviewCellSize(w, scale) {
+        return Math.max(scale, Math.floor(w / TRANSPARENT_CHECKER_CELLS));
+    }
+
+    function fillTransparentPreviewRegion(ctx, w, h, scale, bitmap, x, y, width, height) {
+        if (width <= 0 || height <= 0) return;
+        var cell = transparentPreviewCellSize(w, scale);
+        var patterns = transparentPreviewPatterns(bitmap, ctx);
+        var right = Math.min(w, x + width);
+        var bottom = Math.min(h, y + height);
+        var startX = Math.floor(x / cell) * cell;
+        var startY = Math.floor(y / cell) * cell;
         ctx.fillStyle = '#ffffff';
-        ctx.fillRect(0, 0, w, h);
-        for (var cy = 0; cy < h; cy += cell) {
-            for (var cx = 0; cx < w; cx += cell) {
-                ctx.fillStyle = (((cx / cell + cy / cell) & 1) === 0) ? densePattern : sparsePattern;
-                ctx.fillRect(cx, cy, Math.min(cell, w - cx), Math.min(cell, h - cy));
+        ctx.fillRect(x, y, width, height);
+        for (var cy = startY; cy < bottom; cy += cell) {
+            for (var cx = startX; cx < right; cx += cell) {
+                var rx = Math.max(x, cx);
+                var ry = Math.max(y, cy);
+                var rw = Math.min(right, cx + cell) - rx;
+                var rh = Math.min(bottom, cy + cell) - ry;
+                if (rw <= 0 || rh <= 0) continue;
+                ctx.fillStyle = (((cx / cell + cy / cell) & 1) === 0) ? patterns.dense : patterns.sparse;
+                ctx.fillRect(rx, ry, rw, rh);
             }
         }
+    }
+
+    function fillTransparentPreviewBackground(ctx, w, h, scale, bitmap) {
+        fillTransparentPreviewRegion(ctx, w, h, scale, bitmap, 0, 0, w, h);
+    }
+
+    function fillDisplayCellRegion(ctx, bitmap, doc, scale, value, x, y, width, height) {
+        if (width <= 0 || height <= 0) return;
+        if (value === PIXEL_BLACK) {
+            ctx.fillStyle = GAME_BLACK_COLOR;
+            ctx.fillRect(x, y, width, height);
+        } else if (value === PIXEL_WHITE || doc.background === 'white') {
+            ctx.fillStyle = '#ffffff';
+            ctx.fillRect(x, y, width, height);
+        } else {
+            fillTransparentPreviewRegion(ctx, doc.width * scale, doc.height * scale, scale, bitmap, x, y, width, height);
+        }
+    }
+
+    function paintDocumentBackground(bitmap, doc, scale, rect) {
+        var ctx = bitmap._context;
+        var w = doc.width * scale;
+        var h = doc.height * scale;
+        if (rect) {
+            ctx.beginPath();
+            ctx.rect(rect.x, rect.y, rect.width, rect.height);
+            ctx.clip();
+            ctx.clearRect(rect.x, rect.y, rect.width, rect.height);
+        } else {
+            ctx.clearRect(0, 0, bitmap.width, bitmap.height);
+        }
+        if (doc.background === 'white') {
+            ctx.fillStyle = '#ffffff';
+            if (rect) ctx.fillRect(rect.x, rect.y, rect.width, rect.height);
+            else ctx.fillRect(0, 0, w, h);
+        } else {
+            fillTransparentPreviewBackground(ctx, w, h, scale, bitmap);
+        }
+    }
+
+    function displayPixelAt(doc, x, y) {
+        if (x < 0 || y < 0 || x >= doc.width || y >= doc.height) return PIXEL_TRANSPARENT;
+        return doc.pixels[y * doc.width + x];
+    }
+
+    function paintDocumentBasePixels(bitmap, doc, scale, minX, minY, maxX, maxY) {
+        var ctx = bitmap._context;
+        var pixels = doc.pixels;
+        var docW = doc.width;
+        for (var y = minY; y <= maxY; y++) {
+            var row = y * docW;
+            var runX = minX;
+            var runValue = PIXEL_TRANSPARENT;
+            for (var x = minX; x <= maxX + 1; x++) {
+                var value = x <= maxX ? pixels[row + x] : PIXEL_TRANSPARENT;
+                if (value === runValue) continue;
+                if (runValue !== PIXEL_TRANSPARENT) {
+                    fillDisplayCellRegion(ctx, bitmap, doc, scale, runValue,
+                            runX * scale, y * scale, (x - runX) * scale, scale);
+                }
+                runX = x;
+                runValue = value;
+            }
+        }
+    }
+
+    function paintDocumentPixels(bitmap, doc, scale, minX, minY, maxX, maxY) {
+        paintDocumentBasePixels(bitmap, doc, scale, minX, minY, maxX, maxY);
+        paintDocumentCornerCuts(bitmap, doc, scale, minX, minY, maxX, maxY);
+        paintDocumentDiagonalBridges(bitmap, doc, scale, minX, minY, maxX, maxY);
+    }
+
+    function displayCornerRadius(scale) {
+        return Math.max(1, Math.min(Math.floor(scale / 2), Math.floor(scale / 3)));
+    }
+
+    function displayCornerCutValue(doc, x, y, dx, dy) {
+        var value = displayPixelAt(doc, x, y);
+        var vertical = displayPixelAt(doc, x, y + dy);
+        var horizontal = displayPixelAt(doc, x + dx, y);
+        var diagonal = displayPixelAt(doc, x + dx, y + dy);
+        if (vertical !== horizontal) return -1;
+        if (vertical === value) return -1;
+        if (diagonal === value) return -1;
+        return vertical;
+    }
+
+    function paintDisplayCornerCut(ctx, bitmap, doc, scale, radius, x, y, dx, dy, value) {
+        var px = x * scale;
+        var py = y * scale;
+        for (var i = 0; i < radius; i++) {
+            var row = dy < 0 ? i : scale - radius + i;
+            var width = dy < 0 ? radius - i : i + 1;
+            var left = dx < 0 ? 0 : scale - width;
+            fillDisplayCellRegion(ctx, bitmap, doc, scale, value, px + left, py + row, width, 1);
+        }
+    }
+
+    function paintDocumentCornerCuts(bitmap, doc, scale, minX, minY, maxX, maxY) {
+        var ctx = bitmap._context;
+        var corners = DISPLAY_CORNERS;
+        var radius = displayCornerRadius(scale);
+        for (var y = minY; y <= maxY; y++) {
+            for (var x = minX; x <= maxX; x++) {
+                for (var i = 0; i < corners.length; i++) {
+                    var corner = corners[i];
+                    var value = displayCornerCutValue(doc, x, y, corner.dx, corner.dy);
+                    if (value >= 0) paintDisplayCornerCut(ctx, bitmap, doc, scale, radius, x, y, corner.dx, corner.dy, value);
+                }
+            }
+        }
+    }
+
+    function isDisplayBridgeValue(value) {
+        return value === PIXEL_BLACK || value === PIXEL_WHITE;
+    }
+
+    function displayNeighborScore(doc, x, y, value) {
+        var score = 0;
+        if (displayPixelAt(doc, x, y - 1) === value) score++;
+        if (displayPixelAt(doc, x, y + 1) === value) score++;
+        if (displayPixelAt(doc, x - 1, y) === value) score++;
+        if (displayPixelAt(doc, x + 1, y) === value) score++;
+        return score;
+    }
+
+    function diagonalBridgeCandidateScore(doc, x1, y1, x2, y2, value, otherA, otherB) {
+        if (!isDisplayBridgeValue(value)) return -1;
+        if (otherA === value || otherB === value) return -1;
+        return displayNeighborScore(doc, x1, y1, value) + displayNeighborScore(doc, x2, y2, value);
+    }
+
+    function displayDiagonalBridgeValue(doc, x, y) {
+        var nw = displayPixelAt(doc, x, y);
+        var ne = displayPixelAt(doc, x + 1, y);
+        var sw = displayPixelAt(doc, x, y + 1);
+        var se = displayPixelAt(doc, x + 1, y + 1);
+        var downRightScore = nw === se ? diagonalBridgeCandidateScore(doc, x, y, x + 1, y + 1, nw, ne, sw) : -1;
+        var downLeftScore = ne === sw ? diagonalBridgeCandidateScore(doc, x + 1, y, x, y + 1, ne, nw, se) : -1;
+        if (downRightScore >= 0 && downLeftScore >= 0) {
+            if (downRightScore === downLeftScore) return -1;
+            return downRightScore < downLeftScore ? nw : ne;
+        }
+        if (downRightScore >= 0) return nw;
+        if (downLeftScore >= 0) return ne;
+        return -1;
+    }
+
+    function paintDocumentDiagonalBridges(bitmap, doc, scale, minX, minY, maxX, maxY) {
+        var ctx = bitmap._context;
+        var size = Math.max(1, Math.min(DISPLAY_DIAGONAL_BRIDGE_SIZE, Math.floor(scale)));
+        var offset = Math.floor(size / 2);
+        for (var y = minY; y < maxY; y++) {
+            for (var x = minX; x < maxX; x++) {
+                var value = displayDiagonalBridgeValue(doc, x, y);
+                if (value < 0) continue;
+                fillDisplayCellRegion(ctx, bitmap, doc, scale, value,
+                        (x + 1) * scale - offset, (y + 1) * scale - offset, size, size);
+            }
+        }
+    }
+
+    function drawDocumentRegionToBitmap(bitmap, doc, scale, bounds) {
+        bitmap.smooth = false;
+        var ctx = bitmap._context;
+        var minX = clampInt(bounds.minX - DISPLAY_UPDATE_MARGIN, 0, doc.width - 1);
+        var minY = clampInt(bounds.minY - DISPLAY_UPDATE_MARGIN, 0, doc.height - 1);
+        var maxX = clampInt(bounds.maxX + DISPLAY_UPDATE_MARGIN, 0, doc.width - 1);
+        var maxY = clampInt(bounds.maxY + DISPLAY_UPDATE_MARGIN, 0, doc.height - 1);
+        if (maxX < minX || maxY < minY) return;
+        var rect = {
+            x: minX * scale,
+            y: minY * scale,
+            width: (maxX - minX + 1) * scale,
+            height: (maxY - minY + 1) * scale
+        };
+        ctx.save();
+        ctx.imageSmoothingEnabled = false;
+        paintDocumentBackground(bitmap, doc, scale, rect);
+        paintDocumentPixels(bitmap, doc, scale, minX, minY, maxX, maxY);
+        ctx.restore();
+        markBitmapDirty(bitmap);
     }
 
     function drawDocumentToBitmap(bitmap, doc, scale) {
         bitmap.smooth = false;
         var ctx = bitmap._context;
-        var w = doc.width * scale;
-        var h = doc.height * scale;
         ctx.save();
         ctx.imageSmoothingEnabled = false;
-        ctx.clearRect(0, 0, bitmap.width, bitmap.height);
-        if (doc.background === 'white') {
-            ctx.fillStyle = '#ffffff';
-            ctx.fillRect(0, 0, w, h);
-        } else {
-            fillTransparentPreviewBackground(ctx, w, h, scale);
-        }
-        for (var y = 0; y < doc.height; y++) {
-            for (var x = 0; x < doc.width; x++) {
-                var value = doc.get(x, y);
-                if (value === PIXEL_TRANSPARENT) continue;
-                ctx.fillStyle = value === PIXEL_BLACK ? '#111111' : '#ffffff';
-                ctx.fillRect(x * scale, y * scale, scale, scale);
-            }
-        }
+        paintDocumentBackground(bitmap, doc, scale, null);
+        paintDocumentPixels(bitmap, doc, scale, 0, 0, doc.width - 1, doc.height - 1);
         ctx.restore();
         markBitmapDirty(bitmap);
     }
@@ -433,7 +924,7 @@
             for (var x = 0; x < doc.width; x++) {
                 var value = doc.get(x, y);
                 if (value === PIXEL_TRANSPARENT) continue;
-                ctx.fillStyle = value === PIXEL_BLACK ? '#111111' : '#ffffff';
+                ctx.fillStyle = value === PIXEL_BLACK ? GAME_BLACK_COLOR : '#ffffff';
                 ctx.fillRect(Math.floor(x * scale), Math.floor(y * scale), Math.ceil(scale), Math.ceil(scale));
             }
         }
@@ -533,6 +1024,40 @@
         return false;
     };
 
+    function Window_PlayerDrawingPrompt() {
+        this.initialize.apply(this, arguments);
+    }
+
+    Window_PlayerDrawingPrompt.prototype = Object.create(Window_Base.prototype);
+    Window_PlayerDrawingPrompt.prototype.constructor = Window_PlayerDrawingPrompt;
+
+    Window_PlayerDrawingPrompt.prototype.initialize = function(editor, x, y, width) {
+        this._editor = editor;
+        Window_Base.prototype.initialize.call(this, x, y, width, this.fittingHeight(1));
+        this.refresh();
+    };
+
+    Window_PlayerDrawingPrompt.prototype.text = function() {
+        return String(this._editor.promptText || '').replace(/[\r\n]+/g, ' ');
+    };
+
+    Window_PlayerDrawingPrompt.prototype.refresh = function() {
+        if (this.refreshYurayura) this.refreshYurayura();
+        this.contents.clear();
+        var text = this.text();
+        if (text) {
+            var x = this.textPadding();
+            var width = Math.max(1, this.contents.width - x * 2);
+            this.resetFontSettings();
+            while (this.contents.fontSize > PROMPT_MIN_FONT_SIZE && this.textWidth(text) > width) {
+                this.contents.fontSize--;
+            }
+            this.drawText(text, x, 0, width, 'center');
+        }
+        markBitmapDirty(this.contents);
+        markYuraSpriteDirty(this._windowContentsSprite);
+    };
+
     function Window_PlayerDrawingCanvas() {
         this.initialize.apply(this, arguments);
     }
@@ -544,6 +1069,10 @@
         this._editor = editor;
         var size = DOC_W * DISPLAY_SCALE;
         Window_Base.prototype.initialize.call(this, x, y, size + this.standardPadding() * 2, size + this.standardPadding() * 2);
+        if (this._windowContentsSprite) {
+            this._windowContentsSprite._yuraDirect = true;
+            this._windowContentsSprite._yuraLockGeometry = true;
+        }
         this.refresh();
     };
 
@@ -551,6 +1080,18 @@
         if (this.refreshYurayura) this.refreshYurayura();
         drawDocumentToBitmap(this.contents, this._editor.doc, DISPLAY_SCALE);
         markYuraSpriteDirty(this._windowContentsSprite);
+    };
+
+    Window_PlayerDrawingCanvas.prototype.drawingBitmap = function() {
+        return this._windowContentsSprite && this._windowContentsSprite._baseBitmap ?
+                this._windowContentsSprite._baseBitmap : this.contents;
+    };
+
+    Window_PlayerDrawingCanvas.prototype.refreshDirty = function(bounds) {
+        if (!bounds) return;
+        var bitmap = this.drawingBitmap();
+        drawDocumentRegionToBitmap(bitmap, this._editor.doc, DISPLAY_SCALE, bounds);
+        markYuraSpriteBitmapChanged(this._windowContentsSprite, bitmap);
     };
 
     Window_PlayerDrawingCanvas.prototype.pixelFromScreen = function(screenX, screenY) {
@@ -568,61 +1109,306 @@
         this.initialize.apply(this, arguments);
     }
 
-    Window_PlayerDrawingToolbar.prototype = Object.create(Window_Command.prototype);
+    Window_PlayerDrawingToolbar.prototype = Object.create(Window_Base.prototype);
     Window_PlayerDrawingToolbar.prototype.constructor = Window_PlayerDrawingToolbar;
 
-    Window_PlayerDrawingToolbar.prototype.initialize = function(editor, x, y) {
+    Window_PlayerDrawingToolbar.prototype.initialize = function(editor, x, y, height) {
         this._editor = editor;
-        Window_Command.prototype.initialize.call(this, x, y);
-    };
-
-    Window_PlayerDrawingToolbar.prototype.windowWidth = function() {
-        return 176;
-    };
-
-    Window_PlayerDrawingToolbar.prototype.numVisibleRows = function() {
-        return 12;
-    };
-
-    Window_PlayerDrawingToolbar.prototype.makeCommandList = function() {
-        var e = this._editor;
-        var tool = e ? e.tool : 'pen';
-        var mark = function(name, active) {
-            return (active ? '> ' : '  ') + name;
-        };
-        this.addCommand(mark('Pen', tool === 'pen'), 'tool_pen');
-        this.addCommand(mark('Erase', tool === 'eraser'), 'tool_eraser');
-        this.addCommand(mark('Fill', tool === 'fill'), 'tool_fill');
-        this.addCommand(mark('Picker', tool === 'picker'), 'tool_picker');
-        this.addCommand('Color ' + (e && e.color === PIXEL_WHITE ? 'White' : 'Black'), 'color');
-        this.addCommand('Size ' + (e ? e.size : 1), 'size');
-        this.addCommand('BG ' + (e && e.doc.background === 'white' ? 'White' : 'Trans'), 'background');
-        this.addCommand('Undo', 'undo', !!(e && e.doc.canUndo()));
-        this.addCommand('Redo', 'redo', !!(e && e.doc.canRedo()));
-        this.addCommand('Clear', 'clear');
-        this.addCommand('Done', 'done');
-        this.addCommand('Cancel', 'cancel_draw');
+        this._iconBitmap = ImageManager.loadSystem('UI_playerDrawingTools');
+        Window_Base.prototype.initialize.call(this, x, y, TOOLBAR_W, height);
+        if (this._iconBitmap && this._iconBitmap.addLoadListener) {
+            this._iconBitmap.addLoadListener(this.refresh.bind(this));
+        }
+        this.refresh();
     };
 
     Window_PlayerDrawingToolbar.prototype.refreshState = function() {
-        var symbol = this.currentSymbol();
         this.refresh();
-        this.selectSymbol(symbol);
-        this.activate();
     };
 
-    Window_PlayerDrawingToolbar.prototype.processTouch = function() {
-        var scene = SceneManager && SceneManager._scene;
-        var info = scene && scene._sceneInfo;
-        var insideCanvas = info && info.type === 'playerDrawing' && info.canvasWindow &&
-                info.canvasWindow.pixelFromScreen(TouchInput.x, TouchInput.y);
-        var canvasTouching = TouchInput.isTriggered() || TouchInput.isPressed() ||
-                TouchInput.isCancelled() || (TouchInput.isReleased && TouchInput.isReleased());
-        if (insideCanvas && canvasTouching) {
-            this._touching = false;
-            return;
+    Window_PlayerDrawingToolbar.prototype.buttonRect = function(index) {
+        return {
+            x: 0,
+            y: index * (TOOL_BUTTON_SIZE + TOOL_BUTTON_GAP),
+            width: TOOL_BUTTON_SIZE,
+            height: TOOL_BUTTON_SIZE
+        };
+    };
+
+    Window_PlayerDrawingToolbar.prototype.sizeRect = function(size) {
+        var index = DRAWING_TOOL_KEYS.indexOf(this._editor.tool);
+        if (index < 0 || !this._editor.usesBrushSize()) return null;
+        return {
+            x: TOOL_BUTTON_SIZE + 10,
+            y: index * (TOOL_BUTTON_SIZE + TOOL_BUTTON_GAP) + SIZE_SELECT_OUTSET + (size - 1) * (SIZE_BUTTON_SIZE + SIZE_BUTTON_GAP),
+            width: SIZE_BUTTON_SIZE,
+            height: SIZE_BUTTON_SIZE
+        };
+    };
+
+    Window_PlayerDrawingToolbar.prototype.isRectTouched = function(rect, x, y) {
+        return rect && x >= rect.x && y >= rect.y && x < rect.x + rect.width && y < rect.y + rect.height;
+    };
+
+    Window_PlayerDrawingToolbar.prototype.buttonEnabled = function(key) {
+        if (key === 'undo') return this._editor.doc.canUndo();
+        if (key === 'redo') return this._editor.doc.canRedo();
+        return true;
+    };
+
+    Window_PlayerDrawingToolbar.prototype.localTouchPoint = function() {
+        return {
+            x: this.canvasToLocalX(TouchInput.x) - this.padding,
+            y: this.canvasToLocalY(TouchInput.y) - this.padding
+        };
+    };
+
+    Window_PlayerDrawingToolbar.prototype.consumeTriggeredAction = function() {
+        if (!TouchInput.isTriggered()) return null;
+        var point = this.localTouchPoint();
+        if (point.x < 0 || point.y < 0 || point.x >= this.contents.width || point.y >= this.contents.height) {
+            return null;
         }
-        Window_Command.prototype.processTouch.apply(this, arguments);
+        for (var s = 1; s <= 3; s++) {
+            if (this.isRectTouched(this.sizeRect(s), point.x, point.y)) {
+                return { key: 'size_' + s };
+            }
+        }
+        for (var i = 0; i < TOOLBAR_BUTTONS.length; i++) {
+            var button = TOOLBAR_BUTTONS[i];
+            if (this.isRectTouched(this.buttonRect(i), point.x, point.y)) {
+                if (!this.buttonEnabled(button.key)) return null;
+                return { key: toolbarCommandForButton(button), toolbarIndex: i };
+            }
+        }
+        return null;
+    };
+
+    Window_PlayerDrawingToolbar.prototype.drawButtonFrame = function(rect, active, enabled) {
+        var ctx = this.contents._context;
+        ctx.save();
+        ctx.lineWidth = active ? 2 : 1;
+        ctx.strokeStyle = active ? '#ffffff' : 'rgba(255,255,255,0.45)';
+        if (!enabled) ctx.globalAlpha *= 0.45;
+        ctx.strokeRect(rect.x + 0.5, rect.y + 0.5, rect.width - 1, rect.height - 1);
+        ctx.restore();
+    };
+
+    Window_PlayerDrawingToolbar.prototype.drawIcon = function(iconIndex, x, y, enabled, selected) {
+        if (!this._iconBitmap || !this._iconBitmap.isReady || !this._iconBitmap.isReady()) return;
+        var sy = selected && this._iconBitmap.height >= TOOL_ICON_SIZE * 2 ? TOOL_ICON_SIZE : 0;
+        this.contents.paintOpacity = enabled ? 255 : 96;
+        this.contents.blt(this._iconBitmap, iconIndex * TOOL_ICON_SIZE, sy, TOOL_ICON_SIZE, TOOL_ICON_SIZE, x, y);
+        this.contents.paintOpacity = 255;
+    };
+
+    Window_PlayerDrawingToolbar.prototype.drawToolButtons = function() {
+        for (var i = 0; i < TOOLBAR_BUTTONS.length; i++) {
+            var button = TOOLBAR_BUTTONS[i];
+            var rect = this.buttonRect(i);
+            var active = i === this._editor.toolbarIndex;
+            var enabled = this.buttonEnabled(button.key);
+            this.drawButtonFrame(rect, active, enabled);
+            this.drawIcon(button.icon, rect.x + TOOL_ICON_OFFSET, rect.y + TOOL_ICON_OFFSET, enabled, active);
+        }
+    };
+
+    Window_PlayerDrawingToolbar.prototype.drawSizePanel = function() {
+        if (!this._editor.usesBrushSize()) return;
+        var current = this._editor.brushSize();
+        var inverted = this._editor.tool === 'pen' && this._editor.color === PIXEL_BLACK;
+        var fillColor = inverted ? '#ffffff' : GAME_BLACK_COLOR;
+        var markColor = inverted ? GAME_BLACK_COLOR : '#ffffff';
+        var ctx = this.contents._context;
+        for (var size = 1; size <= 3; size++) {
+            var rect = this.sizeRect(size);
+            var active = size === current;
+            ctx.save();
+            if (active) {
+                var outerX = rect.x - SIZE_SELECT_OUTSET;
+                var outerY = rect.y - SIZE_SELECT_OUTSET;
+                var outerW = rect.width + SIZE_SELECT_OUTSET * 2;
+                var outerH = rect.height + SIZE_SELECT_OUTSET * 2;
+                ctx.fillStyle = GAME_BLACK_COLOR;
+                ctx.fillRect(outerX, outerY, outerW, SIZE_SELECT_BORDER);
+                ctx.fillRect(outerX, outerY + outerH - SIZE_SELECT_BORDER, outerW, SIZE_SELECT_BORDER);
+                ctx.fillRect(outerX, outerY, SIZE_SELECT_BORDER, outerH);
+                ctx.fillRect(outerX + outerW - SIZE_SELECT_BORDER, outerY, SIZE_SELECT_BORDER, outerH);
+            }
+            ctx.fillStyle = fillColor;
+            ctx.fillRect(rect.x, rect.y, rect.width, rect.height);
+            if (!inverted) {
+                ctx.strokeStyle = active ? GAME_BLACK_COLOR : 'rgba(255,255,255,0.45)';
+                ctx.lineWidth = active ? 2 : 1;
+                ctx.strokeRect(rect.x + 0.5, rect.y + 0.5, rect.width - 1, rect.height - 1);
+            }
+            ctx.fillStyle = markColor;
+            var dot = size * 4;
+            ctx.fillRect(rect.x + Math.floor((rect.width - dot) / 2), rect.y + Math.floor((rect.height - dot) / 2), dot, dot);
+            ctx.restore();
+        }
+    };
+
+    Window_PlayerDrawingToolbar.prototype.refresh = function() {
+        if (this.refreshYurayura) this.refreshYurayura();
+        this.contents.clear();
+        this.drawToolButtons();
+        this.drawSizePanel();
+        markBitmapDirty(this.contents);
+        markYuraSpriteDirty(this._windowContentsSprite);
+    };
+
+    function Window_PlayerDrawingColor() {
+        this.initialize.apply(this, arguments);
+    }
+
+    Window_PlayerDrawingColor.prototype = Object.create(Window_Base.prototype);
+    Window_PlayerDrawingColor.prototype.constructor = Window_PlayerDrawingColor;
+
+    Window_PlayerDrawingColor.prototype.standardPadding = function() {
+        return 0;
+    };
+
+    Window_PlayerDrawingColor.prototype.initialize = function(editor, x, y) {
+        this._editor = editor;
+        Window_Base.prototype.initialize.call(this, x, y, COLOR_WINDOW_W, COLOR_WINDOW_H);
+        this.hideChrome();
+        this.refresh();
+    };
+
+    Window_PlayerDrawingColor.prototype.hideChrome = function() {
+        this.opacity = 0;
+        this.backOpacity = 0;
+        if (this._windowFrameSprite) this._windowFrameSprite.visible = false;
+        if (this._windowBackSprite) this._windowBackSprite.visible = false;
+    };
+
+    Window_PlayerDrawingColor.prototype.localTouchPoint = function() {
+        return {
+            x: this.canvasToLocalX(TouchInput.x),
+            y: this.canvasToLocalY(TouchInput.y)
+        };
+    };
+
+    Window_PlayerDrawingColor.prototype.consumeTriggeredAction = function() {
+        if (!TouchInput.isTriggered()) return null;
+        var point = this.localTouchPoint();
+        if (point.x < 0 || point.y < 0 || point.x >= this.contents.width || point.y >= this.contents.height) {
+            return null;
+        }
+        return { key: 'color' };
+    };
+
+    Window_PlayerDrawingColor.prototype.colorCss = function(value) {
+        return value === PIXEL_WHITE ? '#ffffff' : GAME_BLACK_COLOR;
+    };
+
+    Window_PlayerDrawingColor.prototype.drawSwatch = function(rect, color) {
+        var ctx = this.contents._context;
+        ctx.fillStyle = '#000000';
+        ctx.fillRect(rect.x, rect.y, rect.width, rect.height);
+        ctx.fillStyle = color;
+        ctx.fillRect(
+            rect.x + COLOR_BLACK_BORDER,
+            rect.y + COLOR_BLACK_BORDER,
+            rect.width - COLOR_BLACK_BORDER * 2,
+            rect.height - COLOR_BLACK_BORDER * 2
+        );
+    };
+
+    Window_PlayerDrawingColor.prototype.refresh = function() {
+        if (this.refreshYurayura) this.refreshYurayura();
+        this.hideChrome();
+        this.contents.clear();
+        var current = this._editor.color;
+        var other = current === PIXEL_BLACK ? PIXEL_WHITE : PIXEL_BLACK;
+        var big = { x: 22, y: 4, width: COLOR_BIG_SIZE, height: COLOR_BIG_SIZE };
+        var small = { x: 8, y: 26, width: COLOR_SMALL_SIZE, height: COLOR_SMALL_SIZE };
+        var ctx = this.contents._context;
+        ctx.save();
+        ctx.fillStyle = '#ffffff';
+        ctx.fillRect(
+            big.x - COLOR_WHITE_BORDER,
+            big.y - COLOR_WHITE_BORDER,
+            big.width + COLOR_WHITE_BORDER * 2,
+            big.height + COLOR_WHITE_BORDER * 2
+        );
+        ctx.fillRect(
+            small.x - COLOR_WHITE_BORDER,
+            small.y - COLOR_WHITE_BORDER,
+            small.width + COLOR_WHITE_BORDER * 2,
+            small.height + COLOR_WHITE_BORDER * 2
+        );
+        this.drawSwatch(small, this.colorCss(other));
+        this.drawSwatch(big, this.colorCss(current));
+        ctx.restore();
+        markBitmapDirty(this.contents);
+        markYuraSpriteDirty(this._windowContentsSprite);
+    };
+
+    function Window_PlayerDrawingConfirm() {
+        this.initialize.apply(this, arguments);
+    }
+
+    Window_PlayerDrawingConfirm.prototype = Object.create(Window_Base.prototype);
+    Window_PlayerDrawingConfirm.prototype.constructor = Window_PlayerDrawingConfirm;
+
+    Window_PlayerDrawingConfirm.prototype.initialize = function(editor, x, y) {
+        this._editor = editor;
+        this._iconBitmap = ImageManager.loadSystem('UI_playerDrawingTools');
+        Window_Base.prototype.initialize.call(this, x, y, actionWindowWidth(editor), ACTION_H);
+        if (this._iconBitmap && this._iconBitmap.addLoadListener) {
+            this._iconBitmap.addLoadListener(this.refresh.bind(this));
+        }
+        this.refresh();
+    };
+
+    Window_PlayerDrawingConfirm.prototype.buttons = function() {
+        return actionButtonsForEditor(this._editor);
+    };
+
+    Window_PlayerDrawingConfirm.prototype.buttonRect = function(index) {
+        return {
+            x: index * (TOOL_BUTTON_SIZE + ACTION_BUTTON_GAP),
+            y: 0,
+            width: TOOL_BUTTON_SIZE,
+            height: TOOL_BUTTON_SIZE
+        };
+    };
+
+    Window_PlayerDrawingConfirm.prototype.localTouchPoint = function() {
+        return {
+            x: this.canvasToLocalX(TouchInput.x) - this.padding,
+            y: this.canvasToLocalY(TouchInput.y) - this.padding
+        };
+    };
+
+    Window_PlayerDrawingConfirm.prototype.consumeTriggeredAction = function() {
+        if (!TouchInput.isTriggered()) return null;
+        var point = this.localTouchPoint();
+        if (point.x < 0 || point.y < 0 || point.x >= this.contents.width || point.y >= this.contents.height) {
+            return null;
+        }
+        var buttons = this.buttons();
+        for (var i = 0; i < buttons.length; i++) {
+            if (Window_PlayerDrawingToolbar.prototype.isRectTouched.call(this, this.buttonRect(i), point.x, point.y)) {
+                return { key: buttons[i].key };
+            }
+        }
+        return null;
+    };
+
+    Window_PlayerDrawingConfirm.prototype.refresh = function() {
+        if (this.refreshYurayura) this.refreshYurayura();
+        this.contents.clear();
+        var buttons = this.buttons();
+        for (var i = 0; i < buttons.length; i++) {
+            var rect = this.buttonRect(i);
+            Window_PlayerDrawingToolbar.prototype.drawButtonFrame.call(this, rect, false, true);
+            Window_PlayerDrawingToolbar.prototype.drawIcon.call(this, buttons[i].icon, rect.x + TOOL_ICON_OFFSET, rect.y + TOOL_ICON_OFFSET, true);
+        }
+        markBitmapDirty(this.contents);
+        markYuraSpriteDirty(this._windowContentsSprite);
     };
 
     function resolveTemplate(template, isTemplate) {
@@ -806,48 +1592,144 @@
         _Sprite_Character_updateCharacterFrame_PD.apply(this, arguments);
     };
 
+    Scene_Base.prototype.setupPlayerDrawingCursor = function() {
+        var canvas = Graphics._canvas;
+        this._pdCursorOldCanvasCursor = canvas ? canvas.style.cursor : null;
+        this._pdCursorCanvasHover = Graphics.isInsideCanvas(TouchInput.x, TouchInput.y);
+        this._pdCursorTool = '';
+        this._pdCursorNativeHidden = false;
+        this._pdCursorEnterHandler = function() {
+            this._pdCursorCanvasHover = true;
+        }.bind(this);
+        this._pdCursorLeaveHandler = function() {
+            this._pdCursorCanvasHover = false;
+            this.updatePlayerDrawingCursor(true);
+        }.bind(this);
+        if (canvas) {
+            canvas.addEventListener('mouseenter', this._pdCursorEnterHandler);
+            canvas.addEventListener('mouseleave', this._pdCursorLeaveHandler);
+        }
+        this._pdCursorSprite = new Sprite(ImageManager.loadSystem('UI_playerDrawingTools'));
+        this._pdCursorSprite.anchor.x = 0;
+        this._pdCursorSprite.anchor.y = 1;
+        this._pdCursorSprite.visible = false;
+        this._pdCursorSprite.bitmap.smooth = false;
+        this._pdCursorSprite._yuraInfo = [12, 10];
+        this._pdCursorSprite._yuraUseOwnStep = true;
+        this._pdCursorSprite.setFrame(0, 0, TOOL_ICON_SIZE, TOOL_ICON_SIZE);
+        this.addChild(this._pdCursorSprite);
+    };
+
+    Scene_Base.prototype.restorePlayerDrawingCursor = function() {
+        var canvas = Graphics._canvas;
+        if (canvas) {
+            if (this._pdCursorEnterHandler) canvas.removeEventListener('mouseenter', this._pdCursorEnterHandler);
+            if (this._pdCursorLeaveHandler) canvas.removeEventListener('mouseleave', this._pdCursorLeaveHandler);
+            canvas.style.cursor = this._pdCursorOldCanvasCursor != null ? this._pdCursorOldCanvasCursor : '';
+        }
+        if (this._pdCursorSprite && this._pdCursorSprite.parent) {
+            this._pdCursorSprite.parent.removeChild(this._pdCursorSprite);
+        }
+        this._pdCursorSprite = null;
+        this._pdCursorTool = '';
+        this._pdCursorNativeHidden = false;
+        this._pdCursorEnterHandler = null;
+        this._pdCursorLeaveHandler = null;
+        this._pdCursorOldCanvasCursor = null;
+    };
+
+    Scene_Base.prototype.setPlayerDrawingCursorHidden = function(hidden) {
+        if (this._pdCursorNativeHidden === hidden) return;
+        var canvas = Graphics._canvas;
+        if (canvas) {
+            canvas.style.cursor = hidden ? 'none' : (this._pdCursorOldCanvasCursor != null ? this._pdCursorOldCanvasCursor : '');
+        }
+        this._pdCursorNativeHidden = hidden;
+    };
+
+    Scene_Base.prototype.updatePlayerDrawingCursor = function(forceHide) {
+        var sprite = this._pdCursorSprite;
+        if (!sprite) return;
+        var info = this._sceneInfo;
+        var show = false;
+        var icon = -1;
+        if (!forceHide && info && info.type === 'playerDrawing' && info.canvasWindow && this._pdCursorCanvasHover !== false) {
+            icon = cursorIconForTool(info.editor.tool);
+            show = icon >= 0 && !!info.canvasWindow.pixelFromScreen(TouchInput.x, TouchInput.y);
+        }
+        if (show) {
+            var tool = info.editor.tool;
+            if (this._pdCursorTool !== tool) {
+                sprite.setFrame(icon * TOOL_ICON_SIZE, 0, TOOL_ICON_SIZE, TOOL_ICON_SIZE);
+                sprite._lastFrame = null;
+                this._pdCursorTool = tool;
+            }
+            sprite.x = TouchInput.x;
+            sprite.y = TouchInput.y;
+            sprite.visible = true;
+            sprite.opacity = 255;
+            this.setPlayerDrawingCursorHidden(true);
+        } else {
+            sprite.visible = false;
+            this._pdCursorTool = '';
+            this.setPlayerDrawingCursorHidden(false);
+        }
+    };
+
     Scene_Base.prototype.startPlayerDrawing = function(options) {
         options = options || {};
         if (this._sceneInfo) return false;
         var editor = new DrawingEditor(options);
-        var toolbarW = 176;
+        var toolbarW = TOOLBAR_W;
+        var toolbarH = toolbarWindowHeight();
         var gap = 16;
         var padding = Window_Base.prototype.standardPadding();
         var canvasW = DOC_W * DISPLAY_SCALE + padding * 2;
-        var totalW = toolbarW + gap + canvasW;
+        var actionW = actionWindowWidth(editor);
+        var totalW = toolbarW + gap + canvasW + gap + actionW;
+        var promptH = editor.promptText ? Window_Base.prototype.fittingHeight.call(Window_Base.prototype, 1) : 0;
+        var minTop = promptH > 0 ? PROMPT_MARGIN + promptH + PROMPT_MARGIN : 8;
         var canvasLeft = Math.floor((Graphics.boxWidth - canvasW) / 2);
         var maxLeft = Math.max(8, Graphics.boxWidth - totalW - 8);
         var left = Math.max(8, Math.min(canvasLeft - toolbarW - gap, maxLeft));
-        var top = Math.max(8, Math.floor((Graphics.boxHeight - canvasW) / 2));
-        this._pdToolbarWindow = new Window_PlayerDrawingToolbar(editor, left, top);
-        this._pdCanvasWindow = new Window_PlayerDrawingCanvas(editor, left + toolbarW + gap, top);
+        var top = Math.max(minTop, Math.floor((Graphics.boxHeight - canvasW) / 2));
+        var canvasX = left + toolbarW + gap;
+        var colorX = left + Math.floor((toolbarW - COLOR_WINDOW_W) / 2);
+        var colorY = Math.max(8, Math.min(top + toolbarH + 8, Graphics.boxHeight - COLOR_WINDOW_H - 8));
+        var actionX = canvasX + canvasW + gap;
+        var actionY = top + canvasW - ACTION_H;
+        var promptW = Math.min(Graphics.boxWidth - PROMPT_MARGIN * 2, Math.max(totalW, canvasW));
+        var promptX = Math.floor((Graphics.boxWidth - promptW) / 2);
+        var promptY = PROMPT_MARGIN;
+        this._pdPromptWindow = editor.promptText ? new Window_PlayerDrawingPrompt(editor, promptX, promptY, promptW) : null;
+        this._pdToolbarWindow = new Window_PlayerDrawingToolbar(editor, left, top, toolbarH);
+        this._pdCanvasWindow = new Window_PlayerDrawingCanvas(editor, canvasX, top);
+        this._pdColorWindow = new Window_PlayerDrawingColor(editor, colorX, colorY);
+        this._pdActionWindow = new Window_PlayerDrawingConfirm(editor, actionX, actionY);
         this.addWindow(this._pdToolbarWindow);
         this.addWindow(this._pdCanvasWindow);
+        this.addWindow(this._pdColorWindow);
+        this.addWindow(this._pdActionWindow);
+        if (this._pdPromptWindow) this.addWindow(this._pdPromptWindow);
+        this.setupPlayerDrawingCursor();
 
         var info = this._sceneInfo = {
             type: 'playerDrawing',
             editor: editor,
             toolbarWindow: this._pdToolbarWindow,
             canvasWindow: this._pdCanvasWindow,
-            windows: [wrapRef(this, '_pdToolbarWindow'), wrapRef(this, '_pdCanvasWindow')],
+            colorWindow: this._pdColorWindow,
+            actionWindow: this._pdActionWindow,
+            promptWindow: this._pdPromptWindow,
+            windows: [wrapRef(this, '_pdPromptWindow'), wrapRef(this, '_pdToolbarWindow'), wrapRef(this, '_pdCanvasWindow'), wrapRef(this, '_pdColorWindow'), wrapRef(this, '_pdActionWindow')],
             returnInterpreter: options.returnInterpreter || null,
             onDone: typeof options.onDone === 'function' ? options.onDone : null,
             resultVariableId: Number(options.resultVariableId || 0),
-            resultSwitchId: Number(options.resultSwitchId || 0)
+            resultSwitchId: Number(options.resultSwitchId || 0),
+            phase: '',
+            confirmChoice: -1,
+            systemMessage: false
         };
-        this._pdToolbarWindow.setHandler('tool_pen', this.onPlayerDrawingCommand.bind(this, 'tool_pen'));
-        this._pdToolbarWindow.setHandler('tool_eraser', this.onPlayerDrawingCommand.bind(this, 'tool_eraser'));
-        this._pdToolbarWindow.setHandler('tool_fill', this.onPlayerDrawingCommand.bind(this, 'tool_fill'));
-        this._pdToolbarWindow.setHandler('tool_picker', this.onPlayerDrawingCommand.bind(this, 'tool_picker'));
-        this._pdToolbarWindow.setHandler('color', this.onPlayerDrawingCommand.bind(this, 'color'));
-        this._pdToolbarWindow.setHandler('size', this.onPlayerDrawingCommand.bind(this, 'size'));
-        this._pdToolbarWindow.setHandler('background', this.onPlayerDrawingCommand.bind(this, 'background'));
-        this._pdToolbarWindow.setHandler('undo', this.onPlayerDrawingCommand.bind(this, 'undo'));
-        this._pdToolbarWindow.setHandler('redo', this.onPlayerDrawingCommand.bind(this, 'redo'));
-        this._pdToolbarWindow.setHandler('clear', this.onPlayerDrawingCommand.bind(this, 'clear'));
-        this._pdToolbarWindow.setHandler('done', this.finishPlayerDrawing.bind(this, true));
-        this._pdToolbarWindow.setHandler('cancel_draw', this.finishPlayerDrawing.bind(this, false));
-        this._pdToolbarWindow.setHandler('cancel', this.finishPlayerDrawing.bind(this, false));
         return true;
     };
 
@@ -855,6 +1737,8 @@
         var info = this._sceneInfo;
         if (!info || info.type !== 'playerDrawing') return;
         var editor = info.editor;
+        if (symbol === 'done') return this.requestPlayerDrawingDoneConfirm();
+        if (symbol === 'cancel_draw') return this.finishPlayerDrawing(false);
         switch (symbol) {
             case 'tool_pen':
                 editor.setTool('pen');
@@ -871,14 +1755,6 @@
             case 'color':
                 editor.toggleColor();
                 break;
-            case 'size':
-                editor.cycleSize();
-                break;
-            case 'background':
-                editor.doc.beginOperation();
-                editor.toggleBackground();
-                info.canvasWindow.refresh();
-                break;
             case 'undo':
                 if (editor.doc.undo()) info.canvasWindow.refresh();
                 break;
@@ -887,11 +1763,117 @@
                 break;
             case 'clear':
                 editor.doc.beginOperation();
-                editor.doc.clear();
-                info.canvasWindow.refresh();
+                if (editor.doc.clear()) {
+                    editor.doc.commitOperation();
+                    info.canvasWindow.refresh();
+                } else {
+                    editor.doc.cancelOperation();
+                }
+                break;
+            default:
+                if (String(symbol || '').indexOf('size_') === 0) {
+                    editor.setBrushSize(Number(String(symbol).split('_')[1]));
+                }
                 break;
         }
-        info.toolbarWindow.refreshState();
+        if (info.toolbarWindow) info.toolbarWindow.refreshState();
+        if (info.colorWindow) info.colorWindow.refresh();
+        if (info.actionWindow) info.actionWindow.refresh();
+    };
+
+    Scene_Base.prototype.bringPlayerDrawingMessageToFront = function() {
+        if (!this._messageWindow || !this._windowLayer) return;
+        this.addWindow(this._messageWindow);
+        this._messageWindow.subWindows().forEach(function(window) {
+            this.addWindow(window);
+        }, this);
+    };
+
+    Scene_Base.prototype.preparePlayerDrawingSystemMessage = function() {
+        if ($gameSystem) {
+            if ($gameSystem.clearMessagePopupFree) $gameSystem.clearMessagePopupFree();
+            if ($gameSystem.clearMessagePopup) $gameSystem.clearMessagePopup();
+            if ($gameSystem.setMessagePopupFree) {
+                var point = this.playerDrawingConfirmPopupPoint();
+                $gameSystem.setMessagePopupFree(point.x, point.y);
+            }
+        }
+        if ($gameMessage) {
+            $gameMessage._fukidashi = false;
+            $gameMessage._tailDir = 5;
+            $gameMessage._realTailDir = null;
+            $gameMessage._realTailAngle = null;
+            if ($gameMessage.setBackground) $gameMessage.setBackground(0);
+            if ($gameMessage.setPositionType) $gameMessage.setPositionType(2);
+            if ($gameMessage.setChoiceBackground) $gameMessage.setChoiceBackground(0);
+            if ($gameMessage.setChoicePositionType) $gameMessage.setChoicePositionType(2);
+        }
+    };
+
+    Scene_Base.prototype.playerDrawingConfirmPopupPoint = function() {
+        var info = this._sceneInfo;
+        var canvas = info && info.canvasWindow;
+        if (canvas) {
+            return {
+                x: canvas.x + canvas.width / 2,
+                y: canvas.y + canvas.height / 2
+            };
+        }
+        return {
+            x: Graphics.boxWidth / 2,
+            y: Graphics.boxHeight / 2
+        };
+    };
+
+    Scene_Base.prototype.clearPlayerDrawingSystemMessagePopup = function() {
+        if ($gameSystem) {
+            if ($gameSystem.clearMessagePopupFree) $gameSystem.clearMessagePopupFree();
+            if ($gameSystem.clearMessagePopup) $gameSystem.clearMessagePopup();
+        }
+        if ($gameMessage) {
+            $gameMessage._fukidashi = false;
+            $gameMessage._tailDir = 5;
+            $gameMessage._realTailDir = null;
+            $gameMessage._realTailAngle = null;
+        }
+    };
+
+    Scene_Base.prototype.requestPlayerDrawingDoneConfirm = function() {
+        var info = this._sceneInfo;
+        if (!info || info.type !== 'playerDrawing') return;
+        if (info.phase === 'doneConfirm') return;
+        if (!$gameMessage) return this.finishPlayerDrawing(true);
+        if ($gameMessage.isBusy && $gameMessage.isBusy()) return;
+        info.phase = 'doneConfirm';
+        info.confirmChoice = -1;
+        info.systemMessage = true;
+        this.bringPlayerDrawingMessageToFront();
+        this.preparePlayerDrawingSystemMessage();
+        $gameMessage.add(pdText(DONE_CONFIRM_TEXT));
+        $gameMessage.setChoices([pdText(DONE_CONFIRM_YES), pdText(DONE_CONFIRM_NO)], 0, 1);
+        $gameMessage.setChoiceCallback(function(choice) {
+            var current = this._sceneInfo;
+            if (current && current.type === 'playerDrawing') current.confirmChoice = choice;
+        }.bind(this));
+        this.updatePlayerDrawingCursor(true);
+    };
+
+    Scene_Base.prototype.updatePlayerDrawingDoneConfirm = function() {
+        var info = this._sceneInfo;
+        if (!info || info.type !== 'playerDrawing' || info.phase !== 'doneConfirm') return false;
+        this.updatePlayerDrawingCursor(true);
+        if ($gameMessage && $gameMessage.isBusy && $gameMessage.isBusy()) return true;
+        var choice = Number(info.confirmChoice);
+        info.phase = '';
+        info.confirmChoice = -1;
+        info.systemMessage = false;
+        this.clearPlayerDrawingSystemMessagePopup();
+        if (choice === 0) {
+            this.finishPlayerDrawing(true);
+        } else {
+            this.updatePlayerDrawingCursor();
+        }
+        return true;
     };
 
     Scene_Base.prototype.finishPlayerDrawing = function(save) {
@@ -907,14 +1889,77 @@
             if (ref.value && this._windowLayer) this._windowLayer.removeChild(ref.value);
             ref.value = null;
         }, this);
+        this.restorePlayerDrawingCursor();
         this._sceneInfo = null;
+    };
+
+    Scene_Base.prototype.cyclePlayerDrawingToolbar = function(delta) {
+        var info = this._sceneInfo;
+        if (!info || info.type !== 'playerDrawing') return;
+        info.editor.nudgeToolbarIndex(delta);
+        info.toolbarWindow.refreshState();
+    };
+
+    Scene_Base.prototype.updatePlayerDrawingUiInput = function() {
+        var info = this._sceneInfo;
+        if (!info || info.type !== 'playerDrawing') return false;
+        var action = null;
+        if (info.toolbarWindow) action = info.toolbarWindow.consumeTriggeredAction();
+        if (!action && info.colorWindow) action = info.colorWindow.consumeTriggeredAction();
+        if (!action && info.actionWindow) action = info.actionWindow.consumeTriggeredAction();
+        if (action) {
+            if (action.toolbarIndex != null) info.editor.setToolbarIndex(action.toolbarIndex);
+            this.onPlayerDrawingCommand(action.key);
+            return true;
+        }
+        return false;
+    };
+
+    Scene_Base.prototype.updatePlayerDrawingKeyInput = function() {
+        var info = this._sceneInfo;
+        if (!info || info.type !== 'playerDrawing') return;
+        if (info.phase === 'doneConfirm') return;
+        var editor = info.editor;
+        var toolbarPrev = consumeKeyboardShortcut('toolbarPrev');
+        var toolbarNext = consumeKeyboardShortcut('toolbarNext');
+        var brushSmaller = consumeKeyboardShortcut('brushSmaller') || Input.isRepeated('Q');
+        var brushLarger = consumeKeyboardShortcut('brushLarger') || Input.isRepeated('E');
+        if (consumeKeyboardShortcut('undo') || isGamepadButtonTriggered('undo', [4, 6])) {
+            this.onPlayerDrawingCommand('undo');
+        } else if (consumeKeyboardShortcut('redo') || isGamepadButtonTriggered('redo', [5, 7])) {
+            this.onPlayerDrawingCommand('redo');
+        } else if (toolbarPrev) {
+            this.cyclePlayerDrawingToolbar(-1);
+        } else if (toolbarNext) {
+            this.cyclePlayerDrawingToolbar(1);
+        } else if (Input.isTriggered('ok')) {
+            this.onPlayerDrawingCommand(editor.toolbarCommand());
+        } else if (Input.isTriggered('cancel')) {
+            this.finishPlayerDrawing(false);
+        } else if (editor.usesBrushSize() && brushSmaller) {
+            if (editor.nudgeBrushSize(-1)) info.toolbarWindow.refreshState();
+        } else if (editor.usesBrushSize() && brushLarger) {
+            if (editor.nudgeBrushSize(1)) info.toolbarWindow.refreshState();
+        } else if (Input.isTriggered('left') || Input.isTriggered('right')) {
+            editor.toggleColor();
+            if (info.toolbarWindow) info.toolbarWindow.refreshState();
+            if (info.colorWindow) info.colorWindow.refresh();
+        }
     };
 
     Scene_Base.prototype.updatePlayerDrawing = function() {
         var info = this._sceneInfo;
         if (!info || info.type !== 'playerDrawing') return;
+        if (this.updatePlayerDrawingDoneConfirm()) return;
         var editor = info.editor;
         var canvas = info.canvasWindow;
+        this.updatePlayerDrawingKeyInput();
+        if (!this._sceneInfo || this._sceneInfo.type !== 'playerDrawing') return;
+        if (this.updatePlayerDrawingDoneConfirm()) return;
+        if (this.updatePlayerDrawingUiInput()) {
+            this.updatePlayerDrawingCursor();
+            return;
+        }
         if (TouchInput.isTriggered()) {
             var start = canvas.pixelFromScreen(TouchInput.x, TouchInput.y);
             if (start) {
@@ -922,28 +1967,33 @@
                     var picked = editor.doc.get(start.x, start.y);
                     if (picked === PIXEL_WHITE || picked === PIXEL_BLACK) {
                         editor.color = picked;
-                        editor.tool = 'pen';
+                        editor.setTool('pen');
                     } else {
-                        editor.tool = 'eraser';
+                        editor.setTool('eraser');
                     }
                     info.toolbarWindow.refreshState();
+                    if (info.colorWindow) info.colorWindow.refresh();
                 } else if (editor.tool === 'fill') {
                     editor.doc.beginOperation();
-                    if (editor.doc.fill(start.x, start.y, editor.color)) canvas.refresh();
-                    else editor.doc._undo = null;
+                    if (editor.doc.fill(start.x, start.y, editor.color)) {
+                        editor.doc.commitOperation();
+                        canvas.refresh();
+                    } else {
+                        editor.doc.cancelOperation();
+                    }
                     info.toolbarWindow.refreshState();
                 } else {
                     editor.beginDraw();
                     editor._painting = true;
                     editor._lastPixel = start;
-                    if (editor.drawAt(start.x, start.y)) canvas.refresh();
+                    canvas.refreshDirty(editor.drawAt(start.x, start.y));
                     info.toolbarWindow.refreshState();
                 }
             }
         } else if (editor._painting && TouchInput.isPressed()) {
             var current = canvas.pixelFromScreen(TouchInput.x, TouchInput.y);
             if (current) {
-                if (editor.drawLine(editor._lastPixel, current)) canvas.refresh();
+                canvas.refreshDirty(editor.drawLine(editor._lastPixel, current));
                 editor._lastPixel = current;
             }
         }
@@ -951,6 +2001,7 @@
             editor.finishDraw();
             info.toolbarWindow.refreshState();
         }
+        this.updatePlayerDrawingCursor();
     };
 
     var _Scene_Map_update_PD = Scene_Map.prototype.update;
@@ -977,11 +2028,15 @@
         if (String(command || '').toUpperCase() === 'PD_OPEN') {
             args = args || [];
             var first = String(args[0] || '').toLowerCase();
-            var background = first === 'white' || first === 'transparent' ? first : (args[1] || 'transparent');
-            this.openPlayerDrawing({
-                resultVariableId: first === 'white' || first === 'transparent' ? 0 : Number(args[0] || 0),
+            var firstIsBackground = first === 'white' || first === 'transparent';
+            var background = firstIsBackground ? first : (args[1] || 'transparent');
+            var promptText = args.slice(firstIsBackground ? 1 : 2).join(' ');
+            var options = {
+                resultVariableId: firstIsBackground ? 0 : Number(args[0] || 0),
                 background: background
-            });
+            };
+            if (promptText) options.promptText = promptText;
+            this.openPlayerDrawing(options);
         }
     };
 
@@ -993,6 +2048,9 @@
 
     PD.Document = DrawingDocument;
     PD.Editor = DrawingEditor;
+    PD.WindowPrompt = Window_PlayerDrawingPrompt;
     PD.WindowCanvas = Window_PlayerDrawingCanvas;
     PD.WindowToolbar = Window_PlayerDrawingToolbar;
+    PD.WindowColor = Window_PlayerDrawingColor;
+    PD.WindowConfirm = Window_PlayerDrawingConfirm;
 })();

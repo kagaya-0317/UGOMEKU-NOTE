@@ -2077,6 +2077,13 @@ const _createOutlineFilter = function(w, h, bw, ww) {
     };
     
     //選択肢ウィンドウ
+    function knhIsSystemChoicePopup() {
+        var scene = SceneManager._scene;
+        var info = scene && scene._sceneInfo;
+        return !!($gameSwitches.value(4) || (info && (info.shop || info.systemMessage ||
+            (info.type === 'playerDrawing' && info.phase === 'doneConfirm'))));
+    }
+
     Window_ChoiceList.prototype.isPopup = function () {
         return true;
     };
@@ -2086,7 +2093,7 @@ const _createOutlineFilter = function(w, h, bw, ww) {
         if (SceneManager._scene._messageWindow.isClosed()) this.updatePlacementPopup();
     };
     Window_ChoiceList.prototype.updatePlacementPopup = function() {
-        if ($gameSwitches.value(4) || (SceneManager._scene._sceneInfo && SceneManager._scene._sceneInfo.shop)) { //システムメッセージ
+        if (knhIsSystemChoicePopup()) { //システムメッセージ
             this.x = Graphics.boxWidth / 2 - this.width / 2;
             this.y = Graphics.boxHeight / 2 - this.height / 2;
         } else if ($gameParty.inBattle()) {
@@ -2141,7 +2148,7 @@ const _createOutlineFilter = function(w, h, bw, ww) {
 
     //数値入力ウィンドウ
     Window_NumberInput.prototype.updatePlacementPopup = function () {
-        if ($gameSwitches.value(4) || (SceneManager._scene._sceneInfo && SceneManager._scene._sceneInfo.shop)) { //システムメッセージ
+        if (knhIsSystemChoicePopup()) { //システムメッセージ
             this.x = Graphics.boxWidth / 2 - this.width / 2;
             this.y = Graphics.boxHeight / 2 - this.height / 2;
         } else {

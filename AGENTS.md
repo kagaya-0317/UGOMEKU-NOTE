@@ -62,6 +62,32 @@ bitmap.checkDirty();
   game are actually stale mesh, stale base bitmap, or origin/anchor mismatch
   problems.
 
+## Game-specific color rules
+
+- Treat `#474e51` as the game's canonical visual black. Use it for in-game
+  "black" pixels, drawings, fills, and similar artwork-facing colors unless a
+  true technical black is explicitly required for masks, outlines, or debugging.
+
+## Game-specific message rules
+
+- By default, game messages in this project should use the popup message
+  system rather than the normal fixed message window.
+- For system-style messages, confirmations, and non-character UI prompts, use
+  a rectangular system popup with the speech-bubble/fukidashi shape disabled.
+  In practice, use the popup positioning flow such as
+  `$gameSystem.setMessagePopupFree(...)`, then keep `$gameMessage._fukidashi`
+  false and use a no-tail direction such as `$gameMessage._tailDir = 5`.
+- Clear popup positioning/state after temporary system prompts when leaving
+  the flow, so the next unrelated message does not inherit the popup position.
+- Choice and number-input popup placement is overridden in
+  `js/plugins/KNH_ZXC_System.js` by `Window_ChoiceList.updatePlacementPopup()`
+  and `Window_NumberInput.updatePlacementPopup()`. Do not assume
+  `$gameMessage.setChoicePositionType(...)` is enough for popup messages.
+- System choice popups are centered when switch 4, `_sceneInfo.shop`, or
+  `_sceneInfo.systemMessage` is active. Prefer setting and clearing
+  `_sceneInfo.systemMessage` for temporary system confirmations instead of
+  repurposing shop flags or relying on player-relative popup placement.
+
 ## Game-specific event rules
 
 - `$gameMap.events()` is optimized in this game and returns only nearby events,
