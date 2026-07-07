@@ -24,6 +24,8 @@
     var DOC_H = 72;
     var DISPLAY_SCALE = 6;
     var OUTPUT_SIZE = 144;
+    var TRANSPARENT_CHECKER_CELLS = 4;
+    var TRANSPARENT_HATCH_COLOR = '#474e51';
     var PIXEL_TRANSPARENT = 0;
     var PIXEL_WHITE = 1;
     var PIXEL_BLACK = 2;
@@ -288,7 +290,7 @@
         if (!entry && options.background === 'white') this.doc.background = 'white';
         this.tool = options.tool || 'pen';
         this.color = options.color === 'white' ? PIXEL_WHITE : PIXEL_BLACK;
-        this.size = clampInt(options.size || 1, 1, 3);
+        this.size = clampInt(options.size || 2, 1, 3);
         this._painting = false;
         this._changedInOperation = false;
         this._lastPixel = null;
@@ -354,7 +356,41 @@
         return PD.createEntry(this.doc, name);
     };
 
-    function drawDocumentToBitmap(bitmap, doc, scale, showGrid) {
+    function createTransparentHatchPattern(ctx, dense) {
+        var patternCanvas = document.createElement('canvas');
+        patternCanvas.width = 8;
+        patternCanvas.height = 8;
+        var pctx = patternCanvas.getContext('2d');
+        pctx.strokeStyle = TRANSPARENT_HATCH_COLOR;
+        pctx.lineWidth = 1;
+        pctx.beginPath();
+        pctx.moveTo(8, 0);
+        pctx.lineTo(0, 8);
+        if (dense) {
+            pctx.moveTo(4, 0);
+            pctx.lineTo(0, 4);
+            pctx.moveTo(8, 4);
+            pctx.lineTo(4, 8);
+        }
+        pctx.stroke();
+        return ctx.createPattern(patternCanvas, 'repeat');
+    }
+
+    function fillTransparentPreviewBackground(ctx, w, h, scale) {
+        var cell = Math.max(scale, Math.floor(w / TRANSPARENT_CHECKER_CELLS));
+        var sparsePattern = createTransparentHatchPattern(ctx, false);
+        var densePattern = createTransparentHatchPattern(ctx, true);
+        ctx.fillStyle = '#ffffff';
+        ctx.fillRect(0, 0, w, h);
+        for (var cy = 0; cy < h; cy += cell) {
+            for (var cx = 0; cx < w; cx += cell) {
+                ctx.fillStyle = (((cx / cell + cy / cell) & 1) === 0) ? densePattern : sparsePattern;
+                ctx.fillRect(cx, cy, Math.min(cell, w - cx), Math.min(cell, h - cy));
+            }
+        }
+    }
+
+    function drawDocumentToBitmap(bitmap, doc, scale) {
         bitmap.smooth = false;
         var ctx = bitmap._context;
         var w = doc.width * scale;
@@ -366,13 +402,7 @@
             ctx.fillStyle = '#ffffff';
             ctx.fillRect(0, 0, w, h);
         } else {
-            var checker = Math.max(4, scale * 2);
-            for (var cy = 0; cy < h; cy += checker) {
-                for (var cx = 0; cx < w; cx += checker) {
-                    ctx.fillStyle = (((cx / checker + cy / checker) & 1) === 0) ? '#d6d6d6' : '#f2f2f2';
-                    ctx.fillRect(cx, cy, checker, checker);
-                }
-            }
+            fillTransparentPreviewBackground(ctx, w, h, scale);
         }
         for (var y = 0; y < doc.height; y++) {
             for (var x = 0; x < doc.width; x++) {
@@ -381,16 +411,6 @@
                 ctx.fillStyle = value === PIXEL_BLACK ? '#111111' : '#ffffff';
                 ctx.fillRect(x * scale, y * scale, scale, scale);
             }
-        }
-        if (showGrid) {
-            ctx.fillStyle = 'rgba(0,0,0,0.12)';
-            for (var gx = 0; gx <= w; gx += scale) ctx.fillRect(gx, 0, 1, h);
-            for (var gy = 0; gy <= h; gy += scale) ctx.fillRect(0, gy, w, 1);
-            ctx.fillStyle = 'rgba(0,0,0,0.45)';
-            ctx.fillRect(0, 0, w, 1);
-            ctx.fillRect(0, h - 1, w, 1);
-            ctx.fillRect(0, 0, 1, h);
-            ctx.fillRect(w - 1, 0, 1, h);
         }
         ctx.restore();
         markBitmapDirty(bitmap);
@@ -529,7 +549,7 @@
 
     Window_PlayerDrawingCanvas.prototype.refresh = function() {
         if (this.refreshYurayura) this.refreshYurayura();
-        drawDocumentToBitmap(this.contents, this._editor.doc, DISPLAY_SCALE, true);
+        drawDocumentToBitmap(this.contents, this._editor.doc, DISPLAY_SCALE);
         markYuraSpriteDirty(this._windowContentsSprite);
     };
 
