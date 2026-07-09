@@ -1,0 +1,2411 @@
+{
+  "plugin": "KNH_ZXC_EventEditor",
+  "version": "0.1.0",
+  "savedAt": "2026-07-08T20:40:16.785Z",
+  "tracks": [
+    {
+      "eventId": 8,
+      "pageIndex": 2,
+      "list": [
+        {
+          "code": 108,
+          "indent": 0,
+          "parameters": [
+            "====================================================="
+          ]
+        },
+        {
+          "code": 355,
+          "indent": 0,
+          "parameters": [
+            "TestReload.saveHere(\"モンスター城1F エントランス\");"
+          ]
+        },
+        {
+          "code": 108,
+          "indent": 0,
+          "parameters": [
+            "====================================================="
+          ]
+        },
+        {
+          "code": 216,
+          "indent": 0,
+          "parameters": [
+            1
+          ]
+        },
+        {
+          "code": 205,
+          "indent": 0,
+          "parameters": [
+            9,
+            {
+              "repeat": false,
+              "skippable": false,
+              "wait": false,
+              "list": [
+                {
+                  "code": 45,
+                  "parameters": [
+                    "this.locateToCharacter($gamePlayer._followers.follower(1)), this._direction = 2"
+                  ]
+                },
+                {
+                  "code": 40,
+                  "parameters": []
+                },
+                {
+                  "code": 45,
+                  "parameters": [
+                    "this.goTo(17.5, 20.5)"
+                  ],
+                  "_eeTileWait": 16
+                },
+                {
+                  "code": 18,
+                  "parameters": []
+                },
+                {
+                  "code": 0,
+                  "parameters": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "code": 505,
+          "indent": 0,
+          "parameters": [
+            {
+              "code": 45,
+              "parameters": [
+                "this.locateToCharacter($gamePlayer._followers.follower(1)), this._direction = 2"
+              ]
+            }
+          ]
+        },
+        {
+          "code": 505,
+          "indent": 0,
+          "parameters": [
+            {
+              "code": 40,
+              "parameters": []
+            }
+          ]
+        },
+        {
+          "code": 505,
+          "indent": 0,
+          "parameters": [
+            {
+              "code": 45,
+              "parameters": [
+                "this.goTo(17.5, 20.5)"
+              ],
+              "_eeTileWait": 16
+            }
+          ]
+        },
+        {
+          "code": 505,
+          "indent": 0,
+          "parameters": [
+            {
+              "code": 18,
+              "parameters": []
+            }
+          ]
+        },
+        {
+          "code": 205,
+          "indent": 0,
+          "parameters": [
+            10,
+            {
+              "repeat": false,
+              "skippable": false,
+              "wait": false,
+              "list": [
+                {
+                  "code": 45,
+                  "parameters": [
+                    "this.locateToCharacter($gamePlayer._followers.follower(3)), this._direction = 2"
+                  ]
+                },
+                {
+                  "code": 40,
+                  "parameters": []
+                },
+                {
+                  "code": 45,
+                  "parameters": [
+                    "this.goTo(17.5, 23)"
+                  ],
+                  "_eeTileWait": 38
+                },
+                {
+                  "code": 18,
+                  "parameters": []
+                },
+                {
+                  "code": 0,
+                  "parameters": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "code": 505,
+          "indent": 0,
+          "parameters": [
+            {
+              "code": 45,
+              "parameters": [
+                "this.locateToCharacter($gamePlayer._followers.follower(3)), this._direction = 2"
+              ]
+            }
+          ]
+        },
+        {
+          "code": 505,
+          "indent": 0,
+          "parameters": [
+            {
+              "code": 40,
+              "parameters": []
+            }
+          ]
+        },
+        {
+          "code": 505,
+          "indent": 0,
+          "parameters": [
+            {
+              "code": 45,
+              "parameters": [
+                "this.goTo(17.5, 23)"
+              ],
+              "_eeTileWait": 38
+            }
+          ]
+        },
+        {
+          "code": 505,
+          "indent": 0,
+          "parameters": [
+            {
+              "code": 18,
+              "parameters": []
+            }
+          ]
+        },
+        {
+          "code": 205,
+          "indent": 0,
+          "parameters": [
+            -1,
+            {
+              "repeat": false,
+              "skippable": false,
+              "wait": false,
+              "list": [
+                {
+                  "code": 45,
+                  "parameters": [
+                    "this.goTo(19, 21.5)"
+                  ]
+                },
+                {
+                  "code": 18,
+                  "parameters": []
+                },
+                {
+                  "code": 0,
+                  "parameters": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "code": 505,
+          "indent": 0,
+          "parameters": [
+            {
+              "code": 45,
+              "parameters": [
+                "this.goTo(19, 21.5)"
+              ]
+            }
+          ]
+        },
+        {
+          "code": 505,
+          "indent": 0,
+          "parameters": [
+            {
+              "code": 18,
+              "parameters": []
+            }
+          ]
+        },
+        {
+          "code": 230,
+          "indent": 0,
+          "parameters": [
+            60
+          ]
+        },
+        {
+          "code": 355,
+          "indent": 0,
+          "parameters": [
+            "$gameMap.scrollCameraTo(25, 19, 120)"
+          ]
+        },
+        {
+          "code": 230,
+          "indent": 0,
+          "parameters": [
+            150
+          ]
+        },
+        {
+          "code": 122,
+          "indent": 0,
+          "parameters": [
+            14,
+            14,
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "code": 355,
+          "indent": 0,
+          "parameters": [
+            "$gameSystem.clearMessagePopupFree()"
+          ]
+        },
+        {
+          "code": 356,
+          "indent": 0,
+          "parameters": [
+            "フキダシウィンドウ有効化 みぃー 1"
+          ]
+        },
+        {
+          "code": 355,
+          "indent": 0,
+          "parameters": [
+            "$gameMessage._tailDir = 1"
+          ]
+        },
+        {
+          "code": 101,
+          "indent": 0,
+          "parameters": [
+            "",
+            0,
+            0,
+            2
+          ]
+        },
+        {
+          "code": 401,
+          "indent": 0,
+          "parameters": [
+            "ここは…"
+          ]
+        },
+        {
+          "code": 101,
+          "indent": 0,
+          "parameters": [
+            "",
+            0,
+            0,
+            2
+          ]
+        },
+        {
+          "code": 401,
+          "indent": 0,
+          "parameters": [
+            "この城の"
+          ]
+        },
+        {
+          "code": 401,
+          "indent": 0,
+          "parameters": [
+            "エントランス的な"
+          ]
+        },
+        {
+          "code": 401,
+          "indent": 0,
+          "parameters": [
+            "場所のようだね"
+          ]
+        },
+        {
+          "code": 230,
+          "indent": 0,
+          "parameters": [
+            10
+          ]
+        },
+        {
+          "code": 355,
+          "indent": 0,
+          "parameters": [
+            "$gameMap.scrollCamera(0, 0, 90)"
+          ]
+        },
+        {
+          "code": 230,
+          "indent": 0,
+          "parameters": [
+            107
+          ]
+        },
+        {
+          "code": 205,
+          "indent": 0,
+          "parameters": [
+            -1,
+            {
+              "repeat": false,
+              "skippable": false,
+              "wait": false,
+              "list": [
+                {
+                  "code": 17,
+                  "parameters": []
+                },
+                {
+                  "code": 0,
+                  "parameters": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "code": 505,
+          "indent": 0,
+          "parameters": [
+            {
+              "code": 17,
+              "parameters": []
+            }
+          ]
+        },
+        {
+          "code": 230,
+          "indent": 0,
+          "parameters": [
+            1
+          ]
+        },
+        {
+          "code": 355,
+          "indent": 0,
+          "parameters": [
+            "$gameMessage._tailDir = 3"
+          ]
+        },
+        {
+          "code": 101,
+          "indent": 0,
+          "parameters": [
+            "",
+            0,
+            0,
+            2
+          ]
+        },
+        {
+          "code": 401,
+          "indent": 0,
+          "parameters": [
+            "ぼく、この城に"
+          ]
+        },
+        {
+          "code": 401,
+          "indent": 0,
+          "parameters": [
+            "来るのは初めてだよ"
+          ]
+        },
+        {
+          "code": 230,
+          "indent": 0,
+          "parameters": [
+            23
+          ]
+        },
+        {
+          "code": 205,
+          "indent": 0,
+          "parameters": [
+            10,
+            {
+              "repeat": false,
+              "skippable": false,
+              "wait": false,
+              "list": [
+                {
+                  "code": 19,
+                  "parameters": []
+                },
+                {
+                  "code": 0,
+                  "parameters": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "code": 505,
+          "indent": 0,
+          "parameters": [
+            {
+              "code": 19,
+              "parameters": []
+            }
+          ]
+        },
+        {
+          "code": 205,
+          "indent": 0,
+          "parameters": [
+            9,
+            {
+              "repeat": false,
+              "skippable": false,
+              "wait": false,
+              "list": [
+                {
+                  "code": 16,
+                  "parameters": []
+                },
+                {
+                  "code": 0,
+                  "parameters": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "code": 505,
+          "indent": 0,
+          "parameters": [
+            {
+              "code": 16,
+              "parameters": []
+            }
+          ]
+        },
+        {
+          "code": 230,
+          "indent": 0,
+          "parameters": [
+            1
+          ]
+        },
+        {
+          "code": 355,
+          "indent": 0,
+          "parameters": [
+            "$gameSystem.clearMessagePopupFree()"
+          ]
+        },
+        {
+          "code": 356,
+          "indent": 0,
+          "parameters": [
+            "フキダシウィンドウ有効化 ゆめちゃん 1"
+          ]
+        },
+        {
+          "code": 355,
+          "indent": 0,
+          "parameters": [
+            "$gameMessage._tailDir = 9"
+          ]
+        },
+        {
+          "code": 101,
+          "indent": 0,
+          "parameters": [
+            "",
+            0,
+            0,
+            2
+          ]
+        },
+        {
+          "code": 401,
+          "indent": 0,
+          "parameters": [
+            "あら、そうなの？"
+          ]
+        },
+        {
+          "code": 101,
+          "indent": 0,
+          "parameters": [
+            "",
+            0,
+            0,
+            2
+          ]
+        },
+        {
+          "code": 401,
+          "indent": 0,
+          "parameters": [
+            "モンスターだからって"
+          ]
+        },
+        {
+          "code": 401,
+          "indent": 0,
+          "parameters": [
+            "モンスター城で生まれるとか"
+          ]
+        },
+        {
+          "code": 401,
+          "indent": 0,
+          "parameters": [
+            "いうわけじゃないのね"
+          ]
+        },
+        {
+          "code": 230,
+          "indent": 0,
+          "parameters": [
+            24
+          ]
+        },
+        {
+          "code": 355,
+          "indent": 0,
+          "parameters": [
+            "$gameSystem.clearMessagePopupFree()"
+          ]
+        },
+        {
+          "code": 356,
+          "indent": 0,
+          "parameters": [
+            "フキダシウィンドウ有効化 みぃー 1"
+          ]
+        },
+        {
+          "code": 355,
+          "indent": 0,
+          "parameters": [
+            "$gameMessage._tailDir = 3"
+          ]
+        },
+        {
+          "code": 101,
+          "indent": 0,
+          "parameters": [
+            "",
+            0,
+            0,
+            2
+          ]
+        },
+        {
+          "code": 401,
+          "indent": 0,
+          "parameters": [
+            "たぶんね"
+          ]
+        },
+        {
+          "code": 101,
+          "indent": 0,
+          "parameters": [
+            "",
+            0,
+            0,
+            2
+          ]
+        },
+        {
+          "code": 401,
+          "indent": 0,
+          "parameters": [
+            "ぼくが生まれた時の"
+          ]
+        },
+        {
+          "code": 401,
+          "indent": 0,
+          "parameters": [
+            "記憶は、あんまりないんだ"
+          ]
+        },
+        {
+          "code": 101,
+          "indent": 0,
+          "parameters": [
+            "",
+            0,
+            0,
+            2
+          ]
+        },
+        {
+          "code": 401,
+          "indent": 0,
+          "parameters": [
+            "ぼくはどこで"
+          ]
+        },
+        {
+          "code": 401,
+          "indent": 0,
+          "parameters": [
+            "生まれたんだろう…"
+          ]
+        },
+        {
+          "code": 101,
+          "indent": 0,
+          "parameters": [
+            "",
+            0,
+            0,
+            2
+          ]
+        },
+        {
+          "code": 401,
+          "indent": 0,
+          "parameters": [
+            "魔王の手によって"
+          ]
+        },
+        {
+          "code": 401,
+          "indent": 0,
+          "parameters": [
+            "生み出されたことは"
+          ]
+        },
+        {
+          "code": 401,
+          "indent": 0,
+          "parameters": [
+            "確かなんだけど"
+          ]
+        },
+        {
+          "code": 230,
+          "indent": 0,
+          "parameters": [
+            24
+          ]
+        },
+        {
+          "code": 355,
+          "indent": 0,
+          "parameters": [
+            "$gameSystem.clearMessagePopupFree()"
+          ]
+        },
+        {
+          "code": 356,
+          "indent": 0,
+          "parameters": [
+            "フキダシウィンドウ有効化 ゆめちゃん 1"
+          ]
+        },
+        {
+          "code": 355,
+          "indent": 0,
+          "parameters": [
+            "$gameMessage._tailDir = 9"
+          ]
+        },
+        {
+          "code": 101,
+          "indent": 0,
+          "parameters": [
+            "",
+            0,
+            0,
+            2
+          ]
+        },
+        {
+          "code": 401,
+          "indent": 0,
+          "parameters": [
+            "ふ～ん"
+          ]
+        },
+        {
+          "code": 101,
+          "indent": 0,
+          "parameters": [
+            "",
+            0,
+            0,
+            2
+          ]
+        },
+        {
+          "code": 401,
+          "indent": 0,
+          "parameters": [
+            "私も赤ちゃんの時のことは"
+          ]
+        },
+        {
+          "code": 401,
+          "indent": 0,
+          "parameters": [
+            "あんまり覚えてないわ"
+          ]
+        },
+        {
+          "code": 101,
+          "indent": 0,
+          "parameters": [
+            "",
+            0,
+            0,
+            2
+          ]
+        },
+        {
+          "code": 401,
+          "indent": 0,
+          "parameters": [
+            "おんなじね"
+          ]
+        },
+        {
+          "code": 401,
+          "indent": 0,
+          "parameters": [
+            ""
+          ]
+        },
+        {
+          "code": 230,
+          "indent": 0,
+          "parameters": [
+            24
+          ]
+        },
+        {
+          "code": 355,
+          "indent": 0,
+          "parameters": [
+            "$gameSystem.clearMessagePopupFree()"
+          ]
+        },
+        {
+          "code": 356,
+          "indent": 0,
+          "parameters": [
+            "フキダシウィンドウ有効化 みぃー 1"
+          ]
+        },
+        {
+          "code": 355,
+          "indent": 0,
+          "parameters": [
+            "$gameMessage._tailDir = 3"
+          ]
+        },
+        {
+          "code": 101,
+          "indent": 0,
+          "parameters": [
+            "",
+            0,
+            0,
+            2
+          ]
+        },
+        {
+          "code": 401,
+          "indent": 0,
+          "parameters": [
+            "だははは"
+          ]
+        },
+        {
+          "code": 101,
+          "indent": 0,
+          "parameters": [
+            "",
+            0,
+            0,
+            2
+          ]
+        },
+        {
+          "code": 401,
+          "indent": 0,
+          "parameters": [
+            "さあ！"
+          ]
+        },
+        {
+          "code": 401,
+          "indent": 0,
+          "parameters": [
+            "とりあえず進もう"
+          ]
+        },
+        {
+          "code": 230,
+          "indent": 0,
+          "parameters": [
+            6
+          ]
+        },
+        {
+          "code": 205,
+          "indent": 0,
+          "parameters": [
+            9,
+            {
+              "list": [
+                {
+                  "code": 45,
+                  "parameters": [
+                    "this.goToCharacter($gamePlayer._followers.follower(1))"
+                  ],
+                  "_eeGoToFollowerWait": 16
+                },
+                {
+                  "code": 0,
+                  "parameters": []
+                }
+              ],
+              "repeat": false,
+              "skippable": false,
+              "wait": false
+            }
+          ]
+        },
+        {
+          "code": 505,
+          "indent": 0,
+          "parameters": [
+            {
+              "code": 45,
+              "parameters": [
+                "this.goToCharacter($gamePlayer._followers.follower(1))"
+              ],
+              "_eeGoToFollowerWait": 16
+            }
+          ]
+        },
+        {
+          "code": 205,
+          "indent": 0,
+          "parameters": [
+            10,
+            {
+              "list": [
+                {
+                  "code": 45,
+                  "parameters": [
+                    "this.goToCharacter($gamePlayer._followers.follower(3))"
+                  ],
+                  "_eeGoToFollowerWait": 38
+                },
+                {
+                  "code": 0,
+                  "parameters": []
+                }
+              ],
+              "repeat": false,
+              "skippable": false,
+              "wait": true
+            }
+          ]
+        },
+        {
+          "code": 505,
+          "indent": 0,
+          "parameters": [
+            {
+              "code": 45,
+              "parameters": [
+                "this.goToCharacter($gamePlayer._followers.follower(3))"
+              ],
+              "_eeGoToFollowerWait": 38
+            }
+          ]
+        },
+        {
+          "code": 216,
+          "indent": 0,
+          "parameters": [
+            0
+          ]
+        },
+        {
+          "code": 205,
+          "indent": 0,
+          "parameters": [
+            9,
+            {
+              "list": [
+                {
+                  "code": 39,
+                  "indent": null
+                },
+                {
+                  "code": 0,
+                  "parameters": []
+                }
+              ],
+              "repeat": false,
+              "skippable": false,
+              "wait": false
+            }
+          ]
+        },
+        {
+          "code": 505,
+          "indent": 0,
+          "parameters": [
+            {
+              "code": 39,
+              "indent": null
+            }
+          ]
+        },
+        {
+          "code": 205,
+          "indent": 0,
+          "parameters": [
+            10,
+            {
+              "list": [
+                {
+                  "code": 39,
+                  "indent": null
+                },
+                {
+                  "code": 0,
+                  "parameters": []
+                }
+              ],
+              "repeat": false,
+              "skippable": false,
+              "wait": false
+            }
+          ]
+        },
+        {
+          "code": 505,
+          "indent": 0,
+          "parameters": [
+            {
+              "code": 39,
+              "indent": null
+            }
+          ]
+        },
+        {
+          "code": 230,
+          "indent": 0,
+          "parameters": [
+            1
+          ]
+        },
+        {
+          "code": 122,
+          "indent": 0,
+          "parameters": [
+            54,
+            54,
+            0,
+            0,
+            1
+          ]
+        },
+        {
+          "code": 0,
+          "indent": 0,
+          "parameters": []
+        }
+      ],
+      "timeline": [
+        {
+          "uid": 1,
+          "frame": 0,
+          "eventId": 8,
+          "pageIndex": 2,
+          "command": {
+            "code": 108,
+            "indent": 0,
+            "parameters": [
+              "====================================================="
+            ]
+          },
+          "wait": 0,
+          "rowType": "main",
+          "rowKey": "main",
+          "charId": null,
+          "isComment": true,
+          "commentLines": [
+            "====================================================="
+          ],
+          "isMemo": false,
+          "memoSize": "S",
+          "memoText": "",
+          "isMessage": false,
+          "messageLines": null,
+          "messageExt": null,
+          "isScrollMessage": false,
+          "scrollLines": null,
+          "isScript": false,
+          "scriptLines": null
+        },
+        {
+          "uid": 2,
+          "frame": 0,
+          "eventId": 8,
+          "pageIndex": 2,
+          "command": {
+            "code": 355,
+            "indent": 0,
+            "parameters": [
+              "TestReload.saveHere(\"モンスター城1F エントランス\");"
+            ]
+          },
+          "wait": 0,
+          "rowType": "main",
+          "rowKey": "main",
+          "charId": null,
+          "isComment": false,
+          "commentLines": null,
+          "isMemo": false,
+          "memoSize": "S",
+          "memoText": "",
+          "isMessage": false,
+          "messageLines": null,
+          "messageExt": null,
+          "isScrollMessage": false,
+          "scrollLines": null,
+          "isScript": true,
+          "scriptLines": [
+            "TestReload.saveHere(\"モンスター城1F エントランス\");"
+          ]
+        },
+        {
+          "uid": 3,
+          "frame": 0,
+          "eventId": 8,
+          "pageIndex": 2,
+          "command": {
+            "code": 108,
+            "indent": 0,
+            "parameters": [
+              "====================================================="
+            ]
+          },
+          "wait": 0,
+          "rowType": "main",
+          "rowKey": "main",
+          "charId": null,
+          "isComment": true,
+          "commentLines": [
+            "====================================================="
+          ],
+          "isMemo": false,
+          "memoSize": "S",
+          "memoText": "",
+          "isMessage": false,
+          "messageLines": null,
+          "messageExt": null,
+          "isScrollMessage": false,
+          "scrollLines": null,
+          "isScript": false,
+          "scriptLines": null
+        },
+        {
+          "uid": 4,
+          "frame": 0,
+          "eventId": 8,
+          "pageIndex": 2,
+          "command": {
+            "code": 216,
+            "indent": 0,
+            "parameters": [
+              1
+            ]
+          },
+          "wait": 0,
+          "rowType": "main",
+          "rowKey": "main",
+          "charId": null,
+          "isComment": false,
+          "commentLines": null,
+          "isMemo": false,
+          "memoSize": "S",
+          "memoText": "",
+          "isMessage": false,
+          "messageLines": null,
+          "messageExt": null,
+          "isScrollMessage": false,
+          "scrollLines": null,
+          "isScript": false,
+          "scriptLines": null
+        },
+        {
+          "uid": 5,
+          "frame": 0,
+          "eventId": 8,
+          "pageIndex": 2,
+          "command": {
+            "code": 205,
+            "indent": 0,
+            "parameters": [
+              9,
+              {
+                "repeat": false,
+                "skippable": false,
+                "wait": false,
+                "list": [
+                  {
+                    "code": 45,
+                    "parameters": [
+                      "this.locateToCharacter($gamePlayer._followers.follower(1)), this._direction = 2"
+                    ]
+                  },
+                  {
+                    "code": 40,
+                    "parameters": []
+                  },
+                  {
+                    "code": 45,
+                    "parameters": [
+                      "this.goTo(17.5, 20.5)"
+                    ],
+                    "_eeTileWait": 16
+                  },
+                  {
+                    "code": 18,
+                    "parameters": []
+                  },
+                  {
+                    "code": 0,
+                    "parameters": []
+                  }
+                ]
+              }
+            ]
+          },
+          "wait": 0,
+          "rowType": "char",
+          "rowKey": "char:9",
+          "charId": 9,
+          "isComment": false,
+          "commentLines": null,
+          "isMemo": false,
+          "memoSize": "S",
+          "memoText": "",
+          "isMessage": false,
+          "messageLines": null,
+          "messageExt": null,
+          "isScrollMessage": false,
+          "scrollLines": null,
+          "isScript": false,
+          "scriptLines": null
+        },
+        {
+          "uid": 6,
+          "frame": 0,
+          "eventId": 8,
+          "pageIndex": 2,
+          "command": {
+            "code": 205,
+            "indent": 0,
+            "parameters": [
+              10,
+              {
+                "repeat": false,
+                "skippable": false,
+                "wait": false,
+                "list": [
+                  {
+                    "code": 45,
+                    "parameters": [
+                      "this.locateToCharacter($gamePlayer._followers.follower(3)), this._direction = 2"
+                    ]
+                  },
+                  {
+                    "code": 40,
+                    "parameters": []
+                  },
+                  {
+                    "code": 45,
+                    "parameters": [
+                      "this.goTo(17.5, 23)"
+                    ],
+                    "_eeTileWait": 38
+                  },
+                  {
+                    "code": 18,
+                    "parameters": []
+                  },
+                  {
+                    "code": 0,
+                    "parameters": []
+                  }
+                ]
+              }
+            ]
+          },
+          "wait": 0,
+          "rowType": "char",
+          "rowKey": "char:10",
+          "charId": 10,
+          "isComment": false,
+          "commentLines": null,
+          "isMemo": false,
+          "memoSize": "S",
+          "memoText": "",
+          "isMessage": false,
+          "messageLines": null,
+          "messageExt": null,
+          "isScrollMessage": false,
+          "scrollLines": null,
+          "isScript": false,
+          "scriptLines": null
+        },
+        {
+          "uid": 7,
+          "frame": 0,
+          "eventId": 8,
+          "pageIndex": 2,
+          "command": {
+            "code": 205,
+            "indent": 0,
+            "parameters": [
+              -1,
+              {
+                "repeat": false,
+                "skippable": false,
+                "wait": false,
+                "list": [
+                  {
+                    "code": 45,
+                    "parameters": [
+                      "this.goTo(19, 21.5)"
+                    ]
+                  },
+                  {
+                    "code": 18,
+                    "parameters": []
+                  },
+                  {
+                    "code": 0,
+                    "parameters": []
+                  }
+                ]
+              }
+            ]
+          },
+          "wait": 0,
+          "rowType": "char",
+          "rowKey": "char:-1",
+          "charId": -1,
+          "isComment": false,
+          "commentLines": null,
+          "isMemo": false,
+          "memoSize": "S",
+          "memoText": "",
+          "isMessage": false,
+          "messageLines": null,
+          "messageExt": null,
+          "isScrollMessage": false,
+          "scrollLines": null,
+          "isScript": false,
+          "scriptLines": null
+        },
+        {
+          "uid": 8,
+          "frame": 60,
+          "eventId": 8,
+          "pageIndex": 2,
+          "command": {
+            "code": 355,
+            "indent": 0,
+            "parameters": [
+              "$gameMap.scrollCameraTo(25, 19, 120)"
+            ]
+          },
+          "wait": 0,
+          "rowType": "main",
+          "rowKey": "main",
+          "charId": null,
+          "isComment": false,
+          "commentLines": null,
+          "isMemo": false,
+          "memoSize": "S",
+          "memoText": "",
+          "isMessage": false,
+          "messageLines": null,
+          "messageExt": null,
+          "isScrollMessage": false,
+          "scrollLines": null,
+          "isScript": true,
+          "scriptLines": [
+            "$gameMap.scrollCameraTo(25, 19, 120)"
+          ]
+        },
+        {
+          "uid": 13,
+          "frame": 210,
+          "eventId": 8,
+          "pageIndex": 2,
+          "command": {
+            "code": 101,
+            "indent": 0,
+            "parameters": [
+              "",
+              0,
+              0,
+              2
+            ]
+          },
+          "wait": 0,
+          "rowType": "main",
+          "rowKey": "main",
+          "charId": null,
+          "isComment": false,
+          "commentLines": null,
+          "isMemo": false,
+          "memoSize": "S",
+          "memoText": "",
+          "isMessage": true,
+          "messageLines": [
+            "ここは…"
+          ],
+          "messageExt": {
+            "windowType": 0,
+            "tailDir": 1,
+            "targetMode": "char",
+            "targetCharId": 9,
+            "targetX": 0,
+            "targetY": 0,
+            "addX": 0,
+            "addY": 0
+          },
+          "isScrollMessage": false,
+          "scrollLines": null,
+          "isScript": false,
+          "scriptLines": null
+        },
+        {
+          "uid": 14,
+          "frame": 210,
+          "eventId": 8,
+          "pageIndex": 2,
+          "command": {
+            "code": 101,
+            "indent": 0,
+            "parameters": [
+              "",
+              0,
+              0,
+              2
+            ]
+          },
+          "wait": 0,
+          "rowType": "main",
+          "rowKey": "main",
+          "charId": null,
+          "isComment": false,
+          "commentLines": null,
+          "isMemo": false,
+          "memoSize": "S",
+          "memoText": "",
+          "isMessage": true,
+          "messageLines": [
+            "この城の",
+            "エントランス的な",
+            "場所のようだね"
+          ],
+          "messageExt": {
+            "windowType": 0,
+            "tailDir": 1,
+            "targetMode": "char",
+            "targetCharId": 9,
+            "targetX": 0,
+            "targetY": 0,
+            "addX": 0,
+            "addY": 0
+          },
+          "isScrollMessage": false,
+          "scrollLines": null,
+          "isScript": false,
+          "scriptLines": null
+        },
+        {
+          "uid": 15,
+          "frame": 220,
+          "eventId": 8,
+          "pageIndex": 2,
+          "command": {
+            "code": 355,
+            "indent": 0,
+            "parameters": [
+              "$gameMap.scrollCamera(0, 0, 90)"
+            ]
+          },
+          "wait": 0,
+          "rowType": "main",
+          "rowKey": "main",
+          "charId": null,
+          "isComment": false,
+          "commentLines": null,
+          "isMemo": false,
+          "memoSize": "S",
+          "memoText": "",
+          "isMessage": false,
+          "messageLines": null,
+          "messageExt": null,
+          "isScrollMessage": false,
+          "scrollLines": null,
+          "isScript": true,
+          "scriptLines": [
+            "$gameMap.scrollCamera(0, 0, 90)"
+          ]
+        },
+        {
+          "uid": 16,
+          "frame": 327,
+          "eventId": 8,
+          "pageIndex": 2,
+          "command": {
+            "code": 205,
+            "indent": 0,
+            "parameters": [
+              -1,
+              {
+                "repeat": false,
+                "skippable": false,
+                "wait": false,
+                "list": [
+                  {
+                    "code": 17,
+                    "parameters": []
+                  },
+                  {
+                    "code": 0,
+                    "parameters": []
+                  }
+                ]
+              }
+            ]
+          },
+          "wait": 0,
+          "rowType": "char",
+          "rowKey": "char:-1",
+          "charId": -1,
+          "isComment": false,
+          "commentLines": null,
+          "isMemo": false,
+          "memoSize": "S",
+          "memoText": "",
+          "isMessage": false,
+          "messageLines": null,
+          "messageExt": null,
+          "isScrollMessage": false,
+          "scrollLines": null,
+          "isScript": false,
+          "scriptLines": null
+        },
+        {
+          "uid": 18,
+          "frame": 328,
+          "eventId": 8,
+          "pageIndex": 2,
+          "command": {
+            "code": 101,
+            "indent": 0,
+            "parameters": [
+              "",
+              0,
+              0,
+              2
+            ]
+          },
+          "wait": 0,
+          "rowType": "main",
+          "rowKey": "main",
+          "charId": null,
+          "isComment": false,
+          "commentLines": null,
+          "isMemo": false,
+          "memoSize": "S",
+          "memoText": "",
+          "isMessage": true,
+          "messageLines": [
+            "ぼく、この城に",
+            "来るのは初めてだよ"
+          ],
+          "messageExt": {
+            "windowType": 0,
+            "tailDir": 3,
+            "targetMode": "char",
+            "targetCharId": 9,
+            "targetX": 0,
+            "targetY": 0,
+            "addX": 0,
+            "addY": 0
+          },
+          "isScrollMessage": false,
+          "scrollLines": null,
+          "isScript": false,
+          "scriptLines": null
+        },
+        {
+          "uid": 19,
+          "frame": 351,
+          "eventId": 8,
+          "pageIndex": 2,
+          "command": {
+            "code": 205,
+            "indent": 0,
+            "parameters": [
+              10,
+              {
+                "repeat": false,
+                "skippable": false,
+                "wait": false,
+                "list": [
+                  {
+                    "code": 19,
+                    "parameters": []
+                  },
+                  {
+                    "code": 0,
+                    "parameters": []
+                  }
+                ]
+              }
+            ]
+          },
+          "wait": 0,
+          "rowType": "char",
+          "rowKey": "char:10",
+          "charId": 10,
+          "isComment": false,
+          "commentLines": null,
+          "isMemo": false,
+          "memoSize": "S",
+          "memoText": "",
+          "isMessage": false,
+          "messageLines": null,
+          "messageExt": null,
+          "isScrollMessage": false,
+          "scrollLines": null,
+          "isScript": false,
+          "scriptLines": null
+        },
+        {
+          "uid": 20,
+          "frame": 351,
+          "eventId": 8,
+          "pageIndex": 2,
+          "command": {
+            "code": 205,
+            "indent": 0,
+            "parameters": [
+              9,
+              {
+                "repeat": false,
+                "skippable": false,
+                "wait": false,
+                "list": [
+                  {
+                    "code": 16,
+                    "parameters": []
+                  },
+                  {
+                    "code": 0,
+                    "parameters": []
+                  }
+                ]
+              }
+            ]
+          },
+          "wait": 0,
+          "rowType": "char",
+          "rowKey": "char:9",
+          "charId": 9,
+          "isComment": false,
+          "commentLines": null,
+          "isMemo": false,
+          "memoSize": "S",
+          "memoText": "",
+          "isMessage": false,
+          "messageLines": null,
+          "messageExt": null,
+          "isScrollMessage": false,
+          "scrollLines": null,
+          "isScript": false,
+          "scriptLines": null
+        },
+        {
+          "uid": 24,
+          "frame": 352,
+          "eventId": 8,
+          "pageIndex": 2,
+          "command": {
+            "code": 101,
+            "indent": 0,
+            "parameters": [
+              "",
+              0,
+              0,
+              2
+            ]
+          },
+          "wait": 0,
+          "rowType": "main",
+          "rowKey": "main",
+          "charId": null,
+          "isComment": false,
+          "commentLines": null,
+          "isMemo": false,
+          "memoSize": "S",
+          "memoText": "",
+          "isMessage": true,
+          "messageLines": [
+            "あら、そうなの？"
+          ],
+          "messageExt": {
+            "windowType": 0,
+            "tailDir": 9,
+            "targetMode": "char",
+            "targetCharId": 10,
+            "targetX": 0,
+            "targetY": 0,
+            "addX": 0,
+            "addY": 0
+          },
+          "isScrollMessage": false,
+          "scrollLines": null,
+          "isScript": false,
+          "scriptLines": null
+        },
+        {
+          "uid": 25,
+          "frame": 352,
+          "eventId": 8,
+          "pageIndex": 2,
+          "command": {
+            "code": 101,
+            "indent": 0,
+            "parameters": [
+              "",
+              0,
+              0,
+              2
+            ]
+          },
+          "wait": 0,
+          "rowType": "main",
+          "rowKey": "main",
+          "charId": null,
+          "isComment": false,
+          "commentLines": null,
+          "isMemo": false,
+          "memoSize": "S",
+          "memoText": "",
+          "isMessage": true,
+          "messageLines": [
+            "モンスターだからって",
+            "モンスター城で生まれるとか",
+            "いうわけじゃないのね"
+          ],
+          "messageExt": {
+            "windowType": 0,
+            "tailDir": 9,
+            "targetMode": "char",
+            "targetCharId": 10,
+            "targetX": 0,
+            "targetY": 0,
+            "addX": 0,
+            "addY": 0
+          },
+          "isScrollMessage": false,
+          "scrollLines": null,
+          "isScript": false,
+          "scriptLines": null
+        },
+        {
+          "uid": 29,
+          "frame": 376,
+          "eventId": 8,
+          "pageIndex": 2,
+          "command": {
+            "code": 101,
+            "indent": 0,
+            "parameters": [
+              "",
+              0,
+              0,
+              2
+            ]
+          },
+          "wait": 0,
+          "rowType": "main",
+          "rowKey": "main",
+          "charId": null,
+          "isComment": false,
+          "commentLines": null,
+          "isMemo": false,
+          "memoSize": "S",
+          "memoText": "",
+          "isMessage": true,
+          "messageLines": [
+            "たぶんね"
+          ],
+          "messageExt": {
+            "windowType": 0,
+            "tailDir": 3,
+            "targetMode": "char",
+            "targetCharId": 9,
+            "targetX": 0,
+            "targetY": 0,
+            "addX": 0,
+            "addY": 0
+          },
+          "isScrollMessage": false,
+          "scrollLines": null,
+          "isScript": false,
+          "scriptLines": null
+        },
+        {
+          "uid": 30,
+          "frame": 376,
+          "eventId": 8,
+          "pageIndex": 2,
+          "command": {
+            "code": 101,
+            "indent": 0,
+            "parameters": [
+              "",
+              0,
+              0,
+              2
+            ]
+          },
+          "wait": 0,
+          "rowType": "main",
+          "rowKey": "main",
+          "charId": null,
+          "isComment": false,
+          "commentLines": null,
+          "isMemo": false,
+          "memoSize": "S",
+          "memoText": "",
+          "isMessage": true,
+          "messageLines": [
+            "ぼくが生まれた時の",
+            "記憶は、あんまりないんだ"
+          ],
+          "messageExt": {
+            "windowType": 0,
+            "tailDir": 3,
+            "targetMode": "char",
+            "targetCharId": 9,
+            "targetX": 0,
+            "targetY": 0,
+            "addX": 0,
+            "addY": 0
+          },
+          "isScrollMessage": false,
+          "scrollLines": null,
+          "isScript": false,
+          "scriptLines": null
+        },
+        {
+          "uid": 31,
+          "frame": 376,
+          "eventId": 8,
+          "pageIndex": 2,
+          "command": {
+            "code": 101,
+            "indent": 0,
+            "parameters": [
+              "",
+              0,
+              0,
+              2
+            ]
+          },
+          "wait": 0,
+          "rowType": "main",
+          "rowKey": "main",
+          "charId": null,
+          "isComment": false,
+          "commentLines": null,
+          "isMemo": false,
+          "memoSize": "S",
+          "memoText": "",
+          "isMessage": true,
+          "messageLines": [
+            "ぼくはどこで",
+            "生まれたんだろう…"
+          ],
+          "messageExt": {
+            "windowType": 0,
+            "tailDir": 3,
+            "targetMode": "char",
+            "targetCharId": 9,
+            "targetX": 0,
+            "targetY": 0,
+            "addX": 0,
+            "addY": 0
+          },
+          "isScrollMessage": false,
+          "scrollLines": null,
+          "isScript": false,
+          "scriptLines": null
+        },
+        {
+          "uid": 32,
+          "frame": 376,
+          "eventId": 8,
+          "pageIndex": 2,
+          "command": {
+            "code": 101,
+            "indent": 0,
+            "parameters": [
+              "",
+              0,
+              0,
+              2
+            ]
+          },
+          "wait": 0,
+          "rowType": "main",
+          "rowKey": "main",
+          "charId": null,
+          "isComment": false,
+          "commentLines": null,
+          "isMemo": false,
+          "memoSize": "S",
+          "memoText": "",
+          "isMessage": true,
+          "messageLines": [
+            "魔王の手によって",
+            "生み出されたことは",
+            "確かなんだけど"
+          ],
+          "messageExt": {
+            "windowType": 0,
+            "tailDir": 3,
+            "targetMode": "char",
+            "targetCharId": 9,
+            "targetX": 0,
+            "targetY": 0,
+            "addX": 0,
+            "addY": 0
+          },
+          "isScrollMessage": false,
+          "scrollLines": null,
+          "isScript": false,
+          "scriptLines": null
+        },
+        {
+          "uid": 36,
+          "frame": 400,
+          "eventId": 8,
+          "pageIndex": 2,
+          "command": {
+            "code": 101,
+            "indent": 0,
+            "parameters": [
+              "",
+              0,
+              0,
+              2
+            ]
+          },
+          "wait": 0,
+          "rowType": "main",
+          "rowKey": "main",
+          "charId": null,
+          "isComment": false,
+          "commentLines": null,
+          "isMemo": false,
+          "memoSize": "S",
+          "memoText": "",
+          "isMessage": true,
+          "messageLines": [
+            "ふ～ん"
+          ],
+          "messageExt": {
+            "windowType": 0,
+            "tailDir": 9,
+            "targetMode": "char",
+            "targetCharId": 10,
+            "targetX": 0,
+            "targetY": 0,
+            "addX": 0,
+            "addY": 0
+          },
+          "isScrollMessage": false,
+          "scrollLines": null,
+          "isScript": false,
+          "scriptLines": null
+        },
+        {
+          "uid": 37,
+          "frame": 400,
+          "eventId": 8,
+          "pageIndex": 2,
+          "command": {
+            "code": 101,
+            "indent": 0,
+            "parameters": [
+              "",
+              0,
+              0,
+              2
+            ]
+          },
+          "wait": 0,
+          "rowType": "main",
+          "rowKey": "main",
+          "charId": null,
+          "isComment": false,
+          "commentLines": null,
+          "isMemo": false,
+          "memoSize": "S",
+          "memoText": "",
+          "isMessage": true,
+          "messageLines": [
+            "私も赤ちゃんの時のことは",
+            "あんまり覚えてないわ"
+          ],
+          "messageExt": {
+            "windowType": 0,
+            "tailDir": 9,
+            "targetMode": "char",
+            "targetCharId": 10,
+            "targetX": 0,
+            "targetY": 0,
+            "addX": 0,
+            "addY": 0
+          },
+          "isScrollMessage": false,
+          "scrollLines": null,
+          "isScript": false,
+          "scriptLines": null
+        },
+        {
+          "uid": 38,
+          "frame": 400,
+          "eventId": 8,
+          "pageIndex": 2,
+          "command": {
+            "code": 101,
+            "indent": 0,
+            "parameters": [
+              "",
+              0,
+              0,
+              2
+            ]
+          },
+          "wait": 0,
+          "rowType": "main",
+          "rowKey": "main",
+          "charId": null,
+          "isComment": false,
+          "commentLines": null,
+          "isMemo": false,
+          "memoSize": "S",
+          "memoText": "",
+          "isMessage": true,
+          "messageLines": [
+            "おんなじね",
+            ""
+          ],
+          "messageExt": {
+            "windowType": 0,
+            "tailDir": 9,
+            "targetMode": "char",
+            "targetCharId": 10,
+            "targetX": 0,
+            "targetY": 0,
+            "addX": 0,
+            "addY": 0
+          },
+          "isScrollMessage": false,
+          "scrollLines": null,
+          "isScript": false,
+          "scriptLines": null
+        },
+        {
+          "uid": 42,
+          "frame": 424,
+          "eventId": 8,
+          "pageIndex": 2,
+          "command": {
+            "code": 101,
+            "indent": 0,
+            "parameters": [
+              "",
+              0,
+              0,
+              2
+            ]
+          },
+          "wait": 0,
+          "rowType": "main",
+          "rowKey": "main",
+          "charId": null,
+          "isComment": false,
+          "commentLines": null,
+          "isMemo": false,
+          "memoSize": "S",
+          "memoText": "",
+          "isMessage": true,
+          "messageLines": [
+            "だははは"
+          ],
+          "messageExt": {
+            "windowType": 0,
+            "tailDir": 3,
+            "targetMode": "char",
+            "targetCharId": 9,
+            "targetX": 0,
+            "targetY": 0,
+            "addX": 0,
+            "addY": 0
+          },
+          "isScrollMessage": false,
+          "scrollLines": null,
+          "isScript": false,
+          "scriptLines": null
+        },
+        {
+          "uid": 43,
+          "frame": 424,
+          "eventId": 8,
+          "pageIndex": 2,
+          "command": {
+            "code": 101,
+            "indent": 0,
+            "parameters": [
+              "",
+              0,
+              0,
+              2
+            ]
+          },
+          "wait": 0,
+          "rowType": "main",
+          "rowKey": "main",
+          "charId": null,
+          "isComment": false,
+          "commentLines": null,
+          "isMemo": false,
+          "memoSize": "S",
+          "memoText": "",
+          "isMessage": true,
+          "messageLines": [
+            "さあ！",
+            "とりあえず進もう"
+          ],
+          "messageExt": {
+            "windowType": 0,
+            "tailDir": 3,
+            "targetMode": "char",
+            "targetCharId": 9,
+            "targetX": 0,
+            "targetY": 0,
+            "addX": 0,
+            "addY": 0
+          },
+          "isScrollMessage": false,
+          "scrollLines": null,
+          "isScript": false,
+          "scriptLines": null
+        },
+        {
+          "uid": 44,
+          "frame": 430,
+          "eventId": 8,
+          "pageIndex": 2,
+          "command": {
+            "code": 205,
+            "indent": 0,
+            "parameters": [
+              9,
+              {
+                "list": [
+                  {
+                    "code": 45,
+                    "parameters": [
+                      "this.goToCharacter($gamePlayer._followers.follower(1))"
+                    ],
+                    "_eeGoToFollowerWait": 16
+                  },
+                  {
+                    "code": 0,
+                    "parameters": []
+                  }
+                ],
+                "repeat": false,
+                "skippable": false,
+                "wait": false
+              }
+            ]
+          },
+          "wait": 0,
+          "rowType": "char",
+          "rowKey": "char:9",
+          "charId": 9,
+          "isComment": false,
+          "commentLines": null,
+          "isMemo": false,
+          "memoSize": "S",
+          "memoText": "",
+          "isMessage": false,
+          "messageLines": null,
+          "messageExt": null,
+          "isScrollMessage": false,
+          "scrollLines": null,
+          "isScript": false,
+          "scriptLines": null
+        },
+        {
+          "uid": 45,
+          "frame": 430,
+          "eventId": 8,
+          "pageIndex": 2,
+          "command": {
+            "code": 205,
+            "indent": 0,
+            "parameters": [
+              10,
+              {
+                "list": [
+                  {
+                    "code": 45,
+                    "parameters": [
+                      "this.goToCharacter($gamePlayer._followers.follower(3))"
+                    ],
+                    "_eeGoToFollowerWait": 38
+                  },
+                  {
+                    "code": 0,
+                    "parameters": []
+                  }
+                ],
+                "repeat": false,
+                "skippable": false,
+                "wait": true
+              }
+            ]
+          },
+          "wait": 38,
+          "rowType": "char",
+          "rowKey": "char:10",
+          "charId": 10,
+          "isComment": false,
+          "commentLines": null,
+          "isMemo": false,
+          "memoSize": "S",
+          "memoText": "",
+          "isMessage": false,
+          "messageLines": null,
+          "messageExt": null,
+          "isScrollMessage": false,
+          "scrollLines": null,
+          "isScript": false,
+          "scriptLines": null
+        },
+        {
+          "uid": 46,
+          "frame": 468,
+          "eventId": 8,
+          "pageIndex": 2,
+          "command": {
+            "code": 216,
+            "indent": 0,
+            "parameters": [
+              0
+            ]
+          },
+          "wait": 0,
+          "rowType": "main",
+          "rowKey": "main",
+          "charId": null,
+          "isComment": false,
+          "commentLines": null,
+          "isMemo": false,
+          "memoSize": "S",
+          "memoText": "",
+          "isMessage": false,
+          "messageLines": null,
+          "messageExt": null,
+          "isScrollMessage": false,
+          "scrollLines": null,
+          "isScript": false,
+          "scriptLines": null
+        },
+        {
+          "uid": 47,
+          "frame": 468,
+          "eventId": 8,
+          "pageIndex": 2,
+          "command": {
+            "code": 205,
+            "indent": 0,
+            "parameters": [
+              9,
+              {
+                "list": [
+                  {
+                    "code": 39,
+                    "indent": null
+                  },
+                  {
+                    "code": 0,
+                    "parameters": []
+                  }
+                ],
+                "repeat": false,
+                "skippable": false,
+                "wait": false
+              }
+            ]
+          },
+          "wait": 0,
+          "rowType": "char",
+          "rowKey": "char:9",
+          "charId": 9,
+          "isComment": false,
+          "commentLines": null,
+          "isMemo": false,
+          "memoSize": "S",
+          "memoText": "",
+          "isMessage": false,
+          "messageLines": null,
+          "messageExt": null,
+          "isScrollMessage": false,
+          "scrollLines": null,
+          "isScript": false,
+          "scriptLines": null
+        },
+        {
+          "uid": 48,
+          "frame": 468,
+          "eventId": 8,
+          "pageIndex": 2,
+          "command": {
+            "code": 205,
+            "indent": 0,
+            "parameters": [
+              10,
+              {
+                "list": [
+                  {
+                    "code": 39,
+                    "indent": null
+                  },
+                  {
+                    "code": 0,
+                    "parameters": []
+                  }
+                ],
+                "repeat": false,
+                "skippable": false,
+                "wait": false
+              }
+            ]
+          },
+          "wait": 0,
+          "rowType": "char",
+          "rowKey": "char:10",
+          "charId": 10,
+          "isComment": false,
+          "commentLines": null,
+          "isMemo": false,
+          "memoSize": "S",
+          "memoText": "",
+          "isMessage": false,
+          "messageLines": null,
+          "messageExt": null,
+          "isScrollMessage": false,
+          "scrollLines": null,
+          "isScript": false,
+          "scriptLines": null
+        },
+        {
+          "uid": 49,
+          "frame": 469,
+          "eventId": 8,
+          "pageIndex": 2,
+          "command": {
+            "code": 122,
+            "indent": 0,
+            "parameters": [
+              54,
+              54,
+              0,
+              0,
+              1
+            ]
+          },
+          "wait": 0,
+          "rowType": "main",
+          "rowKey": "main",
+          "charId": null,
+          "isComment": false,
+          "commentLines": null,
+          "isMemo": false,
+          "memoSize": "S",
+          "memoText": "",
+          "isMessage": false,
+          "messageLines": null,
+          "messageExt": null,
+          "isScrollMessage": false,
+          "scrollLines": null,
+          "isScript": false,
+          "scriptLines": null
+        }
+      ]
+    }
+  ],
+  "mode": "map",
+  "mapId": 49
+}

@@ -1746,12 +1746,22 @@ function Sprite_Bullet() {
             var as = this._actorSprites[this._actorWindow.index()];
             as._forceFrame = [1, 3];
             var its = this._itemSprite;
-            var imageInfo = item.meta.image.split(','), imageIndex = Number(imageInfo[1]);
-            its.bitmap = ImageManager.loadItem(imageInfo[0]);
+            var pd = window.KNH_PlayerDrawing;
+            var imageInfo = pd && pd.itemImageInfo ? pd.itemImageInfo(item) : null;
+            if (!imageInfo && item.meta.image) {
+                var legacyImageInfo = item.meta.image.split(',');
+                imageInfo = { name: legacyImageInfo[0] || '', index: Number(legacyImageInfo[1] || 0) };
+            }
+            its.bitmap = pd && pd.loadItemImageBitmap ? pd.loadItemImageBitmap(imageInfo) : ImageManager.loadItem(imageInfo ? imageInfo.name || '' : '');
             its.bitmap.addLoadListener(() => {
-                const pw = its.bitmap.width / 4, ph = its.bitmap.height / 2;
-                const sx = (imageIndex % 4) * pw, sy = Math.floor(imageIndex / 4) * ph;
-                its.setFrame(sx, sy, pw, ph);
+                const imageIndex = Number(imageInfo && imageInfo.index || 0);
+                const frame = pd && pd.itemImageFrame ? pd.itemImageFrame(its.bitmap, imageInfo) : {
+                    x: (imageIndex % 4) * (its.bitmap.width / 4),
+                    y: Math.floor(imageIndex / 4) * (its.bitmap.height / 2),
+                    width: its.bitmap.width / 4,
+                    height: its.bitmap.height / 2
+                };
+                its.setFrame(frame.x, frame.y, frame.width, frame.height);
                 its.setOutline(1, 2);
                 its.x = as.x, its.y = as.y - 184;
                 its.opacity = 255;
@@ -3213,14 +3223,24 @@ function Sprite_Bullet() {
             //アイテム落とす
             var dis = scene._dropItemSprites = [];
             items.forEach((item, i) => {
-                var imageInfo = item.meta.image.split(','), imageIndex = Number(imageInfo[1]);
+                var pd = window.KNH_PlayerDrawing;
+                var imageInfo = pd && pd.itemImageInfo ? pd.itemImageInfo(item) : null;
+                if (!imageInfo && item.meta.image) {
+                    var legacyImageInfo = item.meta.image.split(',');
+                    imageInfo = { name: legacyImageInfo[0] || '', index: Number(legacyImageInfo[1] || 0) };
+                }
                 var its = new Sprite_Base();
                 its.anchor = new Point(0.5, 0.5), its.z = 4, its._yuraInfo = [], its.scale.x = its.scale.y = 0.6;
-                its.bitmap = ImageManager.loadItem(imageInfo[0]);
+                its.bitmap = pd && pd.loadItemImageBitmap ? pd.loadItemImageBitmap(imageInfo) : ImageManager.loadItem(imageInfo ? imageInfo.name || '' : '');
                 its.bitmap.addLoadListener(() => {
-                    const pw = its.bitmap.width / 4, ph = its.bitmap.height / 2;
-                    const sx = (imageIndex % 4) * pw, sy = Math.floor(imageIndex / 4) * ph;
-                    its.setFrame(sx, sy, pw, ph);
+                    const imageIndex = Number(imageInfo && imageInfo.index || 0);
+                    const frame = pd && pd.itemImageFrame ? pd.itemImageFrame(its.bitmap, imageInfo) : {
+                        x: (imageIndex % 4) * (its.bitmap.width / 4),
+                        y: Math.floor(imageIndex / 4) * (its.bitmap.height / 2),
+                        width: its.bitmap.width / 4,
+                        height: its.bitmap.height / 2
+                    };
+                    its.setFrame(frame.x, frame.y, frame.width, frame.height);
                     its.setOutline(1, 2);
                 })
                 its.x = 450 + 50 * i + _rand(-20, 20), its.y = _rand(180, 250);

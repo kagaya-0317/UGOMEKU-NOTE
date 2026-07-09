@@ -1,6 +1,6 @@
 {
   "startMode": "new",
-  "startModeTestSave": "モンスター城地下1",
+  "startModeTestSave": "モンスター城1F エントランス",
   "startModeYuraA": 6,
   "startModeYuraB": 5,
   "editEventMode": false,
@@ -8,8 +8,8 @@
   "recordMode": 0,
   "firstMembers": [
     true,
-    false,
-    false,
+    true,
+    true,
     false
   ],
   "tileC": false,

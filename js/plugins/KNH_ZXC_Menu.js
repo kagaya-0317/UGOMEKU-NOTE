@@ -457,12 +457,23 @@
                     this.drawTextNL(this._text, 144 + 8, 0, this.contents.width - 144 - 16);
                 }
             } else {
-                var imageInfo = this._item.meta.image ? this._item.meta.image.split(',') : [];
-                var bmp = ImageManager.loadItem(imageInfo[0] || '');
+                var pd = window.KNH_PlayerDrawing;
+                var imageInfo = pd && pd.itemImageInfo ? pd.itemImageInfo(this._item) : null;
+                if (!imageInfo && this._item.meta.image) {
+                    var legacyImageInfo = this._item.meta.image.split(',');
+                    imageInfo = { name: legacyImageInfo[0] || '', index: Number(legacyImageInfo[1] || 0) };
+                }
+                var bmp = pd && pd.loadItemImageBitmap ? pd.loadItemImageBitmap(imageInfo) : ImageManager.loadItem(imageInfo ? imageInfo.name || '' : '');
                 bmp.addLoadListener(function () {
                     this.refreshYurayura();
-                    var index = Number(imageInfo[1]) || 0;
-                    this.contents.blt(bmp, (index % 4) * 144, Math.floor(index / 4) * 144, 144, 144, 0, -6);
+                    var index = Number(imageInfo && imageInfo.index || 0);
+                    var frame = pd && pd.itemImageFrame ? pd.itemImageFrame(bmp, imageInfo) : {
+                        x: (index % 4) * (bmp.width / 4),
+                        y: Math.floor(index / 4) * (bmp.height / 2),
+                        width: bmp.width / 4,
+                        height: bmp.height / 2
+                    };
+                    this.contents.blt(bmp, frame.x, frame.y, frame.width, frame.height, 0, -6, 144, 144);
                     this.contents.clearRect(0, 132, 144, 6);
                 }.bind(this))
                 this.drawTextNL(this._text, 144 + 8, 0, this.contents.width - 144 - 16);

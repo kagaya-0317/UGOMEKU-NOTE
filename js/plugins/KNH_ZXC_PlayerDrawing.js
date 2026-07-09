@@ -12,6 +12,9 @@
  *   this.openPlayerDrawing({ background: "transparent", showCancelButton: true });
  *   // In a later event command after the editor closes:
  *   KNH_PlayerDrawing.putItem(this.lastPlayerDrawingId(), 1, $gamePlayer.x, $gamePlayer.y);
+ *   this.registerLastPlayerDrawingItemImage(1);
+ *   this.putLastPlayerDrawingItem(1, $gamePlayer.x, $gamePlayer.y);
+ *   this.spawnLastPlayerDrawingEvent("templateName", $gamePlayer.x, $gamePlayer.y);
  *   ImageManager.loadPlayerDrawing(1);
  *   ImageManager.loadDynamicBitmap("PD:1");
  */
@@ -20,7 +23,6 @@
     'use strict';
 
     var PD = window.KNH_PlayerDrawing = window.KNH_PlayerDrawing || {};
-    var PLUGIN_NAME = 'KNH_ZXC_PlayerDrawing';
     var DOC_W = 72;
     var DOC_H = 72;
     var DISPLAY_SCALE = 6;
@@ -29,11 +31,25 @@
     var TRANSPARENT_CHECKER_CELLS = 4;
     var DISPLAY_UPDATE_MARGIN = 2;
     var DISPLAY_DIAGONAL_BRIDGE_SIZE = 2;
+    var BRUSH_SIZE_MIN = 1;
+    var BRUSH_SIZE_MAX = 3;
+    var STROKE_SE_INTERVAL = 10;
+    var STROKE_SE_VOLUME = 150;
+    var ERASER_STROKE_SE_NAME = '00_powa';
+    var ERASER_STROKE_SE_VOLUME = 70;
+    var STROKE_SE_PITCH_MIN = 100;
+    var STROKE_SE_PITCH_MAX = 120;
+    var FILL_SE_NAME = '00_gero';
+    var FILL_SE_VOLUME = 70;
+    var FILL_SE_PITCH = 150;
     var DONE_CONFIRM_TEXT = '\u3053\u308c\u3067\u3044\u3044\uff1f';
     var DONE_CONFIRM_YES = '\u306f\u3044';
     var DONE_CONFIRM_NO = '\u3044\u3044\u3048';
+    var WHITE_COLOR = '#ffffff';
+    var TECH_BLACK_COLOR = '#000000';
     var GAME_BLACK_COLOR = '#474e51';
     var TRANSPARENT_HATCH_COLOR = GAME_BLACK_COLOR;
+    var TOOL_ICON_BITMAP = 'UI_playerDrawingTools';
     var TOOL_ICON_SIZE = 48;
     var TOOL_BUTTON_SIZE = TOOL_ICON_SIZE;
     var TOOL_BUTTON_GAP = 7;
@@ -57,7 +73,12 @@
     var PIXEL_TRANSPARENT = 0;
     var PIXEL_WHITE = 1;
     var PIXEL_BLACK = 2;
+    var BACKGROUND_WHITE = 'white';
+    var BACKGROUND_TRANSPARENT = 'transparent';
     var DRAWING_NAME_RE = /^PD:(\d+)$/i;
+    var SHORTCUT_NAMES = ['undo', 'redo', 'toolbarPrev', 'toolbarNext', 'brushSmaller', 'brushLarger'];
+    var GAMEPAD_UNDO_BUTTONS = [4, 6];
+    var GAMEPAD_REDO_BUTTONS = [5, 7];
     var DISPLAY_CORNERS = [
         { dx: -1, dy: -1 },
         { dx: 1, dy: -1 },
@@ -100,6 +121,48 @@
 
     function cursorIconForTool(tool) {
         return Object.prototype.hasOwnProperty.call(CURSOR_TOOL_ICONS, tool) ? CURSOR_TOOL_ICONS[tool] : -1;
+    }
+
+    function isBrushTool(tool) {
+        return tool === 'pen' || tool === 'eraser';
+    }
+
+    function isDrawingTool(tool) {
+        return DRAWING_TOOL_KEYS.indexOf(tool) >= 0;
+    }
+
+    function normalizeBackground(value) {
+        return value === BACKGROUND_WHITE ? BACKGROUND_WHITE : BACKGROUND_TRANSPARENT;
+    }
+
+    function normalizePixelValue(value) {
+        return clampInt(value, PIXEL_TRANSPARENT, PIXEL_BLACK);
+    }
+
+    function pixelCss(value) {
+        return value === PIXEL_BLACK ? GAME_BLACK_COLOR : WHITE_COLOR;
+    }
+
+    function rectContains(rect, x, y) {
+        return !!rect && x >= rect.x && y >= rect.y && x < rect.x + rect.width && y < rect.y + rect.height;
+    }
+
+    function contentsContainsPoint(win, point) {
+        return point.x >= 0 && point.y >= 0 && point.x < win.contents.width && point.y < win.contents.height;
+    }
+
+    function windowTouchPoint(win, contentsSpace) {
+        var offset = contentsSpace ? win.padding : 0;
+        return {
+            x: win.canvasToLocalX(TouchInput.x) - offset,
+            y: win.canvasToLocalY(TouchInput.y) - offset
+        };
+    }
+
+    function triggeredContentsPoint(win, contentsSpace) {
+        if (!TouchInput.isTriggered()) return null;
+        var point = windowTouchPoint(win, contentsSpace);
+        return contentsContainsPoint(win, point) ? point : null;
     }
 
     function toolbarWindowHeight() {
@@ -171,10 +234,12 @@
         if (!zxc.playerDrawings) {
             zxc.playerDrawings = {
                 nextId: 1,
-                entries: {}
+                entries: {},
+                itemImages: {}
             };
         }
         if (!zxc.playerDrawings.entries) zxc.playerDrawings.entries = {};
+        if (!zxc.playerDrawings.itemImages) zxc.playerDrawings.itemImages = {};
         if (!zxc.playerDrawings.nextId) zxc.playerDrawings.nextId = 1;
         return zxc.playerDrawings;
     }
@@ -207,18 +272,145 @@
         return match ? Number(match[1]) : 0;
     }
 
+    function playPlayerDrawingSound(type) {
+        if (typeof SoundManager === 'undefined' || !SoundManager) return;
+        if (type === 'cursor' && SoundManager.playCursor) SoundManager.playCursor();
+        else if (type === 'ok' && SoundManager.playOk) SoundManager.playOk();
+        else if (type === 'cancel' && SoundManager.playCancel) SoundManager.playCancel();
+        else if (type === 'buzzer' && SoundManager.playBuzzer) SoundManager.playBuzzer();
+    }
+
+    function playPlayerDrawingSe(name, volume, pitch, isStatic) {
+        var gameSystem = typeof $gameSystem !== 'undefined' ? $gameSystem : null;
+        if (gameSystem && isStatic && gameSystem.playStaticSe) {
+            gameSystem.playStaticSe(name, volume, pitch);
+            return;
+        }
+        if (gameSystem && !isStatic && gameSystem.playSe) {
+            gameSystem.playSe(name, volume, pitch);
+            return;
+        }
+        if (typeof AudioManager === 'undefined') return;
+        var se = { name: name, volume: volume, pitch: pitch, pan: 0 };
+        if (isStatic && AudioManager.playStaticSe) AudioManager.playStaticSe(se);
+        else if (!isStatic && AudioManager.playSe) AudioManager.playSe(se);
+    }
+
+    function pdRandInt(min, max) {
+        if (typeof _rand === 'function') return _rand(min, max);
+        return Math.floor(Math.random() * (max - min + 1)) + min;
+    }
+
+    function playerDrawingStrokeSeName(tool) {
+        if (tool === 'eraser') return ERASER_STROKE_SE_NAME;
+        return '00_pen' + pdRandInt(1, 26);
+    }
+
+    function playPlayerDrawingStrokeSe(tool) {
+        var name = playerDrawingStrokeSeName(tool);
+        var volume = tool === 'eraser' ? ERASER_STROKE_SE_VOLUME : STROKE_SE_VOLUME;
+        var pitch = pdRandInt(STROKE_SE_PITCH_MIN, STROKE_SE_PITCH_MAX);
+        playPlayerDrawingSe(name, volume, pitch, true);
+    }
+
+    function playPlayerDrawingFillSe() {
+        playPlayerDrawingSe(FILL_SE_NAME, FILL_SE_VOLUME, FILL_SE_PITCH, false);
+    }
+
+    function playPlayerDrawingPickerSe() {
+        playPlayerDrawingStrokeSe('eraser');
+    }
+
     function isPlayerDrawingActive() {
         var scene = SceneManager && SceneManager._scene;
         return !!(scene && scene._sceneInfo && scene._sceneInfo.type === 'playerDrawing');
     }
 
-    PD._shortcutQueue = PD._shortcutQueue || {};
-    PD._shortcutQueue.undo = !!PD._shortcutQueue.undo;
-    PD._shortcutQueue.redo = !!PD._shortcutQueue.redo;
-    PD._shortcutQueue.toolbarPrev = !!PD._shortcutQueue.toolbarPrev;
-    PD._shortcutQueue.toolbarNext = !!PD._shortcutQueue.toolbarNext;
-    PD._shortcutQueue.brushSmaller = !!PD._shortcutQueue.brushSmaller;
-    PD._shortcutQueue.brushLarger = !!PD._shortcutQueue.brushLarger;
+    function updateRightButtonStateFromEvent(event) {
+        var state = PD._rightButtonState;
+        state.x = Graphics.pageToCanvasX(event.pageX);
+        state.y = Graphics.pageToCanvasY(event.pageY);
+        state.insideCanvas = Graphics.isInsideCanvas(state.x, state.y);
+        return state.insideCanvas;
+    }
+
+    function resetRightButtonState() {
+        var state = PD._rightButtonState;
+        if (!state) return;
+        state.pressed = false;
+        state.triggered = false;
+        state.lastPickKey = '';
+    }
+
+    function ensureShortcutQueue() {
+        PD._shortcutQueue = PD._shortcutQueue || {};
+        for (var i = 0; i < SHORTCUT_NAMES.length; i++) {
+            var name = SHORTCUT_NAMES[i];
+            PD._shortcutQueue[name] = !!PD._shortcutQueue[name];
+        }
+    }
+
+    function queueKeyboardShortcut(name, event) {
+        ensureShortcutQueue();
+        PD._shortcutQueue[name] = true;
+        if (event && event.preventDefault) event.preventDefault();
+    }
+
+    PD._rightButtonState = PD._rightButtonState || {
+        pressed: false,
+        triggered: false,
+        insideCanvas: false,
+        x: 0,
+        y: 0,
+        lastPickKey: ''
+    };
+    if (!PD._rightButtonHookReady && typeof TouchInput !== 'undefined') {
+        PD._rightButtonHookReady = true;
+        var _TouchInput_onRightButtonDown_PD = TouchInput._onRightButtonDown;
+        var _TouchInput_onMouseMove_PD = TouchInput._onMouseMove;
+        var _TouchInput_onMouseUp_PD = TouchInput._onMouseUp;
+        TouchInput._onRightButtonDown = function(event) {
+            if (isPlayerDrawingActive()) {
+                var state = PD._rightButtonState;
+                var inside = updateRightButtonStateFromEvent(event);
+                state.pressed = inside;
+                state.triggered = inside;
+                state.lastPickKey = '';
+                event.preventDefault();
+                return;
+            }
+            _TouchInput_onRightButtonDown_PD.apply(this, arguments);
+        };
+        TouchInput._onMouseMove = function(event) {
+            _TouchInput_onMouseMove_PD.apply(this, arguments);
+            if (isPlayerDrawingActive() && PD._rightButtonState.pressed) {
+                updateRightButtonStateFromEvent(event);
+                event.preventDefault();
+            }
+        };
+        TouchInput._onMouseUp = function(event) {
+            if (isPlayerDrawingActive() && event.button === 2) {
+                updateRightButtonStateFromEvent(event);
+                resetRightButtonState();
+                event.preventDefault();
+                return;
+            }
+            _TouchInput_onMouseUp_PD.apply(this, arguments);
+        };
+        if (typeof document !== 'undefined' && document.addEventListener) {
+            document.addEventListener('contextmenu', function(event) {
+                if (!isPlayerDrawingActive()) return;
+                event.preventDefault();
+            });
+        }
+        if (typeof window !== 'undefined' && window.addEventListener) {
+            window.addEventListener('blur', function() {
+                resetRightButtonState();
+            });
+        }
+    }
+
+    ensureShortcutQueue();
     PD._lastPadShortcut = PD._lastPadShortcut || {};
 
     if (!PD._shortcutListenerReady && typeof document !== 'undefined' && document.addEventListener) {
@@ -230,26 +422,20 @@
             if (event.ctrlKey) {
                 if (event.repeat) return;
                 if (key === 'z') {
-                    PD._shortcutQueue.undo = true;
-                    event.preventDefault();
+                    queueKeyboardShortcut('undo', event);
                 } else if (key === 'y') {
-                    PD._shortcutQueue.redo = true;
-                    event.preventDefault();
+                    queueKeyboardShortcut('redo', event);
                 }
                 return;
             }
             if (key === 'arrowup' || key === 'w') {
-                PD._shortcutQueue.toolbarPrev = true;
-                event.preventDefault();
+                queueKeyboardShortcut('toolbarPrev', event);
             } else if (key === 'arrowdown' || key === 's') {
-                PD._shortcutQueue.toolbarNext = true;
-                event.preventDefault();
+                queueKeyboardShortcut('toolbarNext', event);
             } else if (key === 'q') {
-                PD._shortcutQueue.brushSmaller = true;
-                event.preventDefault();
+                queueKeyboardShortcut('brushSmaller', event);
             } else if (key === 'e') {
-                PD._shortcutQueue.brushLarger = true;
-                event.preventDefault();
+                queueKeyboardShortcut('brushLarger', event);
             }
         });
     }
@@ -328,6 +514,16 @@
         sprite._meshSprite._lastMeshStep = null;
     }
 
+    function beginWindowContentsRefresh(win) {
+        if (win.refreshYurayura) win.refreshYurayura();
+        win.contents.clear();
+    }
+
+    function endWindowContentsRefresh(win) {
+        markBitmapDirty(win.contents);
+        markYuraSpriteDirty(win._windowContentsSprite);
+    }
+
     function dirtyBounds(x, y) {
         return { minX: x, minY: y, maxX: x, maxY: y };
     }
@@ -356,7 +552,7 @@
     DrawingDocument.prototype.initialize = function(entry) {
         this.width = DOC_W;
         this.height = DOC_H;
-        this.background = entry && entry.background === 'white' ? 'white' : 'transparent';
+        this.background = normalizeBackground(entry && entry.background);
         this.pixels = new Uint8Array(this.width * this.height);
         this._undoStack = [];
         this._redoStack = [];
@@ -375,7 +571,7 @@
 
     DrawingDocument.prototype.set = function(x, y, value) {
         if (x < 0 || y < 0 || x >= this.width || y >= this.height) return false;
-        value = clampInt(value, 0, 2);
+        value = normalizePixelValue(value);
         var index = this.index(x, y);
         if (this.pixels[index] === value) return false;
         this.pixels[index] = value;
@@ -412,7 +608,7 @@
             this.unpack(snapshot);
             return;
         }
-        this.background = snapshot.background === 'white' ? 'white' : 'transparent';
+        this.background = normalizeBackground(snapshot.background);
         this.unpack(snapshot.pixels);
     };
 
@@ -445,6 +641,13 @@
         return this._redoStack.length > 0;
     };
 
+    DrawingDocument.prototype.hasPixels = function() {
+        for (var i = 0; i < this.pixels.length; i++) {
+            if (this.pixels[i] !== PIXEL_TRANSPARENT) return true;
+        }
+        return false;
+    };
+
     DrawingDocument.prototype.undo = function() {
         if (!this.canUndo()) return false;
         this.cancelOperation();
@@ -466,7 +669,7 @@
     };
 
     DrawingDocument.prototype.brushBounds = function(cx, cy, size, value) {
-        size = clampInt(size, 1, 3);
+        size = clampInt(size, BRUSH_SIZE_MIN, BRUSH_SIZE_MAX);
         var bounds = null;
         for (var y = 0; y < size; y++) {
             for (var x = 0; x < size; x++) {
@@ -478,45 +681,41 @@
         return bounds;
     };
 
-    DrawingDocument.prototype.brush = function(cx, cy, size, value) {
-        return !!this.brushBounds(cx, cy, size, value);
+    DrawingDocument.prototype.fillBounds = function(x, y, value) {
+        if (x < 0 || y < 0 || x >= this.width || y >= this.height) return null;
+        value = normalizePixelValue(value);
+        var target = this.get(x, y);
+        if (target === value) return null;
+        var queueX = [x];
+        var queueY = [y];
+        var bounds = dirtyBounds(x, y);
+        this.set(x, y, value);
+        while (queueX.length) {
+            var px = queueX.pop();
+            var py = queueY.pop();
+            bounds = this.pushFillNeighbor(queueX, queueY, bounds, px + 1, py, target, value);
+            bounds = this.pushFillNeighbor(queueX, queueY, bounds, px - 1, py, target, value);
+            bounds = this.pushFillNeighbor(queueX, queueY, bounds, px, py + 1, target, value);
+            bounds = this.pushFillNeighbor(queueX, queueY, bounds, px, py - 1, target, value);
+        }
+        return bounds;
+    };
+
+    DrawingDocument.prototype.pushFillNeighbor = function(queueX, queueY, bounds, x, y, target, value) {
+        if (x < 0 || y < 0 || x >= this.width || y >= this.height) return bounds;
+        if (this.get(x, y) !== target) return bounds;
+        this.set(x, y, value);
+        queueX.push(x);
+        queueY.push(y);
+        return addDirtyPoint(bounds, x, y);
     };
 
     DrawingDocument.prototype.fill = function(x, y, value) {
-        if (x < 0 || y < 0 || x >= this.width || y >= this.height) return false;
-        value = clampInt(value, 0, 2);
-        var target = this.get(x, y);
-        if (target === value) return false;
-        var queue = [[x, y]];
-        var changed = false;
-        this.set(x, y, value);
-        changed = true;
-        while (queue.length) {
-            var p = queue.pop();
-            var px = p[0];
-            var py = p[1];
-            var next = [[px + 1, py], [px - 1, py], [px, py + 1], [px, py - 1]];
-            for (var i = 0; i < next.length; i++) {
-                var nx = next[i][0];
-                var ny = next[i][1];
-                if (nx >= 0 && ny >= 0 && nx < this.width && ny < this.height && this.get(nx, ny) === target) {
-                    this.set(nx, ny, value);
-                    queue.push([nx, ny]);
-                }
-            }
-        }
-        return changed;
+        return !!this.fillBounds(x, y, value);
     };
 
     DrawingDocument.prototype.clear = function() {
-        var changed = false;
-        for (var i = 0; i < this.pixels.length; i++) {
-            if (this.pixels[i] !== PIXEL_TRANSPARENT) {
-                changed = true;
-                break;
-            }
-        }
-        if (!changed) return false;
+        if (!this.hasPixels()) return false;
         this.pixels.fill(PIXEL_TRANSPARENT);
         return true;
     };
@@ -543,12 +742,12 @@
         this.sourceId = Number(options.drawingId || options.id || 0);
         var entry = this.sourceId ? PD.entry(this.sourceId) : null;
         this.doc = new DrawingDocument(entry);
-        if (!entry && options.background === 'white') this.doc.background = 'white';
-        this.tool = options.tool || 'pen';
+        if (!entry) this.doc.background = normalizeBackground(options.background);
+        this.tool = isDrawingTool(options.tool) ? options.tool : 'pen';
         this.toolbarIndex = Math.max(0, toolbarIndexForKey(this.tool));
-        this.color = options.color === 'white' ? PIXEL_WHITE : PIXEL_BLACK;
-        this.penSize = clampInt(options.penSize || options.size || 2, 1, 3);
-        this.eraserSize = clampInt(options.eraserSize || options.size || 2, 1, 3);
+        this.color = options.color === BACKGROUND_WHITE ? PIXEL_WHITE : PIXEL_BLACK;
+        this.penSize = clampInt(options.penSize || options.size || 2, BRUSH_SIZE_MIN, BRUSH_SIZE_MAX);
+        this.eraserSize = clampInt(options.eraserSize || options.size || 2, BRUSH_SIZE_MIN, BRUSH_SIZE_MAX);
         this.showCancelButton = booleanOption(
                 options.showCancelButton != null ? options.showCancelButton : options.cancelButton,
                 false);
@@ -556,6 +755,8 @@
         this._painting = false;
         this._changedInOperation = false;
         this._lastPixel = null;
+        this._strokeSeWait = 0;
+        this._strokeSeLastPoint = null;
     };
 
     DrawingEditor.prototype.paintValue = function() {
@@ -563,36 +764,35 @@
     };
 
     DrawingEditor.prototype.setTool = function(tool) {
+        if (!isDrawingTool(tool)) return false;
         this.tool = tool;
         var index = toolbarIndexForKey(tool);
         if (index >= 0) this.toolbarIndex = index;
+        return true;
     };
 
     DrawingEditor.prototype.setToolbarIndex = function(index) {
         index = clampInt(index, 0, TOOLBAR_BUTTONS.length - 1);
         this.toolbarIndex = index;
         var button = TOOLBAR_BUTTONS[index];
-        if (button && button.type === 'tool') this.tool = button.key;
-    };
-
-    DrawingEditor.prototype.nudgeToolbarIndex = function(delta) {
-        var length = TOOLBAR_BUTTONS.length;
-        var index = Number(this.toolbarIndex);
-        if (isNaN(index)) index = Math.max(0, toolbarIndexForKey(this.tool));
-        this.setToolbarIndex((index + delta + length) % length);
-        return true;
+        if (button && button.type === 'tool') this.setTool(button.key);
     };
 
     DrawingEditor.prototype.toolbarCommand = function() {
         return toolbarCommandForButton(TOOLBAR_BUTTONS[this.toolbarIndex]);
     };
 
+    DrawingEditor.prototype.toolbarButton = function() {
+        return TOOLBAR_BUTTONS[this.toolbarIndex] || null;
+    };
+
     DrawingEditor.prototype.toggleColor = function() {
         this.color = this.color === PIXEL_BLACK ? PIXEL_WHITE : PIXEL_BLACK;
     };
 
-    DrawingEditor.prototype.usesBrushSize = function() {
-        return this.tool === 'pen' || this.tool === 'eraser';
+    DrawingEditor.prototype.selectedBrushSizeTool = function() {
+        var button = this.toolbarButton();
+        return button && isBrushTool(button.key) ? button.key : '';
     };
 
     DrawingEditor.prototype.brushSize = function() {
@@ -600,25 +800,22 @@
     };
 
     DrawingEditor.prototype.setBrushSize = function(size) {
-        size = clampInt(size, 1, 3);
+        size = clampInt(size, BRUSH_SIZE_MIN, BRUSH_SIZE_MAX);
         if (this.tool === 'eraser') this.eraserSize = size;
         else this.penSize = size;
     };
 
     DrawingEditor.prototype.nudgeBrushSize = function(delta) {
-        var next = clampInt(this.brushSize() + delta, 1, 3);
+        var next = clampInt(this.brushSize() + delta, BRUSH_SIZE_MIN, BRUSH_SIZE_MAX);
         if (next === this.brushSize()) return false;
         this.setBrushSize(next);
         return true;
     };
 
-    DrawingEditor.prototype.toggleBackground = function() {
-        this.doc.background = this.doc.background === 'white' ? 'transparent' : 'white';
-    };
-
     DrawingEditor.prototype.beginDraw = function() {
         this.doc.beginOperation();
         this._changedInOperation = false;
+        this.resetStrokeSe();
     };
 
     DrawingEditor.prototype.finishDraw = function() {
@@ -626,6 +823,38 @@
         else this.doc.cancelOperation();
         this._painting = false;
         this._lastPixel = null;
+        this.resetStrokeSe();
+    };
+
+    DrawingEditor.prototype.usesStrokeSe = function() {
+        return isBrushTool(this.tool);
+    };
+
+    DrawingEditor.prototype.resetStrokeSe = function() {
+        this._strokeSeWait = 0;
+        this._strokeSeLastPoint = null;
+    };
+
+    DrawingEditor.prototype.setStrokeSePoint = function(x, y) {
+        this._strokeSeLastPoint = { x: x, y: y };
+    };
+
+    DrawingEditor.prototype.strokeSeMoved = function(x, y) {
+        var last = this._strokeSeLastPoint;
+        this._strokeSeLastPoint = { x: x, y: y };
+        if (!last) return false;
+        return Math.abs(x - last.x) >= 1 || Math.abs(y - last.y) >= 1;
+    };
+
+    DrawingEditor.prototype.playStrokeSeIfMoving = function(x, y) {
+        if (!this.usesStrokeSe()) return;
+        if (!this.strokeSeMoved(x, y)) return;
+        if (this._strokeSeWait > 0) {
+            this._strokeSeWait--;
+            return;
+        }
+        playPlayerDrawingStrokeSe(this.tool);
+        this._strokeSeWait = STROKE_SE_INTERVAL;
     };
 
     DrawingEditor.prototype.drawAt = function(x, y) {
@@ -699,7 +928,7 @@
         var bottom = Math.min(h, y + height);
         var startX = Math.floor(x / cell) * cell;
         var startY = Math.floor(y / cell) * cell;
-        ctx.fillStyle = '#ffffff';
+        ctx.fillStyle = WHITE_COLOR;
         ctx.fillRect(x, y, width, height);
         for (var cy = startY; cy < bottom; cy += cell) {
             for (var cx = startX; cx < right; cx += cell) {
@@ -723,8 +952,8 @@
         if (value === PIXEL_BLACK) {
             ctx.fillStyle = GAME_BLACK_COLOR;
             ctx.fillRect(x, y, width, height);
-        } else if (value === PIXEL_WHITE || doc.background === 'white') {
-            ctx.fillStyle = '#ffffff';
+        } else if (value === PIXEL_WHITE || doc.background === BACKGROUND_WHITE) {
+            ctx.fillStyle = WHITE_COLOR;
             ctx.fillRect(x, y, width, height);
         } else {
             fillTransparentPreviewRegion(ctx, doc.width * scale, doc.height * scale, scale, bitmap, x, y, width, height);
@@ -743,8 +972,8 @@
         } else {
             ctx.clearRect(0, 0, bitmap.width, bitmap.height);
         }
-        if (doc.background === 'white') {
-            ctx.fillStyle = '#ffffff';
+        if (doc.background === BACKGROUND_WHITE) {
+            ctx.fillStyle = WHITE_COLOR;
             if (rect) ctx.fillRect(rect.x, rect.y, rect.width, rect.height);
             else ctx.fillRect(0, 0, w, h);
         } else {
@@ -753,8 +982,11 @@
     }
 
     function displayPixelAt(doc, x, y) {
-        if (x < 0 || y < 0 || x >= doc.width || y >= doc.height) return PIXEL_TRANSPARENT;
-        return doc.pixels[y * doc.width + x];
+        var value = PIXEL_TRANSPARENT;
+        if (x >= 0 && y >= 0 && x < doc.width && y < doc.height) {
+            value = doc.pixels[y * doc.width + x];
+        }
+        return value === PIXEL_TRANSPARENT && doc.background === BACKGROUND_WHITE ? PIXEL_WHITE : value;
     }
 
     function paintDocumentBasePixels(bitmap, doc, scale, minX, minY, maxX, maxY) {
@@ -916,15 +1148,15 @@
         ctx.save();
         ctx.imageSmoothingEnabled = false;
         ctx.clearRect(0, 0, size, size);
-        if (doc.background === 'white') {
-            ctx.fillStyle = '#ffffff';
+        if (doc.background === BACKGROUND_WHITE) {
+            ctx.fillStyle = WHITE_COLOR;
             ctx.fillRect(0, 0, size, size);
         }
         for (var y = 0; y < doc.height; y++) {
             for (var x = 0; x < doc.width; x++) {
                 var value = doc.get(x, y);
                 if (value === PIXEL_TRANSPARENT) continue;
-                ctx.fillStyle = value === PIXEL_BLACK ? GAME_BLACK_COLOR : '#ffffff';
+                ctx.fillStyle = pixelCss(value);
                 ctx.fillRect(Math.floor(x * scale), Math.floor(y * scale), Math.ceil(scale), Math.ceil(scale));
             }
         }
@@ -1008,6 +1240,79 @@
         return id ? this.loadBitmap(id, options) : null;
     };
 
+    PD.itemDrawingId = function(itemOrId) {
+        var store = ensureStore();
+        if (!store || !store.itemImages) return 0;
+        var key = itemRegisterKey(itemOrId);
+        return key ? Number(store.itemImages[key] || 0) : 0;
+    };
+
+    PD.registerItemImage = function(itemOrId, drawingId) {
+        var store = ensureStore();
+        var key = itemRegisterKey(itemOrId);
+        drawingId = Number(drawingId || 0);
+        if (!store || !key || !drawingId || !this.entry(drawingId)) {
+            warnPlayerDrawing('registerItemImage failed.', { item: itemOrId, drawingId: drawingId });
+            return false;
+        }
+        store.itemImages[key] = drawingId;
+        refreshPlayerDrawingItemEvents(itemOrId);
+        return true;
+    };
+
+    PD.unregisterItemImage = function(itemOrId) {
+        var store = ensureStore();
+        var key = itemRegisterKey(itemOrId);
+        if (!store || !key || !store.itemImages || !store.itemImages[key]) return false;
+        delete store.itemImages[key];
+        refreshPlayerDrawingItemEvents(itemOrId);
+        return true;
+    };
+
+    PD.itemImageInfo = function(itemOrId) {
+        var item = resolveItem(itemOrId);
+        var drawingId = this.itemDrawingId(item);
+        if (drawingId) {
+            return {
+                name: this.drawingName(drawingId),
+                index: 0,
+                drawingId: drawingId,
+                playerDrawing: true
+            };
+        }
+        if (!item || !item.meta || !item.meta.image) return null;
+        var parts = String(item.meta.image).split(',');
+        return {
+            name: parts[0] || '',
+            index: Number(parts[1] || 0),
+            drawingId: 0,
+            playerDrawing: false
+        };
+    };
+
+    PD.loadItemImageBitmap = function(imageInfo) {
+        if (imageInfo && imageInfo.playerDrawing) {
+            return this.loadBitmap(imageInfo.drawingId, { size: OUTPUT_SIZE });
+        }
+        return ImageManager.loadItem(imageInfo ? imageInfo.name || '' : '');
+    };
+
+    PD.itemImageFrame = function(bitmap, imageInfo) {
+        if (!bitmap) return { x: 0, y: 0, width: 0, height: 0 };
+        if (imageInfo && imageInfo.playerDrawing) {
+            return { x: 0, y: 0, width: bitmap.width, height: bitmap.height };
+        }
+        var index = Number(imageInfo && imageInfo.index || 0);
+        var pw = bitmap.width / 4;
+        var ph = bitmap.height / 2;
+        return {
+            x: (index % 4) * pw,
+            y: Math.floor(index / 4) * ph,
+            width: pw,
+            height: ph
+        };
+    };
+
     PD.putItem = function(drawingId, itemOrId, x, y, num) {
         if (!$gameMap || !$dataTemplateEvents) return null;
         return $gameMap.putPlayerDrawingItem(drawingId, itemOrId, x, y, num);
@@ -1042,8 +1347,7 @@
     };
 
     Window_PlayerDrawingPrompt.prototype.refresh = function() {
-        if (this.refreshYurayura) this.refreshYurayura();
-        this.contents.clear();
+        beginWindowContentsRefresh(this);
         var text = this.text();
         if (text) {
             var x = this.textPadding();
@@ -1054,8 +1358,7 @@
             }
             this.drawText(text, x, 0, width, 'center');
         }
-        markBitmapDirty(this.contents);
-        markYuraSpriteDirty(this._windowContentsSprite);
+        endWindowContentsRefresh(this);
     };
 
     function Window_PlayerDrawingCanvas() {
@@ -1114,7 +1417,7 @@
 
     Window_PlayerDrawingToolbar.prototype.initialize = function(editor, x, y, height) {
         this._editor = editor;
-        this._iconBitmap = ImageManager.loadSystem('UI_playerDrawingTools');
+        this._iconBitmap = ImageManager.loadSystem(TOOL_ICON_BITMAP);
         Window_Base.prototype.initialize.call(this, x, y, TOOLBAR_W, height);
         if (this._iconBitmap && this._iconBitmap.addLoadListener) {
             this._iconBitmap.addLoadListener(this.refresh.bind(this));
@@ -1136,8 +1439,9 @@
     };
 
     Window_PlayerDrawingToolbar.prototype.sizeRect = function(size) {
-        var index = DRAWING_TOOL_KEYS.indexOf(this._editor.tool);
-        if (index < 0 || !this._editor.usesBrushSize()) return null;
+        var tool = this._editor.selectedBrushSizeTool();
+        var index = DRAWING_TOOL_KEYS.indexOf(tool);
+        if (index < 0) return null;
         return {
             x: TOOL_BUTTON_SIZE + 10,
             y: index * (TOOL_BUTTON_SIZE + TOOL_BUTTON_GAP) + SIZE_SELECT_OUTSET + (size - 1) * (SIZE_BUTTON_SIZE + SIZE_BUTTON_GAP),
@@ -1146,60 +1450,40 @@
         };
     };
 
-    Window_PlayerDrawingToolbar.prototype.isRectTouched = function(rect, x, y) {
-        return rect && x >= rect.x && y >= rect.y && x < rect.x + rect.width && y < rect.y + rect.height;
-    };
-
-    Window_PlayerDrawingToolbar.prototype.buttonEnabled = function(key) {
-        if (key === 'undo') return this._editor.doc.canUndo();
-        if (key === 'redo') return this._editor.doc.canRedo();
-        return true;
-    };
-
-    Window_PlayerDrawingToolbar.prototype.localTouchPoint = function() {
-        return {
-            x: this.canvasToLocalX(TouchInput.x) - this.padding,
-            y: this.canvasToLocalY(TouchInput.y) - this.padding
-        };
-    };
-
     Window_PlayerDrawingToolbar.prototype.consumeTriggeredAction = function() {
-        if (!TouchInput.isTriggered()) return null;
-        var point = this.localTouchPoint();
-        if (point.x < 0 || point.y < 0 || point.x >= this.contents.width || point.y >= this.contents.height) {
-            return null;
-        }
-        for (var s = 1; s <= 3; s++) {
-            if (this.isRectTouched(this.sizeRect(s), point.x, point.y)) {
+        var point = triggeredContentsPoint(this, true);
+        if (!point) return null;
+        for (var s = BRUSH_SIZE_MIN; s <= BRUSH_SIZE_MAX; s++) {
+            if (rectContains(this.sizeRect(s), point.x, point.y)) {
                 return { key: 'size_' + s };
             }
         }
         for (var i = 0; i < TOOLBAR_BUTTONS.length; i++) {
             var button = TOOLBAR_BUTTONS[i];
-            if (this.isRectTouched(this.buttonRect(i), point.x, point.y)) {
-                if (!this.buttonEnabled(button.key)) return null;
-                return { key: toolbarCommandForButton(button), toolbarIndex: i };
+            if (rectContains(this.buttonRect(i), point.x, point.y)) {
+                return {
+                    key: toolbarCommandForButton(button),
+                    toolbarIndex: i,
+                    buttonType: button.type
+                };
             }
         }
         return null;
     };
 
-    Window_PlayerDrawingToolbar.prototype.drawButtonFrame = function(rect, active, enabled) {
+    Window_PlayerDrawingToolbar.prototype.drawButtonFrame = function(rect, active) {
         var ctx = this.contents._context;
         ctx.save();
         ctx.lineWidth = active ? 2 : 1;
-        ctx.strokeStyle = active ? '#ffffff' : 'rgba(255,255,255,0.45)';
-        if (!enabled) ctx.globalAlpha *= 0.45;
+        ctx.strokeStyle = active ? WHITE_COLOR : 'rgba(255,255,255,0.45)';
         ctx.strokeRect(rect.x + 0.5, rect.y + 0.5, rect.width - 1, rect.height - 1);
         ctx.restore();
     };
 
-    Window_PlayerDrawingToolbar.prototype.drawIcon = function(iconIndex, x, y, enabled, selected) {
+    Window_PlayerDrawingToolbar.prototype.drawIcon = function(iconIndex, x, y, selected) {
         if (!this._iconBitmap || !this._iconBitmap.isReady || !this._iconBitmap.isReady()) return;
         var sy = selected && this._iconBitmap.height >= TOOL_ICON_SIZE * 2 ? TOOL_ICON_SIZE : 0;
-        this.contents.paintOpacity = enabled ? 255 : 96;
         this.contents.blt(this._iconBitmap, iconIndex * TOOL_ICON_SIZE, sy, TOOL_ICON_SIZE, TOOL_ICON_SIZE, x, y);
-        this.contents.paintOpacity = 255;
     };
 
     Window_PlayerDrawingToolbar.prototype.drawToolButtons = function() {
@@ -1207,20 +1491,20 @@
             var button = TOOLBAR_BUTTONS[i];
             var rect = this.buttonRect(i);
             var active = i === this._editor.toolbarIndex;
-            var enabled = this.buttonEnabled(button.key);
-            this.drawButtonFrame(rect, active, enabled);
-            this.drawIcon(button.icon, rect.x + TOOL_ICON_OFFSET, rect.y + TOOL_ICON_OFFSET, enabled, active);
+            this.drawButtonFrame(rect, active);
+            this.drawIcon(button.icon, rect.x + TOOL_ICON_OFFSET, rect.y + TOOL_ICON_OFFSET, active);
         }
     };
 
     Window_PlayerDrawingToolbar.prototype.drawSizePanel = function() {
-        if (!this._editor.usesBrushSize()) return;
-        var current = this._editor.brushSize();
-        var inverted = this._editor.tool === 'pen' && this._editor.color === PIXEL_BLACK;
-        var fillColor = inverted ? '#ffffff' : GAME_BLACK_COLOR;
-        var markColor = inverted ? GAME_BLACK_COLOR : '#ffffff';
+        var tool = this._editor.selectedBrushSizeTool();
+        if (!tool) return;
+        var current = tool === 'eraser' ? this._editor.eraserSize : this._editor.penSize;
+        var inverted = tool === 'pen' && this._editor.color === PIXEL_BLACK;
+        var fillColor = inverted ? WHITE_COLOR : GAME_BLACK_COLOR;
+        var markColor = inverted ? GAME_BLACK_COLOR : WHITE_COLOR;
         var ctx = this.contents._context;
-        for (var size = 1; size <= 3; size++) {
+        for (var size = BRUSH_SIZE_MIN; size <= BRUSH_SIZE_MAX; size++) {
             var rect = this.sizeRect(size);
             var active = size === current;
             ctx.save();
@@ -1250,12 +1534,10 @@
     };
 
     Window_PlayerDrawingToolbar.prototype.refresh = function() {
-        if (this.refreshYurayura) this.refreshYurayura();
-        this.contents.clear();
+        beginWindowContentsRefresh(this);
         this.drawToolButtons();
         this.drawSizePanel();
-        markBitmapDirty(this.contents);
-        markYuraSpriteDirty(this._windowContentsSprite);
+        endWindowContentsRefresh(this);
     };
 
     function Window_PlayerDrawingColor() {
@@ -1283,29 +1565,15 @@
         if (this._windowBackSprite) this._windowBackSprite.visible = false;
     };
 
-    Window_PlayerDrawingColor.prototype.localTouchPoint = function() {
-        return {
-            x: this.canvasToLocalX(TouchInput.x),
-            y: this.canvasToLocalY(TouchInput.y)
-        };
-    };
-
     Window_PlayerDrawingColor.prototype.consumeTriggeredAction = function() {
-        if (!TouchInput.isTriggered()) return null;
-        var point = this.localTouchPoint();
-        if (point.x < 0 || point.y < 0 || point.x >= this.contents.width || point.y >= this.contents.height) {
-            return null;
-        }
+        var point = triggeredContentsPoint(this, false);
+        if (!point) return null;
         return { key: 'color' };
-    };
-
-    Window_PlayerDrawingColor.prototype.colorCss = function(value) {
-        return value === PIXEL_WHITE ? '#ffffff' : GAME_BLACK_COLOR;
     };
 
     Window_PlayerDrawingColor.prototype.drawSwatch = function(rect, color) {
         var ctx = this.contents._context;
-        ctx.fillStyle = '#000000';
+        ctx.fillStyle = TECH_BLACK_COLOR;
         ctx.fillRect(rect.x, rect.y, rect.width, rect.height);
         ctx.fillStyle = color;
         ctx.fillRect(
@@ -1326,7 +1594,7 @@
         var small = { x: 8, y: 26, width: COLOR_SMALL_SIZE, height: COLOR_SMALL_SIZE };
         var ctx = this.contents._context;
         ctx.save();
-        ctx.fillStyle = '#ffffff';
+        ctx.fillStyle = WHITE_COLOR;
         ctx.fillRect(
             big.x - COLOR_WHITE_BORDER,
             big.y - COLOR_WHITE_BORDER,
@@ -1339,11 +1607,10 @@
             small.width + COLOR_WHITE_BORDER * 2,
             small.height + COLOR_WHITE_BORDER * 2
         );
-        this.drawSwatch(small, this.colorCss(other));
-        this.drawSwatch(big, this.colorCss(current));
+        this.drawSwatch(small, pixelCss(other));
+        this.drawSwatch(big, pixelCss(current));
         ctx.restore();
-        markBitmapDirty(this.contents);
-        markYuraSpriteDirty(this._windowContentsSprite);
+        endWindowContentsRefresh(this);
     };
 
     function Window_PlayerDrawingConfirm() {
@@ -1355,7 +1622,7 @@
 
     Window_PlayerDrawingConfirm.prototype.initialize = function(editor, x, y) {
         this._editor = editor;
-        this._iconBitmap = ImageManager.loadSystem('UI_playerDrawingTools');
+        this._iconBitmap = ImageManager.loadSystem(TOOL_ICON_BITMAP);
         Window_Base.prototype.initialize.call(this, x, y, actionWindowWidth(editor), ACTION_H);
         if (this._iconBitmap && this._iconBitmap.addLoadListener) {
             this._iconBitmap.addLoadListener(this.refresh.bind(this));
@@ -1376,22 +1643,12 @@
         };
     };
 
-    Window_PlayerDrawingConfirm.prototype.localTouchPoint = function() {
-        return {
-            x: this.canvasToLocalX(TouchInput.x) - this.padding,
-            y: this.canvasToLocalY(TouchInput.y) - this.padding
-        };
-    };
-
     Window_PlayerDrawingConfirm.prototype.consumeTriggeredAction = function() {
-        if (!TouchInput.isTriggered()) return null;
-        var point = this.localTouchPoint();
-        if (point.x < 0 || point.y < 0 || point.x >= this.contents.width || point.y >= this.contents.height) {
-            return null;
-        }
+        var point = triggeredContentsPoint(this, true);
+        if (!point) return null;
         var buttons = this.buttons();
         for (var i = 0; i < buttons.length; i++) {
-            if (Window_PlayerDrawingToolbar.prototype.isRectTouched.call(this, this.buttonRect(i), point.x, point.y)) {
+            if (rectContains(this.buttonRect(i), point.x, point.y)) {
                 return { key: buttons[i].key };
             }
         }
@@ -1399,16 +1656,14 @@
     };
 
     Window_PlayerDrawingConfirm.prototype.refresh = function() {
-        if (this.refreshYurayura) this.refreshYurayura();
-        this.contents.clear();
+        beginWindowContentsRefresh(this);
         var buttons = this.buttons();
         for (var i = 0; i < buttons.length; i++) {
             var rect = this.buttonRect(i);
-            Window_PlayerDrawingToolbar.prototype.drawButtonFrame.call(this, rect, false, true);
-            Window_PlayerDrawingToolbar.prototype.drawIcon.call(this, buttons[i].icon, rect.x + TOOL_ICON_OFFSET, rect.y + TOOL_ICON_OFFSET, true);
+            Window_PlayerDrawingToolbar.prototype.drawButtonFrame.call(this, rect, false);
+            Window_PlayerDrawingToolbar.prototype.drawIcon.call(this, buttons[i].icon, rect.x + TOOL_ICON_OFFSET, rect.y + TOOL_ICON_OFFSET, false);
         }
-        markBitmapDirty(this.contents);
-        markYuraSpriteDirty(this._windowContentsSprite);
+        endWindowContentsRefresh(this);
     };
 
     function resolveTemplate(template, isTemplate) {
@@ -1419,10 +1674,35 @@
         return data ? data.id : null;
     }
 
+    function warnPlayerDrawing(message, detail) {
+        if (typeof console === 'undefined' || !console.warn) return;
+        if (detail == null) {
+            console.warn('[KNH_PlayerDrawing] ' + message);
+        } else {
+            console.warn('[KNH_PlayerDrawing] ' + message, detail);
+        }
+    }
+
     function resolveItem(itemOrId) {
         if (!itemOrId) return null;
         if (typeof itemOrId === 'object') return itemOrId;
         return $dataItems ? $dataItems[Number(itemOrId)] : null;
+    }
+
+    function itemRegisterKey(itemOrId) {
+        var item = resolveItem(itemOrId);
+        if (!item || !item.id || !$dataItems || $dataItems[item.id] !== item) return '';
+        return String(item.id);
+    }
+
+    function refreshPlayerDrawingItemEvents(itemOrId) {
+        var item = resolveItem(itemOrId);
+        if (!item || !$gameMap || !$gameMap._events) return;
+        var events = $gameMap._events;
+        for (var i = 0; i < events.length; i++) {
+            var ev = events[i];
+            if (ev && ev._item === item && ev.setItem) ev.setItem(item);
+        }
     }
 
     ImageManager.loadPlayerDrawing = function(id, options) {
@@ -1459,7 +1739,8 @@
             anchorY: options.anchorY == null ? 1 : Number(options.anchorY),
             outlineBlack: options.outlineBlack == null ? 1 : Number(options.outlineBlack),
             outlineWhite: options.outlineWhite == null ? 2 : Number(options.outlineWhite),
-            yura: options.yura === false ? null : (options.yura || [24, 24])
+            yura: options.yura === false ? null : (options.yura || [24, 24]),
+            source: options.source || 'direct'
         };
         this._scaleX = this._scaleY = this._playerDrawingImageInfo.scale;
         var sprite = this.sprite && this.sprite();
@@ -1476,11 +1757,38 @@
         return this._playerDrawingImageInfo;
     };
 
+    var _Game_Event_setItem_PD = Game_Event.prototype.setItem;
+    Game_Event.prototype.setItem = function(item) {
+        _Game_Event_setItem_PD.apply(this, arguments);
+        var drawingId = PD.itemDrawingId(item);
+        if (drawingId) {
+            if (this._playerDrawingImageInfo && this._playerDrawingImageInfo.source === 'direct') return;
+            this.setPlayerDrawingImage(drawingId, { scale: this._scaleX || 60, source: 'item' });
+        } else if (this._playerDrawingImageInfo && this._playerDrawingImageInfo.source === 'item') {
+            this.clearPlayerDrawingImage();
+        }
+    };
+
     Game_Map.prototype.putPlayerDrawingItem = function(drawingId, itemOrId, x, y, num) {
+        if (!drawingId) {
+            warnPlayerDrawing('putPlayerDrawingItem failed: drawingId is empty.');
+            return null;
+        }
         var item = resolveItem(itemOrId);
         var tpl = DataManager.searchDataItem ? DataManager.searchDataItem($dataTemplateEvents, 'name', 'item') : null;
-        if (!item || !tpl) return null;
+        if (!item) {
+            warnPlayerDrawing('putPlayerDrawingItem failed: item not found.', itemOrId);
+            return null;
+        }
+        if (!tpl) {
+            warnPlayerDrawing('putPlayerDrawingItem failed: template event "item" not found.');
+            return null;
+        }
         var ev = this.spawnEvent(tpl.id, x, y, true);
+        if (!ev) {
+            warnPlayerDrawing('putPlayerDrawingItem failed: spawnEvent returned empty.', { templateId: tpl.id, x: x, y: y });
+            return null;
+        }
         ev.setItem(item);
         ev.setPlayerDrawingImage(drawingId, { scale: ev._scaleX || 60 });
         ev._itemNum = num || 1;
@@ -1490,10 +1798,33 @@
 
     Game_Map.prototype.spawnPlayerDrawingEvent = function(drawingId, template, x, y, options) {
         options = options || {};
+        if (!drawingId) {
+            warnPlayerDrawing('spawnPlayerDrawingEvent failed: drawingId is empty.');
+            return null;
+        }
         var isTemplate = options.isTemplate !== false;
+        if (isTemplate && String(template) === 'item') {
+            warnPlayerDrawing('spawnPlayerDrawingEvent failed: template "item" needs item data. Use putPlayerDrawingItem or putLastPlayerDrawingItem.');
+            return null;
+        }
         var templateId = resolveTemplate(template, isTemplate);
-        if (!templateId) return null;
+        if (!templateId) {
+            warnPlayerDrawing('spawnPlayerDrawingEvent failed: template event not found.', {
+                template: template,
+                isTemplate: isTemplate
+            });
+            return null;
+        }
         var ev = this.spawnEvent(templateId, x, y, isTemplate);
+        if (!ev) {
+            warnPlayerDrawing('spawnPlayerDrawingEvent failed: spawnEvent returned empty.', {
+                templateId: templateId,
+                isTemplate: isTemplate,
+                x: x,
+                y: y
+            });
+            return null;
+        }
         ev.setPlayerDrawingImage(drawingId, options);
         this.rejudgeEvents();
         return ev;
@@ -1609,7 +1940,7 @@
             canvas.addEventListener('mouseenter', this._pdCursorEnterHandler);
             canvas.addEventListener('mouseleave', this._pdCursorLeaveHandler);
         }
-        this._pdCursorSprite = new Sprite(ImageManager.loadSystem('UI_playerDrawingTools'));
+        this._pdCursorSprite = new Sprite(ImageManager.loadSystem(TOOL_ICON_BITMAP));
         this._pdCursorSprite.anchor.x = 0;
         this._pdCursorSprite.anchor.y = 1;
         this._pdCursorSprite.visible = false;
@@ -1621,6 +1952,7 @@
     };
 
     Scene_Base.prototype.restorePlayerDrawingCursor = function() {
+        resetRightButtonState();
         var canvas = Graphics._canvas;
         if (canvas) {
             if (this._pdCursorEnterHandler) canvas.removeEventListener('mouseenter', this._pdCursorEnterHandler);
@@ -1647,25 +1979,39 @@
         this._pdCursorNativeHidden = hidden;
     };
 
+    Scene_Base.prototype.playerDrawingCursorPoint = function() {
+        var state = PD._rightButtonState;
+        if (state && state.pressed) {
+            return { x: state.x, y: state.y };
+        }
+        return { x: TouchInput.x, y: TouchInput.y };
+    };
+
+    Scene_Base.prototype.playerDrawingCursorTool = function(editor) {
+        var state = PD._rightButtonState;
+        return state && state.pressed ? 'picker' : editor.tool;
+    };
+
     Scene_Base.prototype.updatePlayerDrawingCursor = function(forceHide) {
         var sprite = this._pdCursorSprite;
         if (!sprite) return;
         var info = this._sceneInfo;
         var show = false;
         var icon = -1;
+        var point = this.playerDrawingCursorPoint();
         if (!forceHide && info && info.type === 'playerDrawing' && info.canvasWindow && this._pdCursorCanvasHover !== false) {
-            icon = cursorIconForTool(info.editor.tool);
-            show = icon >= 0 && !!info.canvasWindow.pixelFromScreen(TouchInput.x, TouchInput.y);
+            icon = cursorIconForTool(this.playerDrawingCursorTool(info.editor));
+            show = icon >= 0 && !!info.canvasWindow.pixelFromScreen(point.x, point.y);
         }
         if (show) {
-            var tool = info.editor.tool;
+            var tool = this.playerDrawingCursorTool(info.editor);
             if (this._pdCursorTool !== tool) {
                 sprite.setFrame(icon * TOOL_ICON_SIZE, 0, TOOL_ICON_SIZE, TOOL_ICON_SIZE);
                 sprite._lastFrame = null;
                 this._pdCursorTool = tool;
             }
-            sprite.x = TouchInput.x;
-            sprite.y = TouchInput.y;
+            sprite.x = point.x;
+            sprite.y = point.y;
             sprite.visible = true;
             sprite.opacity = 255;
             this.setPlayerDrawingCursorHidden(true);
@@ -1676,10 +2022,7 @@
         }
     };
 
-    Scene_Base.prototype.startPlayerDrawing = function(options) {
-        options = options || {};
-        if (this._sceneInfo) return false;
-        var editor = new DrawingEditor(options);
+    function playerDrawingLayout(editor) {
         var toolbarW = TOOLBAR_W;
         var toolbarH = toolbarWindowHeight();
         var gap = 16;
@@ -1694,18 +2037,33 @@
         var left = Math.max(8, Math.min(canvasLeft - toolbarW - gap, maxLeft));
         var top = Math.max(minTop, Math.floor((Graphics.boxHeight - canvasW) / 2));
         var canvasX = left + toolbarW + gap;
-        var colorX = left + Math.floor((toolbarW - COLOR_WINDOW_W) / 2);
-        var colorY = Math.max(8, Math.min(top + toolbarH + 8, Graphics.boxHeight - COLOR_WINDOW_H - 8));
-        var actionX = canvasX + canvasW + gap;
-        var actionY = top + canvasW - ACTION_H;
         var promptW = Math.min(Graphics.boxWidth - PROMPT_MARGIN * 2, Math.max(totalW, canvasW));
-        var promptX = Math.floor((Graphics.boxWidth - promptW) / 2);
-        var promptY = PROMPT_MARGIN;
-        this._pdPromptWindow = editor.promptText ? new Window_PlayerDrawingPrompt(editor, promptX, promptY, promptW) : null;
-        this._pdToolbarWindow = new Window_PlayerDrawingToolbar(editor, left, top, toolbarH);
-        this._pdCanvasWindow = new Window_PlayerDrawingCanvas(editor, canvasX, top);
-        this._pdColorWindow = new Window_PlayerDrawingColor(editor, colorX, colorY);
-        this._pdActionWindow = new Window_PlayerDrawingConfirm(editor, actionX, actionY);
+        return {
+            toolbarX: left,
+            toolbarY: top,
+            toolbarH: toolbarH,
+            canvasX: canvasX,
+            canvasY: top,
+            colorX: left + Math.floor((toolbarW - COLOR_WINDOW_W) / 2),
+            colorY: Math.max(8, Math.min(top + toolbarH + 8, Graphics.boxHeight - COLOR_WINDOW_H - 8)),
+            actionX: canvasX + canvasW + gap,
+            actionY: top + canvasW - ACTION_H,
+            promptX: Math.floor((Graphics.boxWidth - promptW) / 2),
+            promptY: PROMPT_MARGIN,
+            promptW: promptW
+        };
+    }
+
+    Scene_Base.prototype.startPlayerDrawing = function(options) {
+        options = options || {};
+        if (this._sceneInfo) return false;
+        var editor = new DrawingEditor(options);
+        var layout = playerDrawingLayout(editor);
+        this._pdPromptWindow = editor.promptText ? new Window_PlayerDrawingPrompt(editor, layout.promptX, layout.promptY, layout.promptW) : null;
+        this._pdToolbarWindow = new Window_PlayerDrawingToolbar(editor, layout.toolbarX, layout.toolbarY, layout.toolbarH);
+        this._pdCanvasWindow = new Window_PlayerDrawingCanvas(editor, layout.canvasX, layout.canvasY);
+        this._pdColorWindow = new Window_PlayerDrawingColor(editor, layout.colorX, layout.colorY);
+        this._pdActionWindow = new Window_PlayerDrawingConfirm(editor, layout.actionX, layout.actionY);
         this.addWindow(this._pdToolbarWindow);
         this.addWindow(this._pdCanvasWindow);
         this.addWindow(this._pdColorWindow);
@@ -1733,33 +2091,70 @@
         return true;
     };
 
-    Scene_Base.prototype.onPlayerDrawingCommand = function(symbol) {
+    Scene_Base.prototype.refreshPlayerDrawingUi = function() {
         var info = this._sceneInfo;
         if (!info || info.type !== 'playerDrawing') return;
+        if (info.toolbarWindow) info.toolbarWindow.refreshState();
+        if (info.colorWindow) info.colorWindow.refresh();
+        if (info.actionWindow) info.actionWindow.refresh();
+    };
+
+    Scene_Base.prototype.isPlayerDrawingToolbarIndexValid = function(index) {
+        var info = this._sceneInfo;
+        return !!(info && info.type === 'playerDrawing' && TOOLBAR_BUTTONS[index]);
+    };
+
+    Scene_Base.prototype.selectPlayerDrawingToolbarIndex = function(index, playSound) {
+        var info = this._sceneInfo;
+        if (!info || info.type !== 'playerDrawing') return false;
+        if (!this.isPlayerDrawingToolbarIndexValid(index)) {
+            if (playSound) playPlayerDrawingSound('buzzer');
+            return false;
+        }
+        var changed = info.editor.toolbarIndex !== index;
+        info.editor.setToolbarIndex(index);
+        this.refreshPlayerDrawingUi();
+        if (playSound) playPlayerDrawingSound(changed ? 'cursor' : 'ok');
+        return true;
+    };
+
+    Scene_Base.prototype.onPlayerDrawingCommand = function(symbol) {
+        var info = this._sceneInfo;
+        if (!info || info.type !== 'playerDrawing') return false;
         var editor = info.editor;
-        if (symbol === 'done') return this.requestPlayerDrawingDoneConfirm();
-        if (symbol === 'cancel_draw') return this.finishPlayerDrawing(false);
+        symbol = String(symbol || '');
+        if (symbol === 'done') {
+            this.requestPlayerDrawingDoneConfirm();
+            return true;
+        }
+        if (symbol === 'cancel_draw') {
+            this.finishPlayerDrawing(false);
+            return true;
+        }
+        if (symbol.indexOf('tool_') === 0) {
+            var tool = symbol.slice(5);
+            if (!editor.setTool(tool)) return false;
+            this.refreshPlayerDrawingUi();
+            return true;
+        }
+        if (symbol.indexOf('size_') === 0) {
+            var oldSize = editor.brushSize();
+            editor.setBrushSize(Number(symbol.split('_')[1]));
+            this.refreshPlayerDrawingUi();
+            return editor.brushSize() !== oldSize;
+        }
+        var handled = true;
         switch (symbol) {
-            case 'tool_pen':
-                editor.setTool('pen');
-                break;
-            case 'tool_eraser':
-                editor.setTool('eraser');
-                break;
-            case 'tool_fill':
-                editor.setTool('fill');
-                break;
-            case 'tool_picker':
-                editor.setTool('picker');
-                break;
             case 'color':
                 editor.toggleColor();
                 break;
             case 'undo':
                 if (editor.doc.undo()) info.canvasWindow.refresh();
+                else handled = false;
                 break;
             case 'redo':
                 if (editor.doc.redo()) info.canvasWindow.refresh();
+                else handled = false;
                 break;
             case 'clear':
                 editor.doc.beginOperation();
@@ -1768,17 +2163,37 @@
                     info.canvasWindow.refresh();
                 } else {
                     editor.doc.cancelOperation();
+                    handled = false;
                 }
                 break;
             default:
-                if (String(symbol || '').indexOf('size_') === 0) {
-                    editor.setBrushSize(Number(String(symbol).split('_')[1]));
-                }
+                handled = false;
                 break;
         }
-        if (info.toolbarWindow) info.toolbarWindow.refreshState();
-        if (info.colorWindow) info.colorWindow.refresh();
-        if (info.actionWindow) info.actionWindow.refresh();
+        this.refreshPlayerDrawingUi();
+        return handled;
+    };
+
+    Scene_Base.prototype.executePlayerDrawingCommand = function(symbol, soundType) {
+        var handled = this.onPlayerDrawingCommand(symbol);
+        if (soundType !== false) playPlayerDrawingSound(handled ? (soundType || 'ok') : 'buzzer');
+        return handled;
+    };
+
+    Scene_Base.prototype.pickPlayerDrawingPixel = function(point, playSound) {
+        var info = this._sceneInfo;
+        if (!info || info.type !== 'playerDrawing' || !point) return false;
+        var editor = info.editor;
+        var picked = editor.doc.get(point.x, point.y);
+        if (picked === PIXEL_WHITE || picked === PIXEL_BLACK) {
+            editor.color = picked;
+            editor.setTool('pen');
+        } else {
+            editor.setTool('eraser');
+        }
+        this.refreshPlayerDrawingUi();
+        if (playSound) playPlayerDrawingPickerSe();
+        return true;
     };
 
     Scene_Base.prototype.bringPlayerDrawingMessageToFront = function() {
@@ -1789,20 +2204,30 @@
         }, this);
     };
 
+    function clearPlayerDrawingPopupPosition() {
+        if (!$gameSystem) return;
+        if ($gameSystem.clearMessagePopupFree) $gameSystem.clearMessagePopupFree();
+        if ($gameSystem.clearMessagePopup) $gameSystem.clearMessagePopup();
+    }
+
+    function setupPlayerDrawingSystemMessageShape() {
+        if (!$gameMessage) return;
+        $gameMessage._fukidashi = false;
+        $gameMessage._tailDir = 5;
+        $gameMessage._realTailDir = null;
+        $gameMessage._realTailAngle = null;
+    }
+
     Scene_Base.prototype.preparePlayerDrawingSystemMessage = function() {
+        clearPlayerDrawingPopupPosition();
         if ($gameSystem) {
-            if ($gameSystem.clearMessagePopupFree) $gameSystem.clearMessagePopupFree();
-            if ($gameSystem.clearMessagePopup) $gameSystem.clearMessagePopup();
             if ($gameSystem.setMessagePopupFree) {
                 var point = this.playerDrawingConfirmPopupPoint();
                 $gameSystem.setMessagePopupFree(point.x, point.y);
             }
         }
         if ($gameMessage) {
-            $gameMessage._fukidashi = false;
-            $gameMessage._tailDir = 5;
-            $gameMessage._realTailDir = null;
-            $gameMessage._realTailAngle = null;
+            setupPlayerDrawingSystemMessageShape();
             if ($gameMessage.setBackground) $gameMessage.setBackground(0);
             if ($gameMessage.setPositionType) $gameMessage.setPositionType(2);
             if ($gameMessage.setChoiceBackground) $gameMessage.setChoiceBackground(0);
@@ -1826,16 +2251,8 @@
     };
 
     Scene_Base.prototype.clearPlayerDrawingSystemMessagePopup = function() {
-        if ($gameSystem) {
-            if ($gameSystem.clearMessagePopupFree) $gameSystem.clearMessagePopupFree();
-            if ($gameSystem.clearMessagePopup) $gameSystem.clearMessagePopup();
-        }
-        if ($gameMessage) {
-            $gameMessage._fukidashi = false;
-            $gameMessage._tailDir = 5;
-            $gameMessage._realTailDir = null;
-            $gameMessage._realTailAngle = null;
-        }
+        clearPlayerDrawingPopupPosition();
+        setupPlayerDrawingSystemMessageShape();
     };
 
     Scene_Base.prototype.requestPlayerDrawingDoneConfirm = function() {
@@ -1896,23 +2313,87 @@
     Scene_Base.prototype.cyclePlayerDrawingToolbar = function(delta) {
         var info = this._sceneInfo;
         if (!info || info.type !== 'playerDrawing') return;
-        info.editor.nudgeToolbarIndex(delta);
-        info.toolbarWindow.refreshState();
+        var length = TOOLBAR_BUTTONS.length;
+        var index = Number(info.editor.toolbarIndex);
+        if (isNaN(index)) index = Math.max(0, toolbarIndexForKey(info.editor.tool));
+        this.selectPlayerDrawingToolbarIndex((index + delta + length) % length, true);
+    };
+
+    Scene_Base.prototype.executeSelectedPlayerDrawingToolbarCommand = function() {
+        var info = this._sceneInfo;
+        if (!info || info.type !== 'playerDrawing') return false;
+        var index = info.editor.toolbarIndex;
+        var button = TOOLBAR_BUTTONS[index];
+        if (button && button.type === 'tool') {
+            this.onPlayerDrawingCommand(info.editor.toolbarCommand());
+            return true;
+        }
+        return this.executePlayerDrawingCommand(info.editor.toolbarCommand(), 'ok');
+    };
+
+    Scene_Base.prototype.handlePlayerDrawingToolbarAction = function(action) {
+        var info = this._sceneInfo;
+        if (!info || info.type !== 'playerDrawing' || !action) return false;
+        if (String(action.key || '').indexOf('size_') === 0) {
+            var handled = this.onPlayerDrawingCommand(action.key);
+            if (handled) playPlayerDrawingSound('cursor');
+            return true;
+        }
+        if (action.toolbarIndex != null) {
+            if (info.editor.toolbarIndex !== action.toolbarIndex) {
+                this.selectPlayerDrawingToolbarIndex(action.toolbarIndex, true);
+                return true;
+            }
+            if (action.buttonType === 'tool') {
+                this.onPlayerDrawingCommand(action.key);
+                return true;
+            }
+            this.executePlayerDrawingCommand(action.key, 'ok');
+            return true;
+        }
+        this.executePlayerDrawingCommand(action.key, 'ok');
+        return true;
     };
 
     Scene_Base.prototype.updatePlayerDrawingUiInput = function() {
         var info = this._sceneInfo;
         if (!info || info.type !== 'playerDrawing') return false;
         var action = null;
-        if (info.toolbarWindow) action = info.toolbarWindow.consumeTriggeredAction();
-        if (!action && info.colorWindow) action = info.colorWindow.consumeTriggeredAction();
-        if (!action && info.actionWindow) action = info.actionWindow.consumeTriggeredAction();
+        if (info.toolbarWindow) {
+            action = info.toolbarWindow.consumeTriggeredAction();
+            if (action) return this.handlePlayerDrawingToolbarAction(action);
+        }
+        if (info.colorWindow) action = info.colorWindow.consumeTriggeredAction();
         if (action) {
-            if (action.toolbarIndex != null) info.editor.setToolbarIndex(action.toolbarIndex);
-            this.onPlayerDrawingCommand(action.key);
+            this.executePlayerDrawingCommand(action.key, 'cursor');
+            return true;
+        }
+        if (info.actionWindow) action = info.actionWindow.consumeTriggeredAction();
+        if (action) {
+            this.executePlayerDrawingCommand(action.key, action.key === 'cancel_draw' ? 'cancel' : 'ok');
             return true;
         }
         return false;
+    };
+
+    Scene_Base.prototype.updatePlayerDrawingRightPicker = function() {
+        var info = this._sceneInfo;
+        var state = PD._rightButtonState;
+        if (!info || info.type !== 'playerDrawing' || !state || !state.pressed) return false;
+        if (info.phase === 'doneConfirm') return true;
+        var point = info.canvasWindow.pixelFromScreen(state.x, state.y);
+        if (!point) {
+            state.triggered = false;
+            state.lastPickKey = '';
+            return true;
+        }
+        var key = point.x + ',' + point.y;
+        if (state.triggered || state.lastPickKey !== key) {
+            this.pickPlayerDrawingPixel(point, true);
+            state.triggered = false;
+            state.lastPickKey = key;
+        }
+        return true;
     };
 
     Scene_Base.prototype.updatePlayerDrawingKeyInput = function() {
@@ -1924,26 +2405,97 @@
         var toolbarNext = consumeKeyboardShortcut('toolbarNext');
         var brushSmaller = consumeKeyboardShortcut('brushSmaller') || Input.isRepeated('Q');
         var brushLarger = consumeKeyboardShortcut('brushLarger') || Input.isRepeated('E');
-        if (consumeKeyboardShortcut('undo') || isGamepadButtonTriggered('undo', [4, 6])) {
-            this.onPlayerDrawingCommand('undo');
-        } else if (consumeKeyboardShortcut('redo') || isGamepadButtonTriggered('redo', [5, 7])) {
-            this.onPlayerDrawingCommand('redo');
+        var sizeTool = editor.selectedBrushSizeTool();
+        if (consumeKeyboardShortcut('undo') || isGamepadButtonTriggered('undo', GAMEPAD_UNDO_BUTTONS)) {
+            this.executePlayerDrawingCommand('undo', 'ok');
+        } else if (consumeKeyboardShortcut('redo') || isGamepadButtonTriggered('redo', GAMEPAD_REDO_BUTTONS)) {
+            this.executePlayerDrawingCommand('redo', 'ok');
         } else if (toolbarPrev) {
             this.cyclePlayerDrawingToolbar(-1);
         } else if (toolbarNext) {
             this.cyclePlayerDrawingToolbar(1);
         } else if (Input.isTriggered('ok')) {
-            this.onPlayerDrawingCommand(editor.toolbarCommand());
+            this.executeSelectedPlayerDrawingToolbarCommand();
         } else if (Input.isTriggered('cancel')) {
+            playPlayerDrawingSound('cancel');
             this.finishPlayerDrawing(false);
-        } else if (editor.usesBrushSize() && brushSmaller) {
-            if (editor.nudgeBrushSize(-1)) info.toolbarWindow.refreshState();
-        } else if (editor.usesBrushSize() && brushLarger) {
-            if (editor.nudgeBrushSize(1)) info.toolbarWindow.refreshState();
+        } else if (sizeTool && brushSmaller) {
+            if (editor.nudgeBrushSize(-1)) {
+                playPlayerDrawingSound('cursor');
+                info.toolbarWindow.refreshState();
+            } else {
+                playPlayerDrawingSound('buzzer');
+            }
+        } else if (sizeTool && brushLarger) {
+            if (editor.nudgeBrushSize(1)) {
+                playPlayerDrawingSound('cursor');
+                info.toolbarWindow.refreshState();
+            } else {
+                playPlayerDrawingSound('buzzer');
+            }
         } else if (Input.isTriggered('left') || Input.isTriggered('right')) {
             editor.toggleColor();
+            playPlayerDrawingSound('cursor');
             if (info.toolbarWindow) info.toolbarWindow.refreshState();
             if (info.colorWindow) info.colorWindow.refresh();
+        }
+    };
+
+    Scene_Base.prototype.fillPlayerDrawingAt = function(point) {
+        var info = this._sceneInfo;
+        if (!info || info.type !== 'playerDrawing' || !point) return false;
+        var editor = info.editor;
+        editor.doc.beginOperation();
+        var fillBounds = editor.doc.fillBounds(point.x, point.y, editor.color);
+        if (fillBounds) {
+            editor.doc.commitOperation();
+            info.canvasWindow.refreshDirty(fillBounds);
+        } else {
+            editor.doc.cancelOperation();
+        }
+        playPlayerDrawingFillSe();
+        if (info.toolbarWindow) info.toolbarWindow.refreshState();
+        return true;
+    };
+
+    Scene_Base.prototype.startPlayerDrawingStroke = function(point) {
+        var info = this._sceneInfo;
+        if (!info || info.type !== 'playerDrawing' || !point) return false;
+        var editor = info.editor;
+        editor.beginDraw();
+        editor._painting = true;
+        editor._lastPixel = point;
+        info.canvasWindow.refreshDirty(editor.drawAt(point.x, point.y));
+        editor.setStrokeSePoint(TouchInput.x, TouchInput.y);
+        if (info.toolbarWindow) info.toolbarWindow.refreshState();
+        return true;
+    };
+
+    Scene_Base.prototype.handlePlayerDrawingCanvasTrigger = function(point) {
+        var info = this._sceneInfo;
+        if (!info || info.type !== 'playerDrawing' || !point) return false;
+        var editor = info.editor;
+        if (editor.tool === 'picker') return this.pickPlayerDrawingPixel(point, true);
+        if (editor.tool === 'fill') return this.fillPlayerDrawingAt(point);
+        return this.startPlayerDrawingStroke(point);
+    };
+
+    Scene_Base.prototype.updatePlayerDrawingStroke = function() {
+        var info = this._sceneInfo;
+        if (!info || info.type !== 'playerDrawing') return;
+        var editor = info.editor;
+        if (editor._painting && TouchInput.isPressed()) {
+            var current = info.canvasWindow.pixelFromScreen(TouchInput.x, TouchInput.y);
+            if (current) {
+                var lineBounds = editor.drawLine(editor._lastPixel, current);
+                info.canvasWindow.refreshDirty(lineBounds);
+                editor._lastPixel = current;
+                editor.playStrokeSeIfMoving(TouchInput.x, TouchInput.y);
+            }
+        }
+        if (editor._painting && TouchInput.isReleased()) {
+            editor.finishDraw();
+            if (info.toolbarWindow) info.toolbarWindow.refreshState();
         }
     };
 
@@ -1951,7 +2503,6 @@
         var info = this._sceneInfo;
         if (!info || info.type !== 'playerDrawing') return;
         if (this.updatePlayerDrawingDoneConfirm()) return;
-        var editor = info.editor;
         var canvas = info.canvasWindow;
         this.updatePlayerDrawingKeyInput();
         if (!this._sceneInfo || this._sceneInfo.type !== 'playerDrawing') return;
@@ -1960,46 +2511,15 @@
             this.updatePlayerDrawingCursor();
             return;
         }
+        if (this.updatePlayerDrawingRightPicker()) {
+            this.updatePlayerDrawingCursor();
+            return;
+        }
         if (TouchInput.isTriggered()) {
             var start = canvas.pixelFromScreen(TouchInput.x, TouchInput.y);
-            if (start) {
-                if (editor.tool === 'picker') {
-                    var picked = editor.doc.get(start.x, start.y);
-                    if (picked === PIXEL_WHITE || picked === PIXEL_BLACK) {
-                        editor.color = picked;
-                        editor.setTool('pen');
-                    } else {
-                        editor.setTool('eraser');
-                    }
-                    info.toolbarWindow.refreshState();
-                    if (info.colorWindow) info.colorWindow.refresh();
-                } else if (editor.tool === 'fill') {
-                    editor.doc.beginOperation();
-                    if (editor.doc.fill(start.x, start.y, editor.color)) {
-                        editor.doc.commitOperation();
-                        canvas.refresh();
-                    } else {
-                        editor.doc.cancelOperation();
-                    }
-                    info.toolbarWindow.refreshState();
-                } else {
-                    editor.beginDraw();
-                    editor._painting = true;
-                    editor._lastPixel = start;
-                    canvas.refreshDirty(editor.drawAt(start.x, start.y));
-                    info.toolbarWindow.refreshState();
-                }
-            }
-        } else if (editor._painting && TouchInput.isPressed()) {
-            var current = canvas.pixelFromScreen(TouchInput.x, TouchInput.y);
-            if (current) {
-                canvas.refreshDirty(editor.drawLine(editor._lastPixel, current));
-                editor._lastPixel = current;
-            }
-        }
-        if (editor._painting && TouchInput.isReleased()) {
-            editor.finishDraw();
-            info.toolbarWindow.refreshState();
+            if (start) this.handlePlayerDrawingCanvasTrigger(start);
+        } else {
+            this.updatePlayerDrawingStroke();
         }
         this.updatePlayerDrawingCursor();
     };
@@ -2022,14 +2542,45 @@
         return Number(this._lastPlayerDrawingId || 0);
     };
 
+    Game_Interpreter.prototype.registerLastPlayerDrawingItemImage = function(itemOrId) {
+        var drawingId = this.lastPlayerDrawingId();
+        if (!drawingId) {
+            warnPlayerDrawing('registerLastPlayerDrawingItemImage failed: last drawing id is empty.');
+            return false;
+        }
+        return PD.registerItemImage(itemOrId, drawingId);
+    };
+
+    Game_Interpreter.prototype.unregisterPlayerDrawingItemImage = function(itemOrId) {
+        return PD.unregisterItemImage(itemOrId);
+    };
+
+    Game_Interpreter.prototype.putLastPlayerDrawingItem = function(itemOrId, x, y, num) {
+        var drawingId = this.lastPlayerDrawingId();
+        if (!drawingId) {
+            warnPlayerDrawing('putLastPlayerDrawingItem failed: last drawing id is empty.');
+            return null;
+        }
+        return $gameMap.putPlayerDrawingItem(drawingId, itemOrId, x, y, num);
+    };
+
+    Game_Interpreter.prototype.spawnLastPlayerDrawingEvent = function(template, x, y, options) {
+        var drawingId = this.lastPlayerDrawingId();
+        if (!drawingId) {
+            warnPlayerDrawing('spawnLastPlayerDrawingEvent failed: last drawing id is empty.');
+            return null;
+        }
+        return $gameMap.spawnPlayerDrawingEvent(drawingId, template, x, y, options);
+    };
+
     var _Game_Interpreter_pluginCommand_PD = Game_Interpreter.prototype.pluginCommand;
     Game_Interpreter.prototype.pluginCommand = function(command, args) {
         _Game_Interpreter_pluginCommand_PD.apply(this, arguments);
         if (String(command || '').toUpperCase() === 'PD_OPEN') {
             args = args || [];
             var first = String(args[0] || '').toLowerCase();
-            var firstIsBackground = first === 'white' || first === 'transparent';
-            var background = firstIsBackground ? first : (args[1] || 'transparent');
+            var firstIsBackground = first === BACKGROUND_WHITE || first === BACKGROUND_TRANSPARENT;
+            var background = firstIsBackground ? first : (args[1] || BACKGROUND_TRANSPARENT);
             var promptText = args.slice(firstIsBackground ? 1 : 2).join(' ');
             var options = {
                 resultVariableId: firstIsBackground ? 0 : Number(args[0] || 0),

@@ -71,6 +71,22 @@
           }
         },
         {
+          "id": "b_mrchqqnf_d5t0lw",
+          "name": "🔷自動実行起動",
+          "payload": {
+            "text": "",
+            "html": "",
+            "rtf": "",
+            "custom": {
+              "application/rpgmv-event": "eyJpZCI6MTEsIm5hbWUiOiJf6LW35YuVIiwibm90ZSI6IjxpbXBvcnRhbnQ+IiwicGFnZXMiOlt7ImNvbmRpdGlvbnMiOnsiYWN0b3JJZCI6MSwiYWN0b3JWYWxpZCI6ZmFsc2UsIml0ZW1JZCI6MSwiaXRlbVZhbGlkIjpmYWxzZSwic2VsZlN3aXRjaENoIjoiQSIsInNlbGZTd2l0Y2hWYWxpZCI6ZmFsc2UsInN3aXRjaDFJZCI6MSwic3dpdGNoMVZhbGlkIjpmYWxzZSwic3dpdGNoMklkIjoxLCJzd2l0Y2gyVmFsaWQiOmZhbHNlLCJ2YXJpYWJsZUlkIjoxLCJ2YXJpYWJsZVZhbGlkIjpmYWxzZSwidmFyaWFibGVWYWx1ZSI6MH0sImRpcmVjdGlvbkZpeCI6ZmFsc2UsImltYWdlIjp7ImNoYXJhY3RlckluZGV4IjowLCJjaGFyYWN0ZXJOYW1lIjoiIiwiZGlyZWN0aW9uIjoyLCJwYXR0ZXJuIjowLCJ0aWxlSWQiOjB9LCJsaXN0IjpbeyJjb2RlIjoxMjIsImluZGVudCI6MCwicGFyYW1ldGVycyI6WzU0LDU0LDAsMCwyXX0seyJjb2RlIjowLCJpbmRlbnQiOjAsInBhcmFtZXRlcnMiOltdfV0sIm1vdmVGcmVxdWVuY3kiOjMsIm1vdmVSb3V0ZSI6eyJsaXN0IjpbeyJjb2RlIjowLCJwYXJhbWV0ZXJzIjpbXX1dLCJyZXBlYXQiOnRydWUsInNraXBwYWJsZSI6ZmFsc2UsIndhaXQiOmZhbHNlfSwibW92ZVNwZWVkIjozLCJtb3ZlVHlwZSI6MCwicHJpb3JpdHlUeXBlIjowLCJzdGVwQW5pbWUiOmZhbHNlLCJ0aHJvdWdoIjpmYWxzZSwidHJpZ2dlciI6MSwid2Fsa0FuaW1lIjp0cnVlfSx7ImNvbmRpdGlvbnMiOnsiYWN0b3JJZCI6MSwiYWN0b3JWYWxpZCI6ZmFsc2UsIml0ZW1JZCI6MSwiaXRlbVZhbGlkIjpmYWxzZSwic2VsZlN3aXRjaENoIjoiQSIsInNlbGZTd2l0Y2hWYWxpZCI6ZmFsc2UsInN3aXRjaDFJZCI6MSwic3dpdGNoMVZhbGlkIjpmYWxzZSwic3dpdGNoMklkIjoxLCJzd2l0Y2gyVmFsaWQiOmZhbHNlLCJ2YXJpYWJsZUlkIjo1NCwidmFyaWFibGVWYWxpZCI6dHJ1ZSwidmFyaWFibGVWYWx1ZSI6Mn0sImRpcmVjdGlvbkZpeCI6ZmFsc2UsImltYWdlIjp7ImNoYXJhY3RlckluZGV4IjowLCJjaGFyYWN0ZXJOYW1lIjoiIiwiZGlyZWN0aW9uIjoyLCJwYXR0ZXJuIjowLCJ0aWxlSWQiOjB9LCJsaXN0IjpbeyJjb2RlIjoyMTQsImluZGVudCI6MCwicGFyYW1ldGVycyI6W119LHsiY29kZSI6MCwiaW5kZW50IjowLCJwYXJhbWV0ZXJzIjpbXX1dLCJtb3ZlRnJlcXVlbmN5IjozLCJtb3ZlUm91dGUiOnsibGlzdCI6W3siY29kZSI6MCwicGFyYW1ldGVycyI6W119XSwicmVwZWF0Ijp0cnVlLCJza2lwcGFibGUiOmZhbHNlLCJ3YWl0IjpmYWxzZX0sIm1vdmVTcGVlZCI6MywibW92ZVR5cGUiOjAsInByaW9yaXR5VHlwZSI6MCwic3RlcEFuaW1lIjpmYWxzZSwidGhyb3VnaCI6ZmFsc2UsInRyaWdnZXIiOjQsIndhbGtBbmltZSI6dHJ1ZX1dLCJ4IjoxMSwieSI6MjR9"
+            },
+            "customKinds": {
+              "application/rpgmv-event": "System.IO.MemoryStream"
+            },
+            "_ole": true
+          }
+        },
+        {
           "id": "b_ml6fylfg_zyl09n",
           "name": "🗃️宝箱",
           "payload": {

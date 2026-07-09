@@ -842,12 +842,13 @@ const _createOutlineFilter = function(w, h, bw, ww) {
         if (this.event().meta.suisya) this._suisya = true;
     };
     Game_Event.prototype.setItem = function(item) {
+        this._item = item || null;
+        this._itemImageInfo = null;
+        if (item) this._scaleX = this._scaleY = 60;
         if (item && item.meta.image) {
-            this._item = item;
             const name = item.meta.image.split(',')[0];
             const index = Number(item.meta.image.split(',')[1] || 0);
             this._itemImageInfo = [name, index];
-            this._scaleX = this._scaleY = 60;
         }
     };
     Game_Event.prototype.itemImageInfo = function() {
@@ -2084,6 +2085,31 @@ const _createOutlineFilter = function(w, h, bw, ww) {
             (info.type === 'playerDrawing' && info.phase === 'doneConfirm'))));
     }
 
+    function knhIsPlayerDrawingDoneConfirm() {
+        var scene = SceneManager._scene;
+        var info = scene && scene._sceneInfo;
+        return !!(info && info.type === 'playerDrawing' && info.phase === 'doneConfirm');
+    }
+
+    function knhPlacePopupBelowMessage(win) {
+        var scene = SceneManager._scene;
+        var messageWindow = scene && scene._messageWindow;
+        var margin = 8;
+        var gap = 8;
+        if (messageWindow) {
+            win.x = messageWindow.x + messageWindow.width / 2 - win.width / 2;
+            win.y = messageWindow.y + messageWindow.height + gap;
+            if (win.y + win.height > Graphics.boxHeight - margin) {
+                win.y = messageWindow.y - win.height - gap;
+            }
+        } else {
+            win.x = Graphics.boxWidth / 2 - win.width / 2;
+            win.y = Graphics.boxHeight / 2 + gap;
+        }
+        win.x = Math.max(margin, Math.min(win.x, Graphics.boxWidth - win.width - margin));
+        win.y = Math.max(margin, Math.min(win.y, Graphics.boxHeight - win.height - margin));
+    }
+
     Window_ChoiceList.prototype.isPopup = function () {
         return true;
     };
@@ -2093,7 +2119,11 @@ const _createOutlineFilter = function(w, h, bw, ww) {
         if (SceneManager._scene._messageWindow.isClosed()) this.updatePlacementPopup();
     };
     Window_ChoiceList.prototype.updatePlacementPopup = function() {
-        if (knhIsSystemChoicePopup()) { //システムメッセージ
+        var skipGridSnap = false;
+        if (knhIsPlayerDrawingDoneConfirm()) {
+            knhPlacePopupBelowMessage(this);
+            skipGridSnap = true;
+        } else if (knhIsSystemChoicePopup()) { //システムメッセージ
             this.x = Graphics.boxWidth / 2 - this.width / 2;
             this.y = Graphics.boxHeight / 2 - this.height / 2;
         } else if ($gameParty.inBattle()) {
@@ -2106,6 +2136,7 @@ const _createOutlineFilter = function(w, h, bw, ww) {
             this.x = $gamePlayer.screenX() - this.width / 2;
             this.y = $gamePlayer.screenY() - ($gameSwitches.value(23) ? -33 : (120 + this.height));
         }
+        if (skipGridSnap) return;
         var y2 = this.y + $gameMap.parallaxOy(), gh = 33.3125;
         this.y = (y2 - y2 % gh) - $gameMap.parallaxOy();
     };

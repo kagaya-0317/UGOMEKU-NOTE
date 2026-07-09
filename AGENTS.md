@@ -97,3 +97,39 @@ bitmap.checkDirty();
   temporary arrays matters.
 - Do not use `$gameMap.events()` for total counts, global searches, or systems
   such as darkness/light collection where offscreen events may still matter.
+
+## Template event and item rules
+
+- Template events are resolved through `$dataTemplateEvents` and
+  `DataManager.searchDataItem(..., 'name', name)`. A string such as
+  `"templateName"` is only a placeholder; it must match a real template event
+  name or a numeric template event id.
+- The template event named `"item"` is the normal pickup-item template. It is
+  not a generic object template: its event commands expect
+  `this.character(0)._item` and `_itemNum` to be set before pickup.
+- For normal pickup items, use `$gameMap.putItem(item, x, y, num)` or the
+  player-drawing helpers `KNH_PlayerDrawing.putItem(...)` /
+  `this.putLastPlayerDrawingItem(itemId, x, y, num)`. Do not use
+  `spawnPlayerDrawingEvent(drawingId, "item", ...)`; that creates an item
+  template event without item data.
+- For non-item player-drawing objects, enemies, or custom placed objects, use
+  `spawnPlayerDrawingEvent(drawingId, templateNameOrId, x, y, options)` with a
+  dedicated template event that does not require `_item`.
+- `Game_Event.prototype.setItem(item)` stores the actual item in `_item`.
+  `item.meta.image` is optional and is only the default visual image for normal
+  item sprites.
+- Normal item visuals use note tags like `<image:Item3,2>` and are read from
+  `img/items/` as a 4-column by 2-row sheet. Player-drawing item visuals are
+  stored separately and should be treated as a single 144x144 image.
+- Player-drawing item image registrations are saved in
+  `$gameSystem.ZXC().playerDrawings.itemImages` as `itemId -> drawingId`.
+  They intentionally do not use game variables.
+- To register the last completed drawing as an item's future visual, use
+  `this.registerLastPlayerDrawingItemImage(itemId)`. To clear it, use
+  `this.unregisterPlayerDrawingItemImage(itemId)`.
+- Any UI or battle code that displays an item image should resolve it through
+  `KNH_PlayerDrawing.itemImageInfo(item)`,
+  `KNH_PlayerDrawing.loadItemImageBitmap(info)`, and
+  `KNH_PlayerDrawing.itemImageFrame(bitmap, info)` when available, rather than
+  reading `item.meta.image` directly. Registered player drawings must override
+  the note-tag image in menu, battle, and map item displays.
