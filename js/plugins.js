@@ -44,6 +44,7 @@ var $plugins =
 {"name":"KNH_ZXC_Gimmick_Rock","status":true,"description":"岩","parameters":{}},
 {"name":"KNH_ZXC_Gimmick_Trampoline","status":true,"description":"(MV) Scene_Map継承：線を引いてトランポリンで跳ねる縦スクロール擬似物理ミニゲーム v0.1","parameters":{}},
 {"name":"KNH_ZXC_Gimmick_Throw","status":true,"description":"KNH_ZXC_Gimmick_Throw - Scene_Map上で動く投擲ミニゲーム（矢印往復→Enterで投擲→命中判定） v1.0.0","parameters":{}},
+{"name":"KNH_ZXC_Gimmick_SpikeFloor","status":true,"description":"Spike floor map damage gimmick.","parameters":{}},
 {"name":"KNH_ZXC_Gimmick_Else","status":true,"description":"その他のギミック集","parameters":{}},
 {"name":"KNH_ZXC_HalfMoveRange","status":true,"description":"HalfMove Range Collision Add-on (range note tag)","parameters":{}},
 {"name":"KNH_ZXC_EventEditor","status":true,"description":"[MV][Playtest] Event timeline editor (editEventMode) v0.1.0","parameters":{}},

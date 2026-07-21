@@ -98,6 +98,23 @@ bitmap.checkDirty();
 - Do not use `$gameMap.events()` for total counts, global searches, or systems
   such as darkness/light collection where offscreen events may still matter.
 
+## Game-specific follower rules
+
+- This game intentionally inserts invisible spacer followers between visible
+  party followers to widen party spacing.
+- `Game_Followers` creates extra `Game_Follower` entries, and odd
+  `_memberIndex` values are spacer followers whose `actor()` resolves to an
+  out-of-range party member.
+- The first and second visible party followers are usually
+  `$gamePlayer.followers().follower(1)` and
+  `$gamePlayer.followers().follower(3)`, not `follower(0)` and `follower(1)`.
+- Do not assume `visibleFollowers()[0]` means the first party follower when
+  follower order, party-member targeting, hit detection, or scripted movement
+  needs to match this spacing system. Inspect `_memberIndex` or use the known
+  spacer-aware indices.
+- Spacer followers still participate in the follow chain and movement spacing
+  even though they have no visible actor sprite.
+
 ## Template event and item rules
 
 - Template events are resolved through `$dataTemplateEvents` and

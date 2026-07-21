@@ -15,74 +15,11 @@
     var EE = NS.EE;
     if (!EE) return;
 
-    var U = NS._eeUtils || {};
-    var clone = U.clone || function(v) { return JSON.parse(JSON.stringify(v)); };
-    var maximizeWindowForEditor = U.maximizeWindowForEditor || function() { return false; };
-    var installEscapeConvertFallback = U.installEscapeConvertFallback || function() {};
-    var RE_COMPACT_SELECT_KEY = U.RE_COMPACT_SELECT_KEY || /type|mode|op|operand|scope|target|operation|blend|dir|designate/i;
-    var RE_COMPACT_NUMBER_KEY = U.RE_COMPACT_NUMBER_KEY || /id$|index|mode|type|value|x$|y$|z$|r$|g$|b$|a$|wait|time|frame|duration|speed|pan|pitch|volume|opacity/i;
-    var RE_COMPACT_TEXT_KEY = U.RE_COMPACT_TEXT_KEY || /id$|tag|code|label|name/i;
+    var SH = NS._eeTimelineShared;
+    if (!SH || !SH.ready) return;
+    var clone = SH.clone;
 
-    var SH = NS._eeTimelineShared || (NS._eeTimelineShared = {});
-    var compareEntriesByFrameWaitUid = SH.compareEntriesByFrameWaitUid;
-    if (!compareEntriesByFrameWaitUid) {
-        compareEntriesByFrameWaitUid = function(a, b) {
-            var af = Math.max(0, Math.floor(Number(a && a.frame || 0)));
-            var bf = Math.max(0, Math.floor(Number(b && b.frame || 0)));
-            if (af !== bf) return af - bf;
-            var aw = Math.max(0, Math.floor(Number(a && a.wait || 0))) > 0 ? 1 : 0;
-            var bw = Math.max(0, Math.floor(Number(b && b.wait || 0))) > 0 ? 1 : 0;
-            if (aw !== bw) return aw - bw;
-            return Math.floor(Number(a && a.uid || 0)) - Math.floor(Number(b && b.uid || 0));
-        };
-        SH.compareEntriesByFrameWaitUid = compareEntriesByFrameWaitUid;
-    }
-
-    var EE_AnimationPreviewCharacter = SH.EE_AnimationPreviewCharacter;
-    if (!EE_AnimationPreviewCharacter) {
-        EE_AnimationPreviewCharacter = function() {
-            this.initialize.apply(this, arguments);
-        };
-        EE_AnimationPreviewCharacter.prototype = Object.create(Game_CharacterBase.prototype);
-        EE_AnimationPreviewCharacter.prototype.constructor = EE_AnimationPreviewCharacter;
-        EE_AnimationPreviewCharacter.prototype.initialize = function() {
-            Game_CharacterBase.prototype.initMembers.call(this);
-        };
-        EE_AnimationPreviewCharacter.prototype.syncFrom = function(src) {
-            if (!src) return;
-            var keys = [
-                '_x', '_y', '_realX', '_realY',
-                '_moveSpeed', '_moveFrequency',
-                '_opacity', '_blendMode', '_bushDepth', '_priorityType',
-                '_direction', '_pattern', '_animationCount', '_stopCount',
-                '_tileId', '_characterName', '_characterIndex', '_isObjectCharacter',
-                '_walkAnime', '_stepAnime', '_directionFix', '_through', '_transparent',
-                '_jumpCount', '_jumpPeak', '_moving',
-                '_moveRouteForcing', '_movementSuccess',
-                '_balloonId', '_balloonPlaying',
-                '_animationId', '_animationPlaying'
-            ];
-            for (var i = 0; i < keys.length; i++) {
-                var k = keys[i];
-                if (Object.prototype.hasOwnProperty.call(src, k)) this[k] = src[k];
-            }
-        };
-        SH.EE_AnimationPreviewCharacter = EE_AnimationPreviewCharacter;
-    }
-
-    if (!NS._eeAnimPreviewPositionPatchApplied && typeof Sprite_Animation !== 'undefined') {
-        NS._eeAnimPreviewPositionPatchApplied = true;
-        var _EE_SpriteAnimation_updatePosition_Preview = Sprite_Animation.prototype.updatePosition;
-        Sprite_Animation.prototype.updatePosition = function() {
-            _EE_SpriteAnimation_updatePosition_Preview.apply(this, arguments);
-            var pv = this._eePreviewViewport;
-            if (!pv || !this._animation) return;
-            if (Number(this._animation.position || 0) === 3) {
-                this.x = Math.floor(Number(pv.w || 0) / 2);
-                this.y = Math.floor(Number(pv.h || 0) / 2);
-            }
-        };
-    }
+    // Pointer/wheel input, track serialization, schedule rebuilds, and snapshots.
 
     function eeFrameTick() {
         if (typeof Graphics !== 'undefined' && Graphics && Graphics.frameCount != null) {
@@ -278,18 +215,18 @@
         }
         var onRulerAny = this.isTimelineRulerPoint(x, y, true);
         var onFixedLabel = (!onRulerAny && this.isPointInTimelineFixedLabel(x));
-        var preIfBranchBtn = onRulerAny ? null : this.hitTestIfBranchModeButton(x, y);
+        var preBranchBtn = onRulerAny ? null : this.hitTestBranchModeButton(x, y);
         var preOrderBtn = onRulerAny ? null : this.hitTestOrderButton(x, y);
         var preComment = onRulerAny ? null : this.hitTestComment(x, y);
         var preNode = onRulerAny ? null : this.hitTestNode(x, y);
         // When circles overlap the fixed label column, keep node/button hits active.
-        var allowFixedLabelUiHit = !!(preIfBranchBtn || preOrderBtn || preComment || preNode);
+        var allowFixedLabelUiHit = !!(preBranchBtn || preOrderBtn || preComment || preNode);
         var suppressFixedLabelHits = onFixedLabel && !allowFixedLabelUiHit;
         var hc = (onRulerAny || suppressFixedLabelHits) ? null : preComment;
         var hn = (onRulerAny || suppressFixedLabelHits) ? null : preNode;
         var hb = (onRulerAny || suppressFixedLabelHits || hn) ? null : this.hitTestBar(x, y);
         var hob = (onRulerAny || suppressFixedLabelHits) ? null : preOrderBtn;
-        var hib = (onRulerAny || suppressFixedLabelHits) ? null : preIfBranchBtn;
+        var hib = (onRulerAny || suppressFixedLabelHits) ? null : preBranchBtn;
         var hru = (hb && hb.routeRangeUid) ? Math.floor(Number(hb.routeRangeUid || 0)) : 0;
         var hrp = (hb && hb.routeRangeUid) ? String(hb.routeRangePart || '') : '';
         if (Number(this.hoverRangeUid || 0) !== hru || String(this.hoverRangePart || '') !== hrp) {
@@ -458,9 +395,9 @@
         var preComment = onRulerAny ? null : this.hitTestComment(x, y);
         var preBar = onRulerAny ? null : this.hitTestBar(x, y);
         var preOrderBtn = onRulerAny ? null : this.hitTestOrderButton(x, y);
-        var preIfBranchBtn = onRulerAny ? null : this.hitTestIfBranchModeButton(x, y);
+        var preBranchBtn = onRulerAny ? null : this.hitTestBranchModeButton(x, y);
         var inFixedLabel = this.isPointInTimelineFixedLabel(x);
-        var bypassFixedLabel = !!(preIfBranchBtn || preOrderBtn || preNode || preComment || preBar);
+        var bypassFixedLabel = !!(preBranchBtn || preOrderBtn || preNode || preComment || preBar);
         if (inFixedLabel && !this.isTimelineRulerY(y) && !bypassFixedLabel) {
             e.preventDefault();
             this.closeRouteRangeContextMenu();
@@ -490,11 +427,11 @@
             if (preOrderBtn.enabled) this.moveSameFrameCommand(Number(preOrderBtn.uid || 0), String(preOrderBtn.dir || 'prev'));
             return;
         }
-        if (preIfBranchBtn) {
+        if (preBranchBtn) {
             e.preventDefault();
             this.closeRouteRangeContextMenu();
             this.suppressTimelineDblClickUntil = Date.now() + 450;
-            this.applyIfBranchViewModeByUid(Number(preIfBranchBtn.uid || 0), String(preIfBranchBtn.mode || 'then'));
+            this.applyBranchViewModeByUid(Number(preBranchBtn.uid || 0), String(preBranchBtn.mode || 'auto'));
             return;
         }
         if (preNode && preNode.isEndMarker) {
@@ -892,7 +829,7 @@
                     this.timelineDirty = true;
                     return;
                 }
-                trr.commands.sort(function(a, b) { return compareEntriesByFrameWaitUid(a, b); });
+                SH.sortTrackCommands(trr);
                 this.selUid = re.uid;
                 this.selRouteListIndex = -1;
                 this.frame = re.frame;
@@ -931,7 +868,7 @@
                         if (de.command && de.command.code === 205) de.command.parameters[0] = cid;
                     }
                 }
-                tr.commands.sort(function(a, b) { return compareEntriesByFrameWaitUid(a, b); });
+                SH.sortTrackCommands(tr);
                 this.selUid = de.uid;
                 this.selRouteListIndex = -1;
                 this.frame = de.frame;
@@ -1389,7 +1326,7 @@
         }
         this.pushSnap('addCmd');
         tr.commands.push(e);
-        tr.commands.sort(function(a, b) { return compareEntriesByFrameWaitUid(a, b); });
+        SH.sortTrackCommands(tr);
         if (!this.isBattleEventMode() && e.rowType === 'char') this.confirmCharRowPermanent(e.charId);
         this.selUid = e.uid;
         this.selRouteListIndex = -1;
@@ -1413,7 +1350,7 @@
         var info = this.computeIfBranchDisplayInfoForTrack(tr);
         var list = Array.isArray(info && info.list) ? info.list : [];
         var blocks = Array.isArray(info && info.blocks) ? info.blocks : [];
-        if (!list.length || !blocks.length) return fallbackIndent;
+        if (!list.length) return fallbackIndent;
         var pos = Math.max(0, Math.min(list.length, Math.floor(Number(insertionIndex || 0))));
         var bestIndent = fallbackIndent;
         var bestBlockIndent = -1;
@@ -1440,20 +1377,48 @@
                 bestIndent = blockIndent + 1;
             }
         }
+        if (typeof this.computeChoiceBranchDisplayInfoForTrack === 'function') {
+            var choiceInfo = this.computeChoiceBranchDisplayInfoForTrack(tr);
+            var choiceBlocks = Array.isArray(choiceInfo && choiceInfo.blocks) ? choiceInfo.blocks : [];
+            for (i = 0; i < choiceBlocks.length; i++) {
+                var cb = choiceBlocks[i];
+                if (!cb || !Array.isArray(cb.branches)) continue;
+                var choiceIndent = Math.max(0, Math.floor(Number(cb.indent || 0)));
+                for (var bi = 0; bi < cb.branches.length; bi++) {
+                    var branch = cb.branches[bi];
+                    if (!branch) continue;
+                    var branchStart = Math.max(0, Math.min(list.length, Math.floor(Number(branch.startIndex || 0))));
+                    var branchStop = Math.floor(Number(branch.endIndex == null ? cb.endIndex : branch.endIndex));
+                    if (branchStop < branchStart || branchStop > list.length) branchStop = list.length;
+                    if (pos < branchStart || pos > branchStop) continue;
+                    if (choiceIndent >= bestBlockIndent) {
+                        bestBlockIndent = choiceIndent;
+                        bestIndent = choiceIndent + 1;
+                    }
+                }
+            }
+        }
         return Math.max(0, Math.floor(Number(bestIndent || 0)));
     };
 
     EE.prototype.listFromTrack = function(tr) {
-        tr.commands.sort(function(a, b) { return compareEntriesByFrameWaitUid(a, b); });
+        if (typeof this.normalizeChoiceBranchStructuresForTrack === 'function') {
+            this.normalizeChoiceBranchStructuresForTrack(tr);
+        }
+        SH.sortTrackCommands(tr);
+        var sourceCommands = SH.commandsInSourceOrder(tr);
+        var branchFrameState = SH.createBranchFrameState();
         var out = [], lf = 0, prevMsgExt = null;
-        for (var i = 0; i < tr.commands.length; i++) {
-            var e = tr.commands[i];
+        for (var i = 0; i < sourceCommands.length; i++) {
+            var e = sourceCommands[i];
             var f = Math.max(0, Math.floor(Number(e.frame || 0)));
             var cmd = clone(e.command || { code: 0, indent: 0, parameters: [] });
+            var cmdIndent = Math.max(0, Math.floor(Number(cmd.indent || 0)));
+            lf = SH.branchFrameBeforeBoundary(branchFrameState, cmd.code, cmdIndent, lf);
             if (f > lf) {
                 out.push({
                     code: 230,
-                    indent: this.waitIndentForTrackInsertionIndex(tr, i, Number(cmd.indent || 0)),
+                    indent: this.waitIndentForTrackInsertionIndex(tr, i, cmdIndent),
                     parameters: [f - lf]
                 });
             }
@@ -1540,13 +1505,14 @@
             } else {
                 out.push(cmd);
             }
+            SH.openBranchFrame(branchFrameState, cmd.code, cmdIndent, f);
             lf = Math.max(lf, f + Math.max(0, Math.floor(Number(e.wait || 0))));
         }
         var endFrame = this.normalizeTrackEndFrame(tr);
         if (endFrame > lf) {
             out.push({
                 code: 230,
-                indent: this.waitIndentForTrackInsertionIndex(tr, tr.commands.length, 0),
+                indent: this.waitIndentForTrackInsertionIndex(tr, sourceCommands.length, 0),
                 parameters: [endFrame - lf]
             });
             lf = endFrame;
@@ -1705,5 +1671,10 @@
         this.refreshCharacterOverlay(true);
         this.timelineDirty = true;
     };
-
+    SH.registerModule('input', ['render'], [
+        'rebuildSchedule',
+        'save',
+        'snap',
+        'loadSnap'
+    ]);
 })();

@@ -15,78 +15,14 @@
     var EE = NS.EE;
     if (!EE) return;
 
-    var U = NS._eeUtils || {};
-    var clone = U.clone || function(v) { return JSON.parse(JSON.stringify(v)); };
-    var maximizeWindowForEditor = U.maximizeWindowForEditor || function() { return false; };
-    var installEscapeConvertFallback = U.installEscapeConvertFallback || function() {};
-    var RE_COMPACT_SELECT_KEY = U.RE_COMPACT_SELECT_KEY || /type|mode|op|operand|scope|target|operation|blend|dir|designate/i;
-    var RE_COMPACT_NUMBER_KEY = U.RE_COMPACT_NUMBER_KEY || /id$|index|mode|type|value|x$|y$|z$|r$|g$|b$|a$|wait|time|frame|duration|speed|pan|pitch|volume|opacity/i;
-    var RE_COMPACT_TEXT_KEY = U.RE_COMPACT_TEXT_KEY || /id$|tag|code|label|name/i;
-
-    var SH = NS._eeTimelineShared || (NS._eeTimelineShared = {});
+    var SH = NS._eeTimelineShared;
+    if (!SH || !SH.ready) return;
+    var clone = SH.clone;
+    var maximizeWindowForEditor = SH.maximizeWindowForEditor;
     var compareEntriesByFrameWaitUid = SH.compareEntriesByFrameWaitUid;
-    if (!compareEntriesByFrameWaitUid) {
-        compareEntriesByFrameWaitUid = function(a, b) {
-            var af = Math.max(0, Math.floor(Number(a && a.frame || 0)));
-            var bf = Math.max(0, Math.floor(Number(b && b.frame || 0)));
-            if (af !== bf) return af - bf;
-            var aw = Math.max(0, Math.floor(Number(a && a.wait || 0))) > 0 ? 1 : 0;
-            var bw = Math.max(0, Math.floor(Number(b && b.wait || 0))) > 0 ? 1 : 0;
-            if (aw !== bw) return aw - bw;
-            return Math.floor(Number(a && a.uid || 0)) - Math.floor(Number(b && b.uid || 0));
-        };
-        SH.compareEntriesByFrameWaitUid = compareEntriesByFrameWaitUid;
-    }
+    var COMMAND_CODE = SH.COMMAND_CODE;
 
-    var EE_AnimationPreviewCharacter = SH.EE_AnimationPreviewCharacter;
-    if (!EE_AnimationPreviewCharacter) {
-        EE_AnimationPreviewCharacter = function() {
-            this.initialize.apply(this, arguments);
-        };
-        EE_AnimationPreviewCharacter.prototype = Object.create(Game_CharacterBase.prototype);
-        EE_AnimationPreviewCharacter.prototype.constructor = EE_AnimationPreviewCharacter;
-        EE_AnimationPreviewCharacter.prototype.initialize = function() {
-            Game_CharacterBase.prototype.initMembers.call(this);
-        };
-        EE_AnimationPreviewCharacter.prototype.syncFrom = function(src) {
-            if (!src) return;
-            var keys = [
-                '_x', '_y', '_realX', '_realY',
-                '_moveSpeed', '_moveFrequency',
-                '_opacity', '_blendMode', '_bushDepth', '_priorityType',
-                '_direction', '_pattern', '_animationCount', '_stopCount',
-                '_tileId', '_characterName', '_characterIndex', '_isObjectCharacter',
-                '_walkAnime', '_stepAnime', '_directionFix', '_through', '_transparent',
-                '_jumpCount', '_jumpPeak', '_moving',
-                '_moveRouteForcing', '_movementSuccess',
-                '_balloonId', '_balloonPlaying',
-                '_animationId', '_animationPlaying',
-                '_cssRect', '_cssRectAnimSourceRect',
-                '_cssRectFrameAnimation', '_cssRectAnimRows', '_cssRectAnimCols',
-                '_cssRectAnimSequence', '_cssRectAnimWait', '_cssRectAnimLoop',
-                '_cssRectAnimIndex', '_cssRectAnimCounter'
-            ];
-            for (var i = 0; i < keys.length; i++) {
-                var k = keys[i];
-                if (Object.prototype.hasOwnProperty.call(src, k)) this[k] = src[k];
-            }
-        };
-        SH.EE_AnimationPreviewCharacter = EE_AnimationPreviewCharacter;
-    }
-
-    if (!NS._eeAnimPreviewPositionPatchApplied && typeof Sprite_Animation !== 'undefined') {
-        NS._eeAnimPreviewPositionPatchApplied = true;
-        var _EE_SpriteAnimation_updatePosition_Preview = Sprite_Animation.prototype.updatePosition;
-        Sprite_Animation.prototype.updatePosition = function() {
-            _EE_SpriteAnimation_updatePosition_Preview.apply(this, arguments);
-            var pv = this._eePreviewViewport;
-            if (!pv || !this._animation) return;
-            if (Number(this._animation.position || 0) === 3) {
-                this.x = Math.floor(Number(pv.w || 0) / 2);
-                this.y = Math.floor(Number(pv.h || 0) / 2);
-            }
-        };
-    }
+    // Lifecycle, UI construction, command catalogs, and command insertion.
     EE.prototype.start = function() {
         if (this.on) return;
         this.on = true;
@@ -3272,7 +3208,7 @@
             e.rowType = 'main';
             e.rowKey = 'main';
             e.charId = null;
-            tr.commands.sort(function(a, b) { return compareEntriesByFrameWaitUid(a, b); });
+            SH.sortTrackCommands(tr);
             this.selUid = uid;
             this.selRouteListIndex = -1;
             this.frame = Math.max(0, Math.floor(Number(e.frame || this.frame || 0)));
@@ -6130,14 +6066,14 @@
                 this.err('E_ROUTE_WAIT_LOCK', new Error('move-route wait lock on main'));
                 return null;
             }
-            var prevLen = Array.isArray(tr.commands) ? tr.commands.length : 0;
-            this.addCmd({
+            var routeEntry = this.entryFromCommand({
                 code: 205,
                 indent: 0,
                 parameters: [charId, { repeat: false, skippable: false, wait: false, list: [clone(routeCmd), { code: 0, parameters: [] }] }]
-            }, frame);
-            if (!Array.isArray(tr.commands) || tr.commands.length <= prevLen || !this.selUid) return null;
-            return { uid: this.selUid, routeListIndex: 0 };
+            }, this.selEid, this.selPage, frame, this.model.nextUid++);
+            if (!routeEntry) return null;
+            if (!this.applyCommandAddWithPlacement(tr, routeEntry, placement, { skipSnapshot: false })) return null;
+            return { uid: routeEntry.uid, routeListIndex: 0 };
         }
         this.pushSnap('addRouteCmd');
         var oldCmd = clone(inRange.command);
@@ -6552,7 +6488,7 @@
         }
 
         tr.commands.push(entry);
-        tr.commands.sort(function(a, b) { return compareEntriesByFrameWaitUid(a, b); });
+        SH.sortTrackCommands(tr);
         if (entry.rowType === 'char') this.confirmCharRowPermanent(entry.charId);
         this.selUid = entry.uid;
         this.selRouteListIndex = -1;
@@ -6575,9 +6511,13 @@
         if (!ok) {
             if (removed) {
                 tr.commands.push(entry);
-                tr.commands.sort(function(a, b) { return compareEntriesByFrameWaitUid(a, b); });
+                SH.sortTrackCommands(tr);
             }
             return false;
+        }
+        if (entry.command && Number(entry.command.code || 0) === COMMAND_CODE.SHOW_CHOICES &&
+            typeof this.synchronizeChoiceBranchStructure === 'function') {
+            this.synchronizeChoiceBranchStructure(tr, entry);
         }
         entry._pendingAddPlacement = null;
         this._pendingNewConfirmed = true;
@@ -6737,7 +6677,7 @@
         e._pendingAddPlacement = clone(placement);
         e.frame = this.computeAddFrameFromPlacementContext(placement, e.wait);
         tr.commands.push(e);
-        tr.commands.sort(function(a, b) { return compareEntriesByFrameWaitUid(a, b); });
+        SH.sortTrackCommands(tr);
         this.selUid = e.uid;
         this.selRouteListIndex = -1;
         this.frame = e.frame;
@@ -6748,7 +6688,6 @@
         if (this.edDeleteBtn) this.edDeleteBtn.style.display = 'none';
         this.timelineDirty = true;
     };
-
-
+    SH.registerModule('core', ['shared']);
 })();
 

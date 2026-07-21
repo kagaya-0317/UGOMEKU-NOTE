@@ -1,0 +1,12 @@
+{
+  "name": "bgm-video-maker",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "make": "node make_bgm_video.mjs"
+  },
+  "dependencies": {
+    "ffmpeg-static": "^5.2.0"
+  }
+}

@@ -1,0 +1,3826 @@
+{
+  "plugin": "KNH_ZXC_EventEditor",
+  "version": "0.1.0",
+  "savedAt": "2026-07-20T08:18:09.848Z",
+  "tracks": [
+    {
+      "eventId": 6,
+      "pageIndex": 0,
+      "list": [
+        {
+          "code": 108,
+          "indent": 0,
+          "parameters": [
+            "====================================================="
+          ]
+        },
+        {
+          "code": 355,
+          "indent": 0,
+          "parameters": [
+            "TestReload.saveHere(\"モンスター城 罠1\");"
+          ]
+        },
+        {
+          "code": 108,
+          "indent": 0,
+          "parameters": [
+            "====================================================="
+          ]
+        },
+        {
+          "code": 355,
+          "indent": 0,
+          "parameters": [
+            "this.character(5).locateTo(-15, 24)"
+          ]
+        },
+        {
+          "code": 230,
+          "indent": 0,
+          "parameters": [
+            29
+          ]
+        },
+        {
+          "code": 205,
+          "indent": 0,
+          "parameters": [
+            -1,
+            {
+              "repeat": false,
+              "skippable": false,
+              "wait": false,
+              "list": [
+                {
+                  "code": 45,
+                  "parameters": [
+                    "this.goTo(4, 17.5)"
+                  ],
+                  "_eeTileWait": 23
+                },
+                {
+                  "code": 45,
+                  "parameters": [
+                    "this.goTo(5, 17.5)"
+                  ],
+                  "_eeTileWait": 12
+                },
+                {
+                  "code": 0,
+                  "parameters": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "code": 505,
+          "indent": 0,
+          "parameters": [
+            {
+              "code": 45,
+              "parameters": [
+                "this.goTo(4, 17.5)"
+              ],
+              "_eeTileWait": 23
+            }
+          ]
+        },
+        {
+          "code": 505,
+          "indent": 0,
+          "parameters": [
+            {
+              "code": 45,
+              "parameters": [
+                "this.goTo(5, 17.5)"
+              ],
+              "_eeTileWait": 12
+            }
+          ]
+        },
+        {
+          "code": 230,
+          "indent": 0,
+          "parameters": [
+            23
+          ]
+        },
+        {
+          "code": 205,
+          "indent": 0,
+          "parameters": [
+            7,
+            {
+              "repeat": false,
+              "skippable": false,
+              "wait": false,
+              "list": [
+                {
+                  "code": 45,
+                  "parameters": [
+                    "this.locateToCharacter($gamePlayer._followers.follower(1)), this._direction = 8"
+                  ]
+                },
+                {
+                  "code": 40,
+                  "parameters": []
+                },
+                {
+                  "code": 45,
+                  "parameters": [
+                    "this.goTo(4, 16.5)"
+                  ],
+                  "_eeTileWait": 40
+                },
+                {
+                  "code": 18,
+                  "parameters": []
+                },
+                {
+                  "code": 0,
+                  "parameters": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "code": 505,
+          "indent": 0,
+          "parameters": [
+            {
+              "code": 45,
+              "parameters": [
+                "this.locateToCharacter($gamePlayer._followers.follower(1)), this._direction = 8"
+              ]
+            }
+          ]
+        },
+        {
+          "code": 505,
+          "indent": 0,
+          "parameters": [
+            {
+              "code": 40,
+              "parameters": []
+            }
+          ]
+        },
+        {
+          "code": 505,
+          "indent": 0,
+          "parameters": [
+            {
+              "code": 45,
+              "parameters": [
+                "this.goTo(4, 16.5)"
+              ],
+              "_eeTileWait": 40
+            }
+          ]
+        },
+        {
+          "code": 505,
+          "indent": 0,
+          "parameters": [
+            {
+              "code": 18,
+              "parameters": []
+            }
+          ]
+        },
+        {
+          "code": 205,
+          "indent": 0,
+          "parameters": [
+            8,
+            {
+              "repeat": false,
+              "skippable": false,
+              "wait": false,
+              "list": [
+                {
+                  "code": 45,
+                  "parameters": [
+                    "this.locateToCharacter($gamePlayer._followers.follower(3)), this._direction = 8"
+                  ]
+                },
+                {
+                  "code": 40,
+                  "parameters": []
+                },
+                {
+                  "code": 45,
+                  "parameters": [
+                    "this.goTo(4, 19)"
+                  ],
+                  "_eeTileWait": 32
+                },
+                {
+                  "code": 18,
+                  "parameters": []
+                },
+                {
+                  "code": 0,
+                  "parameters": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "code": 505,
+          "indent": 0,
+          "parameters": [
+            {
+              "code": 45,
+              "parameters": [
+                "this.locateToCharacter($gamePlayer._followers.follower(3)), this._direction = 8"
+              ]
+            }
+          ]
+        },
+        {
+          "code": 505,
+          "indent": 0,
+          "parameters": [
+            {
+              "code": 40,
+              "parameters": []
+            }
+          ]
+        },
+        {
+          "code": 505,
+          "indent": 0,
+          "parameters": [
+            {
+              "code": 45,
+              "parameters": [
+                "this.goTo(4, 19)"
+              ],
+              "_eeTileWait": 32
+            }
+          ]
+        },
+        {
+          "code": 505,
+          "indent": 0,
+          "parameters": [
+            {
+              "code": 18,
+              "parameters": []
+            }
+          ]
+        },
+        {
+          "code": 230,
+          "indent": 0,
+          "parameters": [
+            1
+          ]
+        },
+        {
+          "code": 216,
+          "indent": 0,
+          "parameters": [
+            1
+          ]
+        },
+        {
+          "code": 230,
+          "indent": 0,
+          "parameters": [
+            41
+          ]
+        },
+        {
+          "code": 355,
+          "indent": 0,
+          "parameters": [
+            "$gameMap.scrollCamera(0, -4, 30)"
+          ]
+        },
+        {
+          "code": 230,
+          "indent": 0,
+          "parameters": [
+            56
+          ]
+        },
+        {
+          "code": 122,
+          "indent": 0,
+          "parameters": [
+            14,
+            14,
+            0,
+            0,
+            1
+          ]
+        },
+        {
+          "code": 355,
+          "indent": 0,
+          "parameters": [
+            "$gameSystem.clearMessagePopupFree()"
+          ]
+        },
+        {
+          "code": 356,
+          "indent": 0,
+          "parameters": [
+            "フキダシウィンドウ有効化 kanbu2 1"
+          ]
+        },
+        {
+          "code": 355,
+          "indent": 0,
+          "parameters": [
+            "$gameMessage._tailDir = 4"
+          ]
+        },
+        {
+          "code": 101,
+          "indent": 0,
+          "parameters": [
+            "",
+            0,
+            0,
+            2
+          ]
+        },
+        {
+          "code": 401,
+          "indent": 0,
+          "parameters": [
+            "フン、来たな"
+          ]
+        },
+        {
+          "code": 401,
+          "indent": 0,
+          "parameters": [
+            "クソ野郎共！！"
+          ]
+        },
+        {
+          "code": 101,
+          "indent": 0,
+          "parameters": [
+            "",
+            0,
+            0,
+            2
+          ]
+        },
+        {
+          "code": 401,
+          "indent": 0,
+          "parameters": [
+            "テメェらにうってつけの"
+          ]
+        },
+        {
+          "code": 401,
+          "indent": 0,
+          "parameters": [
+            "死に場所を用意した！！"
+          ]
+        },
+        {
+          "code": 230,
+          "indent": 0,
+          "parameters": [
+            24
+          ]
+        },
+        {
+          "code": 101,
+          "indent": 0,
+          "parameters": [
+            "",
+            0,
+            0,
+            2
+          ]
+        },
+        {
+          "code": 401,
+          "indent": 0,
+          "parameters": [
+            "名付けて"
+          ]
+        },
+        {
+          "code": 401,
+          "indent": 0,
+          "parameters": [
+            "「地獄のブスブス穴開き"
+          ]
+        },
+        {
+          "code": 401,
+          "indent": 0,
+          "parameters": [
+            " 即死地獄」！！"
+          ]
+        },
+        {
+          "code": 230,
+          "indent": 0,
+          "parameters": [
+            20
+          ]
+        },
+        {
+          "code": 205,
+          "indent": 0,
+          "parameters": [
+            7,
+            {
+              "repeat": false,
+              "skippable": false,
+              "wait": false,
+              "list": [
+                {
+                  "code": 45,
+                  "parameters": [
+                    "this.startGatagata()"
+                  ]
+                },
+                {
+                  "code": 0,
+                  "parameters": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "code": 505,
+          "indent": 0,
+          "parameters": [
+            {
+              "code": 45,
+              "parameters": [
+                "this.startGatagata()"
+              ]
+            }
+          ]
+        },
+        {
+          "code": 230,
+          "indent": 0,
+          "parameters": [
+            1
+          ]
+        },
+        {
+          "code": 355,
+          "indent": 0,
+          "parameters": [
+            "$gameSystem.clearMessagePopupFree()"
+          ]
+        },
+        {
+          "code": 356,
+          "indent": 0,
+          "parameters": [
+            "フキダシウィンドウ有効化 みぃー 1"
+          ]
+        },
+        {
+          "code": 355,
+          "indent": 0,
+          "parameters": [
+            "$gameMessage._tailDir = 2"
+          ]
+        },
+        {
+          "code": 101,
+          "indent": 0,
+          "parameters": [
+            "",
+            0,
+            0,
+            2
+          ]
+        },
+        {
+          "code": 401,
+          "indent": 0,
+          "parameters": [
+            "ヒエ〜ッ\\i[17]\\i[17]"
+          ]
+        },
+        {
+          "code": 230,
+          "indent": 0,
+          "parameters": [
+            21
+          ]
+        },
+        {
+          "code": 122,
+          "indent": 0,
+          "parameters": [
+            14,
+            14,
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "code": 355,
+          "indent": 0,
+          "parameters": [
+            "$gameSystem.clearMessagePopupFree()"
+          ]
+        },
+        {
+          "code": 356,
+          "indent": 0,
+          "parameters": [
+            "フキダシウィンドウ有効化 kanbu2 1"
+          ]
+        },
+        {
+          "code": 355,
+          "indent": 0,
+          "parameters": [
+            "$gameMessage._tailDir = 4"
+          ]
+        },
+        {
+          "code": 101,
+          "indent": 0,
+          "parameters": [
+            "",
+            0,
+            0,
+            2
+          ]
+        },
+        {
+          "code": 401,
+          "indent": 0,
+          "parameters": [
+            "いいか、遊びじゃねェ…\\!"
+          ]
+        },
+        {
+          "code": 401,
+          "indent": 0,
+          "parameters": [
+            "俺は本気で貴様らを"
+          ]
+        },
+        {
+          "code": 401,
+          "indent": 0,
+          "parameters": [
+            "殺そうと思ってる！"
+          ]
+        },
+        {
+          "code": 101,
+          "indent": 0,
+          "parameters": [
+            "",
+            0,
+            0,
+            2
+          ]
+        },
+        {
+          "code": 401,
+          "indent": 0,
+          "parameters": [
+            "貴様らはモンスターたちに"
+          ]
+        },
+        {
+          "code": 401,
+          "indent": 0,
+          "parameters": [
+            "とっての脅威だ！！"
+          ]
+        },
+        {
+          "code": 401,
+          "indent": 0,
+          "parameters": [
+            "生かしちゃおけねェ"
+          ]
+        },
+        {
+          "code": 101,
+          "indent": 0,
+          "parameters": [
+            "",
+            0,
+            0,
+            2
+          ]
+        },
+        {
+          "code": 401,
+          "indent": 0,
+          "parameters": [
+            "しかし！簡単に殺しちゃ"
+          ]
+        },
+        {
+          "code": 401,
+          "indent": 0,
+          "parameters": [
+            "つまらねェからな…"
+          ]
+        },
+        {
+          "code": 230,
+          "indent": 0,
+          "parameters": [
+            25
+          ]
+        },
+        {
+          "code": 122,
+          "indent": 0,
+          "parameters": [
+            14,
+            14,
+            0,
+            0,
+            1
+          ]
+        },
+        {
+          "code": 101,
+          "indent": 0,
+          "parameters": [
+            "",
+            0,
+            0,
+            2
+          ]
+        },
+        {
+          "code": 401,
+          "indent": 0,
+          "parameters": [
+            "できるだけムゴい方法で"
+          ]
+        },
+        {
+          "code": 401,
+          "indent": 0,
+          "parameters": [
+            "苦しませながら"
+          ]
+        },
+        {
+          "code": 401,
+          "indent": 0,
+          "parameters": [
+            "殺してやるよ！！"
+          ]
+        },
+        {
+          "code": 101,
+          "indent": 0,
+          "parameters": [
+            "",
+            0,
+            0,
+            2
+          ]
+        },
+        {
+          "code": 401,
+          "indent": 0,
+          "parameters": [
+            "ギャハハハ"
+          ]
+        },
+        {
+          "code": 401,
+          "indent": 0,
+          "parameters": [
+            "ハ！！！！！"
+          ]
+        },
+        {
+          "code": 230,
+          "indent": 0,
+          "parameters": [
+            60
+          ]
+        },
+        {
+          "code": 205,
+          "indent": 0,
+          "parameters": [
+            7,
+            {
+              "list": [
+                {
+                  "code": 45,
+                  "parameters": [
+                    "this.stopGatagata()"
+                  ],
+                  "indent": null
+                },
+                {
+                  "code": 0,
+                  "parameters": []
+                }
+              ],
+              "repeat": false,
+              "skippable": false,
+              "wait": false
+            }
+          ]
+        },
+        {
+          "code": 505,
+          "indent": 0,
+          "parameters": [
+            {
+              "code": 45,
+              "parameters": [
+                "this.stopGatagata()"
+              ],
+              "indent": null
+            }
+          ]
+        },
+        {
+          "code": 250,
+          "indent": 0,
+          "parameters": [
+            {
+              "name": "00_gero",
+              "volume": 90,
+              "pitch": 100,
+              "pan": 0
+            }
+          ]
+        },
+        {
+          "code": 205,
+          "indent": 0,
+          "parameters": [
+            5,
+            {
+              "repeat": false,
+              "skippable": false,
+              "wait": false,
+              "list": [
+                {
+                  "code": 16,
+                  "parameters": []
+                },
+                {
+                  "code": 45,
+                  "parameters": [
+                    "this.jump(6.5, -2, 0.1, 35)"
+                  ]
+                },
+                {
+                  "code": 15,
+                  "parameters": [
+                    17
+                  ]
+                },
+                {
+                  "code": 45,
+                  "parameters": [
+                    "this.startFrameAnimation([3,4,5], 10, false)"
+                  ]
+                },
+                {
+                  "code": 15,
+                  "parameters": [
+                    22
+                  ]
+                },
+                {
+                  "code": 0,
+                  "parameters": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "code": 505,
+          "indent": 0,
+          "parameters": [
+            {
+              "code": 16,
+              "parameters": []
+            }
+          ]
+        },
+        {
+          "code": 505,
+          "indent": 0,
+          "parameters": [
+            {
+              "code": 45,
+              "parameters": [
+                "this.jump(6.5, -2, 0.1, 35)"
+              ]
+            }
+          ]
+        },
+        {
+          "code": 505,
+          "indent": 0,
+          "parameters": [
+            {
+              "code": 15,
+              "parameters": [
+                17
+              ]
+            }
+          ]
+        },
+        {
+          "code": 505,
+          "indent": 0,
+          "parameters": [
+            {
+              "code": 45,
+              "parameters": [
+                "this.startFrameAnimation([3,4,5], 10, false)"
+              ]
+            }
+          ]
+        },
+        {
+          "code": 505,
+          "indent": 0,
+          "parameters": [
+            {
+              "code": 15,
+              "parameters": [
+                22
+              ]
+            }
+          ]
+        },
+        {
+          "code": 230,
+          "indent": 0,
+          "parameters": [
+            111
+          ]
+        },
+        {
+          "code": 250,
+          "indent": 0,
+          "parameters": [
+            {
+              "name": "00_huu",
+              "volume": 90,
+              "pitch": 100,
+              "pan": 0
+            }
+          ]
+        },
+        {
+          "code": 205,
+          "indent": 0,
+          "parameters": [
+            1,
+            {
+              "repeat": false,
+              "skippable": false,
+              "wait": false,
+              "list": [
+                {
+                  "code": 45,
+                  "parameters": [
+                    "this.jump(10.5, -4, 1.2, 1.5)"
+                  ]
+                },
+                {
+                  "code": 39,
+                  "parameters": []
+                },
+                {
+                  "code": 44,
+                  "parameters": [
+                    {
+                      "name": "Crash",
+                      "volume": 90,
+                      "pitch": 100,
+                      "pan": 25
+                    }
+                  ]
+                },
+                {
+                  "code": 0,
+                  "parameters": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "code": 505,
+          "indent": 0,
+          "parameters": [
+            {
+              "code": 45,
+              "parameters": [
+                "this.jump(10.5, -4, 1.2, 1.5)"
+              ]
+            }
+          ]
+        },
+        {
+          "code": 505,
+          "indent": 0,
+          "parameters": [
+            {
+              "code": 39,
+              "parameters": []
+            }
+          ]
+        },
+        {
+          "code": 505,
+          "indent": 0,
+          "parameters": [
+            {
+              "code": 44,
+              "parameters": [
+                {
+                  "name": "Crash",
+                  "volume": 90,
+                  "pitch": 100,
+                  "pan": 25
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "code": 230,
+          "indent": 0,
+          "parameters": [
+            80
+          ]
+        },
+        {
+          "code": 250,
+          "indent": 0,
+          "parameters": [
+            {
+              "name": "00_gero",
+              "volume": 90,
+              "pitch": 100,
+              "pan": 0
+            }
+          ]
+        },
+        {
+          "code": 205,
+          "indent": 0,
+          "parameters": [
+            5,
+            {
+              "list": [
+                {
+                  "code": 45,
+                  "parameters": [
+                    "this.startFrameAnimation(3, 10, true)"
+                  ]
+                },
+                {
+                  "code": 45,
+                  "parameters": [
+                    "this.jump(11, 1, 0.1, 15)"
+                  ]
+                },
+                {
+                  "code": 45,
+                  "parameters": [
+                    "this.jump(30, -5, 0.1, 15)"
+                  ]
+                },
+                {
+                  "code": 0,
+                  "parameters": []
+                }
+              ],
+              "repeat": false,
+              "skippable": false,
+              "wait": true
+            }
+          ]
+        },
+        {
+          "code": 505,
+          "indent": 0,
+          "parameters": [
+            {
+              "code": 45,
+              "parameters": [
+                "this.startFrameAnimation(3, 10, true)"
+              ]
+            }
+          ]
+        },
+        {
+          "code": 505,
+          "indent": 0,
+          "parameters": [
+            {
+              "code": 45,
+              "parameters": [
+                "this.jump(11, 1, 0.1, 15)"
+              ]
+            }
+          ]
+        },
+        {
+          "code": 505,
+          "indent": 0,
+          "parameters": [
+            {
+              "code": 45,
+              "parameters": [
+                "this.jump(30, -5, 0.1, 15)"
+              ]
+            }
+          ]
+        },
+        {
+          "code": 230,
+          "indent": 0,
+          "parameters": [
+            90
+          ]
+        },
+        {
+          "code": 122,
+          "indent": 0,
+          "parameters": [
+            14,
+            14,
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "code": 101,
+          "indent": 0,
+          "parameters": [
+            "",
+            0,
+            0,
+            2
+          ]
+        },
+        {
+          "code": 401,
+          "indent": 0,
+          "parameters": [
+            "…"
+          ]
+        },
+        {
+          "code": 101,
+          "indent": 0,
+          "parameters": [
+            "",
+            0,
+            0,
+            2
+          ]
+        },
+        {
+          "code": 401,
+          "indent": 0,
+          "parameters": [
+            "チッ…"
+          ]
+        },
+        {
+          "code": 101,
+          "indent": 0,
+          "parameters": [
+            "",
+            0,
+            0,
+            2
+          ]
+        },
+        {
+          "code": 401,
+          "indent": 0,
+          "parameters": [
+            "猫々魚（にゃん"
+          ]
+        },
+        {
+          "code": 401,
+          "indent": 0,
+          "parameters": [
+            "にゃんうお）か…\\! "
+          ]
+        },
+        {
+          "code": 102,
+          "indent": 0,
+          "parameters": [
+            [
+              "（苦しむフリ）",
+              "（はしゃぐ）"
+            ],
+            -1,
+            0,
+            2,
+            0
+          ]
+        },
+        {
+          "code": 402,
+          "indent": 0,
+          "parameters": [
+            0,
+            "（苦しむフリ）"
+          ]
+        },
+        {
+          "code": 230,
+          "indent": 1,
+          "parameters": [
+            24
+          ]
+        },
+        {
+          "code": 122,
+          "indent": 1,
+          "parameters": [
+            14,
+            14,
+            0,
+            0,
+            1
+          ]
+        },
+        {
+          "code": 101,
+          "indent": 1,
+          "parameters": [
+            "",
+            0,
+            0,
+            2
+          ]
+        },
+        {
+          "code": 401,
+          "indent": 1,
+          "parameters": [
+            "おっ！？"
+          ]
+        },
+        {
+          "code": 101,
+          "indent": 1,
+          "parameters": [
+            "",
+            0,
+            0,
+            2
+          ]
+        },
+        {
+          "code": 401,
+          "indent": 1,
+          "parameters": [
+            "効いてる"
+          ]
+        },
+        {
+          "code": 401,
+          "indent": 1,
+          "parameters": [
+            "効いてるゥ！！"
+          ]
+        },
+        {
+          "code": 101,
+          "indent": 1,
+          "parameters": [
+            "",
+            0,
+            0,
+            2
+          ]
+        },
+        {
+          "code": 401,
+          "indent": 1,
+          "parameters": [
+            "ギャハハハ"
+          ]
+        },
+        {
+          "code": 401,
+          "indent": 1,
+          "parameters": [
+            "ハ！！！"
+          ]
+        },
+        {
+          "code": 402,
+          "indent": 0,
+          "parameters": [
+            1,
+            "（はしゃぐ）"
+          ]
+        },
+        {
+          "code": 230,
+          "indent": 1,
+          "parameters": [
+            24
+          ]
+        },
+        {
+          "code": 101,
+          "indent": 1,
+          "parameters": [
+            "",
+            0,
+            0,
+            2
+          ]
+        },
+        {
+          "code": 401,
+          "indent": 1,
+          "parameters": [
+            "おのれ…余裕"
+          ]
+        },
+        {
+          "code": 401,
+          "indent": 1,
+          "parameters": [
+            "ぶっコキやがって！"
+          ]
+        },
+        {
+          "code": 101,
+          "indent": 1,
+          "parameters": [
+            "",
+            0,
+            0,
+            2
+          ]
+        },
+        {
+          "code": 401,
+          "indent": 1,
+          "parameters": [
+            "しかし…その慢心！"
+          ]
+        },
+        {
+          "code": 401,
+          "indent": 1,
+          "parameters": [
+            "油断！それが貴様らに"
+          ]
+        },
+        {
+          "code": 401,
+          "indent": 1,
+          "parameters": [
+            "破滅をもたらすだろう！！"
+          ]
+        },
+        {
+          "code": 101,
+          "indent": 1,
+          "parameters": [
+            "",
+            0,
+            0,
+            2
+          ]
+        },
+        {
+          "code": 401,
+          "indent": 1,
+          "parameters": [
+            "ギャハハハ"
+          ]
+        },
+        {
+          "code": 401,
+          "indent": 1,
+          "parameters": [
+            "ハ！！！"
+          ]
+        },
+        {
+          "code": 404,
+          "indent": 0,
+          "parameters": []
+        },
+        {
+          "code": 230,
+          "indent": 0,
+          "parameters": [
+            24
+          ]
+        },
+        {
+          "code": 101,
+          "indent": 0,
+          "parameters": [
+            "",
+            0,
+            0,
+            2
+          ]
+        },
+        {
+          "code": 401,
+          "indent": 0,
+          "parameters": [
+            "この後も、様々な恐ろ"
+          ]
+        },
+        {
+          "code": 401,
+          "indent": 0,
+          "parameters": [
+            "しいトラップたちが"
+          ]
+        },
+        {
+          "code": 401,
+          "indent": 0,
+          "parameters": [
+            "キサマらを襲うだろう…"
+          ]
+        },
+        {
+          "code": 101,
+          "indent": 0,
+          "parameters": [
+            "",
+            0,
+            0,
+            2
+          ]
+        },
+        {
+          "code": 401,
+          "indent": 0,
+          "parameters": [
+            "覚悟して"
+          ]
+        },
+        {
+          "code": 401,
+          "indent": 0,
+          "parameters": [
+            "おくんだな！！！"
+          ]
+        },
+        {
+          "code": 230,
+          "indent": 0,
+          "parameters": [
+            35
+          ]
+        },
+        {
+          "code": 205,
+          "indent": 0,
+          "parameters": [
+            2,
+            {
+              "repeat": false,
+              "skippable": false,
+              "wait": false,
+              "list": [
+                {
+                  "code": 45,
+                  "parameters": [
+                    "this.startFrameAnimation([8,9,10,11], 6, false)"
+                  ]
+                },
+                {
+                  "code": 15,
+                  "parameters": [
+                    40
+                  ]
+                },
+                {
+                  "code": 0,
+                  "parameters": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "code": 505,
+          "indent": 0,
+          "parameters": [
+            {
+              "code": 45,
+              "parameters": [
+                "this.startFrameAnimation([8,9,10,11], 6, false)"
+              ]
+            }
+          ]
+        },
+        {
+          "code": 505,
+          "indent": 0,
+          "parameters": [
+            {
+              "code": 15,
+              "parameters": [
+                40
+              ]
+            }
+          ]
+        },
+        {
+          "code": 230,
+          "indent": 0,
+          "parameters": [
+            41
+          ]
+        },
+        {
+          "code": 355,
+          "indent": 0,
+          "parameters": [
+            "this.character(2).requestAnimation(52, 0, 0, 1)"
+          ]
+        },
+        {
+          "code": 230,
+          "indent": 0,
+          "parameters": [
+            49
+          ]
+        },
+        {
+          "code": 355,
+          "indent": 0,
+          "parameters": [
+            "$gameMap.scrollCamera(0, 0, 60)"
+          ]
+        },
+        {
+          "code": 230,
+          "indent": 0,
+          "parameters": [
+            91
+          ]
+        },
+        {
+          "code": 205,
+          "indent": 0,
+          "parameters": [
+            7,
+            {
+              "repeat": false,
+              "skippable": false,
+              "wait": false,
+              "list": [
+                {
+                  "code": 45,
+                  "parameters": [
+                    "this.goToCharacter($gamePlayer._followers.follower(1))"
+                  ],
+                  "_eeGoToFollowerWait": 24
+                },
+                {
+                  "code": 39,
+                  "parameters": []
+                },
+                {
+                  "code": 0,
+                  "parameters": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "code": 505,
+          "indent": 0,
+          "parameters": [
+            {
+              "code": 45,
+              "parameters": [
+                "this.goToCharacter($gamePlayer._followers.follower(1))"
+              ],
+              "_eeGoToFollowerWait": 24
+            }
+          ]
+        },
+        {
+          "code": 505,
+          "indent": 0,
+          "parameters": [
+            {
+              "code": 39,
+              "parameters": []
+            }
+          ]
+        },
+        {
+          "code": 205,
+          "indent": 0,
+          "parameters": [
+            8,
+            {
+              "repeat": false,
+              "skippable": false,
+              "wait": false,
+              "list": [
+                {
+                  "code": 45,
+                  "parameters": [
+                    "this.goToCharacter($gamePlayer._followers.follower(3))"
+                  ],
+                  "_eeGoToFollowerWait": 16
+                },
+                {
+                  "code": 0,
+                  "parameters": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "code": 505,
+          "indent": 0,
+          "parameters": [
+            {
+              "code": 45,
+              "parameters": [
+                "this.goToCharacter($gamePlayer._followers.follower(3))"
+              ],
+              "_eeGoToFollowerWait": 16
+            }
+          ]
+        },
+        {
+          "code": 230,
+          "indent": 0,
+          "parameters": [
+            24
+          ]
+        },
+        {
+          "code": 205,
+          "indent": 0,
+          "parameters": [
+            -1,
+            {
+              "repeat": false,
+              "skippable": false,
+              "wait": false,
+              "list": [
+                {
+                  "code": 16,
+                  "parameters": []
+                },
+                {
+                  "code": 0,
+                  "parameters": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "code": 505,
+          "indent": 0,
+          "parameters": [
+            {
+              "code": 16,
+              "parameters": []
+            }
+          ]
+        },
+        {
+          "code": 205,
+          "indent": 0,
+          "parameters": [
+            8,
+            {
+              "repeat": false,
+              "skippable": false,
+              "wait": false,
+              "list": [
+                {
+                  "code": 39,
+                  "parameters": []
+                },
+                {
+                  "code": 0,
+                  "parameters": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "code": 505,
+          "indent": 0,
+          "parameters": [
+            {
+              "code": 39,
+              "parameters": []
+            }
+          ]
+        },
+        {
+          "code": 216,
+          "indent": 0,
+          "parameters": [
+            0
+          ]
+        },
+        {
+          "code": 230,
+          "indent": 0,
+          "parameters": [
+            1
+          ]
+        },
+        {
+          "code": 122,
+          "indent": 0,
+          "parameters": [
+            55,
+            55,
+            0,
+            0,
+            1
+          ]
+        },
+        {
+          "code": 0,
+          "indent": 0,
+          "parameters": []
+        }
+      ],
+      "timeline": [
+        {
+          "uid": 1,
+          "frame": 0,
+          "eventId": 6,
+          "pageIndex": 0,
+          "command": {
+            "code": 108,
+            "indent": 0,
+            "parameters": [
+              "====================================================="
+            ]
+          },
+          "wait": 0,
+          "rowType": "main",
+          "rowKey": "main",
+          "charId": null,
+          "isComment": true,
+          "commentLines": [
+            "====================================================="
+          ],
+          "isMemo": false,
+          "memoSize": "S",
+          "memoText": "",
+          "isMessage": false,
+          "messageLines": null,
+          "messageExt": null,
+          "isScrollMessage": false,
+          "scrollLines": null,
+          "isScript": false,
+          "scriptLines": null
+        },
+        {
+          "uid": 2,
+          "frame": 0,
+          "eventId": 6,
+          "pageIndex": 0,
+          "command": {
+            "code": 355,
+            "indent": 0,
+            "parameters": [
+              "TestReload.saveHere(\"モンスター城 罠1\");"
+            ]
+          },
+          "wait": 0,
+          "rowType": "main",
+          "rowKey": "main",
+          "charId": null,
+          "isComment": false,
+          "commentLines": null,
+          "isMemo": false,
+          "memoSize": "S",
+          "memoText": "",
+          "isMessage": false,
+          "messageLines": null,
+          "messageExt": null,
+          "isScrollMessage": false,
+          "scrollLines": null,
+          "isScript": true,
+          "scriptLines": [
+            "TestReload.saveHere(\"モンスター城 罠1\");"
+          ]
+        },
+        {
+          "uid": 3,
+          "frame": 0,
+          "eventId": 6,
+          "pageIndex": 0,
+          "command": {
+            "code": 108,
+            "indent": 0,
+            "parameters": [
+              "====================================================="
+            ]
+          },
+          "wait": 0,
+          "rowType": "main",
+          "rowKey": "main",
+          "charId": null,
+          "isComment": true,
+          "commentLines": [
+            "====================================================="
+          ],
+          "isMemo": false,
+          "memoSize": "S",
+          "memoText": "",
+          "isMessage": false,
+          "messageLines": null,
+          "messageExt": null,
+          "isScrollMessage": false,
+          "scrollLines": null,
+          "isScript": false,
+          "scriptLines": null
+        },
+        {
+          "uid": 4,
+          "frame": 0,
+          "eventId": 6,
+          "pageIndex": 0,
+          "command": {
+            "code": 355,
+            "indent": 0,
+            "parameters": [
+              "this.character(5).locateTo(-15, 24)"
+            ]
+          },
+          "wait": 0,
+          "rowType": "main",
+          "rowKey": "main",
+          "charId": null,
+          "isComment": false,
+          "commentLines": null,
+          "isMemo": false,
+          "memoSize": "S",
+          "memoText": "",
+          "isMessage": false,
+          "messageLines": null,
+          "messageExt": null,
+          "isScrollMessage": false,
+          "scrollLines": null,
+          "isScript": true,
+          "scriptLines": [
+            "this.character(5).locateTo(-15, 24)"
+          ]
+        },
+        {
+          "uid": 5,
+          "frame": 29,
+          "eventId": 6,
+          "pageIndex": 0,
+          "command": {
+            "code": 205,
+            "indent": 0,
+            "parameters": [
+              -1,
+              {
+                "repeat": false,
+                "skippable": false,
+                "wait": false,
+                "list": [
+                  {
+                    "code": 45,
+                    "parameters": [
+                      "this.goTo(4, 17.5)"
+                    ],
+                    "_eeTileWait": 23
+                  },
+                  {
+                    "code": 45,
+                    "parameters": [
+                      "this.goTo(5, 17.5)"
+                    ],
+                    "_eeTileWait": 12
+                  },
+                  {
+                    "code": 0,
+                    "parameters": []
+                  }
+                ]
+              }
+            ]
+          },
+          "wait": 0,
+          "rowType": "char",
+          "rowKey": "char:-1",
+          "charId": -1,
+          "isComment": false,
+          "commentLines": null,
+          "isMemo": false,
+          "memoSize": "S",
+          "memoText": "",
+          "isMessage": false,
+          "messageLines": null,
+          "messageExt": null,
+          "isScrollMessage": false,
+          "scrollLines": null,
+          "isScript": false,
+          "scriptLines": null
+        },
+        {
+          "uid": 6,
+          "frame": 52,
+          "eventId": 6,
+          "pageIndex": 0,
+          "command": {
+            "code": 205,
+            "indent": 0,
+            "parameters": [
+              7,
+              {
+                "repeat": false,
+                "skippable": false,
+                "wait": false,
+                "list": [
+                  {
+                    "code": 45,
+                    "parameters": [
+                      "this.locateToCharacter($gamePlayer._followers.follower(1)), this._direction = 8"
+                    ]
+                  },
+                  {
+                    "code": 40,
+                    "parameters": []
+                  },
+                  {
+                    "code": 45,
+                    "parameters": [
+                      "this.goTo(4, 16.5)"
+                    ],
+                    "_eeTileWait": 40
+                  },
+                  {
+                    "code": 18,
+                    "parameters": []
+                  },
+                  {
+                    "code": 0,
+                    "parameters": []
+                  }
+                ]
+              }
+            ]
+          },
+          "wait": 0,
+          "rowType": "char",
+          "rowKey": "char:7",
+          "charId": 7,
+          "isComment": false,
+          "commentLines": null,
+          "isMemo": false,
+          "memoSize": "S",
+          "memoText": "",
+          "isMessage": false,
+          "messageLines": null,
+          "messageExt": null,
+          "isScrollMessage": false,
+          "scrollLines": null,
+          "isScript": false,
+          "scriptLines": null
+        },
+        {
+          "uid": 7,
+          "frame": 52,
+          "eventId": 6,
+          "pageIndex": 0,
+          "command": {
+            "code": 205,
+            "indent": 0,
+            "parameters": [
+              8,
+              {
+                "repeat": false,
+                "skippable": false,
+                "wait": false,
+                "list": [
+                  {
+                    "code": 45,
+                    "parameters": [
+                      "this.locateToCharacter($gamePlayer._followers.follower(3)), this._direction = 8"
+                    ]
+                  },
+                  {
+                    "code": 40,
+                    "parameters": []
+                  },
+                  {
+                    "code": 45,
+                    "parameters": [
+                      "this.goTo(4, 19)"
+                    ],
+                    "_eeTileWait": 32
+                  },
+                  {
+                    "code": 18,
+                    "parameters": []
+                  },
+                  {
+                    "code": 0,
+                    "parameters": []
+                  }
+                ]
+              }
+            ]
+          },
+          "wait": 0,
+          "rowType": "char",
+          "rowKey": "char:8",
+          "charId": 8,
+          "isComment": false,
+          "commentLines": null,
+          "isMemo": false,
+          "memoSize": "S",
+          "memoText": "",
+          "isMessage": false,
+          "messageLines": null,
+          "messageExt": null,
+          "isScrollMessage": false,
+          "scrollLines": null,
+          "isScript": false,
+          "scriptLines": null
+        },
+        {
+          "uid": 8,
+          "frame": 53,
+          "eventId": 6,
+          "pageIndex": 0,
+          "command": {
+            "code": 216,
+            "indent": 0,
+            "parameters": [
+              1
+            ]
+          },
+          "wait": 0,
+          "rowType": "main",
+          "rowKey": "main",
+          "charId": null,
+          "isComment": false,
+          "commentLines": null,
+          "isMemo": false,
+          "memoSize": "S",
+          "memoText": "",
+          "isMessage": false,
+          "messageLines": null,
+          "messageExt": null,
+          "isScrollMessage": false,
+          "scrollLines": null,
+          "isScript": false,
+          "scriptLines": null
+        },
+        {
+          "uid": 9,
+          "frame": 94,
+          "eventId": 6,
+          "pageIndex": 0,
+          "command": {
+            "code": 355,
+            "indent": 0,
+            "parameters": [
+              "$gameMap.scrollCamera(0, -4, 30)"
+            ]
+          },
+          "wait": 0,
+          "rowType": "main",
+          "rowKey": "main",
+          "charId": null,
+          "isComment": false,
+          "commentLines": null,
+          "isMemo": false,
+          "memoSize": "S",
+          "memoText": "",
+          "isMessage": false,
+          "messageLines": null,
+          "messageExt": null,
+          "isScrollMessage": false,
+          "scrollLines": null,
+          "isScript": true,
+          "scriptLines": [
+            "$gameMap.scrollCamera(0, -4, 30)"
+          ]
+        },
+        {
+          "uid": 14,
+          "frame": 150,
+          "eventId": 6,
+          "pageIndex": 0,
+          "command": {
+            "code": 101,
+            "indent": 0,
+            "parameters": [
+              "",
+              0,
+              0,
+              2
+            ]
+          },
+          "wait": 0,
+          "rowType": "main",
+          "rowKey": "main",
+          "charId": null,
+          "isComment": false,
+          "commentLines": null,
+          "isMemo": false,
+          "memoSize": "S",
+          "memoText": "",
+          "isMessage": true,
+          "messageLines": [
+            "フン、来たな",
+            "クソ野郎共！！"
+          ],
+          "messageExt": {
+            "windowType": 1,
+            "tailDir": 4,
+            "targetMode": "char",
+            "targetCharId": 2,
+            "targetX": 0,
+            "targetY": 0,
+            "addX": 0,
+            "addY": 0
+          },
+          "isScrollMessage": false,
+          "scrollLines": null,
+          "isScript": false,
+          "scriptLines": null
+        },
+        {
+          "uid": 15,
+          "frame": 150,
+          "eventId": 6,
+          "pageIndex": 0,
+          "command": {
+            "code": 101,
+            "indent": 0,
+            "parameters": [
+              "",
+              0,
+              0,
+              2
+            ]
+          },
+          "wait": 0,
+          "rowType": "main",
+          "rowKey": "main",
+          "charId": null,
+          "isComment": false,
+          "commentLines": null,
+          "isMemo": false,
+          "memoSize": "S",
+          "memoText": "",
+          "isMessage": true,
+          "messageLines": [
+            "テメェらにうってつけの",
+            "死に場所を用意した！！"
+          ],
+          "messageExt": {
+            "windowType": 1,
+            "tailDir": 4,
+            "targetMode": "char",
+            "targetCharId": 2,
+            "targetX": 0,
+            "targetY": 0,
+            "addX": 0,
+            "addY": 0
+          },
+          "isScrollMessage": false,
+          "scrollLines": null,
+          "isScript": false,
+          "scriptLines": null
+        },
+        {
+          "uid": 16,
+          "frame": 174,
+          "eventId": 6,
+          "pageIndex": 0,
+          "command": {
+            "code": 101,
+            "indent": 0,
+            "parameters": [
+              "",
+              0,
+              0,
+              2
+            ]
+          },
+          "wait": 0,
+          "rowType": "main",
+          "rowKey": "main",
+          "charId": null,
+          "isComment": false,
+          "commentLines": null,
+          "isMemo": false,
+          "memoSize": "S",
+          "memoText": "",
+          "isMessage": true,
+          "messageLines": [
+            "名付けて",
+            "「地獄のブスブス穴開き",
+            " 即死地獄」！！"
+          ],
+          "messageExt": {
+            "windowType": 1,
+            "tailDir": 4,
+            "targetMode": "char",
+            "targetCharId": 2,
+            "targetX": 0,
+            "targetY": 0,
+            "addX": 0,
+            "addY": 0
+          },
+          "isScrollMessage": false,
+          "scrollLines": null,
+          "isScript": false,
+          "scriptLines": null
+        },
+        {
+          "uid": 17,
+          "frame": 194,
+          "eventId": 6,
+          "pageIndex": 0,
+          "command": {
+            "code": 205,
+            "indent": 0,
+            "parameters": [
+              7,
+              {
+                "repeat": false,
+                "skippable": false,
+                "wait": false,
+                "list": [
+                  {
+                    "code": 45,
+                    "parameters": [
+                      "this.startGatagata()"
+                    ]
+                  },
+                  {
+                    "code": 0,
+                    "parameters": []
+                  }
+                ]
+              }
+            ]
+          },
+          "wait": 0,
+          "rowType": "char",
+          "rowKey": "char:7",
+          "charId": 7,
+          "isComment": false,
+          "commentLines": null,
+          "isMemo": false,
+          "memoSize": "S",
+          "memoText": "",
+          "isMessage": false,
+          "messageLines": null,
+          "messageExt": null,
+          "isScrollMessage": false,
+          "scrollLines": null,
+          "isScript": false,
+          "scriptLines": null
+        },
+        {
+          "uid": 21,
+          "frame": 195,
+          "eventId": 6,
+          "pageIndex": 0,
+          "command": {
+            "code": 101,
+            "indent": 0,
+            "parameters": [
+              "",
+              0,
+              0,
+              2
+            ]
+          },
+          "wait": 0,
+          "rowType": "main",
+          "rowKey": "main",
+          "charId": null,
+          "isComment": false,
+          "commentLines": null,
+          "isMemo": false,
+          "memoSize": "S",
+          "memoText": "",
+          "isMessage": true,
+          "messageLines": [
+            "ヒエ〜ッ\\i[17]\\i[17]"
+          ],
+          "messageExt": {
+            "windowType": 1,
+            "tailDir": 2,
+            "targetMode": "char",
+            "targetCharId": 7,
+            "targetX": 0,
+            "targetY": 0,
+            "addX": 0,
+            "addY": 0
+          },
+          "isScrollMessage": false,
+          "scrollLines": null,
+          "isScript": false,
+          "scriptLines": null
+        },
+        {
+          "uid": 26,
+          "frame": 216,
+          "eventId": 6,
+          "pageIndex": 0,
+          "command": {
+            "code": 101,
+            "indent": 0,
+            "parameters": [
+              "",
+              0,
+              0,
+              2
+            ]
+          },
+          "wait": 0,
+          "rowType": "main",
+          "rowKey": "main",
+          "charId": null,
+          "isComment": false,
+          "commentLines": null,
+          "isMemo": false,
+          "memoSize": "S",
+          "memoText": "",
+          "isMessage": true,
+          "messageLines": [
+            "いいか、遊びじゃねェ…\\!",
+            "俺は本気で貴様らを",
+            "殺そうと思ってる！"
+          ],
+          "messageExt": {
+            "windowType": 0,
+            "tailDir": 4,
+            "targetMode": "char",
+            "targetCharId": 2,
+            "targetX": 0,
+            "targetY": 0,
+            "addX": 0,
+            "addY": 0
+          },
+          "isScrollMessage": false,
+          "scrollLines": null,
+          "isScript": false,
+          "scriptLines": null
+        },
+        {
+          "uid": 27,
+          "frame": 216,
+          "eventId": 6,
+          "pageIndex": 0,
+          "command": {
+            "code": 101,
+            "indent": 0,
+            "parameters": [
+              "",
+              0,
+              0,
+              2
+            ]
+          },
+          "wait": 0,
+          "rowType": "main",
+          "rowKey": "main",
+          "charId": null,
+          "isComment": false,
+          "commentLines": null,
+          "isMemo": false,
+          "memoSize": "S",
+          "memoText": "",
+          "isMessage": true,
+          "messageLines": [
+            "貴様らはモンスターたちに",
+            "とっての脅威だ！！",
+            "生かしちゃおけねェ"
+          ],
+          "messageExt": {
+            "windowType": 0,
+            "tailDir": 4,
+            "targetMode": "char",
+            "targetCharId": 2,
+            "targetX": 0,
+            "targetY": 0,
+            "addX": 0,
+            "addY": 0
+          },
+          "isScrollMessage": false,
+          "scrollLines": null,
+          "isScript": false,
+          "scriptLines": null
+        },
+        {
+          "uid": 28,
+          "frame": 216,
+          "eventId": 6,
+          "pageIndex": 0,
+          "command": {
+            "code": 101,
+            "indent": 0,
+            "parameters": [
+              "",
+              0,
+              0,
+              2
+            ]
+          },
+          "wait": 0,
+          "rowType": "main",
+          "rowKey": "main",
+          "charId": null,
+          "isComment": false,
+          "commentLines": null,
+          "isMemo": false,
+          "memoSize": "S",
+          "memoText": "",
+          "isMessage": true,
+          "messageLines": [
+            "しかし！簡単に殺しちゃ",
+            "つまらねェからな…"
+          ],
+          "messageExt": {
+            "windowType": 0,
+            "tailDir": 4,
+            "targetMode": "char",
+            "targetCharId": 2,
+            "targetX": 0,
+            "targetY": 0,
+            "addX": 0,
+            "addY": 0
+          },
+          "isScrollMessage": false,
+          "scrollLines": null,
+          "isScript": false,
+          "scriptLines": null
+        },
+        {
+          "uid": 30,
+          "frame": 241,
+          "eventId": 6,
+          "pageIndex": 0,
+          "command": {
+            "code": 101,
+            "indent": 0,
+            "parameters": [
+              "",
+              0,
+              0,
+              2
+            ]
+          },
+          "wait": 0,
+          "rowType": "main",
+          "rowKey": "main",
+          "charId": null,
+          "isComment": false,
+          "commentLines": null,
+          "isMemo": false,
+          "memoSize": "S",
+          "memoText": "",
+          "isMessage": true,
+          "messageLines": [
+            "できるだけムゴい方法で",
+            "苦しませながら",
+            "殺してやるよ！！"
+          ],
+          "messageExt": {
+            "windowType": 1,
+            "tailDir": 4,
+            "targetMode": "char",
+            "targetCharId": 2,
+            "targetX": 0,
+            "targetY": 0,
+            "addX": 0,
+            "addY": 0
+          },
+          "isScrollMessage": false,
+          "scrollLines": null,
+          "isScript": false,
+          "scriptLines": null
+        },
+        {
+          "uid": 31,
+          "frame": 241,
+          "eventId": 6,
+          "pageIndex": 0,
+          "command": {
+            "code": 101,
+            "indent": 0,
+            "parameters": [
+              "",
+              0,
+              0,
+              2
+            ]
+          },
+          "wait": 0,
+          "rowType": "main",
+          "rowKey": "main",
+          "charId": null,
+          "isComment": false,
+          "commentLines": null,
+          "isMemo": false,
+          "memoSize": "S",
+          "memoText": "",
+          "isMessage": true,
+          "messageLines": [
+            "ギャハハハ",
+            "ハ！！！！！"
+          ],
+          "messageExt": {
+            "windowType": 1,
+            "tailDir": 4,
+            "targetMode": "char",
+            "targetCharId": 2,
+            "targetX": 0,
+            "targetY": 0,
+            "addX": 0,
+            "addY": 0
+          },
+          "isScrollMessage": false,
+          "scrollLines": null,
+          "isScript": false,
+          "scriptLines": null
+        },
+        {
+          "uid": 32,
+          "frame": 301,
+          "eventId": 6,
+          "pageIndex": 0,
+          "command": {
+            "code": 205,
+            "indent": 0,
+            "parameters": [
+              7,
+              {
+                "list": [
+                  {
+                    "code": 45,
+                    "parameters": [
+                      "this.stopGatagata()"
+                    ],
+                    "indent": null
+                  },
+                  {
+                    "code": 0,
+                    "parameters": []
+                  }
+                ],
+                "repeat": false,
+                "skippable": false,
+                "wait": false
+              }
+            ]
+          },
+          "wait": 0,
+          "rowType": "char",
+          "rowKey": "char:7",
+          "charId": 7,
+          "isComment": false,
+          "commentLines": null,
+          "isMemo": false,
+          "memoSize": "S",
+          "memoText": "",
+          "isMessage": false,
+          "messageLines": null,
+          "messageExt": null,
+          "isScrollMessage": false,
+          "scrollLines": null,
+          "isScript": false,
+          "scriptLines": null
+        },
+        {
+          "uid": 33,
+          "frame": 301,
+          "eventId": 6,
+          "pageIndex": 0,
+          "command": {
+            "code": 250,
+            "indent": 0,
+            "parameters": [
+              {
+                "name": "00_gero",
+                "volume": 90,
+                "pitch": 100,
+                "pan": 0
+              }
+            ]
+          },
+          "wait": 0,
+          "rowType": "main",
+          "rowKey": "main",
+          "charId": null,
+          "isComment": false,
+          "commentLines": null,
+          "isMemo": false,
+          "memoSize": "S",
+          "memoText": "",
+          "isMessage": false,
+          "messageLines": null,
+          "messageExt": null,
+          "isScrollMessage": false,
+          "scrollLines": null,
+          "isScript": false,
+          "scriptLines": null
+        },
+        {
+          "uid": 34,
+          "frame": 301,
+          "eventId": 6,
+          "pageIndex": 0,
+          "command": {
+            "code": 205,
+            "indent": 0,
+            "parameters": [
+              5,
+              {
+                "repeat": false,
+                "skippable": false,
+                "wait": false,
+                "list": [
+                  {
+                    "code": 16,
+                    "parameters": []
+                  },
+                  {
+                    "code": 45,
+                    "parameters": [
+                      "this.jump(6.5, -2, 0.1, 35)"
+                    ]
+                  },
+                  {
+                    "code": 15,
+                    "parameters": [
+                      17
+                    ]
+                  },
+                  {
+                    "code": 45,
+                    "parameters": [
+                      "this.startFrameAnimation([3,4,5], 10, false)"
+                    ]
+                  },
+                  {
+                    "code": 15,
+                    "parameters": [
+                      22
+                    ]
+                  },
+                  {
+                    "code": 0,
+                    "parameters": []
+                  }
+                ]
+              }
+            ]
+          },
+          "wait": 0,
+          "rowType": "char",
+          "rowKey": "char:5",
+          "charId": 5,
+          "isComment": false,
+          "commentLines": null,
+          "isMemo": false,
+          "memoSize": "S",
+          "memoText": "",
+          "isMessage": false,
+          "messageLines": null,
+          "messageExt": null,
+          "isScrollMessage": false,
+          "scrollLines": null,
+          "isScript": false,
+          "scriptLines": null
+        },
+        {
+          "uid": 35,
+          "frame": 412,
+          "eventId": 6,
+          "pageIndex": 0,
+          "command": {
+            "code": 250,
+            "indent": 0,
+            "parameters": [
+              {
+                "name": "00_huu",
+                "volume": 90,
+                "pitch": 100,
+                "pan": 0
+              }
+            ]
+          },
+          "wait": 0,
+          "rowType": "main",
+          "rowKey": "main",
+          "charId": null,
+          "isComment": false,
+          "commentLines": null,
+          "isMemo": false,
+          "memoSize": "S",
+          "memoText": "",
+          "isMessage": false,
+          "messageLines": null,
+          "messageExt": null,
+          "isScrollMessage": false,
+          "scrollLines": null,
+          "isScript": false,
+          "scriptLines": null
+        },
+        {
+          "uid": 36,
+          "frame": 412,
+          "eventId": 6,
+          "pageIndex": 0,
+          "command": {
+            "code": 205,
+            "indent": 0,
+            "parameters": [
+              1,
+              {
+                "repeat": false,
+                "skippable": false,
+                "wait": false,
+                "list": [
+                  {
+                    "code": 45,
+                    "parameters": [
+                      "this.jump(10.5, -4, 1.2, 1.5)"
+                    ]
+                  },
+                  {
+                    "code": 39,
+                    "parameters": []
+                  },
+                  {
+                    "code": 44,
+                    "parameters": [
+                      {
+                        "name": "Crash",
+                        "volume": 90,
+                        "pitch": 100,
+                        "pan": 25
+                      }
+                    ]
+                  },
+                  {
+                    "code": 0,
+                    "parameters": []
+                  }
+                ]
+              }
+            ]
+          },
+          "wait": 0,
+          "rowType": "char",
+          "rowKey": "char:1",
+          "charId": 1,
+          "isComment": false,
+          "commentLines": null,
+          "isMemo": false,
+          "memoSize": "S",
+          "memoText": "",
+          "isMessage": false,
+          "messageLines": null,
+          "messageExt": null,
+          "isScrollMessage": false,
+          "scrollLines": null,
+          "isScript": false,
+          "scriptLines": null
+        },
+        {
+          "uid": 37,
+          "frame": 492,
+          "eventId": 6,
+          "pageIndex": 0,
+          "command": {
+            "code": 250,
+            "indent": 0,
+            "parameters": [
+              {
+                "name": "00_gero",
+                "volume": 90,
+                "pitch": 100,
+                "pan": 0
+              }
+            ]
+          },
+          "wait": 0,
+          "rowType": "main",
+          "rowKey": "main",
+          "charId": null,
+          "isComment": false,
+          "commentLines": null,
+          "isMemo": false,
+          "memoSize": "S",
+          "memoText": "",
+          "isMessage": false,
+          "messageLines": null,
+          "messageExt": null,
+          "isScrollMessage": false,
+          "scrollLines": null,
+          "isScript": false,
+          "scriptLines": null
+        },
+        {
+          "uid": 38,
+          "frame": 492,
+          "eventId": 6,
+          "pageIndex": 0,
+          "command": {
+            "code": 205,
+            "indent": 0,
+            "parameters": [
+              5,
+              {
+                "list": [
+                  {
+                    "code": 45,
+                    "parameters": [
+                      "this.startFrameAnimation(3, 10, true)"
+                    ]
+                  },
+                  {
+                    "code": 45,
+                    "parameters": [
+                      "this.jump(11, 1, 0.1, 15)"
+                    ]
+                  },
+                  {
+                    "code": 45,
+                    "parameters": [
+                      "this.jump(30, -5, 0.1, 15)"
+                    ]
+                  },
+                  {
+                    "code": 0,
+                    "parameters": []
+                  }
+                ],
+                "repeat": false,
+                "skippable": false,
+                "wait": true
+              }
+            ]
+          },
+          "wait": 181,
+          "rowType": "char",
+          "rowKey": "char:5",
+          "charId": 5,
+          "isComment": false,
+          "commentLines": null,
+          "isMemo": false,
+          "memoSize": "S",
+          "memoText": "",
+          "isMessage": false,
+          "messageLines": null,
+          "messageExt": null,
+          "isScrollMessage": false,
+          "scrollLines": null,
+          "isScript": false,
+          "scriptLines": null
+        },
+        {
+          "uid": 40,
+          "frame": 763,
+          "eventId": 6,
+          "pageIndex": 0,
+          "command": {
+            "code": 101,
+            "indent": 0,
+            "parameters": [
+              "",
+              0,
+              0,
+              2
+            ]
+          },
+          "wait": 0,
+          "rowType": "main",
+          "rowKey": "main",
+          "charId": null,
+          "isComment": false,
+          "commentLines": null,
+          "isMemo": false,
+          "memoSize": "S",
+          "memoText": "",
+          "isMessage": true,
+          "messageLines": [
+            "…"
+          ],
+          "messageExt": {
+            "windowType": 0,
+            "tailDir": 4,
+            "targetMode": "char",
+            "targetCharId": 2,
+            "targetX": 0,
+            "targetY": 0,
+            "addX": 0,
+            "addY": 0
+          },
+          "isScrollMessage": false,
+          "scrollLines": null,
+          "isScript": false,
+          "scriptLines": null
+        },
+        {
+          "uid": 41,
+          "frame": 763,
+          "eventId": 6,
+          "pageIndex": 0,
+          "command": {
+            "code": 101,
+            "indent": 0,
+            "parameters": [
+              "",
+              0,
+              0,
+              2
+            ]
+          },
+          "wait": 0,
+          "rowType": "main",
+          "rowKey": "main",
+          "charId": null,
+          "isComment": false,
+          "commentLines": null,
+          "isMemo": false,
+          "memoSize": "S",
+          "memoText": "",
+          "isMessage": true,
+          "messageLines": [
+            "チッ…"
+          ],
+          "messageExt": {
+            "windowType": 0,
+            "tailDir": 4,
+            "targetMode": "char",
+            "targetCharId": 2,
+            "targetX": 0,
+            "targetY": 0,
+            "addX": 0,
+            "addY": 0
+          },
+          "isScrollMessage": false,
+          "scrollLines": null,
+          "isScript": false,
+          "scriptLines": null
+        },
+        {
+          "uid": 42,
+          "frame": 763,
+          "eventId": 6,
+          "pageIndex": 0,
+          "command": {
+            "code": 101,
+            "indent": 0,
+            "parameters": [
+              "",
+              0,
+              0,
+              2
+            ]
+          },
+          "wait": 0,
+          "rowType": "main",
+          "rowKey": "main",
+          "charId": null,
+          "isComment": false,
+          "commentLines": null,
+          "isMemo": false,
+          "memoSize": "S",
+          "memoText": "",
+          "isMessage": true,
+          "messageLines": [
+            "猫々魚（にゃん",
+            "にゃんうお）か…\\! "
+          ],
+          "messageExt": {
+            "windowType": 0,
+            "tailDir": 4,
+            "targetMode": "char",
+            "targetCharId": 2,
+            "targetX": 0,
+            "targetY": 0,
+            "addX": 0,
+            "addY": 0
+          },
+          "isScrollMessage": false,
+          "scrollLines": null,
+          "isScript": false,
+          "scriptLines": null
+        },
+        {
+          "uid": 43,
+          "frame": 763,
+          "eventId": 6,
+          "pageIndex": 0,
+          "command": {
+            "code": 102,
+            "indent": 0,
+            "parameters": [
+              [
+                "（苦しむフリ）",
+                "（はしゃぐ）"
+              ],
+              -1,
+              0,
+              2,
+              0
+            ]
+          },
+          "wait": 0,
+          "rowType": "main",
+          "rowKey": "main",
+          "charId": null,
+          "isComment": false,
+          "commentLines": null,
+          "isMemo": false,
+          "memoSize": "S",
+          "memoText": "",
+          "isMessage": false,
+          "messageLines": null,
+          "messageExt": null,
+          "isScrollMessage": false,
+          "scrollLines": null,
+          "isScript": false,
+          "scriptLines": null
+        },
+        {
+          "uid": 44,
+          "frame": 763,
+          "eventId": 6,
+          "pageIndex": 0,
+          "command": {
+            "code": 402,
+            "indent": 0,
+            "parameters": [
+              0,
+              "（苦しむフリ）"
+            ]
+          },
+          "wait": 0,
+          "rowType": "main",
+          "rowKey": "main",
+          "charId": null,
+          "isComment": false,
+          "commentLines": null,
+          "isMemo": false,
+          "memoSize": "S",
+          "memoText": "",
+          "isMessage": false,
+          "messageLines": null,
+          "messageExt": null,
+          "isScrollMessage": false,
+          "scrollLines": null,
+          "isScript": false,
+          "scriptLines": null
+        },
+        {
+          "uid": 46,
+          "frame": 787,
+          "eventId": 6,
+          "pageIndex": 0,
+          "command": {
+            "code": 101,
+            "indent": 1,
+            "parameters": [
+              "",
+              0,
+              0,
+              2
+            ]
+          },
+          "wait": 0,
+          "rowType": "main",
+          "rowKey": "main",
+          "charId": null,
+          "isComment": false,
+          "commentLines": null,
+          "isMemo": false,
+          "memoSize": "S",
+          "memoText": "",
+          "isMessage": true,
+          "messageLines": [
+            "おっ！？"
+          ],
+          "messageExt": {
+            "windowType": 1,
+            "tailDir": 4,
+            "targetMode": "char",
+            "targetCharId": 2,
+            "targetX": 0,
+            "targetY": 0,
+            "addX": 0,
+            "addY": 0
+          },
+          "isScrollMessage": false,
+          "scrollLines": null,
+          "isScript": false,
+          "scriptLines": null
+        },
+        {
+          "uid": 47,
+          "frame": 787,
+          "eventId": 6,
+          "pageIndex": 0,
+          "command": {
+            "code": 101,
+            "indent": 1,
+            "parameters": [
+              "",
+              0,
+              0,
+              2
+            ]
+          },
+          "wait": 0,
+          "rowType": "main",
+          "rowKey": "main",
+          "charId": null,
+          "isComment": false,
+          "commentLines": null,
+          "isMemo": false,
+          "memoSize": "S",
+          "memoText": "",
+          "isMessage": true,
+          "messageLines": [
+            "効いてる",
+            "効いてるゥ！！"
+          ],
+          "messageExt": {
+            "windowType": 1,
+            "tailDir": 4,
+            "targetMode": "char",
+            "targetCharId": 2,
+            "targetX": 0,
+            "targetY": 0,
+            "addX": 0,
+            "addY": 0
+          },
+          "isScrollMessage": false,
+          "scrollLines": null,
+          "isScript": false,
+          "scriptLines": null
+        },
+        {
+          "uid": 48,
+          "frame": 787,
+          "eventId": 6,
+          "pageIndex": 0,
+          "command": {
+            "code": 101,
+            "indent": 1,
+            "parameters": [
+              "",
+              0,
+              0,
+              2
+            ]
+          },
+          "wait": 0,
+          "rowType": "main",
+          "rowKey": "main",
+          "charId": null,
+          "isComment": false,
+          "commentLines": null,
+          "isMemo": false,
+          "memoSize": "S",
+          "memoText": "",
+          "isMessage": true,
+          "messageLines": [
+            "ギャハハハ",
+            "ハ！！！"
+          ],
+          "messageExt": {
+            "windowType": 1,
+            "tailDir": 4,
+            "targetMode": "char",
+            "targetCharId": 2,
+            "targetX": 0,
+            "targetY": 0,
+            "addX": 0,
+            "addY": 0
+          },
+          "isScrollMessage": false,
+          "scrollLines": null,
+          "isScript": false,
+          "scriptLines": null
+        },
+        {
+          "uid": 49,
+          "frame": 787,
+          "eventId": 6,
+          "pageIndex": 0,
+          "command": {
+            "code": 402,
+            "indent": 0,
+            "parameters": [
+              1,
+              "（はしゃぐ）"
+            ]
+          },
+          "wait": 0,
+          "rowType": "main",
+          "rowKey": "main",
+          "charId": null,
+          "isComment": false,
+          "commentLines": null,
+          "isMemo": false,
+          "memoSize": "S",
+          "memoText": "",
+          "isMessage": false,
+          "messageLines": null,
+          "messageExt": null,
+          "isScrollMessage": false,
+          "scrollLines": null,
+          "isScript": false,
+          "scriptLines": null
+        },
+        {
+          "uid": 51,
+          "frame": 811,
+          "eventId": 6,
+          "pageIndex": 0,
+          "command": {
+            "code": 101,
+            "indent": 1,
+            "parameters": [
+              "",
+              0,
+              0,
+              2
+            ]
+          },
+          "wait": 0,
+          "rowType": "main",
+          "rowKey": "main",
+          "charId": null,
+          "isComment": false,
+          "commentLines": null,
+          "isMemo": false,
+          "memoSize": "S",
+          "memoText": "",
+          "isMessage": true,
+          "messageLines": [
+            "おのれ…余裕",
+            "ぶっコキやがって！"
+          ],
+          "messageExt": {
+            "windowType": 1,
+            "tailDir": 4,
+            "targetMode": "char",
+            "targetCharId": 2,
+            "targetX": 0,
+            "targetY": 0,
+            "addX": 0,
+            "addY": 0
+          },
+          "isScrollMessage": false,
+          "scrollLines": null,
+          "isScript": false,
+          "scriptLines": null
+        },
+        {
+          "uid": 52,
+          "frame": 811,
+          "eventId": 6,
+          "pageIndex": 0,
+          "command": {
+            "code": 101,
+            "indent": 1,
+            "parameters": [
+              "",
+              0,
+              0,
+              2
+            ]
+          },
+          "wait": 0,
+          "rowType": "main",
+          "rowKey": "main",
+          "charId": null,
+          "isComment": false,
+          "commentLines": null,
+          "isMemo": false,
+          "memoSize": "S",
+          "memoText": "",
+          "isMessage": true,
+          "messageLines": [
+            "しかし…その慢心！",
+            "油断！それが貴様らに",
+            "破滅をもたらすだろう！！"
+          ],
+          "messageExt": {
+            "windowType": 1,
+            "tailDir": 4,
+            "targetMode": "char",
+            "targetCharId": 2,
+            "targetX": 0,
+            "targetY": 0,
+            "addX": 0,
+            "addY": 0
+          },
+          "isScrollMessage": false,
+          "scrollLines": null,
+          "isScript": false,
+          "scriptLines": null
+        },
+        {
+          "uid": 53,
+          "frame": 811,
+          "eventId": 6,
+          "pageIndex": 0,
+          "command": {
+            "code": 101,
+            "indent": 1,
+            "parameters": [
+              "",
+              0,
+              0,
+              2
+            ]
+          },
+          "wait": 0,
+          "rowType": "main",
+          "rowKey": "main",
+          "charId": null,
+          "isComment": false,
+          "commentLines": null,
+          "isMemo": false,
+          "memoSize": "S",
+          "memoText": "",
+          "isMessage": true,
+          "messageLines": [
+            "ギャハハハ",
+            "ハ！！！"
+          ],
+          "messageExt": {
+            "windowType": 1,
+            "tailDir": 4,
+            "targetMode": "char",
+            "targetCharId": 2,
+            "targetX": 0,
+            "targetY": 0,
+            "addX": 0,
+            "addY": 0
+          },
+          "isScrollMessage": false,
+          "scrollLines": null,
+          "isScript": false,
+          "scriptLines": null
+        },
+        {
+          "uid": 54,
+          "frame": 811,
+          "eventId": 6,
+          "pageIndex": 0,
+          "command": {
+            "code": 404,
+            "indent": 0,
+            "parameters": []
+          },
+          "wait": 0,
+          "rowType": "main",
+          "rowKey": "main",
+          "charId": null,
+          "isComment": false,
+          "commentLines": null,
+          "isMemo": false,
+          "memoSize": "S",
+          "memoText": "",
+          "isMessage": false,
+          "messageLines": null,
+          "messageExt": null,
+          "isScrollMessage": false,
+          "scrollLines": null,
+          "isScript": false,
+          "scriptLines": null
+        },
+        {
+          "uid": 55,
+          "frame": 835,
+          "eventId": 6,
+          "pageIndex": 0,
+          "command": {
+            "code": 101,
+            "indent": 0,
+            "parameters": [
+              "",
+              0,
+              0,
+              2
+            ]
+          },
+          "wait": 0,
+          "rowType": "main",
+          "rowKey": "main",
+          "charId": null,
+          "isComment": false,
+          "commentLines": null,
+          "isMemo": false,
+          "memoSize": "S",
+          "memoText": "",
+          "isMessage": true,
+          "messageLines": [
+            "この後も、様々な恐ろ",
+            "しいトラップたちが",
+            "キサマらを襲うだろう…"
+          ],
+          "messageExt": {
+            "windowType": 1,
+            "tailDir": 4,
+            "targetMode": "char",
+            "targetCharId": 2,
+            "targetX": 0,
+            "targetY": 0,
+            "addX": 0,
+            "addY": 0
+          },
+          "isScrollMessage": false,
+          "scrollLines": null,
+          "isScript": false,
+          "scriptLines": null
+        },
+        {
+          "uid": 56,
+          "frame": 835,
+          "eventId": 6,
+          "pageIndex": 0,
+          "command": {
+            "code": 101,
+            "indent": 0,
+            "parameters": [
+              "",
+              0,
+              0,
+              2
+            ]
+          },
+          "wait": 0,
+          "rowType": "main",
+          "rowKey": "main",
+          "charId": null,
+          "isComment": false,
+          "commentLines": null,
+          "isMemo": false,
+          "memoSize": "S",
+          "memoText": "",
+          "isMessage": true,
+          "messageLines": [
+            "覚悟して",
+            "おくんだな！！！"
+          ],
+          "messageExt": {
+            "windowType": 1,
+            "tailDir": 4,
+            "targetMode": "char",
+            "targetCharId": 2,
+            "targetX": 0,
+            "targetY": 0,
+            "addX": 0,
+            "addY": 0
+          },
+          "isScrollMessage": false,
+          "scrollLines": null,
+          "isScript": false,
+          "scriptLines": null
+        },
+        {
+          "uid": 57,
+          "frame": 870,
+          "eventId": 6,
+          "pageIndex": 0,
+          "command": {
+            "code": 205,
+            "indent": 0,
+            "parameters": [
+              2,
+              {
+                "repeat": false,
+                "skippable": false,
+                "wait": false,
+                "list": [
+                  {
+                    "code": 45,
+                    "parameters": [
+                      "this.startFrameAnimation([8,9,10,11], 6, false)"
+                    ]
+                  },
+                  {
+                    "code": 15,
+                    "parameters": [
+                      40
+                    ]
+                  },
+                  {
+                    "code": 0,
+                    "parameters": []
+                  }
+                ]
+              }
+            ]
+          },
+          "wait": 0,
+          "rowType": "char",
+          "rowKey": "char:2",
+          "charId": 2,
+          "isComment": false,
+          "commentLines": null,
+          "isMemo": false,
+          "memoSize": "S",
+          "memoText": "",
+          "isMessage": false,
+          "messageLines": null,
+          "messageExt": null,
+          "isScrollMessage": false,
+          "scrollLines": null,
+          "isScript": false,
+          "scriptLines": null
+        },
+        {
+          "uid": 58,
+          "frame": 911,
+          "eventId": 6,
+          "pageIndex": 0,
+          "command": {
+            "code": 355,
+            "indent": 0,
+            "parameters": [
+              "this.character(2).requestAnimation(52, 0, 0, 1)"
+            ]
+          },
+          "wait": 0,
+          "rowType": "main",
+          "rowKey": "main",
+          "charId": null,
+          "isComment": false,
+          "commentLines": null,
+          "isMemo": false,
+          "memoSize": "S",
+          "memoText": "",
+          "isMessage": false,
+          "messageLines": null,
+          "messageExt": null,
+          "isScrollMessage": false,
+          "scrollLines": null,
+          "isScript": true,
+          "scriptLines": [
+            "this.character(2).requestAnimation(52, 0, 0, 1)"
+          ],
+          "_pendingAddPlacement": null
+        },
+        {
+          "uid": 59,
+          "frame": 960,
+          "eventId": 6,
+          "pageIndex": 0,
+          "command": {
+            "code": 355,
+            "indent": 0,
+            "parameters": [
+              "$gameMap.scrollCamera(0, 0, 60)"
+            ]
+          },
+          "wait": 0,
+          "rowType": "main",
+          "rowKey": "main",
+          "charId": null,
+          "isComment": false,
+          "commentLines": null,
+          "isMemo": false,
+          "memoSize": "S",
+          "memoText": "",
+          "isMessage": false,
+          "messageLines": null,
+          "messageExt": null,
+          "isScrollMessage": false,
+          "scrollLines": null,
+          "isScript": true,
+          "scriptLines": [
+            "$gameMap.scrollCamera(0, 0, 60)"
+          ]
+        },
+        {
+          "uid": 60,
+          "frame": 1051,
+          "eventId": 6,
+          "pageIndex": 0,
+          "command": {
+            "code": 205,
+            "indent": 0,
+            "parameters": [
+              7,
+              {
+                "repeat": false,
+                "skippable": false,
+                "wait": false,
+                "list": [
+                  {
+                    "code": 45,
+                    "parameters": [
+                      "this.goToCharacter($gamePlayer._followers.follower(1))"
+                    ],
+                    "_eeGoToFollowerWait": 24
+                  },
+                  {
+                    "code": 39,
+                    "parameters": []
+                  },
+                  {
+                    "code": 0,
+                    "parameters": []
+                  }
+                ]
+              }
+            ]
+          },
+          "wait": 0,
+          "rowType": "char",
+          "rowKey": "char:7",
+          "charId": 7,
+          "isComment": false,
+          "commentLines": null,
+          "isMemo": false,
+          "memoSize": "S",
+          "memoText": "",
+          "isMessage": false,
+          "messageLines": null,
+          "messageExt": null,
+          "isScrollMessage": false,
+          "scrollLines": null,
+          "isScript": false,
+          "scriptLines": null
+        },
+        {
+          "uid": 61,
+          "frame": 1051,
+          "eventId": 6,
+          "pageIndex": 0,
+          "command": {
+            "code": 205,
+            "indent": 0,
+            "parameters": [
+              8,
+              {
+                "repeat": false,
+                "skippable": false,
+                "wait": false,
+                "list": [
+                  {
+                    "code": 45,
+                    "parameters": [
+                      "this.goToCharacter($gamePlayer._followers.follower(3))"
+                    ],
+                    "_eeGoToFollowerWait": 16
+                  },
+                  {
+                    "code": 0,
+                    "parameters": []
+                  }
+                ]
+              }
+            ]
+          },
+          "wait": 0,
+          "rowType": "char",
+          "rowKey": "char:8",
+          "charId": 8,
+          "isComment": false,
+          "commentLines": null,
+          "isMemo": false,
+          "memoSize": "S",
+          "memoText": "",
+          "isMessage": false,
+          "messageLines": null,
+          "messageExt": null,
+          "isScrollMessage": false,
+          "scrollLines": null,
+          "isScript": false,
+          "scriptLines": null
+        },
+        {
+          "uid": 45,
+          "frame": 1075,
+          "eventId": 6,
+          "pageIndex": 0,
+          "command": {
+            "code": 205,
+            "indent": 0,
+            "parameters": [
+              -1,
+              {
+                "repeat": false,
+                "skippable": false,
+                "wait": false,
+                "list": [
+                  {
+                    "code": 16,
+                    "parameters": []
+                  },
+                  {
+                    "code": 0,
+                    "parameters": []
+                  }
+                ]
+              }
+            ]
+          },
+          "wait": 0,
+          "rowType": "char",
+          "rowKey": "char:-1",
+          "charId": -1,
+          "isComment": false,
+          "commentLines": null,
+          "isMemo": false,
+          "memoSize": "S",
+          "memoText": "",
+          "isMessage": false,
+          "messageLines": null,
+          "messageExt": null,
+          "isScrollMessage": false,
+          "scrollLines": null,
+          "isScript": false,
+          "scriptLines": null
+        },
+        {
+          "uid": 50,
+          "frame": 1075,
+          "eventId": 6,
+          "pageIndex": 0,
+          "command": {
+            "code": 205,
+            "indent": 0,
+            "parameters": [
+              8,
+              {
+                "repeat": false,
+                "skippable": false,
+                "wait": false,
+                "list": [
+                  {
+                    "code": 39,
+                    "parameters": []
+                  },
+                  {
+                    "code": 0,
+                    "parameters": []
+                  }
+                ]
+              }
+            ]
+          },
+          "wait": 0,
+          "rowType": "char",
+          "rowKey": "char:8",
+          "charId": 8,
+          "isComment": false,
+          "commentLines": null,
+          "isMemo": false,
+          "memoSize": "S",
+          "memoText": "",
+          "isMessage": false,
+          "messageLines": null,
+          "messageExt": null,
+          "isScrollMessage": false,
+          "scrollLines": null,
+          "isScript": false,
+          "scriptLines": null
+        },
+        {
+          "uid": 62,
+          "frame": 1075,
+          "eventId": 6,
+          "pageIndex": 0,
+          "command": {
+            "code": 216,
+            "indent": 0,
+            "parameters": [
+              0
+            ]
+          },
+          "wait": 0,
+          "rowType": "main",
+          "rowKey": "main",
+          "charId": null,
+          "isComment": false,
+          "commentLines": null,
+          "isMemo": false,
+          "memoSize": "S",
+          "memoText": "",
+          "isMessage": false,
+          "messageLines": null,
+          "messageExt": null,
+          "isScrollMessage": false,
+          "scrollLines": null,
+          "isScript": false,
+          "scriptLines": null,
+          "_pendingAddPlacement": null
+        },
+        {
+          "uid": 65,
+          "frame": 1076,
+          "eventId": 6,
+          "pageIndex": 0,
+          "command": {
+            "code": 122,
+            "indent": 0,
+            "parameters": [
+              55,
+              55,
+              0,
+              0,
+              1
+            ]
+          },
+          "wait": 0,
+          "rowType": "main",
+          "rowKey": "main",
+          "charId": null,
+          "isComment": false,
+          "commentLines": null,
+          "isMemo": false,
+          "memoSize": "S",
+          "memoText": "",
+          "isMessage": false,
+          "messageLines": null,
+          "messageExt": null,
+          "isScrollMessage": false,
+          "scrollLines": null,
+          "isScript": false,
+          "scriptLines": null,
+          "_pendingAddPlacement": null
+        }
+      ]
+    },
+    {
+      "eventId": 6,
+      "pageIndex": 1,
+      "list": [
+        {
+          "code": 0,
+          "indent": 0,
+          "parameters": []
+        }
+      ],
+      "timeline": []
+    }
+  ],
+  "mode": "map",
+  "mapId": 51
+}

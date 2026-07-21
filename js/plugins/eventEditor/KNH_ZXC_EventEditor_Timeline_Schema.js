@@ -15,74 +15,15 @@
     var EE = NS.EE;
     if (!EE) return;
 
-    var U = NS._eeUtils || {};
-    var clone = U.clone || function(v) { return JSON.parse(JSON.stringify(v)); };
-    var maximizeWindowForEditor = U.maximizeWindowForEditor || function() { return false; };
-    var installEscapeConvertFallback = U.installEscapeConvertFallback || function() {};
-    var RE_COMPACT_SELECT_KEY = U.RE_COMPACT_SELECT_KEY || /type|mode|op|operand|scope|target|operation|blend|dir|designate/i;
-    var RE_COMPACT_NUMBER_KEY = U.RE_COMPACT_NUMBER_KEY || /id$|index|mode|type|value|x$|y$|z$|r$|g$|b$|a$|wait|time|frame|duration|speed|pan|pitch|volume|opacity/i;
-    var RE_COMPACT_TEXT_KEY = U.RE_COMPACT_TEXT_KEY || /id$|tag|code|label|name/i;
-
-    var SH = NS._eeTimelineShared || (NS._eeTimelineShared = {});
+    var SH = NS._eeTimelineShared;
+    if (!SH || !SH.ready) return;
+    var clone = SH.clone;
     var compareEntriesByFrameWaitUid = SH.compareEntriesByFrameWaitUid;
-    if (!compareEntriesByFrameWaitUid) {
-        compareEntriesByFrameWaitUid = function(a, b) {
-            var af = Math.max(0, Math.floor(Number(a && a.frame || 0)));
-            var bf = Math.max(0, Math.floor(Number(b && b.frame || 0)));
-            if (af !== bf) return af - bf;
-            var aw = Math.max(0, Math.floor(Number(a && a.wait || 0))) > 0 ? 1 : 0;
-            var bw = Math.max(0, Math.floor(Number(b && b.wait || 0))) > 0 ? 1 : 0;
-            if (aw !== bw) return aw - bw;
-            return Math.floor(Number(a && a.uid || 0)) - Math.floor(Number(b && b.uid || 0));
-        };
-        SH.compareEntriesByFrameWaitUid = compareEntriesByFrameWaitUid;
-    }
+    var RE_COMPACT_SELECT_KEY = SH.RE_COMPACT_SELECT_KEY;
+    var RE_COMPACT_NUMBER_KEY = SH.RE_COMPACT_NUMBER_KEY;
+    var RE_COMPACT_TEXT_KEY = SH.RE_COMPACT_TEXT_KEY;
 
-    var EE_AnimationPreviewCharacter = SH.EE_AnimationPreviewCharacter;
-    if (!EE_AnimationPreviewCharacter) {
-        EE_AnimationPreviewCharacter = function() {
-            this.initialize.apply(this, arguments);
-        };
-        EE_AnimationPreviewCharacter.prototype = Object.create(Game_CharacterBase.prototype);
-        EE_AnimationPreviewCharacter.prototype.constructor = EE_AnimationPreviewCharacter;
-        EE_AnimationPreviewCharacter.prototype.initialize = function() {
-            Game_CharacterBase.prototype.initMembers.call(this);
-        };
-        EE_AnimationPreviewCharacter.prototype.syncFrom = function(src) {
-            if (!src) return;
-            var keys = [
-                '_x', '_y', '_realX', '_realY',
-                '_moveSpeed', '_moveFrequency',
-                '_opacity', '_blendMode', '_bushDepth', '_priorityType',
-                '_direction', '_pattern', '_animationCount', '_stopCount',
-                '_tileId', '_characterName', '_characterIndex', '_isObjectCharacter',
-                '_walkAnime', '_stepAnime', '_directionFix', '_through', '_transparent',
-                '_jumpCount', '_jumpPeak', '_moving',
-                '_moveRouteForcing', '_movementSuccess',
-                '_balloonId', '_balloonPlaying',
-                '_animationId', '_animationPlaying'
-            ];
-            for (var i = 0; i < keys.length; i++) {
-                var k = keys[i];
-                if (Object.prototype.hasOwnProperty.call(src, k)) this[k] = src[k];
-            }
-        };
-        SH.EE_AnimationPreviewCharacter = EE_AnimationPreviewCharacter;
-    }
-
-    if (!NS._eeAnimPreviewPositionPatchApplied && typeof Sprite_Animation !== 'undefined') {
-        NS._eeAnimPreviewPositionPatchApplied = true;
-        var _EE_SpriteAnimation_updatePosition_Preview = Sprite_Animation.prototype.updatePosition;
-        Sprite_Animation.prototype.updatePosition = function() {
-            _EE_SpriteAnimation_updatePosition_Preview.apply(this, arguments);
-            var pv = this._eePreviewViewport;
-            if (!pv || !this._animation) return;
-            if (Number(this._animation.position || 0) === 3) {
-                this.x = Math.floor(Number(pv.w || 0) / 2);
-                this.y = Math.floor(Number(pv.h || 0) / 2);
-            }
-        };
-    }
+    // Command schemas, field bindings, and schema-driven editor controls.
     EE.prototype.paramToEditText = function(v) {
         if (typeof v === 'string') return v;
         if (v === null) return 'null';
@@ -1072,7 +1013,7 @@
 
     EE.prototype.mergeMessageSettingsIntoShowTextEntries = function(tr) {
         if (!tr || !Array.isArray(tr.commands) || !tr.commands.length) return;
-        tr.commands.sort(function(a, b) { return compareEntriesByFrameWaitUid(a, b); });
+        SH.sortTrackCommands(tr);
         var st = this.defaultMessageExtState();
         var remove = Object.create(null);
         for (var i = 0; i < tr.commands.length; i++) {
@@ -4757,16 +4698,7 @@
     };
 
     EE.prototype.currentEditingEntry = function() {
-        var tr = this.model && this.model.tracks ? this.model.tracks[this.selKey] : null;
-        if (!tr || !Array.isArray(tr.commands)) return null;
-        var uid = Math.floor(Number(this.editUid || 0));
-        if (uid <= 0) return null;
-        for (var i = 0; i < tr.commands.length; i++) {
-            var e = tr.commands[i];
-            if (!e) continue;
-            if (Math.floor(Number(e.uid || 0)) === uid) return e;
-        }
-        return null;
+        return this.findTrackEntryByUid(this.selectedTrack(), this.editUid);
     };
 
     EE.prototype.currentEditingRouteTargetId = function() {
@@ -4799,7 +4731,6 @@
     EE.prototype.shouldShowAnimationPreviewInEditor = function() {
         return this.editorPreviewMode().length > 0;
     };
-
-
+    SH.registerModule('schema', ['core']);
 })();
 

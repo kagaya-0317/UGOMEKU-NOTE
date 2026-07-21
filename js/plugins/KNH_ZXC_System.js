@@ -3698,6 +3698,157 @@ const _createOutlineFilter = function(w, h, bw, ww) {
             sp._yuraInfo = [12, 15];
         }
     };
+
+    function Sprite_MapDamagePopup() {
+        this.initialize.apply(this, arguments);
+    }
+    Sprite_MapDamagePopup.prototype = Object.create(Sprite_Damage.prototype);
+    Sprite_MapDamagePopup.prototype.constructor = Sprite_MapDamagePopup;
+    Sprite_MapDamagePopup.prototype.initialize = function(request) {
+        Sprite_Damage.prototype.initialize.call(this);
+        this._mapDamagePopupRequest = request || {};
+        this._mapDamagePopupOffsetX = Number(this._mapDamagePopupRequest.offsetX || 0);
+        this._mapDamagePopupOffsetY = Number(this._mapDamagePopupRequest.offsetY == null ? -48 : this._mapDamagePopupRequest.offsetY);
+        this.setupMapDamagePopup(this._mapDamagePopupRequest);
+        this.updateMapDamagePopupPosition();
+    };
+    Sprite_MapDamagePopup.prototype.setupMapDamagePopup = function(request) {
+        var value = Number(request.value || 0);
+        if (request.missed) {
+            this.createMiss();
+        } else if (request.baseRow != null) {
+            this.createDigits(Math.max(0, Math.floor(Number(request.baseRow) || 0)), value);
+        } else {
+            Sprite_Damage.prototype.setup.call(this, {
+                result: function() {
+                    return {
+                        missed: false,
+                        evaded: false,
+                        hpAffected: true,
+                        hpDamage: value,
+                        mpDamage: 0,
+                        critical: !!request.critical
+                    };
+                },
+                isActor: function() {
+                    return request.isActor !== false;
+                },
+                isAlive: function() {
+                    return true;
+                }
+            });
+            return;
+        }
+        if (request.critical) this.setupCriticalEffect();
+    };
+    Sprite_MapDamagePopup.prototype.update = function() {
+        Sprite_Damage.prototype.update.call(this);
+        this.updateMapDamagePopupPosition();
+    };
+    Sprite_MapDamagePopup.prototype.updateMapDamagePopupPosition = function() {
+        var r = this._mapDamagePopupRequest || {};
+        if (r.target && typeof r.target.screenX === 'function' && typeof r.target.screenY === 'function') {
+            this.x = Math.round(r.target.screenX() + this._mapDamagePopupOffsetX);
+            this.y = Math.round(r.target.screenY() + this._mapDamagePopupOffsetY);
+        } else if (r.mapX != null && r.mapY != null && $gameMap) {
+            var anchorX = r.anchorX == null ? 0.5 : Number(r.anchorX || 0);
+            var anchorY = r.anchorY == null ? 0.5 : Number(r.anchorY || 0);
+            this.x = Math.round($gameMap.adjustX(Number(r.mapX || 0) + anchorX) * $gameMap.tileWidth() + this._mapDamagePopupOffsetX);
+            this.y = Math.round($gameMap.adjustY(Number(r.mapY || 0) + anchorY) * $gameMap.tileHeight() + this._mapDamagePopupOffsetY);
+        } else {
+            this.x = Math.round(Number(r.screenX || 0) + this._mapDamagePopupOffsetX);
+            this.y = Math.round(Number(r.screenY || 0) + this._mapDamagePopupOffsetY);
+        }
+    };
+
+    Game_Map.prototype.requestMapDamagePopup = function(target, value, options) {
+        if (!$gameTemp) return null;
+        var request = normalizeMapDamagePopupRequest_(target, value, options);
+        if (!request) return null;
+        if (!$gameTemp._mapDamagePopupRequests) $gameTemp._mapDamagePopupRequests = [];
+        $gameTemp._mapDamagePopupRequests.push(request);
+        return request;
+    };
+    Game_Map.prototype.requestMapDamagePopupAt = function(mapX, mapY, value, options) {
+        options = options || {};
+        return this.requestMapDamagePopup({ mapX: mapX, mapY: mapY }, value, options);
+    };
+    Game_Map.prototype.requestScreenDamagePopup = function(screenX, screenY, value, options) {
+        options = options || {};
+        return this.requestMapDamagePopup({ screenX: screenX, screenY: screenY }, value, options);
+    };
+    function normalizeMapDamagePopupRequest_(target, value, options) {
+        options = options || {};
+        var request = {};
+        if (target && typeof target.screenX === 'function' && typeof target.screenY === 'function') {
+            if (options.followTarget) {
+                request.target = target;
+            } else {
+                request.mapX = Number(target._realX != null ? target._realX : target.x);
+                request.mapY = Number(target._realY != null ? target._realY : target.y);
+                request.anchorX = 0.5;
+                request.anchorY = 1;
+            }
+        } else if (target && typeof target === 'object' && target.mapX != null && target.mapY != null) {
+            request.mapX = Number(target.mapX || 0);
+            request.mapY = Number(target.mapY || 0);
+            if (target.anchorX != null) request.anchorX = target.anchorX;
+            if (target.anchorY != null) request.anchorY = target.anchorY;
+        } else if (target && typeof target === 'object' && target.screenX != null && target.screenY != null) {
+            request.screenX = Number(target.screenX || 0);
+            request.screenY = Number(target.screenY || 0);
+        } else {
+            return null;
+        }
+        request.value = Number(value || 0);
+        request.isActor = options.isActor !== false;
+        request.critical = !!options.critical;
+        request.missed = !!options.missed;
+        if (options.baseRow != null) request.baseRow = options.baseRow;
+        if (options.anchorX != null) request.anchorX = options.anchorX;
+        if (options.anchorY != null) request.anchorY = options.anchorY;
+        request.offsetX = Number(options.offsetX || 0);
+        request.offsetY = options.offsetY == null ? -48 : Number(options.offsetY || 0);
+        return request;
+    };
+    var _Spriteset_Map_createCharacters_MapDamagePopup = Spriteset_Map.prototype.createCharacters;
+    Spriteset_Map.prototype.createCharacters = function() {
+        _Spriteset_Map_createCharacters_MapDamagePopup.apply(this, arguments);
+        this.createMapDamagePopupLayer();
+    };
+    Spriteset_Map.prototype.createMapDamagePopupLayer = function() {
+        if (this._mapDamagePopupLayer) {
+            if (!this._mapDamagePopupLayer.parent && this._baseSprite) this._baseSprite.addChild(this._mapDamagePopupLayer);
+            return;
+        }
+        this._mapDamagePopupSprites = [];
+        this._mapDamagePopupLayer = new Sprite();
+        if (this._baseSprite) this._baseSprite.addChild(this._mapDamagePopupLayer);
+    };
+    var _Spriteset_Map_update_MapDamagePopup = Spriteset_Map.prototype.update;
+    Spriteset_Map.prototype.update = function() {
+        _Spriteset_Map_update_MapDamagePopup.apply(this, arguments);
+        this.updateMapDamagePopups();
+    };
+    Spriteset_Map.prototype.updateMapDamagePopups = function() {
+        if (!this._mapDamagePopupLayer) this.createMapDamagePopupLayer();
+        var requests = $gameTemp && $gameTemp._mapDamagePopupRequests;
+        if (requests && requests.length) {
+            $gameTemp._mapDamagePopupRequests = [];
+            for (var i = 0; i < requests.length; i++) {
+                var sprite = new Sprite_MapDamagePopup(requests[i]);
+                this._mapDamagePopupLayer.addChild(sprite);
+                this._mapDamagePopupSprites.push(sprite);
+            }
+        }
+        for (var j = this._mapDamagePopupSprites.length - 1; j >= 0; j--) {
+            var sp = this._mapDamagePopupSprites[j];
+            if (!sp || !sp.isPlaying()) {
+                if (sp && sp.parent) sp.parent.removeChild(sp);
+                this._mapDamagePopupSprites.splice(j, 1);
+            }
+        }
+    };
     
     //キャラを別シーン中継後に再度ゆらゆらさせる処理
     var _Sprite_Character_initialize = Sprite_Character.prototype.initialize;

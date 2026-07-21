@@ -1,6 +1,6 @@
 {
-  "startMode": "new",
-  "startModeTestSave": "モンスター城1F エントランス",
+  "startMode": "continue",
+  "startModeTestSave": "モンスター城 罠1",
   "startModeYuraA": 6,
   "startModeYuraB": 5,
   "editEventMode": false,

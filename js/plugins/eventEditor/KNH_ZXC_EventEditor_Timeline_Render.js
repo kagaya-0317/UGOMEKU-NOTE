@@ -15,74 +15,16 @@
     var EE = NS.EE;
     if (!EE) return;
 
-    var U = NS._eeUtils || {};
-    var clone = U.clone || function(v) { return JSON.parse(JSON.stringify(v)); };
-    var maximizeWindowForEditor = U.maximizeWindowForEditor || function() { return false; };
-    var installEscapeConvertFallback = U.installEscapeConvertFallback || function() {};
-    var RE_COMPACT_SELECT_KEY = U.RE_COMPACT_SELECT_KEY || /type|mode|op|operand|scope|target|operation|blend|dir|designate/i;
-    var RE_COMPACT_NUMBER_KEY = U.RE_COMPACT_NUMBER_KEY || /id$|index|mode|type|value|x$|y$|z$|r$|g$|b$|a$|wait|time|frame|duration|speed|pan|pitch|volume|opacity/i;
-    var RE_COMPACT_TEXT_KEY = U.RE_COMPACT_TEXT_KEY || /id$|tag|code|label|name/i;
-
-    var SH = NS._eeTimelineShared || (NS._eeTimelineShared = {});
+    var SH = NS._eeTimelineShared;
+    if (!SH || !SH.ready) return;
+    var clone = SH.clone;
+    var installEscapeConvertFallback = SH.installEscapeConvertFallback;
     var compareEntriesByFrameWaitUid = SH.compareEntriesByFrameWaitUid;
-    if (!compareEntriesByFrameWaitUid) {
-        compareEntriesByFrameWaitUid = function(a, b) {
-            var af = Math.max(0, Math.floor(Number(a && a.frame || 0)));
-            var bf = Math.max(0, Math.floor(Number(b && b.frame || 0)));
-            if (af !== bf) return af - bf;
-            var aw = Math.max(0, Math.floor(Number(a && a.wait || 0))) > 0 ? 1 : 0;
-            var bw = Math.max(0, Math.floor(Number(b && b.wait || 0))) > 0 ? 1 : 0;
-            if (aw !== bw) return aw - bw;
-            return Math.floor(Number(a && a.uid || 0)) - Math.floor(Number(b && b.uid || 0));
-        };
-        SH.compareEntriesByFrameWaitUid = compareEntriesByFrameWaitUid;
-    }
+    var COMMAND_CODE = SH.COMMAND_CODE;
 
-    var EE_AnimationPreviewCharacter = SH.EE_AnimationPreviewCharacter;
-    if (!EE_AnimationPreviewCharacter) {
-        EE_AnimationPreviewCharacter = function() {
-            this.initialize.apply(this, arguments);
-        };
-        EE_AnimationPreviewCharacter.prototype = Object.create(Game_CharacterBase.prototype);
-        EE_AnimationPreviewCharacter.prototype.constructor = EE_AnimationPreviewCharacter;
-        EE_AnimationPreviewCharacter.prototype.initialize = function() {
-            Game_CharacterBase.prototype.initMembers.call(this);
-        };
-        EE_AnimationPreviewCharacter.prototype.syncFrom = function(src) {
-            if (!src) return;
-            var keys = [
-                '_x', '_y', '_realX', '_realY',
-                '_moveSpeed', '_moveFrequency',
-                '_opacity', '_blendMode', '_bushDepth', '_priorityType',
-                '_direction', '_pattern', '_animationCount', '_stopCount',
-                '_tileId', '_characterName', '_characterIndex', '_isObjectCharacter',
-                '_walkAnime', '_stepAnime', '_directionFix', '_through', '_transparent',
-                '_jumpCount', '_jumpPeak', '_moving',
-                '_moveRouteForcing', '_movementSuccess',
-                '_balloonId', '_balloonPlaying',
-                '_animationId', '_animationPlaying'
-            ];
-            for (var i = 0; i < keys.length; i++) {
-                var k = keys[i];
-                if (Object.prototype.hasOwnProperty.call(src, k)) this[k] = src[k];
-            }
-        };
-        SH.EE_AnimationPreviewCharacter = EE_AnimationPreviewCharacter;
-    }
-
-    if (!NS._eeAnimPreviewPositionPatchApplied && typeof Sprite_Animation !== 'undefined') {
-        NS._eeAnimPreviewPositionPatchApplied = true;
-        var _EE_SpriteAnimation_updatePosition_Preview = Sprite_Animation.prototype.updatePosition;
-        Sprite_Animation.prototype.updatePosition = function() {
-            _EE_SpriteAnimation_updatePosition_Preview.apply(this, arguments);
-            var pv = this._eePreviewViewport;
-            if (!pv || !this._animation) return;
-            if (Number(this._animation.position || 0) === 3) {
-                this.x = Math.floor(Number(pv.w || 0) / 2);
-                this.y = Math.floor(Number(pv.h || 0) / 2);
-            }
-        };
-    }
+    //-------------------------------------------------------------------------
+    // Timeline lifecycle, playback, and track model
+    //-------------------------------------------------------------------------
     EE.prototype.post = function() {
         if (!this.on) return;
         var battleMode = this.isBattleEventMode();
@@ -535,7 +477,6 @@
         if (code === 217) return 45;
         if (code === 261) return 120;
         if (code === 339) return 30;
-        if (code === 103 || code === 104 || code === 105) return 60;
         return 0;
     };
 
@@ -830,11 +771,14 @@
             ? this.trackPageSourceList(eid, page)
             : (((($dataMap.events[eid] || {}).pages || [])[page] || {}).list) || [];
         var f = 0;
+        var branchFrameState = SH.createBranchFrameState();
         this._eeTrackParseMode = true;
         try {
             for (var i = 0; i < list.length; i++) {
                 var cmd = list[i];
                 if (!cmd || cmd.code === 0) continue;
+                var cmdIndent = Math.max(0, Math.floor(Number(cmd.indent || 0)));
+                f = SH.branchFrameBeforeBoundary(branchFrameState, cmd.code, cmdIndent, f);
                 if (cmd.code === 230) {
                     f += Math.max(0, Math.floor(Number((cmd.parameters || [0])[0] || 0)));
                     continue;
@@ -911,6 +855,7 @@
                 var e = this.entryFromCommand(cmd, eid, page, f, this.model.nextUid++);
                 if (!e) continue;
                 tr.commands.push(e);
+                SH.openBranchFrame(branchFrameState, cmd.code, cmdIndent, f);
                 f += Math.max(0, Math.floor(e.wait || 0));
             }
         } finally {
@@ -931,7 +876,7 @@
             this.rebuildSchedule({ skipRouteNormalize: true });
             this.normalizeTrackRouteTileGotoWaitMeta(tr);
         }
-        tr.commands.sort(function(a, b) { return compareEntriesByFrameWaitUid(a, b); });
+        SH.sortTrackCommands(tr);
         this.loadIfBranchViewModesForTrack(tr);
         if (this._eeReadTracePhase === 'startup' && typeof this.printReadTraceForTrack === 'function') {
             try {
@@ -1007,7 +952,7 @@
             var tr = this.model.tracks[keys[i]];
             if (!tr || !Array.isArray(tr.commands)) continue;
             this.normalizeTrackRouteTileGotoWaitMeta(tr);
-            tr.commands.sort(function(a, b) { return compareEntriesByFrameWaitUid(a, b); });
+            SH.sortTrackCommands(tr);
         }
     };
 
@@ -1732,6 +1677,10 @@
         ctx.restore();
         return true;
     };
+
+    //-------------------------------------------------------------------------
+    // Timeline rows, character panels, and context editing
+    //-------------------------------------------------------------------------
 
     EE.prototype.getTrackRows = function(tr) {
         var rows = [{ key: 'main', type: 'main', label: 'Main' }];
@@ -3400,7 +3349,7 @@
         if (!selfEntry || !target) return false;
         this.pushSnap('reorderFrame');
         this.swapCommandUids(tr, selfEntry, target);
-        tr.commands.sort(compareEntriesByFrameWaitUid);
+        SH.sortTrackCommands(tr);
         this.selUid = Number(selfEntry.uid || 0);
         this.selRouteListIndex = -1;
         this.frame = Math.max(0, Math.floor(Number(selfEntry.frame || info.frame || this.frame || 0)));
@@ -3469,7 +3418,7 @@
         entry.command.parameters[1] = route;
         entry.wait = this.commandWaitFrames(entry.command);
         var tr = this.model && this.model.tracks ? this.model.tracks[this.selKey] : null;
-        if (tr && Array.isArray(tr.commands)) tr.commands.sort(compareEntriesByFrameWaitUid);
+        if (tr && Array.isArray(tr.commands)) SH.sortTrackCommands(tr);
         if (fromRangeSelection && this.hasRangeSelection && this.hasRangeSelection()) {
             var rs = this.rangeSelection || {};
             var kind = String(rs.kind || 'rect');
@@ -3532,7 +3481,7 @@
             de.frame = Math.max(0, Math.floor(Number(it.frame || 0)));
             if (Number(de.uid || 0) === Number(this.selUid || 0)) selFrame = de.frame;
         }
-        tr.commands.sort(compareEntriesByFrameWaitUid);
+        SH.sortTrackCommands(tr);
         if (fromRangeSelection && this.hasRangeSelection && this.hasRangeSelection()) {
             this.shiftCurrentRangeSelectionByFrames(delta);
         } else if (selFrame != null) {
@@ -3806,7 +3755,7 @@
                 return { ok: false, reason: 'overlap', conflictEntry: e, tempTrack: temp };
             }
             temp.commands.push(clone(e));
-            temp.commands.sort(compareEntriesByFrameWaitUid);
+            SH.sortTrackCommands(temp);
         }
         return { ok: true };
     };
@@ -3854,7 +3803,7 @@
         tr.commands = tr.commands.filter(function(e) {
             return !del[Math.floor(Number((e && e.uid) || 0))];
         });
-        tr.commands.sort(compareEntriesByFrameWaitUid);
+        SH.sortTrackCommands(tr);
         this.selUid = 0;
         this.selRouteListIndex = -1;
         if (this.hasRangeSelection && this.hasRangeSelection()) this.clearRangeSelection();
@@ -3900,7 +3849,7 @@
             tr.commands.push(e);
             if (e.rowType === 'char') this.confirmCharRowPermanent(e.charId);
         }
-        tr.commands.sort(compareEntriesByFrameWaitUid);
+        SH.sortTrackCommands(tr);
         if (this.hasRangeSelection && this.hasRangeSelection()) this.clearRangeSelection();
         if (first) {
             this.selUid = Number(first.uid || 0);
@@ -3947,7 +3896,7 @@
             tr.commands.push(e);
             if (e.rowType === 'char') this.confirmCharRowPermanent(e.charId);
         }
-        tr.commands.sort(compareEntriesByFrameWaitUid);
+        SH.sortTrackCommands(tr);
         if (this.hasRangeSelection && this.hasRangeSelection()) this.clearRangeSelection();
         if (first) {
             this.selUid = Number(first.uid || 0);
@@ -4368,6 +4317,10 @@
         this.placeMenuInViewport(this.routeCtx, rx, ry, 4);
     };
 
+    //-------------------------------------------------------------------------
+    // Timeline editing, insertion, clipboard, and selection operations
+    //-------------------------------------------------------------------------
+
     EE.prototype.waitInsertDefaultFramesFromSelection = function() {
         if (!this.hasRangeSelection()) return 60;
         var rs = this.rangeSelection || {};
@@ -4408,8 +4361,12 @@
         var frame = (e ? e.frame : fallbackFrame);
         frame = Math.max(0, Math.floor(Number(frame || 0)));
         var ifBranchViewMode = '';
+        var choiceBranchViewMode = '';
         if (e && e.command && Number(e.command.code || 0) === 111 && typeof this.getIfBranchViewModeForEntry === 'function') {
             try { ifBranchViewMode = this.sanitizeIfBranchViewMode(this.getIfBranchViewModeForEntry(e)); } catch (_) { ifBranchViewMode = ''; }
+        }
+        if (e && e.command && Number(e.command.code || 0) === 102 && typeof this.getChoiceBranchViewModeForEntry === 'function') {
+            try { choiceBranchViewMode = this.sanitizeChoiceBranchViewMode(this.getChoiceBranchViewModeForEntry(e)); } catch (_) { choiceBranchViewMode = ''; }
         }
         return {
             source: 'command',
@@ -4417,7 +4374,8 @@
             frame: frame,
             includeSameFrameOnAfter: true,
             defaultFrames: 60,
-            ifBranchViewMode: ifBranchViewMode
+            ifBranchViewMode: ifBranchViewMode,
+            choiceBranchViewMode: choiceBranchViewMode
         };
     };
 
@@ -4470,6 +4428,9 @@
             var ivm = String(c.ifBranchViewMode || '').toLowerCase();
             if (ivm === 'then' || ivm === 'else' || ivm === 'auto') c.ifBranchViewMode = ivm;
             else c.ifBranchViewMode = '';
+            var cvm = String(c.choiceBranchViewMode || '').toLowerCase();
+            if (cvm === 'auto' || cvm === 'cancel' || /^\d+$/.test(cvm)) c.choiceBranchViewMode = cvm;
+            else c.choiceBranchViewMode = '';
         }
         return c;
     };
@@ -4511,13 +4472,7 @@
     };
 
     EE.prototype.ifBranchFindEntryIndexByUid = function(list, uid) {
-        if (!Array.isArray(list) || !list.length) return -1;
-        uid = Math.floor(Number(uid || 0));
-        if (uid <= 0) return -1;
-        for (var i = 0; i < list.length; i++) {
-            if (Math.floor(Number(list[i] && list[i].uid || 0)) === uid) return i;
-        }
-        return -1;
+        return SH.findEntryIndexByUid(list, uid);
     };
 
     EE.prototype.ifBranchActiveRangeForBlock = function(tr, info, block) {
@@ -4715,6 +4670,123 @@
         };
     };
 
+    EE.prototype.resolveChoiceBranchInsertionInfoByUid = function(uid, tr) {
+        uid = Math.floor(Number(uid || 0));
+        if (uid <= 0) return null;
+        var choiceEntry = this.findEntryInSelectedTrack(uid);
+        if (!choiceEntry || !choiceEntry.command || Number(choiceEntry.command.code || 0) !== 102) return null;
+        tr = tr || this.resolveTrackForIfBranchEntry(choiceEntry);
+        if (!tr || !Array.isArray(tr.commands) || !tr.commands.length) return null;
+        var info = this.computeChoiceBranchDisplayInfoForTrack(tr);
+        var list = Array.isArray(info.list) ? info.list : [];
+        var blocks = Array.isArray(info.blocks) ? info.blocks : [];
+        var block = null;
+        for (var i = 0; i < blocks.length; i++) {
+            if (Math.floor(Number(blocks[i] && blocks[i].choiceUid || 0)) === uid) {
+                block = blocks[i];
+                break;
+            }
+        }
+        if (!block) return null;
+        var modeMap = this.normalizeChoiceBranchViewModes(tr._eeChoiceBranchViewModes);
+        var range = this.choiceBranchActiveRangeForBlock(tr, info, block, modeMap);
+        if (!range) return null;
+        var markerIndex = Math.max(0, Math.floor(Number(range.startIndex || 0)) - 1);
+        var markerEntry = markerIndex >= 0 && markerIndex < list.length ? list[markerIndex] : null;
+        var markerCode = Math.floor(Number(markerEntry && markerEntry.command && markerEntry.command.code || 0));
+        if (markerCode !== 402 && markerCode !== 403) return null;
+        var firstBranchEntry = null;
+        for (i = range.startIndex; i < range.stopIndex && i < list.length; i++) {
+            var e = list[i];
+            if (!e || !e.command) continue;
+            var code = Math.floor(Number(e.command.code || 0));
+            if (code === 402 || code === 403 || code === 404) continue;
+            firstBranchEntry = e;
+            break;
+        }
+        var endIndex = Math.floor(Number(block.endIndex == null ? list.length : block.endIndex));
+        if (endIndex < 0 || endIndex > list.length) endIndex = list.length;
+        return {
+            choiceUid: uid,
+            choiceEntry: choiceEntry,
+            block: block,
+            list: list,
+            info: info,
+            anchorEntry: markerEntry,
+            anchorIndex: markerIndex,
+            firstBranchEntry: firstBranchEntry,
+            branchIndent: Math.max(0, Math.floor(Number(choiceEntry.command.indent || 0))) + 1,
+            startIndex: range.startIndex,
+            stopIndex: range.stopIndex,
+            endIndex: endIndex,
+            endIndexInclusive: Math.max(0, list.length - 1)
+        };
+    };
+
+    EE.prototype.resolveChoiceBranchScopeForEntryUid = function(uid, tr) {
+        uid = Math.floor(Number(uid || 0));
+        if (uid <= 0) return null;
+        var entry = this.findEntryInSelectedTrack(uid);
+        if (!entry || !entry.command) return null;
+        tr = tr || this.resolveTrackForIfBranchEntry(entry);
+        if (!tr || !Array.isArray(tr.commands) || !tr.commands.length) return null;
+        var info = this.computeChoiceBranchDisplayInfoForTrack(tr);
+        var list = Array.isArray(info.list) ? info.list : [];
+        var entryIndex = this.ifBranchFindEntryIndexByUid(list, uid);
+        if (entryIndex < 0) return null;
+        var blocks = Array.isArray(info.blocks) ? info.blocks : [];
+        var best = null;
+        for (var i = 0; i < blocks.length; i++) {
+            var block = blocks[i];
+            if (!block || !Array.isArray(block.branches)) continue;
+            for (var bi = 0; bi < block.branches.length; bi++) {
+                var branch = block.branches[bi];
+                if (!branch) continue;
+                var startIndex = Math.max(0, Math.floor(Number(branch.startIndex || 0)));
+                var stopIndex = Math.floor(Number(branch.endIndex == null ? block.endIndex : branch.endIndex));
+                if (stopIndex < startIndex || stopIndex > list.length) stopIndex = list.length;
+                if (entryIndex < startIndex || entryIndex >= stopIndex) continue;
+                var candidate = { block: block, branch: branch, startIndex: startIndex, stopIndex: stopIndex };
+                if (!best || Math.floor(Number(block.indent || 0)) > Math.floor(Number(best.block.indent || 0)) ||
+                    (Math.floor(Number(block.indent || 0)) === Math.floor(Number(best.block.indent || 0)) &&
+                     stopIndex - startIndex < best.stopIndex - best.startIndex)) {
+                    best = candidate;
+                }
+            }
+        }
+        if (!best) return null;
+        var endIndex = Math.floor(Number(best.block.endIndex == null ? list.length : best.block.endIndex));
+        if (endIndex < 0 || endIndex > list.length) endIndex = list.length;
+        return {
+            tr: tr,
+            info: info,
+            list: list,
+            entry: entry,
+            entryIndex: entryIndex,
+            block: best.block,
+            branch: best.branch,
+            branchIndent: Math.max(0, Math.floor(Number(best.block.indent || 0))) + 1,
+            startIndex: best.startIndex,
+            stopIndex: best.stopIndex,
+            endIndex: endIndex,
+            endIndexInclusive: Math.max(0, list.length - 1)
+        };
+    };
+
+    EE.prototype.resolveBranchScopeForEntryUid = function(uid, tr) {
+        var ifScope = this.resolveIfBranchScopeForEntryUid(uid, tr);
+        var choiceScope = this.resolveChoiceBranchScopeForEntryUid(uid, tr);
+        if (!ifScope) return choiceScope;
+        if (!choiceScope) return ifScope;
+        var ifIndent = Math.max(0, Math.floor(Number(ifScope.block && ifScope.block.indent || 0)));
+        var choiceIndent = Math.max(0, Math.floor(Number(choiceScope.block && choiceScope.block.indent || 0)));
+        if (choiceIndent > ifIndent) return choiceScope;
+        if (ifIndent > choiceIndent) return ifScope;
+        var ifSpan = Math.max(1, ifScope.stopIndex - ifScope.startIndex);
+        var choiceSpan = Math.max(1, choiceScope.stopIndex - choiceScope.startIndex);
+        return choiceSpan < ifSpan ? choiceScope : ifScope;
+    };
+
     EE.prototype.makeAddPlacementContextFromFrame = function(frame) {
         frame = Math.max(0, Math.floor(Number(frame || 0)));
         return {
@@ -4737,7 +4809,7 @@
             uid: Math.floor(Number(ctx.uid || 0)),
             routeListIndex: this.nodeRouteIndex(ctx.routeListIndex),
             branchInsertIndent: null,
-            branchIfUid: 0,
+            branchOwnerUid: 0,
             branchShiftUidMap: null
         };
         if (out.source === 'command' && out.uid > 0 && (out.mode === 'before' || out.mode === 'after')) {
@@ -4749,7 +4821,7 @@
                     out.uid = Math.floor(Number(branchInfo.anchorEntry.uid || out.uid));
                     out.frame = Math.max(0, Math.floor(Number(branchInfo.anchorEntry.frame || out.frame)));
                     out.branchInsertIndent = Math.max(0, Math.floor(Number(branchInfo.branchIndent || 0)));
-                    out.branchIfUid = Math.floor(Number(branchInfo.ifUid || 0));
+                    out.branchOwnerUid = Math.floor(Number(branchInfo.ifUid || 0));
                     if (Array.isArray(branchInfo.list) && branchInfo.anchorIndex >= 0) {
                         out.branchShiftUidMap = this.buildIfBranchShiftUidMap(
                             branchInfo.list,
@@ -4758,11 +4830,28 @@
                         );
                     }
                 }
+            } else if (anchor && anchor.command && Number(anchor.command.code || 0) === 102 && pos === 'after') {
+                var choiceInfo = this.resolveChoiceBranchInsertionInfoByUid(out.uid);
+                if (choiceInfo && choiceInfo.anchorEntry) {
+                    out.uid = Math.floor(Number(choiceInfo.anchorEntry.uid || out.uid));
+                    out.frame = Math.max(0, Math.floor(Number(choiceInfo.anchorEntry.frame || out.frame)));
+                    out.branchInsertIndent = Math.max(0, Math.floor(Number(choiceInfo.branchIndent || 0)));
+                    out.branchOwnerUid = Math.floor(Number(choiceInfo.choiceUid || 0));
+                    out.branchShiftUidMap = this.buildIfBranchShiftUidMap(
+                        choiceInfo.list,
+                        choiceInfo.anchorIndex + 1,
+                        choiceInfo.endIndexInclusive
+                    );
+                }
             } else {
-                var scope = this.resolveIfBranchScopeForEntryUid(out.uid);
+                var scope = this.resolveBranchScopeForEntryUid(out.uid);
                 if (scope && scope.entry && scope.entry.command) {
-                    out.branchInsertIndent = Math.max(0, Math.floor(Number(scope.entry.command.indent || 0)));
-                    out.branchIfUid = Math.floor(Number(scope.block && scope.block.ifUid || 0));
+                    out.branchInsertIndent = Math.max(0, Math.floor(Number(
+                        scope.branchIndent == null ? scope.entry.command.indent : scope.branchIndent
+                    )));
+                    out.branchOwnerUid = Math.floor(Number(
+                        (scope.block && (scope.block.ifUid || scope.block.choiceUid)) || 0
+                    ));
                     var fromIdx = (pos === 'before') ? scope.entryIndex : (scope.entryIndex + 1);
                     fromIdx = Math.max(scope.startIndex, fromIdx);
                     out.branchShiftUidMap = this.buildIfBranchShiftUidMap(
@@ -4807,7 +4896,7 @@
             uid: Math.floor(Number(c.uid || 0)),
             routeListIndex: this.nodeRouteIndex(c.routeListIndex),
             branchInsertIndent: branchIndent,
-            branchIfUid: Math.floor(Number(c.branchIfUid || 0)),
+            branchOwnerUid: Math.floor(Number(c.branchOwnerUid || c.branchIfUid || 0)),
             branchShiftUidMap: shiftMap
         };
     };
@@ -4942,7 +5031,7 @@
             this.frame = Math.max(0, Math.floor(Number(this.frame || 0))) + frames;
         }
         this.shiftRangeSelectionAfterWaitInsert(startFrame, frames);
-        tr.commands.sort(function(a, b) { return compareEntriesByFrameWaitUid(a, b); });
+        SH.sortTrackCommands(tr);
         this.dirty[this.selKey] = true;
         this.rebuildSchedule();
         this.seek(this.frame);
@@ -4981,7 +5070,7 @@
             this.frame = Math.max(0, Math.floor(Number(this.frame || 0))) + frames;
         }
         this.shiftRangeSelectionAfterWaitInsert(minShiftFrame, frames);
-        tr.commands.sort(function(a, b) { return compareEntriesByFrameWaitUid(a, b); });
+        SH.sortTrackCommands(tr);
         this.dirty[this.selKey] = true;
         this.rebuildSchedule();
         this.seek(this.frame);
@@ -5124,7 +5213,7 @@
             var alt = this.nodeRouteIndex(ctx.routeListIndex);
             selRouteIdx = this.routeCommandTimelineItemByListIndex(entry, alt) ? alt : -1;
         }
-        tr.commands.sort(function(a, b) { return compareEntriesByFrameWaitUid(a, b); });
+        SH.sortTrackCommands(tr);
         this.selUid = Number(entry.uid || 0);
         this.selRouteListIndex = selRouteIdx;
         this.frame = Math.max(0, Math.floor(Number(insFrame || this.frame || 0)));
@@ -7335,6 +7424,10 @@
         this.refreshSelectedCharacterInfo(true);
     };
 
+    //-------------------------------------------------------------------------
+    // Branch structure, view modes, runtime filtering, and persistence
+    //-------------------------------------------------------------------------
+
     EE.prototype.timelineViewStorageContextId = function() {
         if (this.isBattleEventMode()) return Math.max(1, Math.floor(Number(this.currentBattleTroopId() || 0)));
         return ($gameMap && typeof $gameMap.mapId === 'function') ? Math.floor(Number($gameMap.mapId() || 0)) : 0;
@@ -7396,18 +7489,6 @@
         return 'then';
     };
 
-    EE.prototype.normalizeIfBranchViewModes = function(src) {
-        var out = Object.create(null);
-        if (!src || typeof src !== 'object' || Array.isArray(src)) return out;
-        var keys = Object.keys(src);
-        for (var i = 0; i < keys.length; i++) {
-            var k = String(keys[i] || '');
-            if (!k.length) continue;
-            out[k] = this.sanitizeIfBranchViewMode(src[k]);
-        }
-        return out;
-    };
-
     EE.prototype.sanitizeChoiceBranchViewMode = function(mode) {
         var m = String(mode == null ? '' : mode).toLowerCase();
         if (m === 'auto') return 'auto';
@@ -7419,25 +7500,65 @@
         return 'auto';
     };
 
-    EE.prototype.normalizeChoiceBranchViewModes = function(src) {
+    EE.prototype.branchViewModeSpec = function(kindOrCode) {
+        if (kindOrCode === 'choice' || Number(kindOrCode) === COMMAND_CODE.SHOW_CHOICES) {
+            return {
+                kind: 'choice',
+                code: COMMAND_CODE.SHOW_CHOICES,
+                trackProperty: '_eeChoiceBranchViewModes',
+                ordinalProperty: 'choiceUidToOrdinal',
+                defaultMode: 'auto'
+            };
+        }
+        if (kindOrCode === 'if' || Number(kindOrCode) === COMMAND_CODE.CONDITIONAL_BRANCH) {
+            return {
+                kind: 'if',
+                code: COMMAND_CODE.CONDITIONAL_BRANCH,
+                trackProperty: '_eeIfBranchViewModes',
+                ordinalProperty: 'ifUidToOrdinal',
+                defaultMode: 'then'
+            };
+        }
+        return null;
+    };
+
+    EE.prototype.sanitizeBranchViewMode = function(spec, mode) {
+        if (!spec) return '';
+        return spec.kind === 'choice'
+            ? this.sanitizeChoiceBranchViewMode(mode)
+            : this.sanitizeIfBranchViewMode(mode);
+    };
+
+    EE.prototype.normalizeBranchViewModes = function(src, spec) {
         var out = Object.create(null);
         if (!src || typeof src !== 'object' || Array.isArray(src)) return out;
         var keys = Object.keys(src);
         for (var i = 0; i < keys.length; i++) {
             var k = String(keys[i] || '');
             if (!k.length) continue;
-            out[k] = this.sanitizeChoiceBranchViewMode(src[k]);
+            out[k] = this.sanitizeBranchViewMode(spec, src[k]);
         }
         return out;
     };
 
-    EE.prototype.resolveTrackForIfBranchEntry = function(entry) {
+    EE.prototype.normalizeIfBranchViewModes = function(src) {
+        return this.normalizeBranchViewModes(src, this.branchViewModeSpec('if'));
+    };
+
+    EE.prototype.normalizeChoiceBranchViewModes = function(src) {
+        return this.normalizeBranchViewModes(src, this.branchViewModeSpec('choice'));
+    };
+
+    EE.prototype.resolveTrackForEntry = function(entry) {
         if (entry && this.model && this.model.tracks) {
             var k = this.key(Number(entry.eventId || 0), Number(entry.pageIndex || 0));
             if (this.model.tracks[k]) return this.model.tracks[k];
         }
-        if (this.model && this.model.tracks && this.model.tracks[this.selKey]) return this.model.tracks[this.selKey];
-        return null;
+        return this.selectedTrack();
+    };
+
+    EE.prototype.resolveTrackForIfBranchEntry = function(entry) {
+        return this.resolveTrackForEntry(entry);
     };
 
     EE.prototype.computeIfBranchDisplayInfoForTrack = function(tr) {
@@ -7447,8 +7568,7 @@
             ifUidToOrdinal: Object.create(null)
         };
         if (!tr || !Array.isArray(tr.commands) || !tr.commands.length) return info;
-        var list = tr.commands.slice(0);
-        list.sort(function(a, b) { return compareEntriesByFrameWaitUid(a, b); });
+        var list = SH.commandsInSourceOrder(tr);
         var stack = [];
         var blocks = [];
         var ifUidToOrdinal = Object.create(null);
@@ -7515,8 +7635,7 @@
             choiceUidToOrdinal: Object.create(null)
         };
         if (!tr || !Array.isArray(tr.commands) || !tr.commands.length) return info;
-        var list = tr.commands.slice(0);
-        list.sort(function(a, b) { return compareEntriesByFrameWaitUid(a, b); });
+        var list = SH.commandsInSourceOrder(tr);
         var stack = [];
         var blocks = [];
         var choiceUidToOrdinal = Object.create(null);
@@ -7600,6 +7719,278 @@
         return info;
     };
 
+    EE.prototype.captureChoiceBranchStructure = function(tr, choiceEntry) {
+        if (!tr || !Array.isArray(tr.commands) || !choiceEntry || !choiceEntry.command ||
+            Number(choiceEntry.command.code || 0) !== 102) return null;
+        var list = SH.commandsInSourceOrder(tr);
+        var choiceUid = Math.floor(Number(choiceEntry.uid || 0));
+        var choiceIndex = this.ifBranchFindEntryIndexByUid(list, choiceUid);
+        if (choiceIndex < 0) return null;
+        var baseIndent = Math.max(0, Math.floor(Number(choiceEntry.command.indent || 0)));
+        var out = {
+            choiceUid: choiceUid,
+            baseIndent: baseIndent,
+            valid: false,
+            list: list,
+            segments: [],
+            endEntry: null,
+            endIndex: -1
+        };
+        var current = null;
+        for (var i = choiceIndex + 1; i < list.length; i++) {
+            var e = list[i];
+            if (!e || !e.command) continue;
+            var code = Math.floor(Number(e.command.code || 0));
+            var indent = Math.max(0, Math.floor(Number(e.command.indent || 0)));
+            if (indent === baseIndent && (code === 402 || code === 403)) {
+                current = {
+                    type: code === 403 ? 'cancel' : 'choice',
+                    choiceIndex: code === 402
+                        ? Math.max(0, Math.floor(Number((e.command.parameters || [0])[0] || 0)))
+                        : -1,
+                    marker: e,
+                    markerIndex: i,
+                    entries: []
+                };
+                out.segments.push(current);
+                continue;
+            }
+            if (indent === baseIndent && code === 404) {
+                out.endEntry = e;
+                out.endIndex = i;
+                out.valid = true;
+                break;
+            }
+            if (!current) {
+                if (indent <= baseIndent) break;
+                continue;
+            }
+            current.entries.push(e);
+        }
+        return out;
+    };
+
+    EE.prototype.removeChoiceBranchEntries = function(tr, entries, fallbackUid) {
+        if (!tr || !Array.isArray(tr.commands) || !Array.isArray(entries) || !entries.length) return;
+        var remove = Object.create(null);
+        for (var i = 0; i < entries.length; i++) {
+            var uid = Math.floor(Number(entries[i] && entries[i].uid || 0));
+            if (uid > 0) remove[String(uid)] = true;
+        }
+        tr.commands = tr.commands.filter(function(e) {
+            return !e || !remove[String(Math.floor(Number(e.uid || 0)))];
+        });
+        fallbackUid = Math.max(0, Math.floor(Number(fallbackUid || 0)));
+        if (remove[String(Math.floor(Number(this.selUid || 0)))]) this.selUid = fallbackUid;
+        if (remove[String(Math.floor(Number(this.hoverUid || 0)))]) this.hoverUid = 0;
+        if (remove[String(Math.floor(Number(this.editUid || 0)))]) this.editUid = fallbackUid;
+    };
+
+    EE.prototype.createChoiceStructureEntryBefore = function(tr, anchorEntry, choiceEntry, command) {
+        if (!tr || !Array.isArray(tr.commands) || !choiceEntry || !anchorEntry) return null;
+        var uid = this.reserveUidBeforeAnchor(tr, Math.floor(Number(anchorEntry.uid || 0)));
+        var frame = Math.max(0, Math.floor(Number(anchorEntry.frame || choiceEntry.frame || 0)));
+        var e = this.entryFromCommand(
+            clone(command),
+            Number(choiceEntry.eventId || 0),
+            Number(choiceEntry.pageIndex || 0),
+            frame,
+            uid
+        );
+        if (!e) return null;
+        tr.commands.push(e);
+        SH.sortTrackCommands(tr);
+        return e;
+    };
+
+    EE.prototype.createChoiceStructureEndEntry = function(tr, choiceEntry, command) {
+        if (!tr || !Array.isArray(tr.commands) || !choiceEntry) return null;
+        SH.sortTrackCommands(tr);
+        var choiceIndex = this.ifBranchFindEntryIndexByUid(tr.commands, Math.floor(Number(choiceEntry.uid || 0)));
+        var next = (choiceIndex >= 0 && choiceIndex + 1 < tr.commands.length) ? tr.commands[choiceIndex + 1] : null;
+        var frame = Math.max(0, Math.floor(Number(choiceEntry.frame || 0)));
+        if (next && Math.max(0, Math.floor(Number(next.frame || 0))) === frame) {
+            return this.createChoiceStructureEntryBefore(tr, next, choiceEntry, command);
+        }
+        var uid = Math.max(1, Math.floor(Number(this.model.nextUid || 1)));
+        this.model.nextUid = uid + 1;
+        var e = this.entryFromCommand(
+            clone(command),
+            Number(choiceEntry.eventId || 0),
+            Number(choiceEntry.pageIndex || 0),
+            frame,
+            uid
+        );
+        if (!e) return null;
+        tr.commands.push(e);
+        SH.sortTrackCommands(tr);
+        return e;
+    };
+
+    EE.prototype.synchronizeChoiceBranchStructure = function(tr, choiceEntry, captured) {
+        if (!tr || !Array.isArray(tr.commands) || !choiceEntry || !choiceEntry.command ||
+            Number(choiceEntry.command.code || 0) !== 102) return false;
+        captured = captured || this.captureChoiceBranchStructure(tr, choiceEntry);
+        var p = Array.isArray(choiceEntry.command.parameters) ? choiceEntry.command.parameters : [];
+        var choices = Array.isArray(p[0]) ? p[0].slice(0, 6).map(function(v) { return String(v || ''); }) : [];
+        if (!choices.length) choices = ['選択肢1'];
+        p[0] = choices;
+        choiceEntry.command.parameters = p;
+        var wantsCancel = Math.floor(Number(p[1] == null ? -2 : p[1])) === -2;
+        var baseIndent = Math.max(0, Math.floor(Number(choiceEntry.command.indent || 0)));
+        var oldBaseIndent = captured ? Math.max(0, Math.floor(Number(captured.baseIndent || 0))) : baseIndent;
+        var deltaIndent = baseIndent - oldBaseIndent;
+        var segments = captured && captured.valid && Array.isArray(captured.segments)
+            ? captured.segments.slice(0)
+            : [];
+        var endEntry = captured && captured.valid ? captured.endEntry : null;
+        var choiceSegments = Object.create(null);
+        var cancelSegment = null;
+        var removeEntries = [];
+        var seenChoice = Object.create(null);
+        var oldMergeFrame = captured && captured.endEntry
+            ? Math.max(0, Math.floor(Number(captured.endEntry.frame || 0)))
+            : Math.max(0, Math.floor(Number(choiceEntry.frame || 0)));
+        var oldBranchPathMap = this.computeBranchExecutionPathMapForTrack(tr);
+        var choiceParentPath = oldBranchPathMap[String(Math.floor(Number(choiceEntry.uid || 0)))] || [];
+
+        for (var i = 0; i < segments.length; i++) {
+            var seg = segments[i];
+            if (!seg || !seg.marker || !seg.marker.command) continue;
+            seg.marker.command.indent = baseIndent;
+            var members = Array.isArray(seg.entries) ? seg.entries : [];
+            for (var mi = 0; mi < members.length; mi++) {
+                var member = members[mi];
+                if (!member || !member.command) continue;
+                var memberIndent = Math.max(0, Math.floor(Number(member.command.indent || 0)));
+                member.command.indent = Math.max(baseIndent + 1, memberIndent + deltaIndent);
+            }
+            if (seg.type === 'cancel') {
+                if (!cancelSegment) cancelSegment = seg;
+                else {
+                    removeEntries = removeEntries.concat([seg.marker], members);
+                }
+                continue;
+            }
+            var idx = Math.max(0, Math.floor(Number(seg.choiceIndex || 0)));
+            if (idx >= choices.length || seenChoice[String(idx)]) {
+                removeEntries = removeEntries.concat([seg.marker], members);
+                continue;
+            }
+            seenChoice[String(idx)] = true;
+            choiceSegments[String(idx)] = seg;
+        }
+
+        if (!wantsCancel && cancelSegment) {
+            removeEntries = removeEntries.concat([cancelSegment.marker], cancelSegment.entries || []);
+            cancelSegment = null;
+        }
+        if (removeEntries.length) this.removeChoiceBranchEntries(tr, removeEntries, choiceEntry.uid);
+
+        if (!endEntry || tr.commands.indexOf(endEntry) < 0) {
+            endEntry = this.createChoiceStructureEndEntry(tr, choiceEntry, {
+                code: 404,
+                indent: baseIndent,
+                parameters: []
+            });
+        }
+        if (!endEntry || !endEntry.command) return false;
+        endEntry.command.code = 404;
+        endEntry.command.indent = baseIndent;
+        endEntry.command.parameters = [];
+
+        if (wantsCancel) {
+            if (!cancelSegment || tr.commands.indexOf(cancelSegment.marker) < 0) {
+                var cancelMarker = this.createChoiceStructureEntryBefore(tr, endEntry, choiceEntry, {
+                    code: 403,
+                    indent: baseIndent,
+                    parameters: []
+                });
+                cancelSegment = { type: 'cancel', choiceIndex: -1, marker: cancelMarker, entries: [] };
+            }
+            if (cancelSegment.marker && cancelSegment.marker.command) {
+                cancelSegment.marker.frame = Math.max(0, Math.floor(Number(choiceEntry.frame || 0)));
+                cancelSegment.marker.command.code = 403;
+                cancelSegment.marker.command.indent = baseIndent;
+                cancelSegment.marker.command.parameters = [];
+            }
+        }
+
+        var anchor = (wantsCancel && cancelSegment && cancelSegment.marker) ? cancelSegment.marker : endEntry;
+        for (i = choices.length - 1; i >= 0; i--) {
+            var existing = choiceSegments[String(i)];
+            if (!existing || !existing.marker || tr.commands.indexOf(existing.marker) < 0) {
+                var marker = this.createChoiceStructureEntryBefore(tr, anchor, choiceEntry, {
+                    code: 402,
+                    indent: baseIndent,
+                    parameters: [i, choices[i]]
+                });
+                existing = { type: 'choice', choiceIndex: i, marker: marker, entries: [] };
+                choiceSegments[String(i)] = existing;
+            }
+            if (existing.marker && existing.marker.command) {
+                existing.marker.frame = Math.max(0, Math.floor(Number(choiceEntry.frame || 0)));
+                existing.marker.command.code = 402;
+                existing.marker.command.indent = baseIndent;
+                existing.marker.command.parameters = [i, choices[i]];
+                anchor = existing.marker;
+            }
+        }
+        var updated = this.captureChoiceBranchStructure(tr, choiceEntry);
+        var newMergeFrame = Math.max(0, Math.floor(Number(choiceEntry.frame || 0)));
+        var updatedSegments = updated && Array.isArray(updated.segments) ? updated.segments : [];
+        for (var usi = 0; usi < updatedSegments.length; usi++) {
+            var updatedEntries = Array.isArray(updatedSegments[usi].entries) ? updatedSegments[usi].entries : [];
+            for (var uei = 0; uei < updatedEntries.length; uei++) {
+                var updatedEntry = updatedEntries[uei];
+                if (!updatedEntry) continue;
+                var updatedEnd = Math.max(0, Math.floor(Number(updatedEntry.frame || 0))) +
+                    Math.max(0, Math.floor(Number(updatedEntry.wait || 0)));
+                if (updatedEnd > newMergeFrame) newMergeFrame = updatedEnd;
+            }
+        }
+        var mergeDelta = newMergeFrame - oldMergeFrame;
+        endEntry.frame = newMergeFrame;
+        if (mergeDelta) {
+            var sourceAfter = SH.commandsInSourceOrder(tr);
+            var endSourceIndex = SH.findEntryIndexByUid(sourceAfter, endEntry.uid);
+            var pathHasPrefix = function(path, prefix) {
+                path = Array.isArray(path) ? path : [];
+                prefix = Array.isArray(prefix) ? prefix : [];
+                if (path.length < prefix.length) return false;
+                for (var pi = 0; pi < prefix.length; pi++) {
+                    var a = path[pi] || {};
+                    var b = prefix[pi] || {};
+                    if (a.type !== b.type || Number(a.ownerUid || 0) !== Number(b.ownerUid || 0) ||
+                        Number(a.value) !== Number(b.value)) return false;
+                }
+                return true;
+            };
+            for (var sai = endSourceIndex + 1; sai < sourceAfter.length; sai++) {
+                var afterEntry = sourceAfter[sai];
+                if (!afterEntry) continue;
+                var afterPath = oldBranchPathMap[String(Math.floor(Number(afterEntry.uid || 0)))] || [];
+                if (!pathHasPrefix(afterPath, choiceParentPath)) continue;
+                afterEntry.frame = Math.max(0, Math.floor(Number(afterEntry.frame || 0)) + mergeDelta);
+            }
+        }
+        SH.sortTrackCommands(tr);
+        return true;
+    };
+
+    EE.prototype.normalizeChoiceBranchStructuresForTrack = function(tr) {
+        if (!tr || !Array.isArray(tr.commands)) return false;
+        var choices = tr.commands.filter(function(e) {
+            return !!(e && e.command && Number(e.command.code || 0) === 102);
+        });
+        choices.sort(SH.compareEntriesBySourceOrder);
+        var changed = false;
+        for (var i = choices.length - 1; i >= 0; i--) {
+            if (this.synchronizeChoiceBranchStructure(tr, choices[i])) changed = true;
+        }
+        return changed;
+    };
+
     EE.prototype.choiceBranchConfiguredModeForBlock = function(modeMap, block) {
         modeMap = modeMap || Object.create(null);
         block = block || {};
@@ -7629,7 +8020,7 @@
     EE.prototype.choiceBranchEffectiveResultForBlock = function(tr, info, block, modeMap) {
         var mode = this.choiceBranchConfiguredModeForBlock(modeMap, block);
         var list = (info && Array.isArray(info.list)) ? info.list : [];
-        var idx = Math.floor(Number(block && block.choiceIndex || -1));
+        var idx = Math.floor(Number((block && block.choiceIndex != null) ? block.choiceIndex : -1));
         var entry = (idx >= 0 && idx < list.length) ? list[idx] : null;
         if (mode === 'cancel') return -1;
         if (mode !== 'auto' && /^-?\d+$/.test(String(mode))) {
@@ -7789,10 +8180,12 @@
         if (!ctx) return true;
         var phase = String(ctx.phase || '');
         if (phase === 'choice') {
-            return Math.floor(Number(ctx.activeChoiceIndex || -999)) === Math.floor(Number(ctx.phaseChoiceIndex || -998));
+            var activeIndex = Math.floor(Number(ctx.activeChoiceIndex == null ? -999 : ctx.activeChoiceIndex));
+            var phaseIndex = Math.floor(Number(ctx.phaseChoiceIndex == null ? -998 : ctx.phaseChoiceIndex));
+            return activeIndex === phaseIndex;
         }
         if (phase === 'cancel') {
-            return Math.floor(Number(ctx.activeChoiceIndex || -999)) === -1;
+            return Math.floor(Number(ctx.activeChoiceIndex == null ? -999 : ctx.activeChoiceIndex)) === -1;
         }
         return false;
     };
@@ -7890,7 +8283,7 @@
         return hidden;
     };
 
-    EE.prototype.computeIfBranchHiddenUidMapForTrack = function(tr) {
+    EE.prototype.computeBranchHiddenUidMapForTrack = function(tr) {
         var ifHidden = this.computeIfBranchViewStateForTrack(tr).hidden;
         var choiceHidden = this.computeChoiceBranchHiddenUidMapForTrack(tr);
         var ck = Object.keys(choiceHidden || {});
@@ -7902,86 +8295,92 @@
         return out;
     };
 
-    EE.prototype.isTimelineEntryVisibleByIfBranchMode = function(entry, tr) {
+    EE.prototype.computeIfBranchHiddenUidMapForTrack = function(tr) {
+        return this.computeBranchHiddenUidMapForTrack(tr);
+    };
+
+    EE.prototype.isTimelineEntryVisibleByBranchMode = function(entry, tr) {
         if (!entry) return true;
-        tr = tr || this.resolveTrackForIfBranchEntry(entry);
+        tr = tr || this.resolveTrackForEntry(entry);
         if (!tr) return true;
         var uid = Math.floor(Number(entry.uid || 0));
         if (uid <= 0) return true;
-        var hidden = this.computeIfBranchHiddenUidMapForTrack(tr);
+        var hidden = (this._timelineBranchHiddenTrack === tr && this._timelineBranchHiddenUidMap)
+            ? this._timelineBranchHiddenUidMap
+            : this.computeBranchHiddenUidMapForTrack(tr);
         return !hidden[String(uid)];
     };
 
-    EE.prototype.getChoiceBranchViewModeForEntry = function(entry) {
-        if (!entry || !entry.command || Number(entry.command.code || 0) !== 102) return 'auto';
-        var tr = this.resolveTrackForIfBranchEntry(entry);
-        if (!tr) return 'auto';
-        var info = this.computeChoiceBranchDisplayInfoForTrack(tr);
+    EE.prototype.isTimelineEntryVisibleByIfBranchMode = function(entry, tr) {
+        return this.isTimelineEntryVisibleByBranchMode(entry, tr);
+    };
+
+    EE.prototype.branchDisplayInfoForSpec = function(tr, spec) {
+        if (!spec) return null;
+        return spec.kind === 'choice'
+            ? this.computeChoiceBranchDisplayInfoForTrack(tr)
+            : this.computeIfBranchDisplayInfoForTrack(tr);
+    };
+
+    EE.prototype.getBranchViewModeForEntry = function(entry, kindOrCode) {
+        var spec = this.branchViewModeSpec(kindOrCode);
+        if (!spec || !entry || !entry.command || Number(entry.command.code || 0) !== spec.code) {
+            return spec ? spec.defaultMode : '';
+        }
+        var tr = this.resolveTrackForEntry(entry);
+        if (!tr) return spec.defaultMode;
+        var info = this.branchDisplayInfoForSpec(tr, spec) || {};
         var uid = String(Math.floor(Number(entry.uid || 0)));
-        var ord = Math.floor(Number((info.choiceUidToOrdinal || Object.create(null))[uid] || 0));
-        var map = this.normalizeChoiceBranchViewModes(tr._eeChoiceBranchViewModes);
-        if (ord > 0) return this.sanitizeChoiceBranchViewMode(map[String(ord)]);
-        return this.sanitizeChoiceBranchViewMode(map[uid]);
+        var ordinalMap = info[spec.ordinalProperty] || Object.create(null);
+        var ordinal = Math.floor(Number(ordinalMap[uid] || 0));
+        var modes = this.normalizeBranchViewModes(tr[spec.trackProperty], spec);
+        var stored = ordinal > 0 ? modes[String(ordinal)] : modes[uid];
+        return this.sanitizeBranchViewMode(spec, stored);
+    };
+
+    EE.prototype.setBranchViewModeForEntry = function(entry, mode, kindOrCode) {
+        var spec = this.branchViewModeSpec(kindOrCode);
+        if (!spec || !entry || !entry.command || Number(entry.command.code || 0) !== spec.code) return false;
+        var tr = this.resolveTrackForEntry(entry);
+        if (!tr) return false;
+        var info = this.branchDisplayInfoForSpec(tr, spec) || {};
+        var uid = String(Math.floor(Number(entry.uid || 0)));
+        var ordinalMap = info[spec.ordinalProperty] || Object.create(null);
+        var ordinal = Math.floor(Number(ordinalMap[uid] || 0));
+        var modes = this.normalizeBranchViewModes(tr[spec.trackProperty], spec);
+        var key = ordinal > 0 ? String(ordinal) : uid;
+        var normalized = this.sanitizeBranchViewMode(spec, mode);
+        if (normalized === spec.defaultMode) delete modes[key];
+        else modes[key] = normalized;
+        if (key !== uid) delete modes[uid];
+        tr[spec.trackProperty] = modes;
+        if (this.selKey === this.key(tr.eventId, tr.pageIndex)) this.timelineDirty = true;
+        return true;
+    };
+
+    EE.prototype.getChoiceBranchViewModeForEntry = function(entry) {
+        return this.getBranchViewModeForEntry(entry, 'choice');
     };
 
     EE.prototype.setChoiceBranchViewModeForEntry = function(entry, mode) {
-        if (!entry || !entry.command || Number(entry.command.code || 0) !== 102) return false;
-        var tr = this.resolveTrackForIfBranchEntry(entry);
-        if (!tr) return false;
-        var info = this.computeChoiceBranchDisplayInfoForTrack(tr);
-        var uid = String(Math.floor(Number(entry.uid || 0)));
-        var ord = Math.floor(Number((info.choiceUidToOrdinal || Object.create(null))[uid] || 0));
-        var map = this.normalizeChoiceBranchViewModes(tr._eeChoiceBranchViewModes);
-        var key = (ord > 0) ? String(ord) : uid;
-        var m = this.sanitizeChoiceBranchViewMode(mode);
-        if (m === 'auto') delete map[key];
-        else map[key] = m;
-        if (key !== uid) delete map[uid];
-        tr._eeChoiceBranchViewModes = map;
-        if (this.selKey === this.key(tr.eventId, tr.pageIndex)) {
-            this.timelineDirty = true;
-        }
-        return true;
+        return this.setBranchViewModeForEntry(entry, mode, 'choice');
     };
 
     EE.prototype.getIfBranchViewModeForEntry = function(entry) {
-        if (!entry || !entry.command || Number(entry.command.code || 0) !== 111) return 'then';
-        var tr = this.resolveTrackForIfBranchEntry(entry);
-        if (!tr) return 'then';
-        var info = this.computeIfBranchDisplayInfoForTrack(tr);
-        var uid = String(Math.floor(Number(entry.uid || 0)));
-        var ord = Math.floor(Number(info.ifUidToOrdinal[uid] || 0));
-        var map = this.normalizeIfBranchViewModes(tr._eeIfBranchViewModes);
-        if (ord > 0) return this.sanitizeIfBranchViewMode(map[String(ord)]);
-        return this.sanitizeIfBranchViewMode(map[uid]);
+        return this.getBranchViewModeForEntry(entry, 'if');
     };
 
     EE.prototype.setIfBranchViewModeForEntry = function(entry, mode) {
-        if (!entry || !entry.command || Number(entry.command.code || 0) !== 111) return false;
-        var tr = this.resolveTrackForIfBranchEntry(entry);
-        if (!tr) return false;
-        var info = this.computeIfBranchDisplayInfoForTrack(tr);
-        var uid = String(Math.floor(Number(entry.uid || 0)));
-        var ord = Math.floor(Number(info.ifUidToOrdinal[uid] || 0));
-        var map = this.normalizeIfBranchViewModes(tr._eeIfBranchViewModes);
-        var key = (ord > 0) ? String(ord) : uid;
-        var m = this.sanitizeIfBranchViewMode(mode);
-        if (m === 'then') delete map[key];
-        else map[key] = m;
-        if (key !== uid) delete map[uid];
-        tr._eeIfBranchViewModes = map;
-        if (this.selKey === this.key(tr.eventId, tr.pageIndex)) {
-            this.timelineDirty = true;
-        }
-        return true;
+        return this.setBranchViewModeForEntry(entry, mode, 'if');
     };
 
-    EE.prototype.applyIfBranchViewModeByUid = function(uid, mode) {
+    EE.prototype.applyStoredBranchViewModeByUid = function(uid, mode, kindOrCode) {
+        var spec = this.branchViewModeSpec(kindOrCode);
         uid = Math.floor(Number(uid || 0));
-        if (uid <= 0) return false;
-        var e = this.findEntryInSelectedTrack(uid);
-        if (!e || !e.command || Number(e.command.code || 0) !== 111) return false;
-        if (!this.setIfBranchViewModeForEntry(e, mode)) return false;
+        if (!spec || uid <= 0) return false;
+        var entry = this.findEntryInSelectedTrack(uid);
+        if (!entry || !entry.command || Number(entry.command.code || 0) !== spec.code) return false;
+        if (!this.setBranchViewModeForEntry(entry, mode, spec.kind)) return false;
         this.resetIfBranchRuntimeState();
         var wasPlaying = !!this.play;
         var targetFrame = Math.max(0, Math.floor(Number(this.frame || 0)));
@@ -7990,6 +8389,23 @@
         this.timelineDirty = true;
         this.persistSelectedTimelineViewStateToDisk();
         return true;
+    };
+
+    EE.prototype.applyIfBranchViewModeByUid = function(uid, mode) {
+        return this.applyStoredBranchViewModeByUid(uid, mode, 'if');
+    };
+
+    EE.prototype.applyChoiceBranchViewModeByUid = function(uid, mode) {
+        return this.applyStoredBranchViewModeByUid(uid, mode, 'choice');
+    };
+
+    EE.prototype.applyBranchViewModeByUid = function(uid, mode) {
+        var e = this.findEntryInSelectedTrack(Math.floor(Number(uid || 0)));
+        if (!e || !e.command) return false;
+        var code = Math.floor(Number(e.command.code || 0));
+        if (code === COMMAND_CODE.SHOW_CHOICES) return this.applyChoiceBranchViewModeByUid(uid, mode);
+        if (code === COMMAND_CODE.CONDITIONAL_BRANCH) return this.applyIfBranchViewModeByUid(uid, mode);
+        return false;
     };
 
     EE.prototype.resetIfBranchRuntimeState = function() {
@@ -8025,13 +8441,16 @@
         if (!tracks[key]) {
             tracks[key] = {
                 ifStack: [],
-                choiceStack: []
+                choiceStack: [],
+                branchResults: Object.create(null),
+                branchPathMap: null
             };
         } else {
             if (!Array.isArray(tracks[key].ifStack)) {
                 tracks[key].ifStack = Array.isArray(tracks[key].stack) ? tracks[key].stack : [];
             }
             if (!Array.isArray(tracks[key].choiceStack)) tracks[key].choiceStack = [];
+            if (!tracks[key].branchResults) tracks[key].branchResults = Object.create(null);
         }
         return tracks[key];
     };
@@ -8079,6 +8498,93 @@
         return this.evaluateChoiceBranchAutoForEntry(entry);
     };
 
+    EE.prototype.computeBranchExecutionPathMapForTrack = function(tr) {
+        var out = Object.create(null);
+        if (!tr || !Array.isArray(tr.commands)) return out;
+        var list = SH.commandsInSourceOrder(tr);
+        var stack = [];
+        var setBranchValue = function(type, indent, value) {
+            for (var i = stack.length - 1; i >= 0; i--) {
+                var ctx = stack[i];
+                if (!ctx || ctx.type !== type || ctx.indent !== indent) continue;
+                ctx.value = value;
+                return;
+            }
+        };
+        var closeBranch = function(type, indent) {
+            for (var i = stack.length - 1; i >= 0; i--) {
+                var ctx = stack[i];
+                if (!ctx || ctx.type !== type || ctx.indent !== indent) continue;
+                stack.splice(i, 1);
+                return;
+            }
+        };
+        for (var li = 0; li < list.length; li++) {
+            var entry = list[li];
+            if (!entry || !entry.command) continue;
+            var code = Math.floor(Number(entry.command.code || 0));
+            var indent = Math.max(0, Math.floor(Number(entry.command.indent || 0)));
+            var uid = Math.floor(Number(entry.uid || 0));
+            var path = [];
+            for (var si = 0; si < stack.length; si++) {
+                var branch = stack[si];
+                if (!branch || indent <= branch.indent || branch.value == null) continue;
+                path.push({
+                    type: branch.type,
+                    ownerUid: branch.ownerUid,
+                    value: branch.value
+                });
+            }
+            if (uid > 0) out[String(uid)] = path;
+
+            if (code === COMMAND_CODE.CONDITIONAL_BRANCH) {
+                stack.push({ type: 'if', ownerUid: uid, indent: indent, value: true });
+            } else if (code === COMMAND_CODE.CONDITIONAL_ELSE) {
+                setBranchValue('if', indent, false);
+            } else if (code === COMMAND_CODE.CONDITIONAL_END) {
+                closeBranch('if', indent);
+            } else if (code === COMMAND_CODE.SHOW_CHOICES) {
+                stack.push({ type: 'choice', ownerUid: uid, indent: indent, value: null });
+            } else if (code === COMMAND_CODE.CHOICE_BRANCH) {
+                var p = Array.isArray(entry.command.parameters) ? entry.command.parameters : [];
+                setBranchValue('choice', indent, Math.max(0, Math.floor(Number(p[0] || 0))));
+            } else if (code === COMMAND_CODE.CHOICE_CANCEL) {
+                setBranchValue('choice', indent, -1);
+            } else if (code === COMMAND_CODE.CHOICE_END) {
+                closeBranch('choice', indent);
+            }
+        }
+        return out;
+    };
+
+    EE.prototype.isEntryActiveByBranchExecutionPath = function(entry, state, trackKey) {
+        if (!entry || !state) return false;
+        var tr = this.model && this.model.tracks ? this.model.tracks[String(trackKey || '')] : null;
+        if (!tr) return true;
+        if (!state.branchPathMap) state.branchPathMap = this.computeBranchExecutionPathMapForTrack(tr);
+        var path = state.branchPathMap[String(Math.floor(Number(entry.uid || 0)))] || [];
+        var results = state.branchResults || (state.branchResults = Object.create(null));
+        for (var i = 0; i < path.length; i++) {
+            var part = path[i];
+            if (!part) continue;
+            var ownerKey = String(Math.floor(Number(part.ownerUid || 0)));
+            if (!Object.prototype.hasOwnProperty.call(results, ownerKey)) {
+                var owner = this.findTrackEntryByUid(tr, Number(part.ownerUid || 0));
+                if (!owner) return false;
+                results[ownerKey] = part.type === 'choice'
+                    ? this.resolveChoiceBranchResultForEntry(owner)
+                    : !!this.resolveIfBranchResultForEntry(owner);
+            }
+            var result = results[ownerKey];
+            if (part.type === 'choice') {
+                if (Math.floor(Number(result)) !== Math.floor(Number(part.value))) return false;
+            } else if (!!result !== !!part.value) {
+                return false;
+            }
+        }
+        return true;
+    };
+
     EE.prototype.shouldExecuteEntryByIfBranchRuntime = function(entry) {
         if (!entry || !entry.command) return false;
         var code = Math.floor(Number(entry.command.code || 0));
@@ -8088,37 +8594,21 @@
         var ifStack = state.ifStack || (state.ifStack = []);
         var choiceStack = state.choiceStack || (state.choiceStack = []);
 
-        var active = true;
-        for (var i = 0; i < ifStack.length; i++) {
-            var ctx = ifStack[i];
-            if (!ctx || indent <= Math.max(0, Math.floor(Number(ctx.indent || 0)))) continue;
-            var branchActive = (ctx.phase === 'else') ? !ctx.result : !!ctx.result;
-            if (!branchActive) {
-                active = false;
-                break;
-            }
-        }
-        if (active) {
-            for (i = 0; i < choiceStack.length; i++) {
-                ctx = choiceStack[i];
-                if (!ctx || indent <= Math.max(0, Math.floor(Number(ctx.indent || 0)))) continue;
-                if (!this.choiceBranchRuntimeIsActive(ctx)) {
-                    active = false;
-                    break;
-                }
-            }
-        }
+        var active = this.isEntryActiveByBranchExecutionPath(entry, state, trackKey);
+        var i;
         var shouldLog = active && !this._simToRunning && !this._eeInlineCommandExecution;
         var logFrame = Math.max(0, Math.floor(Number((this._simToRunning ? this._simExecFrame : this.frame) || 0)));
 
         if (code === 111) {
             if (active) {
+                var ifResult = !!this.resolveIfBranchResultForEntry(entry);
+                state.branchResults[String(Math.floor(Number(entry.uid || 0)))] = ifResult;
                 for (i = ifStack.length - 1; i >= 0; i--) {
                     if (Math.max(0, Math.floor(Number(ifStack[i].indent || 0))) >= indent) ifStack.splice(i, 1);
                 }
                 ifStack.push({
                     indent: indent,
-                    result: !!this.resolveIfBranchResultForEntry(entry),
+                    result: ifResult,
                     phase: 'then'
                 });
                 ifStack.sort(function(a, b) { return Math.floor(Number(a.indent || 0)) - Math.floor(Number(b.indent || 0)); });
@@ -8152,12 +8642,14 @@
 
         if (code === 102) {
             if (active) {
+                var choiceResult = Math.floor(Number(this.resolveChoiceBranchResultForEntry(entry)));
+                state.branchResults[String(Math.floor(Number(entry.uid || 0)))] = choiceResult;
                 for (i = choiceStack.length - 1; i >= 0; i--) {
                     if (Math.max(0, Math.floor(Number(choiceStack[i].indent || 0))) >= indent) choiceStack.splice(i, 1);
                 }
                 choiceStack.push({
                     indent: indent,
-                    activeChoiceIndex: Math.floor(Number(this.resolveChoiceBranchResultForEntry(entry) || 0)),
+                    activeChoiceIndex: choiceResult,
                     phase: 'none',
                     phaseChoiceIndex: -999
                 });
@@ -8320,6 +8812,10 @@
         this.timelineDirty = true;
     };
 
+    //-------------------------------------------------------------------------
+    // Timeline layout, hit testing, and range manipulation
+    //-------------------------------------------------------------------------
+
     EE.prototype.syncTimelineSize = function(maxF) {
         if (!this.timeline || !this.timelineWrap) return;
         var p = this._timelineViewPending;
@@ -8329,7 +8825,7 @@
                 this.pxPerFrame = Math.max(this.minPxPerFrame, Math.min(this.maxPxPerFrame, ppf));
             }
         }
-        var tr = this.model.tracks[this.selKey];
+        var tr = this.selectedTrack();
         var rows = this.getTrackRows(tr);
         this._rows = rows;
         this._mainStackMax = this.mainStackMax(tr);
@@ -8546,7 +9042,7 @@
         return null;
     };
 
-    EE.prototype.hitTestIfBranchModeButton = function(x, y) {
+    EE.prototype.hitTestBranchModeButton = function(x, y) {
         if (!Array.isArray(this.hitIfBranchButtons)) return null;
         x = Number(x || 0);
         y = Number(y || 0);
@@ -8558,6 +9054,10 @@
             return b;
         }
         return null;
+    };
+
+    EE.prototype.hitTestIfBranchModeButton = function(x, y) {
+        return this.hitTestBranchModeButton(x, y);
     };
 
     EE.prototype.hitTestRouteCommandNodeNear = function(uid, x, y, extraRadius) {
@@ -9009,7 +9509,7 @@
             });
         }
 
-        tr.commands.sort(function(a, b) { return compareEntriesByFrameWaitUid(a, b); });
+        SH.sortTrackCommands(tr);
         this.clearRangeSelection();
         this.dirty[this.selKey] = true;
         this.rebuildSchedule();
@@ -9631,7 +10131,7 @@
                 }
             }
         }
-        tr.commands.sort(function(a, b) { return compareEntriesByFrameWaitUid(a, b); });
+        SH.sortTrackCommands(tr);
         this.dirty[this.selKey] = true;
         this.rebuildSchedule();
         this.seek(this.frame);
@@ -9888,7 +10388,7 @@
         }
         this.shrinkCurrentRangeSelectionAfterSqueeze(cap.removedFrames);
         var tr = this.model && this.model.tracks ? this.model.tracks[this.selKey] : null;
-        if (tr && Array.isArray(tr.commands)) tr.commands.sort(function(a, b) { return compareEntriesByFrameWaitUid(a, b); });
+        if (tr && Array.isArray(tr.commands)) SH.sortTrackCommands(tr);
         this.dirty[this.selKey] = true;
         this.rebuildSchedule();
         this.seek(this.frame);
@@ -9980,7 +10480,7 @@
         var fs = Math.max(0, Math.floor(Number(cap.frameStart || 0)));
         var fe = Math.max(fs, Math.floor(Number(cap.frameEnd == null ? fs : cap.frameEnd)));
         var oldEndEx = fe + 1;
-        tr.commands.sort(function(a, b) { return compareEntriesByFrameWaitUid(a, b); });
+        SH.sortTrackCommands(tr);
 
         var startCursor = fs;
         for (var pi = 0; pi < tr.commands.length; pi++) {
@@ -10057,7 +10557,7 @@
             }
         }
 
-        tr.commands.sort(function(a, b) { return compareEntriesByFrameWaitUid(a, b); });
+        SH.sortTrackCommands(tr);
         if (Math.max(0, Math.floor(Number(this.frame || 0))) >= oldEndEx) {
             this.frame = Math.max(0, Math.floor(Number(this.frame || 0)) + delta);
         }
@@ -10250,7 +10750,7 @@
             nextCommands.push(cur);
         }
         tr.commands = nextCommands;
-        tr.commands.sort(function(a, b) { return compareEntriesByFrameWaitUid(a, b); });
+        SH.sortTrackCommands(tr);
         if (this.hasRangeSelection()) this.clearRangeSelection();
         this.selUid = keepUid;
         this.selRouteListIndex = -1;
@@ -10501,6 +11001,10 @@
         this.closeMessageBubbleBulkDialog();
         this.msg('ふきだし位置一括設定: ' + updates.length + '件');
     };
+
+    //-------------------------------------------------------------------------
+    // Tooltips and command descriptions
+    //-------------------------------------------------------------------------
 
     EE.prototype.showTipAt = function(screenX, screenY, text) {
         if (!this.tip) return;
@@ -11153,12 +11657,7 @@
     };
 
     EE.prototype.findEntryInSelectedTrack = function(uid) {
-        var tr = this.model.tracks[this.selKey];
-        if (!tr || !tr.commands || !uid) return null;
-        for (var i = 0; i < tr.commands.length; i++) {
-            if (tr.commands[i].uid === uid) return tr.commands[i];
-        }
-        return null;
+        return this.findTrackEntryByUid(this.selectedTrack(), uid);
     };
 
     EE.prototype.routeCommandNameJa = function(code) {
@@ -11920,6 +12419,10 @@
         }
     };
 
+    //-------------------------------------------------------------------------
+    // Canvas primitives and final timeline rendering
+    //-------------------------------------------------------------------------
+
     EE.prototype.buildMainLaneMap = function(tr, hiddenByIf) {
         var laneByUid = {};
         var maxStack = 1;
@@ -12541,7 +13044,7 @@
                 continue;
             }
             if (String(br.type || '') !== 'choice') continue;
-            if (Math.floor(Number(br.choiceIndex || -1)) !== Math.floor(Number(selected || 0))) continue;
+            if (Math.floor(Number(br.choiceIndex == null ? -1 : br.choiceIndex)) !== Math.floor(Number(selected || 0))) continue;
             selectedBranch = br;
             break;
         }
@@ -12586,7 +13089,7 @@
         for (var i = 0; i < blocks.length; i++) {
             var b = blocks[i];
             if (!b) continue;
-            var choiceIndex = Math.floor(Number(b.choiceIndex || -1));
+            var choiceIndex = Math.floor(Number(b.choiceIndex == null ? -1 : b.choiceIndex));
             if (choiceIndex < 0 || choiceIndex >= allList.length) continue;
             var startEntry = allList[choiceIndex];
             if (!startEntry || !startEntry.command || Number(startEntry.command.code || 0) !== 102) continue;
@@ -12853,13 +13356,14 @@
         drawBtn('next', yTop + bh + gap, !!info.canNext);
     };
 
-    EE.prototype.drawSelectedIfBranchModeButtons = function(ctx, rowMap, rmets) {
+    EE.prototype.drawSelectedBranchModeButtons = function(ctx, rowMap, rmets) {
         if (!ctx) return;
         if (!this.selUid || this.nodeRouteIndex(this.selRouteListIndex) >= 0) return;
         var entry = this.findEntryInSelectedTrack(this.selUid);
-        if (!entry || !entry.command || Number(entry.command.code || 0) !== 111) return;
-        if (typeof this.isTimelineEntryVisibleByIfBranchMode === 'function' &&
-            !this.isTimelineEntryVisibleByIfBranchMode(entry, this.model && this.model.tracks ? this.model.tracks[this.selKey] : null)) {
+        if (!entry || !entry.command) return;
+        var commandCode = Math.floor(Number(entry.command.code || 0));
+        if (commandCode !== 111 && commandCode !== 102) return;
+        if (!this.isTimelineEntryVisibleByBranchMode(entry, this.selectedTrack())) {
             return;
         }
         var pt = this.commandNodePointForEntry(entry, rowMap, rmets);
@@ -12872,16 +13376,26 @@
                 4,
                 Number(nodeOverlayRule.labelRight || 0),
                 Number(nodeOverlayRule.rulerBottom || 0),
-                { forceVisible: Number(entry && entry.command && entry.command.code || 0) === 111 && Math.max(0, Math.floor(Number(entry.frame || 0))) === 0 }
+                { forceVisible: Math.max(0, Math.floor(Number(entry.frame || 0))) === 0 }
             );
             if (nodeDecision && nodeDecision.hide) return;
         }
-        var mode = this.getIfBranchViewModeForEntry(entry);
-        var defs = [
-            { mode: 'auto', label: 'auto' },
-            { mode: 'then', label: 'then' },
-            { mode: 'else', label: 'else' }
-        ];
+        var isChoice = commandCode === 102;
+        var mode = isChoice ? this.getChoiceBranchViewModeForEntry(entry) : this.getIfBranchViewModeForEntry(entry);
+        var defs = [{ mode: 'auto', label: 'auto' }];
+        if (isChoice) {
+            var p = Array.isArray(entry.command.parameters) ? entry.command.parameters : [];
+            var choices = Array.isArray(p[0]) ? p[0].slice(0, 6) : [];
+            for (var di = 0; di < choices.length; di++) {
+                defs.push({ mode: String(di), label: String(di + 1) });
+            }
+            if (Math.floor(Number(p[1] == null ? -2 : p[1])) === -2) {
+                defs.push({ mode: 'cancel', label: 'cancel' });
+            }
+        } else {
+            defs.push({ mode: 'then', label: 'then' });
+            defs.push({ mode: 'else', label: 'else' });
+        }
         ctx.save();
         var scale = 1.4;
         ctx.font = Math.max(9, Math.round(9 * scale)) + 'px sans-serif';
@@ -12890,15 +13404,16 @@
         var padX = Math.max(4, Math.round(4 * scale));
         var minW = Math.max(18, Math.round(18 * scale));
         var corner = Math.max(3, Math.round(3 * scale));
-        var widths = [];
         var maxW = 0;
         for (var i = 0; i < defs.length; i++) {
             var w = Math.max(minW, Math.ceil(ctx.measureText(String(defs[i].label || '')).width) + padX * 2);
-            widths.push(w);
             if (w > maxW) maxW = w;
         }
-        var totalH = defs.length * h + Math.max(0, defs.length - 1) * gap;
-        var x = Math.floor(Number(pt.x || 0) - Math.round(10 * scale) - maxW);
+        var columns = isChoice && defs.length > 4 ? 2 : 1;
+        var rows = Math.max(1, Math.ceil(defs.length / columns));
+        var totalW = columns * maxW + Math.max(0, columns - 1) * gap;
+        var totalH = rows * h + Math.max(0, rows - 1) * gap;
+        var x = Math.floor(Number(pt.x || 0) - Math.round(10 * scale) - totalW);
         var y = Math.floor(Number(pt.y || 0) - totalH * 0.5);
         // Keep buttons on the left side of the branch node even at frame 0.
         x = Math.max(2, x);
@@ -12907,24 +13422,36 @@
             var d = defs[i];
             var w2 = maxW;
             var selected = (mode === d.mode);
-            ctx.fillStyle = selected ? 'rgba(54,132,225,.97)' : 'rgba(54,62,72,.82)';
-            this.fillRoundedRect(ctx, x, y, w2, h, corner);
-            ctx.strokeStyle = selected ? 'rgba(202,230,255,.95)' : 'rgba(144,158,176,.70)';
+            var col = Math.floor(i / rows);
+            var row = i % rows;
+            var bx = x + col * (maxW + gap);
+            var by = y + row * (h + gap);
+            ctx.fillStyle = selected
+                ? (isChoice ? 'rgba(205,64,184,.97)' : 'rgba(54,132,225,.97)')
+                : 'rgba(54,62,72,.82)';
+            this.fillRoundedRect(ctx, bx, by, w2, h, corner);
+            ctx.strokeStyle = selected
+                ? (isChoice ? 'rgba(255,214,246,.95)' : 'rgba(202,230,255,.95)')
+                : 'rgba(144,158,176,.70)';
             ctx.lineWidth = 1;
-            this.strokeRoundedRect(ctx, x + 0.5, y + 0.5, Math.max(1, w2 - 1), Math.max(1, h - 1), corner);
+            this.strokeRoundedRect(ctx, bx + 0.5, by + 0.5, Math.max(1, w2 - 1), Math.max(1, h - 1), corner);
             ctx.fillStyle = selected ? 'rgba(233,244,255,.98)' : 'rgba(232,238,248,.92)';
-            ctx.fillText(String(d.label || ''), x + padX, y + Math.floor(h * 0.72));
+            ctx.fillText(String(d.label || ''), bx + padX, by + Math.floor(h * 0.72));
             this.hitIfBranchButtons.push({
                 uid: Math.floor(Number(entry.uid || 0)),
                 mode: String(d.mode || 'then'),
-                x1: x,
-                y1: y,
-                x2: x + w2,
-                y2: y + h
+                commandCode: commandCode,
+                x1: bx,
+                y1: by,
+                x2: bx + w2,
+                y2: by + h
             });
-            y += h + gap;
         }
         ctx.restore();
+    };
+
+    EE.prototype.drawSelectedIfBranchModeButtons = function(ctx, rowMap, rmets) {
+        this.drawSelectedBranchModeButtons(ctx, rowMap, rmets);
     };
 
     EE.prototype.fitTimelineRangeLabel = function(ctx, text, maxPx) {
@@ -13201,7 +13728,8 @@
             c.stroke();
         }
 
-        var tr = this.model.tracks[this.selKey];
+        var tr = this.selectedTrack();
+        this.beginTrackReadCache(tr);
         var rows = this._rows || [{ key: 'main', label: 'Main' }];
         var rmets = this._rowMetrics || [];
         var hideCircles = !!this.hideTimelineCircles;
@@ -13210,6 +13738,8 @@
             ? 'main'
             : ('char:' + this.normalizeMoveTarget(Number(this.panelSelectedCharId || 0)));
         var hiddenByIf = tr ? this.computeIfBranchHiddenUidMapForTrack(tr) : Object.create(null);
+        this._timelineBranchHiddenTrack = tr;
+        this._timelineBranchHiddenUidMap = hiddenByIf;
         var laneInfo = this.buildMainLaneMap(tr, hiddenByIf);
         this._mainLaneByUid = laneInfo.laneByUid || {};
         this._mainStackMax = laneInfo.maxStack || this._mainStackMax || 1;
@@ -13953,7 +14483,7 @@
             c.lineWidth = 1;
             c.stroke();
         }
-        this.drawSelectedIfBranchModeButtons(c, rowMap, rmets);
+        this.drawSelectedBranchModeButtons(c, rowMap, rmets);
         var frontPulse = false;
         for (var cqi = 0; cqi < commentFrontQueue.length; cqi++) {
             var cq = commentFrontQueue[cqi];
@@ -13990,6 +14520,9 @@
             this.tInfo.textContent = 'frame: ' + this.frame + ' | selected: ' + sid + ' | event: ' + (this.selEid || '-') + ' | rows: ' + rows.length + dragInfoText;
         }
         this.refreshMemoScrollLane(maxF);
+        this._timelineBranchHiddenTrack = null;
+        this._timelineBranchHiddenUidMap = null;
+        this.endTrackReadCache();
     };
 
     EE.prototype.niceFrameStep = function(target) {
@@ -13998,6 +14531,13 @@
         while (step < target) step *= 2;
         return step;
     };
-
-
+    SH.registerModule('render', ['preview'], [
+        'playFrom',
+        'seek',
+        'pre',
+        'execAt',
+        'copy',
+        'cut',
+        'paste'
+    ]);
 })();

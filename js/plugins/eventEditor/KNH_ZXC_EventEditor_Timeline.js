@@ -33,6 +33,7 @@
     }
 
     var files = [
+        'KNH_ZXC_EventEditor_Timeline_Shared.js',
         'KNH_ZXC_EventEditor_Timeline_Core.js',
         'KNH_ZXC_EventEditor_Timeline_Schema.js',
         'KNH_ZXC_EventEditor_Timeline_Preview.js',
@@ -50,4 +51,10 @@
     }
 
     (0, eval)(merged + '\n//# sourceURL=KNH_ZXC_EventEditor_Timeline.bundle.js');
+
+    var shared = NS._eeTimelineShared;
+    var requiredModules = ['shared', 'core', 'schema', 'preview', 'render', 'input'];
+    if (!shared || !shared.hasModules || !shared.hasModules(requiredModules)) {
+        throw new Error('Timeline module initialization incomplete');
+    }
 })();

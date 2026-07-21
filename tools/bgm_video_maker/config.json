@@ -1,0 +1,11 @@
+{
+  "fps": 60,
+  "framesPerImage": 10,
+  "audioLoops": 2,
+  "supportedAudioExtensions": [".mp3", ".ogg"],
+  "imagePattern": "bgm_back%d.png",
+  "startNumber": 1,
+  "crf": 18,
+  "audioBitrate": "192k",
+  "preset": "veryfast"
+}

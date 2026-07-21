@@ -101,6 +101,38 @@
             },
             "_ole": true
           }
+        },
+        {
+          "id": "b_mrschchy_nsh9mw",
+          "name": "みぃー",
+          "payload": {
+            "text": "",
+            "html": "",
+            "rtf": "",
+            "custom": {
+              "application/rpgmv-event": "eyJpZCI6NywibmFtZSI6IuOBv+OBg+ODvCIsIm5vdGUiOiI8aW1wb3J0YW50PiIsInBhZ2VzIjpbeyJjb25kaXRpb25zIjp7ImFjdG9ySWQiOjEsImFjdG9yVmFsaWQiOmZhbHNlLCJpdGVtSWQiOjEsIml0ZW1WYWxpZCI6ZmFsc2UsInNlbGZTd2l0Y2hDaCI6IkEiLCJzZWxmU3dpdGNoVmFsaWQiOmZhbHNlLCJzd2l0Y2gxSWQiOjEsInN3aXRjaDFWYWxpZCI6ZmFsc2UsInN3aXRjaDJJZCI6MSwic3dpdGNoMlZhbGlkIjpmYWxzZSwidmFyaWFibGVJZCI6MSwidmFyaWFibGVWYWxpZCI6ZmFsc2UsInZhcmlhYmxlVmFsdWUiOjAsInNjcmlwdFZhbGlkIjpmYWxzZSwic2NyaXB0VGV4dCI6IiJ9LCJkaXJlY3Rpb25GaXgiOmZhbHNlLCJpbWFnZSI6eyJ0aWxlSWQiOjAsImNoYXJhY3Rlck5hbWUiOiIkMDAyIiwiZGlyZWN0aW9uIjoyLCJwYXR0ZXJuIjoxLCJjaGFyYWN0ZXJJbmRleCI6MH0sImxpc3QiOlt7ImNvZGUiOjAsImluZGVudCI6MCwicGFyYW1ldGVycyI6W119XSwibW92ZUZyZXF1ZW5jeSI6NSwibW92ZVJvdXRlIjp7Imxpc3QiOlt7ImNvZGUiOjM5LCJpbmRlbnQiOm51bGx9LHsiY29kZSI6MCwicGFyYW1ldGVycyI6W119XSwicmVwZWF0IjpmYWxzZSwic2tpcHBhYmxlIjpmYWxzZSwid2FpdCI6ZmFsc2V9LCJtb3ZlU3BlZWQiOjQsIm1vdmVUeXBlIjozLCJwcmlvcml0eVR5cGUiOjEsInN0ZXBBbmltZSI6ZmFsc2UsInRocm91Z2giOnRydWUsInRyaWdnZXIiOjAsIndhbGtBbmltZSI6dHJ1ZX1dLCJ4Ijo3LCJ5IjoxOCwibWV0YSI6eyJpbXBvcnRhbnQiOnRydWV9LCJtZXRhQXJyYXkiOnsiaW1wb3J0YW50IjpbdHJ1ZV19fQ=="
+            },
+            "customKinds": {
+              "application/rpgmv-event": "System.IO.MemoryStream"
+            },
+            "_ole": true
+          }
+        },
+        {
+          "id": "b_mrsciznm_biugsw",
+          "name": "ゆめちゃん",
+          "payload": {
+            "text": "",
+            "html": "",
+            "rtf": "",
+            "custom": {
+              "application/rpgmv-event": "eyJpZCI6MTAsIm5hbWUiOiLjgobjgoHjgaHjgoPjgpMiLCJub3RlIjoiPGltcG9ydGFudD4iLCJwYWdlcyI6W3siY29uZGl0aW9ucyI6eyJhY3RvcklkIjoxLCJhY3RvclZhbGlkIjpmYWxzZSwiaXRlbUlkIjoxLCJpdGVtVmFsaWQiOmZhbHNlLCJzZWxmU3dpdGNoQ2giOiJBIiwic2VsZlN3aXRjaFZhbGlkIjpmYWxzZSwic3dpdGNoMUlkIjoxLCJzd2l0Y2gxVmFsaWQiOmZhbHNlLCJzd2l0Y2gySWQiOjEsInN3aXRjaDJWYWxpZCI6ZmFsc2UsInZhcmlhYmxlSWQiOjEsInZhcmlhYmxlVmFsaWQiOmZhbHNlLCJ2YXJpYWJsZVZhbHVlIjowfSwiZGlyZWN0aW9uRml4IjpmYWxzZSwiaW1hZ2UiOnsidGlsZUlkIjowLCJjaGFyYWN0ZXJOYW1lIjoiJDAwMyIsImRpcmVjdGlvbiI6MiwicGF0dGVybiI6MSwiY2hhcmFjdGVySW5kZXgiOjB9LCJsaXN0IjpbeyJjb2RlIjowLCJpbmRlbnQiOjAsInBhcmFtZXRlcnMiOltdfV0sIm1vdmVGcmVxdWVuY3kiOjUsIm1vdmVSb3V0ZSI6eyJsaXN0IjpbeyJjb2RlIjozOSwiaW5kZW50IjpudWxsfSx7ImNvZGUiOjAsInBhcmFtZXRlcnMiOltdfV0sInJlcGVhdCI6ZmFsc2UsInNraXBwYWJsZSI6ZmFsc2UsIndhaXQiOmZhbHNlfSwibW92ZVNwZWVkIjo0LCJtb3ZlVHlwZSI6MywicHJpb3JpdHlUeXBlIjoxLCJzdGVwQW5pbWUiOmZhbHNlLCJ0aHJvdWdoIjp0cnVlLCJ0cmlnZ2VyIjowLCJ3YWxrQW5pbWUiOnRydWV9XSwieCI6MiwieSI6MTIsIm1ldGEiOnsiaW1wb3J0YW50Ijp0cnVlfSwibWV0YUFycmF5Ijp7ImltcG9ydGFudCI6W3RydWVdfX0="
+            },
+            "customKinds": {
+              "application/rpgmv-event": "System.IO.MemoryStream"
+            },
+            "_ole": true
+          }
         }
       ]
     },

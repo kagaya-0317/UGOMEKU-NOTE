@@ -15,108 +15,14 @@
     var EE = NS.EE;
     if (!EE) return;
 
-    var U = NS._eeUtils || {};
-    var clone = U.clone || function(v) { return JSON.parse(JSON.stringify(v)); };
-    var maximizeWindowForEditor = U.maximizeWindowForEditor || function() { return false; };
-    var installEscapeConvertFallback = U.installEscapeConvertFallback || function() {};
-    var RE_COMPACT_SELECT_KEY = U.RE_COMPACT_SELECT_KEY || /type|mode|op|operand|scope|target|operation|blend|dir|designate/i;
-    var RE_COMPACT_NUMBER_KEY = U.RE_COMPACT_NUMBER_KEY || /id$|index|mode|type|value|x$|y$|z$|r$|g$|b$|a$|wait|time|frame|duration|speed|pan|pitch|volume|opacity/i;
-    var RE_COMPACT_TEXT_KEY = U.RE_COMPACT_TEXT_KEY || /id$|tag|code|label|name/i;
-
-    var SH = NS._eeTimelineShared || (NS._eeTimelineShared = {});
-    if (!SH.characterImageFileExists) {
-        SH.characterImageFileExists = function(name) {
-            name = String(name || '');
-            if (!name.length) return false;
-            try {
-                if (typeof require !== 'function' || typeof process === 'undefined') return true;
-                var fs = require('fs');
-                var path = require('path');
-                var roots = [];
-                if (process && process.cwd) roots.push(process.cwd());
-                if (process && process.mainModule && process.mainModule.filename) {
-                    roots.push(path.dirname(process.mainModule.filename));
-                }
-                for (var i = 0; i < roots.length; i++) {
-                    var root = roots[i];
-                    if (!root) continue;
-                    var dir = path.resolve(root, 'img', 'characters');
-                    var base = path.resolve(dir, name);
-                    if (base.indexOf(dir + path.sep) !== 0) continue;
-                    if (fs.existsSync(base + '.png') || fs.existsSync(base + '.rpgmvp')) return true;
-                }
-                return false;
-            } catch (_) {
-                return true;
-            }
-        };
-    }
-    if (!SH.loadCharacterBitmapIfExists) {
-        SH.loadCharacterBitmapIfExists = function(name) {
-            if (!SH.characterImageFileExists(name)) return null;
-            if (typeof ImageManager === 'undefined' || !ImageManager || typeof ImageManager.loadCharacter !== 'function') return null;
-            return ImageManager.loadCharacter(name);
-        };
-    }
+    var SH = NS._eeTimelineShared;
+    if (!SH || !SH.ready) return;
+    var clone = SH.clone;
     var compareEntriesByFrameWaitUid = SH.compareEntriesByFrameWaitUid;
-    if (!compareEntriesByFrameWaitUid) {
-        compareEntriesByFrameWaitUid = function(a, b) {
-            var af = Math.max(0, Math.floor(Number(a && a.frame || 0)));
-            var bf = Math.max(0, Math.floor(Number(b && b.frame || 0)));
-            if (af !== bf) return af - bf;
-            var aw = Math.max(0, Math.floor(Number(a && a.wait || 0))) > 0 ? 1 : 0;
-            var bw = Math.max(0, Math.floor(Number(b && b.wait || 0))) > 0 ? 1 : 0;
-            if (aw !== bw) return aw - bw;
-            return Math.floor(Number(a && a.uid || 0)) - Math.floor(Number(b && b.uid || 0));
-        };
-        SH.compareEntriesByFrameWaitUid = compareEntriesByFrameWaitUid;
-    }
-
     var EE_AnimationPreviewCharacter = SH.EE_AnimationPreviewCharacter;
-    if (!EE_AnimationPreviewCharacter) {
-        EE_AnimationPreviewCharacter = function() {
-            this.initialize.apply(this, arguments);
-        };
-        EE_AnimationPreviewCharacter.prototype = Object.create(Game_CharacterBase.prototype);
-        EE_AnimationPreviewCharacter.prototype.constructor = EE_AnimationPreviewCharacter;
-        EE_AnimationPreviewCharacter.prototype.initialize = function() {
-            Game_CharacterBase.prototype.initMembers.call(this);
-        };
-        EE_AnimationPreviewCharacter.prototype.syncFrom = function(src) {
-            if (!src) return;
-            var keys = [
-                '_x', '_y', '_realX', '_realY',
-                '_moveSpeed', '_moveFrequency',
-                '_opacity', '_blendMode', '_bushDepth', '_priorityType',
-                '_direction', '_pattern', '_animationCount', '_stopCount',
-                '_tileId', '_characterName', '_characterIndex', '_isObjectCharacter',
-                '_walkAnime', '_stepAnime', '_directionFix', '_through', '_transparent',
-                '_jumpCount', '_jumpPeak', '_moving',
-                '_moveRouteForcing', '_movementSuccess',
-                '_balloonId', '_balloonPlaying',
-                '_animationId', '_animationPlaying'
-            ];
-            for (var i = 0; i < keys.length; i++) {
-                var k = keys[i];
-                if (Object.prototype.hasOwnProperty.call(src, k)) this[k] = src[k];
-            }
-        };
-        SH.EE_AnimationPreviewCharacter = EE_AnimationPreviewCharacter;
-    }
+    var COMMAND_CODE = SH.COMMAND_CODE;
 
-    if (!NS._eeAnimPreviewPositionPatchApplied && typeof Sprite_Animation !== 'undefined') {
-        NS._eeAnimPreviewPositionPatchApplied = true;
-        var _EE_SpriteAnimation_updatePosition_Preview = Sprite_Animation.prototype.updatePosition;
-        Sprite_Animation.prototype.updatePosition = function() {
-            _EE_SpriteAnimation_updatePosition_Preview.apply(this, arguments);
-            var pv = this._eePreviewViewport;
-            if (!pv || !this._animation) return;
-            if (Number(this._animation.position || 0) === 3) {
-                this.x = Math.floor(Number(pv.w || 0) / 2);
-                this.y = Math.floor(Number(pv.h || 0) / 2);
-            }
-        };
-    }
+    // Editor dialogs, visual previews, and map-side editing interactions.
     EE.prototype.isAnimationPreviewEditorActive = function() {
         if (!this.shouldShowAnimationPreviewInEditor()) return false;
         if (!this.modal || !this.modal.classList || !this.modal.classList.contains('on')) return false;
@@ -1735,7 +1641,7 @@
             if (!this.finalizePendingAddEntry(tr, e)) return false;
         } else {
             this.dirty[this.selKey] = true;
-            tr.commands.sort(function(a, b) { return compareEntriesByFrameWaitUid(a, b); });
+            SH.sortTrackCommands(tr);
             this.rebuildSchedule();
             this.playFrom(this.frame);
         }
@@ -2591,16 +2497,11 @@
     };
 
     EE.prototype.removeTrackEntryByUid = function(uid) {
-        uid = Number(uid || 0);
-        if (!uid) return false;
-        var tr = this.model && this.model.tracks ? this.model.tracks[this.selKey] : null;
-        if (!tr || !Array.isArray(tr.commands)) return false;
-        for (var i = 0; i < tr.commands.length; i++) {
-            if (Number(tr.commands[i].uid || 0) !== uid) continue;
-            tr.commands.splice(i, 1);
-            return true;
-        }
-        return false;
+        var tr = this.selectedTrack();
+        var index = this.findTrackEntryIndexByUid(tr, uid);
+        if (index < 0) return false;
+        tr.commands.splice(index, 1);
+        return true;
     };
 
     EE.prototype.closeEditor = function() {
@@ -2670,6 +2571,10 @@
         }
         if (!e) { this.closeEditor(); return; }
         var isPendingNew = (this._pendingNewUid && Number(e.uid || 0) === Number(this._pendingNewUid));
+        var choiceStructureBefore = (!isPendingNew && e.command && Number(e.command.code || 0) === COMMAND_CODE.SHOW_CHOICES &&
+            typeof this.captureChoiceBranchStructure === 'function')
+            ? this.captureChoiceBranchStructure(tr, e)
+            : null;
         var indent = Math.max(0, Math.floor(Number(this.edIndent.value || 0) || 0));
         var params = [];
         var schemaState = null;
@@ -2791,7 +2696,7 @@
                 return;
             }
             this.dirty[this.selKey] = true;
-            tr.commands.sort(function(a, b) { return compareEntriesByFrameWaitUid(a, b); });
+            SH.sortTrackCommands(tr);
             this.rebuildSchedule();
             this.seek(this.frame);
             if (isPendingNew) this._pendingNewConfirmed = true;
@@ -2930,8 +2835,12 @@
             this.closeEditor();
             return;
         }
+        if (e.command && Number(e.command.code || 0) === COMMAND_CODE.SHOW_CHOICES &&
+            typeof this.synchronizeChoiceBranchStructure === 'function') {
+            this.synchronizeChoiceBranchStructure(tr, e, choiceStructureBefore);
+        }
         this.dirty[this.selKey] = true;
-        tr.commands.sort(function(a, b) { return compareEntriesByFrameWaitUid(a, b); });
+        SH.sortTrackCommands(tr);
         this.rebuildSchedule();
         this.playFrom(this.frame);
         this.closeEditor();
@@ -5489,7 +5398,7 @@
         this.selRouteListIndex = -1;
         this.frame = this.advanceTargetFrameByWait(frame, waitFrames);
         this.dirty[this.selKey] = true;
-        tr.commands.sort(function(a, b) { return compareEntriesByFrameWaitUid(a, b); });
+        SH.sortTrackCommands(tr);
         this.rebuildSchedule();
         this.playFrom(this.frame);
         return true;
@@ -5859,7 +5768,9 @@
             this.hideEmptyMapHoverTileMarker();
         }
     };
-
-
+    SH.registerModule('preview', ['schema'], [
+        'beginTileMove',
+        'updateTileDrag'
+    ]);
 })();
 

@@ -2163,7 +2163,39 @@
             }
         }
         if (!done) {
-            tr.commands = tr.commands.filter(function(e) { return e.uid !== this.selUid; }, this);
+            var deleteUidMap = null;
+            var selectedEntry = null;
+            for (var si = 0; si < tr.commands.length; si++) {
+                if (Number(tr.commands[si] && tr.commands[si].uid || 0) === Number(this.selUid || 0)) {
+                    selectedEntry = tr.commands[si];
+                    break;
+                }
+            }
+            if (selectedEntry && selectedEntry.command && Number(selectedEntry.command.code || 0) === 102 &&
+                typeof this.captureChoiceBranchStructure === 'function') {
+                var choiceStructure = this.captureChoiceBranchStructure(tr, selectedEntry);
+                if (choiceStructure && choiceStructure.valid) {
+                    deleteUidMap = Object.create(null);
+                    deleteUidMap[String(Math.floor(Number(selectedEntry.uid || 0)))] = true;
+                    var choiceSegments = Array.isArray(choiceStructure.segments) ? choiceStructure.segments : [];
+                    for (var cs = 0; cs < choiceSegments.length; cs++) {
+                        var segment = choiceSegments[cs];
+                        if (!segment) continue;
+                        if (segment.marker) deleteUidMap[String(Math.floor(Number(segment.marker.uid || 0)))] = true;
+                        var segmentEntries = Array.isArray(segment.entries) ? segment.entries : [];
+                        for (var ce = 0; ce < segmentEntries.length; ce++) {
+                            deleteUidMap[String(Math.floor(Number(segmentEntries[ce] && segmentEntries[ce].uid || 0)))] = true;
+                        }
+                    }
+                    if (choiceStructure.endEntry) {
+                        deleteUidMap[String(Math.floor(Number(choiceStructure.endEntry.uid || 0)))] = true;
+                    }
+                }
+            }
+            tr.commands = tr.commands.filter(function(e) {
+                if (deleteUidMap) return !deleteUidMap[String(Math.floor(Number(e && e.uid || 0)))];
+                return e.uid !== this.selUid;
+            }, this);
         }
         this.selUid = 0;
         this.selRouteListIndex = -1;

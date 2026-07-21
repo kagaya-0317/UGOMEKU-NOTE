@@ -1,0 +1,22 @@
+{
+  "startMode": "yurabitmap",
+  "startModeTestSave": "saveYurayuraBitmap",
+  "startModeYuraA": 10,
+  "startModeYuraB": 12,
+  "editEventMode": false,
+  "language": 0,
+  "recordMode": 0,
+  "firstMembers": [
+    true,
+    false,
+    false,
+    false
+  ],
+  "tileC": false,
+  "testAuto": false,
+  "testAutoQuality": 10,
+  "battleSim": false,
+  "testInitDifficulty": 0,
+  "skillTest": 0,
+  "enemySkillTest": 0
+}
