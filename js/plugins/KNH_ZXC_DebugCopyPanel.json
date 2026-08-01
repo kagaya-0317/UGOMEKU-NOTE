@@ -524,6 +524,22 @@
       "color": "#dbeafe",
       "buttons": [
         {
+          "id": "b_ms9g1l57_luuc8c",
+          "name": "🏳️rejudgeEvents",
+          "payload": {
+            "text": "",
+            "html": "",
+            "rtf": "",
+            "custom": {
+              "application/rpgmv-MovementCommand": "W3siY29kZSI6NDUsInBhcmFtZXRlcnMiOlsiJGdhbWVNYXAucmVqdWRnZUV2ZW50cygpOyAvL+OCpOODmeODs+ODiOabtOaWsCJdLCJpbmRlbnQiOm51bGx9XQ=="
+            },
+            "customKinds": {
+              "application/rpgmv-MovementCommand": "System.IO.MemoryStream"
+            },
+            "_ole": true
+          }
+        },
+        {
           "id": "b_mk9e8hj7_7i200e",
           "name": "🥾goto(x,y)",
           "payload": {

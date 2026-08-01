@@ -2,8 +2,8 @@
   "plugin": "KNH_ZXC_EventEditor",
   "mapId": 49,
   "targetEventId": 14,
-  "savedAt": "2026-07-21T00:01:52.493Z",
-  "frameCount": 6,
+  "savedAt": "2026-07-21T10:04:36.209Z",
+  "frameCount": 4,
   "frames": [
     {
       "frame": 0,
@@ -158,625 +158,13 @@
           "key": "14:0",
           "eventId": 14,
           "pageIndex": 0,
-          "uid": 1,
-          "rowType": "main",
-          "rowKey": "main",
-          "charId": null,
-          "code": 101,
-          "wait": 0
-        },
-        {
-          "key": "14:0",
-          "eventId": 14,
-          "pageIndex": 0,
-          "uid": 2,
-          "rowType": "main",
-          "rowKey": "main",
-          "charId": null,
-          "code": 101,
-          "wait": 0
-        },
-        {
-          "key": "14:0",
-          "eventId": 14,
-          "pageIndex": 0,
-          "uid": 3,
-          "rowType": "main",
-          "rowKey": "main",
-          "charId": null,
-          "code": 101,
-          "wait": 0
-        },
-        {
-          "key": "14:0",
-          "eventId": 14,
-          "pageIndex": 0,
-          "uid": 4,
-          "rowType": "main",
-          "rowKey": "main",
-          "charId": null,
-          "code": 111,
-          "wait": 0
-        },
-        {
-          "key": "14:0",
-          "eventId": 14,
-          "pageIndex": 0,
-          "uid": 10,
-          "rowType": "main",
-          "rowKey": "main",
-          "charId": null,
-          "code": 411,
-          "wait": 0
-        },
-        {
-          "key": "14:0",
-          "eventId": 14,
-          "pageIndex": 0,
-          "uid": 11,
-          "rowType": "main",
-          "rowKey": "main",
-          "charId": null,
-          "code": 115,
-          "wait": 0
-        },
-        {
-          "key": "14:0",
-          "eventId": 14,
-          "pageIndex": 0,
           "uid": 5,
           "rowType": "main",
           "rowKey": "main",
           "charId": null,
-          "code": 104,
-          "wait": 60
-        }
-      ]
-    },
-    {
-      "frame": 60,
-      "eventId": 14,
-      "x": 35,
-      "y": 7,
-      "realX": 35,
-      "realY": 7,
-      "dir": 4,
-      "hash": "663cb026",
-      "primitiveFlags": {
-        "_templateId": 0,
-        "_templateEvent": null,
-        "_override": false,
-        "_x": 35,
-        "_y": 7,
-        "_realX": 35,
-        "_realY": 7,
-        "_moveSpeed": 3,
-        "_moveFrequency": 3,
-        "_opacity": 255,
-        "_blendMode": 0,
-        "_direction": 4,
-        "_pattern": 0,
-        "_priorityType": 1,
-        "_tileId": 0,
-        "_characterName": "characters3",
-        "_characterIndex": 4,
-        "_isObjectCharacter": null,
-        "_walkAnime": true,
-        "_stepAnime": false,
-        "_directionFix": false,
-        "_through": false,
-        "_transparent": false,
-        "_bushDepth": 0,
-        "_animationId": 0,
-        "_balloonId": 0,
-        "_animationPlaying": false,
-        "_balloonPlaying": false,
-        "_animationCount": 0,
-        "_stopCount": 60,
-        "_jumpCount": 0,
-        "_jumpPeak": 0,
-        "_movementSuccess": true,
-        "_eventWidth": null,
-        "_eventHeight": null,
-        "_customExpansion": false,
-        "_frontDirection": 0,
-        "_size": [
-          285,
-          300
-        ],
-        "_customResource": null,
-        "_graphicColumns": 1,
-        "_graphicRows": 1,
-        "_additionalX": 88,
-        "_additionalY": 7,
-        "_customPriority": -1,
-        "_scaleX": 100,
-        "_scaleY": 100,
-        "_tileBlockWidth": 1,
-        "_tileBlockHeight": 1,
-        "_angle": 0,
-        "_originX": 0.5,
-        "_originY": 0.98,
-        "_absoluteX": null,
-        "_absoluteY": null,
-        "_maskFade": {
-          "active": false,
-          "dir": 0,
-          "queue": null,
-          "index": 0,
-          "frame": 0,
-          "stage": -1,
-          "hidden": false,
-          "endHold": 0
+          "code": 101,
+          "wait": 0
         },
-        "_moveRouteForcing": false,
-        "_moveRoute": {
-          "list": [
-            {
-              "code": 0,
-              "parameters": []
-            }
-          ],
-          "repeat": true,
-          "skippable": false,
-          "wait": false
-        },
-        "_moveRouteIndex": 0,
-        "_originalMoveRoute": null,
-        "_originalMoveRouteIndex": 0,
-        "_waitCount": 0,
-        "_moveType": 0,
-        "_trigger": 0,
-        "_starting": false,
-        "_erased": false,
-        "_pageIndex": 0,
-        "_originalPattern": 0,
-        "_originalDirection": 4,
-        "_prelockDirection": 0,
-        "_locked": false,
-        "_mapId": 49,
-        "_eventId": 14,
-        "_interpreter": null,
-        "_expansionArea": [
-          0.5,
-          1,
-          1,
-          0.5
-        ],
-        "_halfMoveRangeMap": {
-          "-1,-4": true,
-          "-1,-3": true,
-          "-1,-2": true,
-          "-1,-1": true,
-          "-1,0": true,
-          "-1,1": true,
-          "0,-4": true,
-          "0,-3": true,
-          "0,-2": true,
-          "0,-1": true,
-          "0,0": true,
-          "0,1": true,
-          "1,-4": true,
-          "1,-3": true,
-          "1,-2": true,
-          "1,-1": true,
-          "1,0": true,
-          "1,1": true,
-          "2,-4": true,
-          "2,-3": true,
-          "2,-2": true,
-          "2,-1": true,
-          "2,0": true,
-          "2,1": true,
-          "3,-4": true,
-          "3,-3": true,
-          "3,-2": true,
-          "3,-1": true,
-          "3,0": true,
-          "3,1": true
-        },
-        "_triggerExpansion": false,
-        "_important": false,
-        "_sizeBuffer": 0,
-        "_itemImageInfo": null,
-        "_enemySpriteInfo": null,
-        "_yuraInfo": [
-          12,
-          10,
-          0,
-          false
-        ],
-        "_cssRect": {
-          "x": 0,
-          "y": 288,
-          "width": 285,
-          "height": 300
-        },
-        "_setCss": true,
-        "_isAnimeFrame": false,
-        "_animeCountNum": 8083,
-        "_animeWait": 7,
-        "_yurayura": true,
-        "_lastPattern": 0,
-        "_eeScriptCondPagesScanData": {
-          "id": 14,
-          "name": "壁くん",
-          "note": "<CGShift:A,88,7><CGOrigin:A,50,98><cssRect:0,288,285,300><yura:12,10><range:[-0.5,-2],[-0.5,-1.5],[-0.5,-1],[-0.5,-0.5],[-0.5,0],[-0.5,0.5],[0,-2],[0,-1.5],[0,-1],[0,-0.5],[0,0],[0,0.5],[0.5,-2],[0.5,-1.5],[0.5,-1],[0.5,-0.5],[0.5,0],[0.5,0.5],[1,-2],[1,-1.5],[1,-1],[1,-0.5],[1,0],[1,0.5],[1.5,-2],[1.5,-1.5],[1.5,-1],[1.5,-0.5],[1.5,0],[1.5,0.5]>",
-          "pages": [
-            {
-              "conditions": {
-                "actorId": 1,
-                "actorValid": false,
-                "itemId": 1,
-                "itemValid": false,
-                "selfSwitchCh": "A",
-                "selfSwitchValid": false,
-                "switch1Id": 1,
-                "switch1Valid": false,
-                "switch2Id": 1,
-                "switch2Valid": false,
-                "variableId": 1,
-                "variableValid": false,
-                "variableValue": 0,
-                "scriptValid": false,
-                "scriptText": ""
-              },
-              "directionFix": false,
-              "image": {
-                "tileId": 0,
-                "characterName": "characters3",
-                "direction": 4,
-                "pattern": 0,
-                "characterIndex": 4
-              },
-              "list": [
-                {
-                  "code": 101,
-                  "indent": 0,
-                  "parameters": [
-                    "",
-                    0,
-                    0,
-                    2
-                  ]
-                },
-                {
-                  "code": 401,
-                  "indent": 0,
-                  "parameters": [
-                    "くちびるが"
-                  ]
-                },
-                {
-                  "code": 401,
-                  "indent": 0,
-                  "parameters": [
-                    "乾燥しちゃった"
-                  ]
-                },
-                {
-                  "code": 401,
-                  "indent": 0,
-                  "parameters": [
-                    "んだよな"
-                  ]
-                },
-                {
-                  "code": 101,
-                  "indent": 0,
-                  "parameters": [
-                    "",
-                    0,
-                    0,
-                    2
-                  ]
-                },
-                {
-                  "code": 401,
-                  "indent": 0,
-                  "parameters": [
-                    "この自慢の"
-                  ]
-                },
-                {
-                  "code": 401,
-                  "indent": 0,
-                  "parameters": [
-                    "くちびるが…"
-                  ]
-                },
-                {
-                  "code": 101,
-                  "indent": 0,
-                  "parameters": [
-                    "",
-                    0,
-                    0,
-                    2
-                  ]
-                },
-                {
-                  "code": 401,
-                  "indent": 0,
-                  "parameters": [
-                    "なので、ここを"
-                  ]
-                },
-                {
-                  "code": 401,
-                  "indent": 0,
-                  "parameters": [
-                    "通すわけには"
-                  ]
-                },
-                {
-                  "code": 401,
-                  "indent": 0,
-                  "parameters": [
-                    "いかないよ"
-                  ]
-                },
-                {
-                  "code": 111,
-                  "indent": 0,
-                  "parameters": [
-                    8,
-                    52
-                  ]
-                },
-                {
-                  "code": 104,
-                  "indent": 1,
-                  "parameters": [
-                    3,
-                    2
-                  ]
-                },
-                {
-                  "code": 111,
-                  "indent": 1,
-                  "parameters": [
-                    1,
-                    3,
-                    0,
-                    52,
-                    5
-                  ]
-                },
-                {
-                  "code": 101,
-                  "indent": 2,
-                  "parameters": [
-                    "",
-                    0,
-                    0,
-                    2
-                  ]
-                },
-                {
-                  "code": 401,
-                  "indent": 2,
-                  "parameters": [
-                    "いらねぇ"
-                  ]
-                },
-                {
-                  "code": 115,
-                  "indent": 2,
-                  "parameters": []
-                },
-                {
-                  "code": 0,
-                  "indent": 2,
-                  "parameters": []
-                },
-                {
-                  "code": 412,
-                  "indent": 1,
-                  "parameters": []
-                },
-                {
-                  "code": 0,
-                  "indent": 1,
-                  "parameters": []
-                },
-                {
-                  "code": 411,
-                  "indent": 0,
-                  "parameters": []
-                },
-                {
-                  "code": 115,
-                  "indent": 1,
-                  "parameters": []
-                },
-                {
-                  "code": 0,
-                  "indent": 1,
-                  "parameters": []
-                },
-                {
-                  "code": 412,
-                  "indent": 0,
-                  "parameters": []
-                },
-                {
-                  "code": 101,
-                  "indent": 0,
-                  "parameters": [
-                    "",
-                    0,
-                    0,
-                    2
-                  ]
-                },
-                {
-                  "code": 401,
-                  "indent": 0,
-                  "parameters": [
-                    "ほう…中々の"
-                  ]
-                },
-                {
-                  "code": 401,
-                  "indent": 0,
-                  "parameters": [
-                    "リップクリームだ"
-                  ]
-                },
-                {
-                  "code": 101,
-                  "indent": 0,
-                  "parameters": [
-                    "",
-                    0,
-                    0,
-                    2
-                  ]
-                },
-                {
-                  "code": 401,
-                  "indent": 0,
-                  "parameters": [
-                    "全部使いきって"
-                  ]
-                },
-                {
-                  "code": 401,
-                  "indent": 0,
-                  "parameters": [
-                    "しまったよ"
-                  ]
-                },
-                {
-                  "code": 101,
-                  "indent": 0,
-                  "parameters": [
-                    "",
-                    0,
-                    0,
-                    2
-                  ]
-                },
-                {
-                  "code": 401,
-                  "indent": 0,
-                  "parameters": [
-                    "でも、これで"
-                  ]
-                },
-                {
-                  "code": 401,
-                  "indent": 0,
-                  "parameters": [
-                    "自慢のくちびるが"
-                  ]
-                },
-                {
-                  "code": 401,
-                  "indent": 0,
-                  "parameters": [
-                    "戻ってきた…"
-                  ]
-                },
-                {
-                  "code": 101,
-                  "indent": 0,
-                  "parameters": [
-                    "",
-                    0,
-                    0,
-                    2
-                  ]
-                },
-                {
-                  "code": 401,
-                  "indent": 0,
-                  "parameters": [
-                    "やった～ｗ"
-                  ]
-                },
-                {
-                  "code": 101,
-                  "indent": 0,
-                  "parameters": [
-                    "",
-                    0,
-                    0,
-                    2
-                  ]
-                },
-                {
-                  "code": 401,
-                  "indent": 0,
-                  "parameters": [
-                    "通して"
-                  ]
-                },
-                {
-                  "code": 401,
-                  "indent": 0,
-                  "parameters": [
-                    "あげよう"
-                  ]
-                },
-                {
-                  "code": 0,
-                  "indent": 0,
-                  "parameters": []
-                }
-              ],
-              "moveFrequency": 3,
-              "moveRoute": {
-                "list": [
-                  {
-                    "code": 0,
-                    "parameters": []
-                  }
-                ],
-                "repeat": true,
-                "skippable": false,
-                "wait": false
-              },
-              "moveSpeed": 3,
-              "moveType": 0,
-              "priorityType": 1,
-              "stepAnime": false,
-              "through": false,
-              "trigger": 0,
-              "walkAnime": true
-            }
-          ],
-          "x": 35,
-          "y": 7,
-          "meta": {
-            "CGShift": "A,88,7",
-            "CGOrigin": "A,50,98",
-            "cssRect": "0,288,285,300",
-            "yura": "12,10",
-            "range": "[-0.5,-2],[-0.5,-1.5],[-0.5,-1],[-0.5,-0.5],[-0.5,0],[-0.5,0.5],[0,-2],[0,-1.5],[0,-1],[0,-0.5],[0,0],[0,0.5],[0.5,-2],[0.5,-1.5],[0.5,-1],[0.5,-0.5],[0.5,0],[0.5,0.5],[1,-2],[1,-1.5],[1,-1],[1,-0.5],[1,0],[1,0.5],[1.5,-2],[1.5,-1.5],[1.5,-1],[1.5,-0.5],[1.5,0],[1.5,0.5]"
-          },
-          "metaArray": {
-            "CGShift": [
-              "A,88,7"
-            ],
-            "CGOrigin": [
-              "A,50,98"
-            ],
-            "cssRect": [
-              "0,288,285,300"
-            ],
-            "yura": [
-              "12,10"
-            ],
-            "range": [
-              "[-0.5,-2],[-0.5,-1.5],[-0.5,-1],[-0.5,-0.5],[-0.5,0],[-0.5,0.5],[0,-2],[0,-1.5],[0,-1],[0,-0.5],[0,0],[0,0.5],[0.5,-2],[0.5,-1.5],[0.5,-1],[0.5,-0.5],[0.5,0],[0.5,0.5],[1,-2],[1,-1.5],[1,-1],[1,-0.5],[1,0],[1,0.5],[1.5,-2],[1.5,-1.5],[1.5,-1],[1.5,-0.5],[1.5,0],[1.5,0.5]"
-            ]
-          }
-        },
-        "_eeHasDynamicScriptCondPages": false
-      },
-      "sourceRows": [
         {
           "key": "14:0",
           "eventId": 14,
@@ -785,7 +173,7 @@
           "rowType": "main",
           "rowKey": "main",
           "charId": null,
-          "code": 111,
+          "code": 101,
           "wait": 0
         },
         {
@@ -807,7 +195,7 @@
           "rowType": "main",
           "rowKey": "main",
           "charId": null,
-          "code": 115,
+          "code": 111,
           "wait": 0
         },
         {
@@ -818,7 +206,29 @@
           "rowType": "main",
           "rowKey": "main",
           "charId": null,
-          "code": 412,
+          "code": 104,
+          "wait": 0
+        },
+        {
+          "key": "14:0",
+          "eventId": 14,
+          "pageIndex": 0,
+          "uid": 10,
+          "rowType": "main",
+          "rowKey": "main",
+          "charId": null,
+          "code": 111,
+          "wait": 0
+        },
+        {
+          "key": "14:0",
+          "eventId": 14,
+          "pageIndex": 0,
+          "uid": 11,
+          "rowType": "main",
+          "rowKey": "main",
+          "charId": null,
+          "code": 101,
           "wait": 0
         },
         {
@@ -829,7 +239,7 @@
           "rowType": "main",
           "rowKey": "main",
           "charId": null,
-          "code": 412,
+          "code": 115,
           "wait": 0
         },
         {
@@ -840,7 +250,7 @@
           "rowType": "main",
           "rowKey": "main",
           "charId": null,
-          "code": 101,
+          "code": 412,
           "wait": 0
         },
         {
@@ -851,7 +261,7 @@
           "rowType": "main",
           "rowKey": "main",
           "charId": null,
-          "code": 101,
+          "code": 411,
           "wait": 0
         },
         {
@@ -862,7 +272,7 @@
           "rowType": "main",
           "rowKey": "main",
           "charId": null,
-          "code": 101,
+          "code": 115,
           "wait": 0
         },
         {
@@ -873,7 +283,7 @@
           "rowType": "main",
           "rowKey": "main",
           "charId": null,
-          "code": 101,
+          "code": 412,
           "wait": 0
         },
         {
@@ -886,18 +296,62 @@
           "charId": null,
           "code": 101,
           "wait": 0
+        },
+        {
+          "key": "14:0",
+          "eventId": 14,
+          "pageIndex": 0,
+          "uid": 18,
+          "rowType": "main",
+          "rowKey": "main",
+          "charId": null,
+          "code": 101,
+          "wait": 0
+        },
+        {
+          "key": "14:0",
+          "eventId": 14,
+          "pageIndex": 0,
+          "uid": 19,
+          "rowType": "main",
+          "rowKey": "main",
+          "charId": null,
+          "code": 101,
+          "wait": 0
+        },
+        {
+          "key": "14:0",
+          "eventId": 14,
+          "pageIndex": 0,
+          "uid": 20,
+          "rowType": "main",
+          "rowKey": "main",
+          "charId": null,
+          "code": 101,
+          "wait": 0
+        },
+        {
+          "key": "14:0",
+          "eventId": 14,
+          "pageIndex": 0,
+          "uid": 21,
+          "rowType": "main",
+          "rowKey": "main",
+          "charId": null,
+          "code": 101,
+          "wait": 0
         }
       ]
     },
     {
-      "frame": 75,
+      "frame": 15,
       "eventId": 14,
       "x": 35,
       "y": 7,
       "realX": 35,
       "realY": 7,
       "dir": 4,
-      "hash": "67f6d3bc",
+      "hash": "125d34e7",
       "primitiveFlags": {
         "_templateId": 0,
         "_templateEvent": null,
@@ -928,7 +382,7 @@
         "_animationPlaying": false,
         "_balloonPlaying": false,
         "_animationCount": 0,
-        "_stopCount": 75,
+        "_stopCount": 15,
         "_jumpCount": 0,
         "_jumpPeak": 0,
         "_movementSuccess": true,
@@ -1050,7 +504,7 @@
         },
         "_setCss": true,
         "_isAnimeFrame": false,
-        "_animeCountNum": 8083,
+        "_animeCountNum": 2789,
         "_animeWait": 7,
         "_yurayura": true,
         "_lastPattern": 0,
@@ -1086,6 +540,38 @@
                 "characterIndex": 4
               },
               "list": [
+                {
+                  "code": 122,
+                  "indent": 0,
+                  "parameters": [
+                    14,
+                    14,
+                    0,
+                    0,
+                    0
+                  ]
+                },
+                {
+                  "code": 355,
+                  "indent": 0,
+                  "parameters": [
+                    "$gameSystem.clearMessagePopupFree()"
+                  ]
+                },
+                {
+                  "code": 356,
+                  "indent": 0,
+                  "parameters": [
+                    "フキダシウィンドウ有効化 壁くん 1"
+                  ]
+                },
+                {
+                  "code": 355,
+                  "indent": 0,
+                  "parameters": [
+                    "$gameMessage._tailDir = 9"
+                  ]
+                },
                 {
                   "code": 101,
                   "indent": 0,
@@ -1185,7 +671,7 @@
                   "indent": 1,
                   "parameters": [
                     3,
-                    2
+                    1
                   ]
                 },
                 {
@@ -1222,17 +708,7 @@
                   "parameters": []
                 },
                 {
-                  "code": 0,
-                  "indent": 2,
-                  "parameters": []
-                },
-                {
                   "code": 412,
-                  "indent": 1,
-                  "parameters": []
-                },
-                {
-                  "code": 0,
                   "indent": 1,
                   "parameters": []
                 },
@@ -1243,11 +719,6 @@
                 },
                 {
                   "code": 115,
-                  "indent": 1,
-                  "parameters": []
-                },
-                {
-                  "code": 0,
                   "indent": 1,
                   "parameters": []
                 },
@@ -1377,6 +848,305 @@
                   ]
                 },
                 {
+                  "code": 230,
+                  "indent": 0,
+                  "parameters": [
+                    15
+                  ]
+                },
+                {
+                  "code": 205,
+                  "indent": 0,
+                  "parameters": [
+                    10,
+                    {
+                      "repeat": false,
+                      "skippable": false,
+                      "wait": false,
+                      "list": [
+                        {
+                          "code": 45,
+                          "parameters": [
+                            "this.locateToCharacter($gamePlayer._followers.follower(3)), this._direction = 6"
+                          ]
+                        },
+                        {
+                          "code": 40,
+                          "parameters": []
+                        },
+                        {
+                          "code": 18,
+                          "parameters": []
+                        },
+                        {
+                          "code": 35,
+                          "parameters": []
+                        },
+                        {
+                          "code": 45,
+                          "parameters": [
+                            "this.goTo(this.x - 10.5, this.y.clamp(5, 7))"
+                          ]
+                        },
+                        {
+                          "code": 0,
+                          "parameters": []
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "code": 505,
+                  "indent": 0,
+                  "parameters": [
+                    {
+                      "code": 45,
+                      "parameters": [
+                        "this.locateToCharacter($gamePlayer._followers.follower(3)), this._direction = 6"
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "code": 505,
+                  "indent": 0,
+                  "parameters": [
+                    {
+                      "code": 40,
+                      "parameters": []
+                    }
+                  ]
+                },
+                {
+                  "code": 505,
+                  "indent": 0,
+                  "parameters": [
+                    {
+                      "code": 18,
+                      "parameters": []
+                    }
+                  ]
+                },
+                {
+                  "code": 505,
+                  "indent": 0,
+                  "parameters": [
+                    {
+                      "code": 35,
+                      "parameters": []
+                    }
+                  ]
+                },
+                {
+                  "code": 505,
+                  "indent": 0,
+                  "parameters": [
+                    {
+                      "code": 45,
+                      "parameters": [
+                        "this.goTo(this.x - 10.5, this.y.clamp(5, 7))"
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "code": 205,
+                  "indent": 0,
+                  "parameters": [
+                    9,
+                    {
+                      "repeat": false,
+                      "skippable": false,
+                      "wait": false,
+                      "list": [
+                        {
+                          "code": 45,
+                          "parameters": [
+                            "this.locateToCharacter($gamePlayer._followers.follower(1)), this._direction = 6"
+                          ]
+                        },
+                        {
+                          "code": 40,
+                          "parameters": []
+                        },
+                        {
+                          "code": 18,
+                          "parameters": []
+                        },
+                        {
+                          "code": 35,
+                          "parameters": []
+                        },
+                        {
+                          "code": 45,
+                          "parameters": [
+                            "this.goTo(this.x - 10.5, this.y.clamp(5, 7))"
+                          ]
+                        },
+                        {
+                          "code": 0,
+                          "parameters": []
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "code": 505,
+                  "indent": 0,
+                  "parameters": [
+                    {
+                      "code": 45,
+                      "parameters": [
+                        "this.locateToCharacter($gamePlayer._followers.follower(1)), this._direction = 6"
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "code": 505,
+                  "indent": 0,
+                  "parameters": [
+                    {
+                      "code": 40,
+                      "parameters": []
+                    }
+                  ]
+                },
+                {
+                  "code": 505,
+                  "indent": 0,
+                  "parameters": [
+                    {
+                      "code": 18,
+                      "parameters": []
+                    }
+                  ]
+                },
+                {
+                  "code": 505,
+                  "indent": 0,
+                  "parameters": [
+                    {
+                      "code": 35,
+                      "parameters": []
+                    }
+                  ]
+                },
+                {
+                  "code": 505,
+                  "indent": 0,
+                  "parameters": [
+                    {
+                      "code": 45,
+                      "parameters": [
+                        "this.goTo(this.x - 10.5, this.y.clamp(5, 7))"
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "code": 230,
+                  "indent": 0,
+                  "parameters": [
+                    1
+                  ]
+                },
+                {
+                  "code": 216,
+                  "indent": 0,
+                  "parameters": [
+                    1
+                  ]
+                },
+                {
+                  "code": 230,
+                  "indent": 0,
+                  "parameters": [
+                    3
+                  ]
+                },
+                {
+                  "code": 205,
+                  "indent": 0,
+                  "parameters": [
+                    -1,
+                    {
+                      "repeat": false,
+                      "skippable": false,
+                      "wait": false,
+                      "list": [
+                        {
+                          "code": 45,
+                          "parameters": [
+                            "this.goTo(this.x - 10.5, this.y.clamp(5, 7))"
+                          ]
+                        },
+                        {
+                          "code": 0,
+                          "parameters": []
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "code": 505,
+                  "indent": 0,
+                  "parameters": [
+                    {
+                      "code": 45,
+                      "parameters": [
+                        "this.goTo(this.x - 10.5, this.y.clamp(5, 7))"
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "code": 205,
+                  "indent": 0,
+                  "parameters": [
+                    14,
+                    {
+                      "repeat": false,
+                      "skippable": false,
+                      "wait": false,
+                      "list": [
+                        {
+                          "code": 45,
+                          "parameters": [
+                            "this.goTo(this.x - 10.5, this.y.clamp(5, 7))"
+                          ]
+                        },
+                        {
+                          "code": 0,
+                          "parameters": []
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "code": 505,
+                  "indent": 0,
+                  "parameters": [
+                    {
+                      "code": 45,
+                      "parameters": [
+                        "this.goTo(this.x - 10.5, this.y.clamp(5, 7))"
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "code": 230,
+                  "indent": 0,
+                  "parameters": [
+                    71
+                  ]
+                },
+                {
                   "code": 0,
                   "indent": 0,
                   "parameters": []
@@ -1394,13 +1164,14 @@
                 "skippable": false,
                 "wait": false
               },
-              "moveSpeed": 3,
+              "moveSpeed": 4,
               "moveType": 0,
               "priorityType": 1,
               "stepAnime": false,
               "through": false,
               "trigger": 0,
-              "walkAnime": true
+              "walkAnime": true,
+              "eeTransparentStart": false
             }
           ],
           "x": 35,
@@ -1437,7 +1208,7 @@
           "key": "14:0",
           "eventId": 14,
           "pageIndex": 0,
-          "uid": 18,
+          "uid": 22,
           "rowType": "char",
           "rowKey": "char:10",
           "charId": 10,
@@ -1448,7 +1219,7 @@
           "key": "14:0",
           "eventId": 14,
           "pageIndex": 0,
-          "uid": 19,
+          "uid": 23,
           "rowType": "char",
           "rowKey": "char:9",
           "charId": 9,
@@ -1458,14 +1229,14 @@
       ]
     },
     {
-      "frame": 76,
+      "frame": 16,
       "eventId": 14,
       "x": 35,
       "y": 7,
       "realX": 35,
       "realY": 7,
       "dir": 4,
-      "hash": "a34c7d8d",
+      "hash": "c408e9aa",
       "primitiveFlags": {
         "_templateId": 0,
         "_templateEvent": null,
@@ -1496,7 +1267,7 @@
         "_animationPlaying": false,
         "_balloonPlaying": false,
         "_animationCount": 0,
-        "_stopCount": 76,
+        "_stopCount": 16,
         "_jumpCount": 0,
         "_jumpPeak": 0,
         "_movementSuccess": true,
@@ -1618,7 +1389,7 @@
         },
         "_setCss": true,
         "_isAnimeFrame": false,
-        "_animeCountNum": 8083,
+        "_animeCountNum": 2789,
         "_animeWait": 7,
         "_yurayura": true,
         "_lastPattern": 0,
@@ -1654,6 +1425,38 @@
                 "characterIndex": 4
               },
               "list": [
+                {
+                  "code": 122,
+                  "indent": 0,
+                  "parameters": [
+                    14,
+                    14,
+                    0,
+                    0,
+                    0
+                  ]
+                },
+                {
+                  "code": 355,
+                  "indent": 0,
+                  "parameters": [
+                    "$gameSystem.clearMessagePopupFree()"
+                  ]
+                },
+                {
+                  "code": 356,
+                  "indent": 0,
+                  "parameters": [
+                    "フキダシウィンドウ有効化 壁くん 1"
+                  ]
+                },
+                {
+                  "code": 355,
+                  "indent": 0,
+                  "parameters": [
+                    "$gameMessage._tailDir = 9"
+                  ]
+                },
                 {
                   "code": 101,
                   "indent": 0,
@@ -1753,7 +1556,7 @@
                   "indent": 1,
                   "parameters": [
                     3,
-                    2
+                    1
                   ]
                 },
                 {
@@ -1790,17 +1593,7 @@
                   "parameters": []
                 },
                 {
-                  "code": 0,
-                  "indent": 2,
-                  "parameters": []
-                },
-                {
                   "code": 412,
-                  "indent": 1,
-                  "parameters": []
-                },
-                {
-                  "code": 0,
                   "indent": 1,
                   "parameters": []
                 },
@@ -1811,11 +1604,6 @@
                 },
                 {
                   "code": 115,
-                  "indent": 1,
-                  "parameters": []
-                },
-                {
-                  "code": 0,
                   "indent": 1,
                   "parameters": []
                 },
@@ -1945,6 +1733,305 @@
                   ]
                 },
                 {
+                  "code": 230,
+                  "indent": 0,
+                  "parameters": [
+                    15
+                  ]
+                },
+                {
+                  "code": 205,
+                  "indent": 0,
+                  "parameters": [
+                    10,
+                    {
+                      "repeat": false,
+                      "skippable": false,
+                      "wait": false,
+                      "list": [
+                        {
+                          "code": 45,
+                          "parameters": [
+                            "this.locateToCharacter($gamePlayer._followers.follower(3)), this._direction = 6"
+                          ]
+                        },
+                        {
+                          "code": 40,
+                          "parameters": []
+                        },
+                        {
+                          "code": 18,
+                          "parameters": []
+                        },
+                        {
+                          "code": 35,
+                          "parameters": []
+                        },
+                        {
+                          "code": 45,
+                          "parameters": [
+                            "this.goTo(this.x - 10.5, this.y.clamp(5, 7))"
+                          ]
+                        },
+                        {
+                          "code": 0,
+                          "parameters": []
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "code": 505,
+                  "indent": 0,
+                  "parameters": [
+                    {
+                      "code": 45,
+                      "parameters": [
+                        "this.locateToCharacter($gamePlayer._followers.follower(3)), this._direction = 6"
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "code": 505,
+                  "indent": 0,
+                  "parameters": [
+                    {
+                      "code": 40,
+                      "parameters": []
+                    }
+                  ]
+                },
+                {
+                  "code": 505,
+                  "indent": 0,
+                  "parameters": [
+                    {
+                      "code": 18,
+                      "parameters": []
+                    }
+                  ]
+                },
+                {
+                  "code": 505,
+                  "indent": 0,
+                  "parameters": [
+                    {
+                      "code": 35,
+                      "parameters": []
+                    }
+                  ]
+                },
+                {
+                  "code": 505,
+                  "indent": 0,
+                  "parameters": [
+                    {
+                      "code": 45,
+                      "parameters": [
+                        "this.goTo(this.x - 10.5, this.y.clamp(5, 7))"
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "code": 205,
+                  "indent": 0,
+                  "parameters": [
+                    9,
+                    {
+                      "repeat": false,
+                      "skippable": false,
+                      "wait": false,
+                      "list": [
+                        {
+                          "code": 45,
+                          "parameters": [
+                            "this.locateToCharacter($gamePlayer._followers.follower(1)), this._direction = 6"
+                          ]
+                        },
+                        {
+                          "code": 40,
+                          "parameters": []
+                        },
+                        {
+                          "code": 18,
+                          "parameters": []
+                        },
+                        {
+                          "code": 35,
+                          "parameters": []
+                        },
+                        {
+                          "code": 45,
+                          "parameters": [
+                            "this.goTo(this.x - 10.5, this.y.clamp(5, 7))"
+                          ]
+                        },
+                        {
+                          "code": 0,
+                          "parameters": []
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "code": 505,
+                  "indent": 0,
+                  "parameters": [
+                    {
+                      "code": 45,
+                      "parameters": [
+                        "this.locateToCharacter($gamePlayer._followers.follower(1)), this._direction = 6"
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "code": 505,
+                  "indent": 0,
+                  "parameters": [
+                    {
+                      "code": 40,
+                      "parameters": []
+                    }
+                  ]
+                },
+                {
+                  "code": 505,
+                  "indent": 0,
+                  "parameters": [
+                    {
+                      "code": 18,
+                      "parameters": []
+                    }
+                  ]
+                },
+                {
+                  "code": 505,
+                  "indent": 0,
+                  "parameters": [
+                    {
+                      "code": 35,
+                      "parameters": []
+                    }
+                  ]
+                },
+                {
+                  "code": 505,
+                  "indent": 0,
+                  "parameters": [
+                    {
+                      "code": 45,
+                      "parameters": [
+                        "this.goTo(this.x - 10.5, this.y.clamp(5, 7))"
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "code": 230,
+                  "indent": 0,
+                  "parameters": [
+                    1
+                  ]
+                },
+                {
+                  "code": 216,
+                  "indent": 0,
+                  "parameters": [
+                    1
+                  ]
+                },
+                {
+                  "code": 230,
+                  "indent": 0,
+                  "parameters": [
+                    3
+                  ]
+                },
+                {
+                  "code": 205,
+                  "indent": 0,
+                  "parameters": [
+                    -1,
+                    {
+                      "repeat": false,
+                      "skippable": false,
+                      "wait": false,
+                      "list": [
+                        {
+                          "code": 45,
+                          "parameters": [
+                            "this.goTo(this.x - 10.5, this.y.clamp(5, 7))"
+                          ]
+                        },
+                        {
+                          "code": 0,
+                          "parameters": []
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "code": 505,
+                  "indent": 0,
+                  "parameters": [
+                    {
+                      "code": 45,
+                      "parameters": [
+                        "this.goTo(this.x - 10.5, this.y.clamp(5, 7))"
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "code": 205,
+                  "indent": 0,
+                  "parameters": [
+                    14,
+                    {
+                      "repeat": false,
+                      "skippable": false,
+                      "wait": false,
+                      "list": [
+                        {
+                          "code": 45,
+                          "parameters": [
+                            "this.goTo(this.x - 10.5, this.y.clamp(5, 7))"
+                          ]
+                        },
+                        {
+                          "code": 0,
+                          "parameters": []
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "code": 505,
+                  "indent": 0,
+                  "parameters": [
+                    {
+                      "code": 45,
+                      "parameters": [
+                        "this.goTo(this.x - 10.5, this.y.clamp(5, 7))"
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "code": 230,
+                  "indent": 0,
+                  "parameters": [
+                    71
+                  ]
+                },
+                {
                   "code": 0,
                   "indent": 0,
                   "parameters": []
@@ -1962,13 +2049,14 @@
                 "skippable": false,
                 "wait": false
               },
-              "moveSpeed": 3,
+              "moveSpeed": 4,
               "moveType": 0,
               "priorityType": 1,
               "stepAnime": false,
               "through": false,
               "trigger": 0,
-              "walkAnime": true
+              "walkAnime": true,
+              "eeTransparentStart": false
             }
           ],
           "x": 35,
@@ -2005,7 +2093,7 @@
           "key": "14:0",
           "eventId": 14,
           "pageIndex": 0,
-          "uid": 20,
+          "uid": 24,
           "rowType": "main",
           "rowKey": "main",
           "charId": null,
@@ -2015,14 +2103,14 @@
       ]
     },
     {
-      "frame": 79,
+      "frame": 19,
       "eventId": 14,
       "x": 35,
       "y": 7,
       "realX": 35,
       "realY": 7,
       "dir": 4,
-      "hash": "5a2a5570",
+      "hash": "3db67d63",
       "primitiveFlags": {
         "_templateId": 0,
         "_templateEvent": null,
@@ -2053,7 +2141,7 @@
         "_animationPlaying": false,
         "_balloonPlaying": false,
         "_animationCount": 0,
-        "_stopCount": 79,
+        "_stopCount": 19,
         "_jumpCount": 0,
         "_jumpPeak": 0,
         "_movementSuccess": true,
@@ -2175,7 +2263,7 @@
         },
         "_setCss": true,
         "_isAnimeFrame": false,
-        "_animeCountNum": 8083,
+        "_animeCountNum": 2789,
         "_animeWait": 7,
         "_yurayura": true,
         "_lastPattern": 0,
@@ -2211,6 +2299,38 @@
                 "characterIndex": 4
               },
               "list": [
+                {
+                  "code": 122,
+                  "indent": 0,
+                  "parameters": [
+                    14,
+                    14,
+                    0,
+                    0,
+                    0
+                  ]
+                },
+                {
+                  "code": 355,
+                  "indent": 0,
+                  "parameters": [
+                    "$gameSystem.clearMessagePopupFree()"
+                  ]
+                },
+                {
+                  "code": 356,
+                  "indent": 0,
+                  "parameters": [
+                    "フキダシウィンドウ有効化 壁くん 1"
+                  ]
+                },
+                {
+                  "code": 355,
+                  "indent": 0,
+                  "parameters": [
+                    "$gameMessage._tailDir = 9"
+                  ]
+                },
                 {
                   "code": 101,
                   "indent": 0,
@@ -2310,7 +2430,7 @@
                   "indent": 1,
                   "parameters": [
                     3,
-                    2
+                    1
                   ]
                 },
                 {
@@ -2347,17 +2467,7 @@
                   "parameters": []
                 },
                 {
-                  "code": 0,
-                  "indent": 2,
-                  "parameters": []
-                },
-                {
                   "code": 412,
-                  "indent": 1,
-                  "parameters": []
-                },
-                {
-                  "code": 0,
                   "indent": 1,
                   "parameters": []
                 },
@@ -2368,11 +2478,6 @@
                 },
                 {
                   "code": 115,
-                  "indent": 1,
-                  "parameters": []
-                },
-                {
-                  "code": 0,
                   "indent": 1,
                   "parameters": []
                 },
@@ -2502,6 +2607,305 @@
                   ]
                 },
                 {
+                  "code": 230,
+                  "indent": 0,
+                  "parameters": [
+                    15
+                  ]
+                },
+                {
+                  "code": 205,
+                  "indent": 0,
+                  "parameters": [
+                    10,
+                    {
+                      "repeat": false,
+                      "skippable": false,
+                      "wait": false,
+                      "list": [
+                        {
+                          "code": 45,
+                          "parameters": [
+                            "this.locateToCharacter($gamePlayer._followers.follower(3)), this._direction = 6"
+                          ]
+                        },
+                        {
+                          "code": 40,
+                          "parameters": []
+                        },
+                        {
+                          "code": 18,
+                          "parameters": []
+                        },
+                        {
+                          "code": 35,
+                          "parameters": []
+                        },
+                        {
+                          "code": 45,
+                          "parameters": [
+                            "this.goTo(this.x - 10.5, this.y.clamp(5, 7))"
+                          ]
+                        },
+                        {
+                          "code": 0,
+                          "parameters": []
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "code": 505,
+                  "indent": 0,
+                  "parameters": [
+                    {
+                      "code": 45,
+                      "parameters": [
+                        "this.locateToCharacter($gamePlayer._followers.follower(3)), this._direction = 6"
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "code": 505,
+                  "indent": 0,
+                  "parameters": [
+                    {
+                      "code": 40,
+                      "parameters": []
+                    }
+                  ]
+                },
+                {
+                  "code": 505,
+                  "indent": 0,
+                  "parameters": [
+                    {
+                      "code": 18,
+                      "parameters": []
+                    }
+                  ]
+                },
+                {
+                  "code": 505,
+                  "indent": 0,
+                  "parameters": [
+                    {
+                      "code": 35,
+                      "parameters": []
+                    }
+                  ]
+                },
+                {
+                  "code": 505,
+                  "indent": 0,
+                  "parameters": [
+                    {
+                      "code": 45,
+                      "parameters": [
+                        "this.goTo(this.x - 10.5, this.y.clamp(5, 7))"
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "code": 205,
+                  "indent": 0,
+                  "parameters": [
+                    9,
+                    {
+                      "repeat": false,
+                      "skippable": false,
+                      "wait": false,
+                      "list": [
+                        {
+                          "code": 45,
+                          "parameters": [
+                            "this.locateToCharacter($gamePlayer._followers.follower(1)), this._direction = 6"
+                          ]
+                        },
+                        {
+                          "code": 40,
+                          "parameters": []
+                        },
+                        {
+                          "code": 18,
+                          "parameters": []
+                        },
+                        {
+                          "code": 35,
+                          "parameters": []
+                        },
+                        {
+                          "code": 45,
+                          "parameters": [
+                            "this.goTo(this.x - 10.5, this.y.clamp(5, 7))"
+                          ]
+                        },
+                        {
+                          "code": 0,
+                          "parameters": []
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "code": 505,
+                  "indent": 0,
+                  "parameters": [
+                    {
+                      "code": 45,
+                      "parameters": [
+                        "this.locateToCharacter($gamePlayer._followers.follower(1)), this._direction = 6"
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "code": 505,
+                  "indent": 0,
+                  "parameters": [
+                    {
+                      "code": 40,
+                      "parameters": []
+                    }
+                  ]
+                },
+                {
+                  "code": 505,
+                  "indent": 0,
+                  "parameters": [
+                    {
+                      "code": 18,
+                      "parameters": []
+                    }
+                  ]
+                },
+                {
+                  "code": 505,
+                  "indent": 0,
+                  "parameters": [
+                    {
+                      "code": 35,
+                      "parameters": []
+                    }
+                  ]
+                },
+                {
+                  "code": 505,
+                  "indent": 0,
+                  "parameters": [
+                    {
+                      "code": 45,
+                      "parameters": [
+                        "this.goTo(this.x - 10.5, this.y.clamp(5, 7))"
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "code": 230,
+                  "indent": 0,
+                  "parameters": [
+                    1
+                  ]
+                },
+                {
+                  "code": 216,
+                  "indent": 0,
+                  "parameters": [
+                    1
+                  ]
+                },
+                {
+                  "code": 230,
+                  "indent": 0,
+                  "parameters": [
+                    3
+                  ]
+                },
+                {
+                  "code": 205,
+                  "indent": 0,
+                  "parameters": [
+                    -1,
+                    {
+                      "repeat": false,
+                      "skippable": false,
+                      "wait": false,
+                      "list": [
+                        {
+                          "code": 45,
+                          "parameters": [
+                            "this.goTo(this.x - 10.5, this.y.clamp(5, 7))"
+                          ]
+                        },
+                        {
+                          "code": 0,
+                          "parameters": []
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "code": 505,
+                  "indent": 0,
+                  "parameters": [
+                    {
+                      "code": 45,
+                      "parameters": [
+                        "this.goTo(this.x - 10.5, this.y.clamp(5, 7))"
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "code": 205,
+                  "indent": 0,
+                  "parameters": [
+                    14,
+                    {
+                      "repeat": false,
+                      "skippable": false,
+                      "wait": false,
+                      "list": [
+                        {
+                          "code": 45,
+                          "parameters": [
+                            "this.goTo(this.x - 10.5, this.y.clamp(5, 7))"
+                          ]
+                        },
+                        {
+                          "code": 0,
+                          "parameters": []
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "code": 505,
+                  "indent": 0,
+                  "parameters": [
+                    {
+                      "code": 45,
+                      "parameters": [
+                        "this.goTo(this.x - 10.5, this.y.clamp(5, 7))"
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "code": 230,
+                  "indent": 0,
+                  "parameters": [
+                    71
+                  ]
+                },
+                {
                   "code": 0,
                   "indent": 0,
                   "parameters": []
@@ -2519,13 +2923,14 @@
                 "skippable": false,
                 "wait": false
               },
-              "moveSpeed": 3,
+              "moveSpeed": 4,
               "moveType": 0,
               "priorityType": 1,
               "stepAnime": false,
               "through": false,
               "trigger": 0,
-              "walkAnime": true
+              "walkAnime": true,
+              "eeTransparentStart": false
             }
           ],
           "x": 35,
@@ -2562,559 +2967,25 @@
           "key": "14:0",
           "eventId": 14,
           "pageIndex": 0,
-          "uid": 21,
+          "uid": 25,
           "rowType": "char",
           "rowKey": "char:-1",
           "charId": -1,
           "code": 205,
           "wait": 0
+        },
+        {
+          "key": "14:0",
+          "eventId": 14,
+          "pageIndex": 0,
+          "uid": 26,
+          "rowType": "char",
+          "rowKey": "char:14",
+          "charId": 14,
+          "code": 205,
+          "wait": 0
         }
       ]
-    },
-    {
-      "frame": 120,
-      "eventId": 14,
-      "x": 35,
-      "y": 7,
-      "realX": 35,
-      "realY": 7,
-      "dir": 4,
-      "hash": "e6347ecd",
-      "primitiveFlags": {
-        "_templateId": 0,
-        "_templateEvent": null,
-        "_override": false,
-        "_x": 35,
-        "_y": 7,
-        "_realX": 35,
-        "_realY": 7,
-        "_moveSpeed": 3,
-        "_moveFrequency": 3,
-        "_opacity": 255,
-        "_blendMode": 0,
-        "_direction": 4,
-        "_pattern": 0,
-        "_priorityType": 1,
-        "_tileId": 0,
-        "_characterName": "characters3",
-        "_characterIndex": 4,
-        "_isObjectCharacter": null,
-        "_walkAnime": true,
-        "_stepAnime": false,
-        "_directionFix": false,
-        "_through": false,
-        "_transparent": false,
-        "_bushDepth": 0,
-        "_animationId": 0,
-        "_balloonId": 0,
-        "_animationPlaying": false,
-        "_balloonPlaying": false,
-        "_animationCount": 0,
-        "_stopCount": 120,
-        "_jumpCount": 0,
-        "_jumpPeak": 0,
-        "_movementSuccess": true,
-        "_eventWidth": null,
-        "_eventHeight": null,
-        "_customExpansion": false,
-        "_frontDirection": 0,
-        "_size": [
-          285,
-          300
-        ],
-        "_customResource": null,
-        "_graphicColumns": 1,
-        "_graphicRows": 1,
-        "_additionalX": 88,
-        "_additionalY": 7,
-        "_customPriority": -1,
-        "_scaleX": 100,
-        "_scaleY": 100,
-        "_tileBlockWidth": 1,
-        "_tileBlockHeight": 1,
-        "_angle": 0,
-        "_originX": 0.5,
-        "_originY": 0.98,
-        "_absoluteX": null,
-        "_absoluteY": null,
-        "_maskFade": {
-          "active": false,
-          "dir": 0,
-          "queue": null,
-          "index": 0,
-          "frame": 0,
-          "stage": -1,
-          "hidden": false,
-          "endHold": 0
-        },
-        "_moveRouteForcing": false,
-        "_moveRoute": {
-          "list": [
-            {
-              "code": 0,
-              "parameters": []
-            }
-          ],
-          "repeat": true,
-          "skippable": false,
-          "wait": false
-        },
-        "_moveRouteIndex": 0,
-        "_originalMoveRoute": null,
-        "_originalMoveRouteIndex": 0,
-        "_waitCount": 0,
-        "_moveType": 0,
-        "_trigger": 0,
-        "_starting": false,
-        "_erased": false,
-        "_pageIndex": 0,
-        "_originalPattern": 0,
-        "_originalDirection": 4,
-        "_prelockDirection": 0,
-        "_locked": false,
-        "_mapId": 49,
-        "_eventId": 14,
-        "_interpreter": null,
-        "_expansionArea": [
-          0.5,
-          1,
-          1,
-          0.5
-        ],
-        "_halfMoveRangeMap": {
-          "-1,-4": true,
-          "-1,-3": true,
-          "-1,-2": true,
-          "-1,-1": true,
-          "-1,0": true,
-          "-1,1": true,
-          "0,-4": true,
-          "0,-3": true,
-          "0,-2": true,
-          "0,-1": true,
-          "0,0": true,
-          "0,1": true,
-          "1,-4": true,
-          "1,-3": true,
-          "1,-2": true,
-          "1,-1": true,
-          "1,0": true,
-          "1,1": true,
-          "2,-4": true,
-          "2,-3": true,
-          "2,-2": true,
-          "2,-1": true,
-          "2,0": true,
-          "2,1": true,
-          "3,-4": true,
-          "3,-3": true,
-          "3,-2": true,
-          "3,-1": true,
-          "3,0": true,
-          "3,1": true
-        },
-        "_triggerExpansion": false,
-        "_important": false,
-        "_sizeBuffer": 0,
-        "_itemImageInfo": null,
-        "_enemySpriteInfo": null,
-        "_yuraInfo": [
-          12,
-          10,
-          0,
-          false
-        ],
-        "_cssRect": {
-          "x": 0,
-          "y": 288,
-          "width": 285,
-          "height": 300
-        },
-        "_setCss": true,
-        "_isAnimeFrame": false,
-        "_animeCountNum": 8083,
-        "_animeWait": 7,
-        "_yurayura": true,
-        "_lastPattern": 0,
-        "_eeScriptCondPagesScanData": {
-          "id": 14,
-          "name": "壁くん",
-          "note": "<CGShift:A,88,7><CGOrigin:A,50,98><cssRect:0,288,285,300><yura:12,10><range:[-0.5,-2],[-0.5,-1.5],[-0.5,-1],[-0.5,-0.5],[-0.5,0],[-0.5,0.5],[0,-2],[0,-1.5],[0,-1],[0,-0.5],[0,0],[0,0.5],[0.5,-2],[0.5,-1.5],[0.5,-1],[0.5,-0.5],[0.5,0],[0.5,0.5],[1,-2],[1,-1.5],[1,-1],[1,-0.5],[1,0],[1,0.5],[1.5,-2],[1.5,-1.5],[1.5,-1],[1.5,-0.5],[1.5,0],[1.5,0.5]>",
-          "pages": [
-            {
-              "conditions": {
-                "actorId": 1,
-                "actorValid": false,
-                "itemId": 1,
-                "itemValid": false,
-                "selfSwitchCh": "A",
-                "selfSwitchValid": false,
-                "switch1Id": 1,
-                "switch1Valid": false,
-                "switch2Id": 1,
-                "switch2Valid": false,
-                "variableId": 1,
-                "variableValid": false,
-                "variableValue": 0,
-                "scriptValid": false,
-                "scriptText": ""
-              },
-              "directionFix": false,
-              "image": {
-                "tileId": 0,
-                "characterName": "characters3",
-                "direction": 4,
-                "pattern": 0,
-                "characterIndex": 4
-              },
-              "list": [
-                {
-                  "code": 101,
-                  "indent": 0,
-                  "parameters": [
-                    "",
-                    0,
-                    0,
-                    2
-                  ]
-                },
-                {
-                  "code": 401,
-                  "indent": 0,
-                  "parameters": [
-                    "くちびるが"
-                  ]
-                },
-                {
-                  "code": 401,
-                  "indent": 0,
-                  "parameters": [
-                    "乾燥しちゃった"
-                  ]
-                },
-                {
-                  "code": 401,
-                  "indent": 0,
-                  "parameters": [
-                    "んだよな"
-                  ]
-                },
-                {
-                  "code": 101,
-                  "indent": 0,
-                  "parameters": [
-                    "",
-                    0,
-                    0,
-                    2
-                  ]
-                },
-                {
-                  "code": 401,
-                  "indent": 0,
-                  "parameters": [
-                    "この自慢の"
-                  ]
-                },
-                {
-                  "code": 401,
-                  "indent": 0,
-                  "parameters": [
-                    "くちびるが…"
-                  ]
-                },
-                {
-                  "code": 101,
-                  "indent": 0,
-                  "parameters": [
-                    "",
-                    0,
-                    0,
-                    2
-                  ]
-                },
-                {
-                  "code": 401,
-                  "indent": 0,
-                  "parameters": [
-                    "なので、ここを"
-                  ]
-                },
-                {
-                  "code": 401,
-                  "indent": 0,
-                  "parameters": [
-                    "通すわけには"
-                  ]
-                },
-                {
-                  "code": 401,
-                  "indent": 0,
-                  "parameters": [
-                    "いかないよ"
-                  ]
-                },
-                {
-                  "code": 111,
-                  "indent": 0,
-                  "parameters": [
-                    8,
-                    52
-                  ]
-                },
-                {
-                  "code": 104,
-                  "indent": 1,
-                  "parameters": [
-                    3,
-                    2
-                  ]
-                },
-                {
-                  "code": 111,
-                  "indent": 1,
-                  "parameters": [
-                    1,
-                    3,
-                    0,
-                    52,
-                    5
-                  ]
-                },
-                {
-                  "code": 101,
-                  "indent": 2,
-                  "parameters": [
-                    "",
-                    0,
-                    0,
-                    2
-                  ]
-                },
-                {
-                  "code": 401,
-                  "indent": 2,
-                  "parameters": [
-                    "いらねぇ"
-                  ]
-                },
-                {
-                  "code": 115,
-                  "indent": 2,
-                  "parameters": []
-                },
-                {
-                  "code": 0,
-                  "indent": 2,
-                  "parameters": []
-                },
-                {
-                  "code": 412,
-                  "indent": 1,
-                  "parameters": []
-                },
-                {
-                  "code": 0,
-                  "indent": 1,
-                  "parameters": []
-                },
-                {
-                  "code": 411,
-                  "indent": 0,
-                  "parameters": []
-                },
-                {
-                  "code": 115,
-                  "indent": 1,
-                  "parameters": []
-                },
-                {
-                  "code": 0,
-                  "indent": 1,
-                  "parameters": []
-                },
-                {
-                  "code": 412,
-                  "indent": 0,
-                  "parameters": []
-                },
-                {
-                  "code": 101,
-                  "indent": 0,
-                  "parameters": [
-                    "",
-                    0,
-                    0,
-                    2
-                  ]
-                },
-                {
-                  "code": 401,
-                  "indent": 0,
-                  "parameters": [
-                    "ほう…中々の"
-                  ]
-                },
-                {
-                  "code": 401,
-                  "indent": 0,
-                  "parameters": [
-                    "リップクリームだ"
-                  ]
-                },
-                {
-                  "code": 101,
-                  "indent": 0,
-                  "parameters": [
-                    "",
-                    0,
-                    0,
-                    2
-                  ]
-                },
-                {
-                  "code": 401,
-                  "indent": 0,
-                  "parameters": [
-                    "全部使いきって"
-                  ]
-                },
-                {
-                  "code": 401,
-                  "indent": 0,
-                  "parameters": [
-                    "しまったよ"
-                  ]
-                },
-                {
-                  "code": 101,
-                  "indent": 0,
-                  "parameters": [
-                    "",
-                    0,
-                    0,
-                    2
-                  ]
-                },
-                {
-                  "code": 401,
-                  "indent": 0,
-                  "parameters": [
-                    "でも、これで"
-                  ]
-                },
-                {
-                  "code": 401,
-                  "indent": 0,
-                  "parameters": [
-                    "自慢のくちびるが"
-                  ]
-                },
-                {
-                  "code": 401,
-                  "indent": 0,
-                  "parameters": [
-                    "戻ってきた…"
-                  ]
-                },
-                {
-                  "code": 101,
-                  "indent": 0,
-                  "parameters": [
-                    "",
-                    0,
-                    0,
-                    2
-                  ]
-                },
-                {
-                  "code": 401,
-                  "indent": 0,
-                  "parameters": [
-                    "やった～ｗ"
-                  ]
-                },
-                {
-                  "code": 101,
-                  "indent": 0,
-                  "parameters": [
-                    "",
-                    0,
-                    0,
-                    2
-                  ]
-                },
-                {
-                  "code": 401,
-                  "indent": 0,
-                  "parameters": [
-                    "通して"
-                  ]
-                },
-                {
-                  "code": 401,
-                  "indent": 0,
-                  "parameters": [
-                    "あげよう"
-                  ]
-                },
-                {
-                  "code": 0,
-                  "indent": 0,
-                  "parameters": []
-                }
-              ],
-              "moveFrequency": 3,
-              "moveRoute": {
-                "list": [
-                  {
-                    "code": 0,
-                    "parameters": []
-                  }
-                ],
-                "repeat": true,
-                "skippable": false,
-                "wait": false
-              },
-              "moveSpeed": 3,
-              "moveType": 0,
-              "priorityType": 1,
-              "stepAnime": false,
-              "through": false,
-              "trigger": 0,
-              "walkAnime": true
-            }
-          ],
-          "x": 35,
-          "y": 7,
-          "meta": {
-            "CGShift": "A,88,7",
-            "CGOrigin": "A,50,98",
-            "cssRect": "0,288,285,300",
-            "yura": "12,10",
-            "range": "[-0.5,-2],[-0.5,-1.5],[-0.5,-1],[-0.5,-0.5],[-0.5,0],[-0.5,0.5],[0,-2],[0,-1.5],[0,-1],[0,-0.5],[0,0],[0,0.5],[0.5,-2],[0.5,-1.5],[0.5,-1],[0.5,-0.5],[0.5,0],[0.5,0.5],[1,-2],[1,-1.5],[1,-1],[1,-0.5],[1,0],[1,0.5],[1.5,-2],[1.5,-1.5],[1.5,-1],[1.5,-0.5],[1.5,0],[1.5,0.5]"
-          },
-          "metaArray": {
-            "CGShift": [
-              "A,88,7"
-            ],
-            "CGOrigin": [
-              "A,50,98"
-            ],
-            "cssRect": [
-              "0,288,285,300"
-            ],
-            "yura": [
-              "12,10"
-            ],
-            "range": [
-              "[-0.5,-2],[-0.5,-1.5],[-0.5,-1],[-0.5,-0.5],[-0.5,0],[-0.5,0.5],[0,-2],[0,-1.5],[0,-1],[0,-0.5],[0,0],[0,0.5],[0.5,-2],[0.5,-1.5],[0.5,-1],[0.5,-0.5],[0.5,0],[0.5,0.5],[1,-2],[1,-1.5],[1,-1],[1,-0.5],[1,0],[1,0.5],[1.5,-2],[1.5,-1.5],[1.5,-1],[1.5,-0.5],[1.5,0],[1.5,0.5]"
-            ]
-          }
-        },
-        "_eeHasDynamicScriptCondPages": false
-      },
-      "sourceRows": []
     }
   ]
 }

@@ -663,9 +663,12 @@ const _createOutlineFilter = function(w, h, bw, ww) {
         this._frameAnimCounter = 0;
         this._noYura = this._yurayura = false;
         if (this.sprite()) this.sprite()._yuraInfo = this._yuraInfo || [];
-        this._walkAnime = this._lastInfoForFA[0];
-        this._stepAnime = this._lastInfoForFA[1];
-        this._directionFix = this._lastInfoForFA[2];
+        var lastInfo = this._lastInfoForFA;
+        if (lastInfo && lastInfo.length >= 3) {
+            this._walkAnime = lastInfo[0];
+            this._stepAnime = lastInfo[1];
+            this._directionFix = lastInfo[2];
+        }
         this._lastInfoForFA = null;
         this._stopCount = 0;
         this._patternFix = true; // 最終フレームを維持

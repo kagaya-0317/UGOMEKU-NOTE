@@ -35,6 +35,7 @@ var $plugins =
 {"name":"KNH_MySetting","status":true,"description":"kagayaセッティング","parameters":{}},
 {"name":"KNH_ZXC_Setting","status":true,"description":"ZXCセッティング","parameters":{}},
 {"name":"KNH_ZXC_System","status":true,"description":"ZXCシステム","parameters":{}},
+{"name":"KNH_ZXC_PopupPortrait","status":true,"description":"Character portraits for popup message bubbles.","parameters":{}},
 {"name":"KNH_ZXC_Battle","status":true,"description":"ZXC戦闘","parameters":{}},
 {"name":"KNH_ZXC_Menu","status":true,"description":"ZXCメニュー画面系","parameters":{}},
 {"name":"KNH_ZXC_Data","status":true,"description":"ZXCデータ管理","parameters":{}},

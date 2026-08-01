@@ -1,0 +1,603 @@
+{
+  "plugin": "KNH_ZXC_EventEditor",
+  "version": "0.1.0",
+  "savedAt": "2026-07-26T20:17:27.508Z",
+  "tracks": [
+    {
+      "eventId": 3,
+      "pageIndex": 0,
+      "list": [
+        {
+          "code": 250,
+          "indent": 0,
+          "parameters": [
+            {
+              "name": "Switch2",
+              "volume": 90,
+              "pitch": 100,
+              "pan": 0
+            }
+          ]
+        },
+        {
+          "code": 205,
+          "indent": 0,
+          "parameters": [
+            0,
+            {
+              "list": [
+                {
+                  "code": 36
+                },
+                {
+                  "code": 17
+                },
+                {
+                  "code": 15,
+                  "parameters": [
+                    3
+                  ]
+                },
+                {
+                  "code": 18
+                },
+                {
+                  "code": 15,
+                  "parameters": [
+                    3
+                  ]
+                },
+                {
+                  "code": 19,
+                  "indent": null
+                },
+                {
+                  "code": 0
+                }
+              ],
+              "repeat": false,
+              "skippable": false,
+              "wait": true
+            }
+          ]
+        },
+        {
+          "code": 505,
+          "indent": 0,
+          "parameters": [
+            {
+              "code": 36
+            }
+          ]
+        },
+        {
+          "code": 505,
+          "indent": 0,
+          "parameters": [
+            {
+              "code": 17
+            }
+          ]
+        },
+        {
+          "code": 505,
+          "indent": 0,
+          "parameters": [
+            {
+              "code": 15,
+              "parameters": [
+                3
+              ]
+            }
+          ]
+        },
+        {
+          "code": 505,
+          "indent": 0,
+          "parameters": [
+            {
+              "code": 18
+            }
+          ]
+        },
+        {
+          "code": 505,
+          "indent": 0,
+          "parameters": [
+            {
+              "code": 15,
+              "parameters": [
+                3
+              ]
+            }
+          ]
+        },
+        {
+          "code": 505,
+          "indent": 0,
+          "parameters": [
+            {
+              "code": 19,
+              "indent": null
+            }
+          ]
+        },
+        {
+          "code": 355,
+          "indent": 0,
+          "parameters": [
+            "$gameMap.scrollCameraTo(16, 22, 60);"
+          ]
+        },
+        {
+          "code": 230,
+          "indent": 0,
+          "parameters": [
+            80
+          ]
+        },
+        {
+          "code": 205,
+          "indent": 0,
+          "parameters": [
+            1,
+            {
+              "repeat": false,
+              "skippable": false,
+              "wait": false,
+              "list": [
+                {
+                  "code": 45,
+                  "parameters": [
+                    "this.startMaskFadeIn(90)"
+                  ]
+                },
+                {
+                  "code": 40,
+                  "parameters": []
+                },
+                {
+                  "code": 0,
+                  "parameters": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "code": 505,
+          "indent": 0,
+          "parameters": [
+            {
+              "code": 45,
+              "parameters": [
+                "this.startMaskFadeIn(90)"
+              ]
+            }
+          ]
+        },
+        {
+          "code": 505,
+          "indent": 0,
+          "parameters": [
+            {
+              "code": 40,
+              "parameters": []
+            }
+          ]
+        },
+        {
+          "code": 230,
+          "indent": 0,
+          "parameters": [
+            93
+          ]
+        },
+        {
+          "code": 250,
+          "indent": 0,
+          "parameters": [
+            {
+              "name": "00_ahan",
+              "volume": 90,
+              "pitch": 100,
+              "pan": 0
+            }
+          ]
+        },
+        {
+          "code": 122,
+          "indent": 0,
+          "parameters": [
+            56,
+            56,
+            0,
+            0,
+            1
+          ]
+        },
+        {
+          "code": 230,
+          "indent": 0,
+          "parameters": [
+            57
+          ]
+        },
+        {
+          "code": 355,
+          "indent": 0,
+          "parameters": [
+            "$gameMap.scrollCamera(0, 0, 60);"
+          ]
+        },
+        {
+          "code": 230,
+          "indent": 0,
+          "parameters": [
+            60
+          ]
+        },
+        {
+          "code": 205,
+          "indent": 0,
+          "parameters": [
+            -1,
+            {
+              "list": [
+                {
+                  "code": 16,
+                  "indent": null
+                },
+                {
+                  "code": 0
+                }
+              ],
+              "repeat": false,
+              "skippable": false,
+              "wait": true
+            }
+          ]
+        },
+        {
+          "code": 505,
+          "indent": 0,
+          "parameters": [
+            {
+              "code": 16,
+              "indent": null
+            }
+          ]
+        },
+        {
+          "code": 0,
+          "indent": 0,
+          "parameters": []
+        }
+      ],
+      "timeline": [
+        {
+          "uid": 1,
+          "frame": 0,
+          "eventId": 3,
+          "pageIndex": 0,
+          "command": {
+            "code": 250,
+            "indent": 0,
+            "parameters": [
+              {
+                "name": "Switch2",
+                "volume": 90,
+                "pitch": 100,
+                "pan": 0
+              }
+            ]
+          },
+          "wait": 0,
+          "rowType": "main",
+          "rowKey": "main",
+          "charId": null,
+          "isComment": false,
+          "commentLines": null,
+          "isMemo": false,
+          "memoSize": "S",
+          "memoText": "",
+          "isMessage": false,
+          "messageLines": null,
+          "messageExt": null,
+          "isScrollMessage": false,
+          "scrollLines": null,
+          "isScript": false,
+          "scriptLines": null
+        },
+        {
+          "uid": 2,
+          "frame": 0,
+          "eventId": 3,
+          "pageIndex": 0,
+          "command": {
+            "code": 205,
+            "indent": 0,
+            "parameters": [
+              0,
+              {
+                "list": [
+                  {
+                    "code": 36
+                  },
+                  {
+                    "code": 17
+                  },
+                  {
+                    "code": 15,
+                    "parameters": [
+                      3
+                    ]
+                  },
+                  {
+                    "code": 18
+                  },
+                  {
+                    "code": 15,
+                    "parameters": [
+                      3
+                    ]
+                  },
+                  {
+                    "code": 19,
+                    "indent": null
+                  },
+                  {
+                    "code": 0
+                  }
+                ],
+                "repeat": false,
+                "skippable": false,
+                "wait": true
+              }
+            ]
+          },
+          "wait": 10,
+          "rowType": "char",
+          "rowKey": "char:0",
+          "charId": 0,
+          "isComment": false,
+          "commentLines": null,
+          "isMemo": false,
+          "memoSize": "S",
+          "memoText": "",
+          "isMessage": false,
+          "messageLines": null,
+          "messageExt": null,
+          "isScrollMessage": false,
+          "scrollLines": null,
+          "isScript": false,
+          "scriptLines": null
+        },
+        {
+          "uid": 3,
+          "frame": 10,
+          "eventId": 3,
+          "pageIndex": 0,
+          "command": {
+            "code": 355,
+            "indent": 0,
+            "parameters": [
+              "$gameMap.scrollCameraTo(16, 22, 60);"
+            ]
+          },
+          "wait": 0,
+          "rowType": "main",
+          "rowKey": "main",
+          "charId": null,
+          "isComment": false,
+          "commentLines": null,
+          "isMemo": false,
+          "memoSize": "S",
+          "memoText": "",
+          "isMessage": false,
+          "messageLines": null,
+          "messageExt": null,
+          "isScrollMessage": false,
+          "scrollLines": null,
+          "isScript": true,
+          "scriptLines": [
+            "$gameMap.scrollCameraTo(16, 22, 60);"
+          ]
+        },
+        {
+          "uid": 4,
+          "frame": 90,
+          "eventId": 3,
+          "pageIndex": 0,
+          "command": {
+            "code": 205,
+            "indent": 0,
+            "parameters": [
+              1,
+              {
+                "repeat": false,
+                "skippable": false,
+                "wait": false,
+                "list": [
+                  {
+                    "code": 45,
+                    "parameters": [
+                      "this.startMaskFadeIn(90)"
+                    ]
+                  },
+                  {
+                    "code": 40,
+                    "parameters": []
+                  },
+                  {
+                    "code": 0,
+                    "parameters": []
+                  }
+                ]
+              }
+            ]
+          },
+          "wait": 0,
+          "rowType": "char",
+          "rowKey": "char:1",
+          "charId": 1,
+          "isComment": false,
+          "commentLines": null,
+          "isMemo": false,
+          "memoSize": "S",
+          "memoText": "",
+          "isMessage": false,
+          "messageLines": null,
+          "messageExt": null,
+          "isScrollMessage": false,
+          "scrollLines": null,
+          "isScript": false,
+          "scriptLines": null
+        },
+        {
+          "uid": 5,
+          "frame": 183,
+          "eventId": 3,
+          "pageIndex": 0,
+          "command": {
+            "code": 250,
+            "indent": 0,
+            "parameters": [
+              {
+                "name": "00_ahan",
+                "volume": 90,
+                "pitch": 100,
+                "pan": 0
+              }
+            ]
+          },
+          "wait": 0,
+          "rowType": "main",
+          "rowKey": "main",
+          "charId": null,
+          "isComment": false,
+          "commentLines": null,
+          "isMemo": false,
+          "memoSize": "S",
+          "memoText": "",
+          "isMessage": false,
+          "messageLines": null,
+          "messageExt": null,
+          "isScrollMessage": false,
+          "scrollLines": null,
+          "isScript": false,
+          "scriptLines": null
+        },
+        {
+          "uid": 6,
+          "frame": 183,
+          "eventId": 3,
+          "pageIndex": 0,
+          "command": {
+            "code": 122,
+            "indent": 0,
+            "parameters": [
+              56,
+              56,
+              0,
+              0,
+              1
+            ]
+          },
+          "wait": 0,
+          "rowType": "main",
+          "rowKey": "main",
+          "charId": null,
+          "isComment": false,
+          "commentLines": null,
+          "isMemo": false,
+          "memoSize": "S",
+          "memoText": "",
+          "isMessage": false,
+          "messageLines": null,
+          "messageExt": null,
+          "isScrollMessage": false,
+          "scrollLines": null,
+          "isScript": false,
+          "scriptLines": null
+        },
+        {
+          "uid": 7,
+          "frame": 240,
+          "eventId": 3,
+          "pageIndex": 0,
+          "command": {
+            "code": 355,
+            "indent": 0,
+            "parameters": [
+              "$gameMap.scrollCamera(0, 0, 60);"
+            ]
+          },
+          "wait": 0,
+          "rowType": "main",
+          "rowKey": "main",
+          "charId": null,
+          "isComment": false,
+          "commentLines": null,
+          "isMemo": false,
+          "memoSize": "S",
+          "memoText": "",
+          "isMessage": false,
+          "messageLines": null,
+          "messageExt": null,
+          "isScrollMessage": false,
+          "scrollLines": null,
+          "isScript": true,
+          "scriptLines": [
+            "$gameMap.scrollCamera(0, 0, 60);"
+          ]
+        },
+        {
+          "uid": 8,
+          "frame": 300,
+          "eventId": 3,
+          "pageIndex": 0,
+          "command": {
+            "code": 205,
+            "indent": 0,
+            "parameters": [
+              -1,
+              {
+                "list": [
+                  {
+                    "code": 16,
+                    "indent": null
+                  },
+                  {
+                    "code": 0
+                  }
+                ],
+                "repeat": false,
+                "skippable": false,
+                "wait": true
+              }
+            ]
+          },
+          "wait": 1,
+          "rowType": "char",
+          "rowKey": "char:-1",
+          "charId": -1,
+          "isComment": false,
+          "commentLines": null,
+          "isMemo": false,
+          "memoSize": "S",
+          "memoText": "",
+          "isMessage": false,
+          "messageLines": null,
+          "messageExt": null,
+          "isScrollMessage": false,
+          "scrollLines": null,
+          "isScript": false,
+          "scriptLines": null
+        }
+      ]
+    }
+  ],
+  "mode": "map",
+  "mapId": 52
+}

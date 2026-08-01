@@ -1,0 +1,1925 @@
+{
+  "plugin": "KNH_ZXC_EventEditor",
+  "version": "0.1.0",
+  "savedAt": "2026-08-01T08:48:12.339Z",
+  "tracks": [
+    {
+      "eventId": 4,
+      "pageIndex": 0,
+      "list": [
+        {
+          "code": 108,
+          "indent": 0,
+          "parameters": [
+            "====================================================="
+          ]
+        },
+        {
+          "code": 355,
+          "indent": 0,
+          "parameters": [
+            "TestReload.saveHere(\"モンスター城 罠2\");"
+          ]
+        },
+        {
+          "code": 108,
+          "indent": 0,
+          "parameters": [
+            "====================================================="
+          ]
+        },
+        {
+          "code": 230,
+          "indent": 0,
+          "parameters": [
+            59
+          ]
+        },
+        {
+          "code": 242,
+          "indent": 0,
+          "parameters": [
+            2
+          ]
+        },
+        {
+          "code": 205,
+          "indent": 0,
+          "parameters": [
+            -1,
+            {
+              "repeat": false,
+              "skippable": false,
+              "wait": true,
+              "list": [
+                {
+                  "code": 45,
+                  "parameters": [
+                    "this.goTo(7.5, 22)"
+                  ]
+                },
+                {
+                  "code": 0,
+                  "parameters": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "code": 505,
+          "indent": 0,
+          "parameters": [
+            {
+              "code": 45,
+              "parameters": [
+                "this.goTo(7.5, 22)"
+              ]
+            }
+          ]
+        },
+        {
+          "code": 230,
+          "indent": 0,
+          "parameters": [
+            60
+          ]
+        },
+        {
+          "code": 205,
+          "indent": 0,
+          "parameters": [
+            6,
+            {
+              "repeat": false,
+              "skippable": false,
+              "wait": false,
+              "list": [
+                {
+                  "code": 45,
+                  "parameters": [
+                    "this._additionalY = $gamePlayer.followers().follower(3)._additionalY;"
+                  ]
+                },
+                {
+                  "code": 45,
+                  "parameters": [
+                    "this.locateToCharacter($gamePlayer._followers.follower(3)), this._direction = 6"
+                  ]
+                },
+                {
+                  "code": 40,
+                  "parameters": []
+                },
+                {
+                  "code": 0,
+                  "parameters": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "code": 505,
+          "indent": 0,
+          "parameters": [
+            {
+              "code": 45,
+              "parameters": [
+                "this._additionalY = $gamePlayer.followers().follower(3)._additionalY;"
+              ]
+            }
+          ]
+        },
+        {
+          "code": 505,
+          "indent": 0,
+          "parameters": [
+            {
+              "code": 45,
+              "parameters": [
+                "this.locateToCharacter($gamePlayer._followers.follower(3)), this._direction = 6"
+              ]
+            }
+          ]
+        },
+        {
+          "code": 505,
+          "indent": 0,
+          "parameters": [
+            {
+              "code": 40,
+              "parameters": []
+            }
+          ]
+        },
+        {
+          "code": 205,
+          "indent": 0,
+          "parameters": [
+            5,
+            {
+              "repeat": false,
+              "skippable": false,
+              "wait": false,
+              "list": [
+                {
+                  "code": 45,
+                  "parameters": [
+                    "this._additionalY = $gamePlayer.followers().follower(1)._additionalY;"
+                  ]
+                },
+                {
+                  "code": 45,
+                  "parameters": [
+                    "this.locateToCharacter($gamePlayer._followers.follower(1)), this._direction = 6"
+                  ]
+                },
+                {
+                  "code": 40,
+                  "parameters": []
+                },
+                {
+                  "code": 0,
+                  "parameters": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "code": 505,
+          "indent": 0,
+          "parameters": [
+            {
+              "code": 45,
+              "parameters": [
+                "this._additionalY = $gamePlayer.followers().follower(1)._additionalY;"
+              ]
+            }
+          ]
+        },
+        {
+          "code": 505,
+          "indent": 0,
+          "parameters": [
+            {
+              "code": 45,
+              "parameters": [
+                "this.locateToCharacter($gamePlayer._followers.follower(1)), this._direction = 6"
+              ]
+            }
+          ]
+        },
+        {
+          "code": 505,
+          "indent": 0,
+          "parameters": [
+            {
+              "code": 40,
+              "parameters": []
+            }
+          ]
+        },
+        {
+          "code": 230,
+          "indent": 0,
+          "parameters": [
+            2
+          ]
+        },
+        {
+          "code": 216,
+          "indent": 0,
+          "parameters": [
+            0
+          ]
+        },
+        {
+          "code": 230,
+          "indent": 0,
+          "parameters": [
+            20
+          ]
+        },
+        {
+          "code": 213,
+          "indent": 0,
+          "parameters": [
+            -1,
+            11,
+            false
+          ]
+        },
+        {
+          "code": 213,
+          "indent": 0,
+          "parameters": [
+            5,
+            11,
+            false
+          ]
+        },
+        {
+          "code": 213,
+          "indent": 0,
+          "parameters": [
+            6,
+            11,
+            false
+          ]
+        },
+        {
+          "code": 122,
+          "indent": 0,
+          "parameters": [
+            14,
+            14,
+            0,
+            0,
+            1
+          ]
+        },
+        {
+          "code": 355,
+          "indent": 0,
+          "parameters": [
+            "$gameSystem.setMessagePopupFree(408, 0)"
+          ]
+        },
+        {
+          "code": 355,
+          "indent": 0,
+          "parameters": [
+            "$gameMessage._tailDir = 5"
+          ]
+        },
+        {
+          "code": 101,
+          "indent": 0,
+          "parameters": [
+            "",
+            0,
+            0,
+            2
+          ]
+        },
+        {
+          "code": 401,
+          "indent": 0,
+          "parameters": [
+            "ギャハハハ"
+          ]
+        },
+        {
+          "code": 401,
+          "indent": 0,
+          "parameters": [
+            "ハ！！！"
+          ]
+        },
+        {
+          "code": 230,
+          "indent": 0,
+          "parameters": [
+            24
+          ]
+        },
+        {
+          "code": 101,
+          "indent": 0,
+          "parameters": [
+            "",
+            0,
+            0,
+            2
+          ]
+        },
+        {
+          "code": 401,
+          "indent": 0,
+          "parameters": [
+            "よくノコノコと"
+          ]
+        },
+        {
+          "code": 401,
+          "indent": 0,
+          "parameters": [
+            "やってきたなァ！！　　　　"
+          ]
+        },
+        {
+          "code": 101,
+          "indent": 0,
+          "parameters": [
+            "",
+            0,
+            0,
+            2
+          ]
+        },
+        {
+          "code": 401,
+          "indent": 0,
+          "parameters": [
+            "この「地獄の残酷圧縮"
+          ]
+        },
+        {
+          "code": 401,
+          "indent": 0,
+          "parameters": [
+            "人生終了部屋」へ！"
+          ]
+        },
+        {
+          "code": 101,
+          "indent": 0,
+          "parameters": [
+            "",
+            0,
+            0,
+            2
+          ]
+        },
+        {
+          "code": 401,
+          "indent": 0,
+          "parameters": [
+            "本当の終わりを"
+          ]
+        },
+        {
+          "code": 401,
+          "indent": 0,
+          "parameters": [
+            "見せてやろう！"
+          ]
+        },
+        {
+          "code": 230,
+          "indent": 0,
+          "parameters": [
+            24
+          ]
+        },
+        {
+          "code": 101,
+          "indent": 0,
+          "parameters": [
+            "",
+            0,
+            0,
+            2
+          ]
+        },
+        {
+          "code": 401,
+          "indent": 0,
+          "parameters": [
+            "ポチッとな！"
+          ]
+        },
+        {
+          "code": 205,
+          "indent": 0,
+          "parameters": [
+            7,
+            {
+              "repeat": false,
+              "skippable": false,
+              "wait": false,
+              "list": [
+                {
+                  "code": 29,
+                  "parameters": [
+                    1
+                  ]
+                },
+                {
+                  "code": 45,
+                  "parameters": [
+                    "this.startGatagata()"
+                  ]
+                },
+                {
+                  "code": 45,
+                  "parameters": [
+                    "this.goTo(10, 10.5)"
+                  ],
+                  "_eeTileWait": 320
+                },
+                {
+                  "code": 45,
+                  "parameters": [
+                    "this.goTo(10, 10.5)"
+                  ]
+                },
+                {
+                  "code": 0,
+                  "parameters": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "code": 505,
+          "indent": 0,
+          "parameters": [
+            {
+              "code": 29,
+              "parameters": [
+                1
+              ]
+            }
+          ]
+        },
+        {
+          "code": 505,
+          "indent": 0,
+          "parameters": [
+            {
+              "code": 45,
+              "parameters": [
+                "this.startGatagata()"
+              ]
+            }
+          ]
+        },
+        {
+          "code": 505,
+          "indent": 0,
+          "parameters": [
+            {
+              "code": 45,
+              "parameters": [
+                "this.goTo(10, 10.5)"
+              ],
+              "_eeTileWait": 320
+            }
+          ]
+        },
+        {
+          "code": 505,
+          "indent": 0,
+          "parameters": [
+            {
+              "code": 45,
+              "parameters": [
+                "this.goTo(10, 10.5)"
+              ]
+            }
+          ]
+        },
+        {
+          "code": 230,
+          "indent": 0,
+          "parameters": [
+            60
+          ]
+        },
+        {
+          "code": 355,
+          "indent": 0,
+          "parameters": [
+            "$gameMap.scrollCamera(2.5, -8, 60)"
+          ]
+        },
+        {
+          "code": 230,
+          "indent": 0,
+          "parameters": [
+            150
+          ]
+        },
+        {
+          "code": 355,
+          "indent": 0,
+          "parameters": [
+            "$gameMap.scrollCamera(2.5, -3, 60)"
+          ]
+        },
+        {
+          "code": 230,
+          "indent": 0,
+          "parameters": [
+            89
+          ]
+        },
+        {
+          "code": 205,
+          "indent": 0,
+          "parameters": [
+            5,
+            {
+              "repeat": false,
+              "skippable": false,
+              "wait": false,
+              "list": [
+                {
+                  "code": 45,
+                  "parameters": [
+                    "this.startShiverX()"
+                  ]
+                },
+                {
+                  "code": 0,
+                  "parameters": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "code": 505,
+          "indent": 0,
+          "parameters": [
+            {
+              "code": 45,
+              "parameters": [
+                "this.startShiverX()"
+              ]
+            }
+          ]
+        },
+        {
+          "code": 230,
+          "indent": 0,
+          "parameters": [
+            1
+          ]
+        },
+        {
+          "code": 355,
+          "indent": 0,
+          "parameters": [
+            "$gameSystem.clearMessagePopupFree()"
+          ]
+        },
+        {
+          "code": 356,
+          "indent": 0,
+          "parameters": [
+            "フキダシウィンドウ有効化 みぃー 1"
+          ]
+        },
+        {
+          "code": 355,
+          "indent": 0,
+          "parameters": [
+            "$gameMessage._tailDir = 2"
+          ]
+        },
+        {
+          "code": 101,
+          "indent": 0,
+          "parameters": [
+            "",
+            0,
+            0,
+            2
+          ]
+        },
+        {
+          "code": 401,
+          "indent": 0,
+          "parameters": [
+            "うわ〜！！"
+          ]
+        },
+        {
+          "code": 401,
+          "indent": 0,
+          "parameters": [
+            "天井が降りてきた！"
+          ]
+        },
+        {
+          "code": 101,
+          "indent": 0,
+          "parameters": [
+            "",
+            0,
+            0,
+            2
+          ]
+        },
+        {
+          "code": 401,
+          "indent": 0,
+          "parameters": [
+            "潰されちゃうよ〜！！"
+          ]
+        },
+        {
+          "code": 230,
+          "indent": 0,
+          "parameters": [
+            10
+          ]
+        },
+        {
+          "code": 355,
+          "indent": 0,
+          "parameters": [
+            "$gameMap.scrollCamera(0, 0, 30)"
+          ]
+        },
+        {
+          "code": 230,
+          "indent": 0,
+          "parameters": [
+            23
+          ]
+        },
+        {
+          "code": 205,
+          "indent": 0,
+          "parameters": [
+            7,
+            {
+              "repeat": false,
+              "skippable": false,
+              "wait": false,
+              "list": [
+                {
+                  "code": 45,
+                  "parameters": [
+                    "this.goTo(10, 19)"
+                  ],
+                  "_eeTileWait": 136
+                },
+                {
+                  "code": 0,
+                  "parameters": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "code": 505,
+          "indent": 0,
+          "parameters": [
+            {
+              "code": 45,
+              "parameters": [
+                "this.goTo(10, 19)"
+              ],
+              "_eeTileWait": 136
+            }
+          ]
+        },
+        {
+          "code": 230,
+          "indent": 0,
+          "parameters": [
+            21
+          ]
+        },
+        {
+          "code": 205,
+          "indent": 0,
+          "parameters": [
+            6,
+            {
+              "repeat": false,
+              "skippable": false,
+              "wait": false,
+              "list": [
+                {
+                  "code": 39,
+                  "parameters": []
+                },
+                {
+                  "code": 0,
+                  "parameters": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "code": 505,
+          "indent": 0,
+          "parameters": [
+            {
+              "code": 39,
+              "parameters": []
+            }
+          ]
+        },
+        {
+          "code": 205,
+          "indent": 0,
+          "parameters": [
+            5,
+            {
+              "repeat": false,
+              "skippable": false,
+              "wait": false,
+              "list": [
+                {
+                  "code": 39,
+                  "parameters": []
+                },
+                {
+                  "code": 0,
+                  "parameters": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "code": 505,
+          "indent": 0,
+          "parameters": [
+            {
+              "code": 39,
+              "parameters": []
+            }
+          ]
+        },
+        {
+          "code": 216,
+          "indent": 0,
+          "parameters": [
+            0
+          ]
+        },
+        {
+          "code": 122,
+          "indent": 0,
+          "parameters": [
+            58,
+            58,
+            0,
+            0,
+            1
+          ]
+        },
+        {
+          "code": 0,
+          "indent": 0,
+          "parameters": []
+        }
+      ],
+      "timeline": [
+        {
+          "uid": 1,
+          "frame": 0,
+          "eventId": 4,
+          "pageIndex": 0,
+          "command": {
+            "code": 108,
+            "indent": 0,
+            "parameters": [
+              "====================================================="
+            ]
+          },
+          "wait": 0,
+          "rowType": "main",
+          "rowKey": "main",
+          "charId": null,
+          "isComment": true,
+          "commentLines": [
+            "====================================================="
+          ],
+          "isMemo": false,
+          "memoSize": "S",
+          "memoText": "",
+          "isMessage": false,
+          "messageLines": null,
+          "messageExt": null,
+          "isScrollMessage": false,
+          "scrollLines": null,
+          "isScript": false,
+          "scriptLines": null
+        },
+        {
+          "uid": 2,
+          "frame": 0,
+          "eventId": 4,
+          "pageIndex": 0,
+          "command": {
+            "code": 355,
+            "indent": 0,
+            "parameters": [
+              "TestReload.saveHere(\"モンスター城 罠2\");"
+            ]
+          },
+          "wait": 0,
+          "rowType": "main",
+          "rowKey": "main",
+          "charId": null,
+          "isComment": false,
+          "commentLines": null,
+          "isMemo": false,
+          "memoSize": "S",
+          "memoText": "",
+          "isMessage": false,
+          "messageLines": null,
+          "messageExt": null,
+          "isScrollMessage": false,
+          "scrollLines": null,
+          "isScript": true,
+          "scriptLines": [
+            "TestReload.saveHere(\"モンスター城 罠2\");"
+          ]
+        },
+        {
+          "uid": 3,
+          "frame": 0,
+          "eventId": 4,
+          "pageIndex": 0,
+          "command": {
+            "code": 108,
+            "indent": 0,
+            "parameters": [
+              "====================================================="
+            ]
+          },
+          "wait": 0,
+          "rowType": "main",
+          "rowKey": "main",
+          "charId": null,
+          "isComment": true,
+          "commentLines": [
+            "====================================================="
+          ],
+          "isMemo": false,
+          "memoSize": "S",
+          "memoText": "",
+          "isMessage": false,
+          "messageLines": null,
+          "messageExt": null,
+          "isScrollMessage": false,
+          "scrollLines": null,
+          "isScript": false,
+          "scriptLines": null
+        },
+        {
+          "uid": 4,
+          "frame": 59,
+          "eventId": 4,
+          "pageIndex": 0,
+          "command": {
+            "code": 242,
+            "indent": 0,
+            "parameters": [
+              2
+            ]
+          },
+          "wait": 0,
+          "rowType": "main",
+          "rowKey": "main",
+          "charId": null,
+          "isComment": false,
+          "commentLines": null,
+          "isMemo": false,
+          "memoSize": "S",
+          "memoText": "",
+          "isMessage": false,
+          "messageLines": null,
+          "messageExt": null,
+          "isScrollMessage": false,
+          "scrollLines": null,
+          "isScript": false,
+          "scriptLines": null
+        },
+        {
+          "uid": 5,
+          "frame": 59,
+          "eventId": 4,
+          "pageIndex": 0,
+          "command": {
+            "code": 205,
+            "indent": 0,
+            "parameters": [
+              -1,
+              {
+                "repeat": false,
+                "skippable": false,
+                "wait": true,
+                "list": [
+                  {
+                    "code": 45,
+                    "parameters": [
+                      "this.goTo(7.5, 22)"
+                    ]
+                  },
+                  {
+                    "code": 0,
+                    "parameters": []
+                  }
+                ]
+              }
+            ]
+          },
+          "wait": 1,
+          "rowType": "char",
+          "rowKey": "char:-1",
+          "charId": -1,
+          "isComment": false,
+          "commentLines": null,
+          "isMemo": false,
+          "memoSize": "S",
+          "memoText": "",
+          "isMessage": false,
+          "messageLines": null,
+          "messageExt": null,
+          "isScrollMessage": false,
+          "scrollLines": null,
+          "isScript": false,
+          "scriptLines": null
+        },
+        {
+          "uid": 6,
+          "frame": 120,
+          "eventId": 4,
+          "pageIndex": 0,
+          "command": {
+            "code": 205,
+            "indent": 0,
+            "parameters": [
+              6,
+              {
+                "repeat": false,
+                "skippable": false,
+                "wait": false,
+                "list": [
+                  {
+                    "code": 45,
+                    "parameters": [
+                      "this._additionalY = $gamePlayer.followers().follower(3)._additionalY;"
+                    ]
+                  },
+                  {
+                    "code": 45,
+                    "parameters": [
+                      "this.locateToCharacter($gamePlayer._followers.follower(3)), this._direction = 6"
+                    ]
+                  },
+                  {
+                    "code": 40,
+                    "parameters": []
+                  },
+                  {
+                    "code": 0,
+                    "parameters": []
+                  }
+                ]
+              }
+            ]
+          },
+          "wait": 0,
+          "rowType": "char",
+          "rowKey": "char:6",
+          "charId": 6,
+          "isComment": false,
+          "commentLines": null,
+          "isMemo": false,
+          "memoSize": "S",
+          "memoText": "",
+          "isMessage": false,
+          "messageLines": null,
+          "messageExt": null,
+          "isScrollMessage": false,
+          "scrollLines": null,
+          "isScript": false,
+          "scriptLines": null
+        },
+        {
+          "uid": 7,
+          "frame": 120,
+          "eventId": 4,
+          "pageIndex": 0,
+          "command": {
+            "code": 205,
+            "indent": 0,
+            "parameters": [
+              5,
+              {
+                "repeat": false,
+                "skippable": false,
+                "wait": false,
+                "list": [
+                  {
+                    "code": 45,
+                    "parameters": [
+                      "this._additionalY = $gamePlayer.followers().follower(1)._additionalY;"
+                    ]
+                  },
+                  {
+                    "code": 45,
+                    "parameters": [
+                      "this.locateToCharacter($gamePlayer._followers.follower(1)), this._direction = 6"
+                    ]
+                  },
+                  {
+                    "code": 40,
+                    "parameters": []
+                  },
+                  {
+                    "code": 0,
+                    "parameters": []
+                  }
+                ]
+              }
+            ]
+          },
+          "wait": 0,
+          "rowType": "char",
+          "rowKey": "char:5",
+          "charId": 5,
+          "isComment": false,
+          "commentLines": null,
+          "isMemo": false,
+          "memoSize": "S",
+          "memoText": "",
+          "isMessage": false,
+          "messageLines": null,
+          "messageExt": null,
+          "isScrollMessage": false,
+          "scrollLines": null,
+          "isScript": false,
+          "scriptLines": null
+        },
+        {
+          "uid": 8,
+          "frame": 122,
+          "eventId": 4,
+          "pageIndex": 0,
+          "command": {
+            "code": 216,
+            "indent": 0,
+            "parameters": [
+              0
+            ]
+          },
+          "wait": 0,
+          "rowType": "main",
+          "rowKey": "main",
+          "charId": null,
+          "isComment": false,
+          "commentLines": null,
+          "isMemo": false,
+          "memoSize": "S",
+          "memoText": "",
+          "isMessage": false,
+          "messageLines": null,
+          "messageExt": null,
+          "isScrollMessage": false,
+          "scrollLines": null,
+          "isScript": false,
+          "scriptLines": null
+        },
+        {
+          "uid": 9,
+          "frame": 142,
+          "eventId": 4,
+          "pageIndex": 0,
+          "command": {
+            "code": 213,
+            "indent": 0,
+            "parameters": [
+              -1,
+              11,
+              false
+            ]
+          },
+          "wait": 0,
+          "rowType": "main",
+          "rowKey": "main",
+          "charId": null,
+          "isComment": false,
+          "commentLines": null,
+          "isMemo": false,
+          "memoSize": "S",
+          "memoText": "",
+          "isMessage": false,
+          "messageLines": null,
+          "messageExt": null,
+          "isScrollMessage": false,
+          "scrollLines": null,
+          "isScript": false,
+          "scriptLines": null
+        },
+        {
+          "uid": 10,
+          "frame": 142,
+          "eventId": 4,
+          "pageIndex": 0,
+          "command": {
+            "code": 213,
+            "indent": 0,
+            "parameters": [
+              5,
+              11,
+              false
+            ]
+          },
+          "wait": 0,
+          "rowType": "main",
+          "rowKey": "main",
+          "charId": null,
+          "isComment": false,
+          "commentLines": null,
+          "isMemo": false,
+          "memoSize": "S",
+          "memoText": "",
+          "isMessage": false,
+          "messageLines": null,
+          "messageExt": null,
+          "isScrollMessage": false,
+          "scrollLines": null,
+          "isScript": false,
+          "scriptLines": null
+        },
+        {
+          "uid": 11,
+          "frame": 142,
+          "eventId": 4,
+          "pageIndex": 0,
+          "command": {
+            "code": 213,
+            "indent": 0,
+            "parameters": [
+              6,
+              11,
+              false
+            ]
+          },
+          "wait": 0,
+          "rowType": "main",
+          "rowKey": "main",
+          "charId": null,
+          "isComment": false,
+          "commentLines": null,
+          "isMemo": false,
+          "memoSize": "S",
+          "memoText": "",
+          "isMessage": false,
+          "messageLines": null,
+          "messageExt": null,
+          "isScrollMessage": false,
+          "scrollLines": null,
+          "isScript": false,
+          "scriptLines": null
+        },
+        {
+          "uid": 15,
+          "frame": 142,
+          "eventId": 4,
+          "pageIndex": 0,
+          "command": {
+            "code": 101,
+            "indent": 0,
+            "parameters": [
+              "",
+              0,
+              0,
+              2
+            ]
+          },
+          "wait": 0,
+          "rowType": "main",
+          "rowKey": "main",
+          "charId": null,
+          "isComment": false,
+          "commentLines": null,
+          "isMemo": false,
+          "memoSize": "S",
+          "memoText": "",
+          "isMessage": true,
+          "messageLines": [
+            "ギャハハハ",
+            "ハ！！！"
+          ],
+          "messageExt": {
+            "windowType": 1,
+            "tailDir": 5,
+            "targetMode": "coord",
+            "targetCharId": 4,
+            "targetX": 408,
+            "targetY": 0,
+            "addX": 0,
+            "addY": 0
+          },
+          "isScrollMessage": false,
+          "scrollLines": null,
+          "isScript": false,
+          "scriptLines": null
+        },
+        {
+          "uid": 16,
+          "frame": 166,
+          "eventId": 4,
+          "pageIndex": 0,
+          "command": {
+            "code": 101,
+            "indent": 0,
+            "parameters": [
+              "",
+              0,
+              0,
+              2
+            ]
+          },
+          "wait": 0,
+          "rowType": "main",
+          "rowKey": "main",
+          "charId": null,
+          "isComment": false,
+          "commentLines": null,
+          "isMemo": false,
+          "memoSize": "S",
+          "memoText": "",
+          "isMessage": true,
+          "messageLines": [
+            "よくノコノコと",
+            "やってきたなァ！！　　　　"
+          ],
+          "messageExt": {
+            "windowType": 1,
+            "tailDir": 5,
+            "targetMode": "coord",
+            "targetCharId": 4,
+            "targetX": 408,
+            "targetY": 0,
+            "addX": 0,
+            "addY": 0
+          },
+          "isScrollMessage": false,
+          "scrollLines": null,
+          "isScript": false,
+          "scriptLines": null
+        },
+        {
+          "uid": 17,
+          "frame": 166,
+          "eventId": 4,
+          "pageIndex": 0,
+          "command": {
+            "code": 101,
+            "indent": 0,
+            "parameters": [
+              "",
+              0,
+              0,
+              2
+            ]
+          },
+          "wait": 0,
+          "rowType": "main",
+          "rowKey": "main",
+          "charId": null,
+          "isComment": false,
+          "commentLines": null,
+          "isMemo": false,
+          "memoSize": "S",
+          "memoText": "",
+          "isMessage": true,
+          "messageLines": [
+            "この「地獄の残酷圧縮",
+            "人生終了部屋」へ！"
+          ],
+          "messageExt": {
+            "windowType": 1,
+            "tailDir": 5,
+            "targetMode": "coord",
+            "targetCharId": 4,
+            "targetX": 408,
+            "targetY": 0,
+            "addX": 0,
+            "addY": 0
+          },
+          "isScrollMessage": false,
+          "scrollLines": null,
+          "isScript": false,
+          "scriptLines": null
+        },
+        {
+          "uid": 18,
+          "frame": 166,
+          "eventId": 4,
+          "pageIndex": 0,
+          "command": {
+            "code": 101,
+            "indent": 0,
+            "parameters": [
+              "",
+              0,
+              0,
+              2
+            ]
+          },
+          "wait": 0,
+          "rowType": "main",
+          "rowKey": "main",
+          "charId": null,
+          "isComment": false,
+          "commentLines": null,
+          "isMemo": false,
+          "memoSize": "S",
+          "memoText": "",
+          "isMessage": true,
+          "messageLines": [
+            "本当の終わりを",
+            "見せてやろう！"
+          ],
+          "messageExt": {
+            "windowType": 1,
+            "tailDir": 5,
+            "targetMode": "coord",
+            "targetCharId": 4,
+            "targetX": 408,
+            "targetY": 0,
+            "addX": 0,
+            "addY": 0
+          },
+          "isScrollMessage": false,
+          "scrollLines": null,
+          "isScript": false,
+          "scriptLines": null
+        },
+        {
+          "uid": 19,
+          "frame": 190,
+          "eventId": 4,
+          "pageIndex": 0,
+          "command": {
+            "code": 101,
+            "indent": 0,
+            "parameters": [
+              "",
+              0,
+              0,
+              2
+            ]
+          },
+          "wait": 0,
+          "rowType": "main",
+          "rowKey": "main",
+          "charId": null,
+          "isComment": false,
+          "commentLines": null,
+          "isMemo": false,
+          "memoSize": "S",
+          "memoText": "",
+          "isMessage": true,
+          "messageLines": [
+            "ポチッとな！"
+          ],
+          "messageExt": {
+            "windowType": 1,
+            "tailDir": 5,
+            "targetMode": "coord",
+            "targetCharId": 4,
+            "targetX": 408,
+            "targetY": 0,
+            "addX": 0,
+            "addY": 0
+          },
+          "isScrollMessage": false,
+          "scrollLines": null,
+          "isScript": false,
+          "scriptLines": null
+        },
+        {
+          "uid": 20,
+          "frame": 190,
+          "eventId": 4,
+          "pageIndex": 0,
+          "command": {
+            "code": 205,
+            "indent": 0,
+            "parameters": [
+              7,
+              {
+                "repeat": false,
+                "skippable": false,
+                "wait": false,
+                "list": [
+                  {
+                    "code": 29,
+                    "parameters": [
+                      1
+                    ]
+                  },
+                  {
+                    "code": 45,
+                    "parameters": [
+                      "this.startGatagata()"
+                    ]
+                  },
+                  {
+                    "code": 45,
+                    "parameters": [
+                      "this.goTo(10, 10.5)"
+                    ],
+                    "_eeTileWait": 320
+                  },
+                  {
+                    "code": 45,
+                    "parameters": [
+                      "this.goTo(10, 10.5)"
+                    ]
+                  },
+                  {
+                    "code": 0,
+                    "parameters": []
+                  }
+                ]
+              }
+            ]
+          },
+          "wait": 0,
+          "rowType": "char",
+          "rowKey": "char:7",
+          "charId": 7,
+          "isComment": false,
+          "commentLines": null,
+          "isMemo": false,
+          "memoSize": "S",
+          "memoText": "",
+          "isMessage": false,
+          "messageLines": null,
+          "messageExt": null,
+          "isScrollMessage": false,
+          "scrollLines": null,
+          "isScript": false,
+          "scriptLines": null
+        },
+        {
+          "uid": 21,
+          "frame": 250,
+          "eventId": 4,
+          "pageIndex": 0,
+          "command": {
+            "code": 355,
+            "indent": 0,
+            "parameters": [
+              "$gameMap.scrollCamera(2.5, -8, 60)"
+            ]
+          },
+          "wait": 0,
+          "rowType": "main",
+          "rowKey": "main",
+          "charId": null,
+          "isComment": false,
+          "commentLines": null,
+          "isMemo": false,
+          "memoSize": "S",
+          "memoText": "",
+          "isMessage": false,
+          "messageLines": null,
+          "messageExt": null,
+          "isScrollMessage": false,
+          "scrollLines": null,
+          "isScript": true,
+          "scriptLines": [
+            "$gameMap.scrollCamera(2.5, -8, 60)"
+          ]
+        },
+        {
+          "uid": 22,
+          "frame": 400,
+          "eventId": 4,
+          "pageIndex": 0,
+          "command": {
+            "code": 355,
+            "indent": 0,
+            "parameters": [
+              "$gameMap.scrollCamera(2.5, -3, 60)"
+            ]
+          },
+          "wait": 0,
+          "rowType": "main",
+          "rowKey": "main",
+          "charId": null,
+          "isComment": false,
+          "commentLines": null,
+          "isMemo": false,
+          "memoSize": "S",
+          "memoText": "",
+          "isMessage": false,
+          "messageLines": null,
+          "messageExt": null,
+          "isScrollMessage": false,
+          "scrollLines": null,
+          "isScript": true,
+          "scriptLines": [
+            "$gameMap.scrollCamera(2.5, -3, 60)"
+          ]
+        },
+        {
+          "uid": 23,
+          "frame": 489,
+          "eventId": 4,
+          "pageIndex": 0,
+          "command": {
+            "code": 205,
+            "indent": 0,
+            "parameters": [
+              5,
+              {
+                "repeat": false,
+                "skippable": false,
+                "wait": false,
+                "list": [
+                  {
+                    "code": 45,
+                    "parameters": [
+                      "this.startShiverX()"
+                    ]
+                  },
+                  {
+                    "code": 0,
+                    "parameters": []
+                  }
+                ]
+              }
+            ]
+          },
+          "wait": 0,
+          "rowType": "char",
+          "rowKey": "char:5",
+          "charId": 5,
+          "isComment": false,
+          "commentLines": null,
+          "isMemo": false,
+          "memoSize": "S",
+          "memoText": "",
+          "isMessage": false,
+          "messageLines": null,
+          "messageExt": null,
+          "isScrollMessage": false,
+          "scrollLines": null,
+          "isScript": false,
+          "scriptLines": null
+        },
+        {
+          "uid": 27,
+          "frame": 490,
+          "eventId": 4,
+          "pageIndex": 0,
+          "command": {
+            "code": 101,
+            "indent": 0,
+            "parameters": [
+              "",
+              0,
+              0,
+              2
+            ]
+          },
+          "wait": 0,
+          "rowType": "main",
+          "rowKey": "main",
+          "charId": null,
+          "isComment": false,
+          "commentLines": null,
+          "isMemo": false,
+          "memoSize": "S",
+          "memoText": "",
+          "isMessage": true,
+          "messageLines": [
+            "うわ〜！！",
+            "天井が降りてきた！"
+          ],
+          "messageExt": {
+            "windowType": 1,
+            "tailDir": 2,
+            "targetMode": "char",
+            "targetCharId": 5,
+            "targetX": 408,
+            "targetY": 0,
+            "addX": 0,
+            "addY": 0
+          },
+          "isScrollMessage": false,
+          "scrollLines": null,
+          "isScript": false,
+          "scriptLines": null
+        },
+        {
+          "uid": 28,
+          "frame": 490,
+          "eventId": 4,
+          "pageIndex": 0,
+          "command": {
+            "code": 101,
+            "indent": 0,
+            "parameters": [
+              "",
+              0,
+              0,
+              2
+            ]
+          },
+          "wait": 0,
+          "rowType": "main",
+          "rowKey": "main",
+          "charId": null,
+          "isComment": false,
+          "commentLines": null,
+          "isMemo": false,
+          "memoSize": "S",
+          "memoText": "",
+          "isMessage": true,
+          "messageLines": [
+            "潰されちゃうよ〜！！"
+          ],
+          "messageExt": {
+            "windowType": 1,
+            "tailDir": 2,
+            "targetMode": "char",
+            "targetCharId": 5,
+            "targetX": 408,
+            "targetY": 0,
+            "addX": 0,
+            "addY": 0
+          },
+          "isScrollMessage": false,
+          "scrollLines": null,
+          "isScript": false,
+          "scriptLines": null
+        },
+        {
+          "uid": 34,
+          "frame": 500,
+          "eventId": 4,
+          "pageIndex": 0,
+          "command": {
+            "code": 355,
+            "indent": 0,
+            "parameters": [
+              "$gameMap.scrollCamera(0, 0, 30)"
+            ]
+          },
+          "wait": 0,
+          "rowType": "main",
+          "rowKey": "main",
+          "charId": null,
+          "isComment": false,
+          "commentLines": null,
+          "isMemo": false,
+          "memoSize": "S",
+          "memoText": "",
+          "isMessage": false,
+          "messageLines": null,
+          "messageExt": null,
+          "isScrollMessage": false,
+          "scrollLines": null,
+          "isScript": true,
+          "scriptLines": [
+            "$gameMap.scrollCamera(0, 0, 30)"
+          ]
+        },
+        {
+          "uid": 36,
+          "frame": 523,
+          "eventId": 4,
+          "pageIndex": 0,
+          "command": {
+            "code": 205,
+            "indent": 0,
+            "parameters": [
+              7,
+              {
+                "repeat": false,
+                "skippable": false,
+                "wait": false,
+                "list": [
+                  {
+                    "code": 45,
+                    "parameters": [
+                      "this.goTo(10, 19)"
+                    ],
+                    "_eeTileWait": 136
+                  },
+                  {
+                    "code": 0,
+                    "parameters": []
+                  }
+                ]
+              }
+            ]
+          },
+          "wait": 0,
+          "rowType": "char",
+          "rowKey": "char:7",
+          "charId": 7,
+          "isComment": false,
+          "commentLines": null,
+          "isMemo": false,
+          "memoSize": "S",
+          "memoText": "",
+          "isMessage": false,
+          "messageLines": null,
+          "messageExt": null,
+          "isScrollMessage": false,
+          "scrollLines": null,
+          "isScript": false,
+          "scriptLines": null
+        },
+        {
+          "uid": 30,
+          "frame": 544,
+          "eventId": 4,
+          "pageIndex": 0,
+          "command": {
+            "code": 205,
+            "indent": 0,
+            "parameters": [
+              6,
+              {
+                "repeat": false,
+                "skippable": false,
+                "wait": false,
+                "list": [
+                  {
+                    "code": 39,
+                    "parameters": []
+                  },
+                  {
+                    "code": 0,
+                    "parameters": []
+                  }
+                ]
+              }
+            ]
+          },
+          "wait": 0,
+          "rowType": "char",
+          "rowKey": "char:6",
+          "charId": 6,
+          "isComment": false,
+          "commentLines": null,
+          "isMemo": false,
+          "memoSize": "S",
+          "memoText": "",
+          "isMessage": false,
+          "messageLines": null,
+          "messageExt": null,
+          "isScrollMessage": false,
+          "scrollLines": null,
+          "isScript": false,
+          "scriptLines": null
+        },
+        {
+          "uid": 31,
+          "frame": 544,
+          "eventId": 4,
+          "pageIndex": 0,
+          "command": {
+            "code": 205,
+            "indent": 0,
+            "parameters": [
+              5,
+              {
+                "repeat": false,
+                "skippable": false,
+                "wait": false,
+                "list": [
+                  {
+                    "code": 39,
+                    "parameters": []
+                  },
+                  {
+                    "code": 0,
+                    "parameters": []
+                  }
+                ]
+              }
+            ]
+          },
+          "wait": 0,
+          "rowType": "char",
+          "rowKey": "char:5",
+          "charId": 5,
+          "isComment": false,
+          "commentLines": null,
+          "isMemo": false,
+          "memoSize": "S",
+          "memoText": "",
+          "isMessage": false,
+          "messageLines": null,
+          "messageExt": null,
+          "isScrollMessage": false,
+          "scrollLines": null,
+          "isScript": false,
+          "scriptLines": null
+        },
+        {
+          "uid": 32,
+          "frame": 544,
+          "eventId": 4,
+          "pageIndex": 0,
+          "command": {
+            "code": 216,
+            "indent": 0,
+            "parameters": [
+              0
+            ]
+          },
+          "wait": 0,
+          "rowType": "main",
+          "rowKey": "main",
+          "charId": null,
+          "isComment": false,
+          "commentLines": null,
+          "isMemo": false,
+          "memoSize": "S",
+          "memoText": "",
+          "isMessage": false,
+          "messageLines": null,
+          "messageExt": null,
+          "isScrollMessage": false,
+          "scrollLines": null,
+          "isScript": false,
+          "scriptLines": null
+        },
+        {
+          "uid": 33,
+          "frame": 544,
+          "eventId": 4,
+          "pageIndex": 0,
+          "command": {
+            "code": 122,
+            "indent": 0,
+            "parameters": [
+              58,
+              58,
+              0,
+              0,
+              1
+            ]
+          },
+          "wait": 0,
+          "rowType": "main",
+          "rowKey": "main",
+          "charId": null,
+          "isComment": false,
+          "commentLines": null,
+          "isMemo": false,
+          "memoSize": "S",
+          "memoText": "",
+          "isMessage": false,
+          "messageLines": null,
+          "messageExt": null,
+          "isScrollMessage": false,
+          "scrollLines": null,
+          "isScript": false,
+          "scriptLines": null
+        }
+      ]
+    }
+  ],
+  "mode": "map",
+  "mapId": 53
+}

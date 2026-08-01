@@ -356,8 +356,18 @@
             { value: 7, label: 'くしゃくしゃ' },
             { value: 8, label: '沈黙' },
             { value: 9, label: '電球' },
-            { value: 10, label: 'zzz' }
+            { value: 10, label: 'zzz' },
+            { value: 11, label: 'ユーザー定義1' },
+            { value: 12, label: 'ユーザー定義2' },
+            { value: 13, label: 'ユーザー定義3' },
+            { value: 14, label: 'ユーザー定義4' },
+            { value: 15, label: 'ユーザー定義5' }
         ];
+    };
+
+    EE.prototype.normalizeBalloonIdForSchema = function(value) {
+        var id = Math.floor(Number(value || 1) || 1);
+        return Math.max(1, Math.min(15, id));
     };
 
     EE.prototype.troopOptionsForSchema = function() {
@@ -2588,14 +2598,14 @@
                 var p = (entry && entry.command && Array.isArray(entry.command.parameters)) ? entry.command.parameters : [];
                 return {
                     targetId: self.normalizeMoveTarget(Number(p[0] || 0)),
-                    balloonId: Math.max(1, Math.min(10, Math.floor(Number(p[1] || 1) || 1))),
+                    balloonId: self.normalizeBalloonIdForSchema(p[1]),
                     wait: !!p[2]
                 };
             },
             toParams: function(state) {
                 return [
                     self.normalizeMoveTarget(Number(state.targetId || 0)),
-                    Math.max(1, Math.min(10, Math.floor(Number(state.balloonId || 1) || 1))),
+                    self.normalizeBalloonIdForSchema(state.balloonId),
                     !!state.wait
                 ];
             }

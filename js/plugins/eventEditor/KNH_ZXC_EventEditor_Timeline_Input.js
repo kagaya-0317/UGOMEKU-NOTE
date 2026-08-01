@@ -1406,7 +1406,7 @@
             this.normalizeChoiceBranchStructuresForTrack(tr);
         }
         SH.sortTrackCommands(tr);
-        var sourceCommands = SH.commandsInSourceOrder(tr);
+        var sourceCommands = SH.commandsInSaveOrder(tr);
         var branchFrameState = SH.createBranchFrameState();
         var out = [], lf = 0, prevMsgExt = null;
         for (var i = 0; i < sourceCommands.length; i++) {

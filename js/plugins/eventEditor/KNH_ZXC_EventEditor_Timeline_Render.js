@@ -3529,6 +3529,8 @@
         if (reason === 'no_entry_selection') return '選択範囲にコマンドがありません';
         if (reason === 'mixed_row_type') return 'メイン行とキャラ行の同時コピーはできません';
         if (reason === 'mixed_char_row') return '複数キャラ行の同時コピーはできません';
+        if (reason === 'mixed_selection') return '通常コマンドと移動ルート内コマンドは同時コピーできません';
+        if (reason === 'mixed_route') return '複数の移動ルートにまたがるコピーはできません';
         return 'コピーできません';
     };
 
@@ -3540,8 +3542,64 @@
         if (reason === 'char_to_main_forbidden') return 'キャラ→メインへの貼り付けはできません';
         if (reason === 'invalid_clipboard') return 'クリップボード形式が不正です';
         if (reason === 'invalid_entry') return '貼り付け対象のコマンド形式が不正です';
+        if (reason === 'route_target_required') return '移動ルート内またはキャラクター行の貼り付け先を選択してください';
         if (reason === 'overlap') return '貼り付け先でコマンドが重なります';
         return '貼り付けできません';
+    };
+
+    EE.prototype.collectMoveRouteClipboardCommands = function() {
+        if (!(this.selEid && this.selPage >= 0 && this.selKey)) return { ok: false, reason: 'no_track' };
+        var routeItems = [];
+        if (this.hasRangeSelection && this.hasRangeSelection()) {
+            routeItems = this.selectedRouteCmdItemsFromRange();
+            if (!routeItems.length) return { ok: false, reason: 'no_selection' };
+            if (this.selectedEntryUidsFromRange().length) return { ok: false, reason: 'mixed_selection' };
+        } else {
+            var uid = Math.floor(Number(this.selUid || 0));
+            var routeListIndex = this.nodeRouteIndex(this.selRouteListIndex);
+            if (uid <= 0 || routeListIndex < 0) return { ok: false, reason: 'no_selection' };
+            routeItems = [{ kind: 'routeCmd', uid: uid, routeListIndex: routeListIndex }];
+        }
+        var ownerUid = Math.floor(Number(routeItems[0] && routeItems[0].uid || 0));
+        if (ownerUid <= 0) return { ok: false, reason: 'no_selection' };
+        var entry = this.findEntryInSelectedTrack(ownerUid);
+        if (!entry || !entry.command || Number(entry.command.code || 0) !== 205) return { ok: false, reason: 'no_selection' };
+        var route = entry.command.parameters && entry.command.parameters[1];
+        var list = route && Array.isArray(route.list) ? route.list : [];
+        var indexes = [];
+        var seen = Object.create(null);
+        for (var i = 0; i < routeItems.length; i++) {
+            var item = routeItems[i];
+            if (Math.floor(Number(item && item.uid || 0)) !== ownerUid) return { ok: false, reason: 'mixed_route' };
+            var idx = this.nodeRouteIndex(item.routeListIndex);
+            if (idx < 0 || idx >= list.length || seen[idx] || Number((list[idx] || {}).code || 0) === 0) continue;
+            seen[idx] = true;
+            indexes.push(idx);
+        }
+        indexes.sort(function(a, b) { return a - b; });
+        if (!indexes.length) return { ok: false, reason: 'no_selection' };
+        var commands = [];
+        for (i = 0; i < indexes.length; i++) commands.push(clone(list[indexes[i]]));
+        return { ok: true, ownerUid: ownerUid, entry: entry, indexes: indexes, commands: commands };
+    };
+
+    EE.prototype.buildMoveRouteClipboardFromSelection = function() {
+        var picked = this.collectMoveRouteClipboardCommands();
+        if (!picked.ok) return picked;
+        return {
+            ok: true,
+            clip: { type: 'move_route_commands_v1', commands: picked.commands },
+            ownerUid: picked.ownerUid,
+            sourceIndexes: picked.indexes
+        };
+    };
+
+    EE.prototype.buildClipboardFromCurrentSelection = function() {
+        var hasRouteSelection = this.nodeRouteIndex(this.selRouteListIndex) >= 0;
+        if (this.hasRangeSelection && this.hasRangeSelection()) {
+            hasRouteSelection = this.selectedRouteCmdItemsFromRange().length > 0;
+        }
+        return hasRouteSelection ? this.buildMoveRouteClipboardFromSelection() : this.buildTimelineClipboardFromSelection();
     };
 
     EE.prototype.collectTimelineClipboardEntries = function() {
@@ -3764,6 +3822,7 @@
         if (!(this.selEid && this.selPage >= 0 && this.selKey)) return { enabled: false, reason: 'no_track' };
         var clip = this.timelineCommandClipboard;
         if (!clip) return { enabled: false, reason: 'no_clipboard' };
+        if (clip.type === 'move_route_commands_v1') return this.moveRouteClipboardPasteCapability(ctx);
         var target = this.timelinePasteTargetFromContext(ctx);
         var prepared = this.prepareTimelineClipboardEntriesForPaste(clip, target);
         if (!prepared.ok) return { enabled: false, reason: prepared.reason, target: target };
@@ -3773,15 +3832,98 @@
         return { enabled: true, target: target, entries: prepared.entries };
     };
 
+    EE.prototype.currentMoveRoutePasteContext = function(ctx) {
+        if (ctx && typeof ctx === 'object') return this.resolveWaitInsertContext(ctx);
+        var uid = Math.floor(Number(this.selUid || 0));
+        var idx = this.nodeRouteIndex(this.selRouteListIndex);
+        if (uid > 0 && idx >= 0) return this.makeWaitInsertContextFromRouteCommand(uid, idx, this.frame);
+        return this.makeWaitInsertContextFromFrame(this.frame, this.currentTimelineRowKeyForPaste());
+    };
+
+    EE.prototype.prepareNewMoveRouteForClipboardPaste = function(clip, target) {
+        var pasteTarget = this.timelinePasteTargetFromContext(target);
+        var rowKey = String(pasteTarget.rowKey || 'main');
+        if (rowKey.indexOf('char:') !== 0) return { ok: false, reason: 'route_target_required' };
+        var charId = this.normalizeMoveTarget(Number(rowKey.replace('char:', '')));
+        var commands = [];
+        for (var i = 0; i < clip.commands.length; i++) {
+            var command = clone(clip.commands[i]);
+            if (!command || Number(command.code || 0) <= 0) return { ok: false, reason: 'invalid_clipboard' };
+            commands.push(command);
+        }
+        commands.push({ code: 0, parameters: [] });
+        var entry = this.entryFromCommand({
+            code: 205,
+            indent: 0,
+            parameters: [charId, { repeat: false, skippable: false, wait: false, list: commands }]
+        }, this.selEid, this.selPage, pasteTarget.frame, -1);
+        if (!entry) return { ok: false, reason: 'invalid_entry' };
+        this.recalculateRouteTileGotoWaitMetaForEntry(entry);
+        entry.wait = this.commandWaitFrames(entry.command);
+        return { ok: true, entry: entry, insertIndex: 0, count: commands.length - 1 };
+    };
+
+    EE.prototype.moveRouteClipboardPasteCapability = function(ctx) {
+        var clip = this.timelineCommandClipboard;
+        if (!clip || clip.type !== 'move_route_commands_v1' || !Array.isArray(clip.commands) || !clip.commands.length) {
+            return { enabled: false, reason: 'invalid_clipboard' };
+        }
+        var target = this.currentMoveRoutePasteContext(ctx);
+        var tr = this.model && this.model.tracks ? this.model.tracks[this.selKey] : null;
+        if (String(target.source || '') !== 'routeCmd') {
+            var created = this.prepareNewMoveRouteForClipboardPaste(clip, target);
+            if (!created.ok) return { enabled: false, reason: created.reason };
+            if (!tr || this.isIntervalLockedByMoveRouteWait(tr, created.entry.frame, created.entry.frame, 0) ||
+                !this.canPlaceEntry(tr, created.entry, created.entry.frame, created.entry.rowKey, 0)) {
+                return { enabled: false, reason: 'overlap', conflictEntry: created.entry, tempTrack: tr };
+            }
+            return {
+                enabled: true,
+                createNew: true,
+                previewEntry: created.entry,
+                insertIndex: created.insertIndex,
+                count: created.count
+            };
+        }
+        var uid = Math.floor(Number(target.uid || 0));
+        var anchorIndex = this.nodeRouteIndex(target.routeListIndex);
+        var entry = this.findEntryInSelectedTrack(uid);
+        if (!entry || !entry.command || Number(entry.command.code || 0) !== 205) return { enabled: false, reason: 'route_target_required' };
+        var route = entry.command.parameters && entry.command.parameters[1];
+        var list = route && Array.isArray(route.list) ? route.list : [];
+        if (anchorIndex < 0 || anchorIndex >= list.length || Number((list[anchorIndex] || {}).code || 0) === 0) {
+            return { enabled: false, reason: 'route_target_required' };
+        }
+        var previewEntry = clone(entry);
+        var previewRoute = previewEntry.command.parameters && previewEntry.command.parameters[1];
+        previewRoute = this.ensureMoveRouteTerminal(previewRoute);
+        previewEntry.command.parameters[1] = previewRoute;
+        var insertIndex = Math.min(anchorIndex + 1, this.moveRouteTerminalIndex(previewRoute));
+        var pasted = [];
+        for (var i = 0; i < clip.commands.length; i++) {
+            var command = clone(clip.commands[i]);
+            if (!command || Number(command.code || 0) <= 0) return { enabled: false, reason: 'invalid_clipboard' };
+            previewRoute.list.splice(insertIndex + pasted.length, 0, command);
+            pasted.push(command);
+        }
+        this.recalculateRouteTileGotoWaitMetaForEntry(previewEntry);
+        previewEntry.wait = this.commandWaitFrames(previewEntry.command);
+        if (!tr || !this.canPlaceEntry(tr, previewEntry, previewEntry.frame, previewEntry.rowKey, previewEntry.uid)) {
+            return { enabled: false, reason: 'overlap', conflictEntry: previewEntry, tempTrack: tr };
+        }
+        return { enabled: true, entry: entry, previewEntry: previewEntry, insertIndex: insertIndex, count: pasted.length };
+    };
+
     EE.prototype.copy = function() {
-        var pack = this.buildTimelineClipboardFromSelection();
+        var pack = this.buildClipboardFromCurrentSelection();
         if (!pack.ok) {
             this.msg('Copy不可: ' + this.timelineClipboardCopyReasonText(pack.reason));
             return false;
         }
         this.timelineCommandClipboard = clone(pack.clip);
         this.clip = (pack.clip.items && pack.clip.items.length) ? clone(pack.clip.items[0].command) : null;
-        this.msg('Copy ' + pack.sourceUids.length + '件');
+        var count = pack.clip.type === 'move_route_commands_v1' ? pack.clip.commands.length : pack.sourceUids.length;
+        this.msg('Copy ' + count + '件');
         return true;
     };
 
@@ -3814,13 +3956,31 @@
     };
 
     EE.prototype.cut = function() {
-        var pack = this.buildTimelineClipboardFromSelection();
+        var pack = this.buildClipboardFromCurrentSelection();
         if (!pack.ok) {
             this.msg('Cut不可: ' + this.timelineClipboardCopyReasonText(pack.reason));
             return false;
         }
         this.timelineCommandClipboard = clone(pack.clip);
         this.clip = (pack.clip.items && pack.clip.items.length) ? clone(pack.clip.items[0].command) : null;
+        if (pack.clip.type === 'move_route_commands_v1') {
+            var entry = this.findEntryInSelectedTrack(pack.ownerUid);
+            var route = entry && entry.command && entry.command.parameters && entry.command.parameters[1];
+            if (!entry || !route || !Array.isArray(route.list)) return false;
+            this.pushSnap('cutRouteCmd');
+            for (var ri = pack.sourceIndexes.length - 1; ri >= 0; ri--) route.list.splice(pack.sourceIndexes[ri], 1);
+            route = this.ensureMoveRouteTerminal(route);
+            entry.command.parameters[1] = route;
+            entry.wait = this.commandWaitFrames(entry.command);
+            if (this.hasRangeSelection && this.hasRangeSelection()) this.clearRangeSelection();
+            this.selUid = Number(entry.uid || 0);
+            this.selRouteListIndex = -1;
+            this.dirty[this.selKey] = true;
+            this.rebuildSchedule();
+            this.playFrom(this.frame);
+            this.msg('Cut ' + pack.sourceIndexes.length + '件');
+            return true;
+        }
         var removed = this.deleteEntriesByUidList(pack.sourceUids, 'cut');
         if (removed <= 0) return false;
         this.msg('Cut ' + removed + '件');
@@ -3828,7 +3988,10 @@
     };
 
     EE.prototype.paste = function() {
-        var baseCtx = this.makeWaitInsertContextFromFrame(this.frame, this.currentTimelineRowKeyForPaste());
+        var isRouteClipboard = !!(this.timelineCommandClipboard && this.timelineCommandClipboard.type === 'move_route_commands_v1');
+        var baseCtx = isRouteClipboard
+            ? this.currentMoveRoutePasteContext()
+            : this.makeWaitInsertContextFromFrame(this.frame, this.currentTimelineRowKeyForPaste());
         var cap = this.timelineClipboardPasteCapability(baseCtx);
         if (!cap.enabled) {
             if (String(cap.reason || '') === 'overlap' && cap.conflictEntry) {
@@ -3836,6 +3999,9 @@
             }
             this.msg('Paste不可: ' + this.timelineClipboardPasteReasonText(cap.reason));
             return false;
+        }
+        if (this.timelineCommandClipboard && this.timelineCommandClipboard.type === 'move_route_commands_v1') {
+            return this.applyMoveRouteClipboardPaste(cap);
         }
         var tr = this.model && this.model.tracks ? this.model.tracks[this.selKey] : null;
         if (!tr || !Array.isArray(tr.commands)) return false;
@@ -3863,6 +4029,39 @@
         return true;
     };
 
+    EE.prototype.applyMoveRouteClipboardPaste = function(cap) {
+        if (!cap || !cap.enabled || !cap.previewEntry) return false;
+        var tr = this.model && this.model.tracks ? this.model.tracks[this.selKey] : null;
+        if (!tr || !Array.isArray(tr.commands)) return false;
+        if (!cap.createNew && !cap.entry) return false;
+        this.pushSnap('pasteRouteCmd');
+        var entry = cap.entry;
+        if (cap.createNew) {
+            entry = clone(cap.previewEntry);
+            entry.uid = this.model.nextUid++;
+            tr.commands.push(entry);
+            SH.sortTrackCommands(tr);
+            this.confirmCharRowPermanent(entry.charId);
+            this.frame = Math.max(0, Math.floor(Number(entry.frame || this.frame || 0)));
+        } else {
+            entry.command = clone(cap.previewEntry.command);
+            entry.wait = this.commandWaitFrames(entry.command);
+        }
+        if (this.hasRangeSelection && this.hasRangeSelection()) this.clearRangeSelection();
+        this.selUid = Number(entry.uid || 0);
+        this.selRouteListIndex = this.nodeRouteIndex(cap.insertIndex);
+        var selectedItems = [];
+        for (var i = 0; i < Math.max(0, Math.floor(Number(cap.count || 0))); i++) {
+            selectedItems.push({ kind: 'routeCmd', uid: this.selUid, routeListIndex: cap.insertIndex + i });
+        }
+        if (selectedItems.length > 1) this.setRangeSelection('rect', selectedItems, { frameStart: this.frame, frameEnd: this.frame });
+        this.dirty[this.selKey] = true;
+        this.rebuildSchedule();
+        this.playFrom(this.frame);
+        this.msg('Paste ' + cap.count + '件');
+        return true;
+    };
+
     EE.prototype.copyFromContextMenu = function() {
         this.closeRouteRangeContextMenu();
         return this.copy();
@@ -3883,6 +4082,9 @@
             }
             this.msg('Paste不可: ' + this.timelineClipboardPasteReasonText(cap.reason));
             return false;
+        }
+        if (this.timelineCommandClipboard && this.timelineCommandClipboard.type === 'move_route_commands_v1') {
+            return this.applyMoveRouteClipboardPaste(cap);
         }
         var tr = this.model && this.model.tracks ? this.model.tracks[this.selKey] : null;
         if (!tr || !Array.isArray(tr.commands)) return false;
@@ -4182,7 +4384,7 @@
             this.routeCtxMemoBtn.disabled = !hasTrack;
             this.routeCtxMemoBtn.textContent = 'メモ作成';
         }
-        var copyProbe = this.collectTimelineClipboardEntries();
+        var copyProbe = this.buildClipboardFromCurrentSelection();
         var canCopy = !!copyProbe.ok;
         var pasteProbe = this.timelineClipboardPasteCapability(addCtx);
         var canPaste = !!pasteProbe.enabled;
@@ -8965,6 +9167,18 @@
         var end = Math.min(maxF, this.xToFrame(px.right) + padFrames);
         if (end < start) end = start;
         return { start: start, end: end };
+    };
+
+    EE.prototype.timelineEntryVisualSpanFrames = function(entry) {
+        if (!entry) return 1;
+        var span = Math.max(0, Math.floor(Number(entry.wait || 0)));
+        var command = entry.command;
+        if (command && Number(command.code || 0) === 205) {
+            var route = command.parameters && command.parameters[1];
+            var timeline = this.moveRouteTimeline(route);
+            span = Math.max(span, Math.floor(Number(timeline && timeline.totalFrames || 0)));
+        }
+        return Math.max(1, span);
     };
 
     EE.prototype.frameFromTimeline = function(e) {
@@ -13896,7 +14110,7 @@
                 if (hiddenByIf[String(Math.floor(Number(e.uid || 0)))]) continue;
                 var ef = Math.max(0, Math.floor(Number(e.frame || 0)));
                 var ew = Math.max(0, Math.floor(Number(e.wait || 0)));
-                var ee = ef + Math.max(1, ew);
+                var ee = ef + this.timelineEntryVisualSpanFrames(e);
                 if (ee < commandCullStart || ef > commandCullEnd) continue;
                 var rk = e.rowKey || (e.rowType === 'char' ? ('char:' + e.charId) : 'main');
                 var ri = rowMap[rk];

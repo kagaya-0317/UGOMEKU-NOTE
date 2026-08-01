@@ -100,6 +100,144 @@
         return SH.trackCommands(track).slice(0).sort(SH.compareEntriesBySourceOrder);
     };
 
+    SH.commandsInSaveOrder = function(track) {
+        var source = SH.commandsInSourceOrder(track);
+        if (!source.length) return source;
+
+        // UID order describes branch membership, but it does not describe the
+        // timeline after commands have been moved. Build structural sequences
+        // from UID order, then sort only the executable items in each sequence.
+        var index = 0;
+        var valid = true;
+
+        var entryCode = function(entry) {
+            return Math.floor(Number(entry && entry.command && entry.command.code || 0));
+        };
+        var entryIndent = function(entry) {
+            return Math.max(0, Math.floor(Number(entry && entry.command && entry.command.indent || 0)));
+        };
+
+        var parseSequence;
+        var parseIf = function() {
+            var owner = source[index++];
+            var indent = entryIndent(owner);
+            var thenSequence = parseSequence(indent, { 411: true, 412: true });
+            var elseMarker = null;
+            var elseSequence = null;
+            var endMarker = null;
+            if (index < source.length && entryIndent(source[index]) === indent && entryCode(source[index]) === 411) {
+                elseMarker = source[index++];
+                elseSequence = parseSequence(indent, { 412: true });
+            }
+            if (index < source.length && entryIndent(source[index]) === indent && entryCode(source[index]) === 412) {
+                endMarker = source[index++];
+            } else {
+                valid = false;
+            }
+            return {
+                type: 'if',
+                anchor: owner,
+                owner: owner,
+                thenSequence: thenSequence,
+                elseMarker: elseMarker,
+                elseSequence: elseSequence,
+                endMarker: endMarker
+            };
+        };
+
+        var parseChoice = function() {
+            var owner = source[index++];
+            var indent = entryIndent(owner);
+            var branches = [];
+            var endMarker = null;
+            while (index < source.length) {
+                var marker = source[index];
+                var code = entryCode(marker);
+                if (entryIndent(marker) !== indent) {
+                    valid = false;
+                    break;
+                }
+                if (code === 404) {
+                    endMarker = marker;
+                    index++;
+                    break;
+                }
+                if (code !== 402 && code !== 403) {
+                    valid = false;
+                    break;
+                }
+                index++;
+                branches.push({
+                    marker: marker,
+                    sequence: parseSequence(indent, { 402: true, 403: true, 404: true })
+                });
+            }
+            if (!endMarker || !branches.length) valid = false;
+            return {
+                type: 'choice',
+                anchor: owner,
+                owner: owner,
+                branches: branches,
+                endMarker: endMarker
+            };
+        };
+
+        parseSequence = function(stopIndent, stopCodes) {
+            var items = [];
+            while (index < source.length) {
+                var entry = source[index];
+                var code = entryCode(entry);
+                if (stopCodes && entryIndent(entry) === stopIndent && stopCodes[code]) break;
+                if (code === 402 || code === 403 || code === 404 || code === 411 || code === 412) {
+                    valid = false;
+                }
+                if (code === 111) items.push(parseIf());
+                else if (code === 102) items.push(parseChoice());
+                else {
+                    index++;
+                    items.push({ type: 'entry', anchor: entry, entry: entry });
+                }
+            }
+            return { items: items };
+        };
+
+        var appendSequence;
+        var appendNode = function(node, out) {
+            if (node.type === 'entry') {
+                out.push(node.entry);
+                return;
+            }
+            out.push(node.owner);
+            if (node.type === 'if') {
+                appendSequence(node.thenSequence, out);
+                if (node.elseMarker) {
+                    out.push(node.elseMarker);
+                    appendSequence(node.elseSequence, out);
+                }
+                if (node.endMarker) out.push(node.endMarker);
+                return;
+            }
+            for (var i = 0; i < node.branches.length; i++) {
+                out.push(node.branches[i].marker);
+                appendSequence(node.branches[i].sequence, out);
+            }
+            if (node.endMarker) out.push(node.endMarker);
+        };
+        appendSequence = function(sequence, out) {
+            var items = sequence.items.slice(0).sort(function(a, b) {
+                return SH.compareEntriesByFrameWaitUid(a.anchor, b.anchor);
+            });
+            for (var i = 0; i < items.length; i++) appendNode(items[i], out);
+        };
+
+        var root = parseSequence(-1, null);
+        var out = [];
+        appendSequence(root, out);
+        // Preserve malformed source data byte-for-byte in command order rather
+        // than guessing at a broken branch structure.
+        return valid && index === source.length && out.length === source.length ? out : source;
+    };
+
     SH.createBranchFrameState = function() {
         return { stack: [] };
     };

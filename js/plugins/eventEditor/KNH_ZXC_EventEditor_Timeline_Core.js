@@ -3593,13 +3593,12 @@
                 { code: 4520, label: 'マスクフェードイン...' },
                 { code: 4513, label: 'マスクフェードアウト...' },
                 { code: 4510, label: 'フレームアニメ再生...' },
+                { code: 4523, label: 'フレームアニメ終了...' },
                 { code: 4521, label: 'CSSアニメ再生...' },
                 { code: 4522, label: 'CSSアニメ停止' },
                 { code: 4514, label: '画像の変更ZXC...' },
-                { code: 4515, label: 'ブルブル開始' },
-                { code: 4516, label: 'ブルブル停止' },
-                { code: 4517, label: 'ガタガタ開始' },
-                { code: 4518, label: 'ガタガタ停止' }
+                { code: 4515, label: '振動アニメ開始...' },
+                { code: 4516, label: '振動アニメ停止' }
             ]
         };
     };
@@ -3992,6 +3991,23 @@
             }
         });
 
+        reg(4523, {
+            code: 4523,
+            routeCode: 45,
+            title: 'フレームアニメ終了',
+            description: 'this.endFrameAnimation() を実行します（保存時はスクリプト(45)）。',
+            fields: [
+                { key: 'keepPatternFix', type: 'bool', label: 'パターン固定を維持する' }
+            ],
+            fromRouteCommand: function(cmd) {
+                var p = this.parseRouteEndFrameAnimationCommand(cmd);
+                return { keepPatternFix: p ? !!p.keepPatternFix : false };
+            },
+            toParams: function(state) {
+                return [this.makeRouteEndFrameAnimationScript(!!(state && state.keepPatternFix))];
+            }
+        });
+
         reg(4511, {
             code: 4511,
             routeCode: 45,
@@ -4184,41 +4200,31 @@
         reg(4515, {
             code: 4515,
             routeCode: 45,
-            title: 'ブルブル開始',
-            description: 'this.startGatagata() を実行します（保存時はスクリプト(45)）。',
-            fields: [],
-            fromRouteCommand: function() { return {}; },
-            toParams: function() { return [this.makeRouteShiverControlScript('startGatagata')]; }
+            title: '振動アニメ開始',
+            description: 'ブルブルまたはガタガタの振動アニメを開始します（保存時はスクリプト(45)）。',
+            fields: [
+                { key: 'shakeType', type: 'select', label: '種類', options: [
+                    { value: 'shiverX', label: 'ブルブル' },
+                    { value: 'gatagata', label: 'ガタガタ' }
+                ] }
+            ],
+            fromRouteCommand: function(cmd) {
+                var p = this.parseRouteShiverControlCommand(cmd);
+                return { shakeType: p && p.action === 'start' ? p.shakeType : 'shiverX' };
+            },
+            toParams: function(state) {
+                return [this.makeRouteShiverStartScript(state && state.shakeType)];
+            }
         });
 
         reg(4516, {
             code: 4516,
             routeCode: 45,
-            title: 'ブルブル停止',
-            description: 'this.stopGatagata() を実行します（保存時はスクリプト(45)）。',
+            title: '振動アニメ停止',
+            description: 'ブルブルとガタガタの両方を停止します（保存時はスクリプト(45)）。',
             fields: [],
             fromRouteCommand: function() { return {}; },
-            toParams: function() { return [this.makeRouteShiverControlScript('stopGatagata')]; }
-        });
-
-        reg(4517, {
-            code: 4517,
-            routeCode: 45,
-            title: 'ガタガタ開始',
-            description: 'this.startShiverX() を実行します（保存時はスクリプト(45)）。',
-            fields: [],
-            fromRouteCommand: function() { return {}; },
-            toParams: function() { return [this.makeRouteShiverControlScript('startShiverX')]; }
-        });
-
-        reg(4518, {
-            code: 4518,
-            routeCode: 45,
-            title: 'ガタガタ停止',
-            description: 'this.stopShiverX() を実行します（保存時はスクリプト(45)）。',
-            fields: [],
-            fromRouteCommand: function() { return {}; },
-            toParams: function() { return [this.makeRouteShiverControlScript('stopShiverX')]; }
+            toParams: function() { return [this.makeRouteShiverStopScript()]; }
         });
 
         reg(4500, {
@@ -4503,6 +4509,30 @@
         return 'this.startFrameAnimation(' + spec + ', ' + spd + ', ' + (lp ? 'true' : 'false') + ')';
     };
 
+    EE.prototype.parseRouteEndFrameAnimationScript = function(script) {
+        var s = String(script == null ? '' : script).trim();
+        if (!s) return null;
+        if (/^this\.endFrameAnimation\(\)\s*;?$/i.test(s)) {
+            return { keepPatternFix: true };
+        }
+        if (/^this\.endFrameAnimation\(\)\s*[,;]\s*this\._patternFix\s*=\s*false\s*;?$/i.test(s)) {
+            return { keepPatternFix: false };
+        }
+        return null;
+    };
+
+    EE.prototype.parseRouteEndFrameAnimationCommand = function(routeCmd) {
+        if (!routeCmd || Number(routeCmd.code || 0) !== 45) return null;
+        var p = Array.isArray(routeCmd.parameters) ? routeCmd.parameters : [];
+        return this.parseRouteEndFrameAnimationScript(String(p[0] || ''));
+    };
+
+    EE.prototype.makeRouteEndFrameAnimationScript = function(keepPatternFix) {
+        return keepPatternFix
+            ? 'this.endFrameAnimation();'
+            : 'this.endFrameAnimation(), this._patternFix = false;';
+    };
+
     EE.prototype.parseRouteSetImageAndStartFrameAnimationScript = function(script) {
         var s = String(script == null ? '' : script).trim();
         if (!s) return null;
@@ -4710,10 +4740,12 @@
     EE.prototype.parseRouteShiverControlScript = function(script) {
         var s = this.stripTrailingLineComment(String(script || '')).trim();
         if (!s.length) return null;
-        if (/^this\.startGatagata\(\s*\)\s*;?$/i.test(s)) return { kind: 'startGatagata' };
-        if (/^this\.stopGatagata\(\s*\)\s*;?$/i.test(s)) return { kind: 'stopGatagata' };
-        if (/^this\.startShiverX\(\s*\)\s*;?$/i.test(s)) return { kind: 'startShiverX' };
-        if (/^this\.stopShiverX\(\s*\)\s*;?$/i.test(s)) return { kind: 'stopShiverX' };
+        if (/^this\.startShiverX\(\s*\)\s*;?$/i.test(s)) return { action: 'start', shakeType: 'shiverX' };
+        if (/^this\.startGatagata\(\s*\)\s*;?$/i.test(s)) return { action: 'start', shakeType: 'gatagata' };
+        if (/^this\.stopShiverX\(\s*\)\s*;?$/i.test(s)) return { action: 'stop' };
+        if (/^this\.stopGatagata\(\s*\)\s*;?$/i.test(s)) return { action: 'stop' };
+        if (/^this\.stopShiverX\(\s*\)\s*[,;]\s*this\.stopGatagata\(\s*\)\s*;?$/i.test(s)) return { action: 'stop' };
+        if (/^this\.stopGatagata\(\s*\)\s*[,;]\s*this\.stopShiverX\(\s*\)\s*;?$/i.test(s)) return { action: 'stop' };
         return null;
     };
 
@@ -4723,13 +4755,14 @@
         return this.parseRouteShiverControlScript(String(p[0] || ''));
     };
 
-    EE.prototype.makeRouteShiverControlScript = function(kind) {
-        kind = String(kind || '');
-        if (kind === 'startGatagata') return 'this.startGatagata()';
-        if (kind === 'stopGatagata') return 'this.stopGatagata()';
-        if (kind === 'startShiverX') return 'this.startShiverX()';
-        if (kind === 'stopShiverX') return 'this.stopShiverX()';
-        return 'this.startGatagata()';
+    EE.prototype.makeRouteShiverStartScript = function(shakeType) {
+        return String(shakeType || '') === 'gatagata'
+            ? 'this.startGatagata()'
+            : 'this.startShiverX()';
+    };
+
+    EE.prototype.makeRouteShiverStopScript = function() {
+        return 'this.stopShiverX(), this.stopGatagata();';
     };
 
     EE.prototype.routeDisplayCodeCacheRead = function(routeCmd, scriptText) {
@@ -4775,6 +4808,7 @@
         else if (this.isRouteTileGotoCommand(routeCmd)) out = 4500;
         else if (this.parseRouteStartFrameAnimationListCommand(routeCmd)) out = 4510;
         else if (this.parseRouteSetImageAndStartFrameAnimationCommand(routeCmd)) out = 4510;
+        else if (this.parseRouteEndFrameAnimationCommand(routeCmd)) out = 4523;
         else if (this.parseRouteSetImageZxcCommand(routeCmd)) out = 4514;
         else if (this.parseRoutePlayCssRectAnimationCommand(routeCmd)) out = 4521;
         else if (this.parseRouteStopCssRectAnimationCommand(routeCmd)) out = 4522;
@@ -4784,10 +4818,7 @@
         else if (this.parseRouteStartMaskFadeInCommand(routeCmd)) out = 4520;
         var shiver = (out === 45) ? this.parseRouteShiverControlCommand(routeCmd) : null;
         if (shiver) {
-            if (shiver.kind === 'startGatagata') out = 4515;
-            else if (shiver.kind === 'stopGatagata') out = 4516;
-            else if (shiver.kind === 'startShiverX') out = 4517;
-            else if (shiver.kind === 'stopShiverX') out = 4518;
+            out = shiver.action === 'start' ? 4515 : 4516;
         }
         this.routeDisplayCodeCacheWrite(routeCmd, scriptText, out);
         return out;
@@ -5932,6 +5963,8 @@
             return { code: 45, parameters: [this.makeRouteTileGotoScript(0, 0)] };
         } else if (code === 4510) {
             return { code: 45, parameters: [this.makeRouteSetImageAndStartFrameAnimationScript('$003_2', 0, 2, '[8,9,10]', 6, false)] };
+        } else if (code === 4523) {
+            return { code: 45, parameters: [this.makeRouteEndFrameAnimationScript(false)] };
         } else if (code === 4514) {
             return { code: 45, parameters: [this.makeRouteSetImageZxcScript('$003_2', 0, 2)] };
         } else if (code === 4521) {
@@ -5949,13 +5982,13 @@
         } else if (code === 4520) {
             return { code: 45, parameters: [this.makeRouteStartMaskFadeInScript(70)] };
         } else if (code === 4515) {
-            return { code: 45, parameters: [this.makeRouteShiverControlScript('startGatagata')] };
+            return { code: 45, parameters: [this.makeRouteShiverStartScript('shiverX')] };
         } else if (code === 4516) {
-            return { code: 45, parameters: [this.makeRouteShiverControlScript('stopGatagata')] };
+            return { code: 45, parameters: [this.makeRouteShiverStopScript()] };
         } else if (code === 4517) {
-            return { code: 45, parameters: [this.makeRouteShiverControlScript('startShiverX')] };
+            return { code: 45, parameters: [this.makeRouteShiverStartScript('shiverX')] };
         } else if (code === 4518) {
-            return { code: 45, parameters: [this.makeRouteShiverControlScript('stopShiverX')] };
+            return { code: 45, parameters: [this.makeRouteShiverStopScript()] };
         } else if (code === 14) {
             return { code: 45, parameters: [this.makeRouteJumpExScript(0, 0, 1, 1)] };
         } else if (code === 15) {
