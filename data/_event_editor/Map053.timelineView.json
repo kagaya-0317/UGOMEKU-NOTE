@@ -1,7 +1,20 @@
 {
   "4:0": {
     "pxPerFrame": 7.999999999999997,
-    "scrollLeft": 3472,
+    "scrollLeft": 374,
+    "scrollTop": 0
+  },
+  "4:2": {
+    "pxPerFrame": 8,
+    "scrollLeft": 0,
+    "scrollTop": 0,
+    "ifBranchModes": {
+      "1": "auto"
+    }
+  },
+  "4:3": {
+    "pxPerFrame": 8,
+    "scrollLeft": 0,
     "scrollTop": 0
   }
 }

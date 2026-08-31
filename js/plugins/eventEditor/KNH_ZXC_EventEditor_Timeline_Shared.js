@@ -19,20 +19,67 @@
     if (SH.ready) return;
 
     SH.modules = Object.create(null);
+    SH.methodOwners = Object.create(null);
+    SH._moduleStarts = Object.create(null);
+    Object.getOwnPropertyNames(EE.prototype).forEach(function(name) {
+        if (name !== 'constructor') SH.methodOwners[name] = 'base';
+    });
+
+    SH.beginModule = function(name) {
+        name = String(name || '');
+        if (!name.length) throw new Error('Timeline module name is required');
+        if (SH.modules[name]) throw new Error('Timeline module already registered: ' + name);
+        if (SH._moduleStarts[name]) throw new Error('Timeline module already started: ' + name);
+        var snapshot = Object.create(null);
+        var names = Object.getOwnPropertyNames(EE.prototype);
+        for (var i = 0; i < names.length; i++) {
+            var propertyName = names[i];
+            snapshot[propertyName] = Object.getOwnPropertyDescriptor(EE.prototype, propertyName);
+        }
+        SH._moduleStarts[name] = snapshot;
+    };
+
     SH.registerModule = function(name, dependencies, overrides) {
         name = String(name || '');
         dependencies = Array.isArray(dependencies) ? dependencies : [];
         overrides = Array.isArray(overrides) ? overrides.slice(0) : [];
         if (!name.length) throw new Error('Timeline module name is required');
+        if (SH.modules[name]) throw new Error('Timeline module already registered: ' + name);
         for (var i = 0; i < dependencies.length; i++) {
             var dependency = String(dependencies[i] || '');
             if (dependency && !SH.modules[dependency]) {
                 throw new Error('Timeline module dependency missing: ' + name + ' -> ' + dependency);
             }
         }
+        var declaredOverrides = Object.create(null);
+        for (var j = 0; j < overrides.length; j++) declaredOverrides[String(overrides[j] || '')] = true;
+        var start = SH._moduleStarts[name] || Object.create(null);
+        var methodNames = [];
+        var actualOverrides = [];
+        var currentNames = Object.getOwnPropertyNames(EE.prototype);
+        for (var k = 0; k < currentNames.length; k++) {
+            var propertyName = currentNames[k];
+            if (propertyName === 'constructor') continue;
+            var current = Object.getOwnPropertyDescriptor(EE.prototype, propertyName);
+            var previous = start[propertyName];
+            var changed = !previous || previous.value !== current.value ||
+                previous.get !== current.get || previous.set !== current.set;
+            if (!changed) continue;
+            methodNames.push(propertyName);
+            if (previous) {
+                actualOverrides.push(propertyName);
+                if (!declaredOverrides[propertyName]) {
+                    throw new Error('Timeline module override must be declared: ' + name + ' -> ' + propertyName);
+                }
+            }
+            SH.methodOwners[propertyName] = name;
+        }
+        delete SH._moduleStarts[name];
         SH.modules[name] = {
             dependencies: dependencies.slice(0),
-            overrides: overrides
+            overrides: overrides,
+            actualOverrides: actualOverrides,
+            methods: methodNames
         };
     };
 
@@ -44,7 +91,14 @@
         return true;
     };
 
+    SH.beginModule('shared');
+
     var U = NS._eeUtils || {};
+    var MODEL = NS._eeModel;
+    if (!MODEL || typeof MODEL.compareEntriesByFrameWaitUid !== 'function' ||
+        typeof MODEL.sortTrackCommands !== 'function') {
+        throw new Error('Event editor model ordering service is not loaded');
+    }
     SH.clone = U.clone || function(v) { return JSON.parse(JSON.stringify(v)); };
     SH.maximizeWindowForEditor = U.maximizeWindowForEditor || function() { return false; };
     SH.installEscapeConvertFallback = U.installEscapeConvertFallback || function() {};
@@ -76,21 +130,10 @@
         return track && Array.isArray(track.commands) ? track.commands : [];
     };
 
-    SH.compareEntriesByFrameWaitUid = function(a, b) {
-        var af = Math.max(0, Math.floor(Number(a && a.frame || 0)));
-        var bf = Math.max(0, Math.floor(Number(b && b.frame || 0)));
-        if (af !== bf) return af - bf;
-        var aw = Math.max(0, Math.floor(Number(a && a.wait || 0))) > 0 ? 1 : 0;
-        var bw = Math.max(0, Math.floor(Number(b && b.wait || 0))) > 0 ? 1 : 0;
-        if (aw !== bw) return aw - bw;
-        return SH.entryUid(a) - SH.entryUid(b);
-    };
-
-    SH.sortTrackCommands = function(track) {
-        var commands = SH.trackCommands(track);
-        commands.sort(SH.compareEntriesByFrameWaitUid);
-        return commands;
-    };
+    SH.compareEntriesByFrameExecutionOrder = MODEL.compareEntriesByFrameExecutionOrder || MODEL.compareEntriesByFrameWaitUid;
+    SH.compareEntriesByFrameWaitUid = SH.compareEntriesByFrameExecutionOrder;
+    SH.entryExecutionOrder = MODEL.entryExecutionOrder;
+    SH.sortTrackCommands = MODEL.sortTrackCommands;
 
     SH.compareEntriesBySourceOrder = function(a, b) {
         return SH.entryUid(a) - SH.entryUid(b);

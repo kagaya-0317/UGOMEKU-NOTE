@@ -3,7 +3,7 @@
 //=============================================================================
 
 /*:
- * @plugindesc [MV][Playtest] Event timeline editor (editEventMode) v0.1.0
+ * @plugindesc [MV][Playtest] Event timeline editor (editEventMode) v0.3.0
  * @author kagaya
  *
  * @help
@@ -20,6 +20,7 @@
 
     var NS = window.KNH_ZXC_EventEditor = window.KNH_ZXC_EventEditor || {};
     var PLUGIN_NAME = 'KNH_ZXC_EventEditor';
+    var PLUGIN_VERSION = '0.3.0';
     var RE_COMPACT_SELECT_KEY = /type|mode|op|operand|scope|target|operation|blend|dir|designate/i;
     var RE_COMPACT_NUMBER_KEY = /id$|index|mode|type|value|x$|y$|z$|r$|g$|b$|a$|wait|time|frame|duration|speed|pan|pitch|volume|opacity/i;
     var RE_COMPACT_TEXT_KEY = /id$|tag|code|label|name/i;
@@ -30,14 +31,7 @@
         [/Selected Event/g, '選択イベント'],
         [/Execution Log/g, '実行ログ'],
         [/EventEditor ON \(timeline edit mode\)/g, 'イベントエディタ起動（タイムライン編集モード）'],
-        [/Timeline edit mode: playback is fixed OFF/g, 'タイムライン編集モード: 再生は常にOFFです'],
-        [/Play OFF \(ctrl\+r\): 開始位置へ戻る/g, '再生OFF（Ctrl+R）: 開始位置へ戻る'],
-        [/Play ON \(ctrl\+r\)/g, '再生ON（Ctrl+R）'],
-        [/Drop rejected \(wait overlap \/ invalid range\)/g, 'ドロップ失敗（ウェイト重複 / 範囲不正）'],
-        [/Drop rejected \(left range cannot shrink further\)/g, 'ドロップ失敗（左端をこれ以上縮められません）'],
-        [/Drop rejected \(wait overlap \/ invalid row\)/g, 'ドロップ失敗（ウェイト重複 / 行不正）'],
         [/Drop rejected \(range move collision\)/g, 'ドロップ失敗（範囲移動が衝突）'],
-        [/Move-route sub-command drag is disabled/g, '移動ルート内サブコマンドのドラッグは無効です'],
         [/move-route wait lock on main/g, 'main行で移動ルート待機ロック中です'],
         [/move-route range overlaps after adding command/g, 'コマンド追加後に移動ルート範囲が重なりました'],
         [/move-route range overlaps after tile move/g, 'タイル移動後に移動ルート範囲が重なりました'],
@@ -52,17 +46,58 @@
     ];
 
     function clone(v) { return JSON.parse(JSON.stringify(v)); }
+    function hashText32(text) {
+        text = String(text == null ? '' : text);
+        var hash = 2166136261 >>> 0;
+        for (var i = 0; i < text.length; i++) {
+            hash ^= text.charCodeAt(i);
+            hash = Math.imul(hash, 16777619) >>> 0;
+        }
+        return ('00000000' + hash.toString(16)).slice(-8);
+    }
+    function snapshotTextFingerprint(text) {
+        text = String(text == null ? '' : text);
+        var hash = 5381 >>> 0;
+        for (var i = 0; i < text.length; i++) hash = (Math.imul(hash, 33) ^ text.charCodeAt(i)) >>> 0;
+        return String(text.length) + ':' + hashText32(text) + ':' + ('00000000' + hash.toString(16)).slice(-8);
+    }
     function p3(n) { return ('000' + Number(n || 0)).slice(-3); }
     function ts() {
         var d = new Date();
         function p2(v) { return ('0' + v).slice(-2); }
-        return d.getFullYear() + p2(d.getMonth() + 1) + p2(d.getDate()) + '_' + p2(d.getHours()) + p2(d.getMinutes()) + p2(d.getSeconds());
+        return d.getFullYear() + p2(d.getMonth() + 1) + p2(d.getDate()) + '_' +
+            p2(d.getHours()) + p2(d.getMinutes()) + p2(d.getSeconds()) + '_' + ('00' + d.getMilliseconds()).slice(-3);
     }
     function ensureDir(path) {
         var fs = require('fs');
         try {
             if (!fs.existsSync(path)) fs.mkdirSync(path, { recursive: true });
         } catch (e) { try { fs.mkdirSync(path); } catch (_) {} }
+    }
+    function atomicWriteUtf8(fs, filePath, text) {
+        var tempPath = filePath + '.event-editor-' + String(process.pid || 0) + '-' +
+            String(Date.now()) + '-' + String(Math.floor(Math.random() * 1000000)) + '.tmp';
+        var committed = false;
+        try {
+            fs.writeFileSync(tempPath, text, { encoding: 'utf8', flag: 'wx' });
+            fs.renameSync(tempPath, filePath);
+            committed = true;
+        } finally {
+            if (!committed) {
+                try { if (fs.existsSync(tempPath)) fs.unlinkSync(tempPath); } catch (_) {}
+            }
+        }
+    }
+    function uniqueBackupPath(fs, path, dirPath, fileName) {
+        var dot = fileName.lastIndexOf('.json');
+        var stem = dot >= 0 ? fileName.slice(0, dot) : fileName;
+        var ext = dot >= 0 ? fileName.slice(dot) : '';
+        var candidate = fileName;
+        var suffix = 1;
+        while (fs.existsSync(path.join(dirPath, candidate))) {
+            candidate = stem + '-' + String(suffix++) + ext;
+        }
+        return path.join(dirPath, candidate);
     }
     function isEditEnabled() {
         try { return !!(window._debug && _debug.get && _debug.get('editEventMode') === true); }
@@ -84,10 +119,10 @@
     }
     function isMvEditorRestartOnSaveEnabled() {
         try {
-            if (!window._debug || typeof window._debug.get !== 'function') return true;
-            return window._debug.get('eventEditorRestartMvEditorOnSave', true) === true;
+            if (!window._debug || typeof window._debug.get !== 'function') return false;
+            return window._debug.get('eventEditorRestartMvEditorOnSave', false) === true;
         } catch (e) {
-            return true;
+            return false;
         }
     }
     function findEscapeWindow() {
@@ -657,7 +692,13 @@
         this.th = 1;
         this.model = { nextUid: 1, tracks: {} };
         this.schedule = {};
+        this._scheduleEntriesByTrack = null;
+        this._trackRevisionByKey = {};
+        this._historyTrackSnapshotCache = {};
         this.dirty = {};
+        this.documentDirty = { events: {}, troops: {} };
+        this._documentUndoEventIds = {};
+        this._documentUndoTroopIds = {};
         this.undoS = [];
         this.redoS = [];
         this.clip = null;
@@ -676,6 +717,7 @@
         this.hideRouteHandles = false;
         this.frame = 0;
         this.play = false;
+        this._postLastPlaybackState = null;
         this.maxF = 600;
         this.dragMode = '';
         this.dragging = false;
@@ -685,6 +727,7 @@
         this.savedScale = null;
         this.lastHoverAt = 0;
         this.timelineDirty = true;
+        this.timelineCursorDirty = true;
         this.warned = {};
         this.kd = null;
         this.ku = null;
@@ -732,7 +775,63 @@
     }
 
     NS.EE = EE;
+
+    EE.prototype.writeTextFileAtomic = function(filePath, text) {
+        var storage = NS._eeServices && NS._eeServices.storage;
+        if (storage) storage.writeTextAtomic(filePath, text);
+        else atomicWriteUtf8(require('fs'), filePath, String(text == null ? '' : text));
+        return true;
+    };
+    EE.prototype.writeJsonFileAtomic = function(filePath, value, spacing) {
+        var storage = NS._eeServices && NS._eeServices.storage;
+        if (storage) storage.writeJsonAtomic(filePath, value, spacing);
+        else this.writeTextFileAtomic(filePath, JSON.stringify(value, null, spacing == null ? 2 : spacing));
+        return true;
+    };
+    EE.prototype.pruneBackupFiles = function(dirPath, prefix, keepCount) {
+        var storage = NS._eeServices && NS._eeServices.storage;
+        return storage && typeof storage.pruneBackups === 'function'
+            ? storage.pruneBackups(dirPath, prefix, keepCount)
+            : [];
+    };
+    EE.prototype.writeBackupFile = function(options) {
+        options = options || {};
+        var storage = NS._eeServices && NS._eeServices.storage;
+        var backupPath;
+        if (storage) backupPath = storage.writeBackup(options.dirPath, options.fileName, options.text);
+        else {
+            var fs = require('fs');
+            var path = require('path');
+            ensureDir(options.dirPath);
+            backupPath = uniqueBackupPath(fs, path, options.dirPath, options.fileName);
+            fs.writeFileSync(backupPath, String(options.text == null ? '' : options.text), { encoding: 'utf8', flag: 'wx' });
+        }
+        if (options.prefix && options.keepCount != null) {
+            this.pruneBackupFiles(options.dirPath, options.prefix, options.keepCount);
+        }
+        return backupPath;
+    };
+    EE.prototype.backupAndWriteJsonFileAtomic = function(options) {
+        var storage = NS._eeServices && NS._eeServices.storage;
+        if (storage) return storage.backupAndWriteJson(options);
+        options = options || {};
+        var fs = require('fs');
+        var path = require('path');
+        var originalText = fs.existsSync(options.filePath) ? fs.readFileSync(options.filePath, 'utf8') : '';
+        var backupPath = '';
+        if (originalText.length && options.backupDir && options.backupName) {
+            ensureDir(options.backupDir);
+            backupPath = uniqueBackupPath(fs, path, options.backupDir, options.backupName);
+            fs.writeFileSync(backupPath, originalText, { encoding: 'utf8', flag: 'wx' });
+        }
+        this.writeJsonFileAtomic(options.filePath, options.value, options.spacing);
+        if (backupPath && options.backupPrefix && options.keepBackups != null) {
+            this.pruneBackupFiles(options.backupDir, options.backupPrefix, options.keepBackups);
+        }
+        return { filePath: options.filePath, backupPath: backupPath };
+    };
     NS._eeUtils = NS._eeUtils || {};
+    NS.VERSION = PLUGIN_VERSION;
     NS._eeUtils.clone = clone;
     NS._eeUtils.maximizeWindowForEditor = maximizeWindowForEditor;
     NS._eeUtils.installEscapeConvertFallback = installEscapeConvertFallback;
@@ -843,7 +942,7 @@
         return parts.join(' / ');
     };
 
-    EE.prototype.selectBattleTrack = function(troopId, pageIndex, skipUndo) {
+    EE.prototype.selectBattleTrack = function(troopId, pageIndex) {
         troopId = Math.max(1, Math.floor(Number(troopId || this.currentBattleTroopId() || 0)));
         var troop = ($dataTroops && Array.isArray($dataTroops)) ? $dataTroops[troopId] : null;
         if (!troop || !Array.isArray(troop.pages) || !troop.pages.length) {
@@ -860,7 +959,7 @@
         }
         var maxPage = troop.pages.length - 1;
         var pi = Math.max(0, Math.min(maxPage, Math.floor(Number(pageIndex || 0))));
-        if (!skipUndo && typeof this.pushSnap === 'function') this.pushSnap('selectBattle');
+        if (typeof this.rememberSelectedTimelineViewState === 'function') this.rememberSelectedTimelineViewState();
         this.selEid = troopId;
         this.selPage = pi;
         this.selKey = this.key(troopId, pi);
@@ -891,6 +990,10 @@
 
     EE.prototype.stop = function() {
         if (!this.on) return;
+        if (!this._skipRecoveryOnStop && typeof this.writeRecoverySnapshot === 'function') {
+            this.writeRecoverySnapshot(true);
+        }
+        this._skipRecoveryOnStop = false;
         this.on = false;
         this.stopWindowGuard();
         this.unbind();
@@ -1015,7 +1118,7 @@
             mapParallaxX: Number($gameMap && $gameMap._parallaxX != null ? $gameMap._parallaxX : 0),
             mapParallaxY: Number($gameMap && $gameMap._parallaxY != null ? $gameMap._parallaxY : 0)
         };
-        var es = $gameMap.events();
+        var es = ($gameMap && Array.isArray($gameMap._events)) ? $gameMap._events : [];
         for (var i = 0; i < es.length; i++) {
             var ev = es[i];
             if (!ev) continue;
@@ -1318,6 +1421,7 @@
 
     EE.prototype.restoreBase = function() {
         if (!this.base) return;
+        if (typeof this.resetActiveEditorMoveRoutes === 'function') this.resetActiveEditorMoveRoutes();
         var oldCenter = ($gamePlayer && Array.isArray($gamePlayer._centerXy)) ? $gamePlayer._centerXy : null;
         if (oldCenter && SceneManager && typeof SceneManager.clearEasing === 'function') {
             SceneManager.clearEasing(oldCenter, [0, 1]);
@@ -1474,7 +1578,7 @@
     EE.prototype.clearVisualRuntimeState = function() {
         try { this.clearCharacterVisualState($gamePlayer); } catch (_) {}
         try {
-            var es = $gameMap && $gameMap.events ? $gameMap.events() : [];
+            var es = ($gameMap && Array.isArray($gameMap._events)) ? $gameMap._events : [];
             for (var i = 0; i < es.length; i++) this.clearCharacterVisualState(es[i]);
         } catch (_) {}
         try {
@@ -1690,10 +1794,6 @@
                 if (AudioManager._seBuffers && AudioManager._seBuffers.indexOf(b) < 0) AudioManager._seBuffers.push(b);
             } catch (_) {}
         });
-    };
-
-    EE.prototype.rebuildSimSePlayback = function(frame) {
-        this.rebuildSimAudioPlayback(frame);
     };
 
     EE.prototype.handleAudioCommand = function(code, params, frame) {
@@ -1975,47 +2075,83 @@
         return false;
     };
 
-    EE.prototype.f2x = function(f, m) { if (m <= 0) return 0; return Math.floor((Math.max(0, f) / m) * (this.tw - 1)); };
-    EE.prototype.x2f = function(x, m) { return Math.floor(Math.max(0, Math.min(1, x / Math.max(1, this.tw - 1))) * m); };
-
-
     EE.prototype.key = function(eid, page) { return String(eid) + ':' + String(page); };
-    EE.prototype.rebuildSchedule = function() {
-        var s = {}, ks = Object.keys(this.model.tracks);
-        for (var i = 0; i < ks.length; i++) {
-            var tr = this.model.tracks[ks[i]];
-            if (typeof this.normalizeTrackRowsForCurrentMode === 'function') {
-                this.normalizeTrackRowsForCurrentMode(tr);
-            }
-            for (var j = 0; j < tr.commands.length; j++) {
-                var e = tr.commands[j], f = Math.max(0, Math.floor(e.frame || 0));
-                if (!s[f]) s[f] = [];
-                s[f].push(e);
-            }
+    EE.prototype.rebuildSchedule = function(options) {
+        options = options || {};
+        var modelApi = NS._eeModel;
+        if (!modelApi || typeof modelApi.rebuildSchedule !== 'function') {
+            throw new Error('Event editor model service is not loaded');
         }
-        this.schedule = s;
+        var self = this;
+        var rebuilt = modelApi.rebuildSchedule({
+            tracks: this.model && this.model.tracks ? this.model.tracks : {},
+            schedule: this.schedule,
+            byTrack: this._scheduleEntriesByTrack,
+            changedTrackKeys: options.changedTrackKeys,
+            normalizeTrack: function(track) {
+                if (typeof self.normalizeTrackRowsForCurrentMode === 'function') {
+                    self.normalizeTrackRowsForCurrentMode(track);
+                }
+                if (typeof self.normalizeTrackExecutionMetadata === 'function') {
+                    self.normalizeTrackExecutionMetadata(track);
+                }
+            }
+        });
+        this.schedule = rebuilt.schedule;
+        this._scheduleEntriesByTrack = rebuilt.byTrack;
         this._scheduleRev = (this._scheduleRev + 1) >>> 0;
-        this._frameExecState = null;
-        this._simForceFull = true;
+        var earliest = Number(options.earliestChangedFrame);
+        var affectsCurrentFrame = !isFinite(earliest) || earliest <= Math.max(0, Math.floor(Number(this.frame || 0)));
+        if (affectsCurrentFrame) {
+            this._frameExecState = null;
+            this._simForceFull = true;
+        }
         this.timelineDirty = true;
     };
-    EE.prototype.frameEntryPriority = function(e) {
-        var code = Number(e && e.command && e.command.code || 0);
-        // Move Route is evaluated after all other same-frame commands.
-        if (code === 205) return 100;
-        return 0;
+
+    EE.prototype.commitTrackMutation = function(options) {
+        options = options || {};
+        var keys = Array.isArray(options.trackKeys) ? options.trackKeys.slice(0) : [options.trackKey || this.selKey];
+        var changed = [];
+        var seen = Object.create(null);
+        for (var i = 0; i < keys.length; i++) {
+            var key = String(keys[i] || '');
+            if (!key || seen[key]) continue;
+            seen[key] = true;
+            changed.push(key);
+            if (options.markDirty !== false) this.dirty[key] = true;
+            this._trackRevisionByKey[key] = (Math.floor(Number(this._trackRevisionByKey[key] || 0)) + 1) >>> 0;
+            var track = this.model && this.model.tracks ? this.model.tracks[key] : null;
+            if (track && typeof this.normalizeTrackExecutionMetadata === 'function') {
+                this.normalizeTrackExecutionMetadata(track);
+            }
+            if (options.sort !== false && track && Array.isArray(track.commands)) {
+                var modelApi = NS._eeModel;
+                if (!modelApi || typeof modelApi.sortTrackCommands !== 'function') {
+                    throw new Error('Event editor model ordering service is not loaded');
+                }
+                modelApi.sortTrackCommands(track);
+            }
+        }
+        if (options.rebuild !== false) {
+            this.rebuildSchedule({
+                changedTrackKeys: changed,
+                earliestChangedFrame: options.earliestChangedFrame,
+                skipRouteNormalize: !!options.skipRouteNormalize
+            });
+        }
+        this.timelineDirty = true;
+        return changed;
     };
     EE.prototype.sortedEntriesAtFrame = function(f) {
         var ls = this.schedule[f];
         if (!ls || !ls.length) return [];
-        var self = this;
         var out = ls.slice(0);
-        out.sort(function(a, b) {
-            var pa = self.frameEntryPriority(a);
-            var pb = self.frameEntryPriority(b);
-            if (pa !== pb) return pa - pb;
-            return Number(a && a.uid || 0) - Number(b && b.uid || 0);
-        });
+        var modelApi = NS._eeModel;
+        if (!modelApi || typeof modelApi.compareEntriesByFrameExecutionOrder !== 'function') {
+            throw new Error('Event editor model ordering service is not loaded');
+        }
+        out.sort(modelApi.compareEntriesByFrameExecutionOrder);
         return out;
     };
     EE.prototype.execAt = function(f, opt) {
@@ -2060,11 +2196,40 @@
         return true;
     };
 
+    EE.prototype.historySnapshotModel = function() {
+        var modelApi = NS._eeModel;
+        if (!modelApi || typeof modelApi.snapshotModel !== 'function') {
+            throw new Error('Event editor model service is not loaded');
+        }
+        var result = modelApi.snapshotModel(this.model, this._historyTrackSnapshotCache || {});
+        this._historyTrackSnapshotCache = result.cache;
+        return result.model;
+    };
+
     EE.prototype.snap = function(label) {
+        var documentEvents = {};
+        var trackedEventIds = Object.keys(this._documentUndoEventIds || {});
+        for (var i = 0; i < trackedEventIds.length; i++) {
+            var eventId = Math.max(0, Math.floor(Number(trackedEventIds[i] || 0)));
+            documentEvents[eventId] = ($dataMap && Array.isArray($dataMap.events) && $dataMap.events[eventId])
+                ? clone($dataMap.events[eventId])
+                : null;
+        }
+        var documentTroops = {};
+        var trackedTroopIds = Object.keys(this._documentUndoTroopIds || {});
+        for (var j = 0; j < trackedTroopIds.length; j++) {
+            var troopId = Math.max(0, Math.floor(Number(trackedTroopIds[j] || 0)));
+            documentTroops[troopId] = ($dataTroops && Array.isArray($dataTroops) && $dataTroops[troopId])
+                ? clone($dataTroops[troopId])
+                : null;
+        }
         return {
             label: label || '',
-            model: clone(this.model),
+            model: this.historySnapshotModel(),
             dirty: clone(this.dirty),
+            documentDirty: clone(this.documentDirty || { events: {}, troops: {} }),
+            documentEvents: documentEvents,
+            documentTroops: documentTroops,
             selEid: this.selEid,
             selPage: this.selPage,
             selKey: this.selKey,
@@ -2079,16 +2244,11 @@
         var obj = {
             model: s.model || {},
             dirty: s.dirty || {},
-            selEid: Number(s.selEid || 0),
-            selPage: Number(s.selPage == null ? -1 : s.selPage),
-            selKey: String(s.selKey || ''),
-            selUid: Number(s.selUid || 0),
-            selRouteListIndex: Number(s.selRouteListIndex == null ? -1 : s.selRouteListIndex),
-            frame: Number(s.frame || 0),
-            panelSelectedCharId: (s.panelSelectedCharId == null ? null : Number(s.panelSelectedCharId)),
-            rangeSelection: (s.rangeSelection == null ? null : s.rangeSelection)
+            documentDirty: s.documentDirty || {},
+            documentEvents: s.documentEvents || {},
+            documentTroops: s.documentTroops || {}
         };
-        try { s._sig = JSON.stringify(obj); } catch (_) { s._sig = ''; }
+        try { s._sig = snapshotTextFingerprint(JSON.stringify(obj)); } catch (_) { s._sig = ''; }
         return s._sig;
     };
     EE.prototype.isSameSnap = function(a, b) {
@@ -2097,15 +2257,44 @@
     };
     EE.prototype.pushSnap = function(label) {
         var s = this.snap(label);
-        var last = this.undoS.length ? this.undoS[this.undoS.length - 1] : null;
-        if (last && this.isSameSnap(last, s)) return;
-        this.undoS.push(s);
-        if (this.undoS.length > 80) this.undoS.shift();
-        this.redoS.length = 0;
+        var modelApi = NS._eeModel;
+        if (!modelApi || typeof modelApi.pushHistorySnapshot !== 'function') {
+            throw new Error('Event editor history service is not loaded');
+        }
+        var self = this;
+        modelApi.pushHistorySnapshot({
+            undo: this.undoS,
+            redo: this.redoS,
+            snapshot: s,
+            equals: function(a, b) { return self.isSameSnap(a, b); },
+            limit: 80
+        });
     };
     EE.prototype.loadSnap = function(s) {
         if (!s) return;
         this.model = clone(s.model); this.dirty = clone(s.dirty || {});
+        this._scheduleEntriesByTrack = null;
+        this._trackRevisionByKey = {};
+        this.documentDirty = clone(s.documentDirty || { events: {}, troops: {} });
+        var documentEvents = s.documentEvents || {};
+        var eventIds = Object.keys(documentEvents);
+        for (var i = 0; i < eventIds.length; i++) {
+            var eventId = Math.max(0, Math.floor(Number(eventIds[i] || 0)));
+            if (!$dataMap || !Array.isArray($dataMap.events)) continue;
+            $dataMap.events[eventId] = documentEvents[eventIds[i]] == null
+                ? null
+                : clone(documentEvents[eventIds[i]]);
+            if (typeof this.refreshDocumentEventRuntime === 'function') this.refreshDocumentEventRuntime(eventId);
+        }
+        var documentTroops = s.documentTroops || {};
+        var troopIds = Object.keys(documentTroops);
+        for (var j = 0; j < troopIds.length; j++) {
+            var troopId = Math.max(0, Math.floor(Number(troopIds[j] || 0)));
+            if (!$dataTroops || !Array.isArray($dataTroops)) continue;
+            $dataTroops[troopId] = documentTroops[troopIds[j]] == null
+                ? null
+                : clone(documentTroops[troopIds[j]]);
+        }
         this.selEid = s.selEid || 0; this.selPage = (s.selPage === undefined ? -1 : s.selPage); this.selKey = s.selKey || ''; this.selUid = s.selUid || 0;
         this.selRouteListIndex = (s.selRouteListIndex == null) ? -1 : Number(s.selRouteListIndex);
         this.frame = Math.max(0, s.frame || 0);
@@ -2121,17 +2310,17 @@
             if (this.undoS.length > 80) this.undoS.shift();
         }
         if (this.undoS.length <= 1) return;
-        this.redoS.push(clone(this.undoS.pop()));
+        this.redoS.push(this.undoS.pop());
         this.loadSnap(this.undoS[this.undoS.length - 1]);
-        this.msg('Undo');
+        this.msg('元に戻しました');
     };
     EE.prototype.redo = function() {
         if (!this.redoS.length) return;
         var s = this.redoS.pop();
-        this.undoS.push(clone(s));
+        this.undoS.push(s);
         if (this.undoS.length > 80) this.undoS.shift();
         this.loadSnap(s);
-        this.msg('Redo');
+        this.msg('やり直しました');
     };
 
     EE.prototype.needSelTrack = function() {
@@ -2142,6 +2331,13 @@
         if (!this.selKey || !this.selUid) return;
         var tr = this.model.tracks[this.selKey];
         if (!tr) return;
+        var earliestChangedFrame = 0;
+        for (var fi = 0; fi < tr.commands.length; fi++) {
+            if (Number(tr.commands[fi] && tr.commands[fi].uid || 0) === Number(this.selUid || 0)) {
+                earliestChangedFrame = Math.max(0, Math.floor(Number(tr.commands[fi].frame || 0)));
+                break;
+            }
+        }
         this.pushSnap('del');
         var done = false;
         if (this.selRouteListIndex != null && this.selRouteListIndex >= 0) {
@@ -2199,56 +2395,16 @@
         }
         this.selUid = 0;
         this.selRouteListIndex = -1;
-        this.dirty[this.selKey] = true;
-        this.rebuildSchedule();
+        this.commitTrackMutation({ earliestChangedFrame: earliestChangedFrame });
         this.playFrom(this.frame);
     };
     EE.prototype.copy = function() {
         if (!this.selKey || !this.selUid) return;
         var tr = this.model.tracks[this.selKey];
-        for (var i = 0; i < tr.commands.length; i++) if (tr.commands[i].uid === this.selUid) { this.clip = clone(tr.commands[i].command); this.msg('Copy'); return; }
+        for (var i = 0; i < tr.commands.length; i++) if (tr.commands[i].uid === this.selUid) { this.clip = clone(tr.commands[i].command); this.msg('コピーしました'); return; }
     };
-    EE.prototype.cut = function() { this.copy(); this.delSel(); this.msg('Cut'); };
-    EE.prototype.paste = function() { if (!this.clip) return; this.addCmd(clone(this.clip), this.frame); this.msg('Paste'); };
-
-    EE.prototype.addSwitch = function() {
-        if (!this.needSelTrack()) return;
-        var t = window.prompt('スイッチ操作: id,value(0=ON 1=OFF)', '1,0'); if (t === null) return;
-        var a = t.split(','), id = Math.max(1, Number(a[0] || 1) || 1), v = Number(a[1] || 0) ? 1 : 0;
-        this.addCmd({ code: 121, indent: 0, parameters: [id, id, v] }, this.frame);
-    };
-    EE.prototype.addVar = function() {
-        if (!this.needSelTrack()) return;
-        var t = window.prompt('変数操作: id,op(set/add/sub/mul/div/mod),value', '1,set,1'); if (t === null) return;
-        var a = t.split(','), id = Math.max(1, Number(a[0] || 1) || 1), opn = String(a[1] || 'set').trim().toLowerCase(), v = Number(a[2] || 0) || 0;
-        var mp = { set: 0, add: 1, sub: 2, mul: 3, div: 4, mod: 5 }, op = mp.hasOwnProperty(opn) ? mp[opn] : 0;
-        this.addCmd({ code: 122, indent: 0, parameters: [id, id, op, 0, v] }, this.frame);
-    };
-    EE.prototype.addSe = function() {
-        if (!this.needSelTrack()) return;
-        var t = window.prompt('SE: name,volume,pitch,pan', 'Cursor1,90,100,0'); if (t === null) return;
-        var a = t.split(',');
-        this.addCmd({ code: 250, indent: 0, parameters: [{ name: String(a[0] || 'Cursor1'), volume: Math.max(0, Math.min(100, Number(a[1] || 90) || 90)), pitch: Math.max(50, Math.min(150, Number(a[2] || 100) || 100)), pan: Math.max(-100, Math.min(100, Number(a[3] || 0) || 0)) }] }, this.frame);
-    };
-    EE.prototype.addCommon = function() {
-        if (!this.needSelTrack()) return;
-        var t = window.prompt('コモンイベントID', '1'); if (t === null) return;
-        this.addCmd({ code: 117, indent: 0, parameters: [Math.max(1, Number(t || 1) || 1)] }, this.frame);
-    };
-    EE.prototype.addGoto = function() {
-        if (!this.needSelTrack()) return;
-        var ev = $gameMap.event(this.selEid); if (!ev) return;
-        var t = window.prompt('移動先: x,y', String(ev.x) + ',' + String(ev.y)); if (t === null) return;
-        var a = t.split(','), x = Number(a[0] || ev.x), y = Number(a[1] || ev.y);
-        this.addCmd(this.makeMoveScriptCmd('this.goTo(' + x + ', ' + y + ');'), this.frame);
-    };
-    EE.prototype.addGraphic = function() {
-        if (!this.needSelTrack()) return;
-        var ev = $gameMap.event(this.selEid); if (!ev) return;
-        var t = window.prompt('画像変更: imageName,direction', (ev.characterName ? ev.characterName() : '') + ',' + (ev.direction ? ev.direction() : 2)); if (t === null) return;
-        var a = t.split(','), name = String(a[0] || '').replace(/"/g, '\\"'), dir = Number(a[1] || 2) || 2;
-        this.addCmd(this.makeMoveScriptCmd('this.setImageZXC("' + name + '", 0, ' + dir + '); //画像変更'), this.frame);
-    };
+    EE.prototype.cut = function() { this.copy(); this.delSel(); this.msg('切り取りました'); };
+    EE.prototype.paste = function() { if (!this.clip) return; this.addCmd(clone(this.clip), this.frame); this.msg('貼り付けました'); };
 
     EE.prototype.beginTileMove = function() {
         if (!this.needSelTrack()) return;
@@ -2274,12 +2430,12 @@
                 var battlePages = battleTroop && Array.isArray(battleTroop.pages) ? battleTroop.pages : [];
                 if (battlePages.length) {
                     var pi = (runtimePageIndex >= 0) ? runtimePageIndex : 0;
-                    this.selectBattleTrack(battleTroopId, pi, true);
+                    this.selectBattleTrack(battleTroopId, pi);
                 }
                 return;
             }
             if (runtimeEventId > 0 && $gameMap && $gameMap.event(runtimeEventId)) {
-                this.selectEvent(runtimeEventId, true);
+                this.selectEvent(runtimeEventId);
                 if (this.selEid === runtimeEventId && runtimePageIndex >= 0) {
                     var page = this.trackPageSourceData(runtimeEventId, runtimePageIndex);
                     if (page) {
@@ -2310,7 +2466,7 @@
             var troop = this.currentBattleTroopData();
             var pages = troop && Array.isArray(troop.pages) ? troop.pages : [];
             if (troopId > 0 && pages.length) {
-                this.selectBattleTrack(troopId, Math.max(0, this.selPage), true);
+                this.selectBattleTrack(troopId, Math.max(0, this.selPage));
             } else {
                 this.refreshEventInfo();
             }
@@ -2324,7 +2480,7 @@
         NS._bootDeferredOwnerEventId = 0;
         NS._bootDeferredOwnerPageIndex = -1;
         if (deferredEventId > 0 && $gameMap && $gameMap.event(deferredEventId)) {
-            this.selectEvent(deferredEventId, true);
+            this.selectEvent(deferredEventId);
             if (this.selEid === deferredEventId && deferredPageIndex >= 0) {
                 var deferredPage = this.trackPageSourceData(deferredEventId, deferredPageIndex);
                 if (deferredPage) {
@@ -2367,7 +2523,7 @@
             }
             NS._initialSelectEventId = 0;
             if (pickedEventId > 0) {
-                this.selectEvent(pickedEventId, true);
+                this.selectEvent(pickedEventId);
                 return;
             }
         }
@@ -2427,7 +2583,7 @@
             if (this.dragPos) {
                 this.pushSnap('tileMove');
                 this.addCmd(this.makeMoveScriptCmd('this.goTo(' + this.dragPos.x + ', ' + this.dragPos.y + ');'), this.frame);
-                this.msg('TileMove追加: (' + this.dragPos.x + ', ' + this.dragPos.y + ')');
+                this.msg('タイル移動追加: (' + this.dragPos.x + ', ' + this.dragPos.y + ')');
             }
         }
     };
@@ -2438,24 +2594,13 @@
         for (var i = ls.length - 1; i >= 0; i--) {
             var sp = ls[i];
             if (!sp || !sp.visible || !sp._character || !(sp._character instanceof Game_Event)) continue;
-            var b = sp.getBounds();
+            var b = this.characterSpriteCanvasBounds ? this.characterSpriteCanvasBounds(sp, sp._character) :
+                (sp.getBounds ? sp.getBounds() : null);
+            if (!b) continue;
             if (sx >= b.x && sx <= b.x + b.width && sy >= b.y && sy <= b.y + b.height) return sp._character;
         }
         return null;
     };
-    EE.prototype.pickCommandNear = function(f) {
-        var tr = this.model.tracks[this.selKey];
-        if (!tr || !tr.commands.length) { this.selUid = 0; this.frame = f; this.timelineDirty = true; return; }
-        var tol = Math.max(2, Math.floor(this.maxFrame() / 120)), best = null, bd = Infinity;
-        for (var i = 0; i < tr.commands.length; i++) {
-            var d = Math.abs(tr.commands[i].frame - f);
-            if (d < bd) { bd = d; best = tr.commands[i]; }
-        }
-        this.selUid = (best && bd <= tol) ? best.uid : 0;
-        this.frame = f;
-        this.timelineDirty = true;
-    };
-
     EE.prototype.localizeEditorDisplayText = function(t) {
         var s = String(t == null ? '' : t);
         if (!s.length) return s;
@@ -2515,13 +2660,7 @@
     };
 
     EE.prototype.saveTraceHash = function(text) {
-        text = String(text == null ? '' : text);
-        var h = 2166136261 >>> 0;
-        for (var i = 0; i < text.length; i++) {
-            h ^= text.charCodeAt(i);
-            h = Math.imul(h, 16777619) >>> 0;
-        }
-        return ('00000000' + h.toString(16)).slice(-8);
+        return hashText32(text);
     };
 
     EE.prototype.eeFileLogPath = function(name) {
@@ -2529,10 +2668,11 @@
         try { path = require('path'); } catch (_) { return ''; }
         var key = String(name == null ? '' : name).trim().toUpperCase().replace(/[^A-Z0-9_]+/g, '_');
         if (!key) key = 'GENERIC';
-        return path.join(process.cwd(), 'js', 'plugins', 'eventEditor', 'Log_' + key + '.text');
+        return path.join(process.cwd(), 'data', '_event_editor', 'logs', 'Log_' + key + '.text');
     };
 
     EE.prototype.eeAppendFileLog = function(name, payload) {
+        if (!this.isCalcDebugEnabled || !this.isCalcDebugEnabled()) return;
         var fs, path;
         try { fs = require('fs'); path = require('path'); } catch (_) { return; }
         var filePath = this.eeFileLogPath(name);
@@ -2554,86 +2694,6 @@
             }
             fs.appendFileSync(filePath, line + '\n', 'utf8');
         } catch (_) {}
-    };
-
-    EE.prototype.saveTracePack = function(value) {
-        var data = null;
-        var json = '';
-        try { data = clone(value); } catch (_) { data = null; }
-        try { json = JSON.stringify(data); } catch (_) { json = ''; }
-        return {
-            data: data,
-            jsonLength: json.length,
-            hash: this.saveTraceHash(json)
-        };
-    };
-
-    EE.prototype.saveTraceEntrySummary = function(entry) {
-        entry = entry || {};
-        var cmd = entry.command || {};
-        var code = Math.floor(Number(cmd.code || 0));
-        var out = {
-            uid: Math.floor(Number(entry.uid || 0)),
-            frame: Math.max(0, Math.floor(Number(entry.frame || 0))),
-            wait: Math.max(0, Math.floor(Number(entry.wait || 0))),
-            rowType: String(entry.rowType || ''),
-            rowKey: String(entry.rowKey || ''),
-            charId: (entry.charId == null) ? null : Math.floor(Number(entry.charId || 0)),
-            code: code
-        };
-        if (code === 205) {
-            var p = Array.isArray(cmd.parameters) ? cmd.parameters : [];
-            var route = p[1] || {};
-            var list = Array.isArray(route.list) ? route.list : [];
-            out.route = {
-                targetId: Math.floor(Number(p[0] || 0)),
-                wait: !!route.wait,
-                repeat: !!route.repeat,
-                skippable: !!route.skippable,
-                listLength: list.length
-            };
-        }
-        return out;
-    };
-
-    EE.prototype.saveTraceTrackState = function(key, tr) {
-        if (!tr) return null;
-        var cmds = Array.isArray(tr.commands) ? tr.commands : [];
-        var cmdsPack = this.saveTracePack(cmds);
-        var summary = [];
-        for (var i = 0; i < cmds.length; i++) summary.push(this.saveTraceEntrySummary(cmds[i]));
-        var summaryPack = this.saveTracePack(summary);
-        var extraRows = Array.isArray(tr.extraCharRows) ? tr.extraCharRows : [];
-        var tempRows = Array.isArray(tr.tempCharRows) ? tr.tempCharRows : [];
-        return {
-            key: String(key || this.key(tr.eventId, tr.pageIndex)),
-            eventId: Math.floor(Number(tr.eventId || 0)),
-            pageIndex: Math.floor(Number(tr.pageIndex || 0)),
-            endFrame: Math.max(0, Math.floor(Number(tr.endFrame || 0))),
-            commandCount: cmds.length,
-            extraCharRows: clone(extraRows),
-            tempCharRows: clone(tempRows),
-            commandsSummary: summaryPack.data,
-            commandsSummaryHash: summaryPack.hash,
-            commandsSummaryJsonLength: summaryPack.jsonLength,
-            commands: cmdsPack.data,
-            commandsHash: cmdsPack.hash,
-            commandsJsonLength: cmdsPack.jsonLength
-        };
-    };
-
-    EE.prototype.saveTraceListState = function(key, eventId, pageIndex, list) {
-        var ls = Array.isArray(list) ? list : [];
-        var pack = this.saveTracePack(ls);
-        return {
-            key: String(key || ''),
-            eventId: Math.floor(Number(eventId || 0)),
-            pageIndex: Math.floor(Number(pageIndex || 0)),
-            listLength: ls.length,
-            listHash: pack.hash,
-            listJsonLength: pack.jsonLength,
-            list: pack.data
-        };
     };
 
     EE.prototype.debugParseTrackFromEventList = function(eid, page, list, endFrameFallback) {
@@ -2743,14 +2803,6 @@
             return Math.floor(Number(a && a.uid || 0)) - Math.floor(Number(b && b.uid || 0));
         });
         return tr;
-    };
-
-    EE.prototype.printSaveTrace = function(stage, payload) {
-        return;
-    };
-
-    EE.prototype.printReadTraceForTrack = function(key, eventId, pageIndex, list, trackState, source) {
-        return;
     };
 
     EE.prototype.eePropRefTargetEventId = function() {
@@ -2892,6 +2944,7 @@
     };
 
     EE.prototype.writeEePropReferenceDebug = function(dataDir, mapFile, trackKeys) {
+        if (!this.isCalcDebugEnabled || !this.isCalcDebugEnabled()) return;
         var fs, path;
         try { fs = require('fs'); path = require('path'); } catch (_) { return; }
         var filePath = this.eePropRefFilePath(dataDir, mapFile);
@@ -2902,7 +2955,7 @@
             record._frameIndex = this.eePropRefBuildFrameIndex(record);
             var out = clone(record);
             if (out && Object.prototype.hasOwnProperty.call(out, '_frameIndex')) delete out._frameIndex;
-            fs.writeFileSync(filePath, JSON.stringify(out, null, 2), 'utf8');
+            this.writeJsonFileAtomic(filePath, out, 2);
             this._eePropRefDebug = record;
             if (isPlaytest()) {
                 var savePayload = {
@@ -2935,6 +2988,10 @@
     };
 
     EE.prototype.loadEePropReferenceDebug = function(dataDir, mapFile) {
+        if (!this.isCalcDebugEnabled || !this.isCalcDebugEnabled()) {
+            this._eePropRefDebug = null;
+            return null;
+        }
         var fs;
         try { fs = require('fs'); } catch (_) { return null; }
         var filePath = this.eePropRefFilePath(dataDir, mapFile);
@@ -2981,22 +3038,7 @@
         return idx[String(f)] || null;
     };
 
-    EE.prototype.applyTracks = function(keys, preparedLists) {
-        var battle = this.isBattleEventMode();
-        for (var i = 0; i < keys.length; i++) {
-            var key = keys[i];
-            var tr = this.model.tracks[key];
-            if (!tr) continue;
-            var page = this.trackPageSourceData(tr.eventId, tr.pageIndex);
-            if (!page) continue;
-            var list = null;
-            if (preparedLists && Object.prototype.hasOwnProperty.call(preparedLists, key)) list = clone(preparedLists[key]);
-            else list = this.listFromTrack(tr);
-            page.list = list;
-        }
-        if (!battle && $gameMap && $gameMap.requestRefresh) $gameMap.requestRefresh();
-    };
-    EE.prototype.diffObj = function(keys, preparedLists) {
+    EE.prototype.diffObj = function(keys, preparedLists, mergedDocument) {
         var ts2 = [];
         var battle = this.isBattleEventMode();
         for (var i = 0; i < keys.length; i++) {
@@ -3008,15 +3050,66 @@
             else outList = this.listFromTrack(tr);
             ts2.push({ eventId: tr.eventId, pageIndex: tr.pageIndex, list: outList, timeline: clone(tr.commands) });
         }
-        var out = { plugin: PLUGIN_NAME, version: '0.1.0', savedAt: new Date().toISOString(), tracks: ts2 };
+        var out = {
+            plugin: PLUGIN_NAME,
+            version: PLUGIN_VERSION,
+            savedAt: new Date().toISOString(),
+            tracks: ts2,
+            documents: { events: [], troops: [] }
+        };
+        var documentDirty = this.documentDirty || { events: {}, troops: {} };
         if (battle) {
             out.mode = 'battle';
             out.troopId = this.currentBattleTroopId();
+            var troopIds = Object.keys(documentDirty.troops || {});
+            for (var ti = 0; ti < troopIds.length; ti++) {
+                var troopId = Math.max(0, Math.floor(Number(troopIds[ti] || 0)));
+                out.documents.troops.push({
+                    troopId: troopId,
+                    data: mergedDocument && Array.isArray(mergedDocument) ? clone(mergedDocument[troopId] || null) : null
+                });
+            }
         } else {
             out.mode = 'map';
             out.mapId = ($gameMap && typeof $gameMap.mapId === 'function') ? $gameMap.mapId() : 0;
+            var eventIds = Object.keys(documentDirty.events || {});
+            for (var ei = 0; ei < eventIds.length; ei++) {
+                var eventId = Math.max(0, Math.floor(Number(eventIds[ei] || 0)));
+                out.documents.events.push({
+                    eventId: eventId,
+                    data: mergedDocument && Array.isArray(mergedDocument.events) ? clone(mergedDocument.events[eventId] || null) : null
+                });
+            }
         }
         return out;
+    };
+    EE.prototype.mergeChangesIntoLatestDocument = function(latestDocument, keys, preparedLists) {
+        var api = NS._eeDocument;
+        if (!api || typeof api.mergeLatestDocument !== 'function') throw new Error('document utilities are not loaded');
+        return api.mergeLatestDocument({
+            battle: this.isBattleEventMode(),
+            latestDocument: latestDocument,
+            documentDirty: this.documentDirty || { events: {}, troops: {} },
+            currentEvents: ($dataMap && Array.isArray($dataMap.events)) ? $dataMap.events : [],
+            currentTroops: ($dataTroops && Array.isArray($dataTroops)) ? $dataTroops : [],
+            tracks: this.model && this.model.tracks ? this.model.tracks : {},
+            trackKeys: keys,
+            preparedLists: preparedLists
+        });
+    };
+    EE.prototype.syncCommittedDocument = function(mergedDocument) {
+        if (this.isBattleEventMode()) {
+            $dataTroops = mergedDocument;
+            if (typeof DataManager !== 'undefined' && DataManager && typeof DataManager.onLoad === 'function') {
+                try { DataManager.onLoad($dataTroops); } catch (_) {}
+            }
+        } else {
+            $dataMap = mergedDocument;
+            if (typeof DataManager !== 'undefined' && DataManager && typeof DataManager.onLoad === 'function') {
+                try { DataManager.onLoad($dataMap); } catch (_) {}
+            }
+            if ($gameMap && $gameMap.requestRefresh) $gameMap.requestRefresh();
+        }
     };
     EE.prototype.restartRpgMakerMvEditor = function() {
         if (!isMvEditorRestartOnSaveEnabled()) return false;
@@ -3030,9 +3123,8 @@
             this.eeAppendFileLog('RESTART', { stage: 'begin', projectPath: projectPath, at: new Date().toISOString() });
         } catch (_) {}
         try {
-            // Close all MV editors first, then reopen this project.
-            // taskkill exit code 128 means process not found; ignore it.
-            try { cp.execFileSync('taskkill.exe', ['/IM', 'RPGMV.exe', '/F'], { windowsHide: true, stdio: 'ignore' }); } catch (_) {}
+            // Never terminate RPG Maker MV here: it may contain unsaved editor work.
+            // This opt-in action only asks Windows to open the project file.
             var args = ['/c', 'start', '', projectPath];
             cp.spawn('cmd.exe', args, {
                 detached: true,
@@ -3069,39 +3161,62 @@
             }
             if (!fs.existsSync(targetPath)) throw new Error('data not found: ' + targetPath);
             var raw = fs.readFileSync(targetPath, 'utf8');
+            var latestDocument = JSON.parse(raw);
             var bd = path.join(dataDir, '_backup'); ensureDir(bd);
             var backupName = battle ? ('Troops.' + ts() + '.json') : targetFile.replace('.json', '.' + ts() + '.json');
-            fs.writeFileSync(path.join(bd, backupName), raw, 'utf8');
+            var backupPrefix = battle ? 'Troops.' : targetFile.replace('.json', '.');
+            this.writeBackupFile({
+                dirPath: bd,
+                fileName: backupName,
+                text: raw,
+                prefix: backupPrefix,
+                keepCount: 80
+            });
             if (backupOnly) {
                 this._lastSaveSucceeded = true;
-                this.msg('Backup saved');
+                this.msg('バックアップを保存しました');
                 return true;
             }
             var ks = Object.keys(this.dirty);
-            if (!ks.length) {
-                this.msg('No changes (backup only)');
-                return false;
-            }
+            var documentDirty = this.documentDirty || { events: {}, troops: {} };
+            var documentKeys = battle
+                ? Object.keys(documentDirty.troops || {})
+                : Object.keys(documentDirty.events || {});
             var exportListsByKey = {};
+            var validTrackKeys = [];
             for (var i = 0; i < ks.length; i++) {
                 var key = ks[i];
                 var tr = this.model.tracks[key];
                 if (!tr) continue;
                 exportListsByKey[key] = this.listFromTrack(tr);
+                validTrackKeys.push(key);
+            }
+            if (!validTrackKeys.length && !documentKeys.length) {
+                this._lastSaveSucceeded = true;
+                this.msg('変更はありません（バックアップのみ保存）');
+                return true;
             }
 
-            if (!battle) this.writeEePropReferenceDebug(dataDir, targetFile, ks);
-            this.applyTracks(ks, exportListsByKey);
-            fs.writeFileSync(targetPath, JSON.stringify(battle ? $dataTroops : $dataMap, null, 2), 'utf8');
+            if (!battle && this.isCalcDebugEnabled && this.isCalcDebugEnabled()) {
+                this.writeEePropReferenceDebug(dataDir, targetFile, validTrackKeys);
+            }
+            var mergedDocument = this.mergeChangesIntoLatestDocument(latestDocument, validTrackKeys, exportListsByKey);
+            var mergedText = JSON.stringify(mergedDocument, null, 2);
+            JSON.parse(mergedText);
             var dd = path.join(dataDir, '_event_editor'); ensureDir(dd);
             var diffFile = battle
                 ? ('Troop' + p3(this.currentBattleTroopId()) + '.eventdiff.json')
                 : targetFile.replace('.json', '.eventdiff.json');
-            fs.writeFileSync(path.join(dd, diffFile), JSON.stringify(this.diffObj(ks, exportListsByKey), null, 2), 'utf8');
+            var diffText = JSON.stringify(this.diffObj(validTrackKeys, exportListsByKey, mergedDocument), null, 2);
+            JSON.parse(diffText);
+            this.writeTextFileAtomic(path.join(dd, diffFile), diffText);
+            this.writeTextFileAtomic(targetPath, mergedText);
+            this.syncCommittedDocument(mergedDocument);
             this.dirty = {};
+            this.documentDirty = { events: {}, troops: {} };
             this._lastSaveSucceeded = true;
             this._lastSaveWroteData = true;
-            this.msg('Saved: ' + targetFile);
+            this.msg('保存しました: ' + targetFile);
             this.restartRpgMakerMvEditor();
             return true;
         } catch (e) {

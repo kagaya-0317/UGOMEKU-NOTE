@@ -2,7 +2,7 @@
 // KNH_ZXC_EventEditor_Timeline_Render
 //=============================================================================
 /*:
- * @plugindesc [MV][Playtest] Event timeline editor timeline extension v0.2 (KNH_ZXC_EventEditor_Timeline_Render)
+ * @plugindesc [MV][Playtest] Event timeline editor timeline extension v0.3.0 (KNH_ZXC_EventEditor_Timeline_Render)
  * @author kagaya
  * @help
  * KNH_ZXC_EventEditor.js の自動ロード用分割モジュールです。
@@ -21,6 +21,7 @@
     var installEscapeConvertFallback = SH.installEscapeConvertFallback;
     var compareEntriesByFrameWaitUid = SH.compareEntriesByFrameWaitUid;
     var COMMAND_CODE = SH.COMMAND_CODE;
+    SH.beginModule('render');
 
     //-------------------------------------------------------------------------
     // Timeline lifecycle, playback, and track model
@@ -28,15 +29,15 @@
     EE.prototype.post = function() {
         if (!this.on) return;
         var battleMode = this.isBattleEventMode();
-        if (!this.play) {
-            // Playback OFF must always hide/close runtime message UI immediately.
-            this.clearMessageRuntimeState();
-        } else {
-            // Recover from any forced-hide state so messages can appear during playback.
-            if (typeof this.ensureMessageRuntimeStateForPlayback === 'function') {
+        if (this._postLastPlaybackState !== !!this.play) {
+            this._postLastPlaybackState = !!this.play;
+            if (!this.play) {
+                this.clearMessageRuntimeState();
+            } else if (typeof this.ensureMessageRuntimeStateForPlayback === 'function') {
                 this.ensureMessageRuntimeStateForPlayback();
             }
         }
+        if (typeof this.writeRecoverySnapshot === 'function') this.writeRecoverySnapshot(false);
         if (!this.controlMode) {
             this.ensureEditorDisplayState();
             var beforeApplyDisplayX = null;
@@ -99,7 +100,7 @@
             this.updatePointer();
             this.updateAnimationPreview();
             var battleAutoTrack = this.model && this.model.tracks ? this.model.tracks[this.selKey] : null;
-            if (battleAutoTrack && this.trackHasAutoIfBranchViewMode(battleAutoTrack)) this.timelineDirty = true;
+            this.refreshAutoIfBranchViewSignature(battleAutoTrack);
             this.drawTimeline();
             return;
         }
@@ -119,7 +120,7 @@
         this.updatePointer();
         this.updateAnimationPreview();
         var autoTrack = this.model && this.model.tracks ? this.model.tracks[this.selKey] : null;
-        if (autoTrack && this.trackHasAutoIfBranchViewMode(autoTrack)) this.timelineDirty = true;
+        this.refreshAutoIfBranchViewSignature(autoTrack);
         this.drawTimeline();
     };
 
@@ -135,7 +136,12 @@
 
     var _eeBaseSeek_Timeline = EE.prototype.seek;
     EE.prototype.seek = function(f) {
+        var staticDirty = !!this.timelineDirty;
         _eeBaseSeek_Timeline.call(this, this.clampFrameToSelectedTrackEnd(f));
+        var track = this.model && this.model.tracks ? this.model.tracks[this.selKey] : null;
+        var autoBranchChanged = this.refreshAutoIfBranchViewSignature(track);
+        if (!staticDirty && !autoBranchChanged) this.timelineDirty = false;
+        this.timelineCursorDirty = true;
     };
 
     EE.prototype.pre = function() {
@@ -156,7 +162,7 @@
             this.setPlayBtn();
             this.stopEditorAudioPlayback();
             this.clearMessageRuntimeState();
-            this.timelineDirty = true;
+            this.timelineCursorDirty = true;
             return;
         }
         this.frame++;
@@ -172,7 +178,7 @@
         }
         var cap = endFrame + this.timelineEndPaddingFrames();
         if (cap > this.maxF) this.maxF = cap;
-        this.timelineDirty = true;
+        this.timelineCursorDirty = true;
     };
 
     EE.prototype.runInitialVisualRefresh = function() {
@@ -642,8 +648,10 @@
         if (!cmd || cmd.code === 0) return null;
         if (cmd.code === 230) return null;
         var battleMode = this.isBattleEventMode();
+        var entryUid = uid || this.model.nextUid++;
         var e = {
-            uid: uid || this.model.nextUid++,
+            uid: entryUid,
+            executionOrder: entryUid,
             frame: Math.max(0, Math.floor(Number(frame || 0))),
             eventId: eid,
             pageIndex: page,
@@ -660,6 +668,7 @@
             isMessage: false,
             messageLines: null,
             messageExt: null,
+            popupPortrait: null,
             isScrollMessage: false,
             scrollLines: null,
             isScript: false,
@@ -706,6 +715,105 @@
             e.wait = this.commandWaitFrames(e.command);
         }
         return e;
+    };
+
+    EE.prototype.routeSymbolFromOrdinal = function(ordinal) {
+        ordinal = Math.max(1, Math.floor(Number(ordinal || 1)));
+        var out = '';
+        while (ordinal > 0) {
+            ordinal--;
+            out = String.fromCharCode(65 + (ordinal % 26)) + out;
+            ordinal = Math.floor(ordinal / 26);
+        }
+        return out;
+    };
+
+    EE.prototype.normalizeTrackExecutionMetadata = function(tr) {
+        if (!tr || !Array.isArray(tr.commands)) return tr;
+        var ordered = tr.commands.slice(0).sort(function(a, b) {
+            return Math.floor(Number(a && a.uid || 0)) - Math.floor(Number(b && b.uid || 0));
+        });
+        var usedOrders = Object.create(null);
+        var maxOrder = 0;
+        var missingOrders = [];
+        var i;
+        for (i = 0; i < ordered.length; i++) {
+            var e = ordered[i];
+            if (!e) continue;
+            var order = Number(e.executionOrder);
+            var orderKey = (e.executionOrder != null && isFinite(order) && order > 0) ? String(order) : '';
+            if (!orderKey || usedOrders[orderKey]) {
+                missingOrders.push(e);
+                continue;
+            }
+            usedOrders[orderKey] = true;
+            maxOrder = Math.max(maxOrder, order);
+        }
+        for (i = 0; i < missingOrders.length; i++) {
+            var fallback = Math.floor(Number(missingOrders[i].uid || 0));
+            if (fallback > 0 && !usedOrders[String(fallback)]) {
+                missingOrders[i].executionOrder = fallback;
+                usedOrders[String(fallback)] = true;
+                maxOrder = Math.max(maxOrder, fallback);
+            } else {
+                do { maxOrder++; } while (usedOrders[String(maxOrder)]);
+                missingOrders[i].executionOrder = maxOrder;
+                usedOrders[String(maxOrder)] = true;
+            }
+        }
+
+        var routeGroups = Object.create(null);
+        for (i = 0; i < ordered.length; i++) {
+            e = ordered[i];
+            if (!e || !e.command || Number(e.command.code || 0) !== 205) continue;
+            var p = Array.isArray(e.command.parameters) ? e.command.parameters : [];
+            var charId = this.normalizeMoveTarget(e.charId == null ? Number(p[0] || 0) : Number(e.charId || 0));
+            var groupKey = String(charId);
+            if (!routeGroups[groupKey]) routeGroups[groupKey] = [];
+            routeGroups[groupKey].push(e);
+        }
+        var groupKeys = Object.keys(routeGroups);
+        for (var gi = 0; gi < groupKeys.length; gi++) {
+            var group = routeGroups[groupKeys[gi]];
+            var usedSymbols = Object.create(null);
+            var needsSymbol = [];
+            for (i = 0; i < group.length; i++) {
+                e = group[i];
+                var ordinal = Math.floor(Number(e.routeSymbolOrdinal || 0));
+                if (ordinal <= 0 || usedSymbols[String(ordinal)]) {
+                    needsSymbol.push(e);
+                    continue;
+                }
+                usedSymbols[String(ordinal)] = true;
+            }
+            var nextOrdinal = 1;
+            for (i = 0; i < needsSymbol.length; i++) {
+                while (usedSymbols[String(nextOrdinal)]) nextOrdinal++;
+                needsSymbol[i].routeSymbolOrdinal = nextOrdinal;
+                usedSymbols[String(nextOrdinal)] = true;
+                nextOrdinal++;
+            }
+        }
+        return tr;
+    };
+
+    EE.prototype.routeSymbolForEntry = function(entry) {
+        if (!entry || !entry.command || Number(entry.command.code || 0) !== 205) return '';
+        var ordinal = Math.floor(Number(entry.routeSymbolOrdinal || 0));
+        if (ordinal <= 0) {
+            var tr = this.selectedTrack ? this.selectedTrack() : null;
+            this.normalizeTrackExecutionMetadata(tr);
+            ordinal = Math.floor(Number(entry.routeSymbolOrdinal || 0));
+        }
+        return ordinal > 0 ? this.routeSymbolFromOrdinal(ordinal) : '';
+    };
+
+    EE.prototype.isMainLaneDisplayEntry = function(entry) {
+        if (!entry || !entry.command) return false;
+        if (entry.isComment || Number(entry.command.code || 0) === 108) return false;
+        if (Number(entry.command.code || 0) === 205) return true;
+        var rowKey = entry.rowKey || (entry.rowType === 'char' ? ('char:' + entry.charId) : 'main');
+        return rowKey === 'main';
     };
 
     EE.prototype.timelineEndPaddingFrames = function() {
@@ -763,6 +871,7 @@
             if (battleMode && typeof this.normalizeTrackRowsForCurrentMode === 'function') {
                 this.normalizeTrackRowsForCurrentMode(this.model.tracks[k]);
             }
+            this.normalizeTrackExecutionMetadata(this.model.tracks[k]);
             this.normalizeTrackEndFrame(this.model.tracks[k]);
             return this.model.tracks[k];
         }
@@ -876,13 +985,9 @@
             this.rebuildSchedule({ skipRouteNormalize: true });
             this.normalizeTrackRouteTileGotoWaitMeta(tr);
         }
+        this.normalizeTrackExecutionMetadata(tr);
         SH.sortTrackCommands(tr);
         this.loadIfBranchViewModesForTrack(tr);
-        if (this._eeReadTracePhase === 'startup' && typeof this.printReadTraceForTrack === 'function') {
-            try {
-                this.printReadTraceForTrack(k, eid, page, list, tr, 'startup');
-            } catch (_) {}
-        }
         return tr;
     };
 
@@ -903,7 +1008,7 @@
         }
         var out = [];
         var seen = Object.create(null);
-        var events = ($gameMap && typeof $gameMap.events === 'function') ? $gameMap.events() : [];
+        var events = ($gameMap && Array.isArray($gameMap._events)) ? $gameMap._events : [];
         for (var i = 0; i < events.length; i++) {
             var ev = events[i];
             if (!ev) continue;
@@ -1003,6 +1108,11 @@
         opt = opt || {};
         var forceComplete = !!opt.forceComplete;
         var sf = Math.max(0, Math.floor(Number(f || 0)));
+        if (!forceComplete) {
+            var waitStatus = this.drainEditorMoveRouteWait(sf);
+            if (waitStatus === 'waiting') return true;
+            if (waitStatus === 'blocked') return false;
+        }
         this.prepareIfBranchRuntimeStateForFrame(sf);
         var trackKey = this.executionTrackKey();
         var ls = this.executionEntriesAtFrame(sf, trackKey);
@@ -1041,11 +1151,138 @@
             st.index++;
             if (!this.shouldExecuteEntryByIfBranchRuntime(e)) continue;
             this.execEntry(e);
+            if (this.captureEditorMoveRouteWaitRemainder(st)) return true;
             if (this.isPlaybackBlocked()) return false;
         }
 
         this._frameExecState = null;
         return true;
+    };
+
+    EE.prototype.resetActiveEditorMoveRoutes = function() {
+        this._activeEditorMoveRoutes = [];
+        this._editorMoveRouteWaitState = null;
+    };
+
+    EE.prototype.captureEditorMoveRouteWaitRemainder = function(frameState) {
+        var waitState = this._editorMoveRouteWaitState;
+        if (!waitState || !frameState || !Array.isArray(frameState.list)) return false;
+        waitState.pending = frameState.list.slice(Math.max(0, Math.floor(Number(frameState.index || 0))));
+        waitState.pendingIndex = 0;
+        frameState.index = frameState.list.length;
+        this._frameExecState = null;
+        return true;
+    };
+
+    EE.prototype.drainEditorMoveRouteWait = function(frame) {
+        var state = this._editorMoveRouteWaitState;
+        if (!state) return 'ready';
+        if (state.character && state.character._moveRouteForcing) return 'waiting';
+        this._editorMoveRouteWaitState = null;
+        var pending = Array.isArray(state.pending) ? state.pending : [];
+        var index = Math.max(0, Math.floor(Number(state.pendingIndex || 0)));
+        while (index < pending.length) {
+            if (this.isPlaybackBlocked()) {
+                state.pendingIndex = index;
+                this._editorMoveRouteWaitState = state;
+                return 'blocked';
+            }
+            var entry = pending[index++];
+            if (!this.shouldExecuteEntryByIfBranchRuntime(entry)) continue;
+            this.execEntry(entry);
+            var nextWait = this._editorMoveRouteWaitState;
+            if (nextWait) {
+                nextWait.pending = pending.slice(index);
+                nextWait.pendingIndex = 0;
+                return 'waiting';
+            }
+            if (this.isPlaybackBlocked()) {
+                state.pending = pending;
+                state.pendingIndex = index;
+                this._editorMoveRouteWaitState = state;
+                return 'blocked';
+            }
+        }
+        return 'ready';
+    };
+
+    EE.prototype.activeEditorMoveRouteIndex = function(character) {
+        var records = Array.isArray(this._activeEditorMoveRoutes) ? this._activeEditorMoveRoutes : [];
+        for (var i = 0; i < records.length; i++) {
+            if (records[i] && records[i].character === character) return i;
+        }
+        return -1;
+    };
+
+    EE.prototype.appendMoveRouteInterruptionLog = function(frame, oldRecord, newEntry) {
+        if (!this.execLogView || !oldRecord || !newEntry) return;
+        if (!Array.isArray(this.execLogLines)) this.execLogLines = [];
+        var charId = (newEntry.charId == null)
+            ? Number((((newEntry.command || {}).parameters || [0])[0] || 0))
+            : Number(newEntry.charId || 0);
+        var target = this.rowLabelForCharId(this.normalizeMoveTarget(charId));
+        var oldSymbol = String(oldRecord.symbol || '');
+        var newSymbol = String(this.routeSymbolForEntry(newEntry) || '');
+        var text = '[' + Math.max(0, Math.floor(Number(frame || 0))) + 'f] ' + target +
+            ' の移動ルート' + oldSymbol + 'が、移動ルート' + newSymbol + 'の開始により中断されました';
+        this.execLogLines.push({
+            text: text,
+            nameText: text,
+            mainColor: 'rgba(214,166,124,.98)',
+            mainBold: true,
+            logAction: 'move-route-interrupted',
+            frame: Math.max(0, Math.floor(Number(frame || 0))),
+            uid: Number(newEntry.uid || 0),
+            routeListIndex: -1,
+            indentLevel: 0
+        });
+        var lim = Math.max(20, Math.floor(Number(this.execLogMax || 240)));
+        if (this.execLogLines.length > lim) this.execLogLines.splice(0, this.execLogLines.length - lim);
+        this.renderExecutionLog(true);
+    };
+
+    EE.prototype.beginEditorMoveRouteExecution = function(interpreter, parameters, entry, frame) {
+        if (!interpreter || !entry) return null;
+        var character = null;
+        try { character = interpreter.character(Number(parameters[0] || 0)); } catch (_) {}
+        if (!character) return null;
+        if (!Array.isArray(this._activeEditorMoveRoutes)) this._activeEditorMoveRoutes = [];
+        var index = this.activeEditorMoveRouteIndex(character);
+        if (index >= 0) {
+            var oldRecord = this._activeEditorMoveRoutes[index];
+            var stillActive = !!(character._moveRouteForcing && character._moveRoute === oldRecord.route);
+            if (stillActive && !this._simToRunning && !this._eeInlineCommandExecution) {
+                this.appendMoveRouteInterruptionLog(frame, oldRecord, entry);
+            }
+            this._activeEditorMoveRoutes.splice(index, 1);
+        }
+        return {
+            character: character,
+            route: parameters[1],
+            entry: entry,
+            symbol: this.routeSymbolForEntry(entry)
+        };
+    };
+
+    EE.prototype.finishEditorMoveRouteExecution = function(state) {
+        if (!state || !state.character || !state.route) return;
+        if (state.character._moveRoute !== state.route) return;
+        if (!Array.isArray(this._activeEditorMoveRoutes)) this._activeEditorMoveRoutes = [];
+        var index = this.activeEditorMoveRouteIndex(state.character);
+        if (index >= 0) this._activeEditorMoveRoutes.splice(index, 1);
+        this._activeEditorMoveRoutes.push(state);
+        var route = state.entry && state.entry.command && state.entry.command.parameters
+            ? state.entry.command.parameters[1]
+            : null;
+        if (route && route.wait === true && !this._simToRunning && !this._eeInlineCommandExecution) {
+            this._editorMoveRouteWaitState = {
+                character: state.character,
+                route: state.route,
+                entry: state.entry,
+                pending: [],
+                pendingIndex: 0
+            };
+        }
     };
 
     EE.prototype.execEntry = function(e) {
@@ -1082,6 +1319,9 @@
         it._mapId = $gameMap.mapId();
         it._eventId = e.eventId || 0;
         it._params = p;
+        var moveRouteState = (code === 205)
+            ? this.beginEditorMoveRouteExecution(it, p, e, af)
+            : null;
         var lst = [];
         if (code === 101) {
             var pre = this.messageExtCommandsFromEntry(e);
@@ -1090,6 +1330,8 @@
                 if (pc && Number(pc.code || 0) === 356) installEscapeConvertFallback();
                 lst.push(clone(pc));
             }
+            var portraitCommand = this.popupPortraitCommandFromEntry(e);
+            if (portraitCommand) lst.push(clone(portraitCommand));
             lst.push({ code: code, indent: Number(c.indent || 0), parameters: p });
         } else {
             lst.push({ code: code, indent: Number(c.indent || 0), parameters: p });
@@ -1117,12 +1359,14 @@
         lst.push({ code: 0, indent: 0, parameters: [] });
         it._list = lst;
         it._index = 0;
+        var executed = false;
         try {
             // Execute sequentially until a command requests wait (returns false)
             // or the temporary list is consumed.
             while (it._list && it._index < it._list.length) {
                 if (!it.executeCommand()) break;
             }
+            executed = true;
         } catch (er) {
             if (code === 356) {
                 this.fatal('E_EXEC_356', er);
@@ -1130,6 +1374,7 @@
             }
             this.err('E_EXEC_' + code, er);
         }
+        if (executed && moveRouteState) this.finishEditorMoveRouteExecution(moveRouteState);
     };
 
     EE.prototype.isEditorPlaybackActive = function() {
@@ -1741,37 +1986,6 @@
         return false;
     };
 
-    EE.prototype.canAddCharRowToTimeline = function(charId) {
-        if (!this.selEid || this.selPage < 0 || !this.selKey) return false;
-        var tr = this.model.tracks[this.selKey] || this.ensureTrack(this.selEid, this.selPage);
-        return !this.trackHasCharRow(tr, charId);
-    };
-
-    EE.prototype.addCharRowToTimeline = function(charId) {
-        if (!this.needSelTrack()) return false;
-        var tr = this.ensureTrack(this.selEid, this.selPage);
-        charId = this.normalizeMoveTarget(charId);
-        if (this.trackHasCharRow(tr, charId)) return false;
-        this.pushSnap('addCharRow');
-        if (!Array.isArray(tr.extraCharRows)) tr.extraCharRows = [];
-        tr.extraCharRows.push(charId);
-        tr.extraCharRows.sort(function(a, b) {
-            a = Number(a || 0);
-            b = Number(b || 0);
-            if (a === -1) return -1;
-            if (b === -1) return 1;
-            if (a === 0 && b !== -1) return -1;
-            if (b === 0 && a !== -1) return 1;
-            return a - b;
-        });
-        if (Array.isArray(tr.tempCharRows)) {
-            tr.tempCharRows = tr.tempCharRows.filter(function(v) { return Number(v) !== Number(charId); });
-        }
-        this.timelineDirty = true;
-        this.refreshCharacterPanel(true);
-        return true;
-    };
-
     EE.prototype.trackHasCharCommands = function(tr, charId) {
         if (!tr || !Array.isArray(tr.commands)) return false;
         charId = this.normalizeMoveTarget(charId);
@@ -1844,7 +2058,7 @@
     EE.prototype.selectCharacterForTimeline = function(charId, source) {
         if (this.dragMode === 'tile') return;
         charId = this.normalizeMoveTarget(charId);
-        if (!this.selKey && charId > 0) this.selectEvent(charId, true);
+        if (!this.selKey && charId > 0) this.selectEvent(charId);
         this.cleanupTemporaryCharRows(charId);
         this.panelSelectedCharId = charId;
         if (this.selKey) this.ensureTemporaryCharRow(charId);
@@ -1933,13 +2147,6 @@
             push('playerState', 'プレイヤー状態', vType ? ('乗り物=' + vType) : '徒歩');
         }
         return entries;
-    };
-
-    EE.prototype.characterStateLines = function(id, ch) {
-        var es = this.characterStateEntries(id, ch);
-        var out = [];
-        for (var i = 0; i < es.length; i++) out.push(String(es[i].text || ''));
-        return out;
     };
 
     EE.prototype.characterStateStartupBaselineMap = function(id, entries) {
@@ -2044,7 +2251,7 @@
 
     EE.prototype.selectBattlePageFromPanel = function(pageIndex) {
         var troopId = this.currentBattleTroopId();
-        this.selectBattleTrack(troopId, Math.max(0, Math.floor(Number(pageIndex || 0))), true);
+        this.selectBattleTrack(troopId, Math.max(0, Math.floor(Number(pageIndex || 0))));
     };
 
     EE.prototype.refreshSelectedCharacterInfo = function(force) {
@@ -2141,6 +2348,51 @@
         }
     };
 
+    EE.prototype.characterSpriteCanvasBounds = function(sprite, character) {
+        if (!sprite) return null;
+        var frame = sprite._frame || sprite._lastFrame || null;
+        var width = Math.max(0, Number(frame && frame.width || 0));
+        var height = Math.max(0, Number(frame && frame.height || 0));
+        if (width <= 0 || height <= 0) {
+            try { width = Math.max(width, Number(sprite.patternWidth ? sprite.patternWidth() : 0)); } catch (_) {}
+            try { height = Math.max(height, Number(sprite.patternHeight ? sprite.patternHeight() : 0)); } catch (_) {}
+        }
+        if (width <= 0 || height <= 0) return null;
+        var anchorX = Number(sprite.anchor && sprite.anchor.x != null ? sprite.anchor.x : 0);
+        var anchorY = Number(sprite.anchor && sprite.anchor.y != null ? sprite.anchor.y : 0);
+        if (!isFinite(anchorX)) anchorX = 0;
+        if (!isFinite(anchorY)) anchorY = 0;
+        var pad = (sprite._yuraInfo && sprite._meshSprite) ? Math.max(2, Math.ceil(Math.max(width, height) * 0.08)) : 0;
+        var left = -anchorX * width - pad;
+        var top = -anchorY * height - pad;
+        var right = left + width + pad * 2;
+        var bottom = top + height + pad * 2;
+        var wt = sprite.worldTransform;
+        if (wt && isFinite(Number(wt.a)) && isFinite(Number(wt.d)) && isFinite(Number(wt.tx)) && isFinite(Number(wt.ty))) {
+            var points = [
+                { x: left, y: top }, { x: right, y: top },
+                { x: left, y: bottom }, { x: right, y: bottom }
+            ];
+            var minX = Infinity, minY = Infinity, maxX = -Infinity, maxY = -Infinity;
+            for (var i = 0; i < points.length; i++) {
+                var px = Number(wt.a) * points[i].x + Number(wt.c || 0) * points[i].y + Number(wt.tx);
+                var py = Number(wt.b || 0) * points[i].x + Number(wt.d) * points[i].y + Number(wt.ty);
+                minX = Math.min(minX, px);
+                minY = Math.min(minY, py);
+                maxX = Math.max(maxX, px);
+                maxY = Math.max(maxY, py);
+            }
+            if (isFinite(minX) && isFinite(minY) && maxX > minX && maxY > minY) {
+                return { x: minX, y: minY, width: maxX - minX, height: maxY - minY };
+            }
+        }
+        var screenX = Number(sprite.x || 0);
+        var screenY = Number(sprite.y || 0);
+        try { if (character && character.screenX) screenX = Number(character.screenX()); } catch (_) {}
+        try { if (character && character.screenY) screenY = Number(character.screenY()); } catch (_) {}
+        return { x: screenX + left, y: screenY + top, width: right - left, height: bottom - top };
+    };
+
     EE.prototype.characterOverlayItems = function() {
         if (this.isBattleEventMode()) return [];
         var out = [];
@@ -2151,7 +2403,7 @@
         var selectedId = this.currentSelectedCharacterId();
         for (var i = 0; i < ls.length; i++) {
             var sp = ls[i];
-            if (!sp || !sp.visible || !sp._character || !sp.getBounds) continue;
+            if (!sp || !sp.visible || !sp._character) continue;
             var ch = sp._character;
             var cid = null;
             try {
@@ -2162,7 +2414,7 @@
                 }
             } catch (_) { cid = null; }
             if (cid == null) continue;
-            var b = sp.getBounds();
+            var b = this.characterSpriteCanvasBounds(sp, ch);
             var bx = Number(b && b.x || 0);
             var by = Number(b && b.y || 0);
             var bw = Math.max(0, Number(b && b.width || 0));
@@ -2540,15 +2792,14 @@
 
     EE.prototype.contextEventAdjustMarkDirty = function(eventId) {
         eventId = Math.max(1, Math.floor(Number(eventId || 0)));
-        this.dirty['es_pages:' + String(eventId)] = true;
-        this.timelineDirty = true;
+        this.markDocumentEventDirty(eventId);
     };
 
     EE.prototype.contextEventAdjustOriginStepPercent = function(eventId) {
         var sp = this.contextEventAdjustRuntimeSprite(eventId);
         var h = 0;
-        if (sp && typeof sp.getBounds === 'function') {
-            var b = sp.getBounds();
+        if (sp) {
+            var b = this.characterSpriteCanvasBounds(sp, sp._character);
             h = Math.abs(Number(b && b.height || 0));
         }
         if (!h && sp && sp._frame) h = Math.abs(Number(sp._frame.height || 0));
@@ -2642,6 +2893,10 @@
             this.msg('イベントが見つかりません');
             return;
         }
+        if (type !== 'range') {
+            this.trackDocumentEventForUndo(eventId);
+            this.pushSnap('event-display-adjust');
+        }
         var note = String(evData.note || '');
         var shiftTag = this.parseContextCgShiftFromNote(note);
         var originTag = this.parseContextCgOriginFromNote(note);
@@ -2664,8 +2919,8 @@
         };
         if (type === 'shift' || type === 'originY') this.applyContextEventAdjustState(this.contextEventAdjustState, false);
         this.updateContextEventAdjustVisual();
-        if (type === 'shift') this.msg('Shift調整: ←→↑↓で1px / Escで終了');
-        else if (type === 'originY') this.msg('OriginY調整: ↑↓で1px / Escで終了');
+        if (type === 'shift') this.msg('シフト調整: ←→↑↓で1px / Escで終了');
+        else if (type === 'originY') this.msg('原点Y調整: ↑↓で1px / Escで終了');
         else this.msg('当たり判定設定: 赤=有効 / クリックで切替 / Enterで確定 / Escで取消');
     };
 
@@ -2701,6 +2956,8 @@
         var prevNote = String(evData.note || '');
         var nextNote = this.upsertContextRangeInNote(prevNote, st.rangeMap || Object.create(null));
         if (nextNote !== prevNote) {
+            this.trackDocumentEventForUndo(eventId);
+            this.pushSnap('event-range-adjust');
             evData.note = nextNote;
             if (typeof DataManager !== 'undefined' && DataManager && typeof DataManager.extractMetadata === 'function') {
                 try { DataManager.extractMetadata(evData); } catch (_) {}
@@ -2845,11 +3102,15 @@
         }
         if (!this.contextEventOriginLine || !this.contextEventOriginLine.style) return;
         var sp = this.contextEventAdjustRuntimeSprite(st.eventId);
-        if (!sp || typeof sp.getBounds !== 'function') {
+        if (!sp) {
             this.hideContextEventAdjustVisual();
             return;
         }
-        var b = sp.getBounds();
+        var b = this.characterSpriteCanvasBounds(sp, sp._character);
+        if (!b) {
+            this.hideContextEventAdjustVisual();
+            return;
+        }
         var bx = Number(b && b.x || 0);
         var by = Number(b && b.y || 0);
         var bw = Math.max(1, Number(b && b.width || 0));
@@ -3069,16 +3330,21 @@
             return;
         }
         var placement = this.mapPointToEventPlacement(mapPoint);
+        this.trackDocumentEventForUndo(eventId);
+        this.pushSnap('create-event');
         $dataMap.events[eventId] = this.buildDefaultMapEventData(eventId, placement.x, placement.y, placement.note);
         this.ensureRuntimeEventDataMetadata($dataMap.events[eventId]);
         var evObj = this.attachRuntimeMapEvent(eventId);
         if (!evObj || !($gameMap && typeof $gameMap.event === 'function' && $gameMap.event(eventId))) {
+            $dataMap.events[eventId] = null;
+            this.refreshDocumentEventRuntime(eventId);
             this.msg('イベント新規作成: ランタイム反映に失敗 (ID:' + eventId + ')');
             return;
         }
         var key = this.key(eventId, 0);
         this.ensureTrack(eventId, 0);
-        this.dirty[key] = true;
+        this.commitTrackMutation({ trackKey: key, earliestChangedFrame: 0 });
+        this.markDocumentEventDirty(eventId);
         if (this.base && this.base.ev && evObj && typeof this.capCh === 'function') {
             try { this.base.ev[eventId] = this.capCh(evObj); } catch (_) {}
         }
@@ -3258,7 +3524,7 @@
         this.pushSnap('endMarker');
         tr.endFrame = nextEnd;
         this.normalizeTrackEndFrame(tr);
-        this.dirty[this.selKey] = true;
+        this.commitTrackMutation({ rebuild: false, sort: false, earliestChangedFrame: oldEnd });
         this.seek(nextEnd);
         this.msg('終了位置: ' + nextEnd + 'f');
         return true;
@@ -3279,20 +3545,14 @@
         this.pushSnap('endMarker');
         tr.endFrame = nextEnd;
         this.normalizeTrackEndFrame(tr);
-        this.dirty[this.selKey] = true;
+        this.commitTrackMutation({ rebuild: false, sort: false, earliestChangedFrame: oldEnd });
         this.seek(nextEnd);
         this.msg('終了位置: 最後のコマンド位置 (' + nextEnd + 'f)');
         return true;
     };
 
     EE.prototype.isSameFrameReorderTargetEntry = function(entry) {
-        if (!entry || !entry.command) return false;
-        var rk = String(entry.rowKey || (entry.rowType === 'char' ? ('char:' + entry.charId) : 'main'));
-        if (rk !== 'main') return false;
-        var code = Math.floor(Number(entry.command.code || 0));
-        // Exclude note comments and move-route commands from ▲▼ reorder targets.
-        if (code === 108 || code === 205) return false;
-        return true;
+        return this.isMainLaneDisplayEntry(entry);
     };
 
     EE.prototype.sameFrameCommandMoveInfo = function(uid) {
@@ -3304,12 +3564,10 @@
         if (!e) return out;
         if (!this.isSameFrameReorderTargetEntry(e)) return out;
         out.frame = Math.max(0, Math.floor(Number(e.frame || 0)));
-        if (Math.max(0, Math.floor(Number(e.wait || 0))) > 0) return out;
         var ordered = tr.commands.filter(function(ce) {
             return ce &&
                 this.isSameFrameReorderTargetEntry(ce) &&
-                Math.max(0, Math.floor(Number(ce.frame || 0))) === out.frame &&
-                Math.max(0, Math.floor(Number(ce.wait || 0))) <= 0;
+                Math.max(0, Math.floor(Number(ce.frame || 0))) === out.frame;
         }, this).sort(compareEntriesByFrameWaitUid);
         if (ordered.length <= 1) return out;
         var idx = -1;
@@ -3336,8 +3594,7 @@
         var ordered = tr.commands.filter(function(ce) {
             return ce &&
                 this.isSameFrameReorderTargetEntry(ce) &&
-                Math.max(0, Math.floor(Number(ce.frame || 0))) === info.frame &&
-                Math.max(0, Math.floor(Number(ce.wait || 0))) <= 0;
+                Math.max(0, Math.floor(Number(ce.frame || 0))) === info.frame;
         }, this).sort(compareEntriesByFrameWaitUid);
         var idx = -1;
         for (var i = 0; i < ordered.length; i++) {
@@ -3348,13 +3605,16 @@
         var selfEntry = this.findEntryInSelectedTrack(uid);
         if (!selfEntry || !target) return false;
         this.pushSnap('reorderFrame');
-        this.swapCommandUids(tr, selfEntry, target);
-        SH.sortTrackCommands(tr);
-        this.selUid = Number(selfEntry.uid || 0);
+        var selfOrder = Number(selfEntry.executionOrder);
+        var targetOrder = Number(target.executionOrder);
+        if (!isFinite(selfOrder)) selfOrder = Number(selfEntry.uid || 0);
+        if (!isFinite(targetOrder)) targetOrder = Number(target.uid || 0);
+        selfEntry.executionOrder = targetOrder;
+        target.executionOrder = selfOrder;
+        this.selUid = uid;
         this.selRouteListIndex = -1;
         this.frame = Math.max(0, Math.floor(Number(selfEntry.frame || info.frame || this.frame || 0)));
-        this.dirty[this.selKey] = true;
-        this.rebuildSchedule();
+        this.commitTrackMutation({ earliestChangedFrame: info.frame });
         this.seek(this.frame);
         this.refreshRouteRangeContextMenu();
         return true;
@@ -3411,6 +3671,7 @@
         }, delta);
         if (!preview || !preview.valid || !Array.isArray(preview.blocks)) return false;
         this.pushSnap('nudgeRoute');
+        var earliestChangedFrame = Math.max(0, Math.floor(Number(entry.frame || 0)));
         var route = entry.command.parameters && entry.command.parameters[1];
         if (!route || typeof route !== 'object') route = this.defaultMoveRoute();
         route.list = this.routeListFromBlocks(preview.blocks);
@@ -3418,11 +3679,10 @@
         entry.command.parameters[1] = route;
         entry.wait = this.commandWaitFrames(entry.command);
         var tr = this.model && this.model.tracks ? this.model.tracks[this.selKey] : null;
-        if (tr && Array.isArray(tr.commands)) SH.sortTrackCommands(tr);
         if (fromRangeSelection && this.hasRangeSelection && this.hasRangeSelection()) {
             var rs = this.rangeSelection || {};
             var kind = String(rs.kind || 'rect');
-            if (kind !== 'memory' && kind !== 'rect') kind = 'rect';
+            if (kind !== 'memory' && kind !== 'rect' && kind !== 'items') kind = 'rect';
             var nextSel = [];
             for (i = 0; i < preview.selectedListIndexes.length; i++) {
                 nextSel.push({ kind: 'routeCmd', uid: uid0, routeListIndex: this.nodeRouteIndex(preview.selectedListIndexes[i]) });
@@ -3444,10 +3704,8 @@
                 this.frame = Math.max(0, Math.floor(Number(entry.frame || this.frame || 0)));
             }
         }
-        this.dirty[this.selKey] = true;
-        this.rebuildSchedule();
+        this.commitTrackMutation({ earliestChangedFrame: earliestChangedFrame });
         this.seek(this.frame);
-        this.timelineDirty = true;
         return true;
     };
 
@@ -3458,6 +3716,7 @@
         if (!tr || !Array.isArray(tr.commands)) return false;
         var seen = Object.create(null);
         var moved = [];
+        var earliestChangedFrame = Infinity;
         entryUids = Array.isArray(entryUids) ? entryUids : [];
         for (var i = 0; i < entryUids.length; i++) {
             var uid = Math.floor(Number(entryUids[i] || 0));
@@ -3467,6 +3726,7 @@
             if (!e) continue;
             var nf = Math.floor(Number(e.frame || 0)) + delta;
             if (nf < 0) return false;
+            earliestChangedFrame = Math.min(earliestChangedFrame, Math.max(0, Math.floor(Number(e.frame || 0))), nf);
             var rk = String(e.rowKey || (e.rowType === 'char' ? ('char:' + e.charId) : 'main'));
             moved.push({ entry: e, frame: nf, rowKey: rk });
         }
@@ -3481,16 +3741,13 @@
             de.frame = Math.max(0, Math.floor(Number(it.frame || 0)));
             if (Number(de.uid || 0) === Number(this.selUid || 0)) selFrame = de.frame;
         }
-        SH.sortTrackCommands(tr);
         if (fromRangeSelection && this.hasRangeSelection && this.hasRangeSelection()) {
             this.shiftCurrentRangeSelectionByFrames(delta);
         } else if (selFrame != null) {
             this.frame = Math.max(0, Math.floor(Number(selFrame || 0)));
         }
-        this.dirty[this.selKey] = true;
-        this.rebuildSchedule();
+        this.commitTrackMutation({ earliestChangedFrame: earliestChangedFrame });
         this.seek(this.frame);
-        this.timelineDirty = true;
         return true;
     };
 
@@ -3742,6 +3999,8 @@
                 e = clone(it.entry);
                 if (!e || !e.command) return { ok: false, reason: 'invalid_entry' };
                 e.uid = -(i + 1);
+                e.executionOrder = null;
+                e.routeSymbolOrdinal = 0;
                 e.frame = ef;
                 e.eventId = this.selEid;
                 e.pageIndex = this.selPage;
@@ -3917,13 +4176,13 @@
     EE.prototype.copy = function() {
         var pack = this.buildClipboardFromCurrentSelection();
         if (!pack.ok) {
-            this.msg('Copy不可: ' + this.timelineClipboardCopyReasonText(pack.reason));
+            this.msg('コピー不可: ' + this.timelineClipboardCopyReasonText(pack.reason));
             return false;
         }
         this.timelineCommandClipboard = clone(pack.clip);
         this.clip = (pack.clip.items && pack.clip.items.length) ? clone(pack.clip.items[0].command) : null;
         var count = pack.clip.type === 'move_route_commands_v1' ? pack.clip.commands.length : pack.sourceUids.length;
-        this.msg('Copy ' + count + '件');
+        this.msg('コピーしました: ' + count + '件');
         return true;
     };
 
@@ -3941,16 +4200,20 @@
             count++;
         }
         if (!count) return 0;
+        var earliestChangedFrame = Infinity;
+        for (i = 0; i < tr.commands.length; i++) {
+            if (del[Math.floor(Number((tr.commands[i] && tr.commands[i].uid) || 0))]) {
+                earliestChangedFrame = Math.min(earliestChangedFrame, Math.max(0, Math.floor(Number(tr.commands[i].frame || 0))));
+            }
+        }
         this.pushSnap(String(snapLabel || 'del'));
         tr.commands = tr.commands.filter(function(e) {
             return !del[Math.floor(Number((e && e.uid) || 0))];
         });
-        SH.sortTrackCommands(tr);
         this.selUid = 0;
         this.selRouteListIndex = -1;
         if (this.hasRangeSelection && this.hasRangeSelection()) this.clearRangeSelection();
-        this.dirty[this.selKey] = true;
-        this.rebuildSchedule();
+        this.commitTrackMutation({ earliestChangedFrame: earliestChangedFrame });
         this.playFrom(this.frame);
         return count;
     };
@@ -3958,7 +4221,7 @@
     EE.prototype.cut = function() {
         var pack = this.buildClipboardFromCurrentSelection();
         if (!pack.ok) {
-            this.msg('Cut不可: ' + this.timelineClipboardCopyReasonText(pack.reason));
+            this.msg('切り取り不可: ' + this.timelineClipboardCopyReasonText(pack.reason));
             return false;
         }
         this.timelineCommandClipboard = clone(pack.clip);
@@ -3975,15 +4238,14 @@
             if (this.hasRangeSelection && this.hasRangeSelection()) this.clearRangeSelection();
             this.selUid = Number(entry.uid || 0);
             this.selRouteListIndex = -1;
-            this.dirty[this.selKey] = true;
-            this.rebuildSchedule();
+            this.commitTrackMutation({ earliestChangedFrame: entry.frame });
             this.playFrom(this.frame);
-            this.msg('Cut ' + pack.sourceIndexes.length + '件');
+            this.msg('切り取りました: ' + pack.sourceIndexes.length + '件');
             return true;
         }
         var removed = this.deleteEntriesByUidList(pack.sourceUids, 'cut');
         if (removed <= 0) return false;
-        this.msg('Cut ' + removed + '件');
+        this.msg('切り取りました: ' + removed + '件');
         return true;
     };
 
@@ -3997,7 +4259,7 @@
             if (String(cap.reason || '') === 'overlap' && cap.conflictEntry) {
                 try { this.logDropConflictDetail(cap.tempTrack || (this.model && this.model.tracks ? this.model.tracks[this.selKey] : null), cap.conflictEntry, cap.conflictEntry.frame, cap.conflictEntry.rowKey, 0, 'paste'); } catch (_) {}
             }
-            this.msg('Paste不可: ' + this.timelineClipboardPasteReasonText(cap.reason));
+            this.msg('貼り付け不可: ' + this.timelineClipboardPasteReasonText(cap.reason));
             return false;
         }
         if (this.timelineCommandClipboard && this.timelineCommandClipboard.type === 'move_route_commands_v1') {
@@ -4015,17 +4277,19 @@
             tr.commands.push(e);
             if (e.rowType === 'char') this.confirmCharRowPermanent(e.charId);
         }
-        SH.sortTrackCommands(tr);
         if (this.hasRangeSelection && this.hasRangeSelection()) this.clearRangeSelection();
         if (first) {
             this.selUid = Number(first.uid || 0);
             this.selRouteListIndex = -1;
             this.frame = Math.max(0, Math.floor(Number(first.frame || this.frame || 0)));
         }
-        this.dirty[this.selKey] = true;
-        this.rebuildSchedule();
+        this.commitTrackMutation({
+            earliestChangedFrame: entries.length
+                ? Math.min.apply(null, entries.map(function(e) { return Math.max(0, Math.floor(Number(e && e.frame || 0))); }))
+                : this.frame
+        });
         this.playFrom(this.frame);
-        this.msg('Paste ' + entries.length + '件');
+        this.msg('貼り付けました: ' + entries.length + '件');
         return true;
     };
 
@@ -4040,7 +4304,6 @@
             entry = clone(cap.previewEntry);
             entry.uid = this.model.nextUid++;
             tr.commands.push(entry);
-            SH.sortTrackCommands(tr);
             this.confirmCharRowPermanent(entry.charId);
             this.frame = Math.max(0, Math.floor(Number(entry.frame || this.frame || 0)));
         } else {
@@ -4055,10 +4318,14 @@
             selectedItems.push({ kind: 'routeCmd', uid: this.selUid, routeListIndex: cap.insertIndex + i });
         }
         if (selectedItems.length > 1) this.setRangeSelection('rect', selectedItems, { frameStart: this.frame, frameEnd: this.frame });
-        this.dirty[this.selKey] = true;
-        this.rebuildSchedule();
+        this.commitTrackMutation({
+            earliestChangedFrame: Math.min(
+                Math.max(0, Math.floor(Number(entry.frame || 0))),
+                Math.max(0, Math.floor(Number(cap.previewEntry.frame || 0)))
+            )
+        });
         this.playFrom(this.frame);
-        this.msg('Paste ' + cap.count + '件');
+        this.msg('貼り付けました: ' + cap.count + '件');
         return true;
     };
 
@@ -4080,7 +4347,7 @@
             if (String(cap.reason || '') === 'overlap' && cap.conflictEntry) {
                 try { this.logDropConflictDetail(cap.tempTrack || (this.model && this.model.tracks ? this.model.tracks[this.selKey] : null), cap.conflictEntry, cap.conflictEntry.frame, cap.conflictEntry.rowKey, 0, 'paste_ctx'); } catch (_) {}
             }
-            this.msg('Paste不可: ' + this.timelineClipboardPasteReasonText(cap.reason));
+            this.msg('貼り付け不可: ' + this.timelineClipboardPasteReasonText(cap.reason));
             return false;
         }
         if (this.timelineCommandClipboard && this.timelineCommandClipboard.type === 'move_route_commands_v1') {
@@ -4098,17 +4365,19 @@
             tr.commands.push(e);
             if (e.rowType === 'char') this.confirmCharRowPermanent(e.charId);
         }
-        SH.sortTrackCommands(tr);
         if (this.hasRangeSelection && this.hasRangeSelection()) this.clearRangeSelection();
         if (first) {
             this.selUid = Number(first.uid || 0);
             this.selRouteListIndex = -1;
             this.frame = Math.max(0, Math.floor(Number(first.frame || this.frame || 0)));
         }
-        this.dirty[this.selKey] = true;
-        this.rebuildSchedule();
+        this.commitTrackMutation({
+            earliestChangedFrame: entries.length
+                ? Math.min.apply(null, entries.map(function(e) { return Math.max(0, Math.floor(Number(e && e.frame || 0))); }))
+                : this.frame
+        });
         this.playFrom(this.frame);
-        this.msg('Paste ' + entries.length + '件');
+        this.msg('貼り付けました: ' + entries.length + '件');
         return true;
     };
 
@@ -4333,8 +4602,7 @@
             if (next) entry.command._eeMarkerColor = next;
             else delete entry.command._eeMarkerColor;
         }
-        this.dirty[this.selKey] = true;
-        this.timelineDirty = true;
+        this.commitTrackMutation({ rebuild: false, sort: false, earliestChangedFrame: entry.frame });
         this.refreshRouteRangeContextMenu();
         var info = this.commandMarkerColorInfo(next);
         this.msg('◯色: ' + (info ? info.label : '解除'));
@@ -4520,4501 +4788,6 @@
     };
 
     //-------------------------------------------------------------------------
-    // Timeline editing, insertion, clipboard, and selection operations
-    //-------------------------------------------------------------------------
-
-    EE.prototype.waitInsertDefaultFramesFromSelection = function() {
-        if (!this.hasRangeSelection()) return 60;
-        var rs = this.rangeSelection || {};
-        var fs = Math.max(0, Math.floor(Number(rs.frameStart || 0)));
-        var fe = Math.max(fs, Math.floor(Number(rs.frameEnd == null ? fs : rs.frameEnd)));
-        var n = Math.max(1, fe - fs + 1);
-        return n;
-    };
-
-    EE.prototype.makeWaitInsertContextFromFrame = function(frame, rowKey) {
-        frame = Math.max(0, Math.floor(Number(frame || 0)));
-        rowKey = String(rowKey || 'main');
-        if (rowKey.indexOf('char:') !== 0) rowKey = 'main';
-        return {
-            source: 'frame',
-            frame: frame,
-            rowKey: rowKey,
-            defaultFrames: 60
-        };
-    };
-
-    EE.prototype.makeWaitInsertContextFromSelection = function() {
-        if (!this.hasRangeSelection()) return this.makeWaitInsertContextFromFrame(this.frame);
-        var rs = this.rangeSelection || {};
-        var fs = Math.max(0, Math.floor(Number(rs.frameStart || 0)));
-        var fe = Math.max(fs, Math.floor(Number(rs.frameEnd == null ? fs : rs.frameEnd)));
-        return {
-            source: 'selection',
-            frameStart: fs,
-            frameEnd: fe,
-            defaultFrames: this.waitInsertDefaultFramesFromSelection()
-        };
-    };
-
-    EE.prototype.makeWaitInsertContextFromCommand = function(uid, fallbackFrame) {
-        uid = Math.floor(Number(uid || 0));
-        var e = this.findEntryInSelectedTrack(uid);
-        var frame = (e ? e.frame : fallbackFrame);
-        frame = Math.max(0, Math.floor(Number(frame || 0)));
-        var ifBranchViewMode = '';
-        var choiceBranchViewMode = '';
-        if (e && e.command && Number(e.command.code || 0) === 111 && typeof this.getIfBranchViewModeForEntry === 'function') {
-            try { ifBranchViewMode = this.sanitizeIfBranchViewMode(this.getIfBranchViewModeForEntry(e)); } catch (_) { ifBranchViewMode = ''; }
-        }
-        if (e && e.command && Number(e.command.code || 0) === 102 && typeof this.getChoiceBranchViewModeForEntry === 'function') {
-            try { choiceBranchViewMode = this.sanitizeChoiceBranchViewMode(this.getChoiceBranchViewModeForEntry(e)); } catch (_) { choiceBranchViewMode = ''; }
-        }
-        return {
-            source: 'command',
-            uid: uid,
-            frame: frame,
-            includeSameFrameOnAfter: true,
-            defaultFrames: 60,
-            ifBranchViewMode: ifBranchViewMode,
-            choiceBranchViewMode: choiceBranchViewMode
-        };
-    };
-
-    EE.prototype.makeWaitInsertContextFromRouteCommand = function(uid, routeListIndex, fallbackFrame) {
-        uid = Math.floor(Number(uid || 0));
-        routeListIndex = this.nodeRouteIndex(routeListIndex);
-        var e = this.findEntryInSelectedTrack(uid);
-        var frame = Math.max(0, Math.floor(Number(fallbackFrame || 0)));
-        if (e && e.command && Number(e.command.code || 0) === 205) {
-            frame = Math.max(0, Math.floor(Number(e.frame || 0)));
-            var route = e.command.parameters && e.command.parameters[1];
-            var tl = this.moveRouteTimeline(route);
-            var items = tl && Array.isArray(tl.items) ? tl.items : [];
-            for (var i = 0; i < items.length; i++) {
-                var it = items[i];
-                if (!it) continue;
-                if (this.nodeRouteIndex(it.listIndex) !== routeListIndex) continue;
-                frame = Math.max(0, Math.floor(Number(e.frame || 0)) + Math.max(0, Math.floor(Number(it.offset || 0))));
-                break;
-            }
-        }
-        return {
-            source: 'routeCmd',
-            uid: uid,
-            routeListIndex: routeListIndex,
-            frame: frame,
-            defaultFrames: 60
-        };
-    };
-
-    EE.prototype.resolveWaitInsertContext = function(ctx) {
-        var c = (ctx && typeof ctx === 'object') ? clone(ctx) : {};
-        var source = String(c.source || 'frame');
-        if (source !== 'selection' && source !== 'command' && source !== 'routeCmd' && source !== 'frame') source = 'frame';
-        c.source = source;
-        if (source === 'selection') {
-            var fs = Math.max(0, Math.floor(Number(c.frameStart || 0)));
-            var fe = Math.max(fs, Math.floor(Number(c.frameEnd == null ? fs : c.frameEnd)));
-            c.frameStart = fs;
-            c.frameEnd = fe;
-            c.defaultFrames = Math.max(1, Math.floor(Number(c.defaultFrames || (fe - fs + 1) || 60)));
-        } else {
-            c.frame = Math.max(0, Math.floor(Number(c.frame || this.frame || 0)));
-            c.rowKey = String(c.rowKey || 'main');
-            if (c.rowKey.indexOf('char:') !== 0) c.rowKey = 'main';
-            c.defaultFrames = Math.max(1, Math.floor(Number(c.defaultFrames || 60)));
-            c.uid = Math.floor(Number(c.uid || 0));
-            c.routeListIndex = this.nodeRouteIndex(c.routeListIndex);
-            c.includeSameFrameOnAfter = !!c.includeSameFrameOnAfter;
-            var ivm = String(c.ifBranchViewMode || '').toLowerCase();
-            if (ivm === 'then' || ivm === 'else' || ivm === 'auto') c.ifBranchViewMode = ivm;
-            else c.ifBranchViewMode = '';
-            var cvm = String(c.choiceBranchViewMode || '').toLowerCase();
-            if (cvm === 'auto' || cvm === 'cancel' || /^\d+$/.test(cvm)) c.choiceBranchViewMode = cvm;
-            else c.choiceBranchViewMode = '';
-        }
-        return c;
-    };
-
-    EE.prototype.waitInsertContextInfoText = function(ctx) {
-        ctx = this.resolveWaitInsertContext(ctx);
-        if (ctx.source === 'selection') {
-            var len = Math.max(1, Math.floor(Number(ctx.frameEnd - ctx.frameStart + 1)));
-            return '範囲: ' + ctx.frameStart + 'f - ' + ctx.frameEnd + 'f (' + len + 'f)';
-        }
-        if (ctx.source === 'command') {
-            var nm = '';
-            var e = this.findEntryInSelectedTrack(ctx.uid);
-            if (e && e.command) nm = this.commandNameJa(this.mainCommandDisplayCodeForEntry(e));
-            var suffix = nm ? (' [' + nm + ']') : '';
-            return '基準コマンド: frame ' + ctx.frame + 'f' + suffix;
-        }
-        if (ctx.source === 'routeCmd') {
-            var re = this.findEntryInSelectedTrack(ctx.uid);
-            var head = re ? this.executionEventLabelForEntry(re) : '';
-            var routeName = '';
-            if (re && re.command && Number(re.command.code || 0) === 205) {
-                var route = re.command.parameters && re.command.parameters[1];
-                var tl = this.moveRouteTimeline(route);
-                var items = tl && Array.isArray(tl.items) ? tl.items : [];
-                for (var i = 0; i < items.length; i++) {
-                    var it = items[i];
-                    if (!it) continue;
-                    if (this.nodeRouteIndex(it.listIndex) !== this.nodeRouteIndex(ctx.routeListIndex)) continue;
-                    var dcode = Number((it.displayCode != null) ? it.displayCode : (it.command ? it.command.code : 0));
-                    routeName = (dcode === 4500) ? 'タイル移動' : this.routeCommandNameJa(dcode);
-                    break;
-                }
-            }
-            var label = routeName ? (head + routeName) : (head + '移動ルート');
-            return '基準: ' + label + ' @ ' + ctx.frame + 'f';
-        }
-        return '基準フレーム: ' + ctx.frame + 'f';
-    };
-
-    EE.prototype.ifBranchFindEntryIndexByUid = function(list, uid) {
-        return SH.findEntryIndexByUid(list, uid);
-    };
-
-    EE.prototype.ifBranchActiveRangeForBlock = function(tr, info, block) {
-        if (!block) return null;
-        info = info || {};
-        var list = Array.isArray(info.list) ? info.list : [];
-        if (!list.length) return null;
-        var modeMap = this.normalizeIfBranchViewModes(tr && tr._eeIfBranchViewModes);
-        var mode = this.ifBranchEffectiveModeForBlock(tr, info, block, modeMap);
-        if (mode !== 'else') mode = 'then';
-        var ifIndex = Math.max(0, Math.floor(Number(block.ifIndex || 0)));
-        var elseIndex = Math.floor(Number(block.elseIndex || -1));
-        var endIndex = Math.floor(Number(block.endIndex || -1));
-        if (endIndex < 0 || endIndex > list.length) endIndex = list.length;
-        var startIndex = ifIndex + 1;
-        var stopIndex = (elseIndex >= 0) ? elseIndex : endIndex;
-        if (mode === 'else') {
-            if (elseIndex >= 0) {
-                startIndex = elseIndex + 1;
-                stopIndex = endIndex;
-            } else {
-                mode = 'then';
-                startIndex = ifIndex + 1;
-                stopIndex = endIndex;
-            }
-        }
-        startIndex = Math.max(0, Math.min(list.length, startIndex));
-        stopIndex = Math.max(startIndex, Math.min(list.length, stopIndex));
-        var endIndexInclusive = Math.max(startIndex - 1, Math.min(list.length - 1, Math.max(0, endIndex - 1)));
-        return {
-            mode: mode,
-            ifIndex: ifIndex,
-            elseIndex: elseIndex,
-            endIndex: endIndex,
-            endIndexInclusive: endIndexInclusive,
-            startIndex: startIndex,
-            stopIndex: stopIndex
-        };
-    };
-
-    EE.prototype.buildIfBranchShiftUidMap = function(list, fromIndex, toIndex) {
-        var map = Object.create(null);
-        if (!Array.isArray(list) || !list.length) return map;
-        fromIndex = Math.max(0, Math.floor(Number(fromIndex || 0)));
-        toIndex = Math.min(list.length - 1, Math.floor(Number(toIndex == null ? (list.length - 1) : toIndex)));
-        if (toIndex < fromIndex) return map;
-        for (var i = fromIndex; i <= toIndex; i++) {
-            var e = list[i];
-            if (!e) continue;
-            var uid = Math.floor(Number(e.uid || 0));
-            if (uid > 0) map[String(uid)] = true;
-        }
-        return map;
-    };
-
-    EE.prototype.resolveIfBranchInsertionInfoByUid = function(uid, tr, modeHint) {
-        uid = Math.floor(Number(uid || 0));
-        if (uid <= 0) return null;
-        var ifEntry = this.findEntryInSelectedTrack(uid);
-        if (!ifEntry || !ifEntry.command || Number(ifEntry.command.code || 0) !== 111) return null;
-        tr = tr || this.resolveTrackForIfBranchEntry(ifEntry);
-        if (!tr || !Array.isArray(tr.commands) || !tr.commands.length) return null;
-
-        var info = this.computeIfBranchDisplayInfoForTrack(tr);
-        var list = Array.isArray(info.list) ? info.list : [];
-        var blocks = Array.isArray(info.blocks) ? info.blocks : [];
-        var block = null;
-        for (var i = 0; i < blocks.length; i++) {
-            var b = blocks[i];
-            if (!b) continue;
-            if (Math.floor(Number(b.ifUid || 0)) === uid) {
-                block = b;
-                break;
-            }
-        }
-        if (!block) return null;
-
-        var range = this.ifBranchActiveRangeForBlock(tr, info, block);
-        if (!range) return null;
-
-        var ifIndex = Math.max(0, Math.floor(Number(block.ifIndex || 0)));
-        var elseIndex = Math.floor(Number(block.elseIndex || -1));
-        var endIndex = Math.floor(Number(block.endIndex || -1));
-        if (endIndex < 0 || endIndex > list.length) endIndex = list.length;
-
-        // For explicit THEN/ELSE selection, trust the configured UI mode first.
-        var mode = String(range.mode || 'then');
-        var hintedMode = this.sanitizeIfBranchViewMode(modeHint || '');
-        var configuredMode = 'then';
-        if (typeof this.getIfBranchViewModeForEntry === 'function') {
-            try {
-                configuredMode = this.sanitizeIfBranchViewMode(this.getIfBranchViewModeForEntry(ifEntry));
-            } catch (_) {
-                configuredMode = 'then';
-            }
-        }
-        if (hintedMode === 'then' || hintedMode === 'else') mode = hintedMode;
-        else if (configuredMode === 'then' || configuredMode === 'else') mode = configuredMode;
-        if (mode !== 'else') mode = 'then';
-        if (mode === 'else' && elseIndex < 0) mode = 'then';
-
-        var startIndex = ifIndex + 1;
-        var stopIndex = (elseIndex >= 0) ? elseIndex : endIndex;
-        if (mode === 'else') {
-            startIndex = elseIndex + 1;
-            stopIndex = endIndex;
-        }
-        startIndex = Math.max(0, Math.min(list.length, startIndex));
-        stopIndex = Math.max(startIndex, Math.min(list.length, stopIndex));
-        var endIndexInclusive = Math.max(startIndex - 1, Math.min(list.length - 1, Math.max(0, endIndex - 1)));
-
-        var elseEntry = (elseIndex >= 0 && elseIndex < list.length) ? list[elseIndex] : null;
-        var anchorEntry = ifEntry;
-        if (mode === 'else' && elseEntry && elseEntry.command && Number(elseEntry.command.code || 0) === 411) {
-            anchorEntry = elseEntry;
-        }
-
-        var firstBranchEntry = null;
-        for (i = startIndex; i < stopIndex; i++) {
-            var be = list[i];
-            if (!be || !be.command) continue;
-            var bcode = Math.floor(Number(be.command.code || 0));
-            if (bcode === 411 || bcode === 412) continue;
-            firstBranchEntry = be;
-            break;
-        }
-
-        return {
-            ifUid: uid,
-            ifEntry: ifEntry,
-            block: block,
-            mode: mode,
-            list: list,
-            info: info,
-            anchorEntry: anchorEntry || ifEntry,
-            anchorIndex: this.ifBranchFindEntryIndexByUid(list, Math.floor(Number((anchorEntry || ifEntry).uid || 0))),
-            firstBranchEntry: firstBranchEntry,
-            branchIndent: Math.max(0, Math.floor(Number(ifEntry.command.indent || 0))) + 1,
-            startIndex: startIndex,
-            stopIndex: stopIndex,
-            endIndex: endIndex,
-            endIndexInclusive: endIndexInclusive
-        };
-    };
-
-    EE.prototype.resolveIfBranchScopeForEntryUid = function(uid, tr) {
-        uid = Math.floor(Number(uid || 0));
-        if (uid <= 0) return null;
-        var entry = this.findEntryInSelectedTrack(uid);
-        if (!entry || !entry.command) return null;
-        tr = tr || this.resolveTrackForIfBranchEntry(entry);
-        if (!tr || !Array.isArray(tr.commands) || !tr.commands.length) return null;
-        var info = this.computeIfBranchDisplayInfoForTrack(tr);
-        var list = Array.isArray(info.list) ? info.list : [];
-        if (!list.length) return null;
-        var idx = this.ifBranchFindEntryIndexByUid(list, uid);
-        if (idx < 0) return null;
-        var blocks = Array.isArray(info.blocks) ? info.blocks : [];
-        var best = null;
-        for (var i = 0; i < blocks.length; i++) {
-            var b = blocks[i];
-            if (!b) continue;
-            var range = this.ifBranchActiveRangeForBlock(tr, info, b);
-            if (!range) continue;
-            if (idx < range.startIndex || idx >= range.stopIndex) continue;
-            if (!best) {
-                best = { block: b, range: range };
-                continue;
-            }
-            var bIndent = Math.floor(Number(b.indent || 0));
-            var bestIndent = Math.floor(Number(best.block && best.block.indent || 0));
-            if (bIndent > bestIndent) {
-                best = { block: b, range: range };
-                continue;
-            }
-            if (bIndent === bestIndent) {
-                var span = Math.max(1, range.stopIndex - range.startIndex);
-                var bestSpan = Math.max(1, best.range.stopIndex - best.range.startIndex);
-                if (span < bestSpan) best = { block: b, range: range };
-            }
-        }
-        if (!best) return null;
-        return {
-            tr: tr,
-            info: info,
-            list: list,
-            entry: entry,
-            entryIndex: idx,
-            block: best.block,
-            mode: best.range.mode,
-            startIndex: best.range.startIndex,
-            stopIndex: best.range.stopIndex,
-            endIndex: best.range.endIndex,
-            endIndexInclusive: best.range.endIndexInclusive
-        };
-    };
-
-    EE.prototype.resolveChoiceBranchInsertionInfoByUid = function(uid, tr) {
-        uid = Math.floor(Number(uid || 0));
-        if (uid <= 0) return null;
-        var choiceEntry = this.findEntryInSelectedTrack(uid);
-        if (!choiceEntry || !choiceEntry.command || Number(choiceEntry.command.code || 0) !== 102) return null;
-        tr = tr || this.resolveTrackForIfBranchEntry(choiceEntry);
-        if (!tr || !Array.isArray(tr.commands) || !tr.commands.length) return null;
-        var info = this.computeChoiceBranchDisplayInfoForTrack(tr);
-        var list = Array.isArray(info.list) ? info.list : [];
-        var blocks = Array.isArray(info.blocks) ? info.blocks : [];
-        var block = null;
-        for (var i = 0; i < blocks.length; i++) {
-            if (Math.floor(Number(blocks[i] && blocks[i].choiceUid || 0)) === uid) {
-                block = blocks[i];
-                break;
-            }
-        }
-        if (!block) return null;
-        var modeMap = this.normalizeChoiceBranchViewModes(tr._eeChoiceBranchViewModes);
-        var range = this.choiceBranchActiveRangeForBlock(tr, info, block, modeMap);
-        if (!range) return null;
-        var markerIndex = Math.max(0, Math.floor(Number(range.startIndex || 0)) - 1);
-        var markerEntry = markerIndex >= 0 && markerIndex < list.length ? list[markerIndex] : null;
-        var markerCode = Math.floor(Number(markerEntry && markerEntry.command && markerEntry.command.code || 0));
-        if (markerCode !== 402 && markerCode !== 403) return null;
-        var firstBranchEntry = null;
-        for (i = range.startIndex; i < range.stopIndex && i < list.length; i++) {
-            var e = list[i];
-            if (!e || !e.command) continue;
-            var code = Math.floor(Number(e.command.code || 0));
-            if (code === 402 || code === 403 || code === 404) continue;
-            firstBranchEntry = e;
-            break;
-        }
-        var endIndex = Math.floor(Number(block.endIndex == null ? list.length : block.endIndex));
-        if (endIndex < 0 || endIndex > list.length) endIndex = list.length;
-        return {
-            choiceUid: uid,
-            choiceEntry: choiceEntry,
-            block: block,
-            list: list,
-            info: info,
-            anchorEntry: markerEntry,
-            anchorIndex: markerIndex,
-            firstBranchEntry: firstBranchEntry,
-            branchIndent: Math.max(0, Math.floor(Number(choiceEntry.command.indent || 0))) + 1,
-            startIndex: range.startIndex,
-            stopIndex: range.stopIndex,
-            endIndex: endIndex,
-            endIndexInclusive: Math.max(0, list.length - 1)
-        };
-    };
-
-    EE.prototype.resolveChoiceBranchScopeForEntryUid = function(uid, tr) {
-        uid = Math.floor(Number(uid || 0));
-        if (uid <= 0) return null;
-        var entry = this.findEntryInSelectedTrack(uid);
-        if (!entry || !entry.command) return null;
-        tr = tr || this.resolveTrackForIfBranchEntry(entry);
-        if (!tr || !Array.isArray(tr.commands) || !tr.commands.length) return null;
-        var info = this.computeChoiceBranchDisplayInfoForTrack(tr);
-        var list = Array.isArray(info.list) ? info.list : [];
-        var entryIndex = this.ifBranchFindEntryIndexByUid(list, uid);
-        if (entryIndex < 0) return null;
-        var blocks = Array.isArray(info.blocks) ? info.blocks : [];
-        var best = null;
-        for (var i = 0; i < blocks.length; i++) {
-            var block = blocks[i];
-            if (!block || !Array.isArray(block.branches)) continue;
-            for (var bi = 0; bi < block.branches.length; bi++) {
-                var branch = block.branches[bi];
-                if (!branch) continue;
-                var startIndex = Math.max(0, Math.floor(Number(branch.startIndex || 0)));
-                var stopIndex = Math.floor(Number(branch.endIndex == null ? block.endIndex : branch.endIndex));
-                if (stopIndex < startIndex || stopIndex > list.length) stopIndex = list.length;
-                if (entryIndex < startIndex || entryIndex >= stopIndex) continue;
-                var candidate = { block: block, branch: branch, startIndex: startIndex, stopIndex: stopIndex };
-                if (!best || Math.floor(Number(block.indent || 0)) > Math.floor(Number(best.block.indent || 0)) ||
-                    (Math.floor(Number(block.indent || 0)) === Math.floor(Number(best.block.indent || 0)) &&
-                     stopIndex - startIndex < best.stopIndex - best.startIndex)) {
-                    best = candidate;
-                }
-            }
-        }
-        if (!best) return null;
-        var endIndex = Math.floor(Number(best.block.endIndex == null ? list.length : best.block.endIndex));
-        if (endIndex < 0 || endIndex > list.length) endIndex = list.length;
-        return {
-            tr: tr,
-            info: info,
-            list: list,
-            entry: entry,
-            entryIndex: entryIndex,
-            block: best.block,
-            branch: best.branch,
-            branchIndent: Math.max(0, Math.floor(Number(best.block.indent || 0))) + 1,
-            startIndex: best.startIndex,
-            stopIndex: best.stopIndex,
-            endIndex: endIndex,
-            endIndexInclusive: Math.max(0, list.length - 1)
-        };
-    };
-
-    EE.prototype.resolveBranchScopeForEntryUid = function(uid, tr) {
-        var ifScope = this.resolveIfBranchScopeForEntryUid(uid, tr);
-        var choiceScope = this.resolveChoiceBranchScopeForEntryUid(uid, tr);
-        if (!ifScope) return choiceScope;
-        if (!choiceScope) return ifScope;
-        var ifIndent = Math.max(0, Math.floor(Number(ifScope.block && ifScope.block.indent || 0)));
-        var choiceIndent = Math.max(0, Math.floor(Number(choiceScope.block && choiceScope.block.indent || 0)));
-        if (choiceIndent > ifIndent) return choiceScope;
-        if (ifIndent > choiceIndent) return ifScope;
-        var ifSpan = Math.max(1, ifScope.stopIndex - ifScope.startIndex);
-        var choiceSpan = Math.max(1, choiceScope.stopIndex - choiceScope.startIndex);
-        return choiceSpan < ifSpan ? choiceScope : ifScope;
-    };
-
-    EE.prototype.makeAddPlacementContextFromFrame = function(frame) {
-        frame = Math.max(0, Math.floor(Number(frame || 0)));
-        return {
-            mode: 'frame',
-            source: 'frame',
-            frame: frame,
-            uid: 0,
-            routeListIndex: -1
-        };
-    };
-
-    EE.prototype.makeAddPlacementContextFromWaitInsertContext = function(ctx, mode) {
-        ctx = this.resolveWaitInsertContext(ctx || this.makeWaitInsertContextFromFrame(this.frame));
-        mode = String(mode || 'frame');
-        if (mode !== 'before' && mode !== 'after' && mode !== 'frame') mode = 'frame';
-        var out = {
-            mode: mode,
-            source: String(ctx.source || 'frame'),
-            frame: Math.max(0, Math.floor(Number(ctx.frame || 0))),
-            uid: Math.floor(Number(ctx.uid || 0)),
-            routeListIndex: this.nodeRouteIndex(ctx.routeListIndex),
-            branchInsertIndent: null,
-            branchOwnerUid: 0,
-            branchShiftUidMap: null
-        };
-        if (out.source === 'command' && out.uid > 0 && (out.mode === 'before' || out.mode === 'after')) {
-            var anchor = this.findEntryInSelectedTrack(out.uid);
-            var pos = out.mode;
-            if (anchor && anchor.command && Number(anchor.command.code || 0) === 111 && pos === 'after') {
-                var branchInfo = this.resolveIfBranchInsertionInfoByUid(out.uid, null, ctx.ifBranchViewMode);
-                if (branchInfo && branchInfo.anchorEntry) {
-                    out.uid = Math.floor(Number(branchInfo.anchorEntry.uid || out.uid));
-                    out.frame = Math.max(0, Math.floor(Number(branchInfo.anchorEntry.frame || out.frame)));
-                    out.branchInsertIndent = Math.max(0, Math.floor(Number(branchInfo.branchIndent || 0)));
-                    out.branchOwnerUid = Math.floor(Number(branchInfo.ifUid || 0));
-                    if (Array.isArray(branchInfo.list) && branchInfo.anchorIndex >= 0) {
-                        out.branchShiftUidMap = this.buildIfBranchShiftUidMap(
-                            branchInfo.list,
-                            branchInfo.anchorIndex + 1,
-                            branchInfo.endIndexInclusive
-                        );
-                    }
-                }
-            } else if (anchor && anchor.command && Number(anchor.command.code || 0) === 102 && pos === 'after') {
-                var choiceInfo = this.resolveChoiceBranchInsertionInfoByUid(out.uid);
-                if (choiceInfo && choiceInfo.anchorEntry) {
-                    out.uid = Math.floor(Number(choiceInfo.anchorEntry.uid || out.uid));
-                    out.frame = Math.max(0, Math.floor(Number(choiceInfo.anchorEntry.frame || out.frame)));
-                    out.branchInsertIndent = Math.max(0, Math.floor(Number(choiceInfo.branchIndent || 0)));
-                    out.branchOwnerUid = Math.floor(Number(choiceInfo.choiceUid || 0));
-                    out.branchShiftUidMap = this.buildIfBranchShiftUidMap(
-                        choiceInfo.list,
-                        choiceInfo.anchorIndex + 1,
-                        choiceInfo.endIndexInclusive
-                    );
-                }
-            } else {
-                var scope = this.resolveBranchScopeForEntryUid(out.uid);
-                if (scope && scope.entry && scope.entry.command) {
-                    out.branchInsertIndent = Math.max(0, Math.floor(Number(
-                        scope.branchIndent == null ? scope.entry.command.indent : scope.branchIndent
-                    )));
-                    out.branchOwnerUid = Math.floor(Number(
-                        (scope.block && (scope.block.ifUid || scope.block.choiceUid)) || 0
-                    ));
-                    var fromIdx = (pos === 'before') ? scope.entryIndex : (scope.entryIndex + 1);
-                    fromIdx = Math.max(scope.startIndex, fromIdx);
-                    out.branchShiftUidMap = this.buildIfBranchShiftUidMap(
-                        scope.list,
-                        fromIdx,
-                        scope.endIndexInclusive
-                    );
-                }
-            }
-        }
-        return out;
-    };
-
-    EE.prototype.resolveAddPlacementContext = function(ctx, fallbackFrame) {
-        var c = (ctx && typeof ctx === 'object') ? clone(ctx) : {};
-        var mode = String(c.mode || 'frame');
-        if (mode !== 'before' && mode !== 'after' && mode !== 'frame') mode = 'frame';
-        var source = String(c.source || 'frame');
-        if (source !== 'command' && source !== 'routeCmd' && source !== 'frame') source = 'frame';
-        var frame = Math.max(0, Math.floor(Number(c.frame == null ? fallbackFrame : c.frame)));
-        if (!isFinite(frame)) frame = Math.max(0, Math.floor(Number(fallbackFrame || 0)));
-        var branchIndent = (c.branchInsertIndent == null) ? null : Math.floor(Number(c.branchInsertIndent));
-        if (branchIndent != null) {
-            if (!isFinite(branchIndent)) branchIndent = null;
-            else branchIndent = Math.max(0, branchIndent);
-        }
-        var shiftMap = null;
-        if (c.branchShiftUidMap && typeof c.branchShiftUidMap === 'object' && !Array.isArray(c.branchShiftUidMap)) {
-            shiftMap = Object.create(null);
-            var keys = Object.keys(c.branchShiftUidMap);
-            for (var i = 0; i < keys.length; i++) {
-                var k = String(keys[i] || '');
-                if (!k.length) continue;
-                if (!c.branchShiftUidMap[k]) continue;
-                shiftMap[k] = true;
-            }
-        }
-        return {
-            mode: mode,
-            source: source,
-            frame: frame,
-            uid: Math.floor(Number(c.uid || 0)),
-            routeListIndex: this.nodeRouteIndex(c.routeListIndex),
-            branchInsertIndent: branchIndent,
-            branchOwnerUid: Math.floor(Number(c.branchOwnerUid || c.branchIfUid || 0)),
-            branchShiftUidMap: shiftMap
-        };
-    };
-
-    EE.prototype.resolveAddAnchorFromPlacementContext = function(ctx) {
-        ctx = this.resolveAddPlacementContext(ctx, this.frame);
-        var out = {
-            source: ctx.source,
-            frame: Math.max(0, Math.floor(Number(ctx.frame || 0))),
-            span: 0
-        };
-        if (ctx.source === 'command') {
-            var e = this.findEntryInSelectedTrack(ctx.uid);
-            if (e) {
-                out.frame = Math.max(0, Math.floor(Number(e.frame || 0)));
-                out.span = Math.max(0, Math.floor(Number(e.wait || 0)));
-            }
-        } else if (ctx.source === 'routeCmd') {
-            var re = this.findEntryInSelectedTrack(ctx.uid);
-            if (re && re.command && Number(re.command.code || 0) === 205) {
-                out.frame = Math.max(0, Math.floor(Number(re.frame || 0)));
-                var route = re.command.parameters && re.command.parameters[1];
-                var tl = this.moveRouteTimeline(route);
-                var items = tl && Array.isArray(tl.items) ? tl.items : [];
-                for (var i = 0; i < items.length; i++) {
-                    var it = items[i];
-                    if (!it) continue;
-                    if (this.nodeRouteIndex(it.listIndex) !== this.nodeRouteIndex(ctx.routeListIndex)) continue;
-                    out.frame = Math.max(0, Math.floor(Number(re.frame || 0)) + Math.max(0, Math.floor(Number(it.offset || 0))));
-                    out.span = Math.max(0, Math.floor(Number(it.span || 0)));
-                    break;
-                }
-            }
-        }
-        return out;
-    };
-
-    EE.prototype.computeAddFrameFromPlacementContext = function(ctx, newWait) {
-        ctx = this.resolveAddPlacementContext(ctx, this.frame);
-        newWait = Math.max(0, Math.floor(Number(newWait || 0)));
-        var anc = this.resolveAddAnchorFromPlacementContext(ctx);
-        if (ctx.mode === 'before') return Math.max(0, Math.floor(Number(anc.frame || 0)));
-        if (ctx.mode === 'after') {
-            var base = Math.max(0, Math.floor(Number(anc.frame || 0)));
-            var span = Math.max(0, Math.floor(Number(anc.span || 0)));
-            if (span > 0) return base + span;
-            return base;
-        }
-        return Math.max(0, Math.floor(Number(anc.frame || 0)));
-    };
-
-    EE.prototype.isFrameLockedForFrameCommandAdd = function(frame) {
-        if (!this.needSelTrack()) return true;
-        var tr = this.ensureTrack(this.selEid, this.selPage);
-        if (!tr || !Array.isArray(tr.commands)) return true;
-        frame = Math.max(0, Math.floor(Number(frame || 0)));
-        for (var i = 0; i < tr.commands.length; i++) {
-            var e = tr.commands[i];
-            if (!e) continue;
-            var s = Math.max(0, Math.floor(Number(e.frame || 0)));
-            var w = Math.max(0, Math.floor(Number(e.wait || 0)));
-            if (w <= 0) continue;
-            var isMain = (String(e.rowKey || (e.rowType === 'char' ? ('char:' + e.charId) : 'main')) === 'main');
-            var isRouteWait = this.isMoveRouteWaitEnabledEntry(e);
-            if (!isMain && !isRouteWait) continue;
-            var ed = s + w;
-            if (frame > s && frame < ed) return true;
-        }
-        return false;
-    };
-
-    EE.prototype.waitInsertStartFrameForContext = function(ctx, pos) {
-        ctx = this.resolveWaitInsertContext(ctx);
-        pos = String(pos || 'before') === 'after' ? 'after' : 'before';
-        if (ctx.source === 'selection') {
-            return (pos === 'before') ? ctx.frameStart : (ctx.frameEnd + 1);
-        }
-        if (ctx.source === 'routeCmd') {
-            return ctx.frame;
-        }
-        if (ctx.source === 'command') {
-            // Command-context insertion treats the whole frame as one block so
-            // sibling commands on the same frame move together.
-            if (pos === 'after' && !ctx.includeSameFrameOnAfter) return Math.max(0, ctx.frame + 1);
-            return ctx.frame;
-        }
-        return (pos === 'before') ? ctx.frame : Math.max(0, ctx.frame + 1);
-    };
-
-    EE.prototype.shiftRangeSelectionAfterWaitInsert = function(startFrame, frames) {
-        if (!this.hasRangeSelection()) return;
-        var rs = this.rangeSelection || null;
-        if (!rs) return;
-        startFrame = Math.max(0, Math.floor(Number(startFrame || 0)));
-        frames = Math.max(1, Math.floor(Number(frames || 1)));
-        var fs = Math.max(0, Math.floor(Number(rs.frameStart || 0)));
-        var fe = Math.max(fs, Math.floor(Number(rs.frameEnd == null ? fs : rs.frameEnd)));
-        if (fe < startFrame) return;
-        if (fs >= startFrame) {
-            rs.frameStart = fs + frames;
-            rs.frameEnd = fe + frames;
-        } else {
-            rs.frameStart = fs;
-            rs.frameEnd = fe + frames;
-        }
-        var shiftPx = frames * Number(this.pxPerFrame || 0);
-        if (shiftPx > 0 && Array.isArray(rs.rects) && rs.rects.length) {
-            var sx = this.frameToX(startFrame);
-            for (var i = 0; i < rs.rects.length; i++) {
-                var rc = rs.rects[i];
-                if (!rc) continue;
-                if (Number(rc.x1 || 0) >= sx) rc.x1 += shiftPx;
-                if (Number(rc.x2 || 0) >= sx) rc.x2 += shiftPx;
-            }
-        }
-    };
-
-    EE.prototype.applyWaitFrameInsertion = function(startFrame, frames) {
-        if (!this.needSelTrack()) return false;
-        var tr = this.ensureTrack(this.selEid, this.selPage);
-        if (!tr || !Array.isArray(tr.commands)) return false;
-        startFrame = Math.max(0, Math.floor(Number(startFrame || 0)));
-        frames = Math.max(1, Math.floor(Number(frames || 1)));
-        this.pushSnap('waitGap');
-        for (var i = 0; i < tr.commands.length; i++) {
-            var e = tr.commands[i];
-            if (!e) continue;
-            var old = Math.max(0, Math.floor(Number(e.frame || 0)));
-            if (old >= startFrame) e.frame = old + frames;
-        }
-        if (Math.max(0, Math.floor(Number(this.frame || 0))) >= startFrame) {
-            this.frame = Math.max(0, Math.floor(Number(this.frame || 0))) + frames;
-        }
-        this.shiftRangeSelectionAfterWaitInsert(startFrame, frames);
-        SH.sortTrackCommands(tr);
-        this.dirty[this.selKey] = true;
-        this.rebuildSchedule();
-        this.seek(this.frame);
-        this.timelineDirty = true;
-        return true;
-    };
-
-    EE.prototype.applyIfBranchScopedWaitInsertionByUidMap = function(uidMap, frames) {
-        if (!this.needSelTrack()) return false;
-        var tr = this.ensureTrack(this.selEid, this.selPage);
-        if (!tr || !Array.isArray(tr.commands)) return false;
-        if (!uidMap || typeof uidMap !== 'object') return false;
-        frames = Math.max(1, Math.floor(Number(frames || 1)));
-
-        var targets = [];
-        var minShiftFrame = Infinity;
-        for (var i = 0; i < tr.commands.length; i++) {
-            var e = tr.commands[i];
-            if (!e) continue;
-            var euid = Math.floor(Number(e.uid || 0));
-            if (euid <= 0 || !uidMap[String(euid)]) continue;
-            targets.push(e);
-            var ef = Math.max(0, Math.floor(Number(e.frame || 0)));
-            if (ef < minShiftFrame) minShiftFrame = ef;
-        }
-        if (!targets.length) return true;
-
-        this.pushSnap('waitGap');
-        for (i = 0; i < targets.length; i++) {
-            var te = targets[i];
-            te.frame = Math.max(0, Math.floor(Number(te.frame || 0))) + frames;
-        }
-
-        if (!isFinite(minShiftFrame)) minShiftFrame = Math.max(0, Math.floor(Number(this.frame || 0)));
-        if (Math.max(0, Math.floor(Number(this.frame || 0))) >= minShiftFrame) {
-            this.frame = Math.max(0, Math.floor(Number(this.frame || 0))) + frames;
-        }
-        this.shiftRangeSelectionAfterWaitInsert(minShiftFrame, frames);
-        SH.sortTrackCommands(tr);
-        this.dirty[this.selKey] = true;
-        this.rebuildSchedule();
-        this.seek(this.frame);
-        this.timelineDirty = true;
-        return true;
-    };
-
-    EE.prototype.applyWaitInsertionFromIfBranchCommandContext = function(ctx, pos, frames) {
-        ctx = this.resolveWaitInsertContext(ctx);
-        pos = String(pos || 'before') === 'after' ? 'after' : 'before';
-        if (String(ctx.source || '') !== 'command') return false;
-        var uid = Math.floor(Number(ctx.uid || 0));
-        if (uid <= 0) return false;
-        var e = this.findEntryInSelectedTrack(uid);
-        if (!e || !e.command) return false;
-        var resolveBranchShiftEndIndex = function(scopeLike) {
-            if (!scopeLike || !Array.isArray(scopeLike.list)) return -1;
-            var endIdx = Math.floor(Number(scopeLike.endIndex || -1));
-            if (endIdx >= 0 && endIdx < scopeLike.list.length) return endIdx; // include 412
-            return Math.floor(Number(scopeLike.endIndexInclusive || -1));
-        };
-        var uidMap = null;
-        if (Number(e.command.code || 0) === 111 && pos === 'after') {
-            var branchInfo = this.resolveIfBranchInsertionInfoByUid(uid);
-            if (branchInfo && Array.isArray(branchInfo.list) && branchInfo.anchorIndex >= 0) {
-                var endTo = resolveBranchShiftEndIndex(branchInfo);
-                uidMap = this.buildIfBranchShiftUidMap(
-                    branchInfo.list,
-                    branchInfo.anchorIndex + 1,
-                    endTo
-                );
-            }
-        } else {
-            var scope = this.resolveIfBranchScopeForEntryUid(uid);
-            if (scope && Array.isArray(scope.list) && scope.entryIndex >= 0) {
-                var fromIdx = (pos === 'before') ? scope.entryIndex : (scope.entryIndex + 1);
-                fromIdx = Math.max(scope.startIndex, fromIdx);
-                var scopeEndTo = resolveBranchShiftEndIndex(scope);
-                uidMap = this.buildIfBranchShiftUidMap(
-                    scope.list,
-                    fromIdx,
-                    scopeEndTo
-                );
-            }
-        }
-        if (!uidMap) return false;
-        return this.applyIfBranchScopedWaitInsertionByUidMap(uidMap, frames);
-    };
-
-    EE.prototype.routeCommandTimelineItemByListIndex = function(entry, routeListIndex) {
-        if (!entry || !entry.command || Number(entry.command.code || 0) !== 205) return null;
-        routeListIndex = this.nodeRouteIndex(routeListIndex);
-        if (routeListIndex < 0) return null;
-        var route = entry.command.parameters && entry.command.parameters[1];
-        var tl = this.moveRouteTimeline(route);
-        var items = tl && Array.isArray(tl.items) ? tl.items : [];
-        for (var i = 0; i < items.length; i++) {
-            var it = items[i];
-            if (!it) continue;
-            if (this.nodeRouteIndex(it.listIndex) === routeListIndex) return it;
-        }
-        return null;
-    };
-
-    EE.prototype.shiftFollowingCommandsAllRows = function(tr, startFrame, frames, ignoreUid) {
-        if (!tr || !Array.isArray(tr.commands)) return;
-        startFrame = Math.max(0, Math.floor(Number(startFrame || 0)));
-        frames = Math.max(1, Math.floor(Number(frames || 1)));
-        ignoreUid = Math.floor(Number(ignoreUid || 0));
-        for (var i = 0; i < tr.commands.length; i++) {
-            var e = tr.commands[i];
-            if (!e) continue;
-            if (ignoreUid > 0 && Math.floor(Number(e.uid || 0)) === ignoreUid) continue;
-            var f = Math.max(0, Math.floor(Number(e.frame || 0)));
-            if (f >= startFrame) e.frame = f + frames;
-        }
-    };
-
-    EE.prototype.applyRouteCommandWaitInsertion = function(ctx, pos, frames) {
-        if (!this.needSelTrack()) return false;
-        var tr = this.ensureTrack(this.selEid, this.selPage);
-        if (!tr || !Array.isArray(tr.commands)) return false;
-        ctx = this.resolveWaitInsertContext(ctx);
-        if (String(ctx.source || '') !== 'routeCmd') return false;
-        frames = Math.max(1, Math.floor(Number(frames || 1)));
-        pos = (String(pos || 'before') === 'after') ? 'after' : 'before';
-        var entry = this.findEntryInSelectedTrack(ctx.uid);
-        if (!entry || !entry.command || Number(entry.command.code || 0) !== 205) return false;
-        var it = this.routeCommandTimelineItemByListIndex(entry, ctx.routeListIndex);
-        if (!it) {
-            var fallback = this.routeTimelineItemAtFrame(entry, ctx.frame);
-            if (fallback && this.nodeRouteIndex(fallback.listIndex) >= 0) {
-                ctx.routeListIndex = this.nodeRouteIndex(fallback.listIndex);
-                it = this.routeCommandTimelineItemByListIndex(entry, ctx.routeListIndex);
-            }
-            if (!it) return false;
-        }
-        this.pushSnap('waitGapRouteCmd');
-        var oldCmd = clone(entry.command);
-        var oldWait = Math.max(1, Math.floor(Number(entry.wait || 1)));
-        var insertOffset = Math.max(0, Math.floor(Number(it.offset || 0)));
-        if (pos === 'after') insertOffset += Math.max(1, Math.floor(Number(it.span || 1)));
-        var insFrame = Math.max(0, Math.floor(Number(entry.frame || 0)) + insertOffset);
-        var insertedIdx = this.insertRouteCommandIntoEntry(entry, { code: 15, parameters: [frames] }, insFrame);
-        if (insertedIdx < 0) {
-            entry.command = oldCmd;
-            entry.wait = oldWait;
-            return false;
-        }
-        entry.wait = this.commandWaitFrames(entry.command);
-        var newWait = Math.max(1, Math.floor(Number(entry.wait || 1)));
-        var delta = Math.max(0, newWait - oldWait);
-        var route = this.routeOptionsFromEntry(entry);
-        var routeWaitOn = !!(route && route.wait);
-        var shifted = [];
-        if (routeWaitOn && delta > 0) {
-            var startSlide = Math.max(0, Math.floor(Number(entry.frame || 0)) + oldWait);
-            for (var si = 0; si < tr.commands.length; si++) {
-                var se = tr.commands[si];
-                if (!se) continue;
-                if (Number(se.uid || 0) === Number(entry.uid || 0)) continue;
-                var sf = Math.max(0, Math.floor(Number(se.frame || 0)));
-                if (sf >= startSlide) {
-                    shifted.push({ e: se, old: sf });
-                    se.frame = sf + delta;
-                }
-            }
-            if (Math.max(0, Math.floor(Number(this.frame || 0))) >= startSlide) this.frame += delta;
-            this.shiftRangeSelectionAfterWaitInsert(startSlide, delta);
-        }
-        if (!this.canPlaceEntry(tr, entry, entry.frame, entry.rowKey, entry.uid)) {
-            for (var ri = 0; ri < shifted.length; ri++) shifted[ri].e.frame = shifted[ri].old;
-            entry.command = oldCmd;
-            entry.wait = oldWait;
-            return false;
-        }
-        var selRouteIdx = this.nodeRouteIndex(ctx.routeListIndex);
-        if (selRouteIdx >= 0 && pos === 'before') selRouteIdx += 1;
-        if (selRouteIdx >= 0 && !this.routeCommandTimelineItemByListIndex(entry, selRouteIdx)) {
-            var alt = this.nodeRouteIndex(ctx.routeListIndex);
-            selRouteIdx = this.routeCommandTimelineItemByListIndex(entry, alt) ? alt : -1;
-        }
-        SH.sortTrackCommands(tr);
-        this.selUid = Number(entry.uid || 0);
-        this.selRouteListIndex = selRouteIdx;
-        this.frame = Math.max(0, Math.floor(Number(insFrame || this.frame || 0)));
-        this.dirty[this.selKey] = true;
-        this.rebuildSchedule();
-        this.seek(this.frame);
-        this.timelineDirty = true;
-        return true;
-    };
-
-    EE.prototype.openWaitInsertDialog = function(ctx) {
-        if (!this.waitInsertModal || !this.waitInsertFrameInput || !this.waitInsertPosBefore || !this.waitInsertPosAfter) return;
-        this.waitInsertDialogContext = this.resolveWaitInsertContext(ctx || this.makeWaitInsertContextFromFrame(this.frame));
-        var def = Math.max(1, Math.floor(Number(this.waitInsertDialogContext.defaultFrames || 60)));
-        this.waitInsertPosBefore.checked = false;
-        this.waitInsertPosAfter.checked = true;
-        this.waitInsertFrameInput.value = String(def);
-        if (this.waitInsertInfo) this.waitInsertInfo.textContent = this.waitInsertContextInfoText(this.waitInsertDialogContext);
-        this.waitInsertModal.classList.add('on');
-        if (typeof this.syncButtonsToCancelWidthAsync === 'function') this.syncButtonsToCancelWidthAsync(this.waitInsertModal);
-        this.waitInsertFrameInput.focus();
-        this.waitInsertFrameInput.select();
-    };
-
-    EE.prototype.closeWaitInsertDialog = function() {
-        this.waitInsertDialogContext = null;
-        if (this.waitInsertModal) this.waitInsertModal.classList.remove('on');
-    };
-
-    EE.prototype.submitWaitInsertDialog = function() {
-        if (!this.waitInsertDialogContext) return;
-        var frames = Math.max(1, Math.floor(Number(this.waitInsertFrameInput && this.waitInsertFrameInput.value || 0) || 1));
-        var pos = (this.waitInsertPosAfter && this.waitInsertPosAfter.checked) ? 'after' : 'before';
-        var ctx = this.waitInsertDialogContext;
-        var ok = false;
-        if (String(ctx && ctx.source || '') === 'routeCmd') {
-            ok = this.applyRouteCommandWaitInsertion(ctx, pos, frames);
-            if (ok) {
-                this.closeWaitInsertDialog();
-                this.msg('移動ルート内ウェイト挿入: ' + frames + 'f');
-                return;
-            }
-        } else {
-            if (this.applyWaitInsertionFromIfBranchCommandContext(ctx, pos, frames)) {
-                this.closeWaitInsertDialog();
-                this.msg('分岐内ウェイト挿入: ' + frames + 'f');
-                return;
-            }
-            var startFrame = this.waitInsertStartFrameForContext(ctx, pos);
-            ok = this.applyWaitFrameInsertion(startFrame, frames);
-            if (ok) {
-                this.closeWaitInsertDialog();
-                this.msg('ウェイト挿入: ' + startFrame + 'f から ' + frames + 'f');
-                return;
-            }
-        }
-        this.msg('ウェイト挿入失敗');
-    };
-
-    EE.prototype.openWaitInsertDialogFromContextMenu = function() {
-        var ctx = this.routeCtxWaitInsertContext || this.makeWaitInsertContextFromFrame(this.frame);
-        if (ctx && this.hasRangeSelection()) {
-            ctx = clone(ctx);
-            ctx.defaultFrames = this.waitInsertDefaultFramesFromSelection();
-        }
-        this.closeRouteRangeContextMenu();
-        this.openWaitInsertDialog(ctx);
-    };
-
-    EE.prototype.openRouteRangeContextMenu = function(uid, screenX, screenY, waitInsertContext) {
-        if (!this.routeCtx) return;
-        uid = Math.floor(Number(uid || 0));
-        if (uid <= 0) return;
-        this.routeCtxMode = 'route';
-        this.routeRangeCtxUid = uid;
-        this.routeCtxWaitInsertContext = this.resolveWaitInsertContext(waitInsertContext || this.makeWaitInsertContextFromCommand(uid, this.frame));
-        this.routeCtx.classList.add('on');
-        this.placeMenuInViewport(this.routeCtx, Number(screenX || 0) + 20, screenY, 4);
-        this.refreshRouteRangeContextMenu();
-    };
-
-    EE.prototype.openSelectionContextMenu = function(screenX, screenY, waitInsertContext) {
-        if (!this.routeCtx) return;
-        this.routeCtxMode = 'selection';
-        this.routeRangeCtxUid = 0;
-        this.routeCtxWaitInsertContext = this.resolveWaitInsertContext(waitInsertContext || this.makeWaitInsertContextFromSelection());
-        this.routeCtx.classList.add('on');
-        this.placeMenuInViewport(this.routeCtx, Number(screenX || 0) + 20, screenY, 4);
-        this.refreshRouteRangeContextMenu();
-    };
-
-    EE.prototype.openTimelineContextMenu = function(screenX, screenY, waitInsertContext) {
-        if (!this.routeCtx) return;
-        var rawCtx = waitInsertContext || this.makeWaitInsertContextFromFrame(this.frame);
-        var isEndMarkerContext = !!(rawCtx && typeof rawCtx === 'object' && rawCtx.endMarker);
-        this.routeCtxMode = isEndMarkerContext ? 'endMarker' : 'timeline';
-        this.routeRangeCtxUid = 0;
-        this.routeCtxWaitInsertContext = this.resolveWaitInsertContext(rawCtx);
-        if (isEndMarkerContext && this.routeCtxWaitInsertContext) this.routeCtxWaitInsertContext.endMarker = true;
-        this.routeCtx.classList.add('on');
-        this.placeMenuInViewport(this.routeCtx, Number(screenX || 0) + 20, screenY, 4);
-        this.refreshRouteRangeContextMenu();
-    };
-
-    EE.prototype.toggleRouteRangeOption = function(key) {
-        if (key !== 'repeat' && key !== 'skippable' && key !== 'wait') return;
-        var e = this.findRouteRangeEntryByUid(this.routeRangeCtxUid);
-        if (!e) return;
-        var tr = this.model && this.model.tracks ? this.model.tracks[this.selKey] : null;
-        if (!tr) return;
-        var route = e.command.parameters && e.command.parameters[1];
-        if (!route || typeof route !== 'object') return;
-        var next = !route[key];
-        if (key === 'wait' && next) {
-            var s = Math.max(0, Math.floor(Number(e.frame || 0)));
-            var ed = s + Math.max(0, Math.floor(Number(e.wait || 0)));
-            if (this.hasMainCommandInRange(tr, s, ed, 0)) {
-                this.err('E_ROUTE_WAIT_MAIN_CONFLICT', new Error('main command exists in route wait range'));
-                this.msg('完了までウェイトON不可: main範囲内にコマンドがあります');
-                return;
-            }
-        }
-        if (key === 'wait') {
-            var probeCmd = clone(e.command || { code: 205, parameters: [0, this.defaultMoveRoute()] });
-            if (!Array.isArray(probeCmd.parameters)) probeCmd.parameters = [0, this.defaultMoveRoute()];
-            var probeRoute = probeCmd.parameters[1];
-            if (!probeRoute || typeof probeRoute !== 'object') probeRoute = this.defaultMoveRoute();
-            probeCmd.parameters[1] = probeRoute;
-            probeRoute.wait = next;
-            var probe = clone(e);
-            probe.command = probeCmd;
-            probe.wait = this.commandWaitFrames(probeCmd);
-            if (!this.canPlaceEntry(tr, probe, probe.frame, probe.rowKey, probe.uid)) {
-                this.msg('完了までウェイト変更不可: 移動ルートが重なります');
-                return;
-            }
-        }
-        this.pushSnap('routeOption');
-        route[key] = next;
-        e.wait = this.commandWaitFrames(e.command);
-        this.dirty[this.selKey] = true;
-        this.rebuildSchedule();
-        this.seek(this.frame);
-        this.refreshRouteRangeContextMenu();
-        var label = (key === 'repeat')
-            ? '動作を繰り返す'
-            : (key === 'skippable' ? '移動できない場合は飛ばす' : '完了までウェイト');
-        this.msg(label + ': ' + (route[key] ? 'ON' : 'OFF'));
-    };
-
-    EE.prototype.openCharContextMenu = function(charId, screenX, screenY) {
-        if (!this.charCtx || !this.charCtxCmdAddBtn || !this.charCtxTileMoveBtn || !this.charCtxTeleportBtn || !this.charCtxInitPosBtn || !this.charCtxEditBtn ||
-            !this.charCtxShiftAdjustBtn || !this.charCtxOriginAdjustBtn || !this.charCtxRangeAdjustBtn || !this.charCtxCreateBtn) return;
-        this.closeCameraContextMenu();
-        this.charCtxTargetId = this.normalizeMoveTarget(charId);
-        var hasTrack = !!(this.selEid && this.selPage >= 0 && this.selKey);
-        var targetRawId = Math.floor(Number(this.charCtxTargetId || 0));
-        var targetId = Math.max(0, targetRawId);
-        var isPlayerTarget = (targetRawId === -1);
-        var hasTargetEvent = !!($dataMap && Array.isArray($dataMap.events) && targetRawId > 0 && $dataMap.events[targetRawId]);
-        var mp = this.updateMapCreateContextPointFromScreen(screenX, screenY);
-        var canCreateEvent = this.isPointInFixedViewportRect(Number(screenX || 0), Number(screenY || 0)) &&
-            this.cameraContextMapPointIsValid(mp);
-        this.charCtxCmdAddBtn.disabled = !hasTrack;
-        this.charCtxCmdAddBtn.textContent = hasTrack ? 'コマンド追加' : 'イベント未選択';
-        this.charCtxTileMoveBtn.disabled = !hasTrack;
-        this.charCtxTileMoveBtn.textContent = hasTrack ? 'タイル移動' : 'イベント未選択';
-        this.charCtxTeleportBtn.disabled = !hasTrack;
-        this.charCtxTeleportBtn.textContent = hasTrack ? '瞬間移動' : 'イベント未選択';
-        this.charCtxInitPosBtn.disabled = !hasTargetEvent;
-        this.charCtxInitPosBtn.textContent = hasTargetEvent ? '初期位置編集' : 'イベントのみ';
-        this.charCtxEditBtn.disabled = !hasTargetEvent;
-        this.charCtxEditBtn.textContent = hasTargetEvent ? '編集' : 'イベントのみ';
-        this.charCtxShiftAdjustBtn.disabled = !hasTargetEvent;
-        this.charCtxShiftAdjustBtn.textContent = hasTargetEvent ? 'Shift調整' : 'イベントのみ';
-        this.charCtxOriginAdjustBtn.disabled = !hasTargetEvent;
-        this.charCtxOriginAdjustBtn.textContent = hasTargetEvent ? 'OriginY調整' : 'イベントのみ';
-        this.charCtxRangeAdjustBtn.disabled = !hasTargetEvent;
-        this.charCtxRangeAdjustBtn.textContent = hasTargetEvent ? '当たり判定設定' : 'イベントのみ';
-        this.charCtxEditBtn.style.display = isPlayerTarget ? 'none' : 'block';
-        this.charCtxInitPosBtn.style.display = isPlayerTarget ? 'none' : 'block';
-        this.charCtxShiftAdjustBtn.style.display = isPlayerTarget ? 'none' : 'block';
-        this.charCtxOriginAdjustBtn.style.display = isPlayerTarget ? 'none' : 'block';
-        this.charCtxRangeAdjustBtn.style.display = isPlayerTarget ? 'none' : 'block';
-        this.charCtxCreateBtn.disabled = !canCreateEvent;
-        this.charCtxCreateBtn.textContent = canCreateEvent ? 'イベント新規作成' : 'イベント新規作成(範囲外)';
-        this.charCtx.classList.add('on');
-        this.placeMenuInViewport(this.charCtx, Number(screenX || 0) + 20, screenY, 4);
-    };
-
-    EE.prototype.openContextCharacterRouteCommandPanel = function() {
-        var id = this.charCtxTargetId;
-        this.closeCharContextMenu();
-        if (id == null) return;
-        var cid = this.normalizeMoveTarget(id);
-        if (!this.needSelTrack()) return;
-        this.selUid = 0;
-        this.selRouteListIndex = -1;
-        this.panelSelectedCharId = cid;
-        this.cleanupTemporaryCharRows(cid);
-        this.refreshCharacterPanel(true);
-        this.timelineDirty = true;
-        this.openRouteCommandPanel(this.frame, 'char:' + cid);
-    };
-
-    EE.prototype.beginTileMoveForContextCharacter = function() {
-        var id = this.charCtxTargetId;
-        this.closeCharContextMenu();
-        if (id == null) return;
-        this.beginTileMoveForCharacter(id, 'route');
-    };
-
-    EE.prototype.beginTeleportForContextCharacter = function() {
-        var id = this.charCtxTargetId;
-        this.closeCharContextMenu();
-        if (id == null) return;
-        this.beginTeleportForCharacter(id);
-    };
-
-    EE.prototype.beginInitialPositionEditForContextCharacter = function() {
-        var eventId = Math.max(0, Math.floor(Number(this.charCtxTargetId || 0)));
-        this.closeCharContextMenu();
-        if (eventId <= 0) {
-            this.msg('イベントのみ編集できます');
-            return;
-        }
-        var evData = ($dataMap && Array.isArray($dataMap.events)) ? $dataMap.events[eventId] : null;
-        if (!evData) {
-            this.msg('イベントが見つかりません');
-            return;
-        }
-        if (typeof this.beginInitialPositionEditForCharacter === 'function') {
-            this.beginInitialPositionEditForCharacter(eventId);
-        }
-    };
-
-    EE.prototype.createMapEventFromCharContextMenu = function() {
-        this.closeCharContextMenu();
-        this.createMapEventFromContextMenu();
-    };
-
-    EE.prototype.eventSettingsSwitchOptions = function() {
-        var out = [];
-        var arr = ($dataSystem && Array.isArray($dataSystem.switches)) ? $dataSystem.switches : [];
-        for (var i = 1; i < arr.length; i++) {
-            var name = String(arr[i] || '');
-            if (!name.length) name = '(未設定)';
-            out.push({ value: i, label: ('0000' + i).slice(-4) + ' ' + name });
-        }
-        if (!out.length) out.push({ value: 1, label: '0001 (未設定)' });
-        return out;
-    };
-
-    EE.prototype.eventSettingsFallbackDbOptions = function(arr, emptyLabel) {
-        var out = [];
-        arr = Array.isArray(arr) ? arr : [];
-        for (var i = 1; i < arr.length; i++) {
-            var it = arr[i];
-            if (!it) continue;
-            var name = String(it.name || it.label || it.title || '');
-            if (!name.length) name = '(未設定)';
-            out.push({ value: i, label: ('0000' + i).slice(-4) + ' ' + name });
-        }
-        if (!out.length) out.push({ value: 1, label: '0001 ' + String(emptyLabel || '(未設定)') });
-        return out;
-    };
-
-    EE.prototype.eventSettingsFillSelect = function(select, options, value) {
-        if (!select) return;
-        options = Array.isArray(options) ? options : [];
-        var prev = (value == null) ? String(select.value || '') : String(value);
-        select.innerHTML = '';
-        var frag = document.createDocumentFragment();
-        for (var i = 0; i < options.length; i++) {
-            var src = options[i] || {};
-            var op = document.createElement('option');
-            op.value = String(src.value == null ? '' : src.value);
-            op.textContent = String(src.label == null ? op.value : src.label);
-            frag.appendChild(op);
-        }
-        select.appendChild(frag);
-        if (options.length) {
-            select.value = prev;
-            if (select.selectedIndex < 0) select.selectedIndex = 0;
-        }
-    };
-
-    EE.prototype.eventSettingsPromptSelectId = function(select, titleText) {
-        if (!select || select.disabled) return;
-        var cur = Math.max(1, Math.floor(Number(select.value || 1)));
-        var msg = String(titleText || 'ID') + ' を入力してください';
-        var raw = window.prompt(msg, String(cur));
-        if (raw == null) return;
-        var id = Math.max(1, Math.floor(Number(raw || cur) || cur));
-        var found = false;
-        for (var i = 0; i < select.options.length; i++) {
-            if (String(select.options[i].value || '') !== String(id)) continue;
-            found = true;
-            break;
-        }
-        if (found) select.value = String(id);
-        else if (select.options.length) select.selectedIndex = Math.max(0, Math.min(select.options.length - 1, id - 1));
-        select.dispatchEvent(new Event('input', { bubbles: true }));
-        select.dispatchEvent(new Event('change', { bubbles: true }));
-    };
-
-    EE.prototype.battleEventSettingsTargetTroopData = function() {
-        var tid = Math.max(1, Math.floor(Number(this.battleEventSettingsTargetTroopId || this.currentBattleTroopId() || 0)));
-        var troop = ($dataTroops && Array.isArray($dataTroops)) ? $dataTroops[tid] : null;
-        if (!troop) return null;
-        if (!Array.isArray(troop.pages)) troop.pages = [];
-        return troop;
-    };
-
-    EE.prototype.battleEventSettingsEnsurePage = function(page) {
-        if (!page || typeof page !== 'object') page = {};
-        if (!page.conditions || typeof page.conditions !== 'object') page.conditions = {};
-        var c = page.conditions;
-        if (c.turnEnding == null) c.turnEnding = false;
-        if (c.turnValid == null) c.turnValid = false;
-        if (c.turnA == null) c.turnA = 0;
-        if (c.turnB == null) c.turnB = 0;
-        if (c.enemyValid == null) c.enemyValid = false;
-        if (c.enemyIndex == null) c.enemyIndex = 0;
-        if (c.enemyHp == null) c.enemyHp = 100;
-        if (c.actorValid == null) c.actorValid = false;
-        if (c.actorId == null) c.actorId = 1;
-        if (c.actorHp == null) c.actorHp = 100;
-        if (c.switchValid == null) c.switchValid = false;
-        if (c.switchId == null) c.switchId = 1;
-        if (page.span == null) page.span = 0;
-        if (!Array.isArray(page.list)) page.list = [{ code: 0, indent: 0, parameters: [] }];
-        return page;
-    };
-
-    EE.prototype.battleEventSettingsPopulateConditionLists = function() {
-        var actorOptions = (typeof this.actorOptionsForSchema === 'function')
-            ? this.actorOptionsForSchema()
-            : this.eventSettingsFallbackDbOptions($dataActors, '(アクターなし)');
-        var swOptions = this.eventSettingsSwitchOptions();
-        this.eventSettingsFillSelect(this.battleEventActorId, actorOptions);
-        this.eventSettingsFillSelect(this.battleEventSwitchId, swOptions);
-    };
-
-    EE.prototype.syncBattleEventSettingsFormEnabled = function() {
-        if (!this.battleEventSettingsModal) return;
-        var turnOn = !!(this.battleEventTurnValid && this.battleEventTurnValid.checked);
-        var enemyOn = !!(this.battleEventEnemyValid && this.battleEventEnemyValid.checked);
-        var actorOn = !!(this.battleEventActorValid && this.battleEventActorValid.checked);
-        var swOn = !!(this.battleEventSwitchValid && this.battleEventSwitchValid.checked);
-        if (this.battleEventTurnA) this.battleEventTurnA.disabled = !turnOn;
-        if (this.battleEventTurnB) this.battleEventTurnB.disabled = !turnOn;
-        if (this.battleEventEnemyIndex) this.battleEventEnemyIndex.disabled = !enemyOn;
-        if (this.battleEventEnemyHp) this.battleEventEnemyHp.disabled = !enemyOn;
-        if (this.battleEventActorId) this.battleEventActorId.disabled = !actorOn;
-        if (this.battleEventActorHp) this.battleEventActorHp.disabled = !actorOn;
-        if (this.battleEventSwitchId) this.battleEventSwitchId.disabled = !swOn;
-    };
-
-    EE.prototype.battleEventSettingsRebuildPageSelectOptions = function(troop, selectedIndex) {
-        if (!this.battleEventSettingsPageSelect || !troop || !Array.isArray(troop.pages)) return;
-        this.battleEventSettingsPageSelect.innerHTML = '';
-        for (var i = 0; i < troop.pages.length; i++) {
-            var op = document.createElement('option');
-            op.value = String(i);
-            op.textContent = String(i + 1);
-            this.battleEventSettingsPageSelect.appendChild(op);
-        }
-        var idx = Math.max(0, Math.floor(Number(selectedIndex || 0)));
-        if (idx >= troop.pages.length) idx = troop.pages.length - 1;
-        this.battleEventSettingsPageSelect.value = String(Math.max(0, idx));
-        this.battleEventSettingsTargetPageIndex = Math.max(0, idx);
-    };
-
-    EE.prototype.loadBattleEventSettingsPageFromForm = function() {
-        var troop = this.battleEventSettingsTargetTroopData();
-        if (!troop || !Array.isArray(troop.pages) || !troop.pages.length) return;
-        var pageIndex = Math.max(0, Math.floor(Number(this.battleEventSettingsPageSelect && this.battleEventSettingsPageSelect.value || 0)));
-        if (pageIndex >= troop.pages.length) pageIndex = troop.pages.length - 1;
-        if (this.battleEventSettingsPageSelect) this.battleEventSettingsPageSelect.value = String(pageIndex);
-        this.battleEventSettingsTargetPageIndex = pageIndex;
-        var page = this.battleEventSettingsEnsurePage(troop.pages[pageIndex] || {});
-        troop.pages[pageIndex] = page;
-        var c = (page.conditions && typeof page.conditions === 'object') ? page.conditions : {};
-        if (this.battleEventTurnEnding) this.battleEventTurnEnding.checked = !!c.turnEnding;
-        if (this.battleEventTurnValid) this.battleEventTurnValid.checked = !!c.turnValid;
-        if (this.battleEventTurnA) this.battleEventTurnA.value = String(Math.max(0, Math.floor(Number(c.turnA || 0))));
-        if (this.battleEventTurnB) this.battleEventTurnB.value = String(Math.max(0, Math.floor(Number(c.turnB || 0))));
-        if (this.battleEventEnemyValid) this.battleEventEnemyValid.checked = !!c.enemyValid;
-        if (this.battleEventEnemyIndex) this.battleEventEnemyIndex.value = String(Math.max(1, Math.floor(Number(c.enemyIndex || 0)) + 1));
-        if (this.battleEventEnemyHp) this.battleEventEnemyHp.value = String(Math.max(0, Math.floor(Number(c.enemyHp == null ? 100 : c.enemyHp))));
-        if (this.battleEventActorValid) this.battleEventActorValid.checked = !!c.actorValid;
-        if (this.battleEventActorId) this.battleEventActorId.value = String(Math.max(1, Math.floor(Number(c.actorId || 1))));
-        if (this.battleEventActorHp) this.battleEventActorHp.value = String(Math.max(0, Math.floor(Number(c.actorHp == null ? 100 : c.actorHp))));
-        if (this.battleEventSwitchValid) this.battleEventSwitchValid.checked = !!c.switchValid;
-        if (this.battleEventSwitchId) this.battleEventSwitchId.value = String(Math.max(1, Math.floor(Number(c.switchId || 1))));
-        if (this.battleEventSpan) this.battleEventSpan.value = String(Math.max(0, Math.min(2, Math.floor(Number(page.span || 0)))));
-        if (this.battleEventSettingsHead) {
-            this.battleEventSettingsHead.textContent =
-                'Troop:' + this.battleEventSettingsTargetTroopId + ' - 戦闘イベント設定 (Page ' + (pageIndex + 1) + ')';
-        }
-        this.syncBattleEventSettingsFormEnabled();
-    };
-
-    EE.prototype.openBattleEventSettingsEditor = function(troopId) {
-        if (!this.isBattleEventMode()) return;
-        if (!this.battleEventSettingsModal || !this.battleEventSettingsPageSelect) return;
-        if (this.eventSettingsModal && this.eventSettingsModal.classList.contains('on')) {
-            this.closeEventSettingsEditor();
-        }
-        troopId = Math.max(1, Math.floor(Number(troopId || this.currentBattleTroopId() || 0)));
-        var troop = ($dataTroops && Array.isArray($dataTroops)) ? $dataTroops[troopId] : null;
-        if (!troop || !Array.isArray(troop.pages) || !troop.pages.length) {
-            this.msg('戦闘ページがありません');
-            return;
-        }
-        this.battleEventSettingsTargetTroopId = troopId;
-        var pageIndex = (this.selEid === troopId && this.selPage >= 0) ? this.selPage : 0;
-        this.battleEventSettingsPopulateConditionLists();
-        this.battleEventSettingsRebuildPageSelectOptions(troop, pageIndex);
-        this.loadBattleEventSettingsPageFromForm();
-        this.battleEventSettingsModal.classList.add('on');
-    };
-
-    EE.prototype.closeBattleEventSettingsEditor = function() {
-        if (!this.battleEventSettingsModal) return;
-        this.battleEventSettingsModal.classList.remove('on');
-        this.battleEventSettingsTargetTroopId = 0;
-        this.battleEventSettingsTargetPageIndex = 0;
-    };
-
-    EE.prototype.applyBattleEventSettingsEditor = function() {
-        var troop = this.battleEventSettingsTargetTroopData();
-        if (!troop || !Array.isArray(troop.pages) || !troop.pages.length) {
-            this.closeBattleEventSettingsEditor();
-            return;
-        }
-        var troopId = Math.max(1, Math.floor(Number(this.battleEventSettingsTargetTroopId || 0)));
-        var pageIndex = Math.max(0, Math.floor(Number(this.battleEventSettingsPageSelect && this.battleEventSettingsPageSelect.value || this.battleEventSettingsTargetPageIndex || 0)));
-        if (pageIndex >= troop.pages.length) pageIndex = troop.pages.length - 1;
-        var page = this.battleEventSettingsEnsurePage(troop.pages[pageIndex] || {});
-        troop.pages[pageIndex] = page;
-        var c = (page.conditions && typeof page.conditions === 'object') ? page.conditions : (page.conditions = {});
-        c.turnEnding = !!(this.battleEventTurnEnding && this.battleEventTurnEnding.checked);
-        c.turnValid = !!(this.battleEventTurnValid && this.battleEventTurnValid.checked);
-        c.turnA = Math.max(0, Math.floor(Number(this.battleEventTurnA && this.battleEventTurnA.value || 0)));
-        c.turnB = Math.max(0, Math.floor(Number(this.battleEventTurnB && this.battleEventTurnB.value || 0)));
-        c.enemyValid = !!(this.battleEventEnemyValid && this.battleEventEnemyValid.checked);
-        c.enemyIndex = Math.max(0, Math.floor(Number(this.battleEventEnemyIndex && this.battleEventEnemyIndex.value || 1)) - 1);
-        c.enemyHp = Math.max(0, Math.floor(Number(this.battleEventEnemyHp && this.battleEventEnemyHp.value || 100)));
-        c.actorValid = !!(this.battleEventActorValid && this.battleEventActorValid.checked);
-        c.actorId = Math.max(1, Math.floor(Number(this.battleEventActorId && this.battleEventActorId.value || 1)));
-        c.actorHp = Math.max(0, Math.floor(Number(this.battleEventActorHp && this.battleEventActorHp.value || 100)));
-        c.switchValid = !!(this.battleEventSwitchValid && this.battleEventSwitchValid.checked);
-        c.switchId = Math.max(1, Math.floor(Number(this.battleEventSwitchId && this.battleEventSwitchId.value || 1)));
-        page.span = Math.max(0, Math.min(2, Math.floor(Number(this.battleEventSpan && this.battleEventSpan.value || 0))));
-        if (!Array.isArray(page.list)) page.list = [{ code: 0, indent: 0, parameters: [] }];
-
-        var dirtyKey = this.key(troopId, pageIndex);
-        this.ensureTrack(troopId, pageIndex);
-        this.dirty[dirtyKey] = true;
-        this.selectBattleTrack(troopId, pageIndex, true);
-        this.closeBattleEventSettingsEditor();
-        this.msg('戦闘イベント設定を更新');
-    };
-
-    EE.prototype.eventSettingsRenderPageTabs = function(total, selectedIndex) {
-        if (!this.eventSettingsPageTabs) return;
-        var n = Math.max(0, Math.floor(Number(total || 0)));
-        var si = Math.max(0, Math.floor(Number(selectedIndex || 0)));
-        this.eventSettingsPageTabs.innerHTML = '';
-        for (var i = 0; i < n; i++) {
-            var b = this.el('button', 'es-tab' + (i === si ? ' on' : ''), String(i + 1));
-            b.type = 'button';
-            (function(idx, self) {
-                b.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    if (!self.eventSettingsPageSelect) return;
-                    self.eventSettingsPageSelect.value = String(idx);
-                    self.loadEventSettingsEditorPageFromForm();
-                });
-            })(i, this);
-            this.eventSettingsPageTabs.appendChild(b);
-        }
-    };
-
-    EE.prototype.eventSettingsSyncPageTabsFromSelect = function() {
-        if (!this.eventSettingsPageSelect) return;
-        var total = this.eventSettingsPageSelect.options ? this.eventSettingsPageSelect.options.length : 0;
-        var selectedIndex = Math.max(0, Math.floor(Number(this.eventSettingsPageSelect.selectedIndex >= 0
-            ? this.eventSettingsPageSelect.selectedIndex
-            : this.eventSettingsPageSelect.value || 0)));
-        this.eventSettingsRenderPageTabs(total, selectedIndex);
-    };
-
-    EE.prototype.eventSettingsTargetEventData = function() {
-        var eid = Math.max(1, Math.floor(Number(this.eventSettingsTargetEventId || 0)));
-        var evData = ($dataMap && Array.isArray($dataMap.events)) ? $dataMap.events[eid] : null;
-        if (!evData || !Array.isArray(evData.pages)) return null;
-        return evData;
-    };
-
-    EE.prototype.eventSettingsDefaultPageData = function() {
-        return this.eventSettingsEnsurePage({});
-    };
-
-    EE.prototype.eventSettingsMarkDirtyForPageOps = function(eventId) {
-        eventId = Math.max(1, Math.floor(Number(eventId || 0)));
-        this.dirty['es_pages:' + String(eventId)] = true;
-        this.timelineDirty = true;
-    };
-
-    EE.prototype.eventSettingsRebuildPageSelectOptions = function(evData, selectedIndex) {
-        if (!this.eventSettingsPageSelect || !evData || !Array.isArray(evData.pages)) return;
-        this.eventSettingsPageSelect.innerHTML = '';
-        for (var i = 0; i < evData.pages.length; i++) {
-            var op = document.createElement('option');
-            op.value = String(i);
-            op.textContent = String(i + 1);
-            this.eventSettingsPageSelect.appendChild(op);
-        }
-        var idx = Math.max(0, Math.floor(Number(selectedIndex || 0)));
-        if (idx >= evData.pages.length) idx = evData.pages.length - 1;
-        this.eventSettingsPageSelect.value = String(Math.max(0, idx));
-        this.eventSettingsSyncPageTabsFromSelect();
-        this.eventSettingsTargetPageIndex = Math.max(0, idx);
-    };
-
-    EE.prototype.eventSettingsRefreshPageActionButtons = function() {
-        var evData = this.eventSettingsTargetEventData();
-        var hasEvent = !!(evData && Array.isArray(evData.pages));
-        var pageCount = hasEvent ? evData.pages.length : 0;
-        var canPaste = !!(this.eventSettingsPageClipboard && typeof this.eventSettingsPageClipboard === 'object');
-        if (this.eventSettingsPageCreateBtn) this.eventSettingsPageCreateBtn.disabled = !hasEvent;
-        if (this.eventSettingsPageCopyBtn) this.eventSettingsPageCopyBtn.disabled = !hasEvent || pageCount <= 0;
-        if (this.eventSettingsPagePasteBtn) this.eventSettingsPagePasteBtn.disabled = !hasEvent || !canPaste || pageCount <= 0;
-        if (this.eventSettingsPageDeleteBtn) this.eventSettingsPageDeleteBtn.disabled = !hasEvent || pageCount <= 1;
-        if (this.eventSettingsPageClearBtn) this.eventSettingsPageClearBtn.disabled = !hasEvent || pageCount <= 0;
-    };
-
-    EE.prototype.eventSettingsCreatePage = function() {
-        var evData = this.eventSettingsTargetEventData();
-        if (!evData || !Array.isArray(evData.pages)) return;
-        var idx = Math.max(0, Math.floor(Number(this.eventSettingsPageSelect && this.eventSettingsPageSelect.value || 0)));
-        if (idx >= evData.pages.length) idx = evData.pages.length - 1;
-        var insertAt = Math.max(0, idx + 1);
-        evData.pages.splice(insertAt, 0, this.eventSettingsDefaultPageData());
-        this.eventSettingsMarkDirtyForPageOps(this.eventSettingsTargetEventId);
-        this.eventSettingsRebuildPageSelectOptions(evData, insertAt);
-        this.loadEventSettingsEditorPageFromForm();
-        this.eventSettingsRefreshPageActionButtons();
-        this.msg('EVページ作成');
-    };
-
-    EE.prototype.eventSettingsCopyPage = function() {
-        var evData = this.eventSettingsTargetEventData();
-        if (!evData || !Array.isArray(evData.pages) || !evData.pages.length) return;
-        var idx = Math.max(0, Math.floor(Number(this.eventSettingsPageSelect && this.eventSettingsPageSelect.value || 0)));
-        if (idx >= evData.pages.length) idx = evData.pages.length - 1;
-        this.eventSettingsPageClipboard = clone(this.eventSettingsEnsurePage(evData.pages[idx] || {}));
-        this.eventSettingsRefreshPageActionButtons();
-        this.msg('EVページコピー');
-    };
-
-    EE.prototype.eventSettingsPastePage = function() {
-        var evData = this.eventSettingsTargetEventData();
-        if (!evData || !Array.isArray(evData.pages) || !evData.pages.length) return;
-        if (!this.eventSettingsPageClipboard || typeof this.eventSettingsPageClipboard !== 'object') {
-            this.msg('貼り付け元ページがありません');
-            return;
-        }
-        var idx = Math.max(0, Math.floor(Number(this.eventSettingsPageSelect && this.eventSettingsPageSelect.value || 0)));
-        if (idx >= evData.pages.length) idx = evData.pages.length - 1;
-        evData.pages[idx] = this.eventSettingsEnsurePage(clone(this.eventSettingsPageClipboard));
-        this.eventSettingsMarkDirtyForPageOps(this.eventSettingsTargetEventId);
-        this.eventSettingsRebuildPageSelectOptions(evData, idx);
-        this.loadEventSettingsEditorPageFromForm();
-        this.eventSettingsRefreshPageActionButtons();
-        this.msg('EVページ貼り付け');
-    };
-
-    EE.prototype.eventSettingsDeletePage = function() {
-        var evData = this.eventSettingsTargetEventData();
-        if (!evData || !Array.isArray(evData.pages) || evData.pages.length <= 1) {
-            this.msg('EVページは1枚未満にできません');
-            return;
-        }
-        var idx = Math.max(0, Math.floor(Number(this.eventSettingsPageSelect && this.eventSettingsPageSelect.value || 0)));
-        if (idx >= evData.pages.length) idx = evData.pages.length - 1;
-        evData.pages.splice(idx, 1);
-        var next = Math.max(0, Math.min(evData.pages.length - 1, idx));
-        this.eventSettingsMarkDirtyForPageOps(this.eventSettingsTargetEventId);
-        this.eventSettingsRebuildPageSelectOptions(evData, next);
-        this.loadEventSettingsEditorPageFromForm();
-        this.eventSettingsRefreshPageActionButtons();
-        this.msg('EVページ削除');
-    };
-
-    EE.prototype.eventSettingsClearPage = function() {
-        var evData = this.eventSettingsTargetEventData();
-        if (!evData || !Array.isArray(evData.pages) || !evData.pages.length) return;
-        var idx = Math.max(0, Math.floor(Number(this.eventSettingsPageSelect && this.eventSettingsPageSelect.value || 0)));
-        if (idx >= evData.pages.length) idx = evData.pages.length - 1;
-        evData.pages[idx] = this.eventSettingsDefaultPageData();
-        this.eventSettingsMarkDirtyForPageOps(this.eventSettingsTargetEventId);
-        this.eventSettingsRebuildPageSelectOptions(evData, idx);
-        this.loadEventSettingsEditorPageFromForm();
-        this.eventSettingsRefreshPageActionButtons();
-        this.msg('EVページクリア');
-    };
-
-    EE.prototype.refreshEventSettingsImagePreview = function() {
-        var cv = this.eventSettingsImagePreview;
-        if (!cv || typeof cv.getContext !== 'function') return;
-        var ctx = cv.getContext('2d');
-        if (!ctx) return;
-        var w = Math.max(1, Number(cv.width || 84));
-        var h = Math.max(1, Number(cv.height || 112));
-        ctx.clearRect(0, 0, w, h);
-        var cs = 12;
-        for (var y = 0; y < h; y += cs) {
-            for (var x = 0; x < w; x += cs) {
-                var odd = (((x / cs) | 0) + ((y / cs) | 0)) % 2;
-                ctx.fillStyle = odd ? 'rgba(228,228,228,.88)' : 'rgba(198,198,198,.88)';
-                ctx.fillRect(x, y, cs, cs);
-            }
-        }
-        var useTile = !!(this.eventSettingsUseTile && this.eventSettingsUseTile.checked);
-        if (useTile) {
-            var tid = Math.max(0, Math.floor(Number(this.eventSettingsTileId && this.eventSettingsTileId.value || 0)));
-            ctx.fillStyle = 'rgba(24,24,24,.82)';
-            ctx.fillRect(0, h - 18, w, 18);
-            ctx.fillStyle = 'rgba(244,244,244,.98)';
-            ctx.font = '11px sans-serif';
-            ctx.textAlign = 'center';
-            ctx.textBaseline = 'middle';
-            ctx.fillText('Tile ' + tid, Math.floor(w / 2), h - 9);
-            if (this.eventSettingsImageInfo) this.eventSettingsImageInfo.textContent = 'タイルID: ' + tid;
-            return;
-        }
-
-        var name = String(this.eventSettingsCharName && this.eventSettingsCharName.value || '');
-        var index = Math.max(0, Math.min(7, Math.floor(Number(this.eventSettingsCharIndex && this.eventSettingsCharIndex.value || 0))));
-        var dir = Math.floor(Number(this.eventSettingsDirection && this.eventSettingsDirection.value || 2));
-        if (dir !== 2 && dir !== 4 && dir !== 6 && dir !== 8) dir = 2;
-        var patt = Math.max(0, Math.min(2, Math.floor(Number(this.eventSettingsPattern && this.eventSettingsPattern.value || 1))));
-        if (this.eventSettingsImageInfo) {
-            if (name.length) this.eventSettingsImageInfo.textContent = name + ' [' + index + ']';
-            else this.eventSettingsImageInfo.textContent = '(画像未設定)';
-        }
-        if (!name.length || typeof ImageManager === 'undefined' || !ImageManager || typeof ImageManager.loadCharacter !== 'function') return;
-        var self = this;
-        try {
-            var bmp = (SH.loadCharacterBitmapIfExists ? SH.loadCharacterBitmapIfExists(name) : ImageManager.loadCharacter(name));
-            if (!bmp) {
-                if (this.eventSettingsImageInfo) this.eventSettingsImageInfo.textContent = '画像が見つかりません: ' + name;
-                return;
-            }
-            if (!bmp.isReady || !bmp.isReady()) {
-                if (typeof bmp.addLoadListener === 'function') bmp.addLoadListener(function() { self.refreshEventSettingsImagePreview(); });
-                return;
-            }
-            var bw = Math.max(1, Number(bmp.width || 1));
-            var bh = Math.max(1, Number(bmp.height || 1));
-            var big = (typeof ImageManager.isBigCharacter === 'function') ? !!ImageManager.isBigCharacter(name) : false;
-            var pw = big ? Math.floor(bw / 3) : Math.floor(bw / 12);
-            var ph = big ? Math.floor(bh / 4) : Math.floor(bh / 8);
-            var dirIdx = (dir === 2) ? 0 : (dir === 4 ? 1 : (dir === 6 ? 2 : 3));
-            var sx = 0;
-            var sy = 0;
-            if (big) {
-                sx = patt * pw;
-                sy = dirIdx * ph;
-            } else {
-                var bx = (index % 4) * 3;
-                var by = Math.floor(index / 4) * 4;
-                sx = (bx + patt) * pw;
-                sy = (by + dirIdx) * ph;
-            }
-            var scale = Math.min((w - 8) / pw, (h - 8) / ph);
-            if (!isFinite(scale) || scale <= 0) scale = 1;
-            var dw = Math.max(1, Math.floor(pw * scale));
-            var dh = Math.max(1, Math.floor(ph * scale));
-            var dx = Math.floor((w - dw) / 2);
-            var dy = Math.floor((h - dh) / 2);
-            ctx.imageSmoothingEnabled = false;
-            ctx.drawImage(bmp.canvas || bmp._canvas || bmp, sx, sy, pw, ph, dx, dy, dw, dh);
-        } catch (_) {}
-    };
-
-    EE.prototype.eventSettingsRefreshMoveRouteButtonLabel = function() {
-        if (!this.eventSettingsMoveRouteBtn) return;
-        var route = (this.eventSettingsMoveRouteDraft && typeof this.eventSettingsMoveRouteDraft === 'object')
-            ? this.eventSettingsMoveRouteDraft
-            : null;
-        var list = route && Array.isArray(route.list) ? route.list : [];
-        var count = 0;
-        for (var i = 0; i < list.length; i++) {
-            if (Math.floor(Number(list[i] && list[i].code || 0)) > 0) count++;
-        }
-        this.eventSettingsMoveRouteBtn.textContent = 'ルート... (' + count + ')';
-    };
-
-    EE.prototype.openEventSettingsMoveRoutePrompt = function() {
-        if (this.eventSettingsTransparentStart && this.eventSettingsTransparentStart.checked) {
-            this.msg('「透明化で開始」がONの間はルート編集できません');
-            return;
-        }
-        var src = (this.eventSettingsMoveRouteDraft && typeof this.eventSettingsMoveRouteDraft === 'object')
-            ? clone(this.eventSettingsMoveRouteDraft)
-            : this.defaultMoveRoute();
-        if (!Array.isArray(src.list)) src.list = [{ code: 0, parameters: [] }];
-        var raw = window.prompt('移動ルート list(JSON) または route(JSON) を編集してください', JSON.stringify(src.list));
-        if (raw == null) return;
-        try {
-            var parsed = JSON.parse(String(raw || '[]'));
-            if (Array.isArray(parsed)) {
-                src.list = parsed;
-            } else if (parsed && typeof parsed === 'object') {
-                src = clone(parsed);
-                if (!Array.isArray(src.list)) throw new Error('route.list(配列) が必要です');
-            } else {
-                throw new Error('配列またはオブジェクトで指定してください');
-            }
-            if (!src.list.length || Math.floor(Number(src.list[src.list.length - 1].code || 0)) !== 0) {
-                src.list.push({ code: 0, parameters: [] });
-            }
-            if (src.repeat == null) {
-                src.repeat = !!(this.eventSettingsMoveRepeat && this.eventSettingsMoveRepeat.checked);
-            } else {
-                src.repeat = !!src.repeat;
-            }
-            if (src.skippable == null) {
-                src.skippable = !!(this.eventSettingsMoveSkippable && this.eventSettingsMoveSkippable.checked);
-            } else {
-                src.skippable = !!src.skippable;
-            }
-            if (src.wait == null) {
-                src.wait = !!(this.eventSettingsMoveWait && this.eventSettingsMoveWait.checked);
-            } else {
-                src.wait = !!src.wait;
-            }
-            this.eventSettingsMoveRouteDraft = src;
-            if (this.eventSettingsMoveRepeat) this.eventSettingsMoveRepeat.checked = !!src.repeat;
-            if (this.eventSettingsMoveSkippable) this.eventSettingsMoveSkippable.checked = !!src.skippable;
-            if (this.eventSettingsMoveWait) this.eventSettingsMoveWait.checked = !!src.wait;
-            this.eventSettingsRefreshMoveRouteButtonLabel();
-            this.msg('移動ルートを更新');
-        } catch (e) {
-            this.err('E_EVENT_SETTINGS_ROUTE_JSON', e);
-        }
-    };
-
-    EE.prototype.eventSettingsCharacterImageNames = function() {
-        var names = [];
-        try {
-            var fs = require('fs');
-            var path = require('path');
-            var dir = path.join(process.cwd(), 'img', 'characters');
-            if (!fs.existsSync(dir)) return names;
-            var files = fs.readdirSync(dir);
-            var seen = Object.create(null);
-            for (var i = 0; i < files.length; i++) {
-                var fn = String(files[i] || '');
-                var m = fn.match(/^(.*)\.(png|webp|rpgmvp)$/i);
-                if (!m) continue;
-                var key = String(m[1] || '').trim();
-                if (!key.length || seen[key]) continue;
-                seen[key] = true;
-                names.push(key);
-            }
-            names.sort(function(a, b) {
-                return String(a || '').toLowerCase().localeCompare(String(b || '').toLowerCase());
-            });
-        } catch (_) {}
-        return names;
-    };
-
-    EE.prototype.openEventSettingsImagePickerPromptFallback = function() {
-        var curName = String(this.eventSettingsCharName && this.eventSettingsCharName.value || '');
-        var curIndex = Math.max(0, Math.min(7, Math.floor(Number(this.eventSettingsCharIndex && this.eventSettingsCharIndex.value || 0))));
-        var curDir = Math.floor(Number(this.eventSettingsDirection && this.eventSettingsDirection.value || 2));
-        var curPat = Math.max(0, Math.min(2, Math.floor(Number(this.eventSettingsPattern && this.eventSettingsPattern.value || 1))));
-        var dflt = curName + ',' + curIndex + ',' + curDir + ',' + curPat;
-        var raw = window.prompt('キャラ画像名,キャラ番号(0-7),向き(2/4/6/8),パターン(0-2)', dflt);
-        if (raw == null) return;
-        var a = String(raw || '').split(',');
-        var name = String((a[0] == null ? curName : a[0])).trim();
-        var idx = Math.max(0, Math.min(7, Math.floor(Number(a[1] == null ? curIndex : a[1]) || curIndex)));
-        var dir = Math.floor(Number(a[2] == null ? curDir : a[2]) || curDir);
-        if (dir !== 2 && dir !== 4 && dir !== 6 && dir !== 8) dir = 2;
-        var pat = Math.max(0, Math.min(2, Math.floor(Number(a[3] == null ? curPat : a[3]) || curPat)));
-        if (this.eventSettingsUseTile) this.eventSettingsUseTile.checked = false;
-        if (this.eventSettingsCharName) this.eventSettingsCharName.value = name;
-        if (this.eventSettingsCharIndex) this.eventSettingsCharIndex.value = String(idx);
-        if (this.eventSettingsDirection) this.eventSettingsDirection.value = String(dir);
-        if (this.eventSettingsPattern) this.eventSettingsPattern.value = String(pat);
-        this.syncEventSettingsEditorFormEnabled();
-        this.refreshEventSettingsImagePreview();
-    };
-
-    EE.prototype.parseEventSettingsCssRectNote = function(note) {
-        var s = String(note == null ? '' : note);
-        var m = s.match(/<cssRect\s*:\s*(-?\d+)\s*,\s*(-?\d+)\s*,\s*(-?\d+)\s*,\s*(-?\d+)\s*>/i);
-        if (!m) return null;
-        return {
-            x: Math.floor(Number(m[1] || 0)),
-            y: Math.floor(Number(m[2] || 0)),
-            width: Math.floor(Number(m[3] || 0)),
-            height: Math.floor(Number(m[4] || 0))
-        };
-    };
-
-    EE.prototype.normalizeEventSettingsCssRect = function(rect, fallback) {
-        fallback = fallback && typeof fallback === 'object' ? fallback : { x: 0, y: 0, width: 0, height: 0 };
-        var src = rect && typeof rect === 'object' ? rect : fallback;
-        return {
-            x: Math.floor(Number(src.x == null ? fallback.x : src.x) || 0),
-            y: Math.floor(Number(src.y == null ? fallback.y : src.y) || 0),
-            width: Math.max(0, Math.floor(Number(src.width == null ? fallback.width : src.width) || 0)),
-            height: Math.max(0, Math.floor(Number(src.height == null ? fallback.height : src.height) || 0))
-        };
-    };
-
-    EE.prototype.makeEventSettingsCssRectTag = function(rect) {
-        var r = this.normalizeEventSettingsCssRect(rect, { x: 0, y: 0, width: 0, height: 0 });
-        return '<cssRect:' + r.x + ',' + r.y + ',' + r.width + ',' + r.height + '>';
-    };
-
-    EE.prototype.upsertEventSettingsCssRectInNote = function(note, rect) {
-        var cleaned = String(note == null ? '' : note).replace(/<cssRect\s*:[^>]*>/ig, '').trim();
-        if (!rect) return cleaned;
-        var tag = this.makeEventSettingsCssRectTag(rect);
-        if (!cleaned.length) return tag;
-        return /[>\s]$/.test(cleaned) ? (cleaned + tag) : (cleaned + ' ' + tag);
-    };
-
-    EE.prototype.eventSettingsCanEditCssRectInPicker = function() {
-        var useTile = !!(this.eventSettingsUseTile && this.eventSettingsUseTile.checked);
-        var name = String(this.eventSettingsImagePickerName || '');
-        return !useTile && name.length > 0;
-    };
-
-    EE.prototype.eventSettingsRefreshImagePickerCssRectUi = function() {
-        var canEdit = this.eventSettingsCanEditCssRectInPicker();
-        if (!canEdit) {
-            this.eventSettingsImagePickerCssRectMode = false;
-            this.eventSettingsImagePickerCssRectDragging = null;
-        }
-        var mode = !!this.eventSettingsImagePickerCssRectMode;
-        var rect = this.eventSettingsImagePickerCssRectDraft;
-        if (this.eventSettingsImagePickerCssRectModeBtn) {
-            this.eventSettingsImagePickerCssRectModeBtn.disabled = !canEdit;
-            if (this.eventSettingsImagePickerCssRectModeBtn.classList) {
-                this.eventSettingsImagePickerCssRectModeBtn.classList.toggle('on', mode && canEdit);
-            }
-            this.eventSettingsImagePickerCssRectModeBtn.textContent = mode && canEdit ? 'cssRect調整中' : 'cssRect調整';
-        }
-        if (this.eventSettingsImagePickerCssRectClearBtn) {
-            this.eventSettingsImagePickerCssRectClearBtn.disabled = !canEdit;
-        }
-        if (this.eventSettingsImagePickerCssRectStatus) {
-            var status = '';
-            if (!canEdit) {
-                status = 'cssRect: 画像キャラ時のみ調整可';
-            } else if (rect && typeof rect === 'object') {
-                var r = this.normalizeEventSettingsCssRect(rect, { x: 0, y: 0, width: 0, height: 0 });
-                status = 'cssRect: ' + r.x + ',' + r.y + ',' + r.width + ',' + r.height;
-            } else {
-                status = 'cssRect: (未設定)';
-            }
-            if (mode && canEdit) status += ' / ドラッグ: 範囲選択 (Shift=16px)';
-            this.eventSettingsImagePickerCssRectStatus.textContent = status;
-        }
-    };
-
-    EE.prototype.toggleEventSettingsImagePickerCssRectMode = function() {
-        if (!this.eventSettingsCanEditCssRectInPicker()) return;
-        this.eventSettingsImagePickerCssRectMode = !this.eventSettingsImagePickerCssRectMode;
-        this.eventSettingsImagePickerCssRectDragging = null;
-        this.eventSettingsRefreshImagePickerCssRectUi();
-    };
-
-    EE.prototype.clearEventSettingsImagePickerCssRect = function() {
-        if (!this.eventSettingsCanEditCssRectInPicker()) return;
-        this.eventSettingsImagePickerCssRectDraft = null;
-        this.eventSettingsImagePickerCssRectTouched = true;
-        this.eventSettingsImagePickerCssRectDragging = null;
-        this.eventSettingsRefreshImagePickerCssRectUi();
-        this.renderEventSettingsImagePickerSheet();
-    };
-
-    EE.prototype.eventSettingsImagePickerCanvasPointFromMouse = function(e) {
-        if (!e || !this.eventSettingsImagePickerCanvas) return null;
-        var cv = this.eventSettingsImagePickerCanvas;
-        var rect = cv.getBoundingClientRect ? cv.getBoundingClientRect() : null;
-        if (!rect || rect.width <= 0 || rect.height <= 0) return null;
-        var rx = (Number(e.clientX || 0) - rect.left) / rect.width;
-        var ry = (Number(e.clientY || 0) - rect.top) / rect.height;
-        if (!isFinite(rx) || !isFinite(ry)) return null;
-        rx = Math.max(0, Math.min(1, rx));
-        ry = Math.max(0, Math.min(1, ry));
-        return {
-            x: Math.floor(rx * Number(cv.width || 1)),
-            y: Math.floor(ry * Number(cv.height || 1))
-        };
-    };
-
-    EE.prototype.snapEventSettingsImagePickerPoint16 = function(point, maxW, maxH) {
-        var x = Math.round(Number(point && point.x || 0) / 16) * 16;
-        var y = Math.round(Number(point && point.y || 0) / 16) * 16;
-        x = Math.max(0, Math.min(Math.max(0, Math.floor(Number(maxW || 0))), x));
-        y = Math.max(0, Math.min(Math.max(0, Math.floor(Number(maxH || 0))), y));
-        return { x: x, y: y };
-    };
-
-    EE.prototype.updateEventSettingsCssRectDraftFromDrag = function(e) {
-        var drag = this.eventSettingsImagePickerCssRectDragging;
-        if (!drag || !this.eventSettingsImagePickerCanvas) return;
-        var p = this.eventSettingsImagePickerCanvasPointFromMouse(e);
-        if (!p) return;
-        drag.endX = p.x;
-        drag.endY = p.y;
-        var cv = this.eventSettingsImagePickerCanvas;
-        var maxW = Math.max(0, Math.floor(Number(cv.width || 0)));
-        var maxH = Math.max(0, Math.floor(Number(cv.height || 0)));
-        var sx = Math.floor(Number(drag.startX || 0));
-        var sy = Math.floor(Number(drag.startY || 0));
-        var ex = Math.floor(Number(drag.endX || 0));
-        var ey = Math.floor(Number(drag.endY || 0));
-        if (e && e.shiftKey) {
-            var sp = this.snapEventSettingsImagePickerPoint16({ x: sx, y: sy }, maxW, maxH);
-            var ep = this.snapEventSettingsImagePickerPoint16({ x: ex, y: ey }, maxW, maxH);
-            sx = sp.x; sy = sp.y; ex = ep.x; ey = ep.y;
-        }
-        sx = Math.max(0, Math.min(maxW, sx));
-        sy = Math.max(0, Math.min(maxH, sy));
-        ex = Math.max(0, Math.min(maxW, ex));
-        ey = Math.max(0, Math.min(maxH, ey));
-        var x1 = Math.min(sx, ex);
-        var y1 = Math.min(sy, ey);
-        var x2 = Math.max(sx, ex);
-        var y2 = Math.max(sy, ey);
-        this.eventSettingsImagePickerCssRectDraft = {
-            x: x1,
-            y: y1,
-            width: Math.max(0, x2 - x1),
-            height: Math.max(0, y2 - y1)
-        };
-        this.eventSettingsImagePickerCssRectTouched = true;
-        this.eventSettingsRefreshImagePickerCssRectUi();
-        this.renderEventSettingsImagePickerSheet();
-    };
-
-    EE.prototype.onEventSettingsImagePickerCanvasMouseDown = function(e) {
-        if (!e || Number(e.button || 0) !== 0) return;
-        if (!this.eventSettingsImagePickerCssRectMode || !this.eventSettingsCanEditCssRectInPicker()) return;
-        var p = this.eventSettingsImagePickerCanvasPointFromMouse(e);
-        if (!p) return;
-        this.eventSettingsImagePickerCssRectDragging = { startX: p.x, startY: p.y, endX: p.x, endY: p.y };
-        this.updateEventSettingsCssRectDraftFromDrag(e);
-        e.preventDefault();
-    };
-
-    EE.prototype.onEventSettingsImagePickerCanvasMouseMove = function(e) {
-        if (!this.eventSettingsImagePickerCssRectDragging) return;
-        if (e && Number(e.buttons || 0) === 0) {
-            this.eventSettingsImagePickerCssRectDragging = null;
-            return;
-        }
-        this.updateEventSettingsCssRectDraftFromDrag(e);
-        if (e) e.preventDefault();
-    };
-
-    EE.prototype.onEventSettingsImagePickerCanvasMouseUp = function(e) {
-        if (!this.eventSettingsImagePickerCssRectDragging) return;
-        this.updateEventSettingsCssRectDraftFromDrag(e);
-        this.eventSettingsImagePickerCssRectDragging = null;
-        if (e) e.preventDefault();
-    };
-
-    EE.prototype.syncEventSettingsImagePickerScrollbars = function() {
-        var list = this.eventSettingsImagePickerList;
-        if (list && list.style) {
-            var listNeedsY = Number(list.scrollHeight || 0) > Number(list.clientHeight || 0) + 1;
-            list.style.overflowX = 'hidden';
-            list.style.overflowY = listNeedsY ? 'scroll' : 'hidden';
-        }
-        var vp = this.eventSettingsImagePickerViewport;
-        if (vp && vp.style) {
-            var w = Number(vp.clientWidth || 0);
-            var h = Number(vp.clientHeight || 0);
-            if (w > 0 && h > 0) {
-                // Re-evaluate after applying each axis because one scrollbar can
-                // reduce viewport size and make the other axis overflow.
-                var ox = 'hidden';
-                var oy = 'hidden';
-                vp.style.overflowX = ox;
-                vp.style.overflowY = oy;
-                for (var i = 0; i < 4; i++) {
-                    var needsX = Number(vp.scrollWidth || 0) > Number(vp.clientWidth || 0) + 1;
-                    var needsY = Number(vp.scrollHeight || 0) > Number(vp.clientHeight || 0) + 1;
-                    var nox = needsX ? 'scroll' : 'hidden';
-                    var noy = needsY ? 'scroll' : 'hidden';
-                    if (nox === ox && noy === oy) break;
-                    ox = nox;
-                    oy = noy;
-                    vp.style.overflowX = ox;
-                    vp.style.overflowY = oy;
-                }
-            } else {
-                vp.style.overflowX = 'hidden';
-                vp.style.overflowY = 'hidden';
-            }
-        }
-    };
-
-    EE.prototype.scheduleEventSettingsImagePickerScrollSync = function() {
-        if (this._eventSettingsImagePickerScrollSyncQueued) return;
-        this._eventSettingsImagePickerScrollSyncQueued = true;
-        var self = this;
-        var run = function() {
-            self._eventSettingsImagePickerScrollSyncQueued = false;
-            self.syncEventSettingsImagePickerScrollbars();
-        };
-        if (typeof requestAnimationFrame === 'function') {
-            requestAnimationFrame(function() {
-                self.syncEventSettingsImagePickerScrollbars();
-                requestAnimationFrame(run);
-            });
-        } else {
-            setTimeout(run, 0);
-        }
-    };
-
-    EE.prototype.renderEventSettingsImagePickerList = function() {
-        if (!this.eventSettingsImagePickerList) return;
-        var self = this;
-        var list = this.eventSettingsImagePickerList;
-        list.innerHTML = '';
-        var frag = document.createDocumentFragment();
-        var names = Array.isArray(this.eventSettingsImagePickerNames) ? this.eventSettingsImagePickerNames : [];
-        var all = [''].concat(names);
-        for (var i = 0; i < all.length; i++) {
-            (function(name) {
-                var label = name.length ? name : '(なし)';
-                var b = self.el('button', 'eip-item' + (String(self.eventSettingsImagePickerName || '') === name ? ' on' : ''), label);
-                b.type = 'button';
-                b.addEventListener('click', function() {
-                    self.eventSettingsImagePickerName = String(name || '');
-                    if (!self.eventSettingsImagePickerName.length) self.eventSettingsImagePickerIndex = 0;
-                    self.eventSettingsRefreshImagePickerCssRectUi();
-                    self.renderEventSettingsImagePickerList();
-                    self.renderEventSettingsImagePickerSheet();
-                });
-                frag.appendChild(b);
-            })(all[i]);
-        }
-        list.appendChild(frag);
-        this.scheduleEventSettingsImagePickerScrollSync();
-    };
-
-    EE.prototype.renderEventSettingsImagePickerSheet = function() {
-        var cv = this.eventSettingsImagePickerCanvas;
-        if (!cv || typeof cv.getContext !== 'function') return;
-        var ctx = cv.getContext('2d');
-        if (!ctx) return;
-        var displayScale = 0.5;
-        var applyDisplayScale = function(pxW, pxH) {
-            var w = Math.max(1, Math.floor(Number(pxW || 1) * displayScale));
-            var h = Math.max(1, Math.floor(Number(pxH || 1) * displayScale));
-            cv.style.width = String(w) + 'px';
-            cv.style.height = String(h) + 'px';
-        };
-        var name = String(this.eventSettingsImagePickerName || '');
-        var info = this.eventSettingsImagePickerInfo;
-        var dirRowToValue = [2, 4, 6, 8];
-        var dirValueToRow = { '2': 0, '4': 1, '6': 2, '8': 3 };
-        var dirLabel = function(dir) {
-            if (dir === 2) return '下';
-            if (dir === 4) return '左';
-            if (dir === 6) return '右';
-            if (dir === 8) return '上';
-            return '下';
-        };
-        if (!name.length) {
-            cv.width = 384;
-            cv.height = 256;
-            applyDisplayScale(cv.width, cv.height);
-            ctx.clearRect(0, 0, cv.width, cv.height);
-            var cs = 16;
-            for (var y = 0; y < cv.height; y += cs) {
-                for (var x = 0; x < cv.width; x += cs) {
-                    var odd = (((x / cs) | 0) + ((y / cs) | 0)) % 2;
-                    ctx.fillStyle = odd ? 'rgba(228,228,228,.88)' : 'rgba(198,198,198,.88)';
-                    ctx.fillRect(x, y, cs, cs);
-                }
-            }
-            if (info) info.textContent = '画像: (なし)';
-            this.eventSettingsRefreshImagePickerCssRectUi();
-            this.scheduleEventSettingsImagePickerScrollSync();
-            return;
-        }
-        if (typeof ImageManager === 'undefined' || !ImageManager || typeof ImageManager.loadCharacter !== 'function') {
-            this.eventSettingsRefreshImagePickerCssRectUi();
-            this.scheduleEventSettingsImagePickerScrollSync();
-            return;
-        }
-        var self = this;
-        try {
-            var bmp = (SH.loadCharacterBitmapIfExists ? SH.loadCharacterBitmapIfExists(name) : ImageManager.loadCharacter(name));
-            this.eventSettingsImagePickerBitmap = bmp || null;
-            if (!bmp) {
-                if (info) info.textContent = '画像が見つかりません: ' + name;
-                this.eventSettingsRefreshImagePickerCssRectUi();
-                this.scheduleEventSettingsImagePickerScrollSync();
-                return;
-            }
-            if (!bmp.isReady || !bmp.isReady()) {
-                if (info) info.textContent = '読み込み中: ' + name;
-                if (typeof bmp.addLoadListener === 'function') {
-                    bmp.addLoadListener(function() {
-                        if (String(self.eventSettingsImagePickerName || '') === name) self.renderEventSettingsImagePickerSheet();
-                    });
-                }
-                this.eventSettingsRefreshImagePickerCssRectUi();
-                this.scheduleEventSettingsImagePickerScrollSync();
-                return;
-            }
-            var bw = Math.max(1, Math.floor(Number(bmp.width || 1)));
-            var bh = Math.max(1, Math.floor(Number(bmp.height || 1)));
-            cv.width = bw;
-            cv.height = bh;
-            applyDisplayScale(bw, bh);
-            ctx.clearRect(0, 0, bw, bh);
-            ctx.imageSmoothingEnabled = false;
-            ctx.drawImage(bmp.canvas || bmp._canvas || bmp, 0, 0);
-
-            var big = (typeof ImageManager.isBigCharacter === 'function') ? !!ImageManager.isBigCharacter(name) : false;
-            var idx = Math.max(0, Math.floor(Number(this.eventSettingsImagePickerIndex || 0)));
-            var dir = Math.floor(Number(this.eventSettingsImagePickerDirection || 2));
-            if (dir !== 2 && dir !== 4 && dir !== 6 && dir !== 8) dir = 2;
-            var pat = Math.max(0, Math.min(2, Math.floor(Number(this.eventSettingsImagePickerPattern == null ? 1 : this.eventSettingsImagePickerPattern))));
-            if (big) idx = 0;
-            else idx = Math.max(0, Math.min(7, idx));
-            this.eventSettingsImagePickerIndex = idx;
-            this.eventSettingsImagePickerDirection = dir;
-            this.eventSettingsImagePickerPattern = pat;
-
-            ctx.save();
-            ctx.strokeStyle = 'rgba(34,34,34,.55)';
-            ctx.lineWidth = 1;
-            var blockX = 0;
-            var blockY = 0;
-            var blockW = bw;
-            var blockH = bh;
-            var cellW = bw / 3;
-            var cellH = bh / 4;
-            if (big) {
-                ctx.strokeRect(0.5, 0.5, Math.max(0, bw - 1), Math.max(0, bh - 1));
-            } else {
-                var cw = bw / 4;
-                var ch = bh / 2;
-                blockW = cw;
-                blockH = ch;
-                blockX = (idx % 4) * cw;
-                blockY = Math.floor(idx / 4) * ch;
-                cellW = cw / 3;
-                cellH = ch / 4;
-                for (var gy = 0; gy < 2; gy++) {
-                    for (var gx = 0; gx < 4; gx++) {
-                        ctx.strokeRect(Math.floor(gx * cw) + 0.5, Math.floor(gy * ch) + 0.5, Math.max(0, Math.floor(cw) - 1), Math.max(0, Math.floor(ch) - 1));
-                    }
-                }
-            }
-            ctx.fillStyle = 'rgba(86,132,196,.22)';
-            ctx.fillRect(Math.floor(blockX), Math.floor(blockY), Math.max(1, Math.floor(blockW)), Math.max(1, Math.floor(blockH)));
-            ctx.strokeStyle = 'rgba(188,220,255,.92)';
-            ctx.lineWidth = 2;
-            ctx.strokeRect(Math.floor(blockX) + 1, Math.floor(blockY) + 1, Math.max(0, Math.floor(blockW) - 2), Math.max(0, Math.floor(blockH) - 2));
-
-            ctx.strokeStyle = 'rgba(40,52,70,.78)';
-            ctx.lineWidth = 1;
-            for (var vx = 1; vx < 3; vx++) {
-                var lx = Math.floor(blockX + cellW * vx) + 0.5;
-                var y0 = Math.floor(blockY) + 0.5;
-                var y1 = Math.floor(blockY + blockH) - 0.5;
-                ctx.beginPath();
-                ctx.moveTo(lx, y0);
-                ctx.lineTo(lx, y1);
-                ctx.stroke();
-            }
-            for (var vy = 1; vy < 4; vy++) {
-                var ly = Math.floor(blockY + cellH * vy) + 0.5;
-                var x0 = Math.floor(blockX) + 0.5;
-                var x1 = Math.floor(blockX + blockW) - 0.5;
-                ctx.beginPath();
-                ctx.moveTo(x0, ly);
-                ctx.lineTo(x1, ly);
-                ctx.stroke();
-            }
-
-            var dirRow = dirValueToRow[String(dir)] == null ? 0 : Number(dirValueToRow[String(dir)]);
-            var selX = Math.floor(blockX + cellW * pat);
-            var selY = Math.floor(blockY + cellH * dirRow);
-            var selW = Math.max(1, Math.floor(cellW));
-            var selH = Math.max(1, Math.floor(cellH));
-            ctx.fillStyle = 'rgba(170,212,255,.34)';
-            ctx.fillRect(selX, selY, selW, selH);
-            ctx.strokeStyle = 'rgba(232,246,255,.98)';
-            ctx.lineWidth = 2;
-            ctx.strokeRect(selX + 1, selY + 1, Math.max(0, selW - 2), Math.max(0, selH - 2));
-
-            var cssRect = this.eventSettingsImagePickerCssRectDraft;
-            if (cssRect && typeof cssRect === 'object') {
-                var cr = this.normalizeEventSettingsCssRect(cssRect, { x: 0, y: 0, width: 0, height: 0 });
-                var rx = Math.max(0, Math.min(bw, cr.x));
-                var ry = Math.max(0, Math.min(bh, cr.y));
-                var rw = Math.max(0, Math.min(bw - rx, cr.width));
-                var rh = Math.max(0, Math.min(bh - ry, cr.height));
-                ctx.fillStyle = this.eventSettingsImagePickerCssRectMode
-                    ? 'rgba(255,184,86,.26)'
-                    : 'rgba(118,248,212,.22)';
-                if (rw > 0 && rh > 0) ctx.fillRect(rx, ry, rw, rh);
-                ctx.strokeStyle = this.eventSettingsImagePickerCssRectMode
-                    ? 'rgba(255,214,128,.98)'
-                    : 'rgba(172,255,232,.98)';
-                ctx.lineWidth = 2;
-                ctx.strokeRect(Math.floor(rx) + 0.5, Math.floor(ry) + 0.5, Math.max(0, Math.floor(rw)), Math.max(0, Math.floor(rh)));
-                if (rw === 0 || rh === 0) {
-                    ctx.fillStyle = 'rgba(255,232,168,.98)';
-                    ctx.fillRect(Math.floor(rx) - 1, Math.floor(ry) - 1, 3, 3);
-                }
-            }
-            ctx.restore();
-            if (info) {
-                if (big) {
-                    info.textContent = '画像: ' + name + '\n大キャラ (index固定:0) / 向き:' + dirLabel(dir) + ' / パターン:' + pat;
-                } else {
-                    info.textContent = '画像: ' + name + '\nキャラ番号:' + idx + ' (0-7) / 向き:' + dirLabel(dir) + ' / パターン:' + pat;
-                }
-            }
-        } catch (_) {}
-        this.eventSettingsRefreshImagePickerCssRectUi();
-        this.scheduleEventSettingsImagePickerScrollSync();
-    };
-
-    EE.prototype.onEventSettingsImagePickerCanvasClick = function(e) {
-        if (!e || !this.eventSettingsImagePickerCanvas) return;
-        if (this.eventSettingsImagePickerCssRectMode) return;
-        var name = String(this.eventSettingsImagePickerName || '');
-        if (!name.length) return;
-        var cv = this.eventSettingsImagePickerCanvas;
-        var rect = cv.getBoundingClientRect ? cv.getBoundingClientRect() : null;
-        if (!rect || rect.width <= 0 || rect.height <= 0) return;
-        var rx = (Number(e.clientX || 0) - rect.left) / rect.width;
-        var ry = (Number(e.clientY || 0) - rect.top) / rect.height;
-        if (!isFinite(rx) || !isFinite(ry)) return;
-        rx = Math.max(0, Math.min(0.999999, rx));
-        ry = Math.max(0, Math.min(0.999999, ry));
-        var dirRowToValue = [2, 4, 6, 8];
-        var big = (typeof ImageManager !== 'undefined' && ImageManager && typeof ImageManager.isBigCharacter === 'function')
-            ? !!ImageManager.isBigCharacter(name)
-            : false;
-        if (big) {
-            this.eventSettingsImagePickerIndex = 0;
-            this.eventSettingsImagePickerPattern = Math.max(0, Math.min(2, Math.floor(rx * 3)));
-            this.eventSettingsImagePickerDirection = dirRowToValue[Math.max(0, Math.min(3, Math.floor(ry * 4)))] || 2;
-        } else {
-            var gx = Math.max(0, Math.min(11, Math.floor(rx * 12)));
-            var gy = Math.max(0, Math.min(7, Math.floor(ry * 8)));
-            var charX = Math.floor(gx / 3);
-            var charY = Math.floor(gy / 4);
-            this.eventSettingsImagePickerIndex = charY * 4 + charX;
-            this.eventSettingsImagePickerPattern = gx % 3;
-            this.eventSettingsImagePickerDirection = dirRowToValue[gy % 4] || 2;
-        }
-        this.renderEventSettingsImagePickerSheet();
-        this.renderEventSettingsImagePickerList();
-    };
-
-    EE.prototype.closeEventSettingsImagePicker = function(apply) {
-        if (!this.eventSettingsImagePickerModal) return;
-        if (apply) {
-            var name = String(this.eventSettingsImagePickerName || '');
-            var idx = Math.max(0, Math.min(7, Math.floor(Number(this.eventSettingsImagePickerIndex || 0))));
-            var dir = Math.floor(Number(this.eventSettingsImagePickerDirection || 2));
-            if (dir !== 2 && dir !== 4 && dir !== 6 && dir !== 8) dir = 2;
-            var pat = Math.max(0, Math.min(2, Math.floor(Number(this.eventSettingsImagePickerPattern == null ? 1 : this.eventSettingsImagePickerPattern))));
-            if (name.length && typeof ImageManager !== 'undefined' && ImageManager && typeof ImageManager.isBigCharacter === 'function') {
-                if (ImageManager.isBigCharacter(name)) idx = 0;
-            }
-            if (this.eventSettingsUseTile) this.eventSettingsUseTile.checked = false;
-            if (this.eventSettingsCharName) this.eventSettingsCharName.value = name;
-            if (this.eventSettingsCharIndex) this.eventSettingsCharIndex.value = String(idx);
-            if (this.eventSettingsDirection) this.eventSettingsDirection.value = String(dir);
-            if (this.eventSettingsPattern) this.eventSettingsPattern.value = String(pat);
-            this.syncEventSettingsEditorFormEnabled();
-            this.refreshEventSettingsImagePreview();
-            if (this.eventSettingsNoteInput && this.eventSettingsImagePickerCssRectTouched) {
-                var nextNote = this.upsertEventSettingsCssRectInNote(
-                    String(this.eventSettingsNoteInput.value || ''),
-                    this.eventSettingsImagePickerCssRectDraft
-                );
-                this.eventSettingsNoteInput.value = nextNote;
-            }
-        }
-        this.eventSettingsImagePickerCssRectMode = false;
-        this.eventSettingsImagePickerCssRectTouched = false;
-        this.eventSettingsImagePickerCssRectDragging = null;
-        this.eventSettingsImagePickerModal.classList.remove('on');
-    };
-
-    EE.prototype.openEventSettingsImagePickerPrompt = function() {
-        if (!this.eventSettingsImagePickerModal || !this.eventSettingsImagePickerList || !this.eventSettingsImagePickerCanvas) {
-            this.openEventSettingsImagePickerPromptFallback();
-            return;
-        }
-        var curName = String(this.eventSettingsCharName && this.eventSettingsCharName.value || '');
-        var curIndex = Math.max(0, Math.min(7, Math.floor(Number(this.eventSettingsCharIndex && this.eventSettingsCharIndex.value || 0))));
-        var curDir = Math.floor(Number(this.eventSettingsDirection && this.eventSettingsDirection.value || 2));
-        if (curDir !== 2 && curDir !== 4 && curDir !== 6 && curDir !== 8) curDir = 2;
-        var curPat = Math.max(0, Math.min(2, Math.floor(Number(this.eventSettingsPattern && this.eventSettingsPattern.value || 1))));
-        var names = this.eventSettingsCharacterImageNames();
-        if (curName.length && names.indexOf(curName) < 0) names.unshift(curName);
-        this.eventSettingsImagePickerNames = names;
-        this.eventSettingsImagePickerName = curName;
-        this.eventSettingsImagePickerIndex = curIndex;
-        this.eventSettingsImagePickerDirection = curDir;
-        this.eventSettingsImagePickerPattern = curPat;
-        this.eventSettingsImagePickerBitmap = null;
-        var parsedCssRect = this.parseEventSettingsCssRectNote(
-            String(this.eventSettingsNoteInput && this.eventSettingsNoteInput.value || '')
-        );
-        this.eventSettingsImagePickerCssRectDraft = parsedCssRect
-            ? this.normalizeEventSettingsCssRect(parsedCssRect, { x: 0, y: 0, width: 0, height: 0 })
-            : { x: 0, y: 0, width: 0, height: 0 };
-        this.eventSettingsImagePickerCssRectMode = false;
-        this.eventSettingsImagePickerCssRectTouched = false;
-        this.eventSettingsImagePickerCssRectDragging = null;
-        this.renderEventSettingsImagePickerList();
-        this.renderEventSettingsImagePickerSheet();
-        this.eventSettingsRefreshImagePickerCssRectUi();
-        this.eventSettingsImagePickerModal.classList.add('on');
-        if (typeof this.syncButtonsToCancelWidthAsync === 'function') this.syncButtonsToCancelWidthAsync(this.eventSettingsImagePickerModal);
-        this.scheduleEventSettingsImagePickerScrollSync();
-    };
-
-    EE.prototype.eventSettingsTransparentStartPresetRoute = function() {
-        return {
-            repeat: false,
-            skippable: false,
-            wait: false,
-            list: [
-                { code: 39, indent: null },
-                { code: 0, parameters: [] }
-            ]
-        };
-    };
-
-    EE.prototype.eventSettingsDetectTransparentStartFromPage = function(page) {
-        if (!page || typeof page !== 'object') return false;
-        if (page.eeTransparentStart != null) return !!page.eeTransparentStart;
-        var moveType = Math.max(0, Math.min(3, Math.floor(Number(page.moveType || 0))));
-        var moveFrequency = Math.max(1, Math.min(5, Math.floor(Number(page.moveFrequency || 3))));
-        if (moveType !== 3 || moveFrequency !== 5) return false;
-        var route = page.moveRoute && typeof page.moveRoute === 'object' ? page.moveRoute : null;
-        if (!route || !Array.isArray(route.list)) return false;
-        if (route.repeat) return false;
-        if (route.list.length !== 2) return false;
-        var first = route.list[0] || {};
-        var end = route.list[1] || {};
-        if (Math.floor(Number(first.code || 0)) !== 39) return false;
-        if (first.indent != null) return false;
-        if (Math.floor(Number(end.code || 0)) !== 0) return false;
-        var endParams = Array.isArray(end.parameters) ? end.parameters : [];
-        if (endParams.length !== 0) return false;
-        return true;
-    };
-
-    EE.prototype.eventSettingsApplyTransparentStartPresetToForm = function() {
-        if (!(this.eventSettingsTransparentStart && this.eventSettingsTransparentStart.checked)) return;
-        if (this.eventSettingsMoveType) this.eventSettingsMoveType.value = '3';
-        if (this.eventSettingsMoveFrequency) this.eventSettingsMoveFrequency.value = '5';
-        this.eventSettingsMoveRouteDraft = this.eventSettingsTransparentStartPresetRoute();
-        if (this.eventSettingsMoveRepeat) this.eventSettingsMoveRepeat.checked = false;
-        if (this.eventSettingsMoveSkippable) this.eventSettingsMoveSkippable.checked = false;
-        if (this.eventSettingsMoveWait) this.eventSettingsMoveWait.checked = false;
-        this.eventSettingsRefreshMoveRouteButtonLabel();
-    };
-
-    EE.prototype.eventSettingsCaptureTransparentStartRestoreFromForm = function() {
-        var out = {
-            moveType: Math.max(0, Math.min(3, Math.floor(Number(this.eventSettingsMoveType && this.eventSettingsMoveType.value || 0)))),
-            moveFrequency: Math.max(1, Math.min(5, Math.floor(Number(this.eventSettingsMoveFrequency && this.eventSettingsMoveFrequency.value || 3)))),
-            moveRouteDraft: null,
-            moveRepeat: !!(this.eventSettingsMoveRepeat && this.eventSettingsMoveRepeat.checked),
-            moveSkippable: !!(this.eventSettingsMoveSkippable && this.eventSettingsMoveSkippable.checked),
-            moveWait: !!(this.eventSettingsMoveWait && this.eventSettingsMoveWait.checked)
-        };
-        var draft = (this.eventSettingsMoveRouteDraft && typeof this.eventSettingsMoveRouteDraft === 'object')
-            ? clone(this.eventSettingsMoveRouteDraft)
-            : this.defaultMoveRoute();
-        if (!Array.isArray(draft.list)) draft.list = [{ code: 0, parameters: [] }];
-        if (!draft.list.length || Number(draft.list[draft.list.length - 1].code || 0) !== 0) {
-            draft.list.push({ code: 0, parameters: [] });
-        }
-        out.moveRouteDraft = draft;
-        return out;
-    };
-
-    EE.prototype.eventSettingsRestoreTransparentStartStateToForm = function(st) {
-        if (!st || typeof st !== 'object') return;
-        if (this.eventSettingsMoveType) this.eventSettingsMoveType.value = String(Math.max(0, Math.min(3, Math.floor(Number(st.moveType || 0)))));
-        if (this.eventSettingsMoveFrequency) this.eventSettingsMoveFrequency.value = String(Math.max(1, Math.min(5, Math.floor(Number(st.moveFrequency || 3)))));
-        var draft = (st.moveRouteDraft && typeof st.moveRouteDraft === 'object')
-            ? clone(st.moveRouteDraft)
-            : this.defaultMoveRoute();
-        if (!Array.isArray(draft.list)) draft.list = [{ code: 0, parameters: [] }];
-        if (!draft.list.length || Number(draft.list[draft.list.length - 1].code || 0) !== 0) {
-            draft.list.push({ code: 0, parameters: [] });
-        }
-        this.eventSettingsMoveRouteDraft = draft;
-        if (this.eventSettingsMoveRepeat) this.eventSettingsMoveRepeat.checked = !!st.moveRepeat;
-        if (this.eventSettingsMoveSkippable) this.eventSettingsMoveSkippable.checked = !!st.moveSkippable;
-        if (this.eventSettingsMoveWait) this.eventSettingsMoveWait.checked = !!st.moveWait;
-        this.eventSettingsRefreshMoveRouteButtonLabel();
-    };
-
-    EE.prototype.eventSettingsEnsurePage = function(page) {
-        if (!page || typeof page !== 'object') page = {};
-        if (!page.conditions || typeof page.conditions !== 'object') page.conditions = {};
-        var c = page.conditions;
-        if (c.switch1Valid == null) c.switch1Valid = false;
-        if (c.switch1Id == null) c.switch1Id = 1;
-        if (c.switch2Valid == null) c.switch2Valid = false;
-        if (c.switch2Id == null) c.switch2Id = 1;
-        if (c.variableValid == null) c.variableValid = false;
-        if (c.variableId == null) c.variableId = 1;
-        if (c.variableValue == null) c.variableValue = 0;
-        if (c.selfSwitchValid == null) c.selfSwitchValid = false;
-        if (c.selfSwitchCh == null) c.selfSwitchCh = 'A';
-        if (c.itemValid == null) c.itemValid = false;
-        if (c.itemId == null) c.itemId = 1;
-        if (c.actorValid == null) c.actorValid = false;
-        if (c.actorId == null) c.actorId = 1;
-        if (c.scriptValid == null) c.scriptValid = false;
-        if (c.scriptText == null) c.scriptText = '';
-
-        if (!page.image || typeof page.image !== 'object') page.image = {};
-        var img = page.image;
-        if (img.tileId == null) img.tileId = 0;
-        if (img.characterName == null) img.characterName = '';
-        if (img.characterIndex == null) img.characterIndex = 0;
-        if (img.direction == null) img.direction = 2;
-        if (img.pattern == null) img.pattern = 1;
-
-        if (!page.moveRoute || typeof page.moveRoute !== 'object') page.moveRoute = this.defaultMoveRoute();
-        if (!Array.isArray(page.moveRoute.list)) page.moveRoute.list = [{ code: 0, parameters: [] }];
-        if (!page.moveRoute.list.length || Number(page.moveRoute.list[page.moveRoute.list.length - 1].code || 0) !== 0) {
-            page.moveRoute.list.push({ code: 0, parameters: [] });
-        }
-        if (page.moveRoute.repeat == null) page.moveRoute.repeat = false;
-        if (page.moveRoute.skippable == null) page.moveRoute.skippable = false;
-        if (page.moveRoute.wait == null) page.moveRoute.wait = false;
-
-        if (page.moveType == null) page.moveType = 0;
-        if (page.moveSpeed == null) page.moveSpeed = 3;
-        if (page.moveFrequency == null) page.moveFrequency = 3;
-        if (page.walkAnime == null) page.walkAnime = true;
-        if (page.stepAnime == null) page.stepAnime = false;
-        if (page.directionFix == null) page.directionFix = false;
-        if (page.through == null) page.through = false;
-        if (page.eeTransparentStart == null) page.eeTransparentStart = this.eventSettingsDetectTransparentStartFromPage(page);
-        page.eeTransparentStart = !!page.eeTransparentStart;
-        if (page.priorityType == null) page.priorityType = 1;
-        if (page.trigger == null) page.trigger = 0;
-        if (!Array.isArray(page.list)) page.list = [{ code: 0, indent: 0, parameters: [] }];
-        if (typeof this.eventSettingsScriptConditionFromEventList === 'function') {
-            var scriptCond = this.eventSettingsScriptConditionFromEventList(page.list);
-            if (scriptCond != null) {
-                c.scriptValid = true;
-                c.scriptText = this.eventSettingsNormalizeScriptConditionText(scriptCond);
-            }
-        }
-        return page;
-    };
-
-    EE.prototype.eventSettingsPopulateConditionLists = function() {
-        var swOptions = this.eventSettingsSwitchOptions();
-        var varOptions = (typeof this.variableOptionsForSchema === 'function')
-            ? this.variableOptionsForSchema()
-            : this.eventSettingsFallbackDbOptions($dataSystem && $dataSystem.variables, '(変数なし)');
-        var itemOptions = (typeof this.itemOptionsForSchema === 'function')
-            ? this.itemOptionsForSchema()
-            : this.eventSettingsFallbackDbOptions($dataItems, '(アイテムなし)');
-        var actorOptions = (typeof this.actorOptionsForSchema === 'function')
-            ? this.actorOptionsForSchema()
-            : this.eventSettingsFallbackDbOptions($dataActors, '(アクターなし)');
-        this.eventSettingsFillSelect(this.eventSettingsSw1Id, swOptions);
-        this.eventSettingsFillSelect(this.eventSettingsSw2Id, swOptions);
-        this.eventSettingsFillSelect(this.eventSettingsVarId, varOptions);
-        this.eventSettingsFillSelect(this.eventSettingsItemId, itemOptions);
-        this.eventSettingsFillSelect(this.eventSettingsActorId, actorOptions);
-    };
-
-    EE.prototype.syncEventSettingsEditorFormEnabled = function() {
-        if (!this.eventSettingsModal) return;
-        var sw1On = !!(this.eventSettingsSw1Valid && this.eventSettingsSw1Valid.checked);
-        var sw2On = !!(this.eventSettingsSw2Valid && this.eventSettingsSw2Valid.checked);
-        var varOn = !!(this.eventSettingsVarValid && this.eventSettingsVarValid.checked);
-        var selfOn = !!(this.eventSettingsSelfValid && this.eventSettingsSelfValid.checked);
-        var itemOn = !!(this.eventSettingsItemValid && this.eventSettingsItemValid.checked);
-        var actorOn = !!(this.eventSettingsActorValid && this.eventSettingsActorValid.checked);
-        var scriptOn = !!(this.eventSettingsScriptCondValid && this.eventSettingsScriptCondValid.checked);
-        var forceShown = function(el) {
-            if (!el || !el.style) return;
-            el.style.display = '';
-        };
-        var setMaskedInputText = function(el, masked) {
-            if (!el || !el.style) return;
-            if (masked) {
-                el.style.setProperty('color', 'transparent', 'important');
-                el.style.setProperty('-webkit-text-fill-color', 'transparent', 'important');
-                el.style.setProperty('text-shadow', 'none', 'important');
-                el.style.setProperty('caret-color', 'transparent', 'important');
-            } else {
-                el.style.removeProperty('color');
-                el.style.removeProperty('-webkit-text-fill-color');
-                el.style.removeProperty('text-shadow');
-                el.style.removeProperty('caret-color');
-            }
-        };
-
-        if (this.eventSettingsSw1Id) this.eventSettingsSw1Id.disabled = !sw1On;
-        if (this.eventSettingsSw1PickBtn) this.eventSettingsSw1PickBtn.disabled = !sw1On;
-        if (this.eventSettingsSw2Id) this.eventSettingsSw2Id.disabled = !sw2On;
-        if (this.eventSettingsSw2PickBtn) this.eventSettingsSw2PickBtn.disabled = !sw2On;
-        if (this.eventSettingsVarId) this.eventSettingsVarId.disabled = !varOn;
-        if (this.eventSettingsVarValue) this.eventSettingsVarValue.disabled = !varOn;
-        if (this.eventSettingsVarPickBtn) this.eventSettingsVarPickBtn.disabled = !varOn;
-        if (this.eventSettingsSelfCh) this.eventSettingsSelfCh.disabled = !selfOn;
-        if (this.eventSettingsItemId) this.eventSettingsItemId.disabled = !itemOn;
-        if (this.eventSettingsItemPickBtn) this.eventSettingsItemPickBtn.disabled = !itemOn;
-        if (this.eventSettingsActorId) this.eventSettingsActorId.disabled = !actorOn;
-        if (this.eventSettingsActorPickBtn) this.eventSettingsActorPickBtn.disabled = !actorOn;
-        if (this.eventSettingsScriptCondText) this.eventSettingsScriptCondText.disabled = !scriptOn;
-
-        forceShown(this.eventSettingsSw1Id);
-        forceShown(this.eventSettingsSw1PickBtn);
-        forceShown(this.eventSettingsSw2Id);
-        forceShown(this.eventSettingsSw2PickBtn);
-        forceShown(this.eventSettingsVarId);
-        forceShown(this.eventSettingsVarPickBtn);
-        forceShown(this.eventSettingsSelfCh);
-        forceShown(this.eventSettingsItemId);
-        forceShown(this.eventSettingsItemPickBtn);
-        forceShown(this.eventSettingsActorId);
-        forceShown(this.eventSettingsActorPickBtn);
-        forceShown(this.eventSettingsScriptCondText);
-        if (this.eventSettingsVarValue && this.eventSettingsVarValue.parentNode) {
-            forceShown(this.eventSettingsVarValue.parentNode);
-        }
-        setMaskedInputText(this.eventSettingsSw1Id, !sw1On);
-        setMaskedInputText(this.eventSettingsSw2Id, !sw2On);
-        setMaskedInputText(this.eventSettingsVarId, !varOn);
-        setMaskedInputText(this.eventSettingsVarValue, !varOn);
-        setMaskedInputText(this.eventSettingsSelfCh, !selfOn);
-        setMaskedInputText(this.eventSettingsItemId, !itemOn);
-        setMaskedInputText(this.eventSettingsActorId, !actorOn);
-        setMaskedInputText(this.eventSettingsScriptCondText, !scriptOn);
-
-        var useTile = !!(this.eventSettingsUseTile && this.eventSettingsUseTile.checked);
-        if (this.eventSettingsTileId) this.eventSettingsTileId.disabled = !useTile;
-        if (this.eventSettingsCharName) this.eventSettingsCharName.disabled = useTile;
-        if (this.eventSettingsCharIndex) this.eventSettingsCharIndex.disabled = useTile;
-        if (this.eventSettingsDirection) this.eventSettingsDirection.disabled = useTile;
-        if (this.eventSettingsPattern) this.eventSettingsPattern.disabled = useTile;
-        if (this.eventSettingsImagePickBtn) this.eventSettingsImagePickBtn.disabled = false;
-        var transparentStartOn = !!(this.eventSettingsTransparentStart && this.eventSettingsTransparentStart.checked);
-        var prevTransparentStartOn = !!this.eventSettingsTransparentStartPrevOn;
-        if (transparentStartOn && !prevTransparentStartOn) {
-            this.eventSettingsTransparentStartRestore = this.eventSettingsCaptureTransparentStartRestoreFromForm();
-        } else if (!transparentStartOn && prevTransparentStartOn) {
-            if (this.eventSettingsTransparentStartRestore) {
-                this.eventSettingsRestoreTransparentStartStateToForm(this.eventSettingsTransparentStartRestore);
-            }
-            this.eventSettingsTransparentStartRestore = null;
-        }
-        this.eventSettingsTransparentStartPrevOn = transparentStartOn;
-        if (transparentStartOn) this.eventSettingsApplyTransparentStartPresetToForm();
-        if (this.eventSettingsMoveType) this.eventSettingsMoveType.disabled = transparentStartOn;
-        if (this.eventSettingsMoveFrequency) this.eventSettingsMoveFrequency.disabled = transparentStartOn;
-        var moveType = Math.max(0, Math.floor(Number(this.eventSettingsMoveType && this.eventSettingsMoveType.value || 0)));
-        var customRoute = (moveType === 3);
-        var routeControlLocked = transparentStartOn || !customRoute;
-        if (this.eventSettingsMoveRouteBtn) {
-            this.eventSettingsMoveRouteBtn.disabled = routeControlLocked;
-            if (this.eventSettingsMoveRouteBtn.classList) {
-                this.eventSettingsMoveRouteBtn.classList.toggle('is-disabled', routeControlLocked);
-            }
-        }
-        if (this.eventSettingsMoveRepeat) this.eventSettingsMoveRepeat.disabled = routeControlLocked;
-        if (this.eventSettingsMoveSkippable) this.eventSettingsMoveSkippable.disabled = routeControlLocked;
-        if (this.eventSettingsMoveWait) this.eventSettingsMoveWait.disabled = routeControlLocked;
-    };
-
-    EE.prototype.eventSettingsExecutionEntriesForPage = function(eventId, pageIndex, page) {
-        eventId = Math.max(1, Math.floor(Number(eventId || 0)));
-        pageIndex = Math.max(0, Math.floor(Number(pageIndex || 0)));
-        var key = this.key(eventId, pageIndex);
-        var tr = this.model && this.model.tracks ? this.model.tracks[key] : null;
-        if (!tr && typeof this.debugParseTrackFromEventList === 'function') {
-            var srcList = (page && Array.isArray(page.list)) ? page.list : [];
-            tr = this.debugParseTrackFromEventList(eventId, pageIndex, srcList, 0);
-        }
-        if (!tr || !Array.isArray(tr.commands)) return [];
-        var out = [];
-        for (var i = 0; i < tr.commands.length; i++) {
-            var e = tr.commands[i];
-            if (!e || !e.command) continue;
-            var code = Math.floor(Number(e.command.code || 0));
-            if (code <= 0) continue;
-            if (typeof this.isEventSettingsScriptConditionEntry === 'function' &&
-                this.isEventSettingsScriptConditionEntry(e)) continue;
-            out.push(e);
-        }
-        out.sort(function(a, b) { return compareEntriesByFrameWaitUid(a, b); });
-        return out;
-    };
-
-    EE.prototype.eventSettingsExecutionNameText = function(entry) {
-        if (!entry || !entry.command) return '';
-        var code = this.mainCommandDisplayCodeForEntry(entry);
-        var name = this.commandNameJa(code);
-        if (Number(entry.command.code || 0) === 205) {
-            var targetId = (entry.charId == null)
-                ? Number((((entry.command || {}).parameters || [0])[0] || 0))
-                : Number(entry.charId || 0);
-            name += ' [' + this.rowLabelForCharId(this.normalizeMoveTarget(targetId)) + ']';
-        }
-        return String(name || ('コマンド' + code));
-    };
-
-    EE.prototype.renderEventSettingsExecutionList = function() {
-        if (!this.eventSettingsExecList) return;
-        var listEl = this.eventSettingsExecList;
-        var eid = Math.max(0, Math.floor(Number(this.eventSettingsTargetEventId || 0)));
-        var evData = ($dataMap && Array.isArray($dataMap.events)) ? $dataMap.events[eid] : null;
-        var pageIndex = Math.max(0, Math.floor(Number(this.eventSettingsPageSelect && this.eventSettingsPageSelect.value || this.eventSettingsTargetPageIndex || 0)));
-        if (!evData || !Array.isArray(evData.pages) || !evData.pages.length) {
-            listEl.innerHTML = '';
-            listEl.appendChild(this.el('div', 'es-exec-empty', '実行内容はありません。'));
-            this.eventSettingsExecSig = 'none';
-            return;
-        }
-        if (pageIndex >= evData.pages.length) pageIndex = evData.pages.length - 1;
-        var page = this.eventSettingsEnsurePage(evData.pages[pageIndex] || {});
-        var entries = this.eventSettingsExecutionEntriesForPage(eid, pageIndex, page);
-        var sig = String(eid) + ':' + String(pageIndex) + ':' + String(entries.length);
-        for (var si = 0; si < entries.length; si++) {
-            var se = entries[si];
-            sig += '|' + String(Math.floor(Number(se.uid || 0))) + ':' +
-                String(Math.max(0, Math.floor(Number(se.frame || 0)))) + ':' +
-                String(Math.floor(Number((se.command && se.command.code) || 0)));
-        }
-        if (this.eventSettingsExecSig === sig) return;
-        this.eventSettingsExecSig = sig;
-        listEl.innerHTML = '';
-        if (!entries.length) {
-            listEl.appendChild(this.el('div', 'es-exec-empty', '実行内容はありません。'));
-            return;
-        }
-        for (var i = 0; i < entries.length; i++) {
-            var e = entries[i];
-            var row = this.el('div', 'es-exec-row');
-            var idx = this.el('div', 'es-exec-idx', String(i + 1));
-            var textWrap = this.el('div', 'es-exec-text');
-            var name = this.el('div', 'es-exec-name', this.eventSettingsExecutionNameText(e));
-            var detailText = this.commandTooltipDetailText(e);
-            var indent = Math.max(0, Math.floor(Number((e.command && e.command.indent) || 0)));
-            var rowKey = String(e.rowKey || (e.rowType === 'char' ? ('char:' + e.charId) : 'main'));
-            var cmdColor = this.commandTextColorForEntry(e, -1, rowKey);
-            name.style.color = cmdColor;
-            if (indent > 0) {
-                var pad = Math.min(56, indent * 12);
-                name.style.paddingLeft = String(pad) + 'px';
-            }
-            textWrap.appendChild(name);
-            if (detailText) {
-                var detail = this.el('div', 'es-exec-detail', detailText);
-                detail.style.color = cmdColor;
-                if (indent > 0) detail.style.paddingLeft = name.style.paddingLeft;
-                textWrap.appendChild(detail);
-            }
-            row.appendChild(idx);
-            row.appendChild(textWrap);
-            listEl.appendChild(row);
-        }
-    };
-
-    EE.prototype.syncEventSettingsExecHeightToLeft = function() {
-        if (!this.eventSettingsExecSec) return;
-        var sec = this.eventSettingsExecSec;
-        var body = this.eventSettingsExecBody;
-        var list = this.eventSettingsExecList;
-        var fixed = Math.max(0, Math.floor(Number(this.eventSettingsExecFixedHeight || 0)));
-        if (fixed <= 0) {
-            var h = 0;
-            var left = this.eventSettingsLeftPane;
-            if (left && typeof left.getBoundingClientRect === 'function') {
-                try { h = Math.floor(Number(left.getBoundingClientRect().height || 0)); } catch (_) { h = 0; }
-            }
-            if (h <= 0 && sec.parentNode && typeof sec.parentNode.getBoundingClientRect === 'function') {
-                try { h = Math.floor(Number(sec.parentNode.getBoundingClientRect().height || 0)); } catch (_) { h = 0; }
-            }
-            if (h > 0) {
-                fixed = h;
-                this.eventSettingsExecFixedHeight = h;
-            }
-        }
-        if (fixed > 0) {
-            var px = String(fixed) + 'px';
-            sec.style.boxSizing = 'border-box';
-            sec.style.flex = '0 0 auto';
-            sec.style.height = px;
-            sec.style.minHeight = px;
-            sec.style.maxHeight = px;
-            if (body) {
-                body.style.height = '100%';
-                body.style.minHeight = '0';
-                body.style.maxHeight = '100%';
-            }
-            if (list) {
-                list.style.height = '100%';
-                list.style.minHeight = '0';
-                list.style.maxHeight = '100%';
-            }
-            return;
-        }
-        sec.style.boxSizing = '';
-        sec.style.flex = '';
-        sec.style.height = '';
-        sec.style.minHeight = '';
-        sec.style.maxHeight = '';
-        if (body) {
-            body.style.height = '';
-            body.style.minHeight = '';
-            body.style.maxHeight = '';
-        }
-        if (list) {
-            list.style.height = '';
-            list.style.minHeight = '';
-            list.style.maxHeight = '';
-        }
-    };
-
-    EE.prototype.scheduleEventSettingsExecHeightSync = function() {
-        var self = this;
-        var run = function() {
-            if (typeof self.syncEventSettingsExecHeightToLeft === 'function') {
-                self.syncEventSettingsExecHeightToLeft();
-            }
-        };
-        if (typeof requestAnimationFrame === 'function') {
-            requestAnimationFrame(function() { requestAnimationFrame(run); });
-        } else {
-            setTimeout(run, 0);
-        }
-    };
-
-    EE.prototype.eventSettingsExpandNoteForZoom = function(text) {
-        var s = String(text == null ? '' : text);
-        s = s.replace(/\r\n/g, '\n').replace(/\r/g, '\n');
-        s = s.replace(/>\s*</g, '>\n<');
-        return s;
-    };
-
-    EE.prototype.eventSettingsCompactNoteFromZoom = function(text) {
-        var s = String(text == null ? '' : text);
-        s = s.replace(/\r\n/g, '\n').replace(/\r/g, '\n');
-        s = s.replace(/\n+/g, '');
-        return s;
-    };
-
-    EE.prototype.openEventSettingsNoteZoomFromClick = function() {
-        if (!this.eventSettingsModal || !this.eventSettingsModal.classList || !this.eventSettingsModal.classList.contains('on')) return;
-        if (!this.eventSettingsNoteInput || !this.eventSettingsNoteZoomModal || !this.eventSettingsNoteZoomInput) return;
-        var now = Date.now();
-        if (now < Math.max(0, Number(this.eventSettingsNoteZoomIgnoreUntil || 0))) return;
-        if (this.eventSettingsNoteZoomModal.classList.contains('on')) return;
-        var source = String(this.eventSettingsNoteInput.value || '');
-        this.eventSettingsNoteZoomInput.value = this.eventSettingsExpandNoteForZoom(source);
-        this.eventSettingsNoteZoomModal.classList.add('on');
-        try { this.eventSettingsNoteInput.blur(); } catch (_) {}
-        var self = this;
-        setTimeout(function() {
-            try {
-                if (!self.eventSettingsNoteZoomModal || !self.eventSettingsNoteZoomModal.classList.contains('on')) return;
-                self.eventSettingsNoteZoomInput.focus();
-            } catch (_) {}
-        }, 0);
-    };
-
-    EE.prototype.closeEventSettingsNoteZoom = function(apply) {
-        if (!this.eventSettingsNoteZoomModal || !this.eventSettingsNoteZoomModal.classList) return;
-        if (!this.eventSettingsNoteZoomModal.classList.contains('on')) return;
-        if (apply && this.eventSettingsNoteInput && this.eventSettingsNoteZoomInput) {
-            var compact = this.eventSettingsCompactNoteFromZoom(this.eventSettingsNoteZoomInput.value);
-            var maxLen = Math.max(0, Math.floor(Number(this.eventSettingsNoteInput.maxLength || 0)));
-            if (maxLen > 0 && compact.length > maxLen) compact = compact.slice(0, maxLen);
-            this.eventSettingsNoteInput.value = compact;
-        }
-        this.eventSettingsNoteZoomModal.classList.remove('on');
-        this.eventSettingsNoteZoomIgnoreUntil = Date.now() + 220;
-    };
-
-    EE.prototype.loadEventSettingsEditorPageFromForm = function() {
-        var eid = Math.max(0, Math.floor(Number(this.eventSettingsTargetEventId || 0)));
-        var evData = ($dataMap && Array.isArray($dataMap.events)) ? $dataMap.events[eid] : null;
-        if (!evData || !Array.isArray(evData.pages) || !evData.pages.length) return;
-        var pageIndex = Math.max(0, Math.floor(Number(this.eventSettingsPageSelect && this.eventSettingsPageSelect.value || 0)));
-        if (pageIndex >= evData.pages.length) pageIndex = evData.pages.length - 1;
-        if (this.eventSettingsPageSelect) this.eventSettingsPageSelect.value = String(pageIndex);
-        this.eventSettingsSyncPageTabsFromSelect();
-        this.eventSettingsTargetPageIndex = pageIndex;
-        var page = this.eventSettingsEnsurePage(evData.pages[pageIndex] || {});
-        evData.pages[pageIndex] = page;
-        var c = page.conditions || {};
-        var img = page.image || {};
-        var route = page.moveRoute || this.defaultMoveRoute();
-        this.eventSettingsPopulateConditionLists();
-        this.eventSettingsSw1Valid.checked = !!c.switch1Valid;
-        this.eventSettingsSw1Id.value = String(Math.max(1, Math.floor(Number(c.switch1Id || 1))));
-        this.eventSettingsSw2Valid.checked = !!c.switch2Valid;
-        this.eventSettingsSw2Id.value = String(Math.max(1, Math.floor(Number(c.switch2Id || 1))));
-        this.eventSettingsVarValid.checked = !!c.variableValid;
-        this.eventSettingsVarId.value = String(Math.max(1, Math.floor(Number(c.variableId || 1))));
-        this.eventSettingsVarValue.value = String(Math.floor(Number(c.variableValue || 0)));
-        this.eventSettingsSelfValid.checked = !!c.selfSwitchValid;
-        this.eventSettingsSelfCh.value = String(c.selfSwitchCh || 'A').toUpperCase();
-        this.eventSettingsItemValid.checked = !!c.itemValid;
-        this.eventSettingsItemId.value = String(Math.max(1, Math.floor(Number(c.itemId || 1))));
-        this.eventSettingsActorValid.checked = !!c.actorValid;
-        this.eventSettingsActorId.value = String(Math.max(1, Math.floor(Number(c.actorId || 1))));
-        if (this.eventSettingsScriptCondValid) this.eventSettingsScriptCondValid.checked = !!c.scriptValid;
-        if (this.eventSettingsScriptCondText) {
-            this.eventSettingsScriptCondText.value = this.eventSettingsNormalizeScriptConditionText(c.scriptText || '');
-        }
-        this.eventSettingsUseTile.checked = Math.floor(Number(img.tileId || 0)) > 0;
-        this.eventSettingsTileId.value = String(Math.max(0, Math.floor(Number(img.tileId || 0))));
-        this.eventSettingsCharName.value = String(img.characterName || '');
-        this.eventSettingsCharIndex.value = String(Math.max(0, Math.min(7, Math.floor(Number(img.characterIndex || 0)))));
-        this.eventSettingsDirection.value = String(Number(img.direction || 2));
-        this.eventSettingsPattern.value = String(Math.max(0, Math.min(2, Math.floor(Number(img.pattern == null ? 1 : img.pattern)))));
-        this.eventSettingsMoveType.value = String(Math.max(0, Math.min(3, Math.floor(Number(page.moveType || 0)))));
-        this.eventSettingsMoveSpeed.value = String(Math.max(1, Math.min(6, Math.floor(Number(page.moveSpeed || 3)))));
-        this.eventSettingsMoveFrequency.value = String(Math.max(1, Math.min(5, Math.floor(Number(page.moveFrequency || 3)))));
-        this.eventSettingsMoveRepeat.checked = !!route.repeat;
-        this.eventSettingsMoveSkippable.checked = !!route.skippable;
-        this.eventSettingsMoveWait.checked = !!route.wait;
-        this.eventSettingsMoveRouteDraft = clone(route);
-        if (this.eventSettingsTransparentStart) {
-            this.eventSettingsTransparentStart.checked = this.eventSettingsDetectTransparentStartFromPage(page);
-        }
-        if (this.eventSettingsTransparentStart && this.eventSettingsTransparentStart.checked) {
-            this.eventSettingsApplyTransparentStartPresetToForm();
-        }
-        this.eventSettingsTransparentStartRestore = null;
-        this.eventSettingsTransparentStartPrevOn = !!(this.eventSettingsTransparentStart && this.eventSettingsTransparentStart.checked);
-        this.eventSettingsRefreshMoveRouteButtonLabel();
-        this.eventSettingsWalkAnime.checked = !!page.walkAnime;
-        this.eventSettingsStepAnime.checked = !!page.stepAnime;
-        this.eventSettingsDirectionFix.checked = !!page.directionFix;
-        this.eventSettingsThrough.checked = !!page.through;
-        this.eventSettingsPriorityType.value = String(Math.max(0, Math.min(2, Math.floor(Number(page.priorityType || 0)))));
-        this.eventSettingsTrigger.value = String(Math.max(0, Math.min(4, Math.floor(Number(page.trigger || 0)))));
-        this.syncEventSettingsEditorFormEnabled();
-        this.refreshEventSettingsImagePreview();
-        this.eventSettingsExecSig = '';
-        this.renderEventSettingsExecutionList();
-        this.eventSettingsRefreshPageActionButtons();
-        if (this.eventSettingsHead) this.eventSettingsHead.textContent = 'ID:' + eid + ' - イベントエディター';
-        if (typeof this.scheduleEventSettingsExecHeightSync === 'function') this.scheduleEventSettingsExecHeightSync();
-    };
-
-    EE.prototype.openEventSettingsEditorFromContext = function() {
-        if (this.isBattleEventMode()) {
-            this.closeCharContextMenu();
-            this.openBattleEventSettingsEditor(this.currentBattleTroopId());
-            return;
-        }
-        var id = Math.max(0, Math.floor(Number(this.charCtxTargetId || 0)));
-        this.closeCharContextMenu();
-        if (id <= 0) {
-            this.msg('イベントのみ編集できます');
-            return;
-        }
-        this.openEventSettingsEditor(id);
-    };
-
-    EE.prototype.openEventSettingsEditor = function(eventId) {
-        if (this.isBattleEventMode()) {
-            this.openBattleEventSettingsEditor(this.currentBattleTroopId());
-            return;
-        }
-        eventId = Math.max(1, Math.floor(Number(eventId || 0)));
-        if (!this.eventSettingsModal || !this.eventSettingsNameInput || !this.eventSettingsPageSelect) return;
-        var evData = ($dataMap && Array.isArray($dataMap.events)) ? $dataMap.events[eventId] : null;
-        if (!evData || !Array.isArray(evData.pages) || !evData.pages.length) {
-            this.msg('イベントページがありません');
-            return;
-        }
-        var evObj = $gameMap && typeof $gameMap.event === 'function' ? $gameMap.event(eventId) : null;
-        this.eventSettingsTargetEventId = eventId;
-        this.eventSettingsMoveRouteDraft = null;
-        this.eventSettingsTransparentStartRestore = null;
-        this.eventSettingsTransparentStartPrevOn = false;
-        this.eventSettingsNameInput.value = String(evData.name || '');
-        this.eventSettingsNoteInput.value = String(evData.note || '');
-        var pageIndex = 0;
-        if (evObj && Number(evObj._pageIndex || -1) >= 0) pageIndex = Math.floor(Number(evObj._pageIndex || 0));
-        else if (this.selEid === eventId && this.selPage >= 0) pageIndex = Math.floor(Number(this.selPage || 0));
-        if (pageIndex < 0) pageIndex = 0;
-        if (pageIndex >= evData.pages.length) pageIndex = evData.pages.length - 1;
-        this.eventSettingsExecFixedHeight = 0;
-        this.eventSettingsRebuildPageSelectOptions(evData, pageIndex);
-        this.loadEventSettingsEditorPageFromForm();
-        this.eventSettingsModal.classList.add('on');
-        if (typeof this.syncButtonsToCancelWidthAsync === 'function') this.syncButtonsToCancelWidthAsync(this.eventSettingsModal);
-        if (typeof this.scheduleEventSettingsExecHeightSync === 'function') this.scheduleEventSettingsExecHeightSync();
-        this.eventSettingsNameInput.focus();
-        this.eventSettingsNameInput.select();
-    };
-
-    EE.prototype.jumpToTimelineEditorFromEventSettingsExec = function() {
-        var eid = Math.max(1, Math.floor(Number(this.eventSettingsTargetEventId || 0)));
-        var evData = ($dataMap && Array.isArray($dataMap.events)) ? $dataMap.events[eid] : null;
-        if (!evData || !Array.isArray(evData.pages) || !evData.pages.length) {
-            this.msg('イベントページがありません');
-            return;
-        }
-        var pageIndex = Math.max(0, Math.floor(Number(
-            this.eventSettingsPageSelect && this.eventSettingsPageSelect.value || this.eventSettingsTargetPageIndex || 0
-        )));
-        if (pageIndex >= evData.pages.length) pageIndex = evData.pages.length - 1;
-
-        this.closeEventSettingsEditor();
-        this.selectEvent(eid, true);
-        if (this.selEid !== eid) return;
-
-        var targetKey = this.key(eid, pageIndex);
-        if (this.selPage !== pageIndex || String(this.selKey || '') !== String(targetKey)) {
-            this.selPage = pageIndex;
-            this.selKey = targetKey;
-            this.ensureTrack(eid, pageIndex);
-            this.queueTimelineViewRestoreForTrack(eid, pageIndex);
-            this.selUid = 0;
-            this.selRouteListIndex = -1;
-            this.panelSelectedCharId = Number(eid || 0);
-            this.refreshEventInfo();
-            this.rebuildSchedule({ skipRouteNormalize: true });
-            this.timelineDirty = true;
-            this.refreshCharacterPanel(true);
-            this.refreshSelectedCharacterInfo(true);
-            this.refreshCharacterOverlay(true);
-        }
-        this.msg('イベント編集に移動: ID:' + eid + ' / Page:' + String(pageIndex + 1));
-    };
-
-    EE.prototype.closeEventSettingsEditor = function() {
-        if (!this.eventSettingsModal) return;
-        if (typeof this.closeEventSettingsNoteZoom === 'function') this.closeEventSettingsNoteZoom(true);
-        if (this.eventSettingsImagePickerModal && this.eventSettingsImagePickerModal.classList.contains('on')) {
-            this.closeEventSettingsImagePicker(false);
-        }
-        this.eventSettingsModal.classList.remove('on');
-        this.eventSettingsTargetEventId = 0;
-        this.eventSettingsTargetPageIndex = 0;
-        this.eventSettingsMoveRouteDraft = null;
-        this.eventSettingsTransparentStartRestore = null;
-        this.eventSettingsTransparentStartPrevOn = false;
-        this.eventSettingsExecFixedHeight = 0;
-        if (typeof this.syncEventSettingsExecHeightToLeft === 'function') this.syncEventSettingsExecHeightToLeft();
-        if (this.eventSettingsPageTabs) this.eventSettingsPageTabs.innerHTML = '';
-        if (this.eventSettingsExecList) this.eventSettingsExecList.innerHTML = '';
-        this.eventSettingsExecSig = '';
-    };
-
-    EE.prototype.applyEventSettingsEditor = function() {
-        if (this.isBattleEventMode()) {
-            this.applyBattleEventSettingsEditor();
-            return;
-        }
-        if (typeof this.closeEventSettingsNoteZoom === 'function') this.closeEventSettingsNoteZoom(true);
-        var eid = Math.max(1, Math.floor(Number(this.eventSettingsTargetEventId || 0)));
-        var evData = ($dataMap && Array.isArray($dataMap.events)) ? $dataMap.events[eid] : null;
-        if (!evData || !Array.isArray(evData.pages) || !evData.pages.length) {
-            this.closeEventSettingsEditor();
-            return;
-        }
-        var pageIndex = Math.max(0, Math.floor(Number(this.eventSettingsPageSelect && this.eventSettingsPageSelect.value || this.eventSettingsTargetPageIndex || 0)));
-        if (pageIndex >= evData.pages.length) pageIndex = evData.pages.length - 1;
-        var page = this.eventSettingsEnsurePage(evData.pages[pageIndex] || {});
-        evData.pages[pageIndex] = page;
-        evData.name = String(this.eventSettingsNameInput ? this.eventSettingsNameInput.value : evData.name || '');
-        evData.note = String(this.eventSettingsNoteInput ? this.eventSettingsNoteInput.value : evData.note || '');
-        if (typeof DataManager !== 'undefined' && DataManager && typeof DataManager.extractMetadata === 'function') {
-            try { DataManager.extractMetadata(evData); } catch (_) {}
-        }
-        var c = page.conditions || (page.conditions = {});
-        c.switch1Valid = !!(this.eventSettingsSw1Valid && this.eventSettingsSw1Valid.checked);
-        c.switch1Id = Math.max(1, Math.floor(Number(this.eventSettingsSw1Id && this.eventSettingsSw1Id.value || 1)));
-        c.switch2Valid = !!(this.eventSettingsSw2Valid && this.eventSettingsSw2Valid.checked);
-        c.switch2Id = Math.max(1, Math.floor(Number(this.eventSettingsSw2Id && this.eventSettingsSw2Id.value || 1)));
-        c.variableValid = !!(this.eventSettingsVarValid && this.eventSettingsVarValid.checked);
-        c.variableId = Math.max(1, Math.floor(Number(this.eventSettingsVarId && this.eventSettingsVarId.value || 1)));
-        c.variableValue = Math.floor(Number(this.eventSettingsVarValue && this.eventSettingsVarValue.value || 0));
-        c.selfSwitchValid = !!(this.eventSettingsSelfValid && this.eventSettingsSelfValid.checked);
-        var selfCh = String(this.eventSettingsSelfCh && this.eventSettingsSelfCh.value || 'A').toUpperCase();
-        if (!/^[ABCD]$/.test(selfCh)) selfCh = 'A';
-        c.selfSwitchCh = selfCh;
-        c.itemValid = !!(this.eventSettingsItemValid && this.eventSettingsItemValid.checked);
-        c.itemId = Math.max(1, Math.floor(Number(this.eventSettingsItemId && this.eventSettingsItemId.value || 1)));
-        c.actorValid = !!(this.eventSettingsActorValid && this.eventSettingsActorValid.checked);
-        c.actorId = Math.max(1, Math.floor(Number(this.eventSettingsActorId && this.eventSettingsActorId.value || 1)));
-        c.scriptValid = !!(this.eventSettingsScriptCondValid && this.eventSettingsScriptCondValid.checked);
-        c.scriptText = this.eventSettingsNormalizeScriptConditionText(this.eventSettingsScriptCondText && this.eventSettingsScriptCondText.value || '');
-        if (typeof this.eventSettingsApplyScriptConditionToEventList === 'function') {
-            this.eventSettingsApplyScriptConditionToEventList(page, c.scriptValid, c.scriptText);
-            c = page.conditions || c;
-        }
-
-        var img = page.image || (page.image = {});
-        var useTile = !!(this.eventSettingsUseTile && this.eventSettingsUseTile.checked);
-        var tileId = Math.max(0, Math.floor(Number(this.eventSettingsTileId && this.eventSettingsTileId.value || 0)));
-        var charName = String(this.eventSettingsCharName && this.eventSettingsCharName.value || '');
-        var charIndex = Math.max(0, Math.min(7, Math.floor(Number(this.eventSettingsCharIndex && this.eventSettingsCharIndex.value || 0))));
-        var dir = Math.floor(Number(this.eventSettingsDirection && this.eventSettingsDirection.value || 2));
-        if (dir !== 2 && dir !== 4 && dir !== 6 && dir !== 8) dir = 2;
-        var patt = Math.max(0, Math.min(2, Math.floor(Number(this.eventSettingsPattern && this.eventSettingsPattern.value || 1))));
-        img.tileId = useTile ? tileId : 0;
-        img.characterName = useTile ? '' : charName;
-        img.characterIndex = useTile ? 0 : charIndex;
-        img.direction = dir;
-        img.pattern = patt;
-
-        page.moveSpeed = Math.max(1, Math.min(6, Math.floor(Number(this.eventSettingsMoveSpeed && this.eventSettingsMoveSpeed.value || 3))));
-        var transparentStartOn = !!(this.eventSettingsTransparentStart && this.eventSettingsTransparentStart.checked);
-        if (transparentStartOn) this.eventSettingsApplyTransparentStartPresetToForm();
-        page.moveType = transparentStartOn
-            ? 3
-            : Math.max(0, Math.min(3, Math.floor(Number(this.eventSettingsMoveType && this.eventSettingsMoveType.value || 0))));
-        page.moveFrequency = transparentStartOn
-            ? 5
-            : Math.max(1, Math.min(5, Math.floor(Number(this.eventSettingsMoveFrequency && this.eventSettingsMoveFrequency.value || 3))));
-        var draftRoute = (this.eventSettingsMoveRouteDraft && typeof this.eventSettingsMoveRouteDraft === 'object')
-            ? clone(this.eventSettingsMoveRouteDraft)
-            : null;
-        if (!draftRoute) {
-            draftRoute = page.moveRoute && typeof page.moveRoute === 'object'
-                ? clone(page.moveRoute)
-                : this.defaultMoveRoute();
-        }
-        if (transparentStartOn) {
-            draftRoute = this.eventSettingsTransparentStartPresetRoute();
-        } else {
-            if (!Array.isArray(draftRoute.list)) draftRoute.list = [{ code: 0, parameters: [] }];
-            if (!draftRoute.list.length || Number(draftRoute.list[draftRoute.list.length - 1].code || 0) !== 0) {
-                draftRoute.list.push({ code: 0, parameters: [] });
-            }
-            if (this.eventSettingsMoveRepeat) draftRoute.repeat = !!this.eventSettingsMoveRepeat.checked;
-            else if (draftRoute.repeat == null) draftRoute.repeat = false;
-            if (this.eventSettingsMoveSkippable) draftRoute.skippable = !!this.eventSettingsMoveSkippable.checked;
-            else if (draftRoute.skippable == null) draftRoute.skippable = false;
-            if (this.eventSettingsMoveWait) draftRoute.wait = !!this.eventSettingsMoveWait.checked;
-            else if (draftRoute.wait == null) draftRoute.wait = false;
-        }
-        page.moveRoute = draftRoute;
-        page.eeTransparentStart = transparentStartOn;
-        page.walkAnime = !!(this.eventSettingsWalkAnime && this.eventSettingsWalkAnime.checked);
-        page.stepAnime = !!(this.eventSettingsStepAnime && this.eventSettingsStepAnime.checked);
-        page.directionFix = !!(this.eventSettingsDirectionFix && this.eventSettingsDirectionFix.checked);
-        page.through = !!(this.eventSettingsThrough && this.eventSettingsThrough.checked);
-        page.priorityType = Math.max(0, Math.min(2, Math.floor(Number(this.eventSettingsPriorityType && this.eventSettingsPriorityType.value || 1))));
-        page.trigger = Math.max(0, Math.min(4, Math.floor(Number(this.eventSettingsTrigger && this.eventSettingsTrigger.value || 0))));
-
-        var dirtyKey = this.key(eid, pageIndex);
-        this.ensureTrack(eid, pageIndex);
-        this.dirty[dirtyKey] = true;
-        if ($gameMap && $gameMap.requestRefresh) $gameMap.requestRefresh();
-        var evObj = $gameMap && typeof $gameMap.event === 'function' ? $gameMap.event(eid) : null;
-        if (evObj) {
-            evObj._setCss = false;
-            evObj._cssRect = null;
-            if (typeof evObj.refresh === 'function') evObj.refresh();
-        }
-        this.closeEventSettingsEditor();
-        if (this.selEid === eid) {
-            this.selectEvent(eid, true);
-        } else {
-            this.refreshEventInfo();
-            this.refreshCharacterPanel(true);
-            this.refreshSelectedCharacterInfo(true);
-            this.refreshCharacterOverlay(true);
-            this.timelineDirty = true;
-        }
-        this.msg('イベント設定を更新');
-    };
-
-    EE.prototype.selectCharacterFromPanel = function(charId) {
-        this.selectCharacterForTimeline(Number(charId || 0), 'panel');
-    };
-
-    EE.prototype.refreshCharacterPanel = function(force) {
-        if (!this.charList) return;
-        if (this.isBattleEventMode()) {
-            var battleEntries = this.battlePagePanelEntries();
-            var sigBattle = '';
-            for (var bi = 0; bi < battleEntries.length; bi++) {
-                var be = battleEntries[bi];
-                sigBattle += String(be.pageIndex) + ':' + (be.selected ? 1 : 0) + ':' + String(be.text) + '|';
-            }
-            sigBattle += '#' + String(this.selKey || '');
-            if (!force && sigBattle === this._charPanelSig) {
-                this.refreshSelectedCharacterInfo(false);
-                return;
-            }
-            this._charPanelSig = sigBattle;
-            this.charList.innerHTML = '';
-            if (!battleEntries.length) {
-                this.charList.appendChild(this.el('div', 'charhint', 'バトルページが見つかりません'));
-                this.refreshSelectedCharacterInfo(true);
-                return;
-            }
-            var fragBattle = document.createDocumentFragment();
-            var selfBattle = this;
-            for (var bj = 0; bj < battleEntries.length; bj++) {
-                (function(en) {
-                    var cls = 'charit' + (en.selected ? ' sel' : '');
-                    var b = selfBattle.el('button', cls, en.text);
-                    b.type = 'button';
-                    b.title = en.text + ' / ' + en.detail;
-                    b.addEventListener('click', function(e) {
-                        e.preventDefault();
-                        e.stopPropagation();
-                        selfBattle.selectBattlePageFromPanel(en.pageIndex);
-                    });
-                    b.addEventListener('dblclick', function(e) {
-                        e.preventDefault();
-                        e.stopPropagation();
-                        selfBattle.selectBattlePageFromPanel(en.pageIndex);
-                        selfBattle.openBattleEventSettingsEditor(en.troopId);
-                    });
-                    fragBattle.appendChild(b);
-                })(battleEntries[bj]);
-            }
-            this.charList.appendChild(fragBattle);
-            this.refreshSelectedCharacterInfo(true);
-            return;
-        }
-        var entries = this.buildCharacterPanelEntries();
-        var sig = '';
-        for (var i = 0; i < entries.length; i++) {
-            var e = entries[i];
-            sig += e.id + ':' + (e.visible ? 1 : 0) + ':' + (e.selected ? 1 : 0) + ':' + (e.inTimeline ? 1 : 0) + '|';
-        }
-        sig += '#' + String(this.selKey || '');
-        if (!force && sig === this._charPanelSig) {
-            this.refreshSelectedCharacterInfo(false);
-            return;
-        }
-        this._charPanelSig = sig;
-        this.charList.innerHTML = '';
-        var self = this;
-        var frag = document.createDocumentFragment();
-        for (i = 0; i < entries.length; i++) {
-            (function(en) {
-                var b = self.el('button', 'charit' + (en.visible ? ' v' : '') + (en.selected ? ' sel' : ''), en.text);
-                b.type = 'button';
-                b.title = String(en.text || '');
-                b.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    self.selectCharacterFromPanel(en.id);
-                });
-                b.addEventListener('dblclick', function(e) {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    self.selectCharacterFromPanel(en.id);
-                    var id = Math.max(0, Math.floor(Number(en.id || 0)));
-                    var evData = ($dataMap && Array.isArray($dataMap.events)) ? $dataMap.events[id] : null;
-                    if (!evData) {
-                        self.msg('イベントのみ編集できます');
-                        return;
-                    }
-                    self.openEventSettingsEditor(id);
-                });
-                b.addEventListener('contextmenu', function(e) {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    self.openCharContextMenu(en.id, e.clientX, e.clientY);
-                });
-                frag.appendChild(b);
-            })(entries[i]);
-        }
-        this.charList.appendChild(frag);
-        this.refreshSelectedCharacterInfo(true);
-    };
-
-    //-------------------------------------------------------------------------
-    // Branch structure, view modes, runtime filtering, and persistence
-    //-------------------------------------------------------------------------
-
-    EE.prototype.timelineViewStorageContextId = function() {
-        if (this.isBattleEventMode()) return Math.max(1, Math.floor(Number(this.currentBattleTroopId() || 0)));
-        return ($gameMap && typeof $gameMap.mapId === 'function') ? Math.floor(Number($gameMap.mapId() || 0)) : 0;
-    };
-
-    EE.prototype.timelineViewStorageFilePath = function(contextId) {
-        contextId = Math.max(1, Math.floor(Number(contextId || 0)));
-        try {
-            var path = require('path');
-            var prefix = this.isBattleEventMode() ? 'Troop' : 'Map';
-            var file = prefix + ('000' + contextId).slice(-3) + '.timelineView.json';
-            return path.join(process.cwd(), 'data', '_event_editor', file);
-        } catch (_) {
-            return '';
-        }
-    };
-
-    EE.prototype.readTimelineViewStoreForMap = function(contextId) {
-        var filePath = this.timelineViewStorageFilePath(contextId);
-        if (!filePath) return {};
-        try {
-            var fs = require('fs');
-            if (!fs.existsSync(filePath)) return {};
-            var raw = fs.readFileSync(filePath, 'utf8');
-            if (!raw || !String(raw).trim().length) return {};
-            var obj = JSON.parse(raw);
-            if (!obj || typeof obj !== 'object' || Array.isArray(obj)) return {};
-            if (obj.views && typeof obj.views === 'object' && !Array.isArray(obj.views)) return obj.views;
-            return obj;
-        } catch (_) {
-            return {};
-        }
-    };
-
-    EE.prototype.writeTimelineViewStoreForMap = function(contextId, store) {
-        var filePath = this.timelineViewStorageFilePath(contextId);
-        if (!filePath) return false;
-        store = (store && typeof store === 'object' && !Array.isArray(store)) ? store : {};
-        try {
-            var fs = require('fs');
-            var path = require('path');
-            var dir = path.dirname(filePath);
-            if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
-            fs.writeFileSync(filePath, JSON.stringify(store, null, 2), 'utf8');
-            return true;
-        } catch (_) {
-            return false;
-        }
-    };
-
-    EE.prototype.timelineViewStoreKey = function(eventId, pageIndex) {
-        return String(Math.floor(Number(eventId || 0))) + ':' + String(Math.floor(Number(pageIndex || 0)));
-    };
-
-    EE.prototype.sanitizeIfBranchViewMode = function(mode) {
-        var m = String(mode || '').toLowerCase();
-        if (m === 'auto') return 'auto';
-        if (m === 'else') return 'else';
-        return 'then';
-    };
-
-    EE.prototype.sanitizeChoiceBranchViewMode = function(mode) {
-        var m = String(mode == null ? '' : mode).toLowerCase();
-        if (m === 'auto') return 'auto';
-        if (m === 'cancel') return 'cancel';
-        if (/^-?\d+$/.test(m)) {
-            var n = Math.floor(Number(m || 0));
-            if (n >= 0 && n <= 5) return String(n);
-        }
-        return 'auto';
-    };
-
-    EE.prototype.branchViewModeSpec = function(kindOrCode) {
-        if (kindOrCode === 'choice' || Number(kindOrCode) === COMMAND_CODE.SHOW_CHOICES) {
-            return {
-                kind: 'choice',
-                code: COMMAND_CODE.SHOW_CHOICES,
-                trackProperty: '_eeChoiceBranchViewModes',
-                ordinalProperty: 'choiceUidToOrdinal',
-                defaultMode: 'auto'
-            };
-        }
-        if (kindOrCode === 'if' || Number(kindOrCode) === COMMAND_CODE.CONDITIONAL_BRANCH) {
-            return {
-                kind: 'if',
-                code: COMMAND_CODE.CONDITIONAL_BRANCH,
-                trackProperty: '_eeIfBranchViewModes',
-                ordinalProperty: 'ifUidToOrdinal',
-                defaultMode: 'then'
-            };
-        }
-        return null;
-    };
-
-    EE.prototype.sanitizeBranchViewMode = function(spec, mode) {
-        if (!spec) return '';
-        return spec.kind === 'choice'
-            ? this.sanitizeChoiceBranchViewMode(mode)
-            : this.sanitizeIfBranchViewMode(mode);
-    };
-
-    EE.prototype.normalizeBranchViewModes = function(src, spec) {
-        var out = Object.create(null);
-        if (!src || typeof src !== 'object' || Array.isArray(src)) return out;
-        var keys = Object.keys(src);
-        for (var i = 0; i < keys.length; i++) {
-            var k = String(keys[i] || '');
-            if (!k.length) continue;
-            out[k] = this.sanitizeBranchViewMode(spec, src[k]);
-        }
-        return out;
-    };
-
-    EE.prototype.normalizeIfBranchViewModes = function(src) {
-        return this.normalizeBranchViewModes(src, this.branchViewModeSpec('if'));
-    };
-
-    EE.prototype.normalizeChoiceBranchViewModes = function(src) {
-        return this.normalizeBranchViewModes(src, this.branchViewModeSpec('choice'));
-    };
-
-    EE.prototype.resolveTrackForEntry = function(entry) {
-        if (entry && this.model && this.model.tracks) {
-            var k = this.key(Number(entry.eventId || 0), Number(entry.pageIndex || 0));
-            if (this.model.tracks[k]) return this.model.tracks[k];
-        }
-        return this.selectedTrack();
-    };
-
-    EE.prototype.resolveTrackForIfBranchEntry = function(entry) {
-        return this.resolveTrackForEntry(entry);
-    };
-
-    EE.prototype.computeIfBranchDisplayInfoForTrack = function(tr) {
-        var info = {
-            list: [],
-            blocks: [],
-            ifUidToOrdinal: Object.create(null)
-        };
-        if (!tr || !Array.isArray(tr.commands) || !tr.commands.length) return info;
-        var list = SH.commandsInSourceOrder(tr);
-        var stack = [];
-        var blocks = [];
-        var ifUidToOrdinal = Object.create(null);
-        var ordinal = 0;
-        for (var i = 0; i < list.length; i++) {
-            var e = list[i];
-            if (!e || !e.command) continue;
-            var code = Math.floor(Number(e.command.code || 0));
-            var indent = Math.floor(Number(e.command.indent || 0));
-            var uid = Math.floor(Number(e.uid || 0));
-            if (code === 111) {
-                ordinal++;
-                var ctx = {
-                    ifUid: uid,
-                    ifIndex: i,
-                    indent: indent,
-                    elseIndex: -1,
-                    endIndex: -1,
-                    ordinal: ordinal
-                };
-                stack.push(ctx);
-                if (uid > 0) ifUidToOrdinal[String(uid)] = ordinal;
-                continue;
-            }
-            if (code === 411) {
-                for (var j = stack.length - 1; j >= 0; j--) {
-                    if (stack[j].indent !== indent) continue;
-                    if (stack[j].elseIndex < 0) stack[j].elseIndex = i;
-                    break;
-                }
-                continue;
-            }
-            if (code === 412) {
-                for (j = stack.length - 1; j >= 0; j--) {
-                    if (stack[j].indent !== indent) continue;
-                    var done = stack.splice(j, 1)[0];
-                    done.endIndex = i;
-                    blocks.push(done);
-                    break;
-                }
-            }
-        }
-        while (stack.length) {
-            var rest = stack.pop();
-            rest.endIndex = list.length;
-            blocks.push(rest);
-        }
-        blocks.sort(function(a, b) {
-            var ai = Math.floor(Number(a && a.ifIndex || 0));
-            var bi = Math.floor(Number(b && b.ifIndex || 0));
-            if (ai !== bi) return ai - bi;
-            return Math.floor(Number(a && a.ordinal || 0)) - Math.floor(Number(b && b.ordinal || 0));
-        });
-        info.list = list;
-        info.blocks = blocks;
-        info.ifUidToOrdinal = ifUidToOrdinal;
-        return info;
-    };
-
-    EE.prototype.computeChoiceBranchDisplayInfoForTrack = function(tr) {
-        var info = {
-            list: [],
-            blocks: [],
-            choiceUidToOrdinal: Object.create(null)
-        };
-        if (!tr || !Array.isArray(tr.commands) || !tr.commands.length) return info;
-        var list = SH.commandsInSourceOrder(tr);
-        var stack = [];
-        var blocks = [];
-        var choiceUidToOrdinal = Object.create(null);
-        var ordinal = 0;
-        for (var i = 0; i < list.length; i++) {
-            var e = list[i];
-            if (!e || !e.command) continue;
-            var code = Math.floor(Number(e.command.code || 0));
-            var indent = Math.floor(Number(e.command.indent || 0));
-            var uid = Math.floor(Number(e.uid || 0));
-            if (code === 102) {
-                ordinal++;
-                var b = {
-                    choiceUid: uid,
-                    choiceIndex: i,
-                    indent: indent,
-                    endIndex: list.length,
-                    branches: [],
-                    ordinal: ordinal
-                };
-                stack.push(b);
-                blocks.push(b);
-                if (uid > 0) choiceUidToOrdinal[String(uid)] = ordinal;
-                continue;
-            }
-            if (code === 402 || code === 403) {
-                for (var j = stack.length - 1; j >= 0; j--) {
-                    var open = stack[j];
-                    if (!open || open.indent !== indent) continue;
-                    var brs = Array.isArray(open.branches) ? open.branches : (open.branches = []);
-                    if (brs.length) {
-                        var prev = brs[brs.length - 1];
-                        if (prev && (prev.endIndex == null || prev.endIndex > i)) prev.endIndex = i;
-                    }
-                    var choiceIndex = -1;
-                    if (code === 402) {
-                        var p = Array.isArray(e.command.parameters) ? e.command.parameters : [];
-                        choiceIndex = Math.max(0, Math.floor(Number(p[0] || 0)));
-                    }
-                    brs.push({
-                        type: (code === 402) ? 'choice' : 'cancel',
-                        choiceIndex: choiceIndex,
-                        markerIndex: i,
-                        startIndex: i + 1,
-                        endIndex: open.endIndex
-                    });
-                    break;
-                }
-                continue;
-            }
-            if (code === 404) {
-                for (j = stack.length - 1; j >= 0; j--) {
-                    if (!stack[j] || stack[j].indent !== indent) continue;
-                    var done = stack.splice(j, 1)[0];
-                    done.endIndex = i;
-                    if (Array.isArray(done.branches) && done.branches.length) {
-                        var lastBranch = done.branches[done.branches.length - 1];
-                        if (lastBranch && (lastBranch.endIndex == null || lastBranch.endIndex > i)) lastBranch.endIndex = i;
-                    }
-                    break;
-                }
-            }
-        }
-        while (stack.length) {
-            var rest = stack.pop();
-            rest.endIndex = list.length;
-            if (Array.isArray(rest.branches) && rest.branches.length) {
-                var tail = rest.branches[rest.branches.length - 1];
-                if (tail && (tail.endIndex == null || tail.endIndex > rest.endIndex)) tail.endIndex = rest.endIndex;
-            }
-        }
-        blocks.sort(function(a, b) {
-            var ai = Math.floor(Number(a && a.choiceIndex || 0));
-            var bi = Math.floor(Number(b && b.choiceIndex || 0));
-            if (ai !== bi) return ai - bi;
-            return Math.floor(Number(a && a.ordinal || 0)) - Math.floor(Number(b && b.ordinal || 0));
-        });
-        info.list = list;
-        info.blocks = blocks;
-        info.choiceUidToOrdinal = choiceUidToOrdinal;
-        return info;
-    };
-
-    EE.prototype.captureChoiceBranchStructure = function(tr, choiceEntry) {
-        if (!tr || !Array.isArray(tr.commands) || !choiceEntry || !choiceEntry.command ||
-            Number(choiceEntry.command.code || 0) !== 102) return null;
-        var list = SH.commandsInSourceOrder(tr);
-        var choiceUid = Math.floor(Number(choiceEntry.uid || 0));
-        var choiceIndex = this.ifBranchFindEntryIndexByUid(list, choiceUid);
-        if (choiceIndex < 0) return null;
-        var baseIndent = Math.max(0, Math.floor(Number(choiceEntry.command.indent || 0)));
-        var out = {
-            choiceUid: choiceUid,
-            baseIndent: baseIndent,
-            valid: false,
-            list: list,
-            segments: [],
-            endEntry: null,
-            endIndex: -1
-        };
-        var current = null;
-        for (var i = choiceIndex + 1; i < list.length; i++) {
-            var e = list[i];
-            if (!e || !e.command) continue;
-            var code = Math.floor(Number(e.command.code || 0));
-            var indent = Math.max(0, Math.floor(Number(e.command.indent || 0)));
-            if (indent === baseIndent && (code === 402 || code === 403)) {
-                current = {
-                    type: code === 403 ? 'cancel' : 'choice',
-                    choiceIndex: code === 402
-                        ? Math.max(0, Math.floor(Number((e.command.parameters || [0])[0] || 0)))
-                        : -1,
-                    marker: e,
-                    markerIndex: i,
-                    entries: []
-                };
-                out.segments.push(current);
-                continue;
-            }
-            if (indent === baseIndent && code === 404) {
-                out.endEntry = e;
-                out.endIndex = i;
-                out.valid = true;
-                break;
-            }
-            if (!current) {
-                if (indent <= baseIndent) break;
-                continue;
-            }
-            current.entries.push(e);
-        }
-        return out;
-    };
-
-    EE.prototype.removeChoiceBranchEntries = function(tr, entries, fallbackUid) {
-        if (!tr || !Array.isArray(tr.commands) || !Array.isArray(entries) || !entries.length) return;
-        var remove = Object.create(null);
-        for (var i = 0; i < entries.length; i++) {
-            var uid = Math.floor(Number(entries[i] && entries[i].uid || 0));
-            if (uid > 0) remove[String(uid)] = true;
-        }
-        tr.commands = tr.commands.filter(function(e) {
-            return !e || !remove[String(Math.floor(Number(e.uid || 0)))];
-        });
-        fallbackUid = Math.max(0, Math.floor(Number(fallbackUid || 0)));
-        if (remove[String(Math.floor(Number(this.selUid || 0)))]) this.selUid = fallbackUid;
-        if (remove[String(Math.floor(Number(this.hoverUid || 0)))]) this.hoverUid = 0;
-        if (remove[String(Math.floor(Number(this.editUid || 0)))]) this.editUid = fallbackUid;
-    };
-
-    EE.prototype.createChoiceStructureEntryBefore = function(tr, anchorEntry, choiceEntry, command) {
-        if (!tr || !Array.isArray(tr.commands) || !choiceEntry || !anchorEntry) return null;
-        var uid = this.reserveUidBeforeAnchor(tr, Math.floor(Number(anchorEntry.uid || 0)));
-        var frame = Math.max(0, Math.floor(Number(anchorEntry.frame || choiceEntry.frame || 0)));
-        var e = this.entryFromCommand(
-            clone(command),
-            Number(choiceEntry.eventId || 0),
-            Number(choiceEntry.pageIndex || 0),
-            frame,
-            uid
-        );
-        if (!e) return null;
-        tr.commands.push(e);
-        SH.sortTrackCommands(tr);
-        return e;
-    };
-
-    EE.prototype.createChoiceStructureEndEntry = function(tr, choiceEntry, command) {
-        if (!tr || !Array.isArray(tr.commands) || !choiceEntry) return null;
-        SH.sortTrackCommands(tr);
-        var choiceIndex = this.ifBranchFindEntryIndexByUid(tr.commands, Math.floor(Number(choiceEntry.uid || 0)));
-        var next = (choiceIndex >= 0 && choiceIndex + 1 < tr.commands.length) ? tr.commands[choiceIndex + 1] : null;
-        var frame = Math.max(0, Math.floor(Number(choiceEntry.frame || 0)));
-        if (next && Math.max(0, Math.floor(Number(next.frame || 0))) === frame) {
-            return this.createChoiceStructureEntryBefore(tr, next, choiceEntry, command);
-        }
-        var uid = Math.max(1, Math.floor(Number(this.model.nextUid || 1)));
-        this.model.nextUid = uid + 1;
-        var e = this.entryFromCommand(
-            clone(command),
-            Number(choiceEntry.eventId || 0),
-            Number(choiceEntry.pageIndex || 0),
-            frame,
-            uid
-        );
-        if (!e) return null;
-        tr.commands.push(e);
-        SH.sortTrackCommands(tr);
-        return e;
-    };
-
-    EE.prototype.synchronizeChoiceBranchStructure = function(tr, choiceEntry, captured) {
-        if (!tr || !Array.isArray(tr.commands) || !choiceEntry || !choiceEntry.command ||
-            Number(choiceEntry.command.code || 0) !== 102) return false;
-        captured = captured || this.captureChoiceBranchStructure(tr, choiceEntry);
-        var p = Array.isArray(choiceEntry.command.parameters) ? choiceEntry.command.parameters : [];
-        var choices = Array.isArray(p[0]) ? p[0].slice(0, 6).map(function(v) { return String(v || ''); }) : [];
-        if (!choices.length) choices = ['選択肢1'];
-        p[0] = choices;
-        choiceEntry.command.parameters = p;
-        var wantsCancel = Math.floor(Number(p[1] == null ? -2 : p[1])) === -2;
-        var baseIndent = Math.max(0, Math.floor(Number(choiceEntry.command.indent || 0)));
-        var oldBaseIndent = captured ? Math.max(0, Math.floor(Number(captured.baseIndent || 0))) : baseIndent;
-        var deltaIndent = baseIndent - oldBaseIndent;
-        var segments = captured && captured.valid && Array.isArray(captured.segments)
-            ? captured.segments.slice(0)
-            : [];
-        var endEntry = captured && captured.valid ? captured.endEntry : null;
-        var choiceSegments = Object.create(null);
-        var cancelSegment = null;
-        var removeEntries = [];
-        var seenChoice = Object.create(null);
-        var oldMergeFrame = captured && captured.endEntry
-            ? Math.max(0, Math.floor(Number(captured.endEntry.frame || 0)))
-            : Math.max(0, Math.floor(Number(choiceEntry.frame || 0)));
-        var oldBranchPathMap = this.computeBranchExecutionPathMapForTrack(tr);
-        var choiceParentPath = oldBranchPathMap[String(Math.floor(Number(choiceEntry.uid || 0)))] || [];
-
-        for (var i = 0; i < segments.length; i++) {
-            var seg = segments[i];
-            if (!seg || !seg.marker || !seg.marker.command) continue;
-            seg.marker.command.indent = baseIndent;
-            var members = Array.isArray(seg.entries) ? seg.entries : [];
-            for (var mi = 0; mi < members.length; mi++) {
-                var member = members[mi];
-                if (!member || !member.command) continue;
-                var memberIndent = Math.max(0, Math.floor(Number(member.command.indent || 0)));
-                member.command.indent = Math.max(baseIndent + 1, memberIndent + deltaIndent);
-            }
-            if (seg.type === 'cancel') {
-                if (!cancelSegment) cancelSegment = seg;
-                else {
-                    removeEntries = removeEntries.concat([seg.marker], members);
-                }
-                continue;
-            }
-            var idx = Math.max(0, Math.floor(Number(seg.choiceIndex || 0)));
-            if (idx >= choices.length || seenChoice[String(idx)]) {
-                removeEntries = removeEntries.concat([seg.marker], members);
-                continue;
-            }
-            seenChoice[String(idx)] = true;
-            choiceSegments[String(idx)] = seg;
-        }
-
-        if (!wantsCancel && cancelSegment) {
-            removeEntries = removeEntries.concat([cancelSegment.marker], cancelSegment.entries || []);
-            cancelSegment = null;
-        }
-        if (removeEntries.length) this.removeChoiceBranchEntries(tr, removeEntries, choiceEntry.uid);
-
-        if (!endEntry || tr.commands.indexOf(endEntry) < 0) {
-            endEntry = this.createChoiceStructureEndEntry(tr, choiceEntry, {
-                code: 404,
-                indent: baseIndent,
-                parameters: []
-            });
-        }
-        if (!endEntry || !endEntry.command) return false;
-        endEntry.command.code = 404;
-        endEntry.command.indent = baseIndent;
-        endEntry.command.parameters = [];
-
-        if (wantsCancel) {
-            if (!cancelSegment || tr.commands.indexOf(cancelSegment.marker) < 0) {
-                var cancelMarker = this.createChoiceStructureEntryBefore(tr, endEntry, choiceEntry, {
-                    code: 403,
-                    indent: baseIndent,
-                    parameters: []
-                });
-                cancelSegment = { type: 'cancel', choiceIndex: -1, marker: cancelMarker, entries: [] };
-            }
-            if (cancelSegment.marker && cancelSegment.marker.command) {
-                cancelSegment.marker.frame = Math.max(0, Math.floor(Number(choiceEntry.frame || 0)));
-                cancelSegment.marker.command.code = 403;
-                cancelSegment.marker.command.indent = baseIndent;
-                cancelSegment.marker.command.parameters = [];
-            }
-        }
-
-        var anchor = (wantsCancel && cancelSegment && cancelSegment.marker) ? cancelSegment.marker : endEntry;
-        for (i = choices.length - 1; i >= 0; i--) {
-            var existing = choiceSegments[String(i)];
-            if (!existing || !existing.marker || tr.commands.indexOf(existing.marker) < 0) {
-                var marker = this.createChoiceStructureEntryBefore(tr, anchor, choiceEntry, {
-                    code: 402,
-                    indent: baseIndent,
-                    parameters: [i, choices[i]]
-                });
-                existing = { type: 'choice', choiceIndex: i, marker: marker, entries: [] };
-                choiceSegments[String(i)] = existing;
-            }
-            if (existing.marker && existing.marker.command) {
-                existing.marker.frame = Math.max(0, Math.floor(Number(choiceEntry.frame || 0)));
-                existing.marker.command.code = 402;
-                existing.marker.command.indent = baseIndent;
-                existing.marker.command.parameters = [i, choices[i]];
-                anchor = existing.marker;
-            }
-        }
-        var updated = this.captureChoiceBranchStructure(tr, choiceEntry);
-        var newMergeFrame = Math.max(0, Math.floor(Number(choiceEntry.frame || 0)));
-        var updatedSegments = updated && Array.isArray(updated.segments) ? updated.segments : [];
-        for (var usi = 0; usi < updatedSegments.length; usi++) {
-            var updatedEntries = Array.isArray(updatedSegments[usi].entries) ? updatedSegments[usi].entries : [];
-            for (var uei = 0; uei < updatedEntries.length; uei++) {
-                var updatedEntry = updatedEntries[uei];
-                if (!updatedEntry) continue;
-                var updatedEnd = Math.max(0, Math.floor(Number(updatedEntry.frame || 0))) +
-                    Math.max(0, Math.floor(Number(updatedEntry.wait || 0)));
-                if (updatedEnd > newMergeFrame) newMergeFrame = updatedEnd;
-            }
-        }
-        var mergeDelta = newMergeFrame - oldMergeFrame;
-        endEntry.frame = newMergeFrame;
-        if (mergeDelta) {
-            var sourceAfter = SH.commandsInSourceOrder(tr);
-            var endSourceIndex = SH.findEntryIndexByUid(sourceAfter, endEntry.uid);
-            var pathHasPrefix = function(path, prefix) {
-                path = Array.isArray(path) ? path : [];
-                prefix = Array.isArray(prefix) ? prefix : [];
-                if (path.length < prefix.length) return false;
-                for (var pi = 0; pi < prefix.length; pi++) {
-                    var a = path[pi] || {};
-                    var b = prefix[pi] || {};
-                    if (a.type !== b.type || Number(a.ownerUid || 0) !== Number(b.ownerUid || 0) ||
-                        Number(a.value) !== Number(b.value)) return false;
-                }
-                return true;
-            };
-            for (var sai = endSourceIndex + 1; sai < sourceAfter.length; sai++) {
-                var afterEntry = sourceAfter[sai];
-                if (!afterEntry) continue;
-                var afterPath = oldBranchPathMap[String(Math.floor(Number(afterEntry.uid || 0)))] || [];
-                if (!pathHasPrefix(afterPath, choiceParentPath)) continue;
-                afterEntry.frame = Math.max(0, Math.floor(Number(afterEntry.frame || 0)) + mergeDelta);
-            }
-        }
-        SH.sortTrackCommands(tr);
-        return true;
-    };
-
-    EE.prototype.normalizeChoiceBranchStructuresForTrack = function(tr) {
-        if (!tr || !Array.isArray(tr.commands)) return false;
-        var choices = tr.commands.filter(function(e) {
-            return !!(e && e.command && Number(e.command.code || 0) === 102);
-        });
-        choices.sort(SH.compareEntriesBySourceOrder);
-        var changed = false;
-        for (var i = choices.length - 1; i >= 0; i--) {
-            if (this.synchronizeChoiceBranchStructure(tr, choices[i])) changed = true;
-        }
-        return changed;
-    };
-
-    EE.prototype.choiceBranchConfiguredModeForBlock = function(modeMap, block) {
-        modeMap = modeMap || Object.create(null);
-        block = block || {};
-        var ord = String(Math.floor(Number(block.ordinal || 0)));
-        var uid = String(Math.floor(Number(block.choiceUid || 0)));
-        return this.sanitizeChoiceBranchViewMode(modeMap[ord] || modeMap[uid]);
-    };
-
-    EE.prototype.evaluateChoiceBranchAutoForEntry = function(entry) {
-        if (!entry || !entry.command || Number(entry.command.code || 0) !== 102) return 0;
-        var p = Array.isArray(entry.command.parameters) ? entry.command.parameters : [];
-        var choices = Array.isArray(p[0]) ? p[0] : [];
-        var len = choices.length;
-        if (len <= 0) return -1;
-        var def = Math.floor(Number(p[2] || 0));
-        if (def >= 0 && def < len) return def;
-        return 0;
-    };
-
-    EE.prototype.choiceBranchCountForEntry = function(entry) {
-        if (!entry || !entry.command || Number(entry.command.code || 0) !== 102) return 0;
-        var p = Array.isArray(entry.command.parameters) ? entry.command.parameters : [];
-        var choices = Array.isArray(p[0]) ? p[0] : [];
-        return Math.max(0, Math.floor(Number(choices.length || 0)));
-    };
-
-    EE.prototype.choiceBranchEffectiveResultForBlock = function(tr, info, block, modeMap) {
-        var mode = this.choiceBranchConfiguredModeForBlock(modeMap, block);
-        var list = (info && Array.isArray(info.list)) ? info.list : [];
-        var idx = Math.floor(Number((block && block.choiceIndex != null) ? block.choiceIndex : -1));
-        var entry = (idx >= 0 && idx < list.length) ? list[idx] : null;
-        if (mode === 'cancel') return -1;
-        if (mode !== 'auto' && /^-?\d+$/.test(String(mode))) {
-            var forced = Math.floor(Number(mode || 0));
-            var len = this.choiceBranchCountForEntry(entry);
-            if (forced >= 0 && forced < len) return forced;
-        }
-        return this.evaluateChoiceBranchAutoForEntry(entry);
-    };
-
-    EE.prototype.ifBranchConfiguredModeForBlock = function(modeMap, block) {
-        modeMap = modeMap || Object.create(null);
-        block = block || {};
-        var ord = String(Math.floor(Number(block.ordinal || 0)));
-        var uid = String(Math.floor(Number(block.ifUid || 0)));
-        return this.sanitizeIfBranchViewMode(modeMap[ord] || modeMap[uid]);
-    };
-
-    EE.prototype.ifBranchEffectiveModeForBlock = function(tr, info, block, modeMap) {
-        var mode = this.ifBranchConfiguredModeForBlock(modeMap, block);
-        if (mode !== 'auto') return mode;
-        var list = (info && Array.isArray(info.list)) ? info.list : [];
-        var ifIdx = Math.floor(Number(block && block.ifIndex || -1));
-        var ifEntry = (ifIdx >= 0 && ifIdx < list.length) ? list[ifIdx] : null;
-        return this.evaluateIfConditionAutoForEntry(ifEntry) ? 'then' : 'else';
-    };
-
-    EE.prototype.trackHasAutoIfBranchViewMode = function(tr) {
-        if (!tr || !Array.isArray(tr.commands) || !tr.commands.length) return false;
-        var info = this.computeIfBranchDisplayInfoForTrack(tr);
-        var blocks = info.blocks || [];
-        var modeMap = this.normalizeIfBranchViewModes(tr._eeIfBranchViewModes);
-        for (var i = 0; i < blocks.length; i++) {
-            if (this.ifBranchConfiguredModeForBlock(modeMap, blocks[i]) === 'auto') return true;
-        }
-        return false;
-    };
-
-    EE.prototype.computeIfBranchViewStateForTrack = function(tr) {
-        var out = {
-            info: this.computeIfBranchDisplayInfoForTrack(tr),
-            hidden: Object.create(null),
-            highlights: Object.create(null)
-        };
-        if (!tr || !Array.isArray(tr.commands) || !tr.commands.length) return out;
-        var info = out.info || {};
-        var list = Array.isArray(info.list) ? info.list : [];
-        var blocks = Array.isArray(info.blocks) ? info.blocks : [];
-        if (!list.length) return out;
-
-        var modeMap = this.normalizeIfBranchViewModes(tr._eeIfBranchViewModes);
-        var blockByUid = Object.create(null);
-        for (var bi = 0; bi < blocks.length; bi++) {
-            var bb = blocks[bi];
-            if (!bb) continue;
-            var buid = Math.floor(Number(bb.ifUid || 0));
-            if (buid <= 0) continue;
-            blockByUid[String(buid)] = bb;
-            out.highlights[String(buid)] = { block: bb, start: null, entries: [] };
-        }
-
-        var stack = [];
-        var self = this;
-        var branchActive = function(ctx) {
-            if (!ctx) return true;
-            return (ctx.phase === 'else') ? !ctx.result : !!ctx.result;
-        };
-        var isVisibleForIndent = function(indent) {
-            indent = Math.max(0, Math.floor(Number(indent || 0)));
-            for (var si = 0; si < stack.length; si++) {
-                var sc = stack[si];
-                if (!sc) continue;
-                if (indent <= Math.max(0, Math.floor(Number(sc.indent || 0)))) continue;
-                if (!branchActive(sc)) return false;
-            }
-            return true;
-        };
-        var pushEntryToActiveAncestors = function(entry, indent) {
-            indent = Math.max(0, Math.floor(Number(indent || 0)));
-            for (var si = 0; si < stack.length; si++) {
-                var sc = stack[si];
-                if (!sc) continue;
-                if (indent <= Math.max(0, Math.floor(Number(sc.indent || 0)))) continue;
-                if (!branchActive(sc)) continue;
-                var hk = String(sc.blockUid || '');
-                if (!hk.length || !out.highlights[hk]) continue;
-                out.highlights[hk].entries.push(entry);
-            }
-        };
-
-        for (var i = 0; i < list.length; i++) {
-            var e = list[i];
-            if (!e || !e.command) continue;
-            var code = Math.floor(Number(e.command.code || 0));
-            var indent = Math.max(0, Math.floor(Number(e.command.indent || 0)));
-            var uid = Math.floor(Number(e.uid || 0));
-            var uidKey = String(uid);
-            var parentVisible = isVisibleForIndent(indent);
-
-            if (code === 111) {
-                if (parentVisible) pushEntryToActiveAncestors(e, indent);
-                if (!parentVisible && uid > 0) out.hidden[uidKey] = true;
-
-                for (var ps = stack.length - 1; ps >= 0; ps--) {
-                    if (Math.max(0, Math.floor(Number(stack[ps].indent || 0))) >= indent) stack.splice(ps, 1);
-                }
-
-                var block = blockByUid[uidKey] || {
-                    ifUid: uid,
-                    ifIndex: i,
-                    indent: indent,
-                    elseIndex: -1,
-                    endIndex: -1,
-                    ordinal: Math.floor(Number((info.ifUidToOrdinal || Object.create(null))[uidKey] || 0))
-                };
-                if (!out.highlights[uidKey]) out.highlights[uidKey] = { block: block, start: null, entries: [] };
-                out.highlights[uidKey].start = e;
-
-                var mode = self.ifBranchEffectiveModeForBlock(tr, info, block, modeMap);
-                stack.push({
-                    indent: indent,
-                    result: (mode === 'else') ? false : true,
-                    phase: 'then',
-                    blockUid: uidKey
-                });
-                continue;
-            }
-
-            if (code === 411) {
-                if (uid > 0) out.hidden[uidKey] = true;
-                for (var es = stack.length - 1; es >= 0; es--) {
-                    if (Math.max(0, Math.floor(Number(stack[es].indent || 0))) !== indent) continue;
-                    stack[es].phase = 'else';
-                    break;
-                }
-                continue;
-            }
-
-            if (code === 412) {
-                if (uid > 0) out.hidden[uidKey] = true;
-                for (var cs = stack.length - 1; cs >= 0; cs--) {
-                    if (Math.max(0, Math.floor(Number(stack[cs].indent || 0))) >= indent) stack.splice(cs, 1);
-                }
-                continue;
-            }
-
-            if (!parentVisible) {
-                if (uid > 0) out.hidden[uidKey] = true;
-                continue;
-            }
-            pushEntryToActiveAncestors(e, indent);
-        }
-        return out;
-    };
-
-    EE.prototype.choiceBranchRuntimeIsActive = function(ctx) {
-        if (!ctx) return true;
-        var phase = String(ctx.phase || '');
-        if (phase === 'choice') {
-            var activeIndex = Math.floor(Number(ctx.activeChoiceIndex == null ? -999 : ctx.activeChoiceIndex));
-            var phaseIndex = Math.floor(Number(ctx.phaseChoiceIndex == null ? -998 : ctx.phaseChoiceIndex));
-            return activeIndex === phaseIndex;
-        }
-        if (phase === 'cancel') {
-            return Math.floor(Number(ctx.activeChoiceIndex == null ? -999 : ctx.activeChoiceIndex)) === -1;
-        }
-        return false;
-    };
-
-    EE.prototype.computeChoiceBranchHiddenUidMapForTrack = function(tr) {
-        var hidden = Object.create(null);
-        if (!tr || !Array.isArray(tr.commands) || !tr.commands.length) return hidden;
-        var info = this.computeChoiceBranchDisplayInfoForTrack(tr);
-        var list = Array.isArray(info.list) ? info.list : [];
-        if (!list.length) return hidden;
-        var blocks = Array.isArray(info.blocks) ? info.blocks : [];
-        var modeMap = this.normalizeChoiceBranchViewModes(tr._eeChoiceBranchViewModes);
-        var blockByUid = Object.create(null);
-        for (var bi = 0; bi < blocks.length; bi++) {
-            var bb = blocks[bi];
-            if (!bb) continue;
-            var buid = Math.floor(Number(bb.choiceUid || 0));
-            if (buid <= 0) continue;
-            blockByUid[String(buid)] = bb;
-        }
-
-        var stack = [];
-        var isVisibleForIndent = function(indent) {
-            indent = Math.max(0, Math.floor(Number(indent || 0)));
-            for (var si = 0; si < stack.length; si++) {
-                var sc = stack[si];
-                if (!sc) continue;
-                if (indent <= Math.max(0, Math.floor(Number(sc.indent || 0)))) continue;
-                if (!this.choiceBranchRuntimeIsActive(sc)) return false;
-            }
-            return true;
-        }.bind(this);
-
-        for (var i = 0; i < list.length; i++) {
-            var e = list[i];
-            if (!e || !e.command) continue;
-            var code = Math.floor(Number(e.command.code || 0));
-            var indent = Math.max(0, Math.floor(Number(e.command.indent || 0)));
-            var uid = Math.floor(Number(e.uid || 0));
-            var parentVisible = isVisibleForIndent(indent);
-
-            if (code === 102) {
-                if (!parentVisible) {
-                    if (uid > 0) hidden[String(uid)] = true;
-                    continue;
-                }
-                for (var ps = stack.length - 1; ps >= 0; ps--) {
-                    if (Math.max(0, Math.floor(Number(stack[ps].indent || 0))) >= indent) stack.splice(ps, 1);
-                }
-                var block = blockByUid[String(uid)] || null;
-                var selected = this.choiceBranchEffectiveResultForBlock(tr, info, block, modeMap);
-                stack.push({
-                    indent: indent,
-                    activeChoiceIndex: Math.floor(Number(selected || 0)),
-                    phase: 'none',
-                    phaseChoiceIndex: -999
-                });
-                stack.sort(function(a, b) { return Math.floor(Number(a.indent || 0)) - Math.floor(Number(b.indent || 0)); });
-                continue;
-            }
-
-            if (code === 402) {
-                if (uid > 0) hidden[String(uid)] = true;
-                for (var ws = stack.length - 1; ws >= 0; ws--) {
-                    if (Math.max(0, Math.floor(Number(stack[ws].indent || 0))) !== indent) continue;
-                    var p = Array.isArray(e.command.parameters) ? e.command.parameters : [];
-                    stack[ws].phase = 'choice';
-                    stack[ws].phaseChoiceIndex = Math.max(0, Math.floor(Number(p[0] || 0)));
-                    break;
-                }
-                continue;
-            }
-
-            if (code === 403) {
-                if (uid > 0) hidden[String(uid)] = true;
-                for (ws = stack.length - 1; ws >= 0; ws--) {
-                    if (Math.max(0, Math.floor(Number(stack[ws].indent || 0))) !== indent) continue;
-                    stack[ws].phase = 'cancel';
-                    stack[ws].phaseChoiceIndex = -1;
-                    break;
-                }
-                continue;
-            }
-
-            if (code === 404) {
-                if (uid > 0) hidden[String(uid)] = true;
-                for (var cs = stack.length - 1; cs >= 0; cs--) {
-                    if (Math.max(0, Math.floor(Number(stack[cs].indent || 0))) >= indent) stack.splice(cs, 1);
-                }
-                continue;
-            }
-
-            if (!parentVisible && uid > 0) hidden[String(uid)] = true;
-        }
-        return hidden;
-    };
-
-    EE.prototype.computeBranchHiddenUidMapForTrack = function(tr) {
-        var ifHidden = this.computeIfBranchViewStateForTrack(tr).hidden;
-        var choiceHidden = this.computeChoiceBranchHiddenUidMapForTrack(tr);
-        var ck = Object.keys(choiceHidden || {});
-        if (!ck.length) return ifHidden;
-        var out = Object.create(null);
-        var ik = Object.keys(ifHidden || {});
-        for (var i = 0; i < ik.length; i++) out[ik[i]] = true;
-        for (i = 0; i < ck.length; i++) out[ck[i]] = true;
-        return out;
-    };
-
-    EE.prototype.computeIfBranchHiddenUidMapForTrack = function(tr) {
-        return this.computeBranchHiddenUidMapForTrack(tr);
-    };
-
-    EE.prototype.isTimelineEntryVisibleByBranchMode = function(entry, tr) {
-        if (!entry) return true;
-        tr = tr || this.resolveTrackForEntry(entry);
-        if (!tr) return true;
-        var uid = Math.floor(Number(entry.uid || 0));
-        if (uid <= 0) return true;
-        var hidden = (this._timelineBranchHiddenTrack === tr && this._timelineBranchHiddenUidMap)
-            ? this._timelineBranchHiddenUidMap
-            : this.computeBranchHiddenUidMapForTrack(tr);
-        return !hidden[String(uid)];
-    };
-
-    EE.prototype.isTimelineEntryVisibleByIfBranchMode = function(entry, tr) {
-        return this.isTimelineEntryVisibleByBranchMode(entry, tr);
-    };
-
-    EE.prototype.branchDisplayInfoForSpec = function(tr, spec) {
-        if (!spec) return null;
-        return spec.kind === 'choice'
-            ? this.computeChoiceBranchDisplayInfoForTrack(tr)
-            : this.computeIfBranchDisplayInfoForTrack(tr);
-    };
-
-    EE.prototype.getBranchViewModeForEntry = function(entry, kindOrCode) {
-        var spec = this.branchViewModeSpec(kindOrCode);
-        if (!spec || !entry || !entry.command || Number(entry.command.code || 0) !== spec.code) {
-            return spec ? spec.defaultMode : '';
-        }
-        var tr = this.resolveTrackForEntry(entry);
-        if (!tr) return spec.defaultMode;
-        var info = this.branchDisplayInfoForSpec(tr, spec) || {};
-        var uid = String(Math.floor(Number(entry.uid || 0)));
-        var ordinalMap = info[spec.ordinalProperty] || Object.create(null);
-        var ordinal = Math.floor(Number(ordinalMap[uid] || 0));
-        var modes = this.normalizeBranchViewModes(tr[spec.trackProperty], spec);
-        var stored = ordinal > 0 ? modes[String(ordinal)] : modes[uid];
-        return this.sanitizeBranchViewMode(spec, stored);
-    };
-
-    EE.prototype.setBranchViewModeForEntry = function(entry, mode, kindOrCode) {
-        var spec = this.branchViewModeSpec(kindOrCode);
-        if (!spec || !entry || !entry.command || Number(entry.command.code || 0) !== spec.code) return false;
-        var tr = this.resolveTrackForEntry(entry);
-        if (!tr) return false;
-        var info = this.branchDisplayInfoForSpec(tr, spec) || {};
-        var uid = String(Math.floor(Number(entry.uid || 0)));
-        var ordinalMap = info[spec.ordinalProperty] || Object.create(null);
-        var ordinal = Math.floor(Number(ordinalMap[uid] || 0));
-        var modes = this.normalizeBranchViewModes(tr[spec.trackProperty], spec);
-        var key = ordinal > 0 ? String(ordinal) : uid;
-        var normalized = this.sanitizeBranchViewMode(spec, mode);
-        if (normalized === spec.defaultMode) delete modes[key];
-        else modes[key] = normalized;
-        if (key !== uid) delete modes[uid];
-        tr[spec.trackProperty] = modes;
-        if (this.selKey === this.key(tr.eventId, tr.pageIndex)) this.timelineDirty = true;
-        return true;
-    };
-
-    EE.prototype.getChoiceBranchViewModeForEntry = function(entry) {
-        return this.getBranchViewModeForEntry(entry, 'choice');
-    };
-
-    EE.prototype.setChoiceBranchViewModeForEntry = function(entry, mode) {
-        return this.setBranchViewModeForEntry(entry, mode, 'choice');
-    };
-
-    EE.prototype.getIfBranchViewModeForEntry = function(entry) {
-        return this.getBranchViewModeForEntry(entry, 'if');
-    };
-
-    EE.prototype.setIfBranchViewModeForEntry = function(entry, mode) {
-        return this.setBranchViewModeForEntry(entry, mode, 'if');
-    };
-
-    EE.prototype.applyStoredBranchViewModeByUid = function(uid, mode, kindOrCode) {
-        var spec = this.branchViewModeSpec(kindOrCode);
-        uid = Math.floor(Number(uid || 0));
-        if (!spec || uid <= 0) return false;
-        var entry = this.findEntryInSelectedTrack(uid);
-        if (!entry || !entry.command || Number(entry.command.code || 0) !== spec.code) return false;
-        if (!this.setBranchViewModeForEntry(entry, mode, spec.kind)) return false;
-        this.resetIfBranchRuntimeState();
-        var wasPlaying = !!this.play;
-        var targetFrame = Math.max(0, Math.floor(Number(this.frame || 0)));
-        if (wasPlaying) this.playFrom(targetFrame);
-        else this.seek(targetFrame);
-        this.timelineDirty = true;
-        this.persistSelectedTimelineViewStateToDisk();
-        return true;
-    };
-
-    EE.prototype.applyIfBranchViewModeByUid = function(uid, mode) {
-        return this.applyStoredBranchViewModeByUid(uid, mode, 'if');
-    };
-
-    EE.prototype.applyChoiceBranchViewModeByUid = function(uid, mode) {
-        return this.applyStoredBranchViewModeByUid(uid, mode, 'choice');
-    };
-
-    EE.prototype.applyBranchViewModeByUid = function(uid, mode) {
-        var e = this.findEntryInSelectedTrack(Math.floor(Number(uid || 0)));
-        if (!e || !e.command) return false;
-        var code = Math.floor(Number(e.command.code || 0));
-        if (code === COMMAND_CODE.SHOW_CHOICES) return this.applyChoiceBranchViewModeByUid(uid, mode);
-        if (code === COMMAND_CODE.CONDITIONAL_BRANCH) return this.applyIfBranchViewModeByUid(uid, mode);
-        return false;
-    };
-
-    EE.prototype.resetIfBranchRuntimeState = function() {
-        this._eeIfBranchRuntime = {
-            rev: (this._scheduleRev >>> 0) || 0,
-            lastFrame: -1,
-            tracks: Object.create(null)
-        };
-    };
-
-    EE.prototype.prepareIfBranchRuntimeStateForFrame = function(frame) {
-        frame = Math.max(0, Math.floor(Number(frame || 0)));
-        var rev = (this._scheduleRev >>> 0) || 0;
-        var st = this._eeIfBranchRuntime;
-        var last = st ? Math.floor(Number(st.lastFrame == null ? -1 : st.lastFrame)) : -1;
-        if (!st || st.rev !== rev || frame < last) {
-            this._eeIfBranchRuntime = {
-                rev: rev,
-                lastFrame: frame,
-                tracks: Object.create(null)
-            };
-            return;
-        }
-        st.lastFrame = frame;
-    };
-
-    EE.prototype.ifBranchRuntimeStateForTrackKey = function(trackKey) {
-        if (!this._eeIfBranchRuntime || typeof this._eeIfBranchRuntime !== 'object') {
-            this.resetIfBranchRuntimeState();
-        }
-        var key = String(trackKey || '');
-        var tracks = this._eeIfBranchRuntime.tracks;
-        if (!tracks[key]) {
-            tracks[key] = {
-                ifStack: [],
-                choiceStack: [],
-                branchResults: Object.create(null),
-                branchPathMap: null
-            };
-        } else {
-            if (!Array.isArray(tracks[key].ifStack)) {
-                tracks[key].ifStack = Array.isArray(tracks[key].stack) ? tracks[key].stack : [];
-            }
-            if (!Array.isArray(tracks[key].choiceStack)) tracks[key].choiceStack = [];
-            if (!tracks[key].branchResults) tracks[key].branchResults = Object.create(null);
-        }
-        return tracks[key];
-    };
-
-    EE.prototype.evaluateIfConditionAutoForEntry = function(entry) {
-        if (!entry || !entry.command || Number(entry.command.code || 0) !== 111) return false;
-        try {
-            var c = entry.command;
-            var indent = Math.max(0, Math.floor(Number(c.indent || 0)));
-            var params = clone(c.parameters || []);
-            var it = new Game_Interpreter();
-            it._mapId = ($gameMap && typeof $gameMap.mapId === 'function') ? $gameMap.mapId() : 0;
-            it._eventId = Math.max(0, Math.floor(Number(entry.eventId || 0)));
-            it._branch = {};
-            it._indent = indent;
-            it._params = params;
-            it._list = [
-                { code: 111, indent: indent, parameters: params },
-                { code: 0, indent: 0, parameters: [] }
-            ];
-            it._index = 0;
-            if (typeof it.command111 !== 'function') return false;
-            it.command111();
-            return !!it._branch[indent];
-        } catch (_) {
-            return false;
-        }
-    };
-
-    EE.prototype.resolveIfBranchResultForEntry = function(entry) {
-        var mode = this.getIfBranchViewModeForEntry(entry);
-        if (mode === 'then') return true;
-        if (mode === 'else') return false;
-        return this.evaluateIfConditionAutoForEntry(entry);
-    };
-
-    EE.prototype.resolveChoiceBranchResultForEntry = function(entry) {
-        var mode = this.getChoiceBranchViewModeForEntry(entry);
-        if (mode === 'cancel') return -1;
-        if (mode !== 'auto' && /^-?\d+$/.test(String(mode))) {
-            var forced = Math.floor(Number(mode || 0));
-            var len = this.choiceBranchCountForEntry(entry);
-            if (forced >= 0 && forced < len) return forced;
-        }
-        return this.evaluateChoiceBranchAutoForEntry(entry);
-    };
-
-    EE.prototype.computeBranchExecutionPathMapForTrack = function(tr) {
-        var out = Object.create(null);
-        if (!tr || !Array.isArray(tr.commands)) return out;
-        var list = SH.commandsInSourceOrder(tr);
-        var stack = [];
-        var setBranchValue = function(type, indent, value) {
-            for (var i = stack.length - 1; i >= 0; i--) {
-                var ctx = stack[i];
-                if (!ctx || ctx.type !== type || ctx.indent !== indent) continue;
-                ctx.value = value;
-                return;
-            }
-        };
-        var closeBranch = function(type, indent) {
-            for (var i = stack.length - 1; i >= 0; i--) {
-                var ctx = stack[i];
-                if (!ctx || ctx.type !== type || ctx.indent !== indent) continue;
-                stack.splice(i, 1);
-                return;
-            }
-        };
-        for (var li = 0; li < list.length; li++) {
-            var entry = list[li];
-            if (!entry || !entry.command) continue;
-            var code = Math.floor(Number(entry.command.code || 0));
-            var indent = Math.max(0, Math.floor(Number(entry.command.indent || 0)));
-            var uid = Math.floor(Number(entry.uid || 0));
-            var path = [];
-            for (var si = 0; si < stack.length; si++) {
-                var branch = stack[si];
-                if (!branch || indent <= branch.indent || branch.value == null) continue;
-                path.push({
-                    type: branch.type,
-                    ownerUid: branch.ownerUid,
-                    value: branch.value
-                });
-            }
-            if (uid > 0) out[String(uid)] = path;
-
-            if (code === COMMAND_CODE.CONDITIONAL_BRANCH) {
-                stack.push({ type: 'if', ownerUid: uid, indent: indent, value: true });
-            } else if (code === COMMAND_CODE.CONDITIONAL_ELSE) {
-                setBranchValue('if', indent, false);
-            } else if (code === COMMAND_CODE.CONDITIONAL_END) {
-                closeBranch('if', indent);
-            } else if (code === COMMAND_CODE.SHOW_CHOICES) {
-                stack.push({ type: 'choice', ownerUid: uid, indent: indent, value: null });
-            } else if (code === COMMAND_CODE.CHOICE_BRANCH) {
-                var p = Array.isArray(entry.command.parameters) ? entry.command.parameters : [];
-                setBranchValue('choice', indent, Math.max(0, Math.floor(Number(p[0] || 0))));
-            } else if (code === COMMAND_CODE.CHOICE_CANCEL) {
-                setBranchValue('choice', indent, -1);
-            } else if (code === COMMAND_CODE.CHOICE_END) {
-                closeBranch('choice', indent);
-            }
-        }
-        return out;
-    };
-
-    EE.prototype.isEntryActiveByBranchExecutionPath = function(entry, state, trackKey) {
-        if (!entry || !state) return false;
-        var tr = this.model && this.model.tracks ? this.model.tracks[String(trackKey || '')] : null;
-        if (!tr) return true;
-        if (!state.branchPathMap) state.branchPathMap = this.computeBranchExecutionPathMapForTrack(tr);
-        var path = state.branchPathMap[String(Math.floor(Number(entry.uid || 0)))] || [];
-        var results = state.branchResults || (state.branchResults = Object.create(null));
-        for (var i = 0; i < path.length; i++) {
-            var part = path[i];
-            if (!part) continue;
-            var ownerKey = String(Math.floor(Number(part.ownerUid || 0)));
-            if (!Object.prototype.hasOwnProperty.call(results, ownerKey)) {
-                var owner = this.findTrackEntryByUid(tr, Number(part.ownerUid || 0));
-                if (!owner) return false;
-                results[ownerKey] = part.type === 'choice'
-                    ? this.resolveChoiceBranchResultForEntry(owner)
-                    : !!this.resolveIfBranchResultForEntry(owner);
-            }
-            var result = results[ownerKey];
-            if (part.type === 'choice') {
-                if (Math.floor(Number(result)) !== Math.floor(Number(part.value))) return false;
-            } else if (!!result !== !!part.value) {
-                return false;
-            }
-        }
-        return true;
-    };
-
-    EE.prototype.shouldExecuteEntryByIfBranchRuntime = function(entry) {
-        if (!entry || !entry.command) return false;
-        var code = Math.floor(Number(entry.command.code || 0));
-        var indent = Math.max(0, Math.floor(Number(entry.command.indent || 0)));
-        var trackKey = this.key(Number(entry.eventId || 0), Number(entry.pageIndex || 0));
-        var state = this.ifBranchRuntimeStateForTrackKey(trackKey);
-        var ifStack = state.ifStack || (state.ifStack = []);
-        var choiceStack = state.choiceStack || (state.choiceStack = []);
-
-        var active = this.isEntryActiveByBranchExecutionPath(entry, state, trackKey);
-        var i;
-        var shouldLog = active && !this._simToRunning && !this._eeInlineCommandExecution;
-        var logFrame = Math.max(0, Math.floor(Number((this._simToRunning ? this._simExecFrame : this.frame) || 0)));
-
-        if (code === 111) {
-            if (active) {
-                var ifResult = !!this.resolveIfBranchResultForEntry(entry);
-                state.branchResults[String(Math.floor(Number(entry.uid || 0)))] = ifResult;
-                for (i = ifStack.length - 1; i >= 0; i--) {
-                    if (Math.max(0, Math.floor(Number(ifStack[i].indent || 0))) >= indent) ifStack.splice(i, 1);
-                }
-                ifStack.push({
-                    indent: indent,
-                    result: ifResult,
-                    phase: 'then'
-                });
-                ifStack.sort(function(a, b) { return Math.floor(Number(a.indent || 0)) - Math.floor(Number(b.indent || 0)); });
-                if (shouldLog) {
-                    this.appendExecutionLog(111, logFrame, entry);
-                    this.triggerExecutionPulse(Number(entry.uid || 0), -1);
-                }
-            }
-            return false;
-        }
-
-        if (code === 411) {
-            for (i = ifStack.length - 1; i >= 0; i--) {
-                if (Math.max(0, Math.floor(Number(ifStack[i].indent || 0))) !== indent) continue;
-                ifStack[i].phase = 'else';
-                break;
-            }
-            return false;
-        }
-
-        if (code === 412) {
-            for (i = ifStack.length - 1; i >= 0; i--) {
-                if (Math.max(0, Math.floor(Number(ifStack[i].indent || 0))) >= indent) ifStack.splice(i, 1);
-            }
-            if (shouldLog) {
-                this.appendExecutionLog(412, logFrame, entry);
-                this.triggerExecutionPulse(Number(entry.uid || 0), -1);
-            }
-            return false;
-        }
-
-        if (code === 102) {
-            if (active) {
-                var choiceResult = Math.floor(Number(this.resolveChoiceBranchResultForEntry(entry)));
-                state.branchResults[String(Math.floor(Number(entry.uid || 0)))] = choiceResult;
-                for (i = choiceStack.length - 1; i >= 0; i--) {
-                    if (Math.max(0, Math.floor(Number(choiceStack[i].indent || 0))) >= indent) choiceStack.splice(i, 1);
-                }
-                choiceStack.push({
-                    indent: indent,
-                    activeChoiceIndex: choiceResult,
-                    phase: 'none',
-                    phaseChoiceIndex: -999
-                });
-                choiceStack.sort(function(a, b) { return Math.floor(Number(a.indent || 0)) - Math.floor(Number(b.indent || 0)); });
-                if (shouldLog) {
-                    this.appendExecutionLog(102, logFrame, entry);
-                    this.triggerExecutionPulse(Number(entry.uid || 0), -1);
-                }
-            }
-            return false;
-        }
-
-        if (code === 402) {
-            for (i = choiceStack.length - 1; i >= 0; i--) {
-                if (Math.max(0, Math.floor(Number(choiceStack[i].indent || 0))) !== indent) continue;
-                var p = Array.isArray(entry.command.parameters) ? entry.command.parameters : [];
-                choiceStack[i].phase = 'choice';
-                choiceStack[i].phaseChoiceIndex = Math.max(0, Math.floor(Number(p[0] || 0)));
-                break;
-            }
-            return false;
-        }
-
-        if (code === 403) {
-            for (i = choiceStack.length - 1; i >= 0; i--) {
-                if (Math.max(0, Math.floor(Number(choiceStack[i].indent || 0))) !== indent) continue;
-                choiceStack[i].phase = 'cancel';
-                choiceStack[i].phaseChoiceIndex = -1;
-                break;
-            }
-            return false;
-        }
-
-        if (code === 404) {
-            for (i = choiceStack.length - 1; i >= 0; i--) {
-                if (Math.max(0, Math.floor(Number(choiceStack[i].indent || 0))) >= indent) choiceStack.splice(i, 1);
-            }
-            return false;
-        }
-
-        return active;
-    };
-
-    EE.prototype.exportIfBranchViewModesForTrack = function(tr) {
-        var out = Object.create(null);
-        if (!tr) return out;
-        var info = this.computeIfBranchDisplayInfoForTrack(tr);
-        var map = this.normalizeIfBranchViewModes(tr._eeIfBranchViewModes);
-        var blocks = info.blocks || [];
-        for (var i = 0; i < blocks.length; i++) {
-            var b = blocks[i];
-            if (!b) continue;
-            var ord = String(Math.floor(Number(b.ordinal || 0)));
-            if (!ord.length || ord === '0') continue;
-            var uid = String(Math.floor(Number(b.ifUid || 0)));
-            var m = this.sanitizeIfBranchViewMode(map[ord] || map[uid]);
-            if (m !== 'then') out[ord] = m;
-        }
-        return out;
-    };
-
-    EE.prototype.exportChoiceBranchViewModesForTrack = function(tr) {
-        var out = Object.create(null);
-        if (!tr) return out;
-        var info = this.computeChoiceBranchDisplayInfoForTrack(tr);
-        var map = this.normalizeChoiceBranchViewModes(tr._eeChoiceBranchViewModes);
-        var blocks = info.blocks || [];
-        for (var i = 0; i < blocks.length; i++) {
-            var b = blocks[i];
-            if (!b) continue;
-            var ord = String(Math.floor(Number(b.ordinal || 0)));
-            if (!ord.length || ord === '0') continue;
-            var uid = String(Math.floor(Number(b.choiceUid || 0)));
-            var m = this.sanitizeChoiceBranchViewMode(map[ord] || map[uid]);
-            if (m !== 'auto') out[ord] = m;
-        }
-        return out;
-    };
-
-    EE.prototype.loadIfBranchViewModesForTrack = function(tr) {
-        if (!tr) return;
-        tr._eeIfBranchViewModes = Object.create(null);
-        tr._eeChoiceBranchViewModes = Object.create(null);
-        var contextId = (typeof this.timelineViewStorageContextId === 'function') ? this.timelineViewStorageContextId() : 0;
-        if (contextId <= 0) return;
-        var store = this.readTimelineViewStoreForMap(contextId);
-        var key = this.timelineViewStoreKey(tr.eventId, tr.pageIndex);
-        var st = (store && typeof store === 'object') ? store[key] : null;
-        if (!st || typeof st !== 'object') return;
-        tr._eeIfBranchViewModes = this.normalizeIfBranchViewModes(st.ifBranchModes);
-        tr._eeChoiceBranchViewModes = this.normalizeChoiceBranchViewModes(st.choiceBranchModes);
-    };
-
-    EE.prototype.captureCurrentTimelineViewState = function() {
-        if (!this.timelineWrap) return null;
-        var px = Number(this.pxPerFrame);
-        var sl = Number(this.timelineWrap.scrollLeft || 0);
-        var st = Number(this.timelineWrap.scrollTop || 0);
-        if (!isFinite(px) || px <= 0) return null;
-        if (!isFinite(sl)) sl = 0;
-        if (!isFinite(st)) st = 0;
-        return {
-            pxPerFrame: px,
-            scrollLeft: Math.max(0, Math.floor(sl)),
-            scrollTop: Math.max(0, Math.floor(st))
-        };
-    };
-
-    EE.prototype.persistSelectedTimelineViewStateToDisk = function() {
-        if (!this.selEid || this.selPage < 0 || !this.selKey) return false;
-        var contextId = (typeof this.timelineViewStorageContextId === 'function') ? this.timelineViewStorageContextId() : 0;
-        if (contextId <= 0) return false;
-        var st = this.captureCurrentTimelineViewState();
-        if (!st) return false;
-        var tr = this.model && this.model.tracks ? this.model.tracks[this.selKey] : null;
-        if (tr) {
-            var ifModes = this.exportIfBranchViewModesForTrack(tr);
-            if (Object.keys(ifModes).length) st.ifBranchModes = ifModes;
-            var choiceModes = this.exportChoiceBranchViewModesForTrack(tr);
-            if (Object.keys(choiceModes).length) st.choiceBranchModes = choiceModes;
-        }
-        var store = this.readTimelineViewStoreForMap(contextId);
-        store[this.timelineViewStoreKey(this.selEid, this.selPage)] = st;
-        return this.writeTimelineViewStoreForMap(contextId, store);
-    };
-
-    EE.prototype.queueTimelineViewRestoreForTrack = function(eventId, pageIndex) {
-        var contextId = (typeof this.timelineViewStorageContextId === 'function') ? this.timelineViewStorageContextId() : 0;
-        if (contextId <= 0) {
-            this._timelineViewPending = null;
-            return;
-        }
-        var key = this.timelineViewStoreKey(eventId, pageIndex);
-        var store = this.readTimelineViewStoreForMap(contextId);
-        var st = store && typeof store === 'object' ? store[key] : null;
-        if (!st || typeof st !== 'object') {
-            this._timelineViewPending = null;
-            return;
-        }
-        this._timelineViewPending = {
-            selKey: this.key(eventId, pageIndex),
-            pxPerFrame: Number(st.pxPerFrame),
-            scrollLeft: Number(st.scrollLeft),
-            scrollTop: Number(st.scrollTop)
-        };
-    };
-
-    EE.prototype.applyPendingTimelineViewRestore = function() {
-        var p = this._timelineViewPending;
-        if (!p || !this.timelineWrap) return;
-        if (String(p.selKey || '') !== String(this.selKey || '')) return;
-        var wrap = this.timelineWrap;
-        var maxLeft = Math.max(0, Math.floor(Number(wrap.scrollWidth || 0) - Number(wrap.clientWidth || 0)));
-        var maxTop = Math.max(0, Math.floor(Number(wrap.scrollHeight || 0) - Number(wrap.clientHeight || 0)));
-        var left = isFinite(Number(p.scrollLeft)) ? Math.floor(Number(p.scrollLeft || 0)) : 0;
-        var top = isFinite(Number(p.scrollTop)) ? Math.floor(Number(p.scrollTop || 0)) : 0;
-        wrap.scrollLeft = Math.max(0, Math.min(maxLeft, left));
-        wrap.scrollTop = Math.max(0, Math.min(maxTop, top));
-        this._timelineViewPending = null;
-        this.timelineDirty = true;
-    };
-
-    //-------------------------------------------------------------------------
     // Timeline layout, hit testing, and range manipulation
     //-------------------------------------------------------------------------
 
@@ -9027,13 +4800,29 @@
                 this.pxPerFrame = Math.max(this.minPxPerFrame, Math.min(this.maxPxPerFrame, ppf));
             }
         }
-        var tr = this.selectedTrack();
-        var rows = this.getTrackRows(tr);
-        this._rows = rows;
-        this._mainStackMax = this.mainStackMax(tr);
-        this._rowMetrics = this.buildRowMetrics(rows, this._mainStackMax);
         if (!isFinite(Number(maxF)) || Number(maxF) <= 0) maxF = this.maxFrame();
         else maxF = Math.max(1, Math.floor(Number(maxF)));
+        var tr = this.selectedTrack();
+        var trackRevision = this._trackRevisionByKey && this.selKey
+            ? Math.floor(Number(this._trackRevisionByKey[this.selKey] || 0))
+            : 0;
+        var autoViewSignature = (tr && this._timelineAutoIfViewTrack === tr)
+            ? String(this._timelineAutoIfViewSignature || '')
+            : this.autoIfBranchViewSignatureForTrack(tr);
+        var autoLayout = !!autoViewSignature;
+        var rowLayoutSig = String(this.selKey || '') + '|' + String(this._scheduleRev || 0) + '|' +
+            String(trackRevision) + '|' + String(tr && tr.endFrame || 0) + '|' + (autoLayout ? autoViewSignature : 'fixed');
+        if (rowLayoutSig !== this._timelineRowLayoutSig || !Array.isArray(this._rowMetrics)) {
+            var rows = this.getTrackRows(tr);
+            this._rows = rows;
+            var hiddenByIf = tr ? this.computeIfBranchHiddenUidMapForTrack(tr) : Object.create(null);
+            var charLaneInfo = this.buildCharRouteLaneMap(tr, hiddenByIf);
+            this._charLaneByUid = charLaneInfo.laneByUid || {};
+            this._charStackByRow = charLaneInfo.stackByRow || {};
+            this._mainStackMax = this.mainStackMax(tr);
+            this._rowMetrics = this.buildRowMetrics(rows, this._mainStackMax, this._charStackByRow);
+            this._timelineRowLayoutSig = rowLayoutSig;
+        }
         // Canvas width has a hard implementation limit (NW.js/Chromium).
         // If we exceed it, drawing can disappear while hit-tests still work.
         var canvasMaxW = 16384;
@@ -9054,13 +4843,24 @@
         if (cw > canvasMaxW) cw = canvasMaxW;
         this.tw = cw;
         this.th = ch;
-        this.timeline.width = this.tw;
-        this.timeline.height = this.th;
-        this.timeline.style.width = this.tw + 'px';
-        this.timeline.style.height = this.th + 'px';
+        if (Number(this.timeline.width || 0) !== this.tw) this.timeline.width = this.tw;
+        if (Number(this.timeline.height || 0) !== this.th) this.timeline.height = this.th;
+        if (this.timelineOverlay) {
+            if (Number(this.timelineOverlay.width || 0) !== this.tw) this.timelineOverlay.width = this.tw;
+            if (Number(this.timelineOverlay.height || 0) !== this.th) this.timelineOverlay.height = this.th;
+        }
+        var styleWidth = this.tw + 'px';
+        var styleHeight = this.th + 'px';
+        if (this.timeline.style.width !== styleWidth) this.timeline.style.width = styleWidth;
+        if (this.timeline.style.height !== styleHeight) this.timeline.style.height = styleHeight;
+        if (this.timelineOverlay) {
+            if (this.timelineOverlay.style.width !== styleWidth) this.timelineOverlay.style.width = styleWidth;
+            if (this.timelineOverlay.style.height !== styleHeight) this.timelineOverlay.style.height = styleHeight;
+        }
         if (this.zoomInfo) {
-            this.zoomInfo.textContent = 'scale: ' + this.pxPerFrame.toFixed(3) + ' px/frame (ruler wheel: ' +
-                this.minPxPerFrame.toFixed(3) + ' .. ' + this.maxPxPerFrame.toFixed(3) + ')';
+            var zoomText = '表示倍率: ' + this.pxPerFrame.toFixed(3) + ' px/フレーム（目盛り上のホイール: ' +
+                this.minPxPerFrame.toFixed(3) + ' ～ ' + this.maxPxPerFrame.toFixed(3) + '）';
+            if (this.zoomInfo.textContent !== zoomText) this.zoomInfo.textContent = zoomText;
         }
         this.applyPendingTimelineViewRestore();
     };
@@ -9074,9 +4874,7 @@
             var e = tr.commands[i];
             if (!e) continue;
             if (hiddenByIf[String(Math.floor(Number(e.uid || 0)))]) continue;
-            if (e.isComment || (e.command && Number(e.command.code || 0) === 108)) continue;
-            var rk = e.rowKey || (e.rowType === 'char' ? ('char:' + e.charId) : 'main');
-            if (rk !== 'main') continue;
+            if (!this.isMainLaneDisplayEntry(e)) continue;
             var f = Math.max(0, Math.floor(Number(e.frame || 0)));
             if (f !== targetFrame) continue;
             count++;
@@ -9092,9 +4890,7 @@
             var e = tr.commands[i];
             if (!e) continue;
             if (hiddenByIf[String(Math.floor(Number(e.uid || 0)))]) continue;
-            if (e.isComment || (e.command && Number(e.command.code || 0) === 108)) continue;
-            var rk = e.rowKey || (e.rowType === 'char' ? ('char:' + e.charId) : 'main');
-            if (rk !== 'main') continue;
+            if (!this.isMainLaneDisplayEntry(e)) continue;
             var f = Math.max(0, Math.floor(Number(e.frame || 0)));
             c[f] = (c[f] || 0) + 1;
         }
@@ -9112,12 +4908,57 @@
         return Math.max(this.rowH, h);
     };
 
-    EE.prototype.buildRowMetrics = function(rows, maxMainStack) {
+    EE.prototype.buildCharRouteLaneMap = function(tr, hiddenByIf) {
+        var laneByUid = {};
+        var stackByRow = {};
+        if (!tr || !Array.isArray(tr.commands)) return { laneByUid: laneByUid, stackByRow: stackByRow };
+        hiddenByIf = hiddenByIf || this.computeIfBranchHiddenUidMapForTrack(tr);
+        var byRow = Object.create(null);
+        for (var i = 0; i < tr.commands.length; i++) {
+            var e = tr.commands[i];
+            if (!e || !e.command || Number(e.command.code || 0) !== 205) continue;
+            if (hiddenByIf[String(Math.floor(Number(e.uid || 0)))]) continue;
+            var rowKey = String(e.rowKey || (e.rowType === 'char' ? ('char:' + e.charId) : 'main'));
+            if (rowKey.indexOf('char:') !== 0) continue;
+            if (!byRow[rowKey]) byRow[rowKey] = [];
+            byRow[rowKey].push(e);
+        }
+        var rowKeys = Object.keys(byRow);
+        for (var ri = 0; ri < rowKeys.length; ri++) {
+            var rk = rowKeys[ri];
+            var entries = byRow[rk];
+            entries.sort(compareEntriesByFrameWaitUid);
+            var laneEnds = [];
+            for (var ei = 0; ei < entries.length; ei++) {
+                e = entries[ei];
+                var start = Math.max(0, Math.floor(Number(e.frame || 0)));
+                var end = start + Math.max(1, Math.floor(Number(this.routeExecutionSpanFramesForEntry(e) || 1)));
+                var lane = 0;
+                while (lane < laneEnds.length && laneEnds[lane] > start) lane++;
+                if (lane === laneEnds.length) laneEnds.push(end);
+                else laneEnds[lane] = end;
+                laneByUid[e.uid] = lane;
+            }
+            stackByRow[rk] = Math.max(1, laneEnds.length);
+        }
+        return { laneByUid: laneByUid, stackByRow: stackByRow };
+    };
+
+    EE.prototype.charRowHeight = function(stackCount) {
+        stackCount = Math.max(1, Math.floor(Number(stackCount || 1)));
+        var h = this.charLaneTop + this.charLaneBottom + (stackCount - 1) * this.charLaneGap;
+        return Math.max(this.rowH, h);
+    };
+
+    EE.prototype.buildRowMetrics = function(rows, maxMainStack, charStackByRow) {
         rows = rows || [];
+        charStackByRow = charStackByRow || {};
         var out = [];
         var y = this.rulerH;
         for (var i = 0; i < rows.length; i++) {
-            var h = (rows[i].key === 'main') ? this.mainRowHeight(maxMainStack) : this.rowH;
+            var h = (rows[i].key === 'main')
+                ? this.mainRowHeight(maxMainStack)
+                : this.charRowHeight(charStackByRow[rows[i].key] || 1);
             out.push({ top: y, height: h, center: y + Math.floor(h / 2), key: rows[i].key });
             y += h;
         }
@@ -9179,12 +5020,6 @@
             span = Math.max(span, Math.floor(Number(timeline && timeline.totalFrames || 0)));
         }
         return Math.max(1, span);
-    };
-
-    EE.prototype.frameFromTimeline = function(e) {
-        var r = this.timeline.getBoundingClientRect();
-        var x = e.clientX - r.left;
-        return this.xToFrame(x);
     };
 
     EE.prototype.timelineRulerTopY = function(totalHeight) {
@@ -9268,10 +5103,6 @@
             return b;
         }
         return null;
-    };
-
-    EE.prototype.hitTestIfBranchModeButton = function(x, y) {
-        return this.hitTestBranchModeButton(x, y);
     };
 
     EE.prototype.hitTestRouteCommandNodeNear = function(uid, x, y, extraRadius) {
@@ -9368,7 +5199,7 @@
     EE.prototype.setRangeSelection = function(kind, items, opt) {
         opt = opt || {};
         kind = String(kind || 'none');
-        if (kind !== 'memory' && kind !== 'rect') kind = 'none';
+        if (kind !== 'memory' && kind !== 'rect' && kind !== 'items') kind = 'none';
         var normalized = (kind === 'none') ? [] : this.normalizeRangeSelectionItems(items);
         var keepEmpty = !!opt.keepEmpty;
         var map = Object.create(null);
@@ -9439,6 +5270,200 @@
             out.push({ kind: 'routeCmd', uid: Math.floor(Number(it.uid || 0)), routeListIndex: this.nodeRouteIndex(it.routeListIndex) });
         }
         return this.normalizeRangeSelectionItems(out);
+    };
+
+    EE.prototype.normalizeTimelineSelectionItem = function(item) {
+        var items = this.normalizeRangeSelectionItems(item ? [item] : []);
+        return items.length ? items[0] : null;
+    };
+
+    EE.prototype.currentTimelineSelectionItem = function() {
+        var uid = Math.floor(Number(this.selUid || 0));
+        if (uid <= 0) return null;
+        var routeListIndex = this.nodeRouteIndex(this.selRouteListIndex);
+        return this.normalizeTimelineSelectionItem(routeListIndex >= 0
+            ? { kind: 'routeCmd', uid: uid, routeListIndex: routeListIndex }
+            : { kind: 'entry', uid: uid });
+    };
+
+    EE.prototype.timelineSelectionItemsWithCurrent = function() {
+        var items = this.hasRangeSelection() && this.rangeSelection
+            ? this.normalizeRangeSelectionItems(this.rangeSelection.items || [])
+            : [];
+        if (!items.length) {
+            var current = this.currentTimelineSelectionItem();
+            if (current) items.push(current);
+        }
+        return this.normalizeRangeSelectionItems(items);
+    };
+
+    EE.prototype.setTimelineSelectionAnchorItem = function(item) {
+        var normalized = this.normalizeTimelineSelectionItem(item);
+        if (!normalized) {
+            this.timelineSelectionAnchor = null;
+            return;
+        }
+        normalized.trackKey = String(this.selKey || '');
+        this.timelineSelectionAnchor = normalized;
+    };
+
+    EE.prototype.timelineSelectionAnchorItem = function() {
+        var anchor = this.timelineSelectionAnchor;
+        if (!anchor || String(anchor.trackKey || '') !== String(this.selKey || '')) return null;
+        var normalized = this.normalizeTimelineSelectionItem(anchor);
+        if (!normalized) return null;
+        var entry = this.findEntryInSelectedTrack(normalized.uid);
+        if (!entry) return null;
+        if (normalized.kind === 'routeCmd') {
+            var route = entry.command && entry.command.parameters && entry.command.parameters[1];
+            var list = route && Array.isArray(route.list) ? route.list : [];
+            var idx = this.nodeRouteIndex(normalized.routeListIndex);
+            if (idx < 0 || idx >= list.length || Number((list[idx] || {}).code || 0) <= 0) return null;
+        }
+        return normalized;
+    };
+
+    EE.prototype.timelineSelectionItemFrame = function(item) {
+        item = this.normalizeTimelineSelectionItem(item);
+        if (!item) return 0;
+        var entry = this.findEntryInSelectedTrack(item.uid);
+        if (!entry) return 0;
+        var frame = Math.max(0, Math.floor(Number(entry.frame || 0)));
+        if (item.kind === 'routeCmd') {
+            var timelineItem = this.routeCommandTimelineItemByListIndex(entry, item.routeListIndex);
+            if (timelineItem) frame += Math.max(0, Math.floor(Number(timelineItem.offset || 0)));
+        }
+        return frame;
+    };
+
+    EE.prototype.timelineSelectionDomainKey = function(item) {
+        item = this.normalizeTimelineSelectionItem(item);
+        if (!item) return '';
+        if (item.kind === 'routeCmd') return 'route:' + item.uid;
+        var entry = this.findEntryInSelectedTrack(item.uid);
+        if (!entry) return '';
+        return 'row:' + String(entry.rowKey || (entry.rowType === 'char' ? ('char:' + entry.charId) : 'main'));
+    };
+
+    EE.prototype.orderedTimelineSelectionItems = function(item) {
+        item = this.normalizeTimelineSelectionItem(item);
+        if (!item) return [];
+        var out = [];
+        if (item.kind === 'routeCmd') {
+            var entry = this.findEntryInSelectedTrack(item.uid);
+            var route = entry && entry.command && entry.command.parameters && entry.command.parameters[1];
+            var timeline = this.moveRouteTimeline(route);
+            var routeItems = timeline && Array.isArray(timeline.items) ? timeline.items : [];
+            for (var i = 0; i < routeItems.length; i++) {
+                var routeItem = routeItems[i];
+                var code = Math.floor(Number(routeItem && routeItem.displayCode || 0));
+                if (code <= 0 || code === 15) continue;
+                out.push({ kind: 'routeCmd', uid: item.uid, routeListIndex: this.nodeRouteIndex(routeItem.listIndex) });
+            }
+            return this.normalizeRangeSelectionItems(out);
+        }
+        var tr = this.model && this.model.tracks ? this.model.tracks[this.selKey] : null;
+        if (!tr || !Array.isArray(tr.commands)) return [];
+        var domain = this.timelineSelectionDomainKey(item);
+        var hidden = this.computeIfBranchHiddenUidMapForTrack
+            ? this.computeIfBranchHiddenUidMapForTrack(tr)
+            : Object.create(null);
+        for (i = 0; i < tr.commands.length; i++) {
+            var commandEntry = tr.commands[i];
+            if (!commandEntry || !commandEntry.command || Number(commandEntry.command.code || 0) <= 0) continue;
+            if (hidden[String(Math.floor(Number(commandEntry.uid || 0)))]) continue;
+            var rowKey = String(commandEntry.rowKey || (commandEntry.rowType === 'char' ? ('char:' + commandEntry.charId) : 'main'));
+            if (domain !== 'row:' + rowKey) continue;
+            out.push({ kind: 'entry', uid: commandEntry.uid });
+        }
+        return this.normalizeRangeSelectionItems(out);
+    };
+
+    EE.prototype.timelineSelectionInclusiveRange = function(anchor, target) {
+        anchor = this.normalizeTimelineSelectionItem(anchor);
+        target = this.normalizeTimelineSelectionItem(target);
+        if (!anchor || !target) return target ? [target] : [];
+        if (this.timelineSelectionDomainKey(anchor) !== this.timelineSelectionDomainKey(target)) return [target];
+        var ordered = this.orderedTimelineSelectionItems(target);
+        var anchorKey = this.rangeSelectionItemKey(anchor);
+        var targetKey = this.rangeSelectionItemKey(target);
+        var ai = -1, ti = -1;
+        for (var i = 0; i < ordered.length; i++) {
+            var key = this.rangeSelectionItemKey(ordered[i]);
+            if (key === anchorKey) ai = i;
+            if (key === targetKey) ti = i;
+        }
+        if (ai < 0 || ti < 0) return [target];
+        return ordered.slice(Math.min(ai, ti), Math.max(ai, ti) + 1);
+    };
+
+    EE.prototype.applyTimelineItemSelection = function(items, focusItem, nonContiguous) {
+        items = this.normalizeRangeSelectionItems(items);
+        focusItem = this.normalizeTimelineSelectionItem(focusItem);
+        if (!items.length) {
+            this.clearRangeSelection();
+            this.selUid = 0;
+            this.selRouteListIndex = -1;
+            this.timelineDirty = true;
+            return;
+        }
+        var selectedMap = Object.create(null);
+        var frameStart = Infinity;
+        var frameEnd = 0;
+        for (var i = 0; i < items.length; i++) {
+            selectedMap[this.rangeSelectionItemKey(items[i])] = true;
+            var itemFrame = this.timelineSelectionItemFrame(items[i]);
+            frameStart = Math.min(frameStart, itemFrame);
+            frameEnd = Math.max(frameEnd, itemFrame);
+        }
+        if (!focusItem || !selectedMap[this.rangeSelectionItemKey(focusItem)]) focusItem = items[items.length - 1];
+        if (items.length === 1) {
+            this.clearRangeSelection();
+        } else {
+            this.setRangeSelection('items', items, {
+                frameStart: isFinite(frameStart) ? frameStart : 0,
+                frameEnd: frameEnd,
+                rects: [],
+                nonContiguous: !!nonContiguous
+            });
+        }
+        this.selUid = Math.floor(Number(focusItem.uid || 0));
+        this.selRouteListIndex = focusItem.kind === 'routeCmd'
+            ? this.nodeRouteIndex(focusItem.routeListIndex)
+            : -1;
+        this.frame = this.timelineSelectionItemFrame(focusItem);
+        this.timelineDirty = true;
+    };
+
+    EE.prototype.applyTimelineModifierSelection = function(target, inputEvent) {
+        target = this.normalizeTimelineSelectionItem(target);
+        if (!target) return false;
+        inputEvent = inputEvent || {};
+        var ctrl = !!(inputEvent.ctrlKey || inputEvent.metaKey);
+        var shift = !!inputEvent.shiftKey;
+        if (!ctrl && !shift) return false;
+        var current = this.timelineSelectionItemsWithCurrent();
+        var anchor = this.timelineSelectionAnchorItem() || this.currentTimelineSelectionItem() || (current.length ? current[0] : null);
+        var next = [];
+        if (shift) {
+            var sameDomain = !!anchor && this.timelineSelectionDomainKey(anchor) === this.timelineSelectionDomainKey(target);
+            var range = sameDomain ? this.timelineSelectionInclusiveRange(anchor, target) : [target];
+            next = ctrl ? current.concat(range) : range;
+            if (!sameDomain) this.setTimelineSelectionAnchorItem(target);
+        } else {
+            next = current.slice(0);
+            var targetKey = this.rangeSelectionItemKey(target);
+            var found = -1;
+            for (var i = 0; i < next.length; i++) {
+                if (this.rangeSelectionItemKey(next[i]) === targetKey) { found = i; break; }
+            }
+            if (found >= 0) next.splice(found, 1);
+            else next.push(target);
+            this.setTimelineSelectionAnchorItem(target);
+        }
+        next = this.normalizeRangeSelectionItems(next);
+        this.applyTimelineItemSelection(next, target, ctrl);
+        return true;
     };
 
     EE.prototype.rangeSelectionFrameRectFromFrames = function(a, b) {
@@ -9650,8 +5675,8 @@
                 e.charId = null;
             }
             if (!this.canPlaceEntry(temp, e, e.frame, e.rowKey, e.uid)) return false;
-            // Include already-validated moved entries so collisions between moved
-            // commands are also rejected (e.g. wait:false move-routes overlap).
+            // Include already-validated entries so wait locks and other real
+            // conflicts are checked between items in the same batch as well.
             temp.commands.push(clone(e));
         }
         return true;
@@ -9687,6 +5712,7 @@
         if (!tr || !Array.isArray(tr.commands)) return;
         var entryUids = this.selectedEntryUidsFromRange();
         var routeItems = this.selectedRouteCmdItemsFromRange();
+        var earliestChangedFrame = Math.max(0, Math.floor(Number(this.rangeSelection && this.rangeSelection.frameStart || 0)));
         var routeByUid = Object.create(null);
         for (var i = 0; i < routeItems.length; i++) {
             var ri = routeItems[i];
@@ -9723,10 +5749,8 @@
             });
         }
 
-        SH.sortTrackCommands(tr);
         this.clearRangeSelection();
-        this.dirty[this.selKey] = true;
-        this.rebuildSchedule();
+        this.commitTrackMutation({ earliestChangedFrame: earliestChangedFrame });
         this.seek(this.frame);
     };
 
@@ -9858,6 +5882,8 @@
             });
             this.selUid = 0;
             this.selRouteListIndex = -1;
+            var memoryItems = this.normalizeRangeSelectionItems(this.rangeSelection && this.rangeSelection.items || []);
+            this.setTimelineSelectionAnchorItem(memoryItems.length ? memoryItems[0] : null);
             this.timelineDirty = true;
             return true;
         }
@@ -9912,6 +5938,8 @@
         }
         this.selUid = 0;
         this.selRouteListIndex = -1;
+        var finalItems = this.normalizeRangeSelectionItems(this.rangeSelection && this.rangeSelection.items || []);
+        this.setTimelineSelectionAnchorItem(finalItems.length ? finalItems[0] : null);
         this.timelineDirty = true;
         return true;
     };
@@ -9923,6 +5951,14 @@
         var tr = this.model && this.model.tracks ? this.model.tracks[this.selKey] : null;
         if (!tr || !Array.isArray(tr.commands)) return false;
         var rs = this.rangeSelection || {};
+        var selectedItems = this.normalizeRangeSelectionItems(rs.items || []);
+        var hasEntryItems = false;
+        var hasRouteItems = false;
+        for (var si = 0; si < selectedItems.length; si++) {
+            if (selectedItems[si].kind === 'routeCmd') hasRouteItems = true;
+            else hasEntryItems = true;
+        }
+        if (hasEntryItems && hasRouteItems) return false;
         var mode = String(rs.kind || '');
         var drag = {
             kind: String(hit.kind || 'entry'),
@@ -10332,12 +6368,14 @@
                 de.frame = Math.max(0, Math.floor(Number(it.frame || 0)));
                 de.rowKey = String(it.rowKey || de.rowKey || 'main');
                 if (de.rowKey.indexOf('char:') === 0) {
+                    var oldCharId = this.normalizeMoveTarget(Number(de.charId || 0));
                     var cid = this.normalizeMoveTarget(Number(de.rowKey.replace('char:', '')));
                     de.rowType = 'char';
                     de.charId = cid;
                     if (de.command && Number(de.command.code || 0) === 205) {
                         if (!Array.isArray(de.command.parameters)) de.command.parameters = [cid, this.defaultMoveRoute()];
                         de.command.parameters[0] = cid;
+                        if (cid !== oldCharId) de.routeSymbolOrdinal = 0;
                     }
                 } else {
                     de.rowType = 'main';
@@ -10345,9 +6383,7 @@
                 }
             }
         }
-        SH.sortTrackCommands(tr);
-        this.dirty[this.selKey] = true;
-        this.rebuildSchedule();
+        this.commitTrackMutation({ earliestChangedFrame: 0 });
         this.seek(this.frame);
         return true;
     };
@@ -10601,10 +6637,7 @@
             return;
         }
         this.shrinkCurrentRangeSelectionAfterSqueeze(cap.removedFrames);
-        var tr = this.model && this.model.tracks ? this.model.tracks[this.selKey] : null;
-        if (tr && Array.isArray(tr.commands)) SH.sortTrackCommands(tr);
-        this.dirty[this.selKey] = true;
-        this.rebuildSchedule();
+        this.commitTrackMutation({ earliestChangedFrame: cap.start });
         this.seek(this.frame);
         this.refreshRouteRangeContextMenu();
         this.msg('詰める実行');
@@ -10787,10 +6820,8 @@
                 keepEmpty: true
             });
         }
-        this.dirty[this.selKey] = true;
-        this.rebuildSchedule();
+        this.commitTrackMutation({ earliestChangedFrame: fs });
         this.seek(this.frame);
-        this.timelineDirty = true;
         this.refreshRouteRangeContextMenu();
         this.msg('ウェイト整理: 追加 ' + insertedCount + ' / シフト ' + delta + 'f');
     };
@@ -10964,13 +6995,15 @@
             nextCommands.push(cur);
         }
         tr.commands = nextCommands;
-        SH.sortTrackCommands(tr);
         if (this.hasRangeSelection()) this.clearRangeSelection();
         this.selUid = keepUid;
         this.selRouteListIndex = -1;
         this.frame = Math.max(0, Math.floor(Number(keep.frame || 0)));
-        this.dirty[this.selKey] = true;
-        this.rebuildSchedule();
+        this.commitTrackMutation({
+            earliestChangedFrame: cap.entries.length
+                ? Math.max(0, Math.floor(Number(cap.entries[0].frame || 0)))
+                : keep.frame
+        });
         this.seek(this.frame);
         this.refreshRouteRangeContextMenu();
         this.msg('移動ルートを結合');
@@ -11208,10 +7241,12 @@
         for (i = 0; i < updates.length; i++) {
             updates[i].entry.messageExt = updates[i].ext;
         }
-        this.dirty[this.selKey] = true;
-        this.rebuildSchedule();
+        this.commitTrackMutation({
+            earliestChangedFrame: Math.min.apply(null, updates.map(function(update) {
+                return Math.max(0, Math.floor(Number(update.entry && update.entry.frame || 0)));
+            }))
+        });
         this.seek(this.frame);
-        this.timelineDirty = true;
         this.closeMessageBubbleBulkDialog();
         this.msg('ふきだし位置一括設定: ' + updates.length + '件');
     };
@@ -11701,7 +7736,9 @@
             var target = this.rowLabelForCharId(this.normalizeMoveTarget(Number(p[0] || 0)));
             var route = (p[1] && typeof p[1] === 'object') ? p[1] : null;
             var cmds = route && Array.isArray(route.list) ? Math.max(0, route.list.length - 1) : 0;
-            text = '対象:' + target + (route ? ' / 完了までウェイト:' + (route.wait ? 'ON' : 'OFF') + ' / コマンド数:' + cmds : '');
+            var routeSymbol = this.routeSymbolForEntry(entry);
+            text = '移動ルート' + routeSymbol + ' / 対象:' + target +
+                (route ? ' / 完了までウェイト:' + (route.wait ? 'ON' : 'OFF') + ' / コマンド数:' + cmds : '');
         } else {
             text = this.tooltipMainSchemaSummary(entry, code);
             if (!text.length) {
@@ -11752,7 +7789,7 @@
         var code = this.mainCommandDisplayCodeForEntry(entry);
         var nm = this.commandNameJa(code);
         if (entry.command && Number(entry.command.code || 0) === 205) {
-            nm += ' [' + this.rowLabelForCharId(this.normalizeMoveTarget(entry.charId)) + ']';
+            nm += this.routeSymbolForEntry(entry) + ' [' + this.rowLabelForCharId(this.normalizeMoveTarget(entry.charId)) + ']';
         }
         var out = [{ text: indent + '●' + nm, dim: !!opt.dim, color: cmdColor, bold: !!opt.bold, bulletWhite: true, bulletColor: bulletColor }];
         var detail = this.commandTooltipDetailText(entry);
@@ -12017,7 +8054,8 @@
                 var routeOwnerCharId = (routeOwnerEntry.charId == null)
                     ? Number((((routeOwnerEntry.command || {}).parameters || [0])[0] || 0))
                     : Number(routeOwnerEntry.charId || 0);
-                routeOwnerLabel = this.rowLabelForCharId(this.normalizeMoveTarget(routeOwnerCharId));
+                routeOwnerLabel = this.rowLabelForCharId(this.normalizeMoveTarget(routeOwnerCharId)) +
+                    ' / 移動ルート' + this.routeSymbolForEntry(routeOwnerEntry);
             }
         }
         if (hit.routeCmdCode != null) {
@@ -12056,7 +8094,8 @@
                 var eCharId = (e.charId == null)
                     ? Number((((e.command || {}).parameters || [0])[0] || 0))
                     : Number(e.charId || 0);
-                routeOwnerLabel = this.rowLabelForCharId(this.normalizeMoveTarget(eCharId));
+                routeOwnerLabel = this.rowLabelForCharId(this.normalizeMoveTarget(eCharId)) +
+                    ' / 移動ルート' + this.routeSymbolForEntry(e);
             }
             if (routeOwnerLabel) routeOut.unshift({ text: routeOwnerLabel, dim: false });
             return routeOut;
@@ -12085,71 +8124,6 @@
             if (i !== ls.length - 1) out.push('');
         }
         return out;
-    };
-
-    EE.prototype.wrapCanvasTextByWidth = function(ctx, text, maxWidth) {
-        text = String(text == null ? '' : text);
-        maxWidth = Math.max(8, Number(maxWidth || 120));
-        if (!text.length) return [''];
-        var out = [];
-        var cur = '';
-        for (var i = 0; i < text.length; i++) {
-            var ch = text.charAt(i);
-            if (ch === '\r') continue;
-            if (ch === '\n') {
-                out.push(cur);
-                cur = '';
-                continue;
-            }
-            var next = cur + ch;
-            if (ctx.measureText(next).width <= maxWidth || !cur.length) {
-                cur = next;
-            } else {
-                out.push(cur);
-                cur = ch;
-            }
-        }
-        out.push(cur);
-        return out;
-    };
-
-    EE.prototype.drawMemoLabelOnTimeline = function(ctx, x, y, size, text) {
-        if (!ctx) return;
-        text = this.memoNormalizeText(text);
-        if (!text.length) return;
-        size = this.memoNormalizeSize(size);
-        if (size === 'S') return;
-        var fontSize = (size === 'L') ? 12 : 10;
-        var maxWidth = (size === 'L') ? 180 : 120;
-        ctx.save();
-        ctx.font = 'bold ' + fontSize + 'px sans-serif';
-        var lines = this.wrapCanvasTextByWidth(ctx, text, maxWidth);
-        var lineH = fontSize + 2;
-        var widest = 0;
-        for (var i = 0; i < lines.length; i++) {
-            widest = Math.max(widest, Math.ceil(ctx.measureText(lines[i]).width));
-        }
-        var padX = 4;
-        var padY = 3;
-        var boxW = widest + padX * 2;
-        var boxH = lines.length * lineH + padY * 2;
-        var bx = Math.floor(x - boxW / 2);
-        var offsetY = (size === 'L') ? -40 : -20;
-        var by = Math.floor(y + offsetY);
-        // Allow requested offset even near the top of timeline.
-        // Keep only a very loose clamp so the box can still be mostly visible.
-        var minY = -boxH + 2;
-        if (by < minY) by = minY;
-        ctx.fillStyle = 'rgba(8,16,12,.72)';
-        ctx.strokeStyle = 'rgba(70,178,98,.52)';
-        ctx.lineWidth = 1;
-        ctx.fillRect(bx, by, boxW, boxH);
-        ctx.strokeRect(bx + 0.5, by + 0.5, Math.max(1, boxW - 1), Math.max(1, boxH - 1));
-        ctx.fillStyle = 'rgba(214,255,220,.98)';
-        for (i = 0; i < lines.length; i++) {
-            ctx.fillText(lines[i], bx + padX, by + padY + fontSize + i * lineH);
-        }
-        ctx.restore();
     };
 
     EE.prototype.renderMemoLabelOverlay = function(items) {
@@ -12367,21 +8341,6 @@
         var endEx = (Math.max(0, Math.floor(Number(entry.wait || 0))) > 0) ? end : (frame + 1);
         if (rowKey === 'main' && this.isIntervalLockedByMoveRouteWait(tr, frame, endEx, ignoreUid)) return false;
         if (rowKey.indexOf('char:') === 0 && this.isMoveRouteWaitEnabledEntry(entry) && this.hasMainCommandInRange(tr, frame, end, ignoreUid)) return false;
-        if (rowKey.indexOf('char:') === 0 && this.isMoveRouteWaitDisabledEntry(entry)) {
-            var routeRuntimeStart = frame;
-            var routeRuntimeEnd = routeRuntimeStart + this.routeExecutionSpanFramesForEntry(entry);
-            for (var ri = 0; ri < tr.commands.length; ri++) {
-                var re = tr.commands[ri];
-                if (!re) continue;
-                if (ignoreUid > 0 && Number(re.uid || 0) === ignoreUid) continue;
-                if (!this.isMoveRouteWaitDisabledEntry(re)) continue;
-                var rrk = re.rowKey || (re.rowType === 'char' ? ('char:' + re.charId) : 'main');
-                if (String(rrk) !== rowKey) continue;
-                var rs = Math.max(0, Math.floor(Number(re.frame || 0)));
-                var red = rs + this.routeExecutionSpanFramesForEntry(re);
-                if (routeRuntimeStart < red && rs < routeRuntimeEnd) return false;
-            }
-        }
         for (var i = 0; i < tr.commands.length; i++) {
             var o = tr.commands[i];
             if (!o || o.uid === ignoreUid) continue;
@@ -12394,12 +8353,12 @@
                 if (ow > 0) {
                     if (frame < oe && os < end) return false;
                 } else {
-                    // Non-wait commands at the same frame can run before this wait command.
+                    // Same-frame commands are serialized by executionOrder.
                     if (os > frame && os < end) return false;
                 }
             } else {
                 if (ow > 0) {
-                    // Allow same-frame placement; wait command executes last on that frame.
+                    // Same-frame placement is valid; executionOrder decides which runs first.
                     if (frame > os && frame < oe) return false;
                 }
             }
@@ -12523,32 +8482,6 @@
             }
         }
 
-        if (rowKey.indexOf('char:') === 0 && this.isMoveRouteWaitDisabledEntry(entry)) {
-            var runStart = frame;
-            var runEnd = runStart + this.routeExecutionSpanFramesForEntry(entry);
-            for (j = 0; j < tr.commands.length; j++) {
-                var rc = tr.commands[j];
-                if (!rc) continue;
-                if (ignoreUid > 0 && Number(rc.uid || 0) === ignoreUid) continue;
-                if (!this.isMoveRouteWaitDisabledEntry(rc)) continue;
-                var rrk = rc.rowKey || (rc.rowType === 'char' ? ('char:' + rc.charId) : 'main');
-                if (String(rrk) !== rowKey) continue;
-                var rcs = Math.max(0, Math.floor(Number(rc.frame || 0)));
-                var rce = rcs + this.routeExecutionSpanFramesForEntry(rc);
-                if (!(runStart < rce && rcs < runEnd)) continue;
-                out.ok = false;
-                out.reasons.push('same_char_route_wait_false_overlap');
-                out.blockers.push({
-                    type: 'same_char_route_wait_false_overlap',
-                    overlapStart: Math.max(runStart, rcs),
-                    overlapEnd: Math.min(runEnd, rce),
-                    blockerRangeStart: rcs,
-                    blockerRangeEnd: rce,
-                    blocker: this.entryConflictDebugInfo(rc)
-                });
-            }
-        }
-
         for (var k = 0; k < tr.commands.length; k++) {
             var o = tr.commands[k];
             if (!o) continue;
@@ -12633,2119 +8566,7 @@
         }
     };
 
-    //-------------------------------------------------------------------------
-    // Canvas primitives and final timeline rendering
-    //-------------------------------------------------------------------------
-
-    EE.prototype.buildMainLaneMap = function(tr, hiddenByIf) {
-        var laneByUid = {};
-        var maxStack = 1;
-        if (!tr || !tr.commands) return { laneByUid: laneByUid, maxStack: maxStack };
-        hiddenByIf = hiddenByIf || this.computeIfBranchHiddenUidMapForTrack(tr);
-        var byFrame = {};
-        for (var i = 0; i < tr.commands.length; i++) {
-            var e = tr.commands[i];
-            if (!e) continue;
-            if (hiddenByIf[String(Math.floor(Number(e.uid || 0)))]) continue;
-            // Comments are drawn in a separate marker lane, so they must not
-            // consume main command stack slots.
-            if (e.isComment || (e.command && Number(e.command.code || 0) === 108)) continue;
-            var rk = e.rowKey || (e.rowType === 'char' ? ('char:' + e.charId) : 'main');
-            if (rk !== 'main') continue;
-            var f = Math.max(0, Math.floor(Number(e.frame || 0)));
-            if (!byFrame[f]) byFrame[f] = [];
-            byFrame[f].push(e);
-        }
-        var frames = Object.keys(byFrame).map(function(v) { return Number(v); }).sort(function(a, b) { return a - b; });
-        for (var j = 0; j < frames.length; j++) {
-            var ls = byFrame[frames[j]];
-            ls.sort(function(a, b) { return compareEntriesByFrameWaitUid(a, b); });
-            for (var k = 0; k < ls.length; k++) laneByUid[ls[k].uid] = k;
-            if (ls.length > maxStack) maxStack = ls.length;
-        }
-        return { laneByUid: laneByUid, maxStack: Math.max(1, maxStack) };
-    };
-
-    EE.prototype.timelineCircleScale = function() {
-        return 1.3;
-    };
-
-    EE.prototype.scaleTimelineCircleRadius = function(radius) {
-        radius = Math.max(0, Number(radius || 0));
-        return radius * this.timelineCircleScale();
-    };
-
-    EE.prototype.timelineCircleOverlayDecision = function(x, y, radius, labelRight, rulerBottom, options) {
-        var r = this.scaleTimelineCircleRadius(radius);
-        x = Number(x || 0);
-        y = Number(y || 0);
-        labelRight = Number(labelRight || 0);
-        rulerBottom = Number(rulerBottom || 0);
-        options = options || {};
-        var forceVisible = !!options.forceVisible;
-        var overlapLeft = (x - r) < labelRight;
-        var overlapTop = (y - r) < rulerBottom;
-        var overlap = overlapLeft || overlapTop;
-        // More than half overlapped with either cover area => hide.
-        var hide = overlap && !forceVisible && (x < labelRight || y < rulerBottom);
-        return { overlap: overlap, hide: hide, radius: r };
-    };
-
-    EE.prototype.rectIntersectionArea = function(ax1, ay1, ax2, ay2, bx1, by1, bx2, by2) {
-        var ix1 = Math.max(Number(ax1 || 0), Number(bx1 || 0));
-        var iy1 = Math.max(Number(ay1 || 0), Number(by1 || 0));
-        var ix2 = Math.min(Number(ax2 || 0), Number(bx2 || 0));
-        var iy2 = Math.min(Number(ay2 || 0), Number(by2 || 0));
-        var iw = Math.max(0, ix2 - ix1);
-        var ih = Math.max(0, iy2 - iy1);
-        return iw * ih;
-    };
-
-    EE.prototype.ifBranchShapeOverlayDecision = function(shape, overlayRule) {
-        if (!shape || !overlayRule) return { overlap: false, hide: false, clips: [] };
-        var bd = this.ifBranchHighlightShapeBounds(shape);
-        if (!bd) return { overlap: false, hide: false, clips: [] };
-        var x1 = Number(bd.x1 || 0);
-        var y1 = Number(bd.y1 || 0);
-        var x2 = Number(bd.x2 || 0);
-        var y2 = Number(bd.y2 || 0);
-        var area = Math.max(1, Number(bd.area || ((x2 - x1) * (y2 - y1))) || 1);
-
-        var leftRect = {
-            x1: Number(overlayRule.labelLeft || 0),
-            y1: 0,
-            x2: Number(overlayRule.labelRight || 0),
-            y2: Number(overlayRule.totalHeight || 0)
-        };
-        var topRect = {
-            x1: 0,
-            y1: Number(overlayRule.rulerTop || 0),
-            x2: Number(overlayRule.totalWidth || 0),
-            y2: Number(overlayRule.rulerBottom || 0)
-        };
-
-        var areaLeft = this.rectIntersectionArea(x1, y1, x2, y2, leftRect.x1, leftRect.y1, leftRect.x2, leftRect.y2);
-        var areaTop = this.rectIntersectionArea(x1, y1, x2, y2, topRect.x1, topRect.y1, topRect.x2, topRect.y2);
-        var areaBoth = this.rectIntersectionArea(
-            x1, y1, x2, y2,
-            Math.max(leftRect.x1, topRect.x1),
-            Math.max(leftRect.y1, topRect.y1),
-            Math.min(leftRect.x2, topRect.x2),
-            Math.min(leftRect.y2, topRect.y2)
-        );
-        var overlapArea = Math.max(0, areaLeft + areaTop - areaBoth);
-        var overlap = overlapArea > 0;
-        var hide = overlap && overlapArea >= area * 0.5;
-
-        var clips = [];
-        if (overlap && !hide) {
-            if (areaLeft > 0) clips.push({ x: leftRect.x1, y: leftRect.y1, w: Math.max(0, leftRect.x2 - leftRect.x1), h: Math.max(0, leftRect.y2 - leftRect.y1) });
-            if (areaTop > 0) clips.push({ x: topRect.x1, y: topRect.y1, w: Math.max(0, topRect.x2 - topRect.x1), h: Math.max(0, topRect.y2 - topRect.y1) });
-        }
-        return { overlap: overlap, hide: hide, clips: clips };
-    };
-
-    EE.prototype.fillCircleWithBlackOutline = function(ctx, x, y, radius, options) {
-        if (!ctx) return;
-        var xNum = Number(x || 0);
-        var yNum = Number(y || 0);
-        var radiusRaw = Math.max(0, Number(radius || 0));
-        options = options || {};
-        var decision = null;
-        var overlayRule = this._timelineCircleOverlayRule;
-        if (overlayRule && overlayRule.active) {
-            decision = this.timelineCircleOverlayDecision(
-                xNum, yNum, radiusRaw,
-                Number(overlayRule.labelRight || 0),
-                Number(overlayRule.rulerBottom || 0),
-                { forceVisible: !!options.forceVisible }
-            );
-            if (decision.hide) return;
-        }
-        var radiusScaled = decision ? decision.radius : this.scaleTimelineCircleRadius(radiusRaw);
-        ctx.beginPath();
-        ctx.arc(xNum, yNum, radiusScaled, 0, Math.PI * 2);
-        ctx.fill();
-        ctx.strokeStyle = 'rgba(0,0,0,.98)';
-        ctx.lineWidth = 1;
-        ctx.stroke();
-        if (decision && decision.overlap && overlayRule && Array.isArray(overlayRule.queue)) {
-            overlayRule.queue.push({
-                x: xNum,
-                y: yNum,
-                radius: radiusScaled,
-                fillStyle: ctx.fillStyle
-            });
-        }
-    };
-
-    EE.prototype.fillRoundedRect = function(ctx, x, y, w, h, r) {
-        if (!ctx) return;
-        x = Number(x || 0);
-        y = Number(y || 0);
-        w = Math.max(0, Number(w || 0));
-        h = Math.max(0, Number(h || 0));
-        r = Math.max(0, Math.min(Number(r || 0), w * 0.5, h * 0.5));
-        ctx.beginPath();
-        ctx.moveTo(x + r, y);
-        ctx.lineTo(x + w - r, y);
-        ctx.arcTo(x + w, y, x + w, y + r, r);
-        ctx.lineTo(x + w, y + h - r);
-        ctx.arcTo(x + w, y + h, x + w - r, y + h, r);
-        ctx.lineTo(x + r, y + h);
-        ctx.arcTo(x, y + h, x, y + h - r, r);
-        ctx.lineTo(x, y + r);
-        ctx.arcTo(x, y, x + r, y, r);
-        ctx.fill();
-    };
-
-    EE.prototype.pathHandleRect = function(ctx, x, y, w, h, r, roundLeft, roundRight) {
-        if (!ctx) return;
-        x = Number(x || 0);
-        y = Number(y || 0);
-        w = Math.max(0, Number(w || 0));
-        h = Math.max(0, Number(h || 0));
-        r = Math.max(0, Math.min(Number(r || 0), w * 0.5, h * 0.5));
-        var rl = roundLeft ? r : 0;
-        var rr = roundRight ? r : 0;
-        ctx.beginPath();
-        ctx.moveTo(x + rl, y);
-        ctx.lineTo(x + w - rr, y);
-        if (rr > 0) ctx.arcTo(x + w, y, x + w, y + rr, rr);
-        else ctx.lineTo(x + w, y);
-        ctx.lineTo(x + w, y + h - rr);
-        if (rr > 0) ctx.arcTo(x + w, y + h, x + w - rr, y + h, rr);
-        else ctx.lineTo(x + w, y + h);
-        ctx.lineTo(x + rl, y + h);
-        if (rl > 0) ctx.arcTo(x, y + h, x, y + h - rl, rl);
-        else ctx.lineTo(x, y + h);
-        ctx.lineTo(x, y + rl);
-        if (rl > 0) ctx.arcTo(x, y, x + rl, y, rl);
-        else ctx.lineTo(x, y);
-        ctx.closePath();
-    };
-
-    EE.prototype.fillHandleRect = function(ctx, x, y, w, h, r, roundLeft, roundRight) {
-        this.pathHandleRect(ctx, x, y, w, h, r, roundLeft, roundRight);
-        ctx.fill();
-    };
-
-    EE.prototype.timelineWaitBarHeight = function(nodeRadiusRaw) {
-        var circleR = this.scaleTimelineCircleRadius(Math.max(1, Number(nodeRadiusRaw || 4)));
-        // Slightly thinner than the node diameter.
-        var h = circleR * 2 - this.scaleTimelineCircleRadius(1);
-        return Math.max(2, Math.min(h, this.rowH * 0.72));
-    };
-
-    EE.prototype.drawTimelineWaitStem = function(ctx, fromX, toX, centerY, color, nodeRadiusRaw) {
-        if (!ctx) return;
-        var x1 = Number(fromX || 0);
-        var x2 = Number(toX || 0);
-        var y = Number(centerY || 0);
-        var toRight = (x2 >= x1);
-        var tailShrink = this.scaleTimelineCircleRadius(Math.max(1, Number(nodeRadiusRaw || 4)));
-        // Shorten the tail side by one node radius.
-        x2 = toRight ? (x2 - tailShrink) : (x2 + tailShrink);
-        var w = Math.abs(x2 - x1);
-        if (w < 1) return;
-        var left = Math.min(x1, x2);
-        var h = this.timelineWaitBarHeight(nodeRadiusRaw);
-        var top = y - h * 0.5;
-        var rr = Math.max(1, Math.min(h * 0.5, w * 0.5));
-        ctx.fillStyle = String(color || 'rgba(114,205,255,.95)');
-        // Start side (node side) is square, tail side is rounded.
-        this.fillHandleRect(ctx, left, top, w, h, rr, !toRight, !!toRight);
-    };
-
-    EE.prototype.pathRoundRectCorners = function(ctx, x, y, w, h, tl, tr, br, bl) {
-        if (!ctx) return;
-        x = Number(x || 0);
-        y = Number(y || 0);
-        w = Math.max(0, Number(w || 0));
-        h = Math.max(0, Number(h || 0));
-        var maxR = Math.max(0, Math.min(w * 0.5, h * 0.5));
-        tl = Math.max(0, Math.min(maxR, Number(tl || 0)));
-        tr = Math.max(0, Math.min(maxR, Number(tr || 0)));
-        br = Math.max(0, Math.min(maxR, Number(br || 0)));
-        bl = Math.max(0, Math.min(maxR, Number(bl || 0)));
-        ctx.beginPath();
-        ctx.moveTo(x + tl, y);
-        ctx.lineTo(x + w - tr, y);
-        if (tr > 0) ctx.arcTo(x + w, y, x + w, y + tr, tr);
-        else ctx.lineTo(x + w, y);
-        ctx.lineTo(x + w, y + h - br);
-        if (br > 0) ctx.arcTo(x + w, y + h, x + w - br, y + h, br);
-        else ctx.lineTo(x + w, y + h);
-        ctx.lineTo(x + bl, y + h);
-        if (bl > 0) ctx.arcTo(x, y + h, x, y + h - bl, bl);
-        else ctx.lineTo(x, y + h);
-        ctx.lineTo(x, y + tl);
-        if (tl > 0) ctx.arcTo(x, y, x + tl, y, tl);
-        else ctx.lineTo(x, y);
-        ctx.closePath();
-    };
-
-    EE.prototype.fillRoundRectCorners = function(ctx, x, y, w, h, tl, tr, br, bl) {
-        this.pathRoundRectCorners(ctx, x, y, w, h, tl, tr, br, bl);
-        ctx.fill();
-    };
-
-    EE.prototype.strokeHandleRect = function(ctx, x, y, w, h, r, roundLeft, roundRight) {
-        this.pathHandleRect(ctx, x, y, w, h, r, roundLeft, roundRight);
-        ctx.stroke();
-    };
-
-    EE.prototype.strokeRoundedRect = function(ctx, x, y, w, h, r) {
-        if (!ctx) return;
-        x = Number(x || 0);
-        y = Number(y || 0);
-        w = Math.max(0, Number(w || 0));
-        h = Math.max(0, Number(h || 0));
-        r = Math.max(0, Math.min(Number(r || 0), w * 0.5, h * 0.5));
-        ctx.beginPath();
-        ctx.moveTo(x + r, y);
-        ctx.lineTo(x + w - r, y);
-        ctx.arcTo(x + w, y, x + w, y + r, r);
-        ctx.lineTo(x + w, y + h - r);
-        ctx.arcTo(x + w, y + h, x + w - r, y + h, r);
-        ctx.lineTo(x + r, y + h);
-        ctx.arcTo(x, y + h, x, y + h - r, r);
-        ctx.lineTo(x, y + r);
-        ctx.arcTo(x, y, x + r, y, r);
-        ctx.closePath();
-        ctx.stroke();
-    };
-
-    EE.prototype.commandNodePointForEntry = function(entry, rowMap, rmets) {
-        if (!entry || !rowMap || !rmets) return null;
-        var rk = entry.rowKey || (entry.rowType === 'char' ? ('char:' + entry.charId) : 'main');
-        var ri = rowMap[rk];
-        if (ri == null) return null;
-        var met = rmets[ri] || { top: this.rulerH + ri * this.rowH, height: this.rowH, center: this.rulerH + ri * this.rowH + Math.floor(this.rowH / 2) };
-        var y = met.center;
-        if (rk === 'main') {
-            var lane = this._mainLaneByUid && this._mainLaneByUid.hasOwnProperty(entry.uid) ? this._mainLaneByUid[entry.uid] : 0;
-            y = met.top + this.mainLaneTop + lane * this.mainLaneGap;
-        }
-        return {
-            x: this.frameToX(Math.max(0, Math.floor(Number(entry.frame || 0)))),
-            y: Math.floor(Number(y || 0))
-        };
-    };
-
-    EE.prototype.ifBranchHighlightFillColorForDepth = function(depth) {
-        depth = Math.max(0, Math.floor(Number(depth || 0)));
-        var factor = Math.pow(0.88, depth);
-        var r = Math.max(24, Math.min(255, Math.round(82 * factor)));
-        var g = Math.max(24, Math.min(255, Math.round(154 * factor)));
-        var b = Math.max(16, Math.min(255, Math.round(255 * factor)));
-        return 'rgb(' + r + ',' + g + ',' + b + ')';
-    };
-
-    EE.prototype.choiceBranchHighlightFillColorForDepth = function(depth) {
-        depth = Math.max(0, Math.floor(Number(depth || 0)));
-        var factor = Math.pow(0.90, depth);
-        var r = Math.max(36, Math.min(255, Math.round(255 * factor)));
-        var g = Math.max(20, Math.min(255, Math.round(108 * factor)));
-        var b = Math.max(44, Math.min(255, Math.round(188 * factor)));
-        return 'rgb(' + r + ',' + g + ',' + b + ')';
-    };
-
-    EE.prototype.ifBranchHighlightRadiusForEntry = function(entry) {
-        if (!entry || !entry.command) return this.scaleTimelineCircleRadius(4);
-        var code = Math.floor(Number(entry.command.code || 0));
-        if (code === 111) return this.scaleTimelineCircleRadius(4);
-        if (entry.isComment || code === 108) {
-            this.memoApplyParsedStateToEntry(entry);
-            var memoSize = entry.isMemo ? this.memoNormalizeSize(entry.memoSize) : 'S';
-            return this.scaleTimelineCircleRadius(this.memoCircleRadiusForSize(memoSize));
-        }
-        return this.scaleTimelineCircleRadius(4);
-    };
-
-    EE.prototype.ifBranchHighlightEndXForEntry = function(entry, fallbackX) {
-        var x = Number(fallbackX || 0);
-        if (!entry) return x;
-        var baseFrame = Math.max(0, Math.floor(Number(entry.frame || 0)));
-        var span = Math.max(0, Math.floor(Number(entry.wait || 0)));
-        if (entry.command && Number(entry.command.code || 0) === 205) {
-            span = Math.max(span, Math.max(1, this.routeExecutionSpanFramesForEntry(entry)));
-        }
-        if (span > 1) {
-            var ex = this.frameToX(baseFrame + span);
-            if (isFinite(ex)) x = Math.max(x, Number(ex));
-        }
-        return x;
-    };
-
-    EE.prototype.ifBranchHighlightShapeBounds = function(shape) {
-        if (!shape) return null;
-        if (Array.isArray(shape.segments) && shape.segments.length) {
-            var minX = Infinity, minY = Infinity, maxX = -Infinity, maxY = -Infinity;
-            var area = 0;
-            for (var i = 0; i < shape.segments.length; i++) {
-                var sg = shape.segments[i];
-                if (!sg) continue;
-                var x = Number(sg.x || 0);
-                var y = Number(sg.y || 0);
-                var w = Math.max(0, Number(sg.w || 0));
-                var h = Math.max(0, Number(sg.h || 0));
-                if (w <= 0 || h <= 0) continue;
-                minX = Math.min(minX, x);
-                minY = Math.min(minY, y);
-                maxX = Math.max(maxX, x + w);
-                maxY = Math.max(maxY, y + h);
-                area += w * h;
-            }
-            if (!isFinite(minX) || !isFinite(minY) || !isFinite(maxX) || !isFinite(maxY)) return null;
-            return { x1: minX, y1: minY, x2: maxX, y2: maxY, area: Math.max(1, area) };
-        }
-        var x1 = Number(shape.x || 0);
-        var y1 = Number(shape.y || 0);
-        var x2 = x1 + Math.max(0, Number(shape.w || 0));
-        var y2 = y1 + Math.max(0, Number(shape.h || 0));
-        return { x1: x1, y1: y1, x2: x2, y2: y2, area: Math.max(1, (x2 - x1) * (y2 - y1)) };
-    };
-
-    EE.prototype.drawIfBranchHighlightShape = function(ctx, shape) {
-        if (!ctx || !shape) return;
-        if (Array.isArray(shape.segments) && shape.segments.length) {
-            for (var i = 0; i < shape.segments.length; i++) {
-                var sg = shape.segments[i];
-                if (!sg) continue;
-                var x = Number(sg.x || 0);
-                var y = Number(sg.y || 0);
-                var w = Math.max(0, Number(sg.w || 0));
-                var h = Math.max(0, Number(sg.h || 0));
-                if (w <= 0 || h <= 0) continue;
-                if (sg.kind === 'rect') {
-                    ctx.fillRect(x, y, w, h);
-                    continue;
-                }
-                if (sg.kind === 'cornerRect') {
-                    this.fillRoundRectCorners(
-                        ctx,
-                        x,
-                        y,
-                        w,
-                        h,
-                        Math.max(0, Number(sg.tl || 0)),
-                        Math.max(0, Number(sg.tr || 0)),
-                        Math.max(0, Number(sg.br || 0)),
-                        Math.max(0, Number(sg.bl || 0))
-                    );
-                    continue;
-                }
-                this.fillHandleRect(
-                    ctx,
-                    x,
-                    y,
-                    w,
-                    h,
-                    Math.max(0, Number(sg.r || 0)),
-                    !!sg.roundLeft,
-                    !!sg.roundRight
-                );
-            }
-            return;
-        }
-        this.fillRoundedRect(
-            ctx,
-            Number(shape.x || 0),
-            Number(shape.y || 0),
-            Math.max(0, Number(shape.w || 0)),
-            Math.max(0, Number(shape.h || 0)),
-            Math.max(0, Number(shape.r || 0))
-        );
-    };
-
-    EE.prototype.collectIfBranchHighlightShapes = function(tr, rowMap, rmets, hiddenByIf) {
-        var out = [];
-        if (!tr || !Array.isArray(tr.commands) || !tr.commands.length) return out;
-        var view = this.computeIfBranchViewStateForTrack(tr);
-        var highlights = view.highlights || Object.create(null);
-        var info = view.info || {};
-        var allList = Array.isArray(info.list) ? info.list : [];
-        hiddenByIf = hiddenByIf || view.hidden || Object.create(null);
-
-        var addPoint = function(box, x, y, r) {
-            box.minX = Math.min(box.minX, x - r);
-            box.maxX = Math.max(box.maxX, x + r);
-            box.minY = Math.min(box.minY, y - r);
-            box.maxY = Math.max(box.maxY, y + r);
-        };
-
-        var keys = Object.keys(highlights);
-        for (var i = 0; i < keys.length; i++) {
-            var hk = String(keys[i] || '');
-            if (!hk.length) continue;
-            var hctx = highlights[hk];
-            if (!hctx) continue;
-            var b = hctx.block || null;
-            var startEntry = hctx.start || null;
-            if (!startEntry || !startEntry.command || Number(startEntry.command.code || 0) !== 111) continue;
-            var startUid = String(Math.floor(Number(startEntry.uid || 0)));
-            if (hiddenByIf[startUid]) continue;
-
-            var box = {
-                minX: Infinity,
-                maxX: -Infinity,
-                minY: Infinity,
-                maxY: -Infinity
-            };
-
-            var startPt = this.commandNodePointForEntry(startEntry, rowMap, rmets);
-            if (!startPt) continue;
-            var startRadius = this.ifBranchHighlightRadiusForEntry(startEntry);
-            addPoint(box, Number(startPt.x || 0), Number(startPt.y || 0), startRadius);
-
-            var endEntry = null;
-            var endIdx = Math.floor(Number((b && b.endIndex) || -1));
-            if (endIdx >= 0 && endIdx < allList.length) {
-                var endCand = allList[endIdx];
-                if (endCand && endCand.command && Number(endCand.command.code || 0) === 412) endEntry = endCand;
-            }
-
-            var members = Array.isArray(hctx.entries) ? hctx.entries : [];
-            var seen = Object.create(null);
-            var lastMember = null;
-            for (var li = 0; li < members.length; li++) {
-                var e = members[li];
-                if (!e || !e.command) continue;
-                var euid = Math.floor(Number(e.uid || 0));
-                if (euid > 0) {
-                    if (seen[euid]) continue;
-                    seen[euid] = true;
-                }
-                var code = Math.floor(Number(e.command.code || 0));
-                if (code === 411 || code === 412) continue;
-                var uid = String(euid);
-                if (hiddenByIf[uid]) continue;
-                var pt = this.commandNodePointForEntry(e, rowMap, rmets);
-                if (!pt) continue;
-                var px = Number(pt.x || 0);
-                var py = Number(pt.y || 0);
-                addPoint(box, px, py, this.ifBranchHighlightRadiusForEntry(e));
-                if (code === 205) {
-                    var span = Math.max(1, this.routeExecutionSpanFramesForEntry(e));
-                    var ex = this.frameToX(Math.max(0, Math.floor(Number(e.frame || 0))) + span);
-                    var rr = this.scaleTimelineCircleRadius(4);
-                    addPoint(box, Number(ex || px), py, rr);
-                }
-                if (!lastMember || compareEntriesByFrameWaitUid(e, lastMember) > 0) lastMember = e;
-            }
-            if (!endEntry) endEntry = lastMember || startEntry;
-            var endPt = this.commandNodePointForEntry(endEntry, rowMap, rmets) || startPt;
-            var endX = this.ifBranchHighlightEndXForEntry(endEntry, Number(endPt.x || 0));
-            var endRadius = this.ifBranchHighlightRadiusForEntry(endEntry);
-            addPoint(box, endX, Number(endPt.y || 0), endRadius);
-
-            if (!isFinite(box.minX) || !isFinite(box.maxX) || !isFinite(box.minY) || !isFinite(box.maxY)) continue;
-            var pad = this.scaleTimelineCircleRadius(2);
-            var yTop = Math.floor(box.minY - pad);
-            var yBottom = Math.ceil(box.maxY + pad);
-            var sxL = Math.floor(Number(startPt.x || 0) - startRadius - pad);
-            var sxR = Math.ceil(Number(startPt.x || 0) + startRadius + pad);
-            var exL = Math.floor(endX - endRadius - pad);
-            var exR = Math.ceil(endX + endRadius + pad);
-            var startTop = Math.max(yTop, Math.min(yBottom, Math.floor(Number(startPt.y || 0) - startRadius - pad)));
-            var endBottom = Math.max(yTop, Math.min(yBottom, Math.ceil(Number(endPt.y || 0) + endRadius + pad)));
-            var capR = Math.max(this.scaleTimelineCircleRadius(1.6), Math.min((sxR - sxL) * 0.49, (yBottom - yTop) * 0.49));
-
-            var fillStyle = this.ifBranchHighlightFillColorForDepth(Math.floor(Number((b && b.indent) || 0)));
-            var segments = [];
-            if (sxR < exL) {
-                var bodyW = Math.max(1, exL - sxR);
-                var bodyH = Math.max(1, yBottom - yTop);
-                var bodyCornerR = Math.max(
-                    this.scaleTimelineCircleRadius(1.0),
-                    Math.min(capR, Math.min(bodyW, bodyH) * 0.45)
-                );
-                var topAlignedWithStart = Math.abs(Number(yTop || 0) - Number(startTop || 0)) <= 0.5;
-                var bottomAlignedWithEnd = Math.abs(Number(yBottom || 0) - Number(endBottom || 0)) <= 0.5;
-                var bodyTl = topAlignedWithStart ? 0 : bodyCornerR;
-                var bodyBr = bottomAlignedWithEnd ? 0 : bodyCornerR;
-                segments.push({
-                    kind: 'handle',
-                    x: sxL,
-                    y: startTop,
-                    w: Math.max(1, sxR - sxL),
-                    h: Math.max(1, yBottom - startTop),
-                    r: capR,
-                    roundLeft: true,
-                    roundRight: false
-                });
-                segments.push({
-                    kind: 'cornerRect',
-                    x: sxR,
-                    y: yTop,
-                    w: bodyW,
-                    h: bodyH,
-                    tl: bodyTl,
-                    tr: 0,
-                    br: bodyBr,
-                    bl: 0
-                });
-                segments.push({
-                    kind: 'handle',
-                    x: exL,
-                    y: yTop,
-                    w: Math.max(1, exR - exL),
-                    h: Math.max(1, endBottom - yTop),
-                    r: capR,
-                    roundLeft: false,
-                    roundRight: true
-                });
-            } else {
-                var x = Math.floor(Math.min(sxL, exL, box.minX - pad));
-                var y = Math.floor(Math.min(startTop, yTop));
-                var w = Math.max(2, Math.ceil(Math.max(sxR, exR, box.maxX + pad) - x));
-                var h = Math.max(2, Math.ceil(Math.max(yBottom, endBottom) - y));
-                var r = Math.max(this.scaleTimelineCircleRadius(2.2), Math.min(w, h) * 0.46);
-                segments.push({ kind: 'roundRect', x: x, y: y, w: w, h: h, r: r, roundLeft: true, roundRight: true });
-            }
-
-            var area = 0;
-            var minX = Infinity, minY = Infinity, maxX = -Infinity, maxY = -Infinity;
-            for (var si = 0; si < segments.length; si++) {
-                var sg = segments[si];
-                if (!sg) continue;
-                var sw = Math.max(0, Number(sg.w || 0));
-                var sh = Math.max(0, Number(sg.h || 0));
-                if (sw <= 0 || sh <= 0) continue;
-                var sx = Number(sg.x || 0);
-                var sy = Number(sg.y || 0);
-                minX = Math.min(minX, sx);
-                minY = Math.min(minY, sy);
-                maxX = Math.max(maxX, sx + sw);
-                maxY = Math.max(maxY, sy + sh);
-                area += sw * sh;
-            }
-            if (!isFinite(minX) || !isFinite(minY) || !isFinite(maxX) || !isFinite(maxY)) continue;
-            out.push({
-                kind: 'branchStep',
-                x: minX,
-                y: minY,
-                w: Math.max(1, maxX - minX),
-                h: Math.max(1, maxY - minY),
-                area: Math.max(1, area),
-                segments: segments,
-                fillStyle: fillStyle
-            });
-        }
-        return out;
-    };
-
-    EE.prototype.choiceBranchActiveRangeForBlock = function(tr, info, block, modeMap) {
-        if (!block) return null;
-        info = info || {};
-        var list = Array.isArray(info.list) ? info.list : [];
-        if (!list.length) return null;
-        var choiceIndex = Math.max(0, Math.floor(Number(block.choiceIndex || 0)));
-        var endIndex = Math.floor(Number(block.endIndex || -1));
-        if (endIndex < 0 || endIndex > list.length) endIndex = list.length;
-        var selected = this.choiceBranchEffectiveResultForBlock(tr, info, block, modeMap);
-        var branches = Array.isArray(block.branches) ? block.branches : [];
-        var selectedBranch = null;
-        for (var i = 0; i < branches.length; i++) {
-            var br = branches[i];
-            if (!br) continue;
-            if (selected === -1) {
-                if (String(br.type || '') === 'cancel') {
-                    selectedBranch = br;
-                    break;
-                }
-                continue;
-            }
-            if (String(br.type || '') !== 'choice') continue;
-            if (Math.floor(Number(br.choiceIndex == null ? -1 : br.choiceIndex)) !== Math.floor(Number(selected || 0))) continue;
-            selectedBranch = br;
-            break;
-        }
-        var startIndex = choiceIndex + 1;
-        var stopIndex = startIndex;
-        if (selectedBranch) {
-            startIndex = Math.max(0, Math.floor(Number(selectedBranch.startIndex || startIndex)));
-            var brEnd = Math.floor(Number(selectedBranch.endIndex == null ? endIndex : selectedBranch.endIndex));
-            if (brEnd < 0 || brEnd > list.length) brEnd = endIndex;
-            stopIndex = Math.max(startIndex, brEnd);
-        }
-        startIndex = Math.max(0, Math.min(list.length, startIndex));
-        stopIndex = Math.max(startIndex, Math.min(list.length, stopIndex));
-        var endIndexInclusive = Math.max(startIndex - 1, Math.min(list.length - 1, Math.max(0, endIndex - 1)));
-        return {
-            selected: selected,
-            choiceIndex: choiceIndex,
-            endIndex: endIndex,
-            endIndexInclusive: endIndexInclusive,
-            startIndex: startIndex,
-            stopIndex: stopIndex
-        };
-    };
-
-    EE.prototype.collectChoiceBranchHighlightShapes = function(tr, rowMap, rmets, hiddenByIf) {
-        var out = [];
-        if (!tr || !Array.isArray(tr.commands) || !tr.commands.length) return out;
-        var info = this.computeChoiceBranchDisplayInfoForTrack(tr);
-        var allList = Array.isArray(info.list) ? info.list : [];
-        var blocks = Array.isArray(info.blocks) ? info.blocks : [];
-        if (!allList.length || !blocks.length) return out;
-        hiddenByIf = hiddenByIf || this.computeIfBranchHiddenUidMapForTrack(tr);
-        var modeMap = this.normalizeChoiceBranchViewModes(tr._eeChoiceBranchViewModes);
-
-        var addPoint = function(box, x, y, r) {
-            box.minX = Math.min(box.minX, x - r);
-            box.maxX = Math.max(box.maxX, x + r);
-            box.minY = Math.min(box.minY, y - r);
-            box.maxY = Math.max(box.maxY, y + r);
-        };
-
-        for (var i = 0; i < blocks.length; i++) {
-            var b = blocks[i];
-            if (!b) continue;
-            var choiceIndex = Math.floor(Number(b.choiceIndex == null ? -1 : b.choiceIndex));
-            if (choiceIndex < 0 || choiceIndex >= allList.length) continue;
-            var startEntry = allList[choiceIndex];
-            if (!startEntry || !startEntry.command || Number(startEntry.command.code || 0) !== 102) continue;
-            var startUid = String(Math.floor(Number(startEntry.uid || 0)));
-            if (hiddenByIf[startUid]) continue;
-            var range = this.choiceBranchActiveRangeForBlock(tr, info, b, modeMap);
-            if (!range) continue;
-
-            var box = {
-                minX: Infinity,
-                maxX: -Infinity,
-                minY: Infinity,
-                maxY: -Infinity
-            };
-            var startPt = this.commandNodePointForEntry(startEntry, rowMap, rmets);
-            if (!startPt) continue;
-            var startRadius = this.ifBranchHighlightRadiusForEntry(startEntry);
-            addPoint(box, Number(startPt.x || 0), Number(startPt.y || 0), startRadius);
-
-            var endEntry = null;
-            var endIdx = Math.floor(Number((b && b.endIndex) || -1));
-            if (endIdx >= 0 && endIdx < allList.length) {
-                var endCand = allList[endIdx];
-                if (endCand && endCand.command && Number(endCand.command.code || 0) === 404) endEntry = endCand;
-            }
-
-            var lastMember = null;
-            for (var li = range.startIndex; li < range.stopIndex; li++) {
-                var e = allList[li];
-                if (!e || !e.command) continue;
-                var code = Math.floor(Number(e.command.code || 0));
-                if (code === 402 || code === 403 || code === 404) continue;
-                var uidNum = Math.floor(Number(e.uid || 0));
-                if (uidNum > 0 && hiddenByIf[String(uidNum)]) continue;
-                var pt = this.commandNodePointForEntry(e, rowMap, rmets);
-                if (!pt) continue;
-                var px = Number(pt.x || 0);
-                var py = Number(pt.y || 0);
-                addPoint(box, px, py, this.ifBranchHighlightRadiusForEntry(e));
-                if (code === 205) {
-                    var span = Math.max(1, this.routeExecutionSpanFramesForEntry(e));
-                    var ex = this.frameToX(Math.max(0, Math.floor(Number(e.frame || 0))) + span);
-                    var rr = this.scaleTimelineCircleRadius(4);
-                    addPoint(box, Number(ex || px), py, rr);
-                }
-                if (!lastMember || compareEntriesByFrameWaitUid(e, lastMember) > 0) lastMember = e;
-            }
-            if (!endEntry) endEntry = lastMember || startEntry;
-            var endPt = this.commandNodePointForEntry(endEntry, rowMap, rmets) || startPt;
-            var endX = this.ifBranchHighlightEndXForEntry(endEntry, Number(endPt.x || 0));
-            var endRadius = this.ifBranchHighlightRadiusForEntry(endEntry);
-            addPoint(box, endX, Number(endPt.y || 0), endRadius);
-
-            if (!isFinite(box.minX) || !isFinite(box.maxX) || !isFinite(box.minY) || !isFinite(box.maxY)) continue;
-            var pad = this.scaleTimelineCircleRadius(2);
-            var yTop = Math.floor(box.minY - pad);
-            var yBottom = Math.ceil(box.maxY + pad);
-            var sxL = Math.floor(Number(startPt.x || 0) - startRadius - pad);
-            var sxR = Math.ceil(Number(startPt.x || 0) + startRadius + pad);
-            var exL = Math.floor(endX - endRadius - pad);
-            var exR = Math.ceil(endX + endRadius + pad);
-            var startTop = Math.max(yTop, Math.min(yBottom, Math.floor(Number(startPt.y || 0) - startRadius - pad)));
-            var endBottom = Math.max(yTop, Math.min(yBottom, Math.ceil(Number(endPt.y || 0) + endRadius + pad)));
-            var capR = Math.max(this.scaleTimelineCircleRadius(1.6), Math.min((sxR - sxL) * 0.49, (yBottom - yTop) * 0.49));
-
-            var fillStyle = this.choiceBranchHighlightFillColorForDepth(Math.floor(Number((b && b.indent) || 0)));
-            var segments = [];
-            if (sxR < exL) {
-                var bodyW = Math.max(1, exL - sxR);
-                var bodyH = Math.max(1, yBottom - yTop);
-                var bodyCornerR = Math.max(
-                    this.scaleTimelineCircleRadius(1.0),
-                    Math.min(capR, Math.min(bodyW, bodyH) * 0.45)
-                );
-                var topAlignedWithStart = Math.abs(Number(yTop || 0) - Number(startTop || 0)) <= 0.5;
-                var bottomAlignedWithEnd = Math.abs(Number(yBottom || 0) - Number(endBottom || 0)) <= 0.5;
-                var bodyTl = topAlignedWithStart ? 0 : bodyCornerR;
-                var bodyBr = bottomAlignedWithEnd ? 0 : bodyCornerR;
-                segments.push({
-                    kind: 'handle',
-                    x: sxL,
-                    y: startTop,
-                    w: Math.max(1, sxR - sxL),
-                    h: Math.max(1, yBottom - startTop),
-                    r: capR,
-                    roundLeft: true,
-                    roundRight: false
-                });
-                segments.push({
-                    kind: 'cornerRect',
-                    x: sxR,
-                    y: yTop,
-                    w: bodyW,
-                    h: bodyH,
-                    tl: bodyTl,
-                    tr: 0,
-                    br: bodyBr,
-                    bl: 0
-                });
-                segments.push({
-                    kind: 'handle',
-                    x: exL,
-                    y: yTop,
-                    w: Math.max(1, exR - exL),
-                    h: Math.max(1, endBottom - yTop),
-                    r: capR,
-                    roundLeft: false,
-                    roundRight: true
-                });
-            } else {
-                var x = Math.floor(Math.min(sxL, exL, box.minX - pad));
-                var y = Math.floor(Math.min(startTop, yTop));
-                var w = Math.max(2, Math.ceil(Math.max(sxR, exR, box.maxX + pad) - x));
-                var h = Math.max(2, Math.ceil(Math.max(yBottom, endBottom) - y));
-                var r = Math.max(this.scaleTimelineCircleRadius(2.2), Math.min(w, h) * 0.46);
-                segments.push({ kind: 'roundRect', x: x, y: y, w: w, h: h, r: r, roundLeft: true, roundRight: true });
-            }
-
-            var area = 0;
-            var minX = Infinity, minY = Infinity, maxX = -Infinity, maxY = -Infinity;
-            for (var si = 0; si < segments.length; si++) {
-                var sg = segments[si];
-                if (!sg) continue;
-                var sw = Math.max(0, Number(sg.w || 0));
-                var sh = Math.max(0, Number(sg.h || 0));
-                if (sw <= 0 || sh <= 0) continue;
-                var sx = Number(sg.x || 0);
-                var sy = Number(sg.y || 0);
-                minX = Math.min(minX, sx);
-                minY = Math.min(minY, sy);
-                maxX = Math.max(maxX, sx + sw);
-                maxY = Math.max(maxY, sy + sh);
-                area += sw * sh;
-            }
-            if (!isFinite(minX) || !isFinite(minY) || !isFinite(maxX) || !isFinite(maxY)) continue;
-            out.push({
-                kind: 'branchStep',
-                x: minX,
-                y: minY,
-                w: Math.max(1, maxX - minX),
-                h: Math.max(1, maxY - minY),
-                area: Math.max(1, area),
-                segments: segments,
-                fillStyle: fillStyle
-            });
-        }
-        return out;
-    };
-
-    EE.prototype.drawIfBranchHighlightShapes = function(ctx, shapes) {
-        if (!ctx || !Array.isArray(shapes) || !shapes.length) return;
-        var overlayRule = this._timelineIfBranchOverlayRule;
-        for (var i = 0; i < shapes.length; i++) {
-            var s = shapes[i];
-            if (!s) continue;
-            var decision = null;
-            if (overlayRule && overlayRule.active) {
-                decision = this.ifBranchShapeOverlayDecision(s, overlayRule);
-                if (decision.hide) continue;
-            }
-            ctx.fillStyle = String(s.fillStyle || 'rgb(82,154,255)');
-            this.drawIfBranchHighlightShape(ctx, s);
-            if (decision && decision.overlap && overlayRule && Array.isArray(overlayRule.queue) && decision.clips.length) {
-                overlayRule.queue.push({
-                    shape: clone(s),
-                    clips: decision.clips
-                });
-            }
-        }
-    };
-
-    EE.prototype.drawIfBranchHighlightShapesFront = function(ctx, queue) {
-        if (!ctx || !Array.isArray(queue) || !queue.length) return;
-        for (var i = 0; i < queue.length; i++) {
-            var q = queue[i];
-            if (!q || !q.shape || !Array.isArray(q.clips)) continue;
-            var s = q.shape;
-            for (var ci = 0; ci < q.clips.length; ci++) {
-                var clip = q.clips[ci];
-                if (!clip) continue;
-                var cw = Math.max(0, Number(clip.w || 0));
-                var ch = Math.max(0, Number(clip.h || 0));
-                if (cw <= 0 || ch <= 0) continue;
-                ctx.save();
-                ctx.beginPath();
-                ctx.rect(Number(clip.x || 0), Number(clip.y || 0), cw, ch);
-                ctx.clip();
-                ctx.fillStyle = String(s.fillStyle || 'rgb(82,154,255)');
-                this.drawIfBranchHighlightShape(ctx, s);
-                ctx.restore();
-            }
-        }
-    };
-
-    EE.prototype.drawSelectedCommandOrderButtons = function(ctx, rowMap, rmets) {
-        if (!ctx) return;
-        if (!this.selUid || this.nodeRouteIndex(this.selRouteListIndex) >= 0) {
-            this.orderButtonAnchorEntry = null;
-            return;
-        }
-        var info = this.sameFrameCommandMoveInfo(this.selUid);
-        if (!info.show) {
-            this.orderButtonAnchorEntry = null;
-            return;
-        }
-        var entry = this.findEntryInSelectedTrack(this.selUid);
-        if (!entry) {
-            this.orderButtonAnchorEntry = null;
-            return;
-        }
-        var pt = this.commandNodePointForEntry(entry, rowMap, rmets);
-        if (!pt) {
-            this.orderButtonAnchorEntry = null;
-            return;
-        }
-        var bw = 16;
-        var bh = 11;
-        var gap = 2;
-        var x = Math.floor(pt.x + 10);
-        if (this.orderButtonAnchorEntry !== entry) {
-            this.orderButtonAnchorEntry = entry;
-            this.orderButtonAnchorY = Math.floor(Number(pt.y || 0));
-        }
-        var anchorY = Math.floor(Number(this.orderButtonAnchorY || pt.y || 0));
-        var yTop = Math.floor(anchorY - (bh * 2 + gap) * 0.5);
-        x = Math.max(this.labelW + 2, Math.min(Math.max(this.labelW + 2, this.tw - bw - 2), x));
-        var self = this;
-        var drawBtn = function(dir, y, enabled) {
-            var x1 = x;
-            var y1 = y;
-            var x2 = x1 + bw;
-            var y2 = y1 + bh;
-            ctx.fillStyle = enabled ? 'rgba(54,132,225,.95)' : 'rgba(52,58,68,.72)';
-            self.fillRoundedRect(ctx, x1, y1, bw, bh, 3);
-            ctx.strokeStyle = enabled ? 'rgba(202,230,255,.92)' : 'rgba(128,140,156,.62)';
-            ctx.lineWidth = 1;
-            self.strokeRoundedRect(ctx, x1 + 0.5, y1 + 0.5, Math.max(1, bw - 1), Math.max(1, bh - 1), 3);
-            ctx.fillStyle = enabled ? 'rgba(245,251,255,.98)' : 'rgba(166,178,194,.74)';
-            var cx = x1 + Math.floor(bw / 2);
-            var cy = y1 + Math.floor(bh / 2);
-            ctx.beginPath();
-            if (dir === 'prev') {
-                ctx.moveTo(cx, cy - 3);
-                ctx.lineTo(cx - 4, cy + 2);
-                ctx.lineTo(cx + 4, cy + 2);
-            } else {
-                ctx.moveTo(cx, cy + 3);
-                ctx.lineTo(cx - 4, cy - 2);
-                ctx.lineTo(cx + 4, cy - 2);
-            }
-            ctx.closePath();
-            ctx.fill();
-            self.hitOrderButtons.push({
-                uid: Math.floor(Number(entry.uid || 0)),
-                dir: dir,
-                enabled: !!enabled,
-                x1: x1,
-                y1: y1,
-                x2: x2,
-                y2: y2
-            });
-        };
-        drawBtn('prev', yTop, !!info.canPrev);
-        drawBtn('next', yTop + bh + gap, !!info.canNext);
-    };
-
-    EE.prototype.drawSelectedBranchModeButtons = function(ctx, rowMap, rmets) {
-        if (!ctx) return;
-        if (!this.selUid || this.nodeRouteIndex(this.selRouteListIndex) >= 0) return;
-        var entry = this.findEntryInSelectedTrack(this.selUid);
-        if (!entry || !entry.command) return;
-        var commandCode = Math.floor(Number(entry.command.code || 0));
-        if (commandCode !== 111 && commandCode !== 102) return;
-        if (!this.isTimelineEntryVisibleByBranchMode(entry, this.selectedTrack())) {
-            return;
-        }
-        var pt = this.commandNodePointForEntry(entry, rowMap, rmets);
-        if (!pt) return;
-        var nodeOverlayRule = this._timelineIfBranchButtonOverlayRule;
-        if (nodeOverlayRule && nodeOverlayRule.active) {
-            var nodeDecision = this.timelineCircleOverlayDecision(
-                Number(pt.x || 0),
-                Number(pt.y || 0),
-                4,
-                Number(nodeOverlayRule.labelRight || 0),
-                Number(nodeOverlayRule.rulerBottom || 0),
-                { forceVisible: Math.max(0, Math.floor(Number(entry.frame || 0))) === 0 }
-            );
-            if (nodeDecision && nodeDecision.hide) return;
-        }
-        var isChoice = commandCode === 102;
-        var mode = isChoice ? this.getChoiceBranchViewModeForEntry(entry) : this.getIfBranchViewModeForEntry(entry);
-        var defs = [{ mode: 'auto', label: 'auto' }];
-        if (isChoice) {
-            var p = Array.isArray(entry.command.parameters) ? entry.command.parameters : [];
-            var choices = Array.isArray(p[0]) ? p[0].slice(0, 6) : [];
-            for (var di = 0; di < choices.length; di++) {
-                defs.push({ mode: String(di), label: String(di + 1) });
-            }
-            if (Math.floor(Number(p[1] == null ? -2 : p[1])) === -2) {
-                defs.push({ mode: 'cancel', label: 'cancel' });
-            }
-        } else {
-            defs.push({ mode: 'then', label: 'then' });
-            defs.push({ mode: 'else', label: 'else' });
-        }
-        ctx.save();
-        var scale = 1.4;
-        ctx.font = Math.max(9, Math.round(9 * scale)) + 'px sans-serif';
-        var h = Math.max(13, Math.round(13 * scale));
-        var gap = Math.max(2, Math.round(2 * scale));
-        var padX = Math.max(4, Math.round(4 * scale));
-        var minW = Math.max(18, Math.round(18 * scale));
-        var corner = Math.max(3, Math.round(3 * scale));
-        var maxW = 0;
-        for (var i = 0; i < defs.length; i++) {
-            var w = Math.max(minW, Math.ceil(ctx.measureText(String(defs[i].label || '')).width) + padX * 2);
-            if (w > maxW) maxW = w;
-        }
-        var columns = isChoice && defs.length > 4 ? 2 : 1;
-        var rows = Math.max(1, Math.ceil(defs.length / columns));
-        var totalW = columns * maxW + Math.max(0, columns - 1) * gap;
-        var totalH = rows * h + Math.max(0, rows - 1) * gap;
-        var x = Math.floor(Number(pt.x || 0) - Math.round(10 * scale) - totalW);
-        var y = Math.floor(Number(pt.y || 0) - totalH * 0.5);
-        // Keep buttons on the left side of the branch node even at frame 0.
-        x = Math.max(2, x);
-        y = Math.max(this.rulerH + 1, Math.min(Math.max(this.rulerH + 1, this.th - totalH - 2), y));
-        for (i = 0; i < defs.length; i++) {
-            var d = defs[i];
-            var w2 = maxW;
-            var selected = (mode === d.mode);
-            var col = Math.floor(i / rows);
-            var row = i % rows;
-            var bx = x + col * (maxW + gap);
-            var by = y + row * (h + gap);
-            ctx.fillStyle = selected
-                ? (isChoice ? 'rgba(205,64,184,.97)' : 'rgba(54,132,225,.97)')
-                : 'rgba(54,62,72,.82)';
-            this.fillRoundedRect(ctx, bx, by, w2, h, corner);
-            ctx.strokeStyle = selected
-                ? (isChoice ? 'rgba(255,214,246,.95)' : 'rgba(202,230,255,.95)')
-                : 'rgba(144,158,176,.70)';
-            ctx.lineWidth = 1;
-            this.strokeRoundedRect(ctx, bx + 0.5, by + 0.5, Math.max(1, w2 - 1), Math.max(1, h - 1), corner);
-            ctx.fillStyle = selected ? 'rgba(233,244,255,.98)' : 'rgba(232,238,248,.92)';
-            ctx.fillText(String(d.label || ''), bx + padX, by + Math.floor(h * 0.72));
-            this.hitIfBranchButtons.push({
-                uid: Math.floor(Number(entry.uid || 0)),
-                mode: String(d.mode || 'then'),
-                commandCode: commandCode,
-                x1: bx,
-                y1: by,
-                x2: bx + w2,
-                y2: by + h
-            });
-        }
-        ctx.restore();
-    };
-
-    EE.prototype.drawSelectedIfBranchModeButtons = function(ctx, rowMap, rmets) {
-        this.drawSelectedBranchModeButtons(ctx, rowMap, rmets);
-    };
-
-    EE.prototype.fitTimelineRangeLabel = function(ctx, text, maxPx) {
-        if (!ctx) return '';
-        text = String(text == null ? '' : text);
-        if (!text) return '';
-        maxPx = Math.max(0, Math.floor(Number(maxPx || 0)));
-        if (maxPx <= 0) return '';
-        if (ctx.measureText(text).width <= maxPx) return text;
-        var first = text.charAt(0);
-        if (!first) return '';
-        if (ctx.measureText(first).width > maxPx) return '';
-        var ell = '...';
-        if (ctx.measureText(first + ell).width > maxPx) return first;
-        var lo = 1, hi = text.length, best = first;
-        while (lo <= hi) {
-            var mid = Math.floor((lo + hi) / 2);
-            if (mid >= text.length) {
-                hi = mid - 1;
-                continue;
-            }
-            var cand = text.slice(0, mid) + ell;
-            if (ctx.measureText(cand).width <= maxPx) {
-                best = cand;
-                lo = mid + 1;
-            } else {
-                hi = mid - 1;
-            }
-        }
-        return best;
-    };
-
-    EE.prototype.drawFixedLabelColumn = function(ctx, rows, rmets, selectedRowKey, scrollLeft, totalHeight) {
-        if (!ctx) return;
-        rows = Array.isArray(rows) ? rows : [];
-        rmets = Array.isArray(rmets) ? rmets : [];
-        var fx = Math.max(0, Math.floor(Number(scrollLeft || 0)));
-        var h = Math.max(1, Math.floor(Number(totalHeight || 1)));
-        ctx.save();
-        ctx.fillStyle = 'rgba(8,14,20,.98)';
-        ctx.fillRect(fx, 0, this.labelW, h);
-        ctx.strokeStyle = 'rgba(255,255,255,.18)';
-        ctx.beginPath();
-        ctx.moveTo(fx + this.labelW + .5, 0);
-        ctx.lineTo(fx + this.labelW + .5, h);
-        ctx.stroke();
-        for (var i = 0; i < rows.length; i++) {
-            var mt = rmets[i] || { top: this.rulerH + i * this.rowH, height: this.rowH };
-            var y = mt.top;
-            var isSelRow = (rows[i] && rows[i].key === selectedRowKey);
-            if (isSelRow) {
-                ctx.fillStyle = 'rgba(146,102,68,.20)';
-                ctx.fillRect(fx, y, this.labelW, mt.height);
-                ctx.strokeStyle = 'rgba(186,136,98,.52)';
-                ctx.strokeRect(fx + .5, y + .5, this.labelW - 1, Math.max(1, mt.height - 1));
-            }
-            ctx.strokeStyle = 'rgba(255,255,255,.14)';
-            ctx.beginPath();
-            ctx.moveTo(fx, y + .5);
-            ctx.lineTo(fx + this.labelW, y + .5);
-            ctx.stroke();
-            ctx.font = isSelRow ? 'bold 11px sans-serif' : '11px sans-serif';
-            ctx.fillStyle = isSelRow ? 'rgba(232,214,196,.98)' : 'rgba(220,230,240,.88)';
-            ctx.fillText(rows[i].label, fx + 8, y + 17);
-        }
-        var lastY = this.rulerH;
-        if (rmets.length) {
-            var lm = rmets[rmets.length - 1];
-            lastY = lm.top + lm.height;
-        } else {
-            lastY = this.rulerH + rows.length * this.rowH;
-        }
-        ctx.strokeStyle = 'rgba(255,255,255,.14)';
-        ctx.beginPath();
-        ctx.moveTo(fx, lastY + .5);
-        ctx.lineTo(fx + this.labelW, lastY + .5);
-        ctx.stroke();
-        ctx.restore();
-    };
-
-    EE.prototype.drawStickyTimelineRuler = function(ctx, maxF, fixedLabelX, totalWidth, totalHeight) {
-        if (!ctx) return;
-        totalWidth = Math.max(1, Math.floor(Number(totalWidth || 1)));
-        totalHeight = Math.max(1, Math.floor(Number(totalHeight || 1)));
-        var rulerY = this.timelineRulerTopY(totalHeight);
-        var fx = Math.max(0, Math.floor(Number(fixedLabelX || 0)));
-        var labelRight = fx + this.labelW;
-        var visiblePx = this.visibleTimelinePixelRange(totalWidth);
-        var visibleLeft = Math.max(labelRight, visiblePx.left - 1);
-        var visibleRight = Math.min(totalWidth, visiblePx.right + 1);
-
-        ctx.save();
-        ctx.fillStyle = 'rgba(8,14,20,.98)';
-        ctx.fillRect(fx, rulerY, this.labelW, this.rulerH);
-        ctx.fillStyle = 'rgba(8,14,20,.95)';
-        ctx.fillRect(labelRight, rulerY, Math.max(1, totalWidth - labelRight), this.rulerH);
-
-        ctx.strokeStyle = 'rgba(255,255,255,.18)';
-        ctx.beginPath();
-        ctx.moveTo(labelRight + .5, rulerY);
-        ctx.lineTo(labelRight + .5, rulerY + this.rulerH);
-        ctx.stroke();
-
-        ctx.strokeStyle = 'rgba(255,255,255,.16)';
-        ctx.beginPath();
-        ctx.moveTo(fx, rulerY + this.rulerH + .5);
-        ctx.lineTo(totalWidth, rulerY + this.rulerH + .5);
-        ctx.stroke();
-
-        var pxPerFrame = Math.max(1 / 4096, Number(this.pxPerFrame || this.minPxPerFrame || 1));
-        var step = Math.max(1, this.niceFrameStep(80 / pxPerFrame));
-        var minorDiv = 6;
-        var frameStart = Math.max(0, this.xToFrame(visibleLeft) - step);
-        var frameEnd = Math.min(maxF, this.xToFrame(visibleRight) + step);
-        var majorStart = Math.floor(frameStart / step) * step;
-        for (var ms = majorStart; ms <= frameEnd; ms += step) {
-            for (var md = 1; md < minorDiv; md++) {
-                var mf = ms + step * (md / minorDiv);
-                if (mf > frameEnd || mf > maxF) break;
-                if (mf < frameStart) continue;
-                var mx = this.frameToX(mf) + .5;
-                if (mx < visibleLeft || mx > visibleRight) continue;
-                ctx.strokeStyle = 'rgba(255,255,255,.10)';
-                ctx.beginPath();
-                ctx.moveTo(mx, rulerY + this.rulerH - 5);
-                ctx.lineTo(mx, rulerY + this.rulerH);
-                ctx.stroke();
-            }
-        }
-
-        ctx.font = '10px sans-serif';
-        for (var f = majorStart; f <= frameEnd; f += step) {
-            if (f < frameStart || f > maxF) continue;
-            var x = this.frameToX(f) + .5;
-            if (x < visibleLeft || x > visibleRight) continue;
-            ctx.strokeStyle = 'rgba(255,255,255,.20)';
-            ctx.beginPath();
-            ctx.moveTo(x, rulerY + this.rulerH - 8);
-            ctx.lineTo(x, rulerY + this.rulerH);
-            ctx.stroke();
-            ctx.fillStyle = 'rgba(230,236,243,.88)';
-            ctx.fillText(String(f), x + 2, rulerY + 11);
-        }
-
-        if (Number(this.hoverFrame) >= 0) {
-            var hf = Math.max(0, Math.floor(Number(this.hoverFrame || 0)));
-            var hx = this.frameToX(hf) + .5;
-            var ht = String(hf) + 'f';
-            ctx.font = 'bold 10px sans-serif';
-            var hw = Math.ceil(ctx.measureText(ht).width) + 8;
-            var hxBox = Math.max(labelRight + 1, Math.min(Math.floor(hx - hw / 2), totalWidth - hw - 1));
-            var hyBox = rulerY + 2;
-            ctx.fillStyle = 'rgba(0,0,0,.78)';
-            ctx.fillRect(hxBox, hyBox, hw, 12);
-            ctx.strokeStyle = 'rgba(210,230,255,.85)';
-            ctx.strokeRect(hxBox + .5, hyBox + .5, hw - 1, 11);
-            ctx.fillStyle = 'rgba(240,248,255,.98)';
-            ctx.fillText(ht, hxBox + 4, hyBox + 9);
-            ctx.strokeStyle = 'rgba(210,230,255,.55)';
-            ctx.beginPath();
-            ctx.moveTo(hx, rulerY);
-            ctx.lineTo(hx, rulerY + this.rulerH);
-            ctx.stroke();
-        }
-
-        var px = this.frameToX(this.frame);
-        ctx.strokeStyle = 'rgba(100,255,175,.95)';
-        ctx.beginPath();
-        ctx.moveTo(px + .5, rulerY);
-        ctx.lineTo(px + .5, rulerY + this.rulerH);
-        ctx.stroke();
-        ctx.restore();
-    };
-
-    EE.prototype.drawTimeline = function() {
-        if (!this.timelineDirty) return;
-        this.timelineDirty = false;
-        var pulseNow = Date.now();
-        var pulseActive = this.pruneExecutionPulses(pulseNow);
-        var maxF = this.maxFrame();
-        this.syncTimelineSize(maxF);
-        var c = this.timeline.getContext('2d'), w = this.tw, h = this.th;
-        var fixedLabelX = this.timelineWrap ? Math.max(0, Math.floor(Number(this.timelineWrap.scrollLeft || 0))) : 0;
-        var fixedLabelRight = fixedLabelX + this.labelW;
-        var stickyRulerTop = this.timelineRulerTopY(h);
-        var stickyRulerBottom = stickyRulerTop + this.rulerH;
-        var circleFrontQueue = [];
-        var ifBranchFrontQueue = [];
-        this._timelineCircleOverlayRule = {
-            active: true,
-            labelRight: fixedLabelRight,
-            rulerBottom: stickyRulerBottom,
-            queue: circleFrontQueue
-        };
-        this._timelineIfBranchButtonOverlayRule = {
-            active: true,
-            labelRight: fixedLabelRight,
-            rulerBottom: stickyRulerBottom
-        };
-        this._timelineIfBranchOverlayRule = {
-            active: true,
-            labelLeft: fixedLabelX,
-            labelRight: fixedLabelRight,
-            rulerTop: stickyRulerTop,
-            rulerBottom: stickyRulerBottom,
-            totalWidth: w,
-            totalHeight: h,
-            queue: ifBranchFrontQueue
-        };
-        c.clearRect(0, 0, w, h);
-        c.fillStyle = 'rgba(4,10,16,.95)';
-        c.fillRect(0, 0, w, h);
-        c.fillStyle = 'rgba(8,14,20,.95)';
-        c.fillRect(0, 0, this.labelW, h);
-        c.fillStyle = 'rgba(8,14,20,.95)';
-        c.fillRect(this.labelW, 0, w - this.labelW, this.rulerH);
-
-        c.strokeStyle = 'rgba(255,255,255,.18)';
-        c.beginPath();
-        c.moveTo(this.labelW + .5, 0);
-        c.lineTo(this.labelW + .5, h);
-        c.stroke();
-
-        var pxPerFrame = Math.max(1 / 4096, Number(this.pxPerFrame || this.minPxPerFrame || 1));
-        var step = Math.max(1, this.niceFrameStep(80 / pxPerFrame));
-        var visibleFrames = this.visibleTimelineFrameRange(maxF, step, w);
-        var gridFrameStart = visibleFrames.start;
-        var gridFrameEnd = visibleFrames.end;
-        var gridMajorStart = Math.floor(gridFrameStart / step) * step;
-        var minorDiv = 6;
-        for (var ms = gridMajorStart; ms <= gridFrameEnd; ms += step) {
-            for (var md = 1; md < minorDiv; md++) {
-                var mf = ms + step * (md / minorDiv);
-                if (mf > gridFrameEnd || mf > maxF) break;
-                if (mf < gridFrameStart) continue;
-                var mx = this.frameToX(mf) + .5;
-                c.strokeStyle = 'rgba(255,255,255,.07)';
-                c.beginPath();
-                c.moveTo(mx, this.rulerH);
-                c.lineTo(mx, h);
-                c.stroke();
-            }
-        }
-        c.font = '10px sans-serif';
-        for (var f = gridMajorStart; f <= gridFrameEnd; f += step) {
-            if (f < gridFrameStart || f > maxF) continue;
-            var x = this.frameToX(f) + .5;
-            c.strokeStyle = 'rgba(255,255,255,.14)';
-            c.beginPath();
-            c.moveTo(x, this.rulerH);
-            c.lineTo(x, h);
-            c.stroke();
-            c.fillStyle = 'rgba(230,236,243,.75)';
-            c.fillText(String(f), x + 2, 11);
-        }
-        if (Number(this.hoverFrame) >= 0) {
-            var hf = Math.max(0, Math.floor(Number(this.hoverFrame || 0)));
-            var hx = this.frameToX(hf) + .5;
-            var ht = String(hf) + 'f';
-            c.font = 'bold 10px sans-serif';
-            var hw = Math.ceil(c.measureText(ht).width) + 8;
-            var hxBox = Math.max(fixedLabelX + this.labelW + 1, Math.min(Math.floor(hx - hw / 2), w - hw - 1));
-            var hyBox = 2;
-            c.fillStyle = 'rgba(0,0,0,.78)';
-            c.fillRect(hxBox, hyBox, hw, 12);
-            c.strokeStyle = 'rgba(210,230,255,.85)';
-            c.strokeRect(hxBox + .5, hyBox + .5, hw - 1, 11);
-            c.fillStyle = 'rgba(240,248,255,.98)';
-            c.fillText(ht, hxBox + 4, hyBox + 9);
-            c.strokeStyle = 'rgba(210,230,255,.55)';
-            c.beginPath();
-            c.moveTo(hx, 0);
-            c.lineTo(hx, this.rulerH);
-            c.stroke();
-        }
-
-        var tr = this.selectedTrack();
-        this.beginTrackReadCache(tr);
-        var rows = this._rows || [{ key: 'main', label: 'Main' }];
-        var rmets = this._rowMetrics || [];
-        var hideCircles = !!this.hideTimelineCircles;
-        var hideHandles = !!this.hideRouteHandles;
-        var selectedRowKey = (this.panelSelectedCharId == null)
-            ? 'main'
-            : ('char:' + this.normalizeMoveTarget(Number(this.panelSelectedCharId || 0)));
-        var hiddenByIf = tr ? this.computeIfBranchHiddenUidMapForTrack(tr) : Object.create(null);
-        this._timelineBranchHiddenTrack = tr;
-        this._timelineBranchHiddenUidMap = hiddenByIf;
-        var laneInfo = this.buildMainLaneMap(tr, hiddenByIf);
-        this._mainLaneByUid = laneInfo.laneByUid || {};
-        this._mainStackMax = laneInfo.maxStack || this._mainStackMax || 1;
-        var rowMap = {};
-        for (var i = 0; i < rows.length; i++) {
-            rowMap[rows[i].key] = i;
-            var mt = rmets[i] || { top: this.rulerH + i * this.rowH, height: this.rowH };
-            var y = mt.top;
-            var isSelRow = (rows[i] && rows[i].key === selectedRowKey);
-            if (isSelRow) {
-                c.fillStyle = 'rgba(146,102,68,.14)';
-                c.fillRect(this.labelW, y, w - this.labelW, mt.height);
-                c.fillStyle = 'rgba(146,102,68,.20)';
-                c.fillRect(0, y, this.labelW, mt.height);
-                c.strokeStyle = 'rgba(186,136,98,.52)';
-                c.strokeRect(.5, y + .5, this.labelW - 1, Math.max(1, mt.height - 1));
-            }
-            c.strokeStyle = 'rgba(255,255,255,.14)';
-            c.beginPath();
-            c.moveTo(0, y + .5);
-            c.lineTo(w, y + .5);
-            c.stroke();
-            c.font = isSelRow ? 'bold 11px sans-serif' : '11px sans-serif';
-            c.fillStyle = isSelRow ? 'rgba(232,214,196,.98)' : 'rgba(220,230,240,.88)';
-            c.fillText(rows[i].label, 8, y + 17);
-        }
-        var lastY = this.rulerH;
-        if (rmets.length) {
-            var lm = rmets[rmets.length - 1];
-            lastY = lm.top + lm.height;
-        } else {
-            lastY = this.rulerH + rows.length * this.rowH;
-        }
-        c.strokeStyle = 'rgba(255,255,255,.14)';
-        c.beginPath();
-        c.moveTo(0, lastY + .5);
-        c.lineTo(w, lastY + .5);
-        c.stroke();
-        if (tr) {
-            var shadeEndFrame = this.normalizeTrackEndFrame(tr);
-            var shadeX = Math.max(this.labelW, Math.floor(this.frameToX(shadeEndFrame)) + 1);
-            var visiblePx = this.visibleTimelinePixelRange(w);
-            var shadeVisibleLeft = Math.max(this.labelW, visiblePx.left);
-            var shadeVisibleRight = Math.max(shadeVisibleLeft, visiblePx.right);
-            var shadeDrawX = Math.max(shadeX, shadeVisibleLeft);
-            var shadeY = this.rulerH;
-            var shadeH = Math.max(1, lastY - shadeY);
-            var shadeW = Math.max(0, shadeVisibleRight - shadeDrawX);
-            if (shadeW > 0 && shadeH > 0) {
-                c.save();
-                c.beginPath();
-                c.rect(shadeDrawX, shadeY, shadeW, shadeH);
-                c.clip();
-                c.fillStyle = 'rgba(120,120,120,.10)';
-                c.fillRect(shadeDrawX, shadeY, shadeW, shadeH);
-                c.strokeStyle = 'rgba(190,190,190,.24)';
-                c.lineWidth = 1;
-                var hatchStep = 10;
-                var hatchStart = Math.floor(shadeDrawX - shadeH);
-                var hatchEnd = Math.ceil(shadeDrawX + shadeW + shadeH);
-                for (var hxi = hatchStart; hxi <= hatchEnd; hxi += hatchStep) {
-                    c.beginPath();
-                    c.moveTo(hxi, shadeY + shadeH);
-                    c.lineTo(hxi + shadeH, shadeY);
-                    c.stroke();
-                }
-                c.restore();
-                c.strokeStyle = 'rgba(200,200,200,.44)';
-                c.beginPath();
-                c.moveTo(shadeDrawX + .5, shadeY);
-                c.lineTo(shadeDrawX + .5, shadeY + shadeH);
-                c.stroke();
-            }
-        }
-
-        if (tr && tr.commands) {
-            var overlayFrameStart = Math.max(0, gridFrameStart - step);
-            var overlayFrameEnd = Math.min(maxF + 1, gridFrameEnd + step);
-            var ranges = this.collectMoveRouteWaitRanges(tr, 0);
-            var overlayTop = this.rulerH;
-            var overlayBottom = Math.max(overlayTop + 1, lastY);
-            var overlayHeight = Math.max(1, overlayBottom - overlayTop);
-            for (var wr = 0; wr < ranges.length; wr++) {
-                var rg = ranges[wr];
-                if (hiddenByIf[String(Math.floor(Number(rg && rg.uid || 0)))]) continue;
-                var rs = Math.max(overlayFrameStart, Math.floor(Number(rg.start || 0)));
-                var re = Math.min(overlayFrameEnd, Math.floor(Number(rg.end || 0)));
-                if (re <= rs) continue;
-                var sxr = this.frameToX(rs);
-                var exr = this.frameToX(re);
-                var bxr = Math.min(sxr, exr);
-                var bwr = Math.max(2, Math.abs(exr - sxr));
-                c.fillStyle = 'rgba(150,104,70,.10)';
-                c.fillRect(bxr, overlayTop, bwr, overlayHeight);
-                c.save();
-                c.beginPath();
-                c.rect(bxr, overlayTop, bwr, overlayHeight);
-                c.clip();
-                c.strokeStyle = 'rgba(186,136,98,.30)';
-                c.lineWidth = 1;
-                var hatchStep = 8;
-                var hatchStart = Math.floor(bxr - overlayHeight);
-                var hatchEnd = Math.ceil(bxr + bwr + overlayHeight);
-                for (var hx = hatchStart; hx <= hatchEnd; hx += hatchStep) {
-                    c.beginPath();
-                    c.moveTo(hx, overlayBottom);
-                    c.lineTo(hx + overlayHeight, overlayTop);
-                    c.stroke();
-                }
-                c.restore();
-                c.strokeStyle = 'rgba(186,136,98,.50)';
-                c.beginPath();
-                c.moveTo(bxr + 0.5, overlayTop);
-                c.lineTo(bxr + 0.5, overlayBottom);
-                c.moveTo(bxr + bwr - 0.5, overlayTop);
-                c.lineTo(bxr + bwr - 0.5, overlayBottom);
-                c.stroke();
-            }
-        }
-
-        var ifBranchShapes = this.collectIfBranchHighlightShapes(tr, rowMap, rmets, hiddenByIf);
-        this.drawIfBranchHighlightShapes(c, ifBranchShapes);
-        var choiceBranchShapes = this.collectChoiceBranchHighlightShapes(tr, rowMap, rmets, hiddenByIf);
-        this.drawIfBranchHighlightShapes(c, choiceBranchShapes);
-
-        this.hitNodes = [];
-        this.hitComments = [];
-        this.hitBars = [];
-        this.hitOrderButtons = [];
-        this.hitIfBranchButtons = [];
-        var memoLabelQueue = [];
-        var commentFrontQueue = [];
-        var drawnCommentAt = {};
-        var endMarkerGeom = null;
-        if (tr) {
-            var minEndFrame = this.trackComputedEndFrame(tr);
-            var baseEndFrame = this.normalizeTrackEndFrame(tr);
-            var drawEndFrame = baseEndFrame;
-            if (this.dragState && this.dragState.endMarker) {
-                var dsEnd = this.dragState;
-                var dTarget = (dsEnd.targetFrame == null) ? dsEnd.startFrame : dsEnd.targetFrame;
-                drawEndFrame = Math.max(minEndFrame, Math.floor(Number(dTarget || 0)));
-            }
-            endMarkerGeom = {
-                frame: drawEndFrame
-            };
-        }
-        if (tr && tr.commands) {
-            var commandCullStart = Math.max(0, gridFrameStart - Math.max(step, 8));
-            var commandCullEnd = Math.min(maxF + 1, gridFrameEnd + Math.max(step, 8));
-            for (i = 0; i < tr.commands.length; i++) {
-                var e = tr.commands[i];
-                if (!e) continue;
-                if (hiddenByIf[String(Math.floor(Number(e.uid || 0)))]) continue;
-                var ef = Math.max(0, Math.floor(Number(e.frame || 0)));
-                var ew = Math.max(0, Math.floor(Number(e.wait || 0)));
-                var ee = ef + this.timelineEntryVisualSpanFrames(e);
-                if (ee < commandCullStart || ef > commandCullEnd) continue;
-                var rk = e.rowKey || (e.rowType === 'char' ? ('char:' + e.charId) : 'main');
-                var ri = rowMap[rk];
-                if (ri == null) continue;
-                var met = rmets[ri] || { top: this.rulerH + ri * this.rowH, height: this.rowH, center: this.rulerH + ri * this.rowH + Math.floor(this.rowH / 2) };
-                var cy = met.center;
-                if (rk === 'main') {
-                    var lane = this._mainLaneByUid && this._mainLaneByUid.hasOwnProperty(e.uid) ? this._mainLaneByUid[e.uid] : 0;
-                    cy = met.top + this.mainLaneTop + lane * this.mainLaneGap;
-                }
-                var cx = this.frameToX(e.frame);
-                var wait = ew;
-                var sel = (e.uid === this.selUid && (this.selRouteListIndex == null || this.selRouteListIndex < 0)) || this.isEntryInRangeSelection(e.uid);
-                if (e.isComment || e.command.code === 108) {
-                    var ckey = rk + ':' + String(Math.max(0, Math.floor(Number(e.frame || 0))));
-                    if (drawnCommentAt[ckey]) continue;
-                    drawnCommentAt[ckey] = true;
-                    this.memoApplyParsedStateToEntry(e);
-                    var msize = e.isMemo ? this.memoNormalizeSize(e.memoSize) : 'S';
-                    var cr = this.memoCircleRadiusForSize(msize);
-                    // Keep comment marker on the border between ruler and timeline body.
-                    var ay = Math.max(0, Math.floor(Number(this.rulerH || 0))) + 1;
-                    if (!hideCircles) {
-                        var commentNodeColor = this.commandCircleDefaultColorForEntry(e, rk);
-                        c.fillStyle = this.commandMarkerFillColor(commentNodeColor, e, -1);
-                        this.fillCircleWithBlackOutline(c, cx, ay, cr);
-                        if (this.drawExecutionPulse(c, e.uid, -1, cx, ay, cr, pulseNow)) pulseActive = true;
-                        if (e.isMemo && msize !== 'S') memoLabelQueue.push({ x: cx, y: ay, size: msize, text: e.memoText || '' });
-                        commentFrontQueue.push({
-                            uid: e.uid,
-                            rowKey: rk,
-                            x: cx,
-                            y: ay,
-                            r: cr,
-                            sel: !!sel,
-                            hov: !!this.isNodeHovered(e.uid, -1)
-                        });
-                    }
-                    if (!hideCircles) {
-                        this.hitComments.push({
-                            uid: e.uid,
-                            x: cx,
-                            y: ay,
-                            r: cr,
-                            frame: e.frame,
-                            rowKey: rk,
-                            text: e.isMemo ? this.memoNormalizeText(e.memoText || '') : (e.commentLines || ['']).join('\n')
-                        });
-                    }
-                    if (!hideCircles) this.hitNodes.push({ uid: e.uid, x: cx, y: ay, r: Math.max(4, cr + 1), frame: e.frame, rowKey: rk });
-                    var hsel = sel;
-                    var hhov = this.isNodeHovered(e.uid, -1);
-                    if (!hideCircles && (hsel || hhov)) {
-                        c.strokeStyle = hsel ? 'rgba(60,140,235,.98)' : 'rgba(190,228,255,.95)';
-                        c.lineWidth = hsel ? 2 : 1;
-                        c.beginPath();
-                        c.arc(cx, ay, this.scaleTimelineCircleRadius((hsel ? 4 : 3) + cr), 0, Math.PI * 2);
-                        c.stroke();
-                        c.lineWidth = 1;
-                    }
-                    continue;
-                }
-                if (e.command && Number(e.command.code || 0) === 205 && rk.indexOf('char:') === 0) {
-                    var route = e.command.parameters && e.command.parameters[1];
-                    var routeWaitOn = !!(route && route.wait);
-                    var routeBarFillColor = routeWaitOn ? 'rgba(148,102,68,.38)' : 'rgba(132,92,62,.20)';
-                    var routeNodeDefaultColor = routeWaitOn ? 'rgba(194,146,104,.98)' : 'rgba(176,128,90,.98)';
-                    var routeNodeEntryColor = this.commandMarkerFillColor(routeNodeDefaultColor, e, -1);
-                    var routeHandleBaseColor = routeWaitOn ? 'rgba(170,122,84,1)' : 'rgba(156,112,78,1)';
-                    var tl = this.moveRouteTimeline(route);
-                    var total = Math.max(1, Math.floor(Number(e.wait || tl.totalFrames || 1)));
-                    var sx = this.frameToX(e.frame);
-                    var ex205 = this.frameToX(e.frame + total);
-                    var bx = Math.min(sx, ex205);
-                    var bw205 = Math.max(2, Math.abs(ex205 - sx));
-                    var by = cy - 7;
-                    var bh = 14;
-                    var hW = 7, hH = 12, hR = 3;
-                    var lhx = bx - hW - 2;
-                    var lhy = cy - Math.floor(hH / 2);
-                    var rhx = bx + bw205;
-                    var rhy = cy - Math.floor(hH / 2);
-                    // Extend visual range start to the left handle edge so no visual gap appears.
-                    var vbx = Math.min(bx, lhx + hW - 2);
-                    var vbw = Math.max(2, bw205 + (bx - vbx));
-                    c.fillStyle = routeBarFillColor;
-                    c.fillRect(vbx, by, vbw, bh);
-                    var rangeSel = (e.uid === this.selUid && (this.selRouteListIndex == null || this.selRouteListIndex < 0)) || this.isEntryInRangeSelection(e.uid);
-                    var rangeHover = this.isNodeHovered(e.uid, -1);
-                    var routeHx = Math.floor(lhx - 1);
-                    var routeHy = Math.floor(cy - Math.floor(hH / 2) - 1);
-                    var routeHw = Math.max(6, Math.ceil((rhx + hW) - lhx + 2));
-                    var routeHh = Math.max(6, Math.ceil(hH + 2));
-                    if (rangeSel || rangeHover) {
-                        if (rangeSel) {
-                            c.strokeStyle = 'rgba(40,24,12,.96)';
-                            c.lineWidth = 3;
-                            this.strokeRoundedRect(c, routeHx + .5, routeHy + .5, Math.max(1, routeHw - 1), Math.max(1, routeHh - 1), 4);
-                            c.strokeStyle = 'rgba(194,146,104,.98)';
-                            c.lineWidth = 2;
-                            this.strokeRoundedRect(c, routeHx + 1.5, routeHy + 1.5, Math.max(1, routeHw - 3), Math.max(1, routeHh - 3), 3);
-                        } else {
-                            c.strokeStyle = 'rgba(214,182,152,.95)';
-                            c.lineWidth = 1;
-                            this.strokeRoundedRect(c, routeHx + .5, routeHy + .5, Math.max(1, routeHw - 1), Math.max(1, routeHh - 1), 4);
-                        }
-                        c.lineWidth = 1;
-                    }
-                    var hColor = rangeSel ? 'rgba(194,146,104,1)' : (rangeHover ? 'rgba(214,182,152,1)' : routeHandleBaseColor);
-                    var kx = bx + Math.floor(bw205 / 2);
-                    var ky = by;
-                    var kW = 8, kH = 4, kr = 2;
-                    var kx1 = kx - Math.floor(kW / 2) - 1, ky1 = ky - Math.floor(kH / 2);
-                    if (!hideHandles) {
-                        c.fillStyle = hColor;
-                        // Left handle: anchorX=1 (right edge at bx), inner(right) side is square.
-                        this.fillHandleRect(c, lhx, lhy, hW, hH, hR, true, false);
-                        // Right handle: anchorX=0 (left edge at bx+bw205), inner(left) side is square.
-                        this.fillHandleRect(c, rhx, rhy, hW, hH, hR, false, true);
-                        this.fillRoundedRect(c, kx1, ky1, kW, kH, kr);
-                    }
-                    var hru = Number(this.hoverRangeUid || 0);
-                    var hrp = String(this.hoverRangePart || '');
-                    if (!hideHandles && hru === Number(e.uid || 0)) {
-                        var hs = rangeSel ? 'rgba(194,146,104,.98)' : 'rgba(214,182,152,.95)';
-                        c.strokeStyle = hs;
-                        c.lineWidth = rangeSel ? 2 : 1;
-                        if (hrp === 'left') this.strokeHandleRect(c, lhx + .5, lhy + .5, Math.max(1, hW - 1), Math.max(1, hH - 1), hR, true, false);
-                        else if (hrp === 'right') this.strokeHandleRect(c, rhx + .5, rhy + .5, Math.max(1, hW - 1), Math.max(1, hH - 1), hR, false, true);
-                        else if (hrp === 'move') this.strokeRoundedRect(c, kx1 + .5, ky1 + .5, Math.max(1, kW - 1), Math.max(1, kH - 1), kr);
-                        c.lineWidth = 1;
-                    }
-                    this.hitBars.push({
-                        uid: e.uid, x1: bx, x2: bx + bw205, y: cy, frame: e.frame, rowKey: rk,
-                        routeRangeUid: e.uid, routeRangePart: 'body', frameStart: e.frame, waitFrames: total
-                    });
-                    var items = tl.items || [];
-                    var hasVisibleRouteCmd = false;
-                    if (!items.length) {
-                        if (!hideCircles) {
-                            c.fillStyle = routeNodeEntryColor;
-                            this.fillCircleWithBlackOutline(c, cx, cy, 4);
-                        }
-                        var rsel0 = sel;
-                        var rhov0 = this.isNodeHovered(e.uid, -1);
-                            if (!hideCircles && (rsel0 || rhov0)) {
-                                if (rsel0) {
-                                    c.strokeStyle = 'rgba(40,24,12,.96)';
-                                    c.lineWidth = 3;
-                                    c.beginPath();
-                                    c.arc(cx, cy, this.scaleTimelineCircleRadius(8), 0, Math.PI * 2);
-                                    c.stroke();
-                                    c.strokeStyle = 'rgba(194,146,104,.98)';
-                                    c.lineWidth = 2;
-                                    c.beginPath();
-                                    c.arc(cx, cy, this.scaleTimelineCircleRadius(7), 0, Math.PI * 2);
-                                    c.stroke();
-                                } else {
-                                    c.strokeStyle = 'rgba(214,182,152,.95)';
-                                    c.lineWidth = 1;
-                                    c.beginPath();
-                                    c.arc(cx, cy, this.scaleTimelineCircleRadius(6), 0, Math.PI * 2);
-                                    c.stroke();
-                                }
-                                c.lineWidth = 1;
-                            }
-                        if (!hideCircles) {
-                            this.hitNodes.push({
-                                uid: e.uid, x: cx, y: cy, r: 5, frame: e.frame, rowKey: rk,
-                                routeCmdCode: null, routeListIndex: -1
-                            });
-                        }
-                    } else {
-                        for (var m = 0; m < items.length; m++) {
-                            var it = items[m];
-                            var rcode = Number((it && it.displayCode != null) ? it.displayCode : 0);
-                            var displayCode = rcode;
-                            if (displayCode <= 0 || displayCode === 15) continue;
-                            hasVisibleRouteCmd = true;
-                            var rf = e.frame + Math.max(0, Math.floor(Number(it.offset || 0)));
-                            var rcx = this.frameToX(rf);
-                            var spanFrames = Math.max(1, Math.floor(Number(it.span || 1)));
-                            var rli = Number(it.listIndex == null ? -1 : it.listIndex);
-                            var routeNodeFillColor = this.commandMarkerFillColor(routeNodeDefaultColor, e, rli);
-                            if (spanFrames > 1) {
-                                var rex = this.frameToX(rf + spanFrames);
-                                this.drawTimelineWaitStem(c, rcx, rex, cy, routeNodeFillColor, 4);
-                            }
-                            if (!hideCircles) {
-                                c.fillStyle = routeNodeFillColor;
-                                this.fillCircleWithBlackOutline(c, rcx, cy, 4);
-                                if (this.drawExecutionPulse(c, e.uid, rli, rcx, cy, 4, pulseNow)) pulseActive = true;
-                            }
-                            var rsel = (e.uid === this.selUid && this.selRouteListIndex === rli) || this.isRouteCmdInRangeSelection(e.uid, rli);
-                            var rhov = this.isNodeHovered(e.uid, rli);
-                            if (!hideCircles && (rsel || rhov)) {
-                                if (rsel) {
-                                    c.strokeStyle = 'rgba(40,24,12,.96)';
-                                    c.lineWidth = 3;
-                                    c.beginPath();
-                                    c.arc(rcx, cy, this.scaleTimelineCircleRadius(8), 0, Math.PI * 2);
-                                    c.stroke();
-                                    c.strokeStyle = 'rgba(194,146,104,.98)';
-                                    c.lineWidth = 2;
-                                    c.beginPath();
-                                    c.arc(rcx, cy, this.scaleTimelineCircleRadius(7), 0, Math.PI * 2);
-                                    c.stroke();
-                                } else {
-                                    c.strokeStyle = 'rgba(214,182,152,.95)';
-                                    c.lineWidth = 1;
-                                    c.beginPath();
-                                    c.arc(rcx, cy, this.scaleTimelineCircleRadius(6), 0, Math.PI * 2);
-                                    c.stroke();
-                                }
-                                c.lineWidth = 1;
-                            }
-                            if (!hideCircles) {
-                                this.hitNodes.push({
-                                    uid: e.uid, x: rcx, y: cy, r: 5, frame: rf, rowKey: rk,
-                                    routeCmdCode: displayCode, routeOffset: Number(it.offset || 0), routeIndex: m, routeListIndex: rli
-                                });
-                            }
-                        }
-                        if (!hasVisibleRouteCmd) {
-                            if (!hideCircles) {
-                                c.fillStyle = routeNodeEntryColor;
-                                this.fillCircleWithBlackOutline(c, cx, cy, 4);
-                                if (this.drawExecutionPulse(c, e.uid, -1, cx, cy, 4, pulseNow)) pulseActive = true;
-                            }
-                            var rsel1 = sel;
-                            var rhov1 = this.isNodeHovered(e.uid, -1);
-                            if (!hideCircles && (rsel1 || rhov1)) {
-                                if (rsel1) {
-                                    c.strokeStyle = 'rgba(40,24,12,.96)';
-                                    c.lineWidth = 3;
-                                    c.beginPath();
-                                    c.arc(cx, cy, this.scaleTimelineCircleRadius(8), 0, Math.PI * 2);
-                                    c.stroke();
-                                    c.strokeStyle = 'rgba(194,146,104,.98)';
-                                    c.lineWidth = 2;
-                                    c.beginPath();
-                                    c.arc(cx, cy, this.scaleTimelineCircleRadius(7), 0, Math.PI * 2);
-                                    c.stroke();
-                                } else {
-                                    c.strokeStyle = 'rgba(214,182,152,.95)';
-                                    c.lineWidth = 1;
-                                    c.beginPath();
-                                    c.arc(cx, cy, this.scaleTimelineCircleRadius(6), 0, Math.PI * 2);
-                                    c.stroke();
-                                }
-                                c.lineWidth = 1;
-                            }
-                            if (!hideCircles) {
-                                this.hitNodes.push({
-                                    uid: e.uid, x: cx, y: cy, r: 5, frame: e.frame, rowKey: rk,
-                                    routeCmdCode: null, routeListIndex: -1
-                                });
-                            }
-                        }
-                    }
-                    if (!hideHandles) {
-                        this.hitBars.push({
-                            uid: e.uid, x1: lhx, x2: lhx + hW, y: cy, frame: e.frame, rowKey: rk,
-                            routeRangeUid: e.uid, routeRangePart: 'left', frameStart: e.frame, waitFrames: total
-                        });
-                        this.hitBars.push({
-                            uid: e.uid, x1: rhx, x2: rhx + hW, y: cy, frame: e.frame, rowKey: rk,
-                            routeRangeUid: e.uid, routeRangePart: 'right', frameStart: e.frame, waitFrames: total
-                        });
-                        this.hitBars.push({
-                            uid: e.uid, x1: kx - 10, x2: kx + 10, y: ky, frame: e.frame, rowKey: rk,
-                            routeRangeUid: e.uid, routeRangePart: 'move', frameStart: e.frame, waitFrames: total
-                        });
-                    }
-                    continue;
-                }
-                var defaultNodeColor = this.commandCircleDefaultColorForEntry(e, rk);
-                var nodeFillColor = this.commandMarkerFillColor(defaultNodeColor, e, -1);
-                if (wait > 1 && Number(e.command && e.command.code || 0) !== 115) {
-                    var ex = this.frameToX(e.frame + wait);
-                    this.drawTimelineWaitStem(c, cx, ex, cy, nodeFillColor, 4);
-                    this.hitBars.push({ uid: e.uid, x1: Math.min(cx, ex), x2: Math.max(cx, ex), y: cy, frame: e.frame, rowKey: rk });
-                }
-                var cmdCode = (e.command ? Number(e.command.code || 0) : 0);
-                var isIfCommand = (cmdCode === 111);
-                var isAbortCommand = (cmdCode === 115);
-                var nodeRadius = isAbortCommand ? 5 : 4;
-                c.fillStyle = nodeFillColor;
-                if (!hideCircles) this.fillCircleWithBlackOutline(c, cx, cy, nodeRadius, {
-                    forceVisible: isIfCommand && Math.max(0, Math.floor(Number(e.frame || 0))) === 0
-                });
-                if (!hideCircles && this.drawExecutionPulse(c, e.uid, -1, cx, cy, nodeRadius, pulseNow)) pulseActive = true;
-                var gsel = sel;
-                var ghov = this.isNodeHovered(e.uid, -1);
-                if (!hideCircles && (gsel || ghov)) {
-                    c.strokeStyle = isAbortCommand
-                        ? (gsel ? 'rgba(236,236,236,.98)' : 'rgba(210,220,236,.95)')
-                        : (isIfCommand
-                            ? (gsel ? 'rgba(54,126,225,.98)' : 'rgba(180,218,255,.95)')
-                            : (gsel ? 'rgba(60,140,235,.98)' : 'rgba(190,228,255,.95)'));
-                    c.lineWidth = gsel ? 2 : 1;
-                    c.beginPath();
-                    c.arc(cx, cy, this.scaleTimelineCircleRadius(gsel ? (nodeRadius + 3) : (nodeRadius + 2)), 0, Math.PI * 2);
-                    c.stroke();
-                    c.lineWidth = 1;
-                }
-                if (!hideCircles) this.hitNodes.push({ uid: e.uid, x: cx, y: cy, r: nodeRadius + 1, frame: e.frame, rowKey: rk });
-            }
-        }
-
-        if (endMarkerGeom) {
-            var mainRiEnd = rowMap.main;
-            var mainMetEnd = (mainRiEnd != null) ? (rmets[mainRiEnd] || null) : null;
-            var endTailLane = Math.max(0, this.mainVisibleStackCountAtFrame(tr, endMarkerGeom.frame, hiddenByIf));
-            endMarkerGeom.x = this.frameToX(endMarkerGeom.frame);
-            endMarkerGeom.y = mainMetEnd
-                ? (Number(mainMetEnd.top || this.rulerH) + this.mainLaneTop + endTailLane * this.mainLaneGap)
-                : (this.rulerH + Math.floor(this.rowH / 2));
-            endMarkerGeom.r = 5;
-            if (!hideCircles) {
-                c.fillStyle = 'rgba(170,170,170,.98)';
-                this.fillCircleWithBlackOutline(c, endMarkerGeom.x, endMarkerGeom.y, endMarkerGeom.r);
-                var endActive = !!(this.dragState && this.dragState.endMarker) || !!this.hoverEndMarker;
-                if (endActive) {
-                    c.strokeStyle = (this.dragState && this.dragState.endMarker) ? 'rgba(236,236,236,.98)' : 'rgba(210,220,236,.95)';
-                    c.lineWidth = (this.dragState && this.dragState.endMarker) ? 2 : 1;
-                    c.beginPath();
-                    c.arc(endMarkerGeom.x, endMarkerGeom.y, this.scaleTimelineCircleRadius(8), 0, Math.PI * 2);
-                    c.stroke();
-                    c.lineWidth = 1;
-                }
-                this.hitNodes.push({
-                    uid: 0,
-                    isEndMarker: true,
-                    x: endMarkerGeom.x,
-                    y: endMarkerGeom.y,
-                    r: 6,
-                    frame: endMarkerGeom.frame,
-                    rowKey: 'main'
-                });
-            }
-        }
-
-        this.drawSelectedCommandOrderButtons(c, rowMap, rmets);
-
-        if (this.dragState && this.dragState.uid && this.dragState.moved) {
-            var ds = this.dragState;
-            if (ds.isRangeDrag) {
-                var de = this.findEntryInSelectedTrack(ds.uid);
-                var drk = de ? (de.rowKey || (de.rowType === 'char' ? ('char:' + de.charId) : 'main')) : ds.targetRowKey;
-                var dri = rowMap[drk];
-                if (dri != null) {
-                    var dmet = rmets[dri] || { top: this.rulerH + dri * this.rowH, height: this.rowH, center: this.rulerH + dri * this.rowH + Math.floor(this.rowH / 2) };
-                    var dcy = dmet.center;
-                    var dby = dcy - 7, dbh = 14;
-                    var oldStart = Math.max(0, Math.floor(Number(ds.startEntryFrame || (de ? de.frame : 0))));
-                    var oldWaitBase = Number(ds.startWait || 0);
-                    if (oldWaitBase <= 0 && de && de.command && Number(de.command.code || 0) === 205 &&
-                        typeof this.routeExecutionSpanFramesForEntry === 'function') {
-                        oldWaitBase = Number(this.routeExecutionSpanFramesForEntry(de) || 0);
-                    }
-                    if (oldWaitBase <= 0) oldWaitBase = Number(de ? de.wait : 1);
-                    var oldWait = Math.max(1, Math.floor(oldWaitBase));
-                    var newStart = Math.max(0, Math.floor(Number(ds.targetFrame || oldStart)));
-                    var newWait = Math.max(1, Math.floor(Number(ds.targetWait || oldWait)));
-                    var ox1 = this.frameToX(oldStart), ox2 = this.frameToX(oldStart + oldWait);
-                    var nx1 = this.frameToX(newStart), nx2 = this.frameToX(newStart + newWait);
-                    var obx = Math.min(ox1, ox2), obw = Math.max(2, Math.abs(ox2 - ox1));
-                    var nbx = Math.min(nx1, nx2), nbw = Math.max(2, Math.abs(nx2 - nx1));
-
-                    c.fillStyle = 'rgba(255,255,255,.08)';
-                    c.fillRect(obx, dby, obw, dbh);
-                    c.strokeStyle = 'rgba(255,255,255,.24)';
-                    c.lineWidth = 1;
-                    c.strokeRect(obx + .5, dby + .5, Math.max(1, obw - 1), Math.max(1, dbh - 1));
-
-                    c.fillStyle = ds.valid ? 'rgba(100,255,170,.28)' : 'rgba(255,120,120,.28)';
-                    c.fillRect(nbx, dby, nbw, dbh);
-                    c.strokeStyle = ds.valid ? 'rgba(100,255,170,.94)' : 'rgba(255,120,120,.94)';
-                    c.lineWidth = 2;
-                    c.strokeRect(nbx + .5, dby + .5, Math.max(1, nbw - 1), Math.max(1, dbh - 1));
-                    c.lineWidth = 1;
-
-                    var dPart = String(ds.rangePart || '');
-                    if (dPart === 'left' || dPart === 'right') {
-                        var dFrame = newWait - oldWait;
-                        var dText = (dFrame >= 0 ? '+' : '') + dFrame + 'f';
-                        c.font = 'bold 11px sans-serif';
-                        var tw = Math.ceil(c.measureText(dText).width) + 8;
-                        var tx = Math.floor(nbx + nbw / 2 - tw / 2);
-                        var ty = Math.floor(dby - 18);
-                        c.fillStyle = 'rgba(0,0,0,.78)';
-                        c.fillRect(tx, ty, tw, 14);
-                        c.strokeStyle = 'rgba(255,255,255,.22)';
-                        c.strokeRect(tx + .5, ty + .5, tw - 1, 13);
-                        c.fillStyle = ds.valid ? 'rgba(170,255,205,.98)' : 'rgba(255,196,196,.98)';
-                        c.fillText(dText, tx + 4, ty + 10);
-                    }
-                }
-            } else {
-                var di = rowMap[ds.targetRowKey];
-                if (di != null) {
-                    var dy = this.rulerH + di * this.rowH + Math.floor(this.rowH / 2);
-                    var dx = this.frameToX(ds.targetFrame);
-                    if (!hideCircles) {
-                        c.fillStyle = ds.valid ? 'rgba(100,255,170,.9)' : 'rgba(255,120,120,.9)';
-                        this.fillCircleWithBlackOutline(c, dx, dy, 5);
-                    }
-                }
-            }
-        }
-
-        if (this.hasRangeSelection()) {
-            var rs = this.rangeSelection || {};
-            var srects = Array.isArray(rs.rects) ? rs.rects : [];
-            for (var sri = 0; sri < srects.length; sri++) {
-                var src = srects[sri];
-                if (!src) continue;
-                var sx1 = Math.min(Number(src.x1 || 0), Number(src.x2 || 0));
-                var sx2 = Math.max(Number(src.x1 || 0), Number(src.x2 || 0));
-                var sy1 = Math.min(Number(src.y1 || 0), Number(src.y2 || 0));
-                var sy2 = Math.max(Number(src.y1 || 0), Number(src.y2 || 0));
-                var sw = Math.max(1, sx2 - sx1);
-                var sh = Math.max(1, sy2 - sy1);
-                c.fillStyle = 'rgba(88,168,255,.10)';
-                c.fillRect(sx1, sy1, sw, sh);
-                c.strokeStyle = 'rgba(118,198,255,.78)';
-                c.lineWidth = 1;
-                c.strokeRect(sx1 + .5, sy1 + .5, Math.max(1, sw - 1), Math.max(1, sh - 1));
-            }
-        }
-
-        if (this.rangeSelectDrag) {
-            var rsd = this.rangeSelectDrag;
-            var rsi = this.rangeSelectDragFrameInfo(rsd);
-            var dr = rsi && rsi.rect ? rsi.rect : this.normalizeCanvasRect(rsd.startX, rsd.startY, rsd.currentX, rsd.currentY);
-            var dx1 = Math.min(Number(dr.x1 || 0), Number(dr.x2 || 0));
-            var dx2 = Math.max(Number(dr.x1 || 0), Number(dr.x2 || 0));
-            var dy1 = Math.min(Number(dr.y1 || 0), Number(dr.y2 || 0));
-            var dy2 = Math.max(Number(dr.y1 || 0), Number(dr.y2 || 0));
-            var dw = Math.max(1, dx2 - dx1);
-            var dh = Math.max(1, dy2 - dy1);
-            c.fillStyle = 'rgba(88,168,255,.16)';
-            c.fillRect(dx1, dy1, dw, dh);
-            c.strokeStyle = 'rgba(128,212,255,.95)';
-            c.lineWidth = 1;
-            c.strokeRect(dx1 + .5, dy1 + .5, Math.max(1, dw - 1), Math.max(1, dh - 1));
-            if (rsi) {
-                var dragText = '選択中: ' + rsi.frameCount + 'f';
-                c.save();
-                c.font = 'bold 12px sans-serif';
-                var padX = 7;
-                var padY = 4;
-                var tw2 = Math.ceil(c.measureText(dragText).width);
-                var bw2 = tw2 + padX * 2;
-                var bh2 = 20;
-                var bx2 = Math.floor(dx1 + 4);
-                var by2 = Math.floor(dy1 - bh2 - 4);
-                if (by2 < 2) by2 = Math.floor(dy2 + 4);
-                if (bx2 + bw2 > this.tw - 2) bx2 = Math.max(2, Math.floor(this.tw - bw2 - 2));
-                c.fillStyle = 'rgba(14,30,42,.92)';
-                this.fillRoundedRect(c, bx2, by2, bw2, bh2, 4);
-                c.strokeStyle = 'rgba(128,212,255,.92)';
-                c.lineWidth = 1;
-                this.strokeRoundedRect(c, bx2 + .5, by2 + .5, Math.max(1, bw2 - 1), Math.max(1, bh2 - 1), 4);
-                c.fillStyle = 'rgba(208,236,255,.98)';
-                c.fillText(dragText, bx2 + padX, by2 + 14);
-                c.restore();
-            }
-        }
-
-        if (this.rangeMoveDrag && this.rangeMoveDrag.moved) {
-            var rmd = this.rangeMoveDrag;
-            var okCol = rmd.valid ? 'rgba(100,255,170,.94)' : 'rgba(255,120,120,.94)';
-            var okFill = rmd.valid ? 'rgba(100,255,170,.24)' : 'rgba(255,120,120,.24)';
-            if (rmd.kind === 'routeCmd') {
-                var re = this.findEntryInSelectedTrack(Number(rmd.previewRouteUid || 0));
-                var rrk = re ? String(re.rowKey || 'main') : '';
-                var rri = rowMap[rrk];
-                if (rri != null && re && rmd.previewRouteBlocks && rmd.previewRouteBlocks.length) {
-                    var rmet = rmets[rri] || { top: this.rulerH + rri * this.rowH, height: this.rowH, center: this.rulerH + rri * this.rowH + Math.floor(this.rowH / 2) };
-                    var rcy = rmet.center;
-                    c.strokeStyle = okCol;
-                    c.fillStyle = okFill;
-                    var roffs = Array.isArray(rmd.previewRouteDisplayOffsets) ? rmd.previewRouteDisplayOffsets : [];
-                    if (roffs.length) {
-                        for (var roi = 0; roi < roffs.length; roi++) {
-                            var roff = Math.max(0, Math.floor(Number(roffs[roi] || 0)));
-                            var rfx = this.frameToX(Math.max(0, Math.floor(Number(re.frame || 0))) + roff);
-                            this.fillCircleWithBlackOutline(c, rfx, rcy, 5);
-                            c.beginPath();
-                            c.arc(rfx, rcy, this.scaleTimelineCircleRadius(8), 0, Math.PI * 2);
-                            c.stroke();
-                        }
-                    } else {
-                        for (var rbi = 0; rbi < rmd.previewRouteBlocks.length; rbi++) {
-                            var rb = rmd.previewRouteBlocks[rbi];
-                            if (!rb || !rb._sel) continue;
-                            var rfx2 = this.frameToX(Math.max(0, Math.floor(Number(re.frame || 0))) + Math.max(0, Math.floor(Number(rb.start || 0))));
-                            this.fillCircleWithBlackOutline(c, rfx2, rcy, 5);
-                            c.beginPath();
-                            c.arc(rfx2, rcy, this.scaleTimelineCircleRadius(8), 0, Math.PI * 2);
-                            c.stroke();
-                        }
-                    }
-                }
-            } else if (Array.isArray(rmd.previewEntries) && rmd.previewEntries.length) {
-                for (var pei = 0; pei < rmd.previewEntries.length; pei++) {
-                    var pe = rmd.previewEntries[pei];
-                    if (!pe || !pe.entry) continue;
-                    var prk = String(pe.rowKey || pe.entry.rowKey || 'main');
-                    var pri = rowMap[prk];
-                    if (pri == null) continue;
-                    var pmet = rmets[pri] || { top: this.rulerH + pri * this.rowH, height: this.rowH, center: this.rulerH + pri * this.rowH + Math.floor(this.rowH / 2) };
-                    var pcy = pmet.center;
-                    var pfx = this.frameToX(Math.max(0, Math.floor(Number(pe.frame || 0))));
-                    var isMoveRouteEntry = !!(pe.entry && pe.entry.command && Number(pe.entry.command.code || 0) === 205);
-                    if (isMoveRouteEntry) {
-                        var pspan = Math.max(1, this.routeExecutionSpanFramesForEntry(pe.entry));
-                        var pexr = this.frameToX(Math.max(0, Math.floor(Number(pe.frame || 0))) + pspan);
-                        var px1r = Math.min(pfx, pexr);
-                        var pwr = Math.max(2, Math.abs(pexr - pfx));
-                        var pby = Math.floor(pcy - 7);
-                        var pbh = 14;
-                        c.fillStyle = okFill;
-                        c.fillRect(px1r, pby, pwr, pbh);
-                        c.strokeStyle = okCol;
-                        c.lineWidth = 2;
-                        c.strokeRect(px1r + .5, pby + .5, Math.max(1, pwr - 1), Math.max(1, pbh - 1));
-                        c.lineWidth = 1;
-                        continue;
-                    }
-                    var pwait = Math.max(0, Math.floor(Number(pe.entry.wait || 0)));
-                    if (pwait > 1) {
-                        var pex = this.frameToX(Math.max(0, Math.floor(Number(pe.frame || 0))) + pwait);
-                        this.drawTimelineWaitStem(c, pfx, pex, pcy, okCol, 5);
-                    }
-                    c.fillStyle = okFill;
-                    this.fillCircleWithBlackOutline(c, pfx, pcy, 5);
-                    c.strokeStyle = okCol;
-                    c.beginPath();
-                    c.arc(pfx, pcy, this.scaleTimelineCircleRadius(8), 0, Math.PI * 2);
-                    c.stroke();
-                }
-            }
-        }
-
-        if (pulseActive) this.timelineDirty = true;
-
-        // Keep left label column fixed while horizontal scrolling.
-        this.drawFixedLabelColumn(c, rows, rmets, selectedRowKey, fixedLabelX, h);
-
-        if (Number(this.hoverFrame) >= 0) {
-            var hvf = Math.max(0, Math.floor(Number(this.hoverFrame || 0)));
-            var hvx = this.frameToX(hvf) + 0.5;
-            c.strokeStyle = 'rgba(210,230,255,.35)';
-            c.lineWidth = 1;
-            c.beginPath();
-            c.moveTo(hvx, this.rulerH);
-            c.lineTo(hvx, h);
-            c.stroke();
-        }
-
-        var px = this.frameToX(this.frame);
-        c.strokeStyle = 'rgba(100,255,175,.95)';
-        c.beginPath();
-        c.moveTo(px + .5, 0);
-        c.lineTo(px + .5, h);
-        c.stroke();
-
-        // Keep top ruler fixed while vertical scrolling.
-        this.drawStickyTimelineRuler(c, maxF, fixedLabelX, w, h);
-        this._timelineIfBranchOverlayRule = null;
-        this.drawIfBranchHighlightShapesFront(c, ifBranchFrontQueue);
-        this._timelineCircleOverlayRule = null;
-        for (var cfqi = 0; cfqi < circleFrontQueue.length; cfqi++) {
-            var cfq = circleFrontQueue[cfqi];
-            if (!cfq) continue;
-            c.fillStyle = cfq.fillStyle || 'rgba(255,255,255,.98)';
-            c.beginPath();
-            c.arc(Number(cfq.x || 0), Number(cfq.y || 0), Math.max(0, Number(cfq.radius || 0)), 0, Math.PI * 2);
-            c.fill();
-            c.strokeStyle = 'rgba(0,0,0,.98)';
-            c.lineWidth = 1;
-            c.stroke();
-        }
-        this.drawSelectedBranchModeButtons(c, rowMap, rmets);
-        var frontPulse = false;
-        for (var cqi = 0; cqi < commentFrontQueue.length; cqi++) {
-            var cq = commentFrontQueue[cqi];
-            if (!cq) continue;
-            var cqRule = this.timelineCircleOverlayDecision(cq.x, cq.y, cq.r, fixedLabelRight, stickyRulerBottom);
-            if (cqRule.hide) continue;
-            var cqEntry = this.findEntryInSelectedTrack(Number(cq.uid || 0));
-            var cqRowKey = String(cq.rowKey || (cqEntry ? (cqEntry.rowKey || (cqEntry.rowType === 'char' ? ('char:' + cqEntry.charId) : 'main')) : 'main'));
-            var cqDefaultColor = this.commandCircleDefaultColorForEntry(cqEntry, cqRowKey);
-            c.fillStyle = this.commandMarkerFillColor(cqDefaultColor, cqEntry, -1);
-            this.fillCircleWithBlackOutline(c, cq.x, cq.y, cq.r);
-            if (this.drawExecutionPulse(c, cq.uid, -1, cq.x, cq.y, cq.r, pulseNow)) frontPulse = true;
-            if (cq.sel || cq.hov) {
-                c.strokeStyle = cq.sel ? 'rgba(60,140,235,.98)' : 'rgba(190,228,255,.95)';
-                c.lineWidth = cq.sel ? 2 : 1;
-                c.beginPath();
-                c.arc(cq.x, cq.y, this.scaleTimelineCircleRadius((cq.sel ? 4 : 3) + cq.r), 0, Math.PI * 2);
-                c.stroke();
-                c.lineWidth = 1;
-            }
-        }
-        if (frontPulse) this.timelineDirty = true;
-        this._timelineIfBranchButtonOverlayRule = null;
-        this.renderMemoLabelOverlay(memoLabelQueue);
-
-        if (this.tInfo) {
-            var sid = (this.selUid || '-');
-            if (this.selRouteListIndex != null && this.selRouteListIndex >= 0) sid += '/route[' + this.selRouteListIndex + ']';
-            var dragInfoText = '';
-            if (this.rangeSelectDrag) {
-                var dsInfo = this.rangeSelectDragFrameInfo(this.rangeSelectDrag);
-                if (dsInfo) dragInfoText = ' | selecting: ' + dsInfo.frameCount + 'f';
-            }
-            this.tInfo.textContent = 'frame: ' + this.frame + ' | selected: ' + sid + ' | event: ' + (this.selEid || '-') + ' | rows: ' + rows.length + dragInfoText;
-        }
-        this.refreshMemoScrollLane(maxF);
-        this._timelineBranchHiddenTrack = null;
-        this._timelineBranchHiddenUidMap = null;
-        this.endTrackReadCache();
-    };
-
-    EE.prototype.niceFrameStep = function(target) {
-        target = Math.max(1, Number(target || 1));
-        var step = 30;
-        while (step < target) step *= 2;
-        return step;
-    };
-    SH.registerModule('render', ['preview'], [
+    SH.registerModule('render', ['branch'], [
         'playFrom',
         'seek',
         'pre',

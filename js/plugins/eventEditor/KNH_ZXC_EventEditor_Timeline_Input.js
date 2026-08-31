@@ -2,7 +2,7 @@
 // KNH_ZXC_EventEditor_Timeline_Input
 //=============================================================================
 /*:
- * @plugindesc [MV][Playtest] Event timeline editor timeline extension v0.2 (KNH_ZXC_EventEditor_Timeline_Input)
+ * @plugindesc [MV][Playtest] Event timeline editor timeline extension v0.3.0 (KNH_ZXC_EventEditor_Timeline_Input)
  * @author kagaya
  * @help
  * KNH_ZXC_EventEditor.js の自動ロード用分割モジュールです。
@@ -18,6 +18,7 @@
     var SH = NS._eeTimelineShared;
     if (!SH || !SH.ready) return;
     var clone = SH.clone;
+    SH.beginModule('input');
 
     // Pointer/wheel input, track serialization, schedule rebuilds, and snapshots.
 
@@ -172,7 +173,7 @@
         if (this.timeline) this.timeline.style.cursor = 'crosshair';
         if (Number(this.hoverFrame) !== -1) {
             this.hoverFrame = -1;
-            this.timelineDirty = true;
+            this.timelineCursorDirty = true;
         }
         if (this.hoverEndMarker) {
             this.hoverEndMarker = false;
@@ -266,7 +267,7 @@
         var hf = this.xToFrame(x);
         if (Number(this.hoverFrame) !== Number(hf)) {
             this.hoverFrame = Number(hf);
-            this.timelineDirty = true;
+            this.timelineCursorDirty = true;
         }
         this.setHoverNode((hn && hn.isEndMarker) ? null : (hn || null));
         if (hc) {
@@ -286,7 +287,7 @@
         if (this.tInfo) {
             var sid = (this.selUid || '-');
             if (this.selRouteListIndex != null && this.selRouteListIndex >= 0) sid += '/route[' + this.selRouteListIndex + ']';
-            this.tInfo.textContent = 'frame: ' + this.frame + ' | hover: ' + hf + ' | selected: ' + sid;
+            this.tInfo.textContent = 'フレーム: ' + this.frame + ' | カーソル: ' + hf + ' | 選択: ' + sid;
         }
 
         if (this.dragState && this.dragState.endMarker) {
@@ -373,6 +374,9 @@
 
         var row = this.rowFromY(y);
         var rowKey = row ? row.key : this.dragState.startRowKey;
+        if (this.dragState.mainRouteProxy) {
+            rowKey = de.rowKey || (de.rowType === 'char' ? ('char:' + de.charId) : this.dragState.startRowKey);
+        }
         var frame = this.xToFrame(x);
         this.dragState.targetFrame = frame;
         this.dragState.targetRowKey = rowKey;
@@ -396,12 +400,14 @@
         var preBar = onRulerAny ? null : this.hitTestBar(x, y);
         var preOrderBtn = onRulerAny ? null : this.hitTestOrderButton(x, y);
         var preBranchBtn = onRulerAny ? null : this.hitTestBranchModeButton(x, y);
+        var commandModifier = !!(e.shiftKey || e.ctrlKey || e.metaKey);
         var inFixedLabel = this.isPointInTimelineFixedLabel(x);
         var bypassFixedLabel = !!(preBranchBtn || preOrderBtn || preNode || preComment || preBar);
         if (inFixedLabel && !this.isTimelineRulerY(y) && !bypassFixedLabel) {
             e.preventDefault();
             this.closeRouteRangeContextMenu();
             if (this.hasRangeSelection()) this.clearRangeSelection();
+            this.setTimelineSelectionAnchorItem(null);
             var labelRow = this.rowFromY(y);
             if (!labelRow && this.timelineWrap) {
                 var sy = Math.max(0, Number(this.timelineWrap.scrollTop || 0));
@@ -438,6 +444,7 @@
             e.preventDefault();
             this.closeRouteRangeContextMenu();
             if (this.hasRangeSelection()) this.clearRangeSelection();
+            this.setTimelineSelectionAnchorItem(null);
             var endFrame = Math.max(0, Math.floor(Number(preNode.frame || 0)));
             this.dragState = {
                 endMarker: true,
@@ -452,7 +459,7 @@
             this.timelineDirty = true;
             return;
         }
-        if (!onRulerAny && this.hasRangeSelection()) {
+        if (!commandModifier && !onRulerAny && this.hasRangeSelection()) {
             var preSelHit = this.rangeSelectionHitAtPoint(x, y);
             if (preSelHit && this.beginRangeMoveDrag(x, y, preSelHit)) {
                 e.preventDefault();
@@ -474,7 +481,6 @@
         }
         e.preventDefault();
         this.closeRouteRangeContextMenu();
-        if (this.hasRangeSelection()) this.clearRangeSelection();
         var node = preNode;
         var hb = preBar;
         if (hb && hb.routeRangeUid) {
@@ -536,6 +542,20 @@
             this.panelSelectedCharId = null;
         }
         this.refreshCharacterPanel(true);
+        var modifierTarget = null;
+        if (node) {
+            modifierTarget = nodeRouteListIndex >= 0
+                ? { kind: 'routeCmd', uid: Number(node.uid || 0), routeListIndex: nodeRouteListIndex }
+                : { kind: 'entry', uid: Number(node.uid || 0) };
+        } else if (rangeEntry) {
+            modifierTarget = { kind: 'entry', uid: Number(rangeEntry.uid || 0) };
+        }
+        if (commandModifier && modifierTarget && this.applyTimelineModifierSelection(modifierTarget, e)) {
+            this.dragState = null;
+            this.rangeMoveDrag = null;
+            return;
+        }
+        if (this.hasRangeSelection()) this.clearRangeSelection();
         var dragStartFrame = this.xToFrame(x);
         var rangeStartWait = rangeEntry ? Math.max(1, Math.floor(Number(rangeEntry.wait || 1))) : 0;
         if (rangeEntry && rangeEntry.command && Number(rangeEntry.command.code || 0) === 205 &&
@@ -560,17 +580,22 @@
             startWait: rangeEntry ? rangeStartWait : 0,
             startEntryFrame: rangeEntry ? Math.max(0, Math.floor(Number(rangeEntry.frame || 0))) : 0,
             targetWait: rangeEntry ? rangeStartWait : 0,
-            isRangeDrag: !!rangeEntry && !(node && nodeRouteListIndex >= 0)
+            isRangeDrag: !!rangeEntry && !(node && nodeRouteListIndex >= 0),
+            mainRouteProxy: !!(node && node.mainRouteProxy)
         };
         if (node) {
             this.selUid = node.uid;
             this.selRouteListIndex = nodeRouteListIndex;
             this.frame = node.frame;
+            this.setTimelineSelectionAnchorItem(nodeRouteListIndex >= 0
+                ? { kind: 'routeCmd', uid: Number(node.uid || 0), routeListIndex: nodeRouteListIndex }
+                : { kind: 'entry', uid: Number(node.uid || 0) });
             this.timelineDirty = true;
         } else if (rangeEntry) {
             this.selUid = rangeEntry.uid;
             this.selRouteListIndex = -1;
             this.frame = Math.max(0, Math.floor(Number(rangeEntry.frame || 0)));
+            this.setTimelineSelectionAnchorItem({ kind: 'entry', uid: Number(rangeEntry.uid || 0) });
             this.timelineDirty = true;
         }
     };
@@ -600,6 +625,9 @@
             this.selUid = Number(hitNode.uid || 0);
             this.selRouteListIndex = this.nodeRouteIndex(hitNode.routeListIndex);
             this.frame = Math.max(0, Math.floor(Number(hitNode.frame || 0)));
+            this.setTimelineSelectionAnchorItem(this.selRouteListIndex >= 0
+                ? { kind: 'routeCmd', uid: this.selUid, routeListIndex: this.selRouteListIndex }
+                : { kind: 'entry', uid: this.selUid });
             this.timelineDirty = true;
             if (this.selUid) this.openEditor(this.selUid, this.selRouteListIndex >= 0 ? this.selRouteListIndex : undefined);
             return;
@@ -611,6 +639,7 @@
                 this.selUid = Number(rangeEntry.uid || 0);
                 this.selRouteListIndex = this.nodeRouteIndex(routeHit.listIndex);
                 this.frame = Math.max(0, Math.floor(Number(routeHit.frame || frame)));
+                this.setTimelineSelectionAnchorItem({ kind: 'routeCmd', uid: this.selUid, routeListIndex: this.selRouteListIndex });
                 this.timelineDirty = true;
                 if (this.selUid) this.openEditor(this.selUid, this.selRouteListIndex);
                 return;
@@ -674,9 +703,11 @@
         if (hn && hnrli >= 0) {
             var he = this.findEntryInSelectedTrack(Number(hn.uid || 0));
             if (he && he.command && Number(he.command.code || 0) === 205 && he.rowType === 'char') {
+                if (this.hasRangeSelection()) this.clearRangeSelection();
                 this.selUid = Number(hn.uid || 0);
                 this.selRouteListIndex = hnrli;
                 this.frame = Math.max(0, Math.floor(Number(hn.frame || clickedFrame || 0)));
+                this.setTimelineSelectionAnchorItem({ kind: 'routeCmd', uid: this.selUid, routeListIndex: hnrli });
                 this.timelineDirty = true;
                 this.openTimelineContextMenu(
                     e.clientX,
@@ -701,8 +732,10 @@
             }
         }
         if (uid > 0) {
+            if (this.hasRangeSelection()) this.clearRangeSelection();
             this.selUid = uid;
             this.selRouteListIndex = -1;
+            this.setTimelineSelectionAnchorItem({ kind: 'entry', uid: uid });
             var e2 = this.findEntryInSelectedTrack(uid);
             if (e2) this.frame = Math.max(0, Math.floor(Number(e2.frame || 0)));
             this.timelineDirty = true;
@@ -715,10 +748,14 @@
         if (cmdUid > 0) {
             var ce = this.findEntryInSelectedTrack(cmdUid);
             if (ce) {
+                if (this.hasRangeSelection()) this.clearRangeSelection();
                 this.selUid = cmdUid;
                 this.selRouteListIndex = (hn && Number(hn.uid || 0) === cmdUid)
                     ? this.nodeRouteIndex(hn.routeListIndex)
                     : -1;
+                this.setTimelineSelectionAnchorItem(this.selRouteListIndex >= 0
+                    ? { kind: 'routeCmd', uid: cmdUid, routeListIndex: this.selRouteListIndex }
+                    : { kind: 'entry', uid: cmdUid });
                 this.frame = Math.max(0, Math.floor(Number(ce.frame || clickedFrame || 0)));
                 this.timelineDirty = true;
             }
@@ -757,7 +794,7 @@
                 this.pushSnap('endMarker');
                 trEnd.endFrame = targetEnd;
                 this.normalizeTrackEndFrame(trEnd);
-                this.dirty[this.selKey] = true;
+                this.commitTrackMutation({ rebuild: false, sort: false, earliestChangedFrame: oldEnd });
             }
             this.seek(Math.max(0, Math.floor(Number(trEnd.endFrame || targetEnd || ds.startFrame || 0))));
             return;
@@ -781,7 +818,7 @@
                     return;
                 }
                 if (!ds.valid) {
-                    this.msg('Drop rejected (wait overlap / invalid range)');
+                    this.msg('ドロップ失敗（ウェイト重複 / 範囲不正）');
                     this.timelineDirty = true;
                     return;
                 }
@@ -807,7 +844,7 @@
                 if (ds.rangePart === 'left') {
                     var deltaLeft = oldFrame - newFrame;
                     if (!this.shiftMoveRouteLeftBoundary(re.command, deltaLeft)) {
-                        this.msg('Drop rejected (left range cannot shrink further)');
+                        this.msg('ドロップ失敗（左端をこれ以上縮められません）');
                         this.timelineDirty = true;
                         return;
                     }
@@ -825,22 +862,20 @@
                     re.frame = oldFrame;
                     re.wait = oldWait;
                     re.command = oldCmd;
-                    this.msg('Drop rejected (wait overlap / invalid range)');
+                    this.msg('ドロップ失敗（ウェイト重複 / 範囲不正）');
                     this.timelineDirty = true;
                     return;
                 }
-                SH.sortTrackCommands(trr);
                 this.selUid = re.uid;
                 this.selRouteListIndex = -1;
                 this.frame = re.frame;
-                this.dirty[this.selKey] = true;
-                this.rebuildSchedule();
+                this.commitTrackMutation({ earliestChangedFrame: Math.min(oldFrame, newFrame) });
                 this.seek(this.frame);
                 return;
             }
             if (ds.routeListIndex != null && ds.routeListIndex >= 0) {
                 if (ds.moved) {
-                    this.msg('Move-route sub-command drag is disabled');
+                    this.msg('移動ルート内サブコマンドのドラッグは無効です');
                     this.timelineDirty = true;
                     return;
                 }
@@ -854,26 +889,27 @@
                 var de = this.findEntryInSelectedTrack(Number(ds.uid || 0));
                 if (!de) return;
                 if (!ds.valid) {
-                    this.msg('Drop rejected (wait overlap / invalid row)');
+                    this.msg('ドロップ失敗（ウェイト重複 / 行不正）');
                     this.timelineDirty = true;
                     return;
                 }
                 this.pushSnap('drag');
                 de.frame = Math.max(0, Math.floor(Number(ds.targetFrame || 0)));
                 if (de.rowType === 'char') {
+                    var oldCharId = this.normalizeMoveTarget(Number(de.charId || 0));
                     var cid = Number(String(ds.targetRowKey || '').replace('char:', ''));
                     if (!isNaN(cid)) {
+                        cid = this.normalizeMoveTarget(cid);
                         de.charId = cid;
                         de.rowKey = 'char:' + cid;
                         if (de.command && de.command.code === 205) de.command.parameters[0] = cid;
+                        if (cid !== oldCharId) de.routeSymbolOrdinal = 0;
                     }
                 }
-                SH.sortTrackCommands(tr);
                 this.selUid = de.uid;
                 this.selRouteListIndex = -1;
                 this.frame = de.frame;
-                this.dirty[this.selKey] = true;
-                this.rebuildSchedule();
+                this.commitTrackMutation({ earliestChangedFrame: Math.min(ds.startFrame, de.frame) });
                 this.seek(this.frame);
                 return;
             }
@@ -885,6 +921,7 @@
         if (ds.emptyClick && !ds.moved) {
             this.selUid = 0;
             this.selRouteListIndex = -1;
+            this.setTimelineSelectionAnchorItem(null);
             this.closeEditor();
             this.seek(ds.startFrame);
         }
@@ -1097,7 +1134,6 @@
         var h = function(ev) { self.onEditorNumberWheel(ev); };
         input._eeWheelHandler = h;
         input.addEventListener('wheel', h, { passive: false });
-        input.addEventListener('mousewheel', h, { passive: false });
     };
 
     EE.prototype.attachSelectWheelInput = function(select) {
@@ -1108,7 +1144,6 @@
         var h = function(ev) { self.onEditorSelectWheel(ev); };
         select._eeWheelHandler = h;
         select.addEventListener('wheel', h, { passive: false });
-        select.addEventListener('mousewheel', h, { passive: false });
     };
 
     EE.prototype.isEditorDialogOpenForWheel = function() {
@@ -1229,15 +1264,7 @@
         if (!this.root) return false;
         if (this.contextEventAdjustState && String(this.contextEventAdjustState.type || '') === 'range') return true;
         if (this.isPointInOpenContextMenu(x, y)) return true;
-        if (this.routeModal && this.routeModal.classList && this.routeModal.classList.contains('on')) return true;
-        if (this.modal && this.modal.classList && this.modal.classList.contains('on')) return true;
-        if (this.sePickerModal && this.sePickerModal.classList && this.sePickerModal.classList.contains('on')) return true;
-        if (this.addModal && this.addModal.classList && this.addModal.classList.contains('on')) return true;
-        if (this.waitInsertModal && this.waitInsertModal.classList && this.waitInsertModal.classList.contains('on')) return true;
-        if (this.messageBubbleBulkModal && this.messageBubbleBulkModal.classList && this.messageBubbleBulkModal.classList.contains('on')) return true;
-        if (this.memoModal && this.memoModal.classList && this.memoModal.classList.contains('on')) return true;
-        if (this.eventSettingsModal && this.eventSettingsModal.classList && this.eventSettingsModal.classList.contains('on')) return true;
-        if (this.battleEventSettingsModal && this.battleEventSettingsModal.classList && this.battleEventSettingsModal.classList.contains('on')) return true;
+        if (this.isAnyRegisteredEditorModalOpen && this.isAnyRegisteredEditorModalOpen()) return true;
         var rects = this.uiHitRectsCached();
         for (var i = 0; i < rects.length; i++) {
             if (eePointInRect(x, y, rects[i])) return true;
@@ -1245,16 +1272,17 @@
         return false;
     };
 
-    EE.prototype.selectEvent = function(eid, skipUndo) {
+    EE.prototype.selectEvent = function(eid) {
         if (this.isBattleEventMode()) {
             this.cleanupTemporaryCharRows(null);
             if (typeof this.closeBattleEventSettingsEditor === 'function') this.closeBattleEventSettingsEditor();
             var battleTid = Math.max(1, Math.floor(Number(eid || this.currentBattleTroopId() || 0)));
-            this.selectBattleTrack(battleTid, Math.max(0, this.selPage), !!skipUndo);
+            this.selectBattleTrack(battleTid, Math.max(0, this.selPage));
             return;
         }
         // Drop transient character rows from the currently selected track
         // before switching selection.
+        if (typeof this.rememberSelectedTimelineViewState === 'function') this.rememberSelectedTimelineViewState();
         this.cleanupTemporaryCharRows(null);
         var ev = $gameMap.event(eid);
         if (!ev || ev._pageIndex < 0) {
@@ -1277,7 +1305,6 @@
             this.refreshCharacterOverlay(true);
             return;
         }
-        if (!skipUndo) this.pushSnap('select');
         this.selEid = eid;
         this.selPage = ev._pageIndex;
         this.selKey = this.key(eid, ev._pageIndex);
@@ -1331,15 +1358,9 @@
         this.selUid = e.uid;
         this.selRouteListIndex = -1;
         this.frame = this.advanceTargetFrameByWait(e.frame, e.wait);
-        this.dirty[this.selKey] = true;
-        this.rebuildSchedule();
+        this.commitTrackMutation({ earliestChangedFrame: e.frame });
         this.playFrom(this.frame);
         return e;
-    };
-
-    EE.prototype.addWait = function() {
-        if (!this.needSelTrack()) return;
-        this.openWaitInsertDialog(this.makeWaitInsertContextFromFrame(this.frame));
     };
 
     EE.prototype.waitIndentForTrackInsertionIndex = function(tr, insertionIndex, fallbackIndent) {
@@ -1482,6 +1503,8 @@
                 var pre = delta && Array.isArray(delta.commands) ? delta.commands : [];
                 for (var pm = 0; pm < pre.length; pm++) out.push(pre[pm]);
                 prevMsgExt = delta ? delta.nextState : prevMsgExt;
+                var portraitCommand = this.popupPortraitCommandFromEntry(e);
+                if (portraitCommand) out.push(portraitCommand);
                 out.push(cmd);
                 var mls = Array.isArray(e.messageLines) ? e.messageLines : [];
                 for (var k = 0; k < mls.length; k++) {
@@ -1547,36 +1570,60 @@
         options = options || {};
         var skipRouteNormalize = !!options.skipRouteNormalize;
         if (this._eeRebuildScheduleGuard) {
-            _eeBaseRebuildSchedule.call(this);
+            _eeBaseRebuildSchedule.call(this, options);
             return;
         }
         this._eeRebuildScheduleGuard = true;
         try {
             // 1) Build latest schedule from current model so simTo() can see edits.
-            _eeBaseRebuildSchedule.call(this);
+            _eeBaseRebuildSchedule.call(this, options);
 
             if (skipRouteNormalize) return;
 
-            // 2) Auto-adjust tile-goto wait lengths after any edit/add/move.
+            // 2) Auto-adjust only dirty/selected tracks whose command data changed.
             var normalizedAny = false;
+            var normalizedKeys = [];
             if (!this.play && this.model && this.model.tracks) {
-                var ks = Object.keys(this.model.tracks);
+                if (!this._routeWaitNormalizeSigByTrack) this._routeWaitNormalizeSigByTrack = {};
+                var candidateMap = Object.create(null);
+                var requestedKeys = Array.isArray(options.changedTrackKeys) ? options.changedTrackKeys : [];
+                for (var rk = 0; rk < requestedKeys.length; rk++) candidateMap[String(requestedKeys[rk] || '')] = true;
+                var dirtyKeys = Object.keys(this.dirty || {});
+                for (var dk = 0; dk < dirtyKeys.length; dk++) candidateMap[String(dirtyKeys[dk] || '')] = true;
+                if (this.selKey) candidateMap[String(this.selKey)] = true;
+                var ks = Object.keys(candidateMap);
                 for (var i = 0; i < ks.length; i++) {
-                    var tr = this.model.tracks[ks[i]];
+                    var trackKey = ks[i];
+                    var tr = this.model.tracks[trackKey];
                     if (!tr || !Array.isArray(tr.commands)) continue;
-                    var hasRoute = false;
-                    for (var j = 0; j < tr.commands.length; j++) {
-                        var ce = tr.commands[j];
-                        if (ce && ce.command && Number(ce.command.code || 0) === 205) { hasRoute = true; break; }
+                    if (!this.trackHasAutoWaitRouteCommands(tr)) {
+                        delete this._routeWaitNormalizeSigByTrack[trackKey];
+                        continue;
                     }
-                    if (!hasRoute) continue;
-                    this.normalizeTrackRouteTileGotoWaitMeta(tr);
-                    normalizedAny = true;
+                    var revision = this._trackRevisionByKey &&
+                        Object.prototype.hasOwnProperty.call(this._trackRevisionByKey, trackKey)
+                        ? Math.floor(Number(this._trackRevisionByKey[trackKey] || 0))
+                        : null;
+                    var beforeSig = revision == null ? '' : ('rev:' + String(revision));
+                    if (revision == null) {
+                        try { beforeSig = JSON.stringify(tr.commands); } catch (_) { beforeSig = String(Date.now()); }
+                    }
+                    if (this._routeWaitNormalizeSigByTrack[trackKey] === beforeSig) continue;
+                    if (this.normalizeTrackRouteTileGotoWaitMeta(tr)) {
+                        normalizedAny = true;
+                        normalizedKeys.push(trackKey);
+                    }
+                    this._routeWaitNormalizeSigByTrack[trackKey] = beforeSig;
                 }
             }
 
             // 3) Rebuild once more to apply updated wait lengths to schedule/hit ranges.
-            if (normalizedAny) _eeBaseRebuildSchedule.call(this);
+            if (normalizedAny) {
+                _eeBaseRebuildSchedule.call(this, {
+                    changedTrackKeys: normalizedKeys,
+                    earliestChangedFrame: options.earliestChangedFrame
+                });
+            }
         } finally {
             this._eeRebuildScheduleGuard = false;
         }
@@ -1587,6 +1634,10 @@
         var saved = _eeBaseSave.call(this, backupOnly);
         if (backupOnly || !saved) return saved;
         this.persistSelectedTimelineViewStateToDisk();
+        if (!this.hasUnsavedChanges() && typeof this.clearRecoverySnapshot === 'function' &&
+            (this._lastSaveWroteData || this._recoverySnapshotDecision !== 'declined')) {
+            if (this.clearRecoverySnapshot()) this._recoverySnapshotDecision = '';
+        }
         return saved;
     };
 
@@ -1607,6 +1658,9 @@
         } else {
             s.rangeSelection = null;
         }
+        s.timelineSelectionAnchor = this.timelineSelectionAnchor
+            ? clone(this.timelineSelectionAnchor)
+            : null;
         return s;
     };
 
@@ -1637,7 +1691,7 @@
         var rs = s && s.rangeSelection ? s.rangeSelection : null;
         if (rs && typeof rs === 'object') {
             var kind = String(rs.kind || 'none');
-            if (kind !== 'memory' && kind !== 'rect') kind = 'none';
+            if (kind !== 'memory' && kind !== 'rect' && kind !== 'items') kind = 'none';
             var items = this.normalizeRangeSelectionItems(Array.isArray(rs.items) ? rs.items : []);
             var map = Object.create(null);
             for (var i = 0; i < items.length; i++) map[this.rangeSelectionItemKey(items[i])] = true;
@@ -1663,6 +1717,9 @@
                 nonContiguous: false
             };
         }
+        this.timelineSelectionAnchor = s && s.timelineSelectionAnchor
+            ? clone(s.timelineSelectionAnchor)
+            : null;
         this.panelSelectedCharId = (s && s.panelSelectedCharId != null)
             ? Number(s.panelSelectedCharId)
             : (this.selEid > 0 ? Number(this.selEid) : null);
@@ -1671,7 +1728,7 @@
         this.refreshCharacterOverlay(true);
         this.timelineDirty = true;
     };
-    SH.registerModule('input', ['render'], [
+    SH.registerModule('input', ['canvas'], [
         'rebuildSchedule',
         'save',
         'snap',

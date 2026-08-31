@@ -1,0 +1,6 @@
+# Event editor generated artifacts
+/data/_backup/
+/data/_event_editor/recovery/
+/data/_event_editor/logs/
+/data/_event_editor/*.ee_prop_ref.json
+/js/plugins/eventEditor/Log_*.text

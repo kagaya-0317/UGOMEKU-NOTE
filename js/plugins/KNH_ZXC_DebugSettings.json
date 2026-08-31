@@ -1,9 +1,9 @@
 {
-  "startMode": "continue",
-  "startModeTestSave": "モンスター城 罠2",
+  "startMode": "test",
+  "startModeTestSave": "モンスター城 罠1",
   "startModeYuraA": 6,
   "startModeYuraB": 5,
-  "editEventMode": false,
+  "editEventMode": true,
   "language": 0,
   "recordMode": 0,
   "firstMembers": [

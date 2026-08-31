@@ -1,7 +1,7 @@
 {
   "plugin": "KNH_ZXC_EventEditor",
   "version": "0.1.0",
-  "savedAt": "2026-07-20T08:18:09.848Z",
+  "savedAt": "2026-08-29T21:38:05.842Z",
   "tracks": [
     {
       "eventId": 6,
@@ -29,17 +29,21 @@
           ]
         },
         {
-          "code": 355,
-          "indent": 0,
-          "parameters": [
-            "this.character(5).locateTo(-15, 24)"
-          ]
-        },
-        {
           "code": 230,
           "indent": 0,
           "parameters": [
             29
+          ]
+        },
+        {
+          "code": 122,
+          "indent": 0,
+          "parameters": [
+            3,
+            3,
+            0,
+            0,
+            50
           ]
         },
         {
@@ -394,7 +398,50 @@
           "code": 230,
           "indent": 0,
           "parameters": [
-            24
+            23
+          ]
+        },
+        {
+          "code": 205,
+          "indent": 0,
+          "parameters": [
+            2,
+            {
+              "repeat": false,
+              "skippable": false,
+              "wait": false,
+              "list": [
+                {
+                  "code": 45,
+                  "parameters": [
+                    "this.setImageZXC('$kanbu2_2', 0, 2)"
+                  ]
+                },
+                {
+                  "code": 0,
+                  "parameters": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "code": 505,
+          "indent": 0,
+          "parameters": [
+            {
+              "code": 45,
+              "parameters": [
+                "this.setImageZXC('$kanbu2_2', 0, 2)"
+              ]
+            }
+          ]
+        },
+        {
+          "code": 230,
+          "indent": 0,
+          "parameters": [
+            1
           ]
         },
         {
@@ -520,7 +567,61 @@
           "code": 230,
           "indent": 0,
           "parameters": [
-            21
+            20
+          ]
+        },
+        {
+          "code": 205,
+          "indent": 0,
+          "parameters": [
+            2,
+            {
+              "repeat": false,
+              "skippable": false,
+              "wait": false,
+              "list": [
+                {
+                  "code": 45,
+                  "parameters": [
+                    "this.setImageZXC('$kanbu2', 0, 2)"
+                  ]
+                },
+                {
+                  "code": 0,
+                  "parameters": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "code": 505,
+          "indent": 0,
+          "parameters": [
+            {
+              "code": 45,
+              "parameters": [
+                "this.setImageZXC('$kanbu2', 0, 2)"
+              ]
+            }
+          ]
+        },
+        {
+          "code": 230,
+          "indent": 0,
+          "parameters": [
+            1
+          ]
+        },
+        {
+          "code": 122,
+          "indent": 0,
+          "parameters": [
+            3,
+            3,
+            0,
+            0,
+            25
           ]
         },
         {
@@ -618,6 +719,49 @@
           ]
         },
         {
+          "code": 205,
+          "indent": 0,
+          "parameters": [
+            2,
+            {
+              "repeat": false,
+              "skippable": false,
+              "wait": false,
+              "list": [
+                {
+                  "code": 45,
+                  "parameters": [
+                    "this.setImageZXC('$kanbu2_2', 0, 2)"
+                  ]
+                },
+                {
+                  "code": 0,
+                  "parameters": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "code": 505,
+          "indent": 0,
+          "parameters": [
+            {
+              "code": 45,
+              "parameters": [
+                "this.setImageZXC('$kanbu2_2', 0, 2)"
+              ]
+            }
+          ]
+        },
+        {
+          "code": 230,
+          "indent": 0,
+          "parameters": [
+            1
+          ]
+        },
+        {
           "code": 101,
           "indent": 0,
           "parameters": [
@@ -645,7 +789,50 @@
           "code": 230,
           "indent": 0,
           "parameters": [
-            25
+            23
+          ]
+        },
+        {
+          "code": 205,
+          "indent": 0,
+          "parameters": [
+            2,
+            {
+              "repeat": false,
+              "skippable": false,
+              "wait": false,
+              "list": [
+                {
+                  "code": 45,
+                  "parameters": [
+                    "this.setImageZXC('$kanbu2_2', 0, 2), this.startFrameAnimation([3,4,5], 6, true)"
+                  ]
+                },
+                {
+                  "code": 0,
+                  "parameters": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "code": 505,
+          "indent": 0,
+          "parameters": [
+            {
+              "code": 45,
+              "parameters": [
+                "this.setImageZXC('$kanbu2_2', 0, 2), this.startFrameAnimation([3,4,5], 6, true)"
+              ]
+            }
+          ]
+        },
+        {
+          "code": 230,
+          "indent": 0,
+          "parameters": [
+            1
           ]
         },
         {
@@ -777,13 +964,17 @@
           "parameters": [
             5,
             {
-              "repeat": false,
-              "skippable": false,
-              "wait": false,
               "list": [
                 {
                   "code": 16,
                   "parameters": []
+                },
+                {
+                  "code": 45,
+                  "parameters": [
+                    "this.startFrameAnimation([0,1,2,1], 10, true);"
+                  ],
+                  "indent": null
                 },
                 {
                   "code": 45,
@@ -813,7 +1004,10 @@
                   "code": 0,
                   "parameters": []
                 }
-              ]
+              ],
+              "repeat": false,
+              "skippable": false,
+              "wait": false
             }
           ]
         },
@@ -824,6 +1018,19 @@
             {
               "code": 16,
               "parameters": []
+            }
+          ]
+        },
+        {
+          "code": 505,
+          "indent": 0,
+          "parameters": [
+            {
+              "code": 45,
+              "parameters": [
+                "this.startFrameAnimation([0,1,2,1], 10, true);"
+              ],
+              "indent": null
             }
           ]
         },
@@ -879,7 +1086,68 @@
           "code": 230,
           "indent": 0,
           "parameters": [
-            111
+            73
+          ]
+        },
+        {
+          "code": 205,
+          "indent": 0,
+          "parameters": [
+            2,
+            {
+              "repeat": false,
+              "skippable": false,
+              "wait": false,
+              "list": [
+                {
+                  "code": 45,
+                  "parameters": [
+                    "this.endFrameAnimation(), this._patternFix = false;"
+                  ]
+                },
+                {
+                  "code": 45,
+                  "parameters": [
+                    "this.setImageZXC('$kanbu2', 0, 2)"
+                  ]
+                },
+                {
+                  "code": 0,
+                  "parameters": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "code": 505,
+          "indent": 0,
+          "parameters": [
+            {
+              "code": 45,
+              "parameters": [
+                "this.endFrameAnimation(), this._patternFix = false;"
+              ]
+            }
+          ]
+        },
+        {
+          "code": 505,
+          "indent": 0,
+          "parameters": [
+            {
+              "code": 45,
+              "parameters": [
+                "this.setImageZXC('$kanbu2', 0, 2)"
+              ]
+            }
+          ]
+        },
+        {
+          "code": 230,
+          "indent": 0,
+          "parameters": [
+            38
           ]
         },
         {
@@ -895,14 +1163,22 @@
           ]
         },
         {
+          "code": 122,
+          "indent": 0,
+          "parameters": [
+            3,
+            3,
+            0,
+            0,
+            0
+          ]
+        },
+        {
           "code": 205,
           "indent": 0,
           "parameters": [
             1,
             {
-              "repeat": false,
-              "skippable": false,
-              "wait": false,
               "list": [
                 {
                   "code": 45,
@@ -929,7 +1205,10 @@
                   "code": 0,
                   "parameters": []
                 }
-              ]
+              ],
+              "repeat": false,
+              "skippable": false,
+              "wait": true
             }
           ]
         },
@@ -1001,8 +1280,9 @@
                 {
                   "code": 45,
                   "parameters": [
-                    "this.startFrameAnimation(3, 10, true)"
-                  ]
+                    "this.startFrameAnimation([0,1,2,1], 10, true)"
+                  ],
+                  "indent": null
                 },
                 {
                   "code": 45,
@@ -1013,8 +1293,9 @@
                 {
                   "code": 45,
                   "parameters": [
-                    "this.jump(30, -5, 0.1, 15)"
-                  ]
+                    "this.jump(30, -3, 0.1, 25)"
+                  ],
+                  "indent": null
                 },
                 {
                   "code": 0,
@@ -1034,8 +1315,9 @@
             {
               "code": 45,
               "parameters": [
-                "this.startFrameAnimation(3, 10, true)"
-              ]
+                "this.startFrameAnimation([0,1,2,1], 10, true)"
+              ],
+              "indent": null
             }
           ]
         },
@@ -1058,8 +1340,9 @@
             {
               "code": 45,
               "parameters": [
-                "this.jump(30, -5, 0.1, 15)"
-              ]
+                "this.jump(30, -3, 0.1, 25)"
+              ],
+              "indent": null
             }
           ]
         },
@@ -1284,6 +1567,13 @@
           ]
         },
         {
+          "code": 230,
+          "indent": 1,
+          "parameters": [
+            1
+          ]
+        },
+        {
           "code": 101,
           "indent": 1,
           "parameters": [
@@ -1312,6 +1602,13 @@
           "indent": 1,
           "parameters": [
             "破滅をもたらすだろう！！"
+          ]
+        },
+        {
+          "code": 230,
+          "indent": 1,
+          "parameters": [
+            1
           ]
         },
         {
@@ -1344,10 +1641,150 @@
           "parameters": []
         },
         {
+          "code": 205,
+          "indent": 0,
+          "parameters": [
+            2,
+            {
+              "repeat": false,
+              "skippable": false,
+              "wait": false,
+              "list": [
+                {
+                  "code": 45,
+                  "parameters": [
+                    "this.setImageZXC('$kanbu2_2', 0, 2)"
+                  ]
+                },
+                {
+                  "code": 0,
+                  "parameters": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "code": 505,
+          "indent": 0,
+          "parameters": [
+            {
+              "code": 45,
+              "parameters": [
+                "this.setImageZXC('$kanbu2_2', 0, 2)"
+              ]
+            }
+          ]
+        },
+        {
           "code": 230,
           "indent": 0,
           "parameters": [
-            24
+            1
+          ]
+        },
+        {
+          "code": 205,
+          "indent": 0,
+          "parameters": [
+            2,
+            {
+              "repeat": false,
+              "skippable": false,
+              "wait": false,
+              "list": [
+                {
+                  "code": 45,
+                  "parameters": [
+                    "this.setImageZXC('$kanbu2_2', 0, 2), this.startFrameAnimation([3,4,5], 6, true)"
+                  ]
+                },
+                {
+                  "code": 0,
+                  "parameters": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "code": 505,
+          "indent": 0,
+          "parameters": [
+            {
+              "code": 45,
+              "parameters": [
+                "this.setImageZXC('$kanbu2_2', 0, 2), this.startFrameAnimation([3,4,5], 6, true)"
+              ]
+            }
+          ]
+        },
+        {
+          "code": 230,
+          "indent": 0,
+          "parameters": [
+            22
+          ]
+        },
+        {
+          "code": 205,
+          "indent": 0,
+          "parameters": [
+            2,
+            {
+              "repeat": false,
+              "skippable": false,
+              "wait": false,
+              "list": [
+                {
+                  "code": 45,
+                  "parameters": [
+                    "this.endFrameAnimation(), this._patternFix = false;"
+                  ]
+                },
+                {
+                  "code": 45,
+                  "parameters": [
+                    "this.setImageZXC('$kanbu2_2', 0, 2)"
+                  ]
+                },
+                {
+                  "code": 0,
+                  "parameters": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "code": 505,
+          "indent": 0,
+          "parameters": [
+            {
+              "code": 45,
+              "parameters": [
+                "this.endFrameAnimation(), this._patternFix = false;"
+              ]
+            }
+          ]
+        },
+        {
+          "code": 505,
+          "indent": 0,
+          "parameters": [
+            {
+              "code": 45,
+              "parameters": [
+                "this.setImageZXC('$kanbu2_2', 0, 2)"
+              ]
+            }
+          ]
+        },
+        {
+          "code": 230,
+          "indent": 0,
+          "parameters": [
+            1
           ]
         },
         {
@@ -1425,13 +1862,13 @@
                 {
                   "code": 45,
                   "parameters": [
-                    "this.startFrameAnimation([8,9,10,11], 6, false)"
+                    "this.setImageZXC('$kanbu2', 0, 2), this.startFrameAnimation([8], 6, false)"
                   ]
                 },
                 {
                   "code": 15,
                   "parameters": [
-                    40
+                    18
                   ]
                 },
                 {
@@ -1449,7 +1886,7 @@
             {
               "code": 45,
               "parameters": [
-                "this.startFrameAnimation([8,9,10,11], 6, false)"
+                "this.setImageZXC('$kanbu2', 0, 2), this.startFrameAnimation([8], 6, false)"
               ]
             }
           ]
@@ -1461,7 +1898,7 @@
             {
               "code": 15,
               "parameters": [
-                40
+                18
               ]
             }
           ]
@@ -1720,6 +2157,7 @@
           "isMessage": false,
           "messageLines": null,
           "messageExt": null,
+          "popupPortrait": null,
           "isScrollMessage": false,
           "scrollLines": null,
           "isScript": false,
@@ -1749,6 +2187,7 @@
           "isMessage": false,
           "messageLines": null,
           "messageExt": null,
+          "popupPortrait": null,
           "isScrollMessage": false,
           "scrollLines": null,
           "isScript": true,
@@ -1782,6 +2221,7 @@
           "isMessage": false,
           "messageLines": null,
           "messageExt": null,
+          "popupPortrait": null,
           "isScrollMessage": false,
           "scrollLines": null,
           "isScript": false,
@@ -1789,14 +2229,18 @@
         },
         {
           "uid": 4,
-          "frame": 0,
+          "frame": 29,
           "eventId": 6,
           "pageIndex": 0,
           "command": {
-            "code": 355,
+            "code": 122,
             "indent": 0,
             "parameters": [
-              "this.character(5).locateTo(-15, 24)"
+              3,
+              3,
+              0,
+              0,
+              50
             ]
           },
           "wait": 0,
@@ -1811,12 +2255,11 @@
           "isMessage": false,
           "messageLines": null,
           "messageExt": null,
+          "popupPortrait": null,
           "isScrollMessage": false,
           "scrollLines": null,
-          "isScript": true,
-          "scriptLines": [
-            "this.character(5).locateTo(-15, 24)"
-          ]
+          "isScript": false,
+          "scriptLines": null
         },
         {
           "uid": 5,
@@ -1867,6 +2310,7 @@
           "isMessage": false,
           "messageLines": null,
           "messageExt": null,
+          "popupPortrait": null,
           "isScrollMessage": false,
           "scrollLines": null,
           "isScript": false,
@@ -1928,6 +2372,7 @@
           "isMessage": false,
           "messageLines": null,
           "messageExt": null,
+          "popupPortrait": null,
           "isScrollMessage": false,
           "scrollLines": null,
           "isScript": false,
@@ -1989,6 +2434,7 @@
           "isMessage": false,
           "messageLines": null,
           "messageExt": null,
+          "popupPortrait": null,
           "isScrollMessage": false,
           "scrollLines": null,
           "isScript": false,
@@ -2018,6 +2464,7 @@
           "isMessage": false,
           "messageLines": null,
           "messageExt": null,
+          "popupPortrait": null,
           "isScrollMessage": false,
           "scrollLines": null,
           "isScript": false,
@@ -2047,6 +2494,7 @@
           "isMessage": false,
           "messageLines": null,
           "messageExt": null,
+          "popupPortrait": null,
           "isScrollMessage": false,
           "scrollLines": null,
           "isScript": true,
@@ -2093,6 +2541,7 @@
             "addX": 0,
             "addY": 0
           },
+          "popupPortrait": null,
           "isScrollMessage": false,
           "scrollLines": null,
           "isScript": false,
@@ -2137,6 +2586,7 @@
             "addX": 0,
             "addY": 0
           },
+          "popupPortrait": null,
           "isScrollMessage": false,
           "scrollLines": null,
           "isScript": false,
@@ -2144,6 +2594,53 @@
         },
         {
           "uid": 16,
+          "frame": 173,
+          "eventId": 6,
+          "pageIndex": 0,
+          "command": {
+            "code": 205,
+            "indent": 0,
+            "parameters": [
+              2,
+              {
+                "repeat": false,
+                "skippable": false,
+                "wait": false,
+                "list": [
+                  {
+                    "code": 45,
+                    "parameters": [
+                      "this.setImageZXC('$kanbu2_2', 0, 2)"
+                    ]
+                  },
+                  {
+                    "code": 0,
+                    "parameters": []
+                  }
+                ]
+              }
+            ]
+          },
+          "wait": 0,
+          "rowType": "char",
+          "rowKey": "char:2",
+          "charId": 2,
+          "isComment": false,
+          "commentLines": null,
+          "isMemo": false,
+          "memoSize": "S",
+          "memoText": "",
+          "isMessage": false,
+          "messageLines": null,
+          "messageExt": null,
+          "popupPortrait": null,
+          "isScrollMessage": false,
+          "scrollLines": null,
+          "isScript": false,
+          "scriptLines": null
+        },
+        {
+          "uid": 17,
           "frame": 174,
           "eventId": 6,
           "pageIndex": 0,
@@ -2182,13 +2679,14 @@
             "addX": 0,
             "addY": 0
           },
+          "popupPortrait": null,
           "isScrollMessage": false,
           "scrollLines": null,
           "isScript": false,
           "scriptLines": null
         },
         {
-          "uid": 17,
+          "uid": 18,
           "frame": 194,
           "eventId": 6,
           "pageIndex": 0,
@@ -2228,13 +2726,14 @@
           "isMessage": false,
           "messageLines": null,
           "messageExt": null,
+          "popupPortrait": null,
           "isScrollMessage": false,
           "scrollLines": null,
           "isScript": false,
           "scriptLines": null
         },
         {
-          "uid": 21,
+          "uid": 22,
           "frame": 195,
           "eventId": 6,
           "pageIndex": 0,
@@ -2271,13 +2770,95 @@
             "addX": 0,
             "addY": 0
           },
+          "popupPortrait": null,
           "isScrollMessage": false,
           "scrollLines": null,
           "isScript": false,
           "scriptLines": null
         },
         {
-          "uid": 26,
+          "uid": 23,
+          "frame": 215,
+          "eventId": 6,
+          "pageIndex": 0,
+          "command": {
+            "code": 205,
+            "indent": 0,
+            "parameters": [
+              2,
+              {
+                "repeat": false,
+                "skippable": false,
+                "wait": false,
+                "list": [
+                  {
+                    "code": 45,
+                    "parameters": [
+                      "this.setImageZXC('$kanbu2', 0, 2)"
+                    ]
+                  },
+                  {
+                    "code": 0,
+                    "parameters": []
+                  }
+                ]
+              }
+            ]
+          },
+          "wait": 0,
+          "rowType": "char",
+          "rowKey": "char:2",
+          "charId": 2,
+          "isComment": false,
+          "commentLines": null,
+          "isMemo": false,
+          "memoSize": "S",
+          "memoText": "",
+          "isMessage": false,
+          "messageLines": null,
+          "messageExt": null,
+          "popupPortrait": null,
+          "isScrollMessage": false,
+          "scrollLines": null,
+          "isScript": false,
+          "scriptLines": null
+        },
+        {
+          "uid": 24,
+          "frame": 216,
+          "eventId": 6,
+          "pageIndex": 0,
+          "command": {
+            "code": 122,
+            "indent": 0,
+            "parameters": [
+              3,
+              3,
+              0,
+              0,
+              25
+            ]
+          },
+          "wait": 0,
+          "rowType": "main",
+          "rowKey": "main",
+          "charId": null,
+          "isComment": false,
+          "commentLines": null,
+          "isMemo": false,
+          "memoSize": "S",
+          "memoText": "",
+          "isMessage": false,
+          "messageLines": null,
+          "messageExt": null,
+          "popupPortrait": null,
+          "isScrollMessage": false,
+          "scrollLines": null,
+          "isScript": false,
+          "scriptLines": null
+        },
+        {
+          "uid": 29,
           "frame": 216,
           "eventId": 6,
           "pageIndex": 0,
@@ -2316,13 +2897,14 @@
             "addX": 0,
             "addY": 0
           },
+          "popupPortrait": null,
           "isScrollMessage": false,
           "scrollLines": null,
           "isScript": false,
           "scriptLines": null
         },
         {
-          "uid": 27,
+          "uid": 30,
           "frame": 216,
           "eventId": 6,
           "pageIndex": 0,
@@ -2361,14 +2943,62 @@
             "addX": 0,
             "addY": 0
           },
+          "popupPortrait": null,
           "isScrollMessage": false,
           "scrollLines": null,
           "isScript": false,
           "scriptLines": null
         },
         {
-          "uid": 28,
+          "uid": 31,
           "frame": 216,
+          "eventId": 6,
+          "pageIndex": 0,
+          "command": {
+            "code": 205,
+            "indent": 0,
+            "parameters": [
+              2,
+              {
+                "repeat": false,
+                "skippable": false,
+                "wait": false,
+                "list": [
+                  {
+                    "code": 45,
+                    "parameters": [
+                      "this.setImageZXC('$kanbu2_2', 0, 2)"
+                    ]
+                  },
+                  {
+                    "code": 0,
+                    "parameters": []
+                  }
+                ]
+              }
+            ]
+          },
+          "wait": 0,
+          "rowType": "char",
+          "rowKey": "char:2",
+          "charId": 2,
+          "isComment": false,
+          "commentLines": null,
+          "isMemo": false,
+          "memoSize": "S",
+          "memoText": "",
+          "isMessage": false,
+          "messageLines": null,
+          "messageExt": null,
+          "popupPortrait": null,
+          "isScrollMessage": false,
+          "scrollLines": null,
+          "isScript": false,
+          "scriptLines": null
+        },
+        {
+          "uid": 32,
+          "frame": 217,
           "eventId": 6,
           "pageIndex": 0,
           "command": {
@@ -2405,13 +3035,61 @@
             "addX": 0,
             "addY": 0
           },
+          "popupPortrait": null,
           "isScrollMessage": false,
           "scrollLines": null,
           "isScript": false,
           "scriptLines": null
         },
         {
-          "uid": 30,
+          "uid": 33,
+          "frame": 240,
+          "eventId": 6,
+          "pageIndex": 0,
+          "command": {
+            "code": 205,
+            "indent": 0,
+            "parameters": [
+              2,
+              {
+                "repeat": false,
+                "skippable": false,
+                "wait": false,
+                "list": [
+                  {
+                    "code": 45,
+                    "parameters": [
+                      "this.setImageZXC('$kanbu2_2', 0, 2), this.startFrameAnimation([3,4,5], 6, true)"
+                    ]
+                  },
+                  {
+                    "code": 0,
+                    "parameters": []
+                  }
+                ]
+              }
+            ]
+          },
+          "wait": 0,
+          "rowType": "char",
+          "rowKey": "char:2",
+          "charId": 2,
+          "isComment": false,
+          "commentLines": null,
+          "isMemo": false,
+          "memoSize": "S",
+          "memoText": "",
+          "isMessage": false,
+          "messageLines": null,
+          "messageExt": null,
+          "popupPortrait": null,
+          "isScrollMessage": false,
+          "scrollLines": null,
+          "isScript": false,
+          "scriptLines": null
+        },
+        {
+          "uid": 35,
           "frame": 241,
           "eventId": 6,
           "pageIndex": 0,
@@ -2450,13 +3128,14 @@
             "addX": 0,
             "addY": 0
           },
+          "popupPortrait": null,
           "isScrollMessage": false,
           "scrollLines": null,
           "isScript": false,
           "scriptLines": null
         },
         {
-          "uid": 31,
+          "uid": 36,
           "frame": 241,
           "eventId": 6,
           "pageIndex": 0,
@@ -2494,13 +3173,14 @@
             "addX": 0,
             "addY": 0
           },
+          "popupPortrait": null,
           "isScrollMessage": false,
           "scrollLines": null,
           "isScript": false,
           "scriptLines": null
         },
         {
-          "uid": 32,
+          "uid": 37,
           "frame": 301,
           "eventId": 6,
           "pageIndex": 0,
@@ -2541,13 +3221,14 @@
           "isMessage": false,
           "messageLines": null,
           "messageExt": null,
+          "popupPortrait": null,
           "isScrollMessage": false,
           "scrollLines": null,
           "isScript": false,
           "scriptLines": null
         },
         {
-          "uid": 33,
+          "uid": 38,
           "frame": 301,
           "eventId": 6,
           "pageIndex": 0,
@@ -2575,13 +3256,14 @@
           "isMessage": false,
           "messageLines": null,
           "messageExt": null,
+          "popupPortrait": null,
           "isScrollMessage": false,
           "scrollLines": null,
           "isScript": false,
           "scriptLines": null
         },
         {
-          "uid": 34,
+          "uid": 39,
           "frame": 301,
           "eventId": 6,
           "pageIndex": 0,
@@ -2591,13 +3273,17 @@
             "parameters": [
               5,
               {
-                "repeat": false,
-                "skippable": false,
-                "wait": false,
                 "list": [
                   {
                     "code": 16,
                     "parameters": []
+                  },
+                  {
+                    "code": 45,
+                    "parameters": [
+                      "this.startFrameAnimation([0,1,2,1], 10, true);"
+                    ],
+                    "indent": null
                   },
                   {
                     "code": 45,
@@ -2627,7 +3313,10 @@
                     "code": 0,
                     "parameters": []
                   }
-                ]
+                ],
+                "repeat": false,
+                "skippable": false,
+                "wait": false
               }
             ]
           },
@@ -2643,13 +3332,67 @@
           "isMessage": false,
           "messageLines": null,
           "messageExt": null,
+          "popupPortrait": null,
           "isScrollMessage": false,
           "scrollLines": null,
           "isScript": false,
           "scriptLines": null
         },
         {
-          "uid": 35,
+          "uid": 72,
+          "frame": 374,
+          "eventId": 6,
+          "pageIndex": 0,
+          "command": {
+            "code": 205,
+            "indent": 0,
+            "parameters": [
+              2,
+              {
+                "repeat": false,
+                "skippable": false,
+                "wait": false,
+                "list": [
+                  {
+                    "code": 45,
+                    "parameters": [
+                      "this.endFrameAnimation(), this._patternFix = false;"
+                    ]
+                  },
+                  {
+                    "code": 45,
+                    "parameters": [
+                      "this.setImageZXC('$kanbu2', 0, 2)"
+                    ]
+                  },
+                  {
+                    "code": 0,
+                    "parameters": []
+                  }
+                ]
+              }
+            ]
+          },
+          "wait": 0,
+          "rowType": "char",
+          "rowKey": "char:2",
+          "charId": 2,
+          "isComment": false,
+          "commentLines": null,
+          "isMemo": false,
+          "memoSize": "S",
+          "memoText": "",
+          "isMessage": false,
+          "messageLines": null,
+          "messageExt": null,
+          "popupPortrait": null,
+          "isScrollMessage": false,
+          "scrollLines": null,
+          "isScript": false,
+          "scriptLines": null
+        },
+        {
+          "uid": 40,
           "frame": 412,
           "eventId": 6,
           "pageIndex": 0,
@@ -2677,13 +3420,48 @@
           "isMessage": false,
           "messageLines": null,
           "messageExt": null,
+          "popupPortrait": null,
           "isScrollMessage": false,
           "scrollLines": null,
           "isScript": false,
           "scriptLines": null
         },
         {
-          "uid": 36,
+          "uid": 41,
+          "frame": 412,
+          "eventId": 6,
+          "pageIndex": 0,
+          "command": {
+            "code": 122,
+            "indent": 0,
+            "parameters": [
+              3,
+              3,
+              0,
+              0,
+              0
+            ]
+          },
+          "wait": 0,
+          "rowType": "main",
+          "rowKey": "main",
+          "charId": null,
+          "isComment": false,
+          "commentLines": null,
+          "isMemo": false,
+          "memoSize": "S",
+          "memoText": "",
+          "isMessage": false,
+          "messageLines": null,
+          "messageExt": null,
+          "popupPortrait": null,
+          "isScrollMessage": false,
+          "scrollLines": null,
+          "isScript": false,
+          "scriptLines": null
+        },
+        {
+          "uid": 42,
           "frame": 412,
           "eventId": 6,
           "pageIndex": 0,
@@ -2693,9 +3471,6 @@
             "parameters": [
               1,
               {
-                "repeat": false,
-                "skippable": false,
-                "wait": false,
                 "list": [
                   {
                     "code": 45,
@@ -2722,11 +3497,14 @@
                     "code": 0,
                     "parameters": []
                   }
-                ]
+                ],
+                "repeat": false,
+                "skippable": false,
+                "wait": true
               }
             ]
           },
-          "wait": 0,
+          "wait": 62,
           "rowType": "char",
           "rowKey": "char:1",
           "charId": 1,
@@ -2738,14 +3516,15 @@
           "isMessage": false,
           "messageLines": null,
           "messageExt": null,
+          "popupPortrait": null,
           "isScrollMessage": false,
           "scrollLines": null,
           "isScript": false,
           "scriptLines": null
         },
         {
-          "uid": 37,
-          "frame": 492,
+          "uid": 43,
+          "frame": 554,
           "eventId": 6,
           "pageIndex": 0,
           "command": {
@@ -2772,14 +3551,15 @@
           "isMessage": false,
           "messageLines": null,
           "messageExt": null,
+          "popupPortrait": null,
           "isScrollMessage": false,
           "scrollLines": null,
           "isScript": false,
           "scriptLines": null
         },
         {
-          "uid": 38,
-          "frame": 492,
+          "uid": 44,
+          "frame": 554,
           "eventId": 6,
           "pageIndex": 0,
           "command": {
@@ -2792,8 +3572,9 @@
                   {
                     "code": 45,
                     "parameters": [
-                      "this.startFrameAnimation(3, 10, true)"
-                    ]
+                      "this.startFrameAnimation([0,1,2,1], 10, true)"
+                    ],
+                    "indent": null
                   },
                   {
                     "code": 45,
@@ -2804,8 +3585,9 @@
                   {
                     "code": 45,
                     "parameters": [
-                      "this.jump(30, -5, 0.1, 15)"
-                    ]
+                      "this.jump(30, -3, 0.1, 25)"
+                    ],
+                    "indent": null
                   },
                   {
                     "code": 0,
@@ -2818,7 +3600,7 @@
               }
             ]
           },
-          "wait": 181,
+          "wait": 261,
           "rowType": "char",
           "rowKey": "char:5",
           "charId": 5,
@@ -2830,14 +3612,15 @@
           "isMessage": false,
           "messageLines": null,
           "messageExt": null,
+          "popupPortrait": null,
           "isScrollMessage": false,
           "scrollLines": null,
           "isScript": false,
           "scriptLines": null
         },
         {
-          "uid": 40,
-          "frame": 763,
+          "uid": 46,
+          "frame": 905,
           "eventId": 6,
           "pageIndex": 0,
           "command": {
@@ -2873,14 +3656,15 @@
             "addX": 0,
             "addY": 0
           },
+          "popupPortrait": null,
           "isScrollMessage": false,
           "scrollLines": null,
           "isScript": false,
           "scriptLines": null
         },
         {
-          "uid": 41,
-          "frame": 763,
+          "uid": 47,
+          "frame": 905,
           "eventId": 6,
           "pageIndex": 0,
           "command": {
@@ -2916,14 +3700,15 @@
             "addX": 0,
             "addY": 0
           },
+          "popupPortrait": null,
           "isScrollMessage": false,
           "scrollLines": null,
           "isScript": false,
           "scriptLines": null
         },
         {
-          "uid": 42,
-          "frame": 763,
+          "uid": 48,
+          "frame": 905,
           "eventId": 6,
           "pageIndex": 0,
           "command": {
@@ -2960,14 +3745,15 @@
             "addX": 0,
             "addY": 0
           },
+          "popupPortrait": null,
           "isScrollMessage": false,
           "scrollLines": null,
           "isScript": false,
           "scriptLines": null
         },
         {
-          "uid": 43,
-          "frame": 763,
+          "uid": 49,
+          "frame": 905,
           "eventId": 6,
           "pageIndex": 0,
           "command": {
@@ -2996,14 +3782,15 @@
           "isMessage": false,
           "messageLines": null,
           "messageExt": null,
+          "popupPortrait": null,
           "isScrollMessage": false,
           "scrollLines": null,
           "isScript": false,
           "scriptLines": null
         },
         {
-          "uid": 44,
-          "frame": 763,
+          "uid": 50,
+          "frame": 905,
           "eventId": 6,
           "pageIndex": 0,
           "command": {
@@ -3026,14 +3813,46 @@
           "isMessage": false,
           "messageLines": null,
           "messageExt": null,
+          "popupPortrait": null,
           "isScrollMessage": false,
           "scrollLines": null,
           "isScript": false,
           "scriptLines": null
         },
         {
-          "uid": 46,
-          "frame": 787,
+          "uid": 55,
+          "frame": 905,
+          "eventId": 6,
+          "pageIndex": 0,
+          "command": {
+            "code": 402,
+            "indent": 0,
+            "parameters": [
+              1,
+              "（はしゃぐ）"
+            ]
+          },
+          "wait": 0,
+          "rowType": "main",
+          "rowKey": "main",
+          "charId": null,
+          "isComment": false,
+          "commentLines": null,
+          "isMemo": false,
+          "memoSize": "S",
+          "memoText": "",
+          "isMessage": false,
+          "messageLines": null,
+          "messageExt": null,
+          "popupPortrait": null,
+          "isScrollMessage": false,
+          "scrollLines": null,
+          "isScript": false,
+          "scriptLines": null
+        },
+        {
+          "uid": 52,
+          "frame": 929,
           "eventId": 6,
           "pageIndex": 0,
           "command": {
@@ -3069,14 +3888,15 @@
             "addX": 0,
             "addY": 0
           },
+          "popupPortrait": null,
           "isScrollMessage": false,
           "scrollLines": null,
           "isScript": false,
           "scriptLines": null
         },
         {
-          "uid": 47,
-          "frame": 787,
+          "uid": 53,
+          "frame": 929,
           "eventId": 6,
           "pageIndex": 0,
           "command": {
@@ -3113,14 +3933,15 @@
             "addX": 0,
             "addY": 0
           },
+          "popupPortrait": null,
           "isScrollMessage": false,
           "scrollLines": null,
           "isScript": false,
           "scriptLines": null
         },
         {
-          "uid": 48,
-          "frame": 787,
+          "uid": 54,
+          "frame": 929,
           "eventId": 6,
           "pageIndex": 0,
           "command": {
@@ -3157,44 +3978,15 @@
             "addX": 0,
             "addY": 0
           },
+          "popupPortrait": null,
           "isScrollMessage": false,
           "scrollLines": null,
           "isScript": false,
           "scriptLines": null
         },
         {
-          "uid": 49,
-          "frame": 787,
-          "eventId": 6,
-          "pageIndex": 0,
-          "command": {
-            "code": 402,
-            "indent": 0,
-            "parameters": [
-              1,
-              "（はしゃぐ）"
-            ]
-          },
-          "wait": 0,
-          "rowType": "main",
-          "rowKey": "main",
-          "charId": null,
-          "isComment": false,
-          "commentLines": null,
-          "isMemo": false,
-          "memoSize": "S",
-          "memoText": "",
-          "isMessage": false,
-          "messageLines": null,
-          "messageExt": null,
-          "isScrollMessage": false,
-          "scrollLines": null,
-          "isScript": false,
-          "scriptLines": null
-        },
-        {
-          "uid": 51,
-          "frame": 811,
+          "uid": 56,
+          "frame": 929,
           "eventId": 6,
           "pageIndex": 0,
           "command": {
@@ -3231,14 +4023,15 @@
             "addX": 0,
             "addY": 0
           },
+          "popupPortrait": null,
           "isScrollMessage": false,
           "scrollLines": null,
           "isScript": false,
           "scriptLines": null
         },
         {
-          "uid": 52,
-          "frame": 811,
+          "uid": 57,
+          "frame": 930,
           "eventId": 6,
           "pageIndex": 0,
           "command": {
@@ -3276,14 +4069,15 @@
             "addX": 0,
             "addY": 0
           },
+          "popupPortrait": null,
           "isScrollMessage": false,
           "scrollLines": null,
           "isScript": false,
           "scriptLines": null
         },
         {
-          "uid": 53,
-          "frame": 811,
+          "uid": 58,
+          "frame": 931,
           "eventId": 6,
           "pageIndex": 0,
           "command": {
@@ -3320,14 +4114,15 @@
             "addX": 0,
             "addY": 0
           },
+          "popupPortrait": null,
           "isScrollMessage": false,
           "scrollLines": null,
           "isScript": false,
           "scriptLines": null
         },
         {
-          "uid": 54,
-          "frame": 811,
+          "uid": 59,
+          "frame": 931,
           "eventId": 6,
           "pageIndex": 0,
           "command": {
@@ -3347,14 +4142,162 @@
           "isMessage": false,
           "messageLines": null,
           "messageExt": null,
+          "popupPortrait": null,
           "isScrollMessage": false,
           "scrollLines": null,
           "isScript": false,
           "scriptLines": null
         },
         {
-          "uid": 55,
-          "frame": 835,
+          "uid": 73,
+          "frame": 931,
+          "eventId": 6,
+          "pageIndex": 0,
+          "command": {
+            "code": 205,
+            "indent": 0,
+            "parameters": [
+              2,
+              {
+                "repeat": false,
+                "skippable": false,
+                "wait": false,
+                "list": [
+                  {
+                    "code": 45,
+                    "parameters": [
+                      "this.setImageZXC('$kanbu2_2', 0, 2)"
+                    ]
+                  },
+                  {
+                    "code": 0,
+                    "parameters": []
+                  }
+                ]
+              }
+            ]
+          },
+          "wait": 0,
+          "rowType": "char",
+          "rowKey": "char:2",
+          "charId": 2,
+          "isComment": false,
+          "commentLines": null,
+          "isMemo": false,
+          "memoSize": "S",
+          "memoText": "",
+          "isMessage": false,
+          "messageLines": null,
+          "messageExt": null,
+          "popupPortrait": null,
+          "isScrollMessage": false,
+          "scrollLines": null,
+          "isScript": false,
+          "scriptLines": null
+        },
+        {
+          "uid": 74,
+          "frame": 932,
+          "eventId": 6,
+          "pageIndex": 0,
+          "command": {
+            "code": 205,
+            "indent": 0,
+            "parameters": [
+              2,
+              {
+                "repeat": false,
+                "skippable": false,
+                "wait": false,
+                "list": [
+                  {
+                    "code": 45,
+                    "parameters": [
+                      "this.setImageZXC('$kanbu2_2', 0, 2), this.startFrameAnimation([3,4,5], 6, true)"
+                    ]
+                  },
+                  {
+                    "code": 0,
+                    "parameters": []
+                  }
+                ]
+              }
+            ]
+          },
+          "wait": 0,
+          "rowType": "char",
+          "rowKey": "char:2",
+          "charId": 2,
+          "isComment": false,
+          "commentLines": null,
+          "isMemo": false,
+          "memoSize": "S",
+          "memoText": "",
+          "isMessage": false,
+          "messageLines": null,
+          "messageExt": null,
+          "popupPortrait": null,
+          "isScrollMessage": false,
+          "scrollLines": null,
+          "isScript": false,
+          "scriptLines": null
+        },
+        {
+          "uid": 75,
+          "frame": 954,
+          "eventId": 6,
+          "pageIndex": 0,
+          "command": {
+            "code": 205,
+            "indent": 0,
+            "parameters": [
+              2,
+              {
+                "repeat": false,
+                "skippable": false,
+                "wait": false,
+                "list": [
+                  {
+                    "code": 45,
+                    "parameters": [
+                      "this.endFrameAnimation(), this._patternFix = false;"
+                    ]
+                  },
+                  {
+                    "code": 45,
+                    "parameters": [
+                      "this.setImageZXC('$kanbu2_2', 0, 2)"
+                    ]
+                  },
+                  {
+                    "code": 0,
+                    "parameters": []
+                  }
+                ]
+              }
+            ]
+          },
+          "wait": 0,
+          "rowType": "char",
+          "rowKey": "char:2",
+          "charId": 2,
+          "isComment": false,
+          "commentLines": null,
+          "isMemo": false,
+          "memoSize": "S",
+          "memoText": "",
+          "isMessage": false,
+          "messageLines": null,
+          "messageExt": null,
+          "popupPortrait": null,
+          "isScrollMessage": false,
+          "scrollLines": null,
+          "isScript": false,
+          "scriptLines": null
+        },
+        {
+          "uid": 60,
+          "frame": 955,
           "eventId": 6,
           "pageIndex": 0,
           "command": {
@@ -3392,14 +4335,15 @@
             "addX": 0,
             "addY": 0
           },
+          "popupPortrait": null,
           "isScrollMessage": false,
           "scrollLines": null,
           "isScript": false,
           "scriptLines": null
         },
         {
-          "uid": 56,
-          "frame": 835,
+          "uid": 61,
+          "frame": 955,
           "eventId": 6,
           "pageIndex": 0,
           "command": {
@@ -3436,14 +4380,15 @@
             "addX": 0,
             "addY": 0
           },
+          "popupPortrait": null,
           "isScrollMessage": false,
           "scrollLines": null,
           "isScript": false,
           "scriptLines": null
         },
         {
-          "uid": 57,
-          "frame": 870,
+          "uid": 62,
+          "frame": 990,
           "eventId": 6,
           "pageIndex": 0,
           "command": {
@@ -3459,13 +4404,13 @@
                   {
                     "code": 45,
                     "parameters": [
-                      "this.startFrameAnimation([8,9,10,11], 6, false)"
+                      "this.setImageZXC('$kanbu2', 0, 2), this.startFrameAnimation([8], 6, false)"
                     ]
                   },
                   {
                     "code": 15,
                     "parameters": [
-                      40
+                      18
                     ]
                   },
                   {
@@ -3488,14 +4433,15 @@
           "isMessage": false,
           "messageLines": null,
           "messageExt": null,
+          "popupPortrait": null,
           "isScrollMessage": false,
           "scrollLines": null,
           "isScript": false,
           "scriptLines": null
         },
         {
-          "uid": 58,
-          "frame": 911,
+          "uid": 63,
+          "frame": 1031,
           "eventId": 6,
           "pageIndex": 0,
           "command": {
@@ -3517,17 +4463,17 @@
           "isMessage": false,
           "messageLines": null,
           "messageExt": null,
+          "popupPortrait": null,
           "isScrollMessage": false,
           "scrollLines": null,
           "isScript": true,
           "scriptLines": [
             "this.character(2).requestAnimation(52, 0, 0, 1)"
-          ],
-          "_pendingAddPlacement": null
+          ]
         },
         {
-          "uid": 59,
-          "frame": 960,
+          "uid": 64,
+          "frame": 1080,
           "eventId": 6,
           "pageIndex": 0,
           "command": {
@@ -3549,6 +4495,7 @@
           "isMessage": false,
           "messageLines": null,
           "messageExt": null,
+          "popupPortrait": null,
           "isScrollMessage": false,
           "scrollLines": null,
           "isScript": true,
@@ -3557,8 +4504,8 @@
           ]
         },
         {
-          "uid": 60,
-          "frame": 1051,
+          "uid": 65,
+          "frame": 1171,
           "eventId": 6,
           "pageIndex": 0,
           "command": {
@@ -3602,14 +4549,15 @@
           "isMessage": false,
           "messageLines": null,
           "messageExt": null,
+          "popupPortrait": null,
           "isScrollMessage": false,
           "scrollLines": null,
           "isScript": false,
           "scriptLines": null
         },
         {
-          "uid": 61,
-          "frame": 1051,
+          "uid": 66,
+          "frame": 1171,
           "eventId": 6,
           "pageIndex": 0,
           "command": {
@@ -3649,14 +4597,15 @@
           "isMessage": false,
           "messageLines": null,
           "messageExt": null,
+          "popupPortrait": null,
           "isScrollMessage": false,
           "scrollLines": null,
           "isScript": false,
           "scriptLines": null
         },
         {
-          "uid": 45,
-          "frame": 1075,
+          "uid": 67,
+          "frame": 1195,
           "eventId": 6,
           "pageIndex": 0,
           "command": {
@@ -3693,14 +4642,15 @@
           "isMessage": false,
           "messageLines": null,
           "messageExt": null,
+          "popupPortrait": null,
           "isScrollMessage": false,
           "scrollLines": null,
           "isScript": false,
           "scriptLines": null
         },
         {
-          "uid": 50,
-          "frame": 1075,
+          "uid": 68,
+          "frame": 1195,
           "eventId": 6,
           "pageIndex": 0,
           "command": {
@@ -3737,14 +4687,15 @@
           "isMessage": false,
           "messageLines": null,
           "messageExt": null,
+          "popupPortrait": null,
           "isScrollMessage": false,
           "scrollLines": null,
           "isScript": false,
           "scriptLines": null
         },
         {
-          "uid": 62,
-          "frame": 1075,
+          "uid": 69,
+          "frame": 1195,
           "eventId": 6,
           "pageIndex": 0,
           "command": {
@@ -3766,15 +4717,15 @@
           "isMessage": false,
           "messageLines": null,
           "messageExt": null,
+          "popupPortrait": null,
           "isScrollMessage": false,
           "scrollLines": null,
           "isScript": false,
-          "scriptLines": null,
-          "_pendingAddPlacement": null
+          "scriptLines": null
         },
         {
-          "uid": 65,
-          "frame": 1076,
+          "uid": 70,
+          "frame": 1196,
           "eventId": 6,
           "pageIndex": 0,
           "command": {
@@ -3800,25 +4751,13 @@
           "isMessage": false,
           "messageLines": null,
           "messageExt": null,
+          "popupPortrait": null,
           "isScrollMessage": false,
           "scrollLines": null,
           "isScript": false,
-          "scriptLines": null,
-          "_pendingAddPlacement": null
+          "scriptLines": null
         }
       ]
-    },
-    {
-      "eventId": 6,
-      "pageIndex": 1,
-      "list": [
-        {
-          "code": 0,
-          "indent": 0,
-          "parameters": []
-        }
-      ],
-      "timeline": []
     }
   ],
   "mode": "map",

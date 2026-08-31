@@ -2,7 +2,7 @@
 // KNH_ZXC_EventEditor_Timeline_Preview
 //=============================================================================
 /*:
- * @plugindesc [MV][Playtest] Event timeline editor timeline extension v0.2 (KNH_ZXC_EventEditor_Timeline_Preview)
+ * @plugindesc [MV][Playtest] Event timeline editor timeline extension v0.3.0 (KNH_ZXC_EventEditor_Timeline_Preview)
  * @author kagaya
  * @help
  * KNH_ZXC_EventEditor.js の自動ロード用分割モジュールです。
@@ -21,6 +21,7 @@
     var compareEntriesByFrameWaitUid = SH.compareEntriesByFrameWaitUid;
     var EE_AnimationPreviewCharacter = SH.EE_AnimationPreviewCharacter;
     var COMMAND_CODE = SH.COMMAND_CODE;
+    SH.beginModule('preview');
 
     // Editor dialogs, visual previews, and map-side editing interactions.
     EE.prototype.isAnimationPreviewEditorActive = function() {
@@ -32,6 +33,20 @@
     EE.prototype.animationPreviewStateFromRaw = function(raw) {
         raw = (raw && typeof raw === 'object') ? raw : {};
         var mode = this.editorPreviewMode();
+        if (mode === 'portrait') {
+            var portraitSequence = this.parsePopupPortraitPatternSequence(raw.portraitPatternSequence) || [0, 1, 2, 1];
+            return {
+                mode: 'portrait',
+                imageName: String(raw.portraitFileName || ''),
+                imageIndex: Math.max(0, Math.min(7, Math.floor(Number(raw.portraitIndex || 0) || 0))),
+                imageDir: this.normalizeDirection8(Number(raw.portraitDirection || 2), 2),
+                animationType: String(raw.portraitAnimationType || 'fixed') === 'pattern' ? 'pattern' : 'fixed',
+                pattern: Math.max(0, Math.min(2, Math.floor(Number(raw.portraitPattern == null ? 1 : raw.portraitPattern) || 0))),
+                sequence: portraitSequence,
+                timing: String(raw.portraitTiming || 'custom') === 'yura' ? 'yura' : 'custom',
+                wait: Math.max(1, Math.floor(Number(raw.portraitWait || 10) || 10))
+            };
+        }
         if (mode === 'frame') {
             var tid = this.currentEditingRouteTargetId();
             var wait = Math.max(1, Math.floor(Number(raw.speed || 6) || 6));
@@ -191,6 +206,19 @@
 
     EE.prototype.animationPreviewStateSig = function(spec) {
         if (!spec) return '';
+        if (String(spec.mode || '') === 'portrait') {
+            return [
+                'portrait',
+                String(spec.imageName || ''),
+                String(Math.max(0, Math.min(7, Math.floor(Number(spec.imageIndex || 0) || 0)))),
+                String(this.normalizeDirection8(Number(spec.imageDir || 2), 2)),
+                String(spec.animationType || 'fixed'),
+                String(Math.max(0, Math.min(2, Math.floor(Number(spec.pattern == null ? 1 : spec.pattern) || 0)))),
+                JSON.stringify(Array.isArray(spec.sequence) ? spec.sequence : []),
+                String(spec.timing || 'yura'),
+                String(Math.max(1, Math.floor(Number(spec.wait || 10) || 10)))
+            ].join('|');
+        }
         if (String(spec.mode || '') === 'cssRectFrame') {
             return [
                 'cssRectFrame',
@@ -267,7 +295,8 @@
     EE.prototype.updateAnimationPreviewTitle = function() {
         if (!this.animPreviewTitle) return;
         var mode = this.editorPreviewMode();
-        if (mode === 'frame') this.animPreviewTitle.textContent = 'フレームアニメプレビュー（自動再生）';
+        if (mode === 'portrait') this.animPreviewTitle.textContent = '顔画像アニメーションプレビュー';
+        else if (mode === 'frame') this.animPreviewTitle.textContent = 'フレームアニメプレビュー（自動再生）';
         else if (mode === 'cssRectFrame') this.animPreviewTitle.textContent = 'CSSアニメプレビュー（自動再生）';
         else if (mode === 'image') this.animPreviewTitle.textContent = '画像プレビュー（setImageZXC）';
         else if (mode === 'picture') this.animPreviewTitle.textContent = 'ピクチャ表示プレビュー';
@@ -352,18 +381,6 @@
         }
         if (!seq.length) seq.push(0);
         return seq;
-    };
-
-    EE.prototype.clearAnimationPreviewPicture = function() {
-        if (this.animPreviewPictureSprite && this.animPreviewPictureSprite.parent) {
-            this.animPreviewPictureSprite.parent.removeChild(this.animPreviewPictureSprite);
-        }
-        if (this.animPreviewPictureSprite && this.animPreviewPictureSprite.destroy) {
-            try { this.animPreviewPictureSprite.destroy({ children: true }); } catch (_) {}
-        }
-        this.animPreviewPictureSprite = null;
-        this.animPreviewPictureName = '';
-        this.animPreviewPicturePlayback = null;
     };
 
     EE.prototype.ensureAnimationPreviewPictureSprite = function(spec) {
@@ -532,6 +549,12 @@
             dir = this.normalizeDirection8(Number(spec && spec.imageDir || 2), 2);
             targetLabel = 'setImageZXC';
             return { mode: mode, name: name, index: idx, direction: dir, targetLabel: targetLabel };
+        }
+        if (mode === 'portrait') {
+            name = String(spec && spec.imageName || '');
+            idx = Math.max(0, Math.floor(Number(spec && spec.imageIndex || 0) || 0));
+            dir = this.normalizeDirection8(Number(spec && spec.imageDir || 2), 2);
+            return { mode: mode, name: name, index: idx, direction: dir, targetLabel: '顔画像' };
         }
         if (mode === 'frame' && spec && spec.useImage && String(spec.imageName || '').length) {
             name = String(spec.imageName || '');
@@ -812,6 +835,13 @@
     };
 
     EE.prototype.clearAnimationPreviewCharacter = function() {
+        // Portrait previews live in animPreviewWorld as ordinary Sprite instances.
+        // Clear their references here, together with the objects this method owns.
+        // PIXI nulls properties such as anchor when a Sprite is destroyed, so a
+        // stale portrait reference must never be reused after this cleanup.
+        this.animPreviewPortraitSprite = null;
+        this.animPreviewPortraitSpecSig = '';
+        this.animPreviewPortraitStartedFrame = 0;
         if (this.animPreviewWorld && Array.isArray(this.animPreviewWorld.children)) {
             var children = this.animPreviewWorld.children.slice(0);
             for (var i = 0; i < children.length; i++) {
@@ -949,6 +979,110 @@
             this.pushAnimationPreviewLog('renderer created');
         }
         this.resizeAnimationPreviewRenderer();
+        return true;
+    };
+
+    EE.prototype.ensureAnimationPreviewPortraitSprite = function(spec) {
+        if (!spec || !this.animPreviewWorld || typeof Sprite === 'undefined') return false;
+        var sig = this.animationPreviewStateSig(spec);
+        var current = this.animPreviewPortraitSprite;
+        var reusable = current &&
+            !current._destroyed && !current.destroyed &&
+            current.anchor && current.parent === this.animPreviewWorld;
+        if (reusable && this.animPreviewPortraitSpecSig === sig) return true;
+        this.clearAnimationPreviewCharacter();
+        var sprite = new Sprite();
+        sprite.anchor.x = 0.5;
+        sprite.anchor.y = 1;
+        sprite.bitmap = SH.loadCharacterBitmapIfExists(String(spec.imageName || ''));
+        this.animPreviewWorld.addChild(sprite);
+        this.animPreviewPortraitSprite = sprite;
+        this.animPreviewPortraitSpecSig = sig;
+        this.animPreviewPortraitStartedFrame = typeof Graphics !== 'undefined' ? Number(Graphics.frameCount || 0) : 0;
+        return true;
+    };
+
+    EE.prototype.updateAnimationPreviewPortrait = function(spec) {
+        if (!this.ensureAnimationPreviewRenderer() || !this.ensureAnimationPreviewPortraitSprite(spec)) return false;
+        var sprite = this.animPreviewPortraitSprite;
+        var bitmap = sprite && sprite.bitmap;
+        if (!bitmap) {
+            this.setAnimationPreviewInfo(
+                String(spec.imageName || '').length ? ('画像が見つかりません: ' + String(spec.imageName)) : 'キャラ画像を選択してください。',
+                true
+            );
+            if (this.animPreviewRenderer && this.animPreviewStage) this.animPreviewRenderer.render(this.animPreviewStage);
+            return true;
+        }
+        if (!bitmap.isReady || !bitmap.isReady()) {
+            this.setAnimationPreviewInfo('画像読み込み中: ' + String(spec.imageName || ''), false);
+            if (this.animPreviewRenderer && this.animPreviewStage) this.animPreviewRenderer.render(this.animPreviewStage);
+            return true;
+        }
+        var big = ImageManager.isBigCharacter(String(spec.imageName || ''));
+        var frameWidth = bitmap.width / (big ? 3 : 12);
+        var frameHeight = bitmap.height / (big ? 4 : 8);
+        var pattern = Math.max(0, Math.min(2, Math.floor(Number(spec.pattern == null ? 1 : spec.pattern) || 0)));
+        var step = 0;
+        if (spec.animationType === 'pattern') {
+            if (spec.timing === 'yura') {
+                var globalWait = Math.max(1, Number($gameSystem && $gameSystem.animationWait ? $gameSystem.animationWait() : spec.wait));
+                var count = $gameSystem && $gameSystem.sceneCount ? $gameSystem.sceneCount() : Graphics.frameCount;
+                step = Math.floor(Number(count || 0) / globalWait);
+            } else {
+                step = Math.floor(Math.max(0, Number(Graphics.frameCount || 0) - Number(this.animPreviewPortraitStartedFrame || 0)) / Math.max(1, Number(spec.wait || 1)));
+            }
+            var sequence = Array.isArray(spec.sequence) && spec.sequence.length ? spec.sequence : [0, 1, 2, 1];
+            pattern = Math.max(0, Math.min(2, Math.floor(Number(sequence[((step % sequence.length) + sequence.length) % sequence.length]) || 0)));
+        }
+        if (sprite._eePortraitPattern !== pattern) {
+            var index = Math.max(0, Math.min(7, Math.floor(Number(spec.imageIndex || 0) || 0)));
+            var direction = this.normalizeDirection8(Number(spec.imageDir || 2), 2);
+            var portraitApi = window.KNH_ZXC_PopupPortrait;
+            var frame = portraitApi && typeof portraitApi.characterFrameRect === 'function'
+                ? portraitApi.characterFrameRect(bitmap, String(spec.imageName || ''), index, direction, pattern)
+                : null;
+            if (!frame) {
+                var characterColumn = big ? 0 : (index % 4) * 3;
+                var characterRow = big ? 0 : Math.floor(index / 4) * 4;
+                frame = {
+                    x: (characterColumn + pattern) * frameWidth,
+                    y: (characterRow + (direction - 2) / 2) * frameHeight,
+                    width: frameWidth,
+                    height: frameHeight
+                };
+            }
+            sprite.setFrame(frame.x, frame.y, frame.width, frame.height);
+            sprite._lastFrame = null;
+            sprite._baseBitmap = null;
+            sprite._eePortraitPattern = pattern;
+        }
+        if (spec.animationType === 'fixed') {
+            sprite._yuraInfo = [20, 15, $gameSystem && $gameSystem.animationWait ? $gameSystem.animationWait() : 10, false];
+            sprite._yuraUseOwnStep = false;
+        } else {
+            sprite._yuraInfo = null;
+        }
+        if (sprite.update) sprite.update();
+        var width = Math.max(1, Math.floor(Number(this.animPreviewRendererW || 1)));
+        var height = Math.max(1, Math.floor(Number(this.animPreviewRendererH || 1)));
+        sprite.x = Math.floor(width * 0.5 + Number(this.animPreviewPanX || 0));
+        sprite.y = Math.floor(height * 0.78 + Number(this.animPreviewPanY || 0));
+        if (this.animPreviewWorld) {
+            this.animPreviewWorld.position.x = 0;
+            this.animPreviewWorld.position.y = 0;
+            this.animPreviewWorld.pivot.x = 0;
+            this.animPreviewWorld.pivot.y = 0;
+        }
+        if (this.animPreviewRenderer && this.animPreviewStage) this.animPreviewRenderer.render(this.animPreviewStage);
+        var timingText = spec.animationType === 'fixed'
+            ? '固定 + ゆらゆら'
+            : (spec.timing === 'yura' ? '全体同期' : ('独自 ' + Math.max(1, Number(spec.wait || 1)) + 'f'));
+        this.setAnimationPreviewInfo(
+            String(spec.imageName || '') + ' / index:' + Number(spec.imageIndex || 0) +
+            ' / 向き:' + Number(spec.imageDir || 2) + ' / pattern:' + pattern + ' / ' + timingText,
+            false
+        );
         return true;
     };
 
@@ -1175,6 +1309,13 @@
     EE.prototype.requestAnimationPreviewPlayback = function(immediate) {
         if (!this.shouldShowAnimationPreviewInEditor()) return;
         var spec = this.animationPreviewStateFromRaw(this.collectEditorSchemaStateRaw());
+        if (String(spec && spec.mode || '') === 'portrait') {
+            this.animPreviewPendingSpec = null;
+            this.animPreviewPendingSig = '';
+            this.animPreviewPendingAt = 0;
+            if (immediate && this.isAnimationPreviewEditorActive()) this.updateAnimationPreviewPortrait(spec);
+            return false;
+        }
         if (String(spec && spec.mode || '') === 'image') {
             this.animPreviewPendingSpec = null;
             this.animPreviewPendingSig = '';
@@ -1220,6 +1361,7 @@
         if (this.animPreviewWrap) this.animPreviewWrap.style.display = show ? '' : 'none';
         if (this.edSchemaWrap && this.edSchemaWrap.classList) this.edSchemaWrap.classList.toggle('with-apv', !!show);
         if (this.modalWin && this.modalWin.classList) this.modalWin.classList.toggle('with-apv', !!show);
+        if (this.scheduleSchemaFieldLabelFit) this.scheduleSchemaFieldLabelFit();
         if (!show) {
             this.endAnimationPreviewPanDrag();
             this.closeAnimationPreviewImageOverlay();
@@ -1277,6 +1419,11 @@
         if (!this.isAnimationPreviewEditorActive()) return;
         var spec = this.animationPreviewStateFromRaw(this.collectEditorSchemaStateRaw());
         var mode = String(spec && spec.mode || 'animation');
+        if (mode === 'portrait') {
+            this.updateAnimationPreviewPortrait(spec);
+            this.refreshAnimationPreviewSheet(false);
+            return;
+        }
         if (mode === 'image') {
             this.refreshAnimationPreviewSheet(false);
             return;
@@ -1640,9 +1787,7 @@
         if (isPendingNew) {
             if (!this.finalizePendingAddEntry(tr, e)) return false;
         } else {
-            this.dirty[this.selKey] = true;
-            SH.sortTrackCommands(tr);
-            this.rebuildSchedule();
+            this.commitTrackMutation({ earliestChangedFrame: e.frame });
             this.playFrom(this.frame);
         }
         return true;
@@ -1656,12 +1801,15 @@
         if (apply) {
             if (!this.applySePickerToEditingEntry()) return;
         } else if (wasPending && tr) {
+            var pendingSeEntry = this.findEntryInSelectedTrack(this._pendingNewUid);
             if (this.removeTrackEntryByUid(this._pendingNewUid)) {
                 this.selUid = 0;
                 this.selRouteListIndex = -1;
-                this.rebuildSchedule();
+                this.commitTrackMutation({
+                    markDirty: false,
+                    earliestChangedFrame: pendingSeEntry ? pendingSeEntry.frame : 0
+                });
                 this.seek(this.frame);
-                this.timelineDirty = true;
             }
         }
         this.stopSePickerPreview();
@@ -1677,42 +1825,156 @@
         this._pendingNewConfirmed = false;
     };
 
-    EE.prototype.ensureSystemSwitchArray = function() {
-        if (!$dataSystem || typeof $dataSystem !== 'object') return null;
-        if (!Array.isArray($dataSystem.switches)) $dataSystem.switches = [''];
-        if (!$dataSystem.switches.length) $dataSystem.switches.push('');
-        if ($dataSystem.switches[0] == null) $dataSystem.switches[0] = '';
-        return $dataSystem.switches;
+    EE.prototype.systemNamePickerConfig = function(kind) {
+        if (String(kind || '') === 'variable') {
+            return {
+                kind: 'variable', dataKey: 'variables', rangeListKey: 'variablePickerRangeList',
+                itemListKey: 'variablePickerVariableList', nameInputKey: 'variablePickerNameInput',
+                selectedIdKey: 'variablePickerSelectedId', dirtyKey: 'variablePickerDirty'
+            };
+        }
+        return {
+            kind: 'switch', dataKey: 'switches', rangeListKey: 'switchPickerRangeList',
+            itemListKey: 'switchPickerSwitchList', nameInputKey: 'switchPickerNameInput',
+            selectedIdKey: 'switchPickerSelectedId', dirtyKey: 'switchPickerDirty'
+        };
     };
 
-    EE.prototype.switchMaxId = function() {
-        var arr = this.ensureSystemSwitchArray();
+    EE.prototype.ensureSystemNameArray = function(kind) {
+        var config = this.systemNamePickerConfig(kind);
+        if (!$dataSystem || typeof $dataSystem !== 'object') return null;
+        var arr = $dataSystem[config.dataKey];
+        if (!Array.isArray(arr)) arr = $dataSystem[config.dataKey] = [''];
+        if (!arr.length) arr.push('');
+        if (arr[0] == null) arr[0] = '';
+        return arr;
+    };
+
+    EE.prototype.systemNameMaxId = function(kind) {
+        var arr = this.ensureSystemNameArray(kind);
         return Math.max(1, arr ? (arr.length - 1) : 1);
     };
 
+    EE.prototype.clampSystemNameId = function(kind, value) {
+        var id = Math.floor(Number(value || 1) || 1);
+        return Math.max(1, Math.min(this.systemNameMaxId(kind), id));
+    };
+
+    EE.prototype.systemNameById = function(kind, id) {
+        id = this.clampSystemNameId(kind, id);
+        var arr = this.ensureSystemNameArray(kind);
+        var name = arr && arr[id] ? String(arr[id]) : '';
+        return name.length ? name : '(未設定)';
+    };
+
+    EE.prototype.systemNameIdText = function(kind, id) {
+        return ('0000' + this.clampSystemNameId(kind, id)).slice(-4);
+    };
+
+    EE.prototype.systemNameDisplayText = function(kind, id) {
+        id = this.clampSystemNameId(kind, id);
+        return this.systemNameIdText(kind, id) + ' ' + this.systemNameById(kind, id);
+    };
+
+    EE.prototype.refreshSystemNamePickerRangeList = function(kind) {
+        var config = this.systemNamePickerConfig(kind);
+        var list = this[config.rangeListKey];
+        if (!list) return;
+        var maxId = this.systemNameMaxId(kind);
+        var blocks = Math.max(1, Math.ceil(maxId / 20));
+        var current = Math.max(0, Math.floor(Number(list.value || 0)));
+        list.innerHTML = '';
+        for (var i = 0; i < blocks; i++) {
+            var start = i * 20 + 1;
+            var end = Math.min(maxId, start + 19);
+            var option = document.createElement('option');
+            option.value = String(i);
+            option.textContent = '[ ' + this.systemNameIdText(kind, start) + ' - ' + this.systemNameIdText(kind, end) + ' ]';
+            list.appendChild(option);
+        }
+        list.value = String(Math.max(0, Math.min(blocks - 1, current)));
+    };
+
+    EE.prototype.refreshSystemNamePickerItemList = function(kind, rangeIndex) {
+        var config = this.systemNamePickerConfig(kind);
+        var list = this[config.itemListKey];
+        if (!list) return;
+        var maxId = this.systemNameMaxId(kind);
+        var range = Math.max(0, Math.floor(Number(rangeIndex || 0)));
+        var start = range * 20 + 1;
+        var end = Math.min(maxId, start + 19);
+        var current = this[config.selectedIdKey] != null
+            ? this.clampSystemNameId(kind, this[config.selectedIdKey])
+            : this.clampSystemNameId(kind, start);
+        list.innerHTML = '';
+        for (var i = start; i <= end; i++) {
+            var option = document.createElement('option');
+            option.value = String(i);
+            option.textContent = this.systemNameDisplayText(kind, i);
+            list.appendChild(option);
+        }
+        if (current < start || current > end) current = start;
+        list.value = String(current);
+        this[config.selectedIdKey] = current;
+        this.onSystemNamePickerSelectionChange(kind);
+    };
+
+    EE.prototype.onSystemNamePickerSelectionChange = function(kind) {
+        var config = this.systemNamePickerConfig(kind);
+        var list = this[config.itemListKey];
+        var id = list ? this.clampSystemNameId(kind, list.value) : 1;
+        this[config.selectedIdKey] = id;
+        var nameInput = this[config.nameInputKey];
+        if (nameInput) {
+            var arr = this.ensureSystemNameArray(kind);
+            nameInput.value = arr && arr[id] != null ? String(arr[id]) : '';
+        }
+    };
+
+    EE.prototype.onSystemNamePickerNameInput = function(kind) {
+        var config = this.systemNamePickerConfig(kind);
+        var arr = this.ensureSystemNameArray(kind);
+        var nameInput = this[config.nameInputKey];
+        var list = this[config.itemListKey];
+        if (!arr || !nameInput) return;
+        var id = this[config.selectedIdKey] != null
+            ? this.clampSystemNameId(kind, this[config.selectedIdKey])
+            : (list ? this.clampSystemNameId(kind, list.value) : 1);
+        arr[id] = String(nameInput.value || '');
+        this[config.dirtyKey] = true;
+        if (kind === 'variable') this.invalidateVariableOptionCache();
+        if (list && list.options) {
+            var index = list.selectedIndex;
+            if (index >= 0 && list.options[index]) {
+                list.options[index].textContent = this.systemNameDisplayText(kind, id);
+            }
+        }
+        if (kind === 'variable') this.refreshVariableEditorFieldTexts();
+        else this.refreshSwitchEditorFieldTexts();
+    };
+
+    EE.prototype.ensureSystemSwitchArray = function() {
+        return this.ensureSystemNameArray('switch');
+    };
+
+    EE.prototype.switchMaxId = function() {
+        return this.systemNameMaxId('switch');
+    };
+
     EE.prototype.clampSwitchId = function(v) {
-        var n = Math.floor(Number(v || 1) || 1);
-        var mx = this.switchMaxId();
-        if (n < 1) n = 1;
-        if (n > mx) n = mx;
-        return n;
+        return this.clampSystemNameId('switch', v);
     };
 
     EE.prototype.switchNameById = function(id) {
-        id = this.clampSwitchId(id);
-        var arr = this.ensureSystemSwitchArray();
-        var nm = arr && arr[id] ? String(arr[id]) : '';
-        if (!nm.length) nm = '(未設定)';
-        return nm;
+        return this.systemNameById('switch', id);
     };
 
     EE.prototype.switchIdText = function(id) {
-        return ('0000' + this.clampSwitchId(id)).slice(-4);
+        return this.systemNameIdText('switch', id);
     };
 
     EE.prototype.switchDisplayText = function(id) {
-        id = this.clampSwitchId(id);
-        return this.switchIdText(id) + ' ' + this.switchNameById(id);
+        return this.systemNameDisplayText('switch', id);
     };
 
     EE.prototype.switchEditorFieldValue = function(el, fallback) {
@@ -1750,84 +2012,20 @@
         }
     };
 
-    EE.prototype.refreshSwitchListByRange = function(rangeIdx) {
-        this.refreshSwitchPickerSwitchList(rangeIdx);
-    };
-
-    EE.prototype.selectSwitchRangeForId = function(id) {
-        this.switchPickerSelectedId = this.clampSwitchId(id);
-        this.refreshSwitchPickerRangeList();
-        var r = Math.max(0, Math.floor((this.switchPickerSelectedId - 1) / 20));
-        this.refreshSwitchPickerSwitchList(r);
-        if (this.switchPickerSwitchList) this.switchPickerSwitchList.value = String(this.switchPickerSelectedId);
-        this.onSwitchPickerSelectionChange();
-    };
-
     EE.prototype.refreshSwitchPickerRangeList = function() {
-        if (!this.switchPickerRangeList) return;
-        var mx = this.switchMaxId();
-        var blocks = Math.max(1, Math.ceil(mx / 20));
-        var cur = Math.max(0, Math.floor(Number(this.switchPickerRangeList.value || 0)));
-        this.switchPickerRangeList.innerHTML = '';
-        for (var i = 0; i < blocks; i++) {
-            var s = i * 20 + 1;
-            var e = Math.min(mx, s + 19);
-            var op = document.createElement('option');
-            op.value = String(i);
-            op.textContent = '[ ' + this.switchIdText(s) + ' - ' + this.switchIdText(e) + ' ]';
-            this.switchPickerRangeList.appendChild(op);
-        }
-        if (cur < 0) cur = 0;
-        if (cur >= blocks) cur = blocks - 1;
-        this.switchPickerRangeList.value = String(cur);
+        this.refreshSystemNamePickerRangeList('switch');
     };
 
     EE.prototype.refreshSwitchPickerSwitchList = function(rangeIdx) {
-        if (!this.switchPickerSwitchList) return;
-        var mx = this.switchMaxId();
-        var r = Math.max(0, Math.floor(Number(rangeIdx || 0)));
-        var start = r * 20 + 1;
-        var end = Math.min(mx, start + 19);
-        var cur = this.switchPickerSelectedId != null
-            ? this.clampSwitchId(this.switchPickerSelectedId)
-            : this.clampSwitchId(start);
-        this.switchPickerSwitchList.innerHTML = '';
-        for (var i = start; i <= end; i++) {
-            var op = document.createElement('option');
-            op.value = String(i);
-            op.textContent = this.switchDisplayText(i);
-            this.switchPickerSwitchList.appendChild(op);
-        }
-        if (cur < start || cur > end) cur = start;
-        this.switchPickerSwitchList.value = String(cur);
-        this.switchPickerSelectedId = cur;
-        this.onSwitchPickerSelectionChange();
+        this.refreshSystemNamePickerItemList('switch', rangeIdx);
     };
 
     EE.prototype.onSwitchPickerSelectionChange = function() {
-        var id = this.switchPickerSwitchList ? this.clampSwitchId(this.switchPickerSwitchList.value) : 1;
-        this.switchPickerSelectedId = id;
-        if (this.switchPickerNameInput) {
-            var arr = this.ensureSystemSwitchArray();
-            this.switchPickerNameInput.value = arr && arr[id] != null ? String(arr[id]) : '';
-        }
+        this.onSystemNamePickerSelectionChange('switch');
     };
 
     EE.prototype.onSwitchPickerNameInput = function() {
-        var arr = this.ensureSystemSwitchArray();
-        if (!arr || !this.switchPickerNameInput) return;
-        var id = this.switchPickerSelectedId != null
-            ? this.clampSwitchId(this.switchPickerSelectedId)
-            : (this.switchPickerSwitchList ? this.clampSwitchId(this.switchPickerSwitchList.value) : 1);
-        arr[id] = String(this.switchPickerNameInput.value || '');
-        this.switchPickerDirty = true;
-        if (this.switchPickerSwitchList && this.switchPickerSwitchList.options) {
-            var idx = this.switchPickerSwitchList.selectedIndex;
-            if (idx >= 0 && this.switchPickerSwitchList.options[idx]) {
-                this.switchPickerSwitchList.options[idx].textContent = this.switchDisplayText(id);
-            }
-        }
-        this.refreshSwitchEditorFieldTexts();
+        this.onSystemNamePickerNameInput('switch');
     };
 
     EE.prototype.refreshSwitchInputsAfterPickerChange = function() {
@@ -1902,17 +2100,34 @@
         this.openSwitchPickerCommon(this.switchEditorFieldValue(inp, fallback));
     };
 
-    EE.prototype.persistSystemSwitchesForPicker = function() {
+    EE.prototype.persistSystemDataForPicker = function(errorCode) {
         try {
-            var fs = require('fs');
             var path = require('path');
             var filePath = path.join(process.cwd(), 'data', 'System.json');
-            fs.writeFileSync(filePath, JSON.stringify($dataSystem || {}, null, 2), 'utf8');
+            this.backupAndWriteJsonFileAtomic({
+                filePath: filePath,
+                value: $dataSystem || {},
+                spacing: 2,
+                backupDir: path.join(process.cwd(), 'data', '_backup'),
+                backupName: 'System.' + String(Date.now()) + '.json',
+                backupPrefix: 'System.',
+                keepBackups: 80
+            });
             return true;
         } catch (e) {
-            this.err('E_SWITCH_PICKER_SAVE', e);
+            this.err(errorCode || 'E_SYSTEM_PICKER_SAVE', e);
             return false;
         }
+    };
+
+    EE.prototype.persistSystemSwitchesForPicker = function() {
+        return this.persistSystemDataForPicker('E_SWITCH_PICKER_SAVE');
+    };
+
+    EE.prototype.dispatchEditorFieldChange = function(input) {
+        if (!input) return;
+        try { input.dispatchEvent(new Event('input', { bubbles: true })); } catch (_) {}
+        try { input.dispatchEvent(new Event('change', { bubbles: true })); } catch (_) {}
     };
 
     EE.prototype.closeSwitchPickerForEditor = function(apply) {
@@ -1923,6 +2138,7 @@
             $dataSystem.switches = backup;
         }
         if (apply) {
+            if (this.switchPickerDirty && !this.persistSystemSwitchesForPicker()) return false;
             var id = this.switchPickerSelectedId != null
                 ? this.clampSwitchId(this.switchPickerSelectedId)
                 : (this.switchPickerSwitchList ? this.clampSwitchId(this.switchPickerSwitchList.value) : 1);
@@ -1932,22 +2148,19 @@
                 var targetEl = this.switchPickerTargetElement;
                 if (targetEl) {
                     targetEl.value = String(id);
-                    try { targetEl.dispatchEvent(new Event('input', { bubbles: true })); } catch (_) {}
-                    try { targetEl.dispatchEvent(new Event('change', { bubbles: true })); } catch (_) {}
+                    this.dispatchEditorFieldChange(targetEl);
                 }
             } else if (mode === 'schema') {
                 var targetBinding = this.switchPickerTargetBinding;
                 if (targetBinding && targetBinding.input) {
                     this.setSwitchEditorFieldValue(targetBinding.input, id);
-                    try { targetBinding.input.dispatchEvent(new Event('input', { bubbles: true })); } catch (_) {}
-                    try { targetBinding.input.dispatchEvent(new Event('change', { bubbles: true })); } catch (_) {}
+                    this.dispatchEditorFieldChange(targetBinding.input);
                 }
             } else {
                 var target = (String(this.switchPickerTargetKey || 'from') === 'to') ? this.ed121To : this.ed121From;
                 this.setSwitchEditorFieldValue(target, id);
                 if (this.ed121Single && this.ed121Single.checked) this.setSwitchEditorFieldValue(this.ed121To, this.switchEditorFieldValue(this.ed121From, id));
             }
-            if (this.switchPickerDirty) this.persistSystemSwitchesForPicker();
         }
         this.switchPickerModal.classList.remove('on');
         this.switchPickerMode = '';
@@ -1958,71 +2171,64 @@
         this.switchPickerDirty = false;
         this.refreshSwitchInputsAfterPickerChange();
         this.syncSwitchEditorType();
+        return true;
     };
 
     EE.prototype.promptSwitchPickerResize = function() {
         var cur = this.switchMaxId();
-        var raw = window.prompt('スイッチ最大数 (1〜9999)', String(cur));
-        if (raw == null) return;
-        var next = Math.floor(Number(raw || 0) || 0);
-        if (!isFinite(next) || next < 1 || next > 9999) {
-            this.msg('1〜9999 の範囲で入力してください');
-            return;
-        }
-        var arr = this.ensureSystemSwitchArray();
-        if (!arr) return;
-        var targetLen = next + 1;
-        while (arr.length < targetLen) arr.push('');
-        if (arr.length > targetLen) arr.length = targetLen;
+        var self = this;
+        this.openEditorIntegerPrompt('スイッチ最大数の変更', cur, 1, 9999, function(next) {
+            return self.resizeSystemNamePicker('switch', next);
+        });
+    };
+
+    EE.prototype.resizeSystemNamePicker = function(kind, nextMaxId) {
+        var config = this.systemNamePickerConfig(kind);
+        var arr = this.ensureSystemNameArray(kind);
+        if (!arr) return false;
+        var targetLength = Math.max(1, Math.floor(Number(nextMaxId || 1))) + 1;
+        while (arr.length < targetLength) arr.push('');
+        if (arr.length > targetLength) arr.length = targetLength;
         if (arr[0] == null) arr[0] = '';
-        this.switchPickerDirty = true;
-        var selected = this.switchPickerSelectedId != null ? this.switchPickerSelectedId : 1;
-        this.switchPickerSelectedId = this.clampSwitchId(selected);
-        this.refreshSwitchPickerRangeList();
-        var r = Math.max(0, Math.floor((this.switchPickerSelectedId - 1) / 20));
-        if (this.switchPickerRangeList) this.switchPickerRangeList.value = String(r);
-        this.refreshSwitchPickerSwitchList(r);
-        if (this.switchPickerSwitchList) this.switchPickerSwitchList.value = String(this.switchPickerSelectedId);
-        this.onSwitchPickerSelectionChange();
-        this.refreshSwitchEditorFieldTexts();
+        this[config.dirtyKey] = true;
+        if (kind === 'variable') this.invalidateVariableOptionCache();
+        var selected = this[config.selectedIdKey] != null ? this[config.selectedIdKey] : 1;
+        selected = this[config.selectedIdKey] = this.clampSystemNameId(kind, selected);
+        this.refreshSystemNamePickerRangeList(kind);
+        var rangeIndex = Math.max(0, Math.floor((selected - 1) / 20));
+        var rangeList = this[config.rangeListKey];
+        if (rangeList) rangeList.value = String(rangeIndex);
+        this.refreshSystemNamePickerItemList(kind, rangeIndex);
+        var itemList = this[config.itemListKey];
+        if (itemList) itemList.value = String(selected);
+        this.onSystemNamePickerSelectionChange(kind);
+        if (kind === 'variable') this.refreshVariableEditorFieldTexts();
+        else this.refreshSwitchEditorFieldTexts();
+        return true;
     };
 
     EE.prototype.ensureSystemVariableArray = function() {
-        if (!$dataSystem || typeof $dataSystem !== 'object') return null;
-        if (!Array.isArray($dataSystem.variables)) $dataSystem.variables = [''];
-        if (!$dataSystem.variables.length) $dataSystem.variables.push('');
-        if ($dataSystem.variables[0] == null) $dataSystem.variables[0] = '';
-        return $dataSystem.variables;
+        return this.ensureSystemNameArray('variable');
     };
 
     EE.prototype.variableMaxId = function() {
-        var arr = this.ensureSystemVariableArray();
-        return Math.max(1, arr ? (arr.length - 1) : 1);
+        return this.systemNameMaxId('variable');
     };
 
     EE.prototype.clampVariableId = function(v) {
-        var n = Math.floor(Number(v || 1) || 1);
-        var mx = this.variableMaxId();
-        if (n < 1) n = 1;
-        if (n > mx) n = mx;
-        return n;
+        return this.clampSystemNameId('variable', v);
     };
 
     EE.prototype.variableNameById = function(id) {
-        id = this.clampVariableId(id);
-        var arr = this.ensureSystemVariableArray();
-        var nm = arr && arr[id] ? String(arr[id]) : '';
-        if (!nm.length) nm = '(未設定)';
-        return nm;
+        return this.systemNameById('variable', id);
     };
 
     EE.prototype.variableIdText = function(id) {
-        return ('0000' + this.clampVariableId(id)).slice(-4);
+        return this.systemNameIdText('variable', id);
     };
 
     EE.prototype.variableDisplayText = function(id) {
-        id = this.clampVariableId(id);
-        return this.variableIdText(id) + ' ' + this.variableNameById(id);
+        return this.systemNameDisplayText('variable', id);
     };
 
     EE.prototype.variableEditorFieldValue = function(el, fallback) {
@@ -2060,71 +2266,19 @@
     };
 
     EE.prototype.refreshVariablePickerRangeList = function() {
-        if (!this.variablePickerRangeList) return;
-        var mx = this.variableMaxId();
-        var blocks = Math.max(1, Math.ceil(mx / 20));
-        var cur = Math.max(0, Math.floor(Number(this.variablePickerRangeList.value || 0)));
-        this.variablePickerRangeList.innerHTML = '';
-        for (var i = 0; i < blocks; i++) {
-            var s = i * 20 + 1;
-            var e = Math.min(mx, s + 19);
-            var op = document.createElement('option');
-            op.value = String(i);
-            op.textContent = '[ ' + this.variableIdText(s) + ' - ' + this.variableIdText(e) + ' ]';
-            this.variablePickerRangeList.appendChild(op);
-        }
-        if (cur < 0) cur = 0;
-        if (cur >= blocks) cur = blocks - 1;
-        this.variablePickerRangeList.value = String(cur);
+        this.refreshSystemNamePickerRangeList('variable');
     };
 
     EE.prototype.refreshVariablePickerVariableList = function(rangeIdx) {
-        if (!this.variablePickerVariableList) return;
-        var mx = this.variableMaxId();
-        var r = Math.max(0, Math.floor(Number(rangeIdx || 0)));
-        var start = r * 20 + 1;
-        var end = Math.min(mx, start + 19);
-        var cur = this.variablePickerSelectedId != null
-            ? this.clampVariableId(this.variablePickerSelectedId)
-            : this.clampVariableId(start);
-        this.variablePickerVariableList.innerHTML = '';
-        for (var i = start; i <= end; i++) {
-            var op = document.createElement('option');
-            op.value = String(i);
-            op.textContent = this.variableDisplayText(i);
-            this.variablePickerVariableList.appendChild(op);
-        }
-        if (cur < start || cur > end) cur = start;
-        this.variablePickerVariableList.value = String(cur);
-        this.variablePickerSelectedId = cur;
-        this.onVariablePickerSelectionChange();
+        this.refreshSystemNamePickerItemList('variable', rangeIdx);
     };
 
     EE.prototype.onVariablePickerSelectionChange = function() {
-        var id = this.variablePickerVariableList ? this.clampVariableId(this.variablePickerVariableList.value) : 1;
-        this.variablePickerSelectedId = id;
-        if (this.variablePickerNameInput) {
-            var arr = this.ensureSystemVariableArray();
-            this.variablePickerNameInput.value = arr && arr[id] != null ? String(arr[id]) : '';
-        }
+        this.onSystemNamePickerSelectionChange('variable');
     };
 
     EE.prototype.onVariablePickerNameInput = function() {
-        var arr = this.ensureSystemVariableArray();
-        if (!arr || !this.variablePickerNameInput) return;
-        var id = this.variablePickerSelectedId != null
-            ? this.clampVariableId(this.variablePickerSelectedId)
-            : (this.variablePickerVariableList ? this.clampVariableId(this.variablePickerVariableList.value) : 1);
-        arr[id] = String(this.variablePickerNameInput.value || '');
-        this.variablePickerDirty = true;
-        this.invalidateVariableOptionCache();
-        if (this.variablePickerVariableList && this.variablePickerVariableList.options) {
-            var idx = this.variablePickerVariableList.selectedIndex;
-            if (idx >= 0 && this.variablePickerVariableList.options[idx]) {
-                this.variablePickerVariableList.options[idx].textContent = this.variableDisplayText(id);
-            }
-        }
-        this.refreshVariableEditorFieldTexts();
+        this.onSystemNamePickerNameInput('variable');
     };
 
     EE.prototype.refreshVariableInputsAfterPickerChange = function() {
@@ -2184,16 +2338,7 @@
     };
 
     EE.prototype.persistSystemVariablesForPicker = function() {
-        try {
-            var fs = require('fs');
-            var path = require('path');
-            var filePath = path.join(process.cwd(), 'data', 'System.json');
-            fs.writeFileSync(filePath, JSON.stringify($dataSystem || {}, null, 2), 'utf8');
-            return true;
-        } catch (e) {
-            this.err('E_VARIABLE_PICKER_SAVE', e);
-            return false;
-        }
+        return this.persistSystemDataForPicker('E_VARIABLE_PICKER_SAVE');
     };
 
     EE.prototype.closeVariablePickerForEditor = function(apply) {
@@ -2204,6 +2349,7 @@
             $dataSystem.variables = backup;
         }
         if (apply) {
+            if (this.variablePickerDirty && !this.persistSystemVariablesForPicker()) return false;
             var id = this.variablePickerSelectedId != null
                 ? this.clampVariableId(this.variablePickerSelectedId)
                 : (this.variablePickerVariableList ? this.clampVariableId(this.variablePickerVariableList.value) : 1);
@@ -2213,18 +2359,15 @@
                 var targetBinding = this.variablePickerTargetBinding;
                 if (targetBinding && targetBinding.input) {
                     this.setVariableEditorFieldValue(targetBinding.input, id);
-                    try { targetBinding.input.dispatchEvent(new Event('input', { bubbles: true })); } catch (_) {}
-                    try { targetBinding.input.dispatchEvent(new Event('change', { bubbles: true })); } catch (_) {}
+                    this.dispatchEditorFieldChange(targetBinding.input);
                 }
             } else {
                 var targetEl = this.variablePickerTargetElement;
                 if (targetEl) {
                     targetEl.value = String(id);
-                    try { targetEl.dispatchEvent(new Event('input', { bubbles: true })); } catch (_) {}
-                    try { targetEl.dispatchEvent(new Event('change', { bubbles: true })); } catch (_) {}
+                    this.dispatchEditorFieldChange(targetEl);
                 }
             }
-            if (this.variablePickerDirty) this.persistSystemVariablesForPicker();
         }
         this.variablePickerModal.classList.remove('on');
         this.variablePickerMode = '';
@@ -2233,34 +2376,15 @@
         this.variablePickerBackupVariables = null;
         this.variablePickerDirty = false;
         this.refreshVariableInputsAfterPickerChange();
+        return true;
     };
 
     EE.prototype.promptVariablePickerResize = function() {
         var cur = this.variableMaxId();
-        var raw = window.prompt('変数最大数 (1〜9999)', String(cur));
-        if (raw == null) return;
-        var next = Math.floor(Number(raw || 0) || 0);
-        if (!isFinite(next) || next < 1 || next > 9999) {
-            this.msg('1〜9999 の範囲で入力してください');
-            return;
-        }
-        var arr = this.ensureSystemVariableArray();
-        if (!arr) return;
-        var targetLen = next + 1;
-        while (arr.length < targetLen) arr.push('');
-        if (arr.length > targetLen) arr.length = targetLen;
-        if (arr[0] == null) arr[0] = '';
-        this.variablePickerDirty = true;
-        this.invalidateVariableOptionCache();
-        var selected = this.variablePickerSelectedId != null ? this.variablePickerSelectedId : 1;
-        this.variablePickerSelectedId = this.clampVariableId(selected);
-        this.refreshVariablePickerRangeList();
-        var r = Math.max(0, Math.floor((this.variablePickerSelectedId - 1) / 20));
-        if (this.variablePickerRangeList) this.variablePickerRangeList.value = String(r);
-        this.refreshVariablePickerVariableList(r);
-        if (this.variablePickerVariableList) this.variablePickerVariableList.value = String(this.variablePickerSelectedId);
-        this.onVariablePickerSelectionChange();
-        this.refreshVariableEditorFieldTexts();
+        var self = this;
+        this.openEditorIntegerPrompt('変数最大数の変更', cur, 1, 9999, function(next) {
+            return self.resizeSystemNamePicker('variable', next);
+        });
     };
 
     EE.prototype.syncSwitchEditorType = function() {
@@ -2278,31 +2402,6 @@
                 ? 'minmax(0,1fr)'
                 : 'minmax(0,1fr) 20px minmax(0,1fr)';
         }
-    };
-
-    EE.prototype.syncSwitchFromInput = function() {
-        if (!this.ed121From) return;
-        this.setSwitchEditorFieldValue(this.ed121From, this.switchEditorFieldValue(this.ed121From, 1));
-        if (this.ed121Single && this.ed121Single.checked) {
-            this.setSwitchEditorFieldValue(this.ed121To, this.switchEditorFieldValue(this.ed121From, 1));
-        }
-    };
-
-    EE.prototype.syncSwitchToInput = function() {
-        if (!this.ed121To) return;
-        this.setSwitchEditorFieldValue(this.ed121To, this.switchEditorFieldValue(this.ed121To, this.switchEditorFieldValue(this.ed121From, 1)));
-    };
-
-    EE.prototype.onSwitchListPick = function() {
-        if (!this.ed121From) return;
-        var id = this.switchEditorFieldValue(this.ed121From, 1);
-        if (this.ed121Single && this.ed121Single.checked) {
-            this.setSwitchEditorFieldValue(this.ed121From, id);
-            this.setSwitchEditorFieldValue(this.ed121To, id);
-            return;
-        }
-        if (this.ed121PickTarget === 'to') this.setSwitchEditorFieldValue(this.ed121To, id);
-        else this.setSwitchEditorFieldValue(this.ed121From, id);
     };
 
     EE.prototype.setupSwitchEditor = function(params) {
@@ -2526,12 +2625,15 @@
         this.editSchemaBindings = [];
         this.refreshAnimationPreviewPanel(false);
         if (wasPending && !confirmed) {
+            var pendingEntry = this.findEntryInSelectedTrack(this._pendingNewUid);
             if (this.removeTrackEntryByUid(this._pendingNewUid)) {
                 this.selUid = 0;
                 this.selRouteListIndex = -1;
-                this.rebuildSchedule();
+                this.commitTrackMutation({
+                    markDirty: false,
+                    earliestChangedFrame: pendingEntry ? pendingEntry.frame : 0
+                });
                 this.seek(this.frame);
-                this.timelineDirty = true;
             }
         }
         this._pendingNewUid = 0;
@@ -2571,6 +2673,9 @@
         }
         if (!e) { this.closeEditor(); return; }
         var isPendingNew = (this._pendingNewUid && Number(e.uid || 0) === Number(this._pendingNewUid));
+        var previousRouteCharId = (e.command && Number(e.command.code || 0) === 205)
+            ? this.normalizeMoveTarget(e.charId == null ? Number((e.command.parameters || [0])[0] || 0) : Number(e.charId || 0))
+            : null;
         var choiceStructureBefore = (!isPendingNew && e.command && Number(e.command.code || 0) === COMMAND_CODE.SHOW_CHOICES &&
             typeof this.captureChoiceBranchStructure === 'function')
             ? this.captureChoiceBranchStructure(tr, e)
@@ -2695,9 +2800,7 @@
                 this.err('E_EDIT_COLLISION', new Error('command overlaps with wait-range'));
                 return;
             }
-            this.dirty[this.selKey] = true;
-            SH.sortTrackCommands(tr);
-            this.rebuildSchedule();
+            this.commitTrackMutation({ earliestChangedFrame: e.frame });
             this.seek(this.frame);
             if (isPendingNew) this._pendingNewConfirmed = true;
             this.closeEditor();
@@ -2819,6 +2922,7 @@
                     e.charId = this.normalizeMoveTarget(Number(e.command.parameters[0] || 0));
                     e.rowKey = 'char:' + e.charId;
                     e.command.parameters[0] = e.charId;
+                    if (previousRouteCharId != null && e.charId !== previousRouteCharId) e.routeSymbolOrdinal = 0;
                 }
             } else {
                 e.rowType = 'main';
@@ -2826,6 +2930,7 @@
                 e.rowKey = 'main';
             }
         }
+        if (e.command.code !== 101) e.popupPortrait = null;
         if (!isPendingNew && !this.canPlaceEntry(tr, e, e.frame, e.rowKey, e.uid)) {
             this.err('E_EDIT_COLLISION', new Error('command overlaps with wait-range'));
             return;
@@ -2839,9 +2944,7 @@
             typeof this.synchronizeChoiceBranchStructure === 'function') {
             this.synchronizeChoiceBranchStructure(tr, e, choiceStructureBefore);
         }
-        this.dirty[this.selKey] = true;
-        SH.sortTrackCommands(tr);
-        this.rebuildSchedule();
+        this.commitTrackMutation({ earliestChangedFrame: e.frame });
         this.playFrom(this.frame);
         this.closeEditor();
     };
@@ -2882,8 +2985,9 @@
                 }
                 return;
             }
-            if (e.code === 'Space' || e.key === ' ') self.spaceDown = true;
-            if (e.code === 'Space' || e.key === ' ') self.refreshSpacePanCursor(self.lastPointerClientX, self.lastPointerClientY);
+            if ((e.code === 'Space' || e.key === ' ') && !self.controlMode) self.spaceDown = true;
+            if ((e.code === 'Space' || e.key === ' ') && !self.controlMode) self.refreshSpacePanCursor(self.lastPointerClientX, self.lastPointerClientY);
+            if (e.key === 'Escape' && self.closeTopEditorModalOnEscape && self.closeTopEditorModalOnEscape(e)) return;
             if (self.routeModal && self.routeModal.classList.contains('on') && e.key === 'Escape') {
                 e.preventDefault();
                 self.closeRouteCommandPanel();
@@ -2902,6 +3006,20 @@
             if (self.routeCtx && self.routeCtx.classList.contains('on') && e.key === 'Escape') {
                 e.preventDefault();
                 self.closeRouteRangeContextMenu();
+                return;
+            }
+            if (self.simplePromptModal && self.simplePromptModal.classList.contains('on')) {
+                var multilinePrompt = !!(self.simplePromptRequest && self.simplePromptRequest.multiline);
+                if (e.key === 'Escape') {
+                    e.preventDefault();
+                    self.closeEditorPromptDialog(false);
+                    return;
+                }
+                if (e.key === 'Enter' && (!multilinePrompt || e.ctrlKey || e.metaKey)) {
+                    e.preventDefault();
+                    self.closeEditorPromptDialog(true);
+                    return;
+                }
                 return;
             }
             if (self.waitInsertModal && self.waitInsertModal.classList.contains('on') && e.key === 'Escape') {
@@ -3007,6 +3125,7 @@
                 }
                 return;
             }
+            if (self.isAnyRegisteredEditorModalOpen && self.isAnyRegisteredEditorModalOpen()) return;
             var target = e.target;
             var tag = target && target.tagName ? String(target.tagName).toUpperCase() : '';
             var isTypingTarget = !!(target && (target.isContentEditable || tag === 'INPUT' || tag === 'TEXTAREA' || tag === 'SELECT'));
@@ -3064,36 +3183,12 @@
             }
             if (key === ' ' || e.code === 'Space') {
                 if (!isTypingTarget) e.preventDefault();
-                if (self.play) {
-                    self.stopPlaybackLikeSpace('space');
-                }
+                if (!isTypingTarget && self.controlMode && !e.repeat) self.togglePlay();
                 return;
             }
             if (e.ctrlKey && key === 'r') {
                 e.preventDefault();
-                if (self.play) {
-                    self.manualPause = true;
-                    self.play = false;
-                    self.clearMessageRuntimeState();
-                    self.stopEditorAudioPlayback();
-                    self.stopTimelineAutoScrollAnimation();
-                    self.setPlayBtn();
-                    self.refreshCharacterOverlay(true);
-                    self.timelineDirty = true;
-                    self.seek(Math.max(0, Math.floor(Number(self.playStartFrame || 0))));
-                    self.msg('Play OFF (ctrl+r): 開始位置へ戻る');
-                    return;
-                }
-                self.manualPause = false;
-                self.play = true;
-                self.keepRuntimeDisplayOnPlayStart = true;
-                self.playStartFrame = Math.max(0, Math.floor(Number(self.frame || 0)));
-                if (typeof self.ensurePlaybackCursorVisibleOnStart === 'function') self.ensurePlaybackCursorVisibleOnStart();
-                self.rebuildSimAudioPlayback(self.frame);
-                self.setPlayBtn();
-                self.refreshCharacterOverlay(true);
-                self.timelineDirty = true;
-                self.msg('Play ON (ctrl+r)');
+                if (!e.repeat) self.handleCtrlRShortcut();
                 return;
             }
             if (isTypingTarget || !e.ctrlKey) return;
@@ -3233,6 +3328,14 @@
             self.timelineDirty = true;
         };
         window.addEventListener('resize', this.rs);
+        this._beforeUnload = function(e) {
+            if (!self.on || !self.hasUnsavedChanges()) return;
+            self.writeRecoverySnapshot(true);
+            e.preventDefault();
+            e.returnValue = '';
+            return '';
+        };
+        window.addEventListener('beforeunload', this._beforeUnload);
     };
 
     EE.prototype.unbind = function() {
@@ -3250,6 +3353,7 @@
         if (this._md) document.removeEventListener('mousedown', this._md, true);
         if (this._cm) document.removeEventListener('contextmenu', this._cm, true);
         if (this.rs) window.removeEventListener('resize', this.rs);
+        if (this._beforeUnload) window.removeEventListener('beforeunload', this._beforeUnload);
         if (this._wb) window.removeEventListener('blur', this._wb, true);
         if (this._wh) document.removeEventListener('wheel', this._wh, true);
         if (this._mm) window.removeEventListener('mousemove', this._mm, true);
@@ -3262,6 +3366,7 @@
         this._md = null;
         this._cm = null;
         this.rs = null;
+        this._beforeUnload = null;
         this._wb = null;
         this._wh = null;
         this._mm = null;
@@ -3331,32 +3436,6 @@
         };
         if (frame >= 0) this._eeCanvasMetricsCache = out;
         return out;
-    };
-
-    EE.prototype.timelineTopInCanvasY = function() {
-        var gh = Number(Graphics.boxHeight || Graphics.height || 624);
-        var fallback = Math.max(1, Math.floor(gh * 0.5) - 4);
-        var cm = this.graphicsCanvasMetricsCached();
-        var cr = cm ? cm.rect : null;
-        var panel = this.timelinePanel;
-        if (!panel || !cr || !cr.height || !panel.getBoundingClientRect) return fallback;
-        if (panel.style && panel.style.display === 'none') return fallback;
-        var pr = panel.getBoundingClientRect();
-        if (pr.height < 1) return fallback;
-        var y = (pr.top - cr.top) * (gh / Math.max(1, cr.height));
-        if (!isFinite(y)) return fallback;
-        return Math.max(1, Math.min(gh, Math.floor(y)));
-    };
-
-    EE.prototype.timelineTopInScreenY = function() {
-        var cm = this.graphicsCanvasMetricsCached();
-        var cr = cm ? cm.rect : null;
-        if (!cr || !cr.height) return Math.max(0, Math.floor((window.innerHeight || 0) * 0.5));
-        var gh = Number(Graphics.boxHeight || Graphics.height || 624);
-        var cy = this.timelineTopInCanvasY();
-        var sy = cr.top + cy * (cr.height / Math.max(1, gh));
-        if (!isFinite(sy)) return Math.max(0, Math.floor((window.innerHeight || 0) * 0.5));
-        return Math.max(0, Math.floor(sy));
     };
 
     EE.prototype.fixedViewportRectScreen = function() {
@@ -3645,12 +3724,6 @@
         return { x: rx, y: ry, w: rw, h: rh };
     };
 
-    EE.prototype.isPointInGameRect = function(x, y) {
-        var r = this.gameRect();
-        if (!r) return false;
-        return x >= r.x && x <= r.x + r.w && y >= r.y && y <= r.y + r.h;
-    };
-
     EE.prototype.isPointOnGameFrameBorder = function(x, y) {
         if (!this.gameFrame || !this.gameFrame.getBoundingClientRect) return false;
         if (this.gameFrame.style && this.gameFrame.style.display === 'none') return false;
@@ -3761,13 +3834,219 @@
         }
     };
 
+    EE.prototype.hasUnsavedChanges = function() {
+        if (Object.keys(this.dirty || {}).length) return true;
+        var documentDirty = this.documentDirty || { events: {}, troops: {} };
+        return !!(Object.keys(documentDirty.events || {}).length || Object.keys(documentDirty.troops || {}).length);
+    };
+
+    EE.prototype.closeEditorNow = function(discardUnsaved) {
+        try { if (typeof this.restoreBase === 'function') this.restoreBase(); } catch (_) {}
+        NS._runtimeEnabled = false;
+        NS._boot = false;
+        this._skipRecoveryOnStop = true;
+        if (discardUnsaved) this.clearRecoverySnapshot();
+        this.stop();
+        return true;
+    };
+
+    EE.prototype.requestCloseEditor = function() {
+        var discardUnsaved = this.hasUnsavedChanges();
+        if (!discardUnsaved) return this.closeEditorNow(false);
+        var self = this;
+        this.openEditorConfirmDialog({
+            title: '未保存の変更',
+            message: '未保存の変更があります。\n保存せずにイベントエディタを閉じますか？',
+            okText: '保存せず閉じる',
+            cancelText: '編集を続ける',
+            onConfirm: function() { return self.closeEditorNow(true); }
+        });
+        return false;
+    };
+
+    EE.prototype.recoveryContextInfo = function() {
+        var battle = this.isBattleEventMode();
+        return {
+            mode: battle ? 'battle' : 'map',
+            contextId: battle
+                ? Math.max(1, Math.floor(Number(this.currentBattleTroopId() || 0)))
+                : Math.max(1, Math.floor(Number($gameMap && $gameMap.mapId ? $gameMap.mapId() : 0)))
+        };
+    };
+
+    EE.prototype.recoveryFilePath = function() {
+        try {
+            var path = require('path');
+            var info = this.recoveryContextInfo();
+            var prefix = info.mode === 'battle' ? 'Troop' : 'Map';
+            var fileName = prefix + ('000' + info.contextId).slice(-3) + '.recovery.json';
+            return path.join(process.cwd(), 'data', '_event_editor', 'recovery', fileName);
+        } catch (_) {
+            return '';
+        }
+    };
+
+    EE.prototype.buildRecoveryState = function() {
+        var info = this.recoveryContextInfo();
+        var documentDirty = clone(this.documentDirty || { events: {}, troops: {} });
+        var documentEvents = {};
+        var eventIds = Object.keys(documentDirty.events || {});
+        for (var i = 0; i < eventIds.length; i++) {
+            var eventId = Math.max(0, Math.floor(Number(eventIds[i] || 0)));
+            documentEvents[eventId] = ($dataMap && Array.isArray($dataMap.events) && $dataMap.events[eventId])
+                ? clone($dataMap.events[eventId])
+                : null;
+        }
+        var documentTroops = {};
+        var troopIds = Object.keys(documentDirty.troops || {});
+        for (var j = 0; j < troopIds.length; j++) {
+            var troopId = Math.max(0, Math.floor(Number(troopIds[j] || 0)));
+            documentTroops[troopId] = ($dataTroops && Array.isArray($dataTroops) && $dataTroops[troopId])
+                ? clone($dataTroops[troopId])
+                : null;
+        }
+        return {
+            plugin: 'KNH_ZXC_EventEditor',
+            version: String(NS.VERSION || '0.3.0'),
+            mode: info.mode,
+            contextId: info.contextId,
+            model: clone(this.model),
+            dirty: clone(this.dirty || {}),
+            documentDirty: documentDirty,
+            documentEvents: documentEvents,
+            documentTroops: documentTroops,
+            selection: {
+                eventId: Number(this.selEid || 0),
+                pageIndex: Number(this.selPage == null ? -1 : this.selPage),
+                key: String(this.selKey || ''),
+                uid: Number(this.selUid || 0),
+                routeListIndex: Number(this.selRouteListIndex == null ? -1 : this.selRouteListIndex),
+                frame: Math.max(0, Math.floor(Number(this.frame || 0)))
+            }
+        };
+    };
+
+    EE.prototype.writeRecoverySnapshot = function(force) {
+        if (!this.hasUnsavedChanges()) return false;
+        var now = Date.now();
+        if (!force && now - Number(this._recoveryLastWriteAt || 0) < 2000) return false;
+        var filePath = this.recoveryFilePath();
+        if (!filePath) return false;
+        try {
+            var fs = require('fs');
+            var path = require('path');
+            var state = this.buildRecoveryState();
+            var stateText = JSON.stringify(state);
+            if (!force && stateText === this._recoveryLastStateText) return false;
+            state.savedAt = new Date(now).toISOString();
+            var text = JSON.stringify(state, null, 2);
+            var dir = path.dirname(filePath);
+            if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
+            this.writeTextFileAtomic(filePath, text);
+            this._recoveryLastStateText = stateText;
+            this._recoveryLastWriteAt = now;
+            return true;
+        } catch (e) {
+            if (typeof this.err === 'function') this.err('E_RECOVERY_WRITE', e);
+            return false;
+        }
+    };
+
+    EE.prototype.clearRecoverySnapshot = function() {
+        var filePath = this.recoveryFilePath();
+        if (!filePath) return false;
+        try {
+            var storage = NS._eeServices && NS._eeServices.storage;
+            if (storage && typeof storage.removeFileIfExists === 'function') storage.removeFileIfExists(filePath);
+            else {
+                var fs = require('fs');
+                if (fs.existsSync(filePath)) fs.unlinkSync(filePath);
+            }
+            this._recoveryLastStateText = '';
+            this._recoveryLastWriteAt = 0;
+            return true;
+        } catch (e) {
+            if (typeof this.err === 'function') this.err('E_RECOVERY_CLEAR', e);
+            return false;
+        }
+    };
+
+    EE.prototype.applyRecoverySnapshot = function(recovery) {
+        if (!recovery || !recovery.model || !recovery.model.tracks) throw new Error('invalid recovery model');
+        this.model = clone(recovery.model);
+        this.dirty = clone(recovery.dirty || {});
+        this.documentDirty = clone(recovery.documentDirty || { events: {}, troops: {} });
+        var documentEvents = recovery.documentEvents || {};
+        var eventIds = Object.keys(documentEvents);
+        for (var i = 0; i < eventIds.length; i++) {
+            var eventId = Math.max(0, Math.floor(Number(eventIds[i] || 0)));
+            $dataMap.events[eventId] = documentEvents[eventIds[i]] == null ? null : clone(documentEvents[eventIds[i]]);
+            if (!this._documentUndoEventIds) this._documentUndoEventIds = {};
+            this._documentUndoEventIds[eventId] = true;
+            if (typeof this.refreshDocumentEventRuntime === 'function') this.refreshDocumentEventRuntime(eventId);
+        }
+        var documentTroops = recovery.documentTroops || {};
+        var troopIds = Object.keys(documentTroops);
+        for (var j = 0; j < troopIds.length; j++) {
+            var troopId = Math.max(0, Math.floor(Number(troopIds[j] || 0)));
+            $dataTroops[troopId] = documentTroops[troopIds[j]] == null ? null : clone(documentTroops[troopIds[j]]);
+            if (!this._documentUndoTroopIds) this._documentUndoTroopIds = {};
+            this._documentUndoTroopIds[troopId] = true;
+        }
+        var selection = recovery.selection || {};
+        this.selEid = Number(selection.eventId || 0);
+        this.selPage = Number(selection.pageIndex == null ? -1 : selection.pageIndex);
+        this.selKey = String(selection.key || '');
+        this.selUid = Number(selection.uid || 0);
+        this.selRouteListIndex = Number(selection.routeListIndex == null ? -1 : selection.routeListIndex);
+        this.frame = Math.max(0, Math.floor(Number(selection.frame || 0)));
+        this._scheduleEntriesByTrack = null;
+        this._trackRevisionByKey = {};
+        this.rebuildSchedule({ skipRouteNormalize: true });
+        this.simTo(this.frame, false);
+        this.timelineDirty = true;
+        this._recoverySnapshotDecision = 'restored';
+        if (Array.isArray(this.undoS)) this.undoS.length = 0;
+        if (Array.isArray(this.redoS)) this.redoS.length = 0;
+        if (typeof this.pushSnap === 'function') this.pushSnap('recovery');
+        this.msg('未保存データを復元しました');
+        return true;
+    };
+
+    EE.prototype.restoreRecoverySnapshotIfAvailable = function() {
+        var filePath = this.recoveryFilePath();
+        if (!filePath) return false;
+        try {
+            var fs = require('fs');
+            if (!fs.existsSync(filePath)) return false;
+            var recovery = JSON.parse(fs.readFileSync(filePath, 'utf8'));
+            var info = this.recoveryContextInfo();
+            if (!recovery || recovery.plugin !== 'KNH_ZXC_EventEditor' ||
+                String(recovery.mode || '') !== info.mode || Number(recovery.contextId || 0) !== info.contextId) return false;
+            var self = this;
+            this.openEditorConfirmDialog({
+                title: '未保存データの復元',
+                message: '前回終了時の未保存データがあります。復元しますか？\n' + String(recovery.savedAt || ''),
+                okText: '復元する',
+                cancelText: '復元しない',
+                onConfirm: function() {
+                    try { return self.applyRecoverySnapshot(recovery); }
+                    catch (e) {
+                        if (typeof self.err === 'function') self.err('E_RECOVERY_APPLY', e);
+                        return false;
+                    }
+                },
+                onCancel: function() { self._recoverySnapshotDecision = 'declined'; }
+            });
+            return true;
+        } catch (e2) {
+            if (typeof this.err === 'function') this.err('E_RECOVERY_READ', e2);
+            return false;
+        }
+    };
+
     EE.prototype.setPlayBtn = function() {
         this.syncPlaybackStateHistoryLog();
-        if (!this.root) return;
-        var b = this.root.querySelector('.r .b.good');
-        if (!b) return;
-        var m = this.controlMode ? 'GAME' : 'EDIT';
-        b.textContent = 'Play:' + (this.play ? 'ON' : 'OFF') + ' [' + m + ']';
     };
 
     EE.prototype.stopPlaybackLikeSpace = function(reason) {
@@ -3780,8 +4059,18 @@
         this.setPlayBtn();
         this.refreshCharacterOverlay(true);
         this.timelineDirty = true;
-        this.msg(this.play ? 'Play ON' : 'Play OFF (space)');
+        this.msg(this.play ? '再生中' : '一時停止（Space）');
         return true;
+    };
+
+    EE.prototype.handleCtrlRShortcut = function() {
+        if (this.play) {
+            this.seek(Math.max(0, Math.floor(Number(this.playStartFrame || 0))));
+            this.manualPause = true;
+            this.msg('再生開始前フレームへ移動');
+            return;
+        }
+        this.setInteractionMode(this.controlMode ? 'timeline' : 'game', 'Ctrl+R');
     };
 
     EE.prototype.setInteractionMode = function(mode, reason) {
@@ -3816,14 +4105,26 @@
         this.updateGameFrameVisual();
         this.refreshCharacterOverlay(true);
         this.timelineDirty = true;
-        this.msg((toGame ? 'Game control mode' : 'Timeline edit mode') + (reason ? ' [' + reason + ']' : ''));
+        this.msg((toGame ? 'GAMEモード' : 'EDITモード') + (reason ? ' [' + reason + ']' : ''));
+    };
+
+    EE.prototype.isBlockingEditorUiOpen = function() {
+        if (this.isAnyRegisteredEditorModalOpen) return this.isAnyRegisteredEditorModalOpen();
+        var names = [
+            'modal', 'simplePromptModal', 'addModal', 'routeModal', 'waitInsertModal', 'messageBubbleBulkModal',
+            'memoModal', 'eventSettingsModal', 'eventSettingsNoteZoomModal', 'eventSettingsImagePickerModal',
+            'battleEventSettingsModal', 'sePickerModal', 'switchPickerModal', 'variablePickerModal'
+        ];
+        for (var i = 0; i < names.length; i++) {
+            var node = this[names[i]];
+            if (node && node.classList && node.classList.contains('on')) return true;
+        }
+        return false;
     };
 
     EE.prototype.allowGameInput = function() {
         if (!this.on || !this.controlMode) return false;
-        if (this.modal && this.modal.classList && this.modal.classList.contains('on')) return false;
-        if (this.addModal && this.addModal.classList && this.addModal.classList.contains('on')) return false;
-        return true;
+        return !this.isBlockingEditorUiOpen();
     };
 
     EE.prototype.togglePlay = function() {
@@ -3835,7 +4136,7 @@
             this.stopTimelineAutoScrollAnimation();
             this.setPlayBtn();
             this.refreshCharacterOverlay(true);
-            this.msg('Timeline edit mode: playback is fixed OFF');
+            this.msg('タイムライン編集モード: 再生は常にOFFです');
             return;
         }
         this.manualPause = !this.manualPause;
@@ -3853,29 +4154,13 @@
         }
         this.setPlayBtn();
         this.refreshCharacterOverlay(true);
-        this.msg(this.play ? 'Play ON' : 'Play OFF');
+        this.msg(this.play ? '再生中' : '停止しました');
     };
 
     EE.prototype.isPointInTimelineRect = function(sx, sy) {
         if (!this.timeline || !this.timeline.getBoundingClientRect) return false;
         var r = this.timeline.getBoundingClientRect();
         return sx >= r.left && sx <= r.right && sy >= r.top && sy <= r.bottom;
-    };
-
-    EE.prototype.canStartSpacePanAt = function(sx, sy) {
-        if (!this.on || !this.isSpacePanModifierActive()) return false;
-        sx = Number(sx || 0);
-        sy = Number(sy || 0);
-        if (this.isPointInTimelineRect(sx, sy)) {
-            var r = this.timeline.getBoundingClientRect();
-            var x = sx - r.left;
-            var y = sy - r.top;
-            if (this.hitTestNode(x, y) || this.hitTestBar(x, y) || this.hitTestComment(x, y)) return false;
-            return true;
-        }
-        if (this.onUi(sx, sy)) return false;
-        if (!this.isPointInFixedViewportRect(sx, sy)) return false;
-        return true;
     };
 
     EE.prototype.refreshSpacePanCursor = function(sx, sy) {
@@ -5248,6 +5533,8 @@
         var oy = Math.floor(Number(evData.y || 0));
         var changed = (ox !== nx) || (oy !== ny);
         if (changed) {
+            if (typeof this.trackDocumentEventForUndo === 'function') this.trackDocumentEventForUndo(eventId);
+            this.pushSnap('event-initial-position');
             evData.x = nx;
             evData.y = ny;
         }
@@ -5267,7 +5554,8 @@
         if (changed) {
             if (typeof this.contextEventAdjustMarkDirty === 'function') this.contextEventAdjustMarkDirty(eventId);
             else {
-                this.dirty['es_pages:' + String(eventId)] = true;
+                if (!this.documentDirty) this.documentDirty = { events: {}, troops: {} };
+                this.documentDirty.events[eventId] = true;
                 this.timelineDirty = true;
             }
             if ($gameMap && typeof $gameMap.requestRefresh === 'function') $gameMap.requestRefresh();
@@ -5397,9 +5685,7 @@
         this.selUid = inRange.uid;
         this.selRouteListIndex = -1;
         this.frame = this.advanceTargetFrameByWait(frame, waitFrames);
-        this.dirty[this.selKey] = true;
-        SH.sortTrackCommands(tr);
-        this.rebuildSchedule();
+        this.commitTrackMutation({ earliestChangedFrame: frame });
         this.playFrom(this.frame);
         return true;
     };
@@ -5530,8 +5816,9 @@
         var ls = ss._characterSprites;
         for (var i = ls.length - 1; i >= 0; i--) {
             var sp = ls[i];
-            if (!sp || !sp.visible || !sp._character || !sp.getBounds) continue;
-            var b = sp.getBounds();
+            if (!sp || !sp.visible || !sp._character) continue;
+            var b = this.characterSpriteCanvasBounds ? this.characterSpriteCanvasBounds(sp, sp._character) : null;
+            if (!b) continue;
             if (!(sx >= b.x && sx <= b.x + b.width && sy >= b.y && sy <= b.y + b.height)) continue;
             var ch = sp._character;
             try {
@@ -5768,7 +6055,7 @@
             this.hideEmptyMapHoverTileMarker();
         }
     };
-    SH.registerModule('preview', ['schema'], [
+    SH.registerModule('preview', ['command_schemas'], [
         'beginTileMove',
         'updateTileDrag'
     ]);
