@@ -1,10 +1,7 @@
 {
   "6:0": {
-    "pxPerFrame": 5.2601298594559065,
-    "scrollLeft": 4264,
-    "scrollTop": 0,
-    "choiceBranchModes": {
-      "1": "0"
-    }
+    "pxPerFrame": 8,
+    "scrollLeft": 6720,
+    "scrollTop": 0
   }
 }

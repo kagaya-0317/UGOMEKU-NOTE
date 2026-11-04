@@ -28,8 +28,11 @@
 
     EE.prototype.buildMainLaneMap = function(tr, hiddenByIf) {
         var laneByUid = {};
+        var branchStartLaneByUid = {};
         var maxStack = 1;
-        if (!tr || !tr.commands) return { laneByUid: laneByUid, maxStack: maxStack };
+        if (!tr || !tr.commands) {
+            return { laneByUid: laneByUid, branchStartLaneByUid: branchStartLaneByUid, maxStack: maxStack };
+        }
         hiddenByIf = hiddenByIf || this.computeIfBranchHiddenUidMapForTrack(tr);
         var byFrame = {};
         for (var i = 0; i < tr.commands.length; i++) {
@@ -48,10 +51,19 @@
         for (var j = 0; j < frames.length; j++) {
             var ls = byFrame[frames[j]];
             ls.sort(function(a, b) { return compareEntriesByFrameWaitUid(a, b); });
-            for (var k = 0; k < ls.length; k++) laneByUid[ls[k].uid] = k;
-            if (ls.length > maxStack) maxStack = ls.length;
+            var lane = 0;
+            for (var k = 0; k < ls.length; k++) {
+                var entry = ls[k];
+                laneByUid[entry.uid] = lane++;
+                if (this.isBranchOwnerEntry(entry)) branchStartLaneByUid[entry.uid] = lane++;
+            }
+            if (lane > maxStack) maxStack = lane;
         }
-        return { laneByUid: laneByUid, maxStack: Math.max(1, maxStack) };
+        return {
+            laneByUid: laneByUid,
+            branchStartLaneByUid: branchStartLaneByUid,
+            maxStack: Math.max(1, maxStack)
+        };
     };
 
     EE.prototype.timelineCircleScale = function() {
@@ -97,7 +109,6 @@
         var y1 = Number(bd.y1 || 0);
         var x2 = Number(bd.x2 || 0);
         var y2 = Number(bd.y2 || 0);
-        var area = Math.max(1, Number(bd.area || ((x2 - x1) * (y2 - y1))) || 1);
 
         var leftRect = {
             x1: Number(overlayRule.labelLeft || 0),
@@ -123,7 +134,11 @@
         );
         var overlapArea = Math.max(0, areaLeft + areaTop - areaBoth);
         var overlap = overlapArea > 0;
-        var hide = overlap && overlapArea >= area * 0.5;
+        // Fixed overlays cover their own pixels later. Hide the source shape
+        // only when none of it reaches the drawable area to their right/below.
+        var hiddenByLabel = x2 <= leftRect.x2;
+        var hiddenByRuler = y2 <= topRect.y2;
+        var hide = overlap && (hiddenByLabel || hiddenByRuler);
 
         var clips = [];
         if (overlap && !hide) {
@@ -324,6 +339,81 @@
         };
     };
 
+    EE.prototype.branchStartBoundaryNodePointForEntry = function(entry, rowMap, rmets) {
+        if (!entry || !this.isBranchOwnerEntry(entry) || !rowMap || !rmets || rowMap.main == null) return null;
+        var met = rmets[rowMap.main] || { top: this.rulerH, height: this.rowH };
+        var lane = this._branchStartLaneByUid && this._branchStartLaneByUid.hasOwnProperty(entry.uid)
+            ? this._branchStartLaneByUid[entry.uid]
+            : null;
+        if (lane == null) return null;
+        return {
+            x: this.frameToX(Math.max(0, Math.floor(Number(entry.frame || 0)))),
+            y: Math.floor(Number(met.top || this.rulerH) + this.mainLaneTop + lane * this.mainLaneGap)
+        };
+    };
+
+    EE.prototype.branchBoundaryColorForContext = function(context) {
+        if (!context) return 'rgb(82,154,255)';
+        var depth = Math.max(0, Math.floor(Number(
+            context.nestingDepth == null ? context.indent : context.nestingDepth
+        ) || 0));
+        return context.type === 'choice'
+            ? this.choiceBranchHighlightFillColorForDepth(depth)
+            : this.ifBranchHighlightFillColorForDepth(depth);
+    };
+
+    EE.prototype.drawBranchBoundaryCircle = function(ctx, x, y, radius, color, selected, hovered) {
+        if (!ctx) return;
+        radius = Math.max(1, Number(radius || 4));
+        var overlayRule = this._timelineCircleOverlayRule;
+        var overlayDecision = null;
+        if (overlayRule && overlayRule.active) {
+            overlayDecision = this.timelineCircleOverlayDecision(
+                x,
+                y,
+                radius,
+                Number(overlayRule.labelRight || 0),
+                Number(overlayRule.rulerBottom || 0)
+            );
+            if (overlayDecision.hide) return;
+        }
+        // Knock out the range fill below the marker so the boundary remains a
+        // visibly hollow circle instead of looking like another filled node.
+        ctx.fillStyle = 'rgb(4,10,16)';
+        ctx.beginPath();
+        ctx.arc(x, y, this.scaleTimelineCircleRadius(radius), 0, Math.PI * 2);
+        ctx.fill();
+        ctx.strokeStyle = 'rgba(18,22,28,.98)';
+        ctx.lineWidth = 4;
+        ctx.beginPath();
+        ctx.arc(x, y, this.scaleTimelineCircleRadius(radius), 0, Math.PI * 2);
+        ctx.stroke();
+        ctx.strokeStyle = String(color || 'rgba(82,154,255,.98)');
+        ctx.lineWidth = 2;
+        ctx.beginPath();
+        ctx.arc(x, y, this.scaleTimelineCircleRadius(radius), 0, Math.PI * 2);
+        ctx.stroke();
+        if (selected || hovered) {
+            ctx.strokeStyle = selected ? 'rgba(245,250,255,.98)' : 'rgba(220,235,248,.92)';
+            ctx.lineWidth = selected ? 2 : 1;
+            ctx.beginPath();
+            ctx.arc(x, y, this.scaleTimelineCircleRadius(selected ? radius + 3 : radius + 2), 0, Math.PI * 2);
+            ctx.stroke();
+        }
+        if (overlayDecision && overlayDecision.overlap && overlayRule && Array.isArray(overlayRule.queue)) {
+            overlayRule.queue.push({
+                kind: 'branchBoundary',
+                x: Number(x || 0),
+                y: Number(y || 0),
+                radius: radius,
+                color: String(color || ''),
+                selected: !!selected,
+                hovered: !!hovered
+            });
+        }
+        ctx.lineWidth = 1;
+    };
+
     EE.prototype.mainProxyNodePointForEntry = function(entry, rowMap, rmets) {
         if (!entry || !rowMap || !rmets || rowMap.main == null) return null;
         var met = rmets[rowMap.main] || { top: this.rulerH, height: this.rowH };
@@ -396,7 +486,8 @@
 
     EE.prototype.ifBranchHighlightFillColorForDepth = function(depth) {
         depth = Math.max(0, Math.floor(Number(depth || 0)));
-        var factor = Math.pow(0.88, depth);
+        var factors = [1, 0.82, 0.68, 0.58, 0.68, 0.82];
+        var factor = factors[depth % factors.length];
         var r = Math.max(24, Math.min(255, Math.round(82 * factor)));
         var g = Math.max(24, Math.min(255, Math.round(154 * factor)));
         var b = Math.max(16, Math.min(255, Math.round(255 * factor)));
@@ -405,38 +496,21 @@
 
     EE.prototype.choiceBranchHighlightFillColorForDepth = function(depth) {
         depth = Math.max(0, Math.floor(Number(depth || 0)));
-        var factor = Math.pow(0.90, depth);
+        var factors = [1, 0.82, 0.68, 0.58, 0.68, 0.82];
+        var factor = factors[depth % factors.length];
         var r = Math.max(36, Math.min(255, Math.round(255 * factor)));
         var g = Math.max(20, Math.min(255, Math.round(108 * factor)));
         var b = Math.max(44, Math.min(255, Math.round(188 * factor)));
         return 'rgb(' + r + ',' + g + ',' + b + ')';
     };
 
-    EE.prototype.ifBranchHighlightRadiusForEntry = function(entry) {
-        if (!entry || !entry.command) return this.scaleTimelineCircleRadius(4);
-        var code = Math.floor(Number(entry.command.code || 0));
-        if (code === 111) return this.scaleTimelineCircleRadius(4);
-        if (entry.isComment || code === 108) {
-            this.memoApplyParsedStateToEntry(entry);
-            var memoSize = entry.isMemo ? this.memoNormalizeSize(entry.memoSize) : 'S';
-            return this.scaleTimelineCircleRadius(this.memoCircleRadiusForSize(memoSize));
-        }
-        return this.scaleTimelineCircleRadius(4);
-    };
-
-    EE.prototype.ifBranchHighlightEndXForEntry = function(entry, fallbackX) {
-        var x = Number(fallbackX || 0);
-        if (!entry) return x;
-        var baseFrame = Math.max(0, Math.floor(Number(entry.frame || 0)));
-        var span = Math.max(0, Math.floor(Number(entry.wait || 0)));
-        if (entry.command && Number(entry.command.code || 0) === 205) {
-            span = Math.max(span, Math.max(1, this.routeExecutionSpanFramesForEntry(entry)));
-        }
-        if (span > 1) {
-            var ex = this.frameToX(baseFrame + span);
-            if (isFinite(ex)) x = Math.max(x, Number(ex));
-        }
-        return x;
+    EE.prototype.branchHighlightInsetForDepth = function(depth, rowHeight) {
+        depth = Math.max(0, Math.floor(Number(depth || 0)));
+        rowHeight = Math.max(1, Math.floor(Number(rowHeight || this.rowH || 1)));
+        if (depth <= 0) return 0;
+        var desired = Math.round(2 * Math.log(depth + 1) / Math.LN2);
+        var maximum = Math.max(0, Math.floor((rowHeight - 12) / 2));
+        return Math.max(0, Math.min(maximum, desired));
     };
 
     EE.prototype.ifBranchHighlightShapeBounds = function(shape) {
@@ -520,398 +594,173 @@
         );
     };
 
-    EE.prototype.collectIfBranchHighlightShapes = function(tr, rowMap, rmets, hiddenByIf) {
-        var out = [];
-        if (!tr || !Array.isArray(tr.commands) || !tr.commands.length) return out;
-        var view = this.computeIfBranchViewStateForTrack(tr);
-        var highlights = view.highlights || Object.create(null);
-        var info = view.info || {};
-        var allList = Array.isArray(info.list) ? info.list : [];
-        hiddenByIf = hiddenByIf || view.hidden || Object.create(null);
-
-        var addPoint = function(box, x, y, r) {
-            box.minX = Math.min(box.minX, x - r);
-            box.maxX = Math.max(box.maxX, x + r);
-            box.minY = Math.min(box.minY, y - r);
-            box.maxY = Math.max(box.maxY, y + r);
-        };
-
-        var keys = Object.keys(highlights);
-        for (var i = 0; i < keys.length; i++) {
-            var hk = String(keys[i] || '');
-            if (!hk.length) continue;
-            var hctx = highlights[hk];
-            if (!hctx) continue;
-            var b = hctx.block || null;
-            var startEntry = hctx.start || null;
-            if (!startEntry || !startEntry.command || Number(startEntry.command.code || 0) !== 111) continue;
-            var startUid = String(Math.floor(Number(startEntry.uid || 0)));
-            if (hiddenByIf[startUid]) continue;
-
-            var box = {
-                minX: Infinity,
-                maxX: -Infinity,
-                minY: Infinity,
-                maxY: -Infinity
-            };
-
-            var startPt = this.commandNodePointForEntry(startEntry, rowMap, rmets);
-            if (!startPt) continue;
-            var startRadius = this.ifBranchHighlightRadiusForEntry(startEntry);
-            addPoint(box, Number(startPt.x || 0), Number(startPt.y || 0), startRadius);
-
-            var endEntry = null;
-            var endIdx = Math.floor(Number((b && b.endIndex) || -1));
-            if (endIdx >= 0 && endIdx < allList.length) {
-                var endCand = allList[endIdx];
-                if (endCand && endCand.command && Number(endCand.command.code || 0) === 412) endEntry = endCand;
+    EE.prototype.paintBranchHighlightShape = function(ctx, shape) {
+        if (!ctx || !shape) return;
+        if (shape.outlineStyle) {
+            var offsets = [
+                [-1, 0], [1, 0], [0, -1], [0, 1],
+                [-0.7, -0.7], [0.7, -0.7], [-0.7, 0.7], [0.7, 0.7]
+            ];
+            ctx.fillStyle = String(shape.outlineStyle);
+            for (var i = 0; i < offsets.length; i++) {
+                ctx.save();
+                ctx.translate(offsets[i][0], offsets[i][1]);
+                this.drawIfBranchHighlightShape(ctx, shape);
+                ctx.restore();
             }
+        }
+        ctx.fillStyle = String(shape.fillStyle || 'rgb(82,154,255)');
+        this.drawIfBranchHighlightShape(ctx, shape);
+    };
 
-            var members = Array.isArray(hctx.entries) ? hctx.entries : [];
-            var seen = Object.create(null);
-            var lastMember = null;
-            for (var li = 0; li < members.length; li++) {
-                var e = members[li];
-                if (!e || !e.command) continue;
-                var euid = Math.floor(Number(e.uid || 0));
-                if (euid > 0) {
-                    if (seen[euid]) continue;
-                    seen[euid] = true;
-                }
-                var code = Math.floor(Number(e.command.code || 0));
-                if (code === 411 || code === 412) continue;
-                var uid = String(euid);
-                if (hiddenByIf[uid]) continue;
-                var pt = this.commandNodePointForEntry(e, rowMap, rmets);
-                if (!pt) continue;
-                var px = Number(pt.x || 0);
-                var py = Number(pt.y || 0);
-                addPoint(box, px, py, this.ifBranchHighlightRadiusForEntry(e));
-                if (code === 205) {
-                    var span = Math.max(1, this.routeExecutionSpanFramesForEntry(e));
-                    var ex = this.frameToX(Math.max(0, Math.floor(Number(e.frame || 0))) + span);
-                    var rr = this.scaleTimelineCircleRadius(4);
-                    addPoint(box, Number(ex || px), py, rr);
-                }
-                if (!lastMember || compareEntriesByFrameWaitUid(e, lastMember) > 0) lastMember = e;
-            }
-            if (!endEntry) endEntry = lastMember || startEntry;
-            var endPt = this.commandNodePointForEntry(endEntry, rowMap, rmets) || startPt;
-            var endX = this.ifBranchHighlightEndXForEntry(endEntry, Number(endPt.x || 0));
-            var endRadius = this.ifBranchHighlightRadiusForEntry(endEntry);
-            addPoint(box, endX, Number(endPt.y || 0), endRadius);
+    EE.prototype.makeMainLaneBranchHighlightShape = function(context, rowMap, rmets) {
+        if (!context || !context.ownerEntry || !context.endEntry || !rowMap || rowMap.main == null) return null;
+        var mainMet = rmets[rowMap.main] || null;
+        if (!mainMet) return null;
+        var startPt = this.branchStartBoundaryNodePointForEntry(context.ownerEntry, rowMap, rmets);
+        var endPt = this.commandNodePointForEntry(context.endEntry, rowMap, rmets);
+        if (!startPt || !endPt) return null;
 
-            if (!isFinite(box.minX) || !isFinite(box.maxX) || !isFinite(box.minY) || !isFinite(box.maxY)) continue;
-            var pad = this.scaleTimelineCircleRadius(2);
-            var yTop = Math.floor(box.minY - pad);
-            var yBottom = Math.ceil(box.maxY + pad);
-            var sxL = Math.floor(Number(startPt.x || 0) - startRadius - pad);
-            var sxR = Math.ceil(Number(startPt.x || 0) + startRadius + pad);
-            var exL = Math.floor(endX - endRadius - pad);
-            var exR = Math.ceil(endX + endRadius + pad);
-            var startTop = Math.max(yTop, Math.min(yBottom, Math.floor(Number(startPt.y || 0) - startRadius - pad)));
-            var endBottom = Math.max(yTop, Math.min(yBottom, Math.ceil(Number(endPt.y || 0) + endRadius + pad)));
-            var capR = Math.max(this.scaleTimelineCircleRadius(1.6), Math.min((sxR - sxL) * 0.49, (yBottom - yTop) * 0.49));
+        var radius = this.scaleTimelineCircleRadius(4);
+        var pad = this.scaleTimelineCircleRadius(2);
+        var nestingDepth = Math.max(0, Math.floor(Number(context.nestingDepth || 0)));
+        var verticalInset = this.branchHighlightInsetForDepth(nestingDepth, mainMet.height);
+        var yTop = Math.floor(Number(mainMet.top || this.rulerH) + 1 + verticalInset);
+        var yBottom = Math.max(yTop + 1, Math.ceil(
+            Number(mainMet.top || this.rulerH) + Number(mainMet.height || this.rowH) - 1 - verticalInset
+        ));
+        var startX = Number(startPt.x || 0);
+        var endX = Math.max(startX, Number(endPt.x || 0));
+        var sxL = Math.floor(startX - radius - pad);
+        var sxR = Math.ceil(startX + radius + pad);
+        var exL = Math.floor(endX - radius - pad);
+        var exR = Math.ceil(endX + radius + pad);
+        var startTop = Math.max(yTop, Math.min(yBottom, Math.floor(Number(startPt.y || 0) - radius - pad)));
+        var endBottom = Math.max(yTop, Math.min(yBottom, Math.ceil(Number(endPt.y || 0) + radius + pad)));
+        var capR = Math.max(this.scaleTimelineCircleRadius(1.6), Math.min((sxR - sxL) * 0.49, (yBottom - yTop) * 0.49));
+        var segments = [];
 
-            var fillStyle = this.ifBranchHighlightFillColorForDepth(Math.floor(Number((b && b.indent) || 0)));
-            var segments = [];
-            if (sxR < exL) {
-                var bodyW = Math.max(1, exL - sxR);
-                var bodyH = Math.max(1, yBottom - yTop);
-                var bodyCornerR = Math.max(
-                    this.scaleTimelineCircleRadius(1.0),
-                    Math.min(capR, Math.min(bodyW, bodyH) * 0.45)
-                );
-                var topAlignedWithStart = Math.abs(Number(yTop || 0) - Number(startTop || 0)) <= 0.5;
-                var bottomAlignedWithEnd = Math.abs(Number(yBottom || 0) - Number(endBottom || 0)) <= 0.5;
-                var bodyTl = topAlignedWithStart ? 0 : bodyCornerR;
-                var bodyBr = bottomAlignedWithEnd ? 0 : bodyCornerR;
-                segments.push({
-                    kind: 'handle',
-                    x: sxL,
-                    y: startTop,
-                    w: Math.max(1, sxR - sxL),
-                    h: Math.max(1, yBottom - startTop),
-                    r: capR,
-                    roundLeft: true,
-                    roundRight: false
-                });
-                segments.push({
-                    kind: 'cornerRect',
-                    x: sxR,
-                    y: yTop,
-                    w: bodyW,
-                    h: bodyH,
-                    tl: bodyTl,
-                    tr: 0,
-                    br: bodyBr,
-                    bl: 0
-                });
-                segments.push({
-                    kind: 'handle',
-                    x: exL,
-                    y: yTop,
-                    w: Math.max(1, exR - exL),
-                    h: Math.max(1, endBottom - yTop),
-                    r: capR,
-                    roundLeft: false,
-                    roundRight: true
-                });
-            } else {
-                var x = Math.floor(Math.min(sxL, exL, box.minX - pad));
-                var y = Math.floor(Math.min(startTop, yTop));
-                var w = Math.max(2, Math.ceil(Math.max(sxR, exR, box.maxX + pad) - x));
-                var h = Math.max(2, Math.ceil(Math.max(yBottom, endBottom) - y));
-                var r = Math.max(this.scaleTimelineCircleRadius(2.2), Math.min(w, h) * 0.46);
-                segments.push({ kind: 'roundRect', x: x, y: y, w: w, h: h, r: r, roundLeft: true, roundRight: true });
-            }
-
-            var area = 0;
-            var minX = Infinity, minY = Infinity, maxX = -Infinity, maxY = -Infinity;
-            for (var si = 0; si < segments.length; si++) {
-                var sg = segments[si];
-                if (!sg) continue;
-                var sw = Math.max(0, Number(sg.w || 0));
-                var sh = Math.max(0, Number(sg.h || 0));
-                if (sw <= 0 || sh <= 0) continue;
-                var sx = Number(sg.x || 0);
-                var sy = Number(sg.y || 0);
-                minX = Math.min(minX, sx);
-                minY = Math.min(minY, sy);
-                maxX = Math.max(maxX, sx + sw);
-                maxY = Math.max(maxY, sy + sh);
-                area += sw * sh;
-            }
-            if (!isFinite(minX) || !isFinite(minY) || !isFinite(maxX) || !isFinite(maxY)) continue;
-            out.push({
-                kind: 'branchStep',
-                x: minX,
-                y: minY,
-                w: Math.max(1, maxX - minX),
-                h: Math.max(1, maxY - minY),
-                area: Math.max(1, area),
-                segments: segments,
-                fillStyle: fillStyle
+        if (sxR < exL) {
+            var bodyW = Math.max(1, exL - sxR);
+            var bodyH = Math.max(1, yBottom - yTop);
+            var bodyCornerR = Math.max(this.scaleTimelineCircleRadius(1), Math.min(capR, Math.min(bodyW, bodyH) * 0.45));
+            segments.push({
+                kind: 'handle',
+                x: sxL,
+                y: startTop,
+                w: Math.max(1, sxR - sxL),
+                h: Math.max(1, yBottom - startTop),
+                r: capR,
+                roundLeft: true,
+                roundRight: false
+            });
+            segments.push({
+                kind: 'cornerRect',
+                x: sxR,
+                y: yTop,
+                w: bodyW,
+                h: bodyH,
+                tl: startTop === yTop ? 0 : bodyCornerR,
+                tr: 0,
+                br: endBottom === yBottom ? 0 : bodyCornerR,
+                bl: 0
+            });
+            segments.push({
+                kind: 'handle',
+                x: exL,
+                y: yTop,
+                w: Math.max(1, exR - exL),
+                h: Math.max(1, endBottom - yTop),
+                r: capR,
+                roundLeft: false,
+                roundRight: true
+            });
+        } else {
+            var sameFrame = Math.abs(endX - startX) < 0.5;
+            var compactTop = sameFrame ? Math.min(startTop, endBottom) : yTop;
+            var compactBottom = sameFrame ? Math.max(startTop, endBottom) : yBottom;
+            var compactX = Math.floor(Math.min(sxL, exL));
+            var compactW = Math.max(2, Math.ceil(Math.max(sxR, exR) - compactX));
+            var compactH = Math.max(2, Math.ceil(compactBottom - compactTop));
+            segments.push({
+                kind: 'roundRect',
+                x: compactX,
+                y: compactTop,
+                w: compactW,
+                h: compactH,
+                r: Math.max(this.scaleTimelineCircleRadius(2.2), Math.min(compactW, compactH) * 0.46),
+                roundLeft: true,
+                roundRight: true
             });
         }
+
+        var minX = Infinity;
+        var minY = Infinity;
+        var maxX = -Infinity;
+        var maxY = -Infinity;
+        var area = 0;
+        for (var i = 0; i < segments.length; i++) {
+            var segment = segments[i];
+            var width = Math.max(0, Number(segment.w || 0));
+            var height = Math.max(0, Number(segment.h || 0));
+            if (width <= 0 || height <= 0) continue;
+            minX = Math.min(minX, Number(segment.x || 0));
+            minY = Math.min(minY, Number(segment.y || 0));
+            maxX = Math.max(maxX, Number(segment.x || 0) + width);
+            maxY = Math.max(maxY, Number(segment.y || 0) + height);
+            area += width * height;
+        }
+        if (!isFinite(minX) || !isFinite(minY) || !isFinite(maxX) || !isFinite(maxY)) return null;
+        return {
+            kind: 'branchStep',
+            x: minX,
+            y: minY,
+            w: Math.max(1, maxX - minX),
+            h: Math.max(1, maxY - minY),
+            area: Math.max(1, area),
+            segments: segments,
+            fillStyle: this.branchBoundaryColorForContext(context),
+            outlineStyle: nestingDepth > 0
+                ? (context.type === 'choice' ? 'rgba(255,244,251,.78)' : 'rgba(239,249,255,.78)')
+                : '',
+            nestingDepth: nestingDepth,
+            verticalInset: verticalInset,
+            branchType: context.type,
+            ownerUid: Math.floor(Number(context.ownerEntry.uid || 0)),
+            endUid: Math.floor(Number(context.endEntry.uid || 0))
+        };
+    };
+
+    EE.prototype.collectMainLaneBranchHighlightShapes = function(tr, rowMap, rmets, hiddenByIf, type) {
+        var out = [];
+        if (!tr || !Array.isArray(tr.commands) || !tr.commands.length) return out;
+        hiddenByIf = hiddenByIf || this.computeIfBranchHiddenUidMapForTrack(tr);
+        var boundaryInfo = this._timelineBranchBoundaryTrack === tr && this._timelineBranchBoundaryInfo
+            ? this._timelineBranchBoundaryInfo
+            : this.branchBoundaryDisplayInfoForTrack(tr);
+        var contexts = Array.isArray(boundaryInfo.contexts) ? boundaryInfo.contexts : [];
+        for (var i = 0; i < contexts.length; i++) {
+            var context = contexts[i];
+            if (!context || (type && context.type !== type)) continue;
+            var ownerUid = String(Math.floor(Number(context.ownerEntry && context.ownerEntry.uid || 0)));
+            if (hiddenByIf[ownerUid]) continue;
+            var shape = this.makeMainLaneBranchHighlightShape(context, rowMap, rmets);
+            if (shape) out.push(shape);
+        }
+        out.sort(function(a, b) {
+            var depthDelta = Math.floor(Number(a && a.nestingDepth || 0)) - Math.floor(Number(b && b.nestingDepth || 0));
+            if (depthDelta) return depthDelta;
+            return Math.floor(Number(a && a.ownerUid || 0)) - Math.floor(Number(b && b.ownerUid || 0));
+        });
         return out;
     };
 
-    EE.prototype.choiceBranchActiveRangeForBlock = function(tr, info, block, modeMap) {
-        if (!block) return null;
-        info = info || {};
-        var list = Array.isArray(info.list) ? info.list : [];
-        if (!list.length) return null;
-        var choiceIndex = Math.max(0, Math.floor(Number(block.choiceIndex || 0)));
-        var endIndex = Math.floor(Number(block.endIndex || -1));
-        if (endIndex < 0 || endIndex > list.length) endIndex = list.length;
-        var selected = this.choiceBranchEffectiveResultForBlock(tr, info, block, modeMap);
-        var branches = Array.isArray(block.branches) ? block.branches : [];
-        var selectedBranch = null;
-        for (var i = 0; i < branches.length; i++) {
-            var br = branches[i];
-            if (!br) continue;
-            if (selected === -1) {
-                if (String(br.type || '') === 'cancel') {
-                    selectedBranch = br;
-                    break;
-                }
-                continue;
-            }
-            if (String(br.type || '') !== 'choice') continue;
-            if (Math.floor(Number(br.choiceIndex == null ? -1 : br.choiceIndex)) !== Math.floor(Number(selected || 0))) continue;
-            selectedBranch = br;
-            break;
-        }
-        var startIndex = choiceIndex + 1;
-        var stopIndex = startIndex;
-        if (selectedBranch) {
-            startIndex = Math.max(0, Math.floor(Number(selectedBranch.startIndex || startIndex)));
-            var brEnd = Math.floor(Number(selectedBranch.endIndex == null ? endIndex : selectedBranch.endIndex));
-            if (brEnd < 0 || brEnd > list.length) brEnd = endIndex;
-            stopIndex = Math.max(startIndex, brEnd);
-        }
-        startIndex = Math.max(0, Math.min(list.length, startIndex));
-        stopIndex = Math.max(startIndex, Math.min(list.length, stopIndex));
-        var endIndexInclusive = Math.max(startIndex - 1, Math.min(list.length - 1, Math.max(0, endIndex - 1)));
-        return {
-            selected: selected,
-            choiceIndex: choiceIndex,
-            endIndex: endIndex,
-            endIndexInclusive: endIndexInclusive,
-            startIndex: startIndex,
-            stopIndex: stopIndex
-        };
+    EE.prototype.collectIfBranchHighlightShapes = function(tr, rowMap, rmets, hiddenByIf) {
+        return this.collectMainLaneBranchHighlightShapes(tr, rowMap, rmets, hiddenByIf, 'if');
     };
 
     EE.prototype.collectChoiceBranchHighlightShapes = function(tr, rowMap, rmets, hiddenByIf) {
-        var out = [];
-        if (!tr || !Array.isArray(tr.commands) || !tr.commands.length) return out;
-        var info = this.computeChoiceBranchDisplayInfoForTrack(tr);
-        var allList = Array.isArray(info.list) ? info.list : [];
-        var blocks = Array.isArray(info.blocks) ? info.blocks : [];
-        if (!allList.length || !blocks.length) return out;
-        hiddenByIf = hiddenByIf || this.computeIfBranchHiddenUidMapForTrack(tr);
-        var modeMap = this.normalizeChoiceBranchViewModes(tr._eeChoiceBranchViewModes);
-
-        var addPoint = function(box, x, y, r) {
-            box.minX = Math.min(box.minX, x - r);
-            box.maxX = Math.max(box.maxX, x + r);
-            box.minY = Math.min(box.minY, y - r);
-            box.maxY = Math.max(box.maxY, y + r);
-        };
-
-        for (var i = 0; i < blocks.length; i++) {
-            var b = blocks[i];
-            if (!b) continue;
-            var choiceIndex = Math.floor(Number(b.choiceIndex == null ? -1 : b.choiceIndex));
-            if (choiceIndex < 0 || choiceIndex >= allList.length) continue;
-            var startEntry = allList[choiceIndex];
-            if (!startEntry || !startEntry.command || Number(startEntry.command.code || 0) !== 102) continue;
-            var startUid = String(Math.floor(Number(startEntry.uid || 0)));
-            if (hiddenByIf[startUid]) continue;
-            var range = this.choiceBranchActiveRangeForBlock(tr, info, b, modeMap);
-            if (!range) continue;
-
-            var box = {
-                minX: Infinity,
-                maxX: -Infinity,
-                minY: Infinity,
-                maxY: -Infinity
-            };
-            var startPt = this.commandNodePointForEntry(startEntry, rowMap, rmets);
-            if (!startPt) continue;
-            var startRadius = this.ifBranchHighlightRadiusForEntry(startEntry);
-            addPoint(box, Number(startPt.x || 0), Number(startPt.y || 0), startRadius);
-
-            var endEntry = null;
-            var endIdx = Math.floor(Number((b && b.endIndex) || -1));
-            if (endIdx >= 0 && endIdx < allList.length) {
-                var endCand = allList[endIdx];
-                if (endCand && endCand.command && Number(endCand.command.code || 0) === 404) endEntry = endCand;
-            }
-
-            var lastMember = null;
-            for (var li = range.startIndex; li < range.stopIndex; li++) {
-                var e = allList[li];
-                if (!e || !e.command) continue;
-                var code = Math.floor(Number(e.command.code || 0));
-                if (code === 402 || code === 403 || code === 404) continue;
-                var uidNum = Math.floor(Number(e.uid || 0));
-                if (uidNum > 0 && hiddenByIf[String(uidNum)]) continue;
-                var pt = this.commandNodePointForEntry(e, rowMap, rmets);
-                if (!pt) continue;
-                var px = Number(pt.x || 0);
-                var py = Number(pt.y || 0);
-                addPoint(box, px, py, this.ifBranchHighlightRadiusForEntry(e));
-                if (code === 205) {
-                    var span = Math.max(1, this.routeExecutionSpanFramesForEntry(e));
-                    var ex = this.frameToX(Math.max(0, Math.floor(Number(e.frame || 0))) + span);
-                    var rr = this.scaleTimelineCircleRadius(4);
-                    addPoint(box, Number(ex || px), py, rr);
-                }
-                if (!lastMember || compareEntriesByFrameWaitUid(e, lastMember) > 0) lastMember = e;
-            }
-            if (!endEntry) endEntry = lastMember || startEntry;
-            var endPt = this.commandNodePointForEntry(endEntry, rowMap, rmets) || startPt;
-            var endX = this.ifBranchHighlightEndXForEntry(endEntry, Number(endPt.x || 0));
-            var endRadius = this.ifBranchHighlightRadiusForEntry(endEntry);
-            addPoint(box, endX, Number(endPt.y || 0), endRadius);
-
-            if (!isFinite(box.minX) || !isFinite(box.maxX) || !isFinite(box.minY) || !isFinite(box.maxY)) continue;
-            var pad = this.scaleTimelineCircleRadius(2);
-            var yTop = Math.floor(box.minY - pad);
-            var yBottom = Math.ceil(box.maxY + pad);
-            var sxL = Math.floor(Number(startPt.x || 0) - startRadius - pad);
-            var sxR = Math.ceil(Number(startPt.x || 0) + startRadius + pad);
-            var exL = Math.floor(endX - endRadius - pad);
-            var exR = Math.ceil(endX + endRadius + pad);
-            var startTop = Math.max(yTop, Math.min(yBottom, Math.floor(Number(startPt.y || 0) - startRadius - pad)));
-            var endBottom = Math.max(yTop, Math.min(yBottom, Math.ceil(Number(endPt.y || 0) + endRadius + pad)));
-            var capR = Math.max(this.scaleTimelineCircleRadius(1.6), Math.min((sxR - sxL) * 0.49, (yBottom - yTop) * 0.49));
-
-            var fillStyle = this.choiceBranchHighlightFillColorForDepth(Math.floor(Number((b && b.indent) || 0)));
-            var segments = [];
-            if (sxR < exL) {
-                var bodyW = Math.max(1, exL - sxR);
-                var bodyH = Math.max(1, yBottom - yTop);
-                var bodyCornerR = Math.max(
-                    this.scaleTimelineCircleRadius(1.0),
-                    Math.min(capR, Math.min(bodyW, bodyH) * 0.45)
-                );
-                var topAlignedWithStart = Math.abs(Number(yTop || 0) - Number(startTop || 0)) <= 0.5;
-                var bottomAlignedWithEnd = Math.abs(Number(yBottom || 0) - Number(endBottom || 0)) <= 0.5;
-                var bodyTl = topAlignedWithStart ? 0 : bodyCornerR;
-                var bodyBr = bottomAlignedWithEnd ? 0 : bodyCornerR;
-                segments.push({
-                    kind: 'handle',
-                    x: sxL,
-                    y: startTop,
-                    w: Math.max(1, sxR - sxL),
-                    h: Math.max(1, yBottom - startTop),
-                    r: capR,
-                    roundLeft: true,
-                    roundRight: false
-                });
-                segments.push({
-                    kind: 'cornerRect',
-                    x: sxR,
-                    y: yTop,
-                    w: bodyW,
-                    h: bodyH,
-                    tl: bodyTl,
-                    tr: 0,
-                    br: bodyBr,
-                    bl: 0
-                });
-                segments.push({
-                    kind: 'handle',
-                    x: exL,
-                    y: yTop,
-                    w: Math.max(1, exR - exL),
-                    h: Math.max(1, endBottom - yTop),
-                    r: capR,
-                    roundLeft: false,
-                    roundRight: true
-                });
-            } else {
-                var x = Math.floor(Math.min(sxL, exL, box.minX - pad));
-                var y = Math.floor(Math.min(startTop, yTop));
-                var w = Math.max(2, Math.ceil(Math.max(sxR, exR, box.maxX + pad) - x));
-                var h = Math.max(2, Math.ceil(Math.max(yBottom, endBottom) - y));
-                var r = Math.max(this.scaleTimelineCircleRadius(2.2), Math.min(w, h) * 0.46);
-                segments.push({ kind: 'roundRect', x: x, y: y, w: w, h: h, r: r, roundLeft: true, roundRight: true });
-            }
-
-            var area = 0;
-            var minX = Infinity, minY = Infinity, maxX = -Infinity, maxY = -Infinity;
-            for (var si = 0; si < segments.length; si++) {
-                var sg = segments[si];
-                if (!sg) continue;
-                var sw = Math.max(0, Number(sg.w || 0));
-                var sh = Math.max(0, Number(sg.h || 0));
-                if (sw <= 0 || sh <= 0) continue;
-                var sx = Number(sg.x || 0);
-                var sy = Number(sg.y || 0);
-                minX = Math.min(minX, sx);
-                minY = Math.min(minY, sy);
-                maxX = Math.max(maxX, sx + sw);
-                maxY = Math.max(maxY, sy + sh);
-                area += sw * sh;
-            }
-            if (!isFinite(minX) || !isFinite(minY) || !isFinite(maxX) || !isFinite(maxY)) continue;
-            out.push({
-                kind: 'branchStep',
-                x: minX,
-                y: minY,
-                w: Math.max(1, maxX - minX),
-                h: Math.max(1, maxY - minY),
-                area: Math.max(1, area),
-                segments: segments,
-                fillStyle: fillStyle
-            });
-        }
-        return out;
+        return this.collectMainLaneBranchHighlightShapes(tr, rowMap, rmets, hiddenByIf, 'choice');
     };
 
     EE.prototype.drawIfBranchHighlightShapes = function(ctx, shapes) {
@@ -925,8 +774,7 @@
                 decision = this.ifBranchShapeOverlayDecision(s, overlayRule);
                 if (decision.hide) continue;
             }
-            ctx.fillStyle = String(s.fillStyle || 'rgb(82,154,255)');
-            this.drawIfBranchHighlightShape(ctx, s);
+            this.paintBranchHighlightShape(ctx, s);
             if (decision && decision.overlap && overlayRule && Array.isArray(overlayRule.queue) && decision.clips.length) {
                 overlayRule.queue.push({
                     shape: clone(s),
@@ -952,8 +800,7 @@
                 ctx.beginPath();
                 ctx.rect(Number(clip.x || 0), Number(clip.y || 0), cw, ch);
                 ctx.clip();
-                ctx.fillStyle = String(s.fillStyle || 'rgb(82,154,255)');
-                this.drawIfBranchHighlightShape(ctx, s);
+                this.paintBranchHighlightShape(ctx, s);
                 ctx.restore();
             }
         }
@@ -975,9 +822,14 @@
             this.orderButtonAnchorEntry = null;
             return;
         }
-        var pt = (entry.command && Number(entry.command.code || 0) === 205)
-            ? this.mainProxyNodePointForEntry(entry, rowMap, rmets)
-            : this.commandNodePointForEntry(entry, rowMap, rmets);
+        var pt;
+        if (this.selBranchBoundaryPart === 'start' && this.isBranchOwnerEntry(entry)) {
+            pt = this.branchStartBoundaryNodePointForEntry(entry, rowMap, rmets);
+        } else {
+            pt = (entry.command && Number(entry.command.code || 0) === 205)
+                ? this.mainProxyNodePointForEntry(entry, rowMap, rmets)
+                : this.commandNodePointForEntry(entry, rowMap, rmets);
+        }
         if (!pt) {
             this.orderButtonAnchorEntry = null;
             return;
@@ -986,8 +838,10 @@
         var bh = 11;
         var gap = 2;
         var x = Math.floor(pt.x + 10);
-        if (this.orderButtonAnchorEntry !== entry) {
+        var anchorPart = String(this.selBranchBoundaryPart || '');
+        if (this.orderButtonAnchorEntry !== entry || this.orderButtonAnchorPart !== anchorPart) {
             this.orderButtonAnchorEntry = entry;
+            this.orderButtonAnchorPart = anchorPart;
             this.orderButtonAnchorY = Math.floor(Number(pt.y || 0));
         }
         var anchorY = Math.floor(Number(this.orderButtonAnchorY || pt.y || 0));
@@ -1249,6 +1103,12 @@
         var width = Math.max(1, Math.floor(Number(this.tw || this.timelineOverlay.width || 1)));
         var height = Math.max(1, Math.floor(Number(this.th || this.timelineOverlay.height || 1)));
         ctx.clearRect(0, 0, width, height);
+        var fixedLabelX = this.timelineWrap ? Math.max(0, Math.floor(Number(this.timelineWrap.scrollLeft || 0))) : 0;
+        var labelRight = fixedLabelX + this.labelW;
+        ctx.save();
+        ctx.beginPath();
+        ctx.rect(labelRight, 0, Math.max(0, width - labelRight), height);
+        ctx.clip();
         var hoverFrame = Math.floor(Number(this.hoverFrame));
         if (isFinite(hoverFrame) && hoverFrame >= 0) {
             var hoverX = this.frameToX(hoverFrame) + 0.5;
@@ -1259,8 +1119,6 @@
             ctx.lineTo(hoverX, height);
             ctx.stroke();
             var rulerY = this.timelineRulerTopY(height);
-            var fixedLabelX = this.timelineWrap ? Math.max(0, Math.floor(Number(this.timelineWrap.scrollLeft || 0))) : 0;
-            var labelRight = fixedLabelX + this.labelW;
             var hoverText = String(hoverFrame) + 'f';
             ctx.font = 'bold 10px sans-serif';
             var textWidth = Math.ceil(ctx.measureText(hoverText).width) + 8;
@@ -1279,6 +1137,7 @@
         ctx.moveTo(cursorX, 0);
         ctx.lineTo(cursorX, height);
         ctx.stroke();
+        ctx.restore();
         this.timelineCursorDirty = false;
         if (this.tInfo) {
             var oldText = String(this.tInfo.textContent || '');
@@ -1409,7 +1268,14 @@
         this._timelineBranchHiddenUidMap = hiddenByIf;
         var laneInfo = this.buildMainLaneMap(tr, hiddenByIf);
         this._mainLaneByUid = laneInfo.laneByUid || {};
+        this._branchStartLaneByUid = laneInfo.branchStartLaneByUid || {};
         this._mainStackMax = laneInfo.maxStack || this._mainStackMax || 1;
+        var branchBoundaryInfo = tr ? this.branchBoundaryDisplayInfoForTrack(tr) : {
+            startByUid: Object.create(null),
+            endByUid: Object.create(null)
+        };
+        this._timelineBranchBoundaryInfo = branchBoundaryInfo;
+        this._timelineBranchBoundaryTrack = tr;
         var charLaneInfo = this.buildCharRouteLaneMap(tr, hiddenByIf);
         this._charLaneByUid = charLaneInfo.laneByUid || {};
         this._charStackByRow = charLaneInfo.stackByRow || {};
@@ -1485,55 +1351,8 @@
             }
         }
 
-        if (tr && tr.commands) {
-            var overlayFrameStart = Math.max(0, gridFrameStart - step);
-            var overlayFrameEnd = Math.min(maxF + 1, gridFrameEnd + step);
-            var ranges = this.collectMoveRouteWaitRanges(tr, 0);
-            var overlayTop = this.rulerH;
-            var overlayBottom = Math.max(overlayTop + 1, lastY);
-            var overlayHeight = Math.max(1, overlayBottom - overlayTop);
-            for (var wr = 0; wr < ranges.length; wr++) {
-                var rg = ranges[wr];
-                if (hiddenByIf[String(Math.floor(Number(rg && rg.uid || 0)))]) continue;
-                var rs = Math.max(overlayFrameStart, Math.floor(Number(rg.start || 0)));
-                var re = Math.min(overlayFrameEnd, Math.floor(Number(rg.end || 0)));
-                if (re <= rs) continue;
-                var sxr = this.frameToX(rs);
-                var exr = this.frameToX(re);
-                var bxr = Math.min(sxr, exr);
-                var bwr = Math.max(2, Math.abs(exr - sxr));
-                c.fillStyle = 'rgba(150,104,70,.10)';
-                c.fillRect(bxr, overlayTop, bwr, overlayHeight);
-                c.save();
-                c.beginPath();
-                c.rect(bxr, overlayTop, bwr, overlayHeight);
-                c.clip();
-                c.strokeStyle = 'rgba(186,136,98,.30)';
-                c.lineWidth = 1;
-                var hatchStep = 8;
-                var hatchStart = Math.floor(bxr - overlayHeight);
-                var hatchEnd = Math.ceil(bxr + bwr + overlayHeight);
-                for (var hx = hatchStart; hx <= hatchEnd; hx += hatchStep) {
-                    c.beginPath();
-                    c.moveTo(hx, overlayBottom);
-                    c.lineTo(hx + overlayHeight, overlayTop);
-                    c.stroke();
-                }
-                c.restore();
-                c.strokeStyle = 'rgba(186,136,98,.50)';
-                c.beginPath();
-                c.moveTo(bxr + 0.5, overlayTop);
-                c.lineTo(bxr + 0.5, overlayBottom);
-                c.moveTo(bxr + bwr - 0.5, overlayTop);
-                c.lineTo(bxr + bwr - 0.5, overlayBottom);
-                c.stroke();
-            }
-        }
-
-        var ifBranchShapes = this.collectIfBranchHighlightShapes(tr, rowMap, rmets, hiddenByIf);
-        this.drawIfBranchHighlightShapes(c, ifBranchShapes);
-        var choiceBranchShapes = this.collectChoiceBranchHighlightShapes(tr, rowMap, rmets, hiddenByIf);
-        this.drawIfBranchHighlightShapes(c, choiceBranchShapes);
+        var branchShapes = this.collectMainLaneBranchHighlightShapes(tr, rowMap, rmets, hiddenByIf);
+        this.drawIfBranchHighlightShapes(c, branchShapes);
 
         this.hitNodes = [];
         this.hitComments = [];
@@ -1847,6 +1666,39 @@
                     }
                     continue;
                 }
+                var entryUidKey = String(Math.floor(Number(e.uid || 0)));
+                var branchEndContext = branchBoundaryInfo.endByUid && branchBoundaryInfo.endByUid[entryUidKey];
+                if (branchEndContext) {
+                    var branchEndSelected = sel;
+                    var branchEndHovered = this.isNodeHovered(e.uid, -1);
+                    if (!hideCircles) {
+                        this.drawBranchBoundaryCircle(
+                            c,
+                            cx,
+                            cy,
+                            4,
+                            this.branchBoundaryColorForContext(branchEndContext),
+                            branchEndSelected,
+                            branchEndHovered
+                        );
+                        this.hitNodes.push({
+                            uid: e.uid,
+                            x: cx,
+                            y: cy,
+                            r: 6,
+                            frame: e.frame,
+                            rowKey: 'main',
+                            branchBoundary: 'end',
+                            branchDragBoundary: 'end',
+                            branchType: branchEndContext.type,
+                            branchNestingDepth: Math.max(0, Math.floor(Number(branchEndContext.nestingDepth || 0))),
+                            branchOwnerUid: Math.floor(Number(branchEndContext.ownerEntry.uid || 0)),
+                            routeListIndex: -1
+                        });
+                    }
+                    continue;
+                }
+                var branchStartContext = branchBoundaryInfo.startByUid && branchBoundaryInfo.startByUid[entryUidKey];
                 var defaultNodeColor = this.commandCircleDefaultColorForEntry(e, rk);
                 var nodeFillColor = this.commandMarkerFillColor(defaultNodeColor, e, -1);
                 if (wait > 1 && Number(e.command && e.command.code || 0) !== 115) {
@@ -1877,7 +1729,51 @@
                     c.stroke();
                     c.lineWidth = 1;
                 }
-                if (!hideCircles) this.hitNodes.push({ uid: e.uid, x: cx, y: cy, r: nodeRadius + 1, frame: e.frame, rowKey: rk });
+                if (!hideCircles) {
+                    this.hitNodes.push({
+                        uid: e.uid,
+                        x: cx,
+                        y: cy,
+                        r: nodeRadius + 1,
+                        frame: e.frame,
+                        rowKey: rk,
+                        branchDragBoundary: branchStartContext ? 'start' : '',
+                        branchType: branchStartContext ? branchStartContext.type : '',
+                        branchNestingDepth: branchStartContext
+                            ? Math.max(0, Math.floor(Number(branchStartContext.nestingDepth || 0)))
+                            : 0,
+                        branchOwnerUid: branchStartContext ? Math.floor(Number(e.uid || 0)) : 0
+                    });
+                }
+
+                if (!hideCircles && branchStartContext) {
+                    var branchStartPt = this.branchStartBoundaryNodePointForEntry(e, rowMap, rmets);
+                    if (branchStartPt) {
+                        this.drawBranchBoundaryCircle(
+                            c,
+                            branchStartPt.x,
+                            branchStartPt.y,
+                            4,
+                            this.branchBoundaryColorForContext(branchStartContext),
+                            sel,
+                            this.isNodeHovered(e.uid, -1)
+                        );
+                        this.hitNodes.push({
+                            uid: e.uid,
+                            x: branchStartPt.x,
+                            y: branchStartPt.y,
+                            r: 6,
+                            frame: e.frame,
+                            rowKey: 'main',
+                            branchBoundary: 'start',
+                            branchDragBoundary: 'start',
+                            branchType: branchStartContext.type,
+                            branchNestingDepth: Math.max(0, Math.floor(Number(branchStartContext.nestingDepth || 0))),
+                            branchOwnerUid: Math.floor(Number(e.uid || 0)),
+                            routeListIndex: -1
+                        });
+                    }
+                }
             }
         }
 
@@ -1986,8 +1882,43 @@
                     }
                     var dx = this.frameToX(ds.targetFrame);
                     if (!hideCircles) {
-                        c.fillStyle = ds.valid ? 'rgba(100,255,170,.9)' : 'rgba(255,120,120,.9)';
-                        this.fillCircleWithBlackOutline(c, dx, dy, 5);
+                        var dragBoundaryEdge = String(ds.branchDragBoundary || ds.branchBoundary || '');
+                        if (dragBoundaryEdge) {
+                            var dragBoundaryContext = this.branchBoundaryContextForOwnerUid(
+                                tr,
+                                Math.floor(Number(ds.branchOwnerUid || 0))
+                            );
+                            var dragBoundaryEntry = dragBoundaryContext
+                                ? (dragBoundaryEdge === 'end' ? dragBoundaryContext.endEntry : dragBoundaryContext.ownerEntry)
+                                : null;
+                            var dragBoundaryPoint = dragBoundaryEntry
+                                ? (dragBoundaryEdge === 'start'
+                                    ? this.branchStartBoundaryNodePointForEntry(dragBoundaryEntry, rowMap, rmets)
+                                    : this.commandNodePointForEntry(dragBoundaryEntry, rowMap, rmets))
+                                : null;
+                            if (dragBoundaryEdge === 'start' && dragBoundaryContext && dragBoundaryContext.ownerEntry) {
+                                var dragOwnerPoint = this.commandNodePointForEntry(dragBoundaryContext.ownerEntry, rowMap, rmets);
+                                if (dragOwnerPoint) {
+                                    c.fillStyle = ds.valid ? 'rgba(100,255,170,.9)' : 'rgba(255,120,120,.9)';
+                                    this.fillCircleWithBlackOutline(c, dx, dragOwnerPoint.y, 5);
+                                }
+                            }
+                            if (dragBoundaryPoint) dy = dragBoundaryPoint.y;
+                            if (dragBoundaryPoint) {
+                                this.drawBranchBoundaryCircle(
+                                    c,
+                                    dx,
+                                    dy,
+                                    4,
+                                    ds.valid ? this.branchBoundaryColorForContext(dragBoundaryContext) : 'rgba(255,120,120,.98)',
+                                    true,
+                                    false
+                                );
+                            }
+                        } else {
+                            c.fillStyle = ds.valid ? 'rgba(100,255,170,.9)' : 'rgba(255,120,120,.9)';
+                            this.fillCircleWithBlackOutline(c, dx, dy, 5);
+                        }
                     }
                 }
             }
@@ -2136,11 +2067,27 @@
         // Keep top ruler fixed while vertical scrolling.
         this.drawStickyTimelineRuler(c, maxF, fixedLabelX, w, h);
         this._timelineIfBranchOverlayRule = null;
+        c.save();
+        c.beginPath();
+        c.rect(fixedLabelRight, 0, Math.max(0, w - fixedLabelRight), h);
+        c.clip();
         this.drawIfBranchHighlightShapesFront(c, ifBranchFrontQueue);
         this._timelineCircleOverlayRule = null;
         for (var cfqi = 0; cfqi < circleFrontQueue.length; cfqi++) {
             var cfq = circleFrontQueue[cfqi];
             if (!cfq) continue;
+            if (cfq.kind === 'branchBoundary') {
+                this.drawBranchBoundaryCircle(
+                    c,
+                    Number(cfq.x || 0),
+                    Number(cfq.y || 0),
+                    Math.max(1, Number(cfq.radius || 4)),
+                    String(cfq.color || ''),
+                    !!cfq.selected,
+                    !!cfq.hovered
+                );
+                continue;
+            }
             c.fillStyle = cfq.fillStyle || 'rgba(255,255,255,.98)';
             c.beginPath();
             c.arc(Number(cfq.x || 0), Number(cfq.y || 0), Math.max(0, Number(cfq.radius || 0)), 0, Math.PI * 2);
@@ -2172,6 +2119,7 @@
             }
         }
         if (frontPulse) this.timelineDirty = true;
+        c.restore();
         this._timelineIfBranchButtonOverlayRule = null;
         this.renderMemoLabelOverlay(memoLabelQueue);
 
@@ -2190,6 +2138,8 @@
         this.drawTimelineDynamicOverlay();
         this._timelineBranchHiddenTrack = null;
         this._timelineBranchHiddenUidMap = null;
+        this._timelineBranchBoundaryTrack = null;
+        this._timelineBranchBoundaryInfo = null;
         } catch (e) {
             this.timelineDirty = false;
             if (typeof this.err === 'function') this.err('E_TIMELINE_DRAW', e);
@@ -2199,6 +2149,8 @@
             this._timelineIfBranchOverlayRule = null;
             this._timelineBranchHiddenTrack = null;
             this._timelineBranchHiddenUidMap = null;
+            this._timelineBranchBoundaryTrack = null;
+            this._timelineBranchBoundaryInfo = null;
             this.endTrackReadCache();
         }
     };

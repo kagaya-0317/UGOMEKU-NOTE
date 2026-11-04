@@ -80,7 +80,32 @@
         var committed = false;
         try {
             fs.writeFileSync(tempPath, text, { encoding: 'utf8', flag: 'wx' });
-            fs.renameSync(tempPath, filePath);
+            var renameError = null;
+            for (var attempt = 0; attempt < 3; attempt++) {
+                try {
+                    fs.renameSync(tempPath, filePath);
+                    renameError = null;
+                    break;
+                } catch (error) {
+                    var code = String(error && error.code || '');
+                    if (code !== 'EPERM' && code !== 'EACCES' && code !== 'EBUSY' &&
+                        code !== 'EEXIST' && code !== 'ENOTEMPTY') throw error;
+                    renameError = error;
+                    if (attempt < 2) {
+                        var until = Date.now() + (attempt + 1) * 8;
+                        while (Date.now() < until) {}
+                    }
+                }
+            }
+            if (renameError) {
+                try {
+                    if (typeof fs.copyFileSync === 'function') fs.copyFileSync(tempPath, filePath);
+                    else fs.writeFileSync(filePath, text, { encoding: 'utf8' });
+                } catch (_) {
+                    fs.writeFileSync(filePath, text, { encoding: 'utf8' });
+                }
+                try { if (fs.existsSync(tempPath)) fs.unlinkSync(tempPath); } catch (_) {}
+            }
             committed = true;
         } finally {
             if (!committed) {
@@ -707,9 +732,11 @@
         this.selKey = '';
         this.selUid = 0;
         this.selRouteListIndex = -1;
+        this.selBranchBoundaryPart = '';
         this.panelSelectedCharId = null;
         this.hoverUid = 0;
         this.hoverRouteListIndex = -1;
+        this.hoverBranchBoundaryPart = '';
         this.hoverFrame = -1;
         this.hoverRangeUid = 0;
         this.hoverRangePart = '';
@@ -951,6 +978,7 @@
             this.selKey = '';
             this.selUid = 0;
             this.selRouteListIndex = -1;
+            this.selBranchBoundaryPart = '';
             this.refreshEventInfo();
             this.timelineDirty = true;
             if (this.charList) this.charList.innerHTML = '';
@@ -965,6 +993,7 @@
         this.selKey = this.key(troopId, pi);
         this.selUid = 0;
         this.selRouteListIndex = -1;
+        this.selBranchBoundaryPart = '';
         this.panelSelectedCharId = null;
         if (typeof this.closeEditor === 'function') this.closeEditor();
         if (typeof this.closeAddCommandPanel === 'function') this.closeAddCommandPanel();
@@ -2235,6 +2264,7 @@
             selKey: this.selKey,
             selUid: this.selUid,
             selRouteListIndex: this.selRouteListIndex == null ? -1 : Number(this.selRouteListIndex),
+            selBranchBoundaryPart: String(this.selBranchBoundaryPart || ''),
             frame: this.frame
         };
     };
@@ -2297,6 +2327,7 @@
         }
         this.selEid = s.selEid || 0; this.selPage = (s.selPage === undefined ? -1 : s.selPage); this.selKey = s.selKey || ''; this.selUid = s.selUid || 0;
         this.selRouteListIndex = (s.selRouteListIndex == null) ? -1 : Number(s.selRouteListIndex);
+        this.selBranchBoundaryPart = String(s.selBranchBoundaryPart || '');
         this.frame = Math.max(0, s.frame || 0);
         this.rebuildSchedule(); this.simTo(this.frame); this.refreshEventInfo();
     };
@@ -2335,6 +2366,10 @@
         for (var fi = 0; fi < tr.commands.length; fi++) {
             if (Number(tr.commands[fi] && tr.commands[fi].uid || 0) === Number(this.selUid || 0)) {
                 earliestChangedFrame = Math.max(0, Math.floor(Number(tr.commands[fi].frame || 0)));
+                if (typeof this.isBranchEndEntry === 'function' && this.isBranchEndEntry(tr.commands[fi])) {
+                    this.msg('分岐終了○は削除できません');
+                    return;
+                }
                 break;
             }
         }
@@ -2395,6 +2430,7 @@
         }
         this.selUid = 0;
         this.selRouteListIndex = -1;
+        this.selBranchBoundaryPart = '';
         this.commitTrackMutation({ earliestChangedFrame: earliestChangedFrame });
         this.playFrom(this.frame);
     };
@@ -2447,6 +2483,7 @@
                             this.queueTimelineViewRestoreForTrack(runtimeEventId, runtimePageIndex);
                             this.selUid = 0;
                             this.selRouteListIndex = -1;
+                            this.selBranchBoundaryPart = '';
                             this.panelSelectedCharId = Number(runtimeEventId || 0);
                             this.refreshEventInfo();
                             this.rebuildSchedule({ skipRouteNormalize: true });
@@ -2492,6 +2529,7 @@
                         this.queueTimelineViewRestoreForTrack(deferredEventId, deferredPageIndex);
                         this.selUid = 0;
                         this.selRouteListIndex = -1;
+                        this.selBranchBoundaryPart = '';
                         this.panelSelectedCharId = Number(deferredEventId || 0);
                         this.refreshEventInfo();
                         this.rebuildSchedule({ skipRouteNormalize: true });

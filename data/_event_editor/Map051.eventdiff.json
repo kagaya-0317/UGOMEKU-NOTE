@@ -1,7 +1,7 @@
 {
   "plugin": "KNH_ZXC_EventEditor",
-  "version": "0.1.0",
-  "savedAt": "2026-08-29T21:38:05.842Z",
+  "version": "0.3.0",
+  "savedAt": "2026-08-31T22:39:26.818Z",
   "tracks": [
     {
       "eventId": 6,
@@ -1452,6 +1452,42 @@
           ]
         },
         {
+          "code": 205,
+          "indent": 1,
+          "parameters": [
+            2,
+            {
+              "repeat": false,
+              "skippable": false,
+              "wait": false,
+              "list": [
+                {
+                  "code": 45,
+                  "parameters": [
+                    "this.setImageZXC('$kanbu2_2', 0, 2)"
+                  ]
+                },
+                {
+                  "code": 0,
+                  "parameters": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "code": 505,
+          "indent": 1,
+          "parameters": [
+            {
+              "code": 45,
+              "parameters": [
+                "this.setImageZXC('$kanbu2_2', 0, 2)"
+              ]
+            }
+          ]
+        },
+        {
           "code": 122,
           "indent": 1,
           "parameters": [
@@ -1477,6 +1513,42 @@
           "indent": 1,
           "parameters": [
             "おっ！？"
+          ]
+        },
+        {
+          "code": 205,
+          "indent": 1,
+          "parameters": [
+            2,
+            {
+              "repeat": false,
+              "skippable": false,
+              "wait": false,
+              "list": [
+                {
+                  "code": 45,
+                  "parameters": [
+                    "this.setImageZXC('$kanbu2_2', 0, 2), this.startFrameAnimation([3,4,5], 6, true)"
+                  ]
+                },
+                {
+                  "code": 0,
+                  "parameters": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "code": 505,
+          "indent": 1,
+          "parameters": [
+            {
+              "code": 45,
+              "parameters": [
+                "this.setImageZXC('$kanbu2_2', 0, 2), this.startFrameAnimation([3,4,5], 6, true)"
+              ]
+            }
           ]
         },
         {
@@ -1567,10 +1639,39 @@
           ]
         },
         {
-          "code": 230,
+          "code": 205,
           "indent": 1,
           "parameters": [
-            1
+            2,
+            {
+              "repeat": false,
+              "skippable": false,
+              "wait": false,
+              "list": [
+                {
+                  "code": 45,
+                  "parameters": [
+                    "this.setImageZXC('$kanbu2_2', 0, 2)"
+                  ]
+                },
+                {
+                  "code": 0,
+                  "parameters": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "code": 505,
+          "indent": 1,
+          "parameters": [
+            {
+              "code": 45,
+              "parameters": [
+                "this.setImageZXC('$kanbu2_2', 0, 2)"
+              ]
+            }
           ]
         },
         {
@@ -1605,10 +1706,39 @@
           ]
         },
         {
-          "code": 230,
+          "code": 205,
           "indent": 1,
           "parameters": [
-            1
+            2,
+            {
+              "repeat": false,
+              "skippable": false,
+              "wait": false,
+              "list": [
+                {
+                  "code": 45,
+                  "parameters": [
+                    "this.setImageZXC('$kanbu2_2', 0, 2), this.startFrameAnimation([3,4,5], 6, true)"
+                  ]
+                },
+                {
+                  "code": 0,
+                  "parameters": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "code": 505,
+          "indent": 1,
+          "parameters": [
+            {
+              "code": 45,
+              "parameters": [
+                "this.setImageZXC('$kanbu2_2', 0, 2), this.startFrameAnimation([3,4,5], 6, true)"
+              ]
+            }
           ]
         },
         {
@@ -1641,89 +1771,10 @@
           "parameters": []
         },
         {
-          "code": 205,
-          "indent": 0,
-          "parameters": [
-            2,
-            {
-              "repeat": false,
-              "skippable": false,
-              "wait": false,
-              "list": [
-                {
-                  "code": 45,
-                  "parameters": [
-                    "this.setImageZXC('$kanbu2_2', 0, 2)"
-                  ]
-                },
-                {
-                  "code": 0,
-                  "parameters": []
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "code": 505,
-          "indent": 0,
-          "parameters": [
-            {
-              "code": 45,
-              "parameters": [
-                "this.setImageZXC('$kanbu2_2', 0, 2)"
-              ]
-            }
-          ]
-        },
-        {
           "code": 230,
           "indent": 0,
           "parameters": [
-            1
-          ]
-        },
-        {
-          "code": 205,
-          "indent": 0,
-          "parameters": [
-            2,
-            {
-              "repeat": false,
-              "skippable": false,
-              "wait": false,
-              "list": [
-                {
-                  "code": 45,
-                  "parameters": [
-                    "this.setImageZXC('$kanbu2_2', 0, 2), this.startFrameAnimation([3,4,5], 6, true)"
-                  ]
-                },
-                {
-                  "code": 0,
-                  "parameters": []
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "code": 505,
-          "indent": 0,
-          "parameters": [
-            {
-              "code": 45,
-              "parameters": [
-                "this.setImageZXC('$kanbu2_2', 0, 2), this.startFrameAnimation([3,4,5], 6, true)"
-              ]
-            }
-          ]
-        },
-        {
-          "code": 230,
-          "indent": 0,
-          "parameters": [
-            22
+            23
           ]
         },
         {
@@ -1907,7 +1958,7 @@
           "code": 230,
           "indent": 0,
           "parameters": [
-            41
+            18
           ]
         },
         {
@@ -2133,6 +2184,7 @@
       "timeline": [
         {
           "uid": 1,
+          "executionOrder": 1,
           "frame": 0,
           "eventId": 6,
           "pageIndex": 0,
@@ -2165,6 +2217,7 @@
         },
         {
           "uid": 2,
+          "executionOrder": 2,
           "frame": 0,
           "eventId": 6,
           "pageIndex": 0,
@@ -2197,6 +2250,7 @@
         },
         {
           "uid": 3,
+          "executionOrder": 3,
           "frame": 0,
           "eventId": 6,
           "pageIndex": 0,
@@ -2229,6 +2283,7 @@
         },
         {
           "uid": 4,
+          "executionOrder": 4,
           "frame": 29,
           "eventId": 6,
           "pageIndex": 0,
@@ -2263,6 +2318,7 @@
         },
         {
           "uid": 5,
+          "executionOrder": 5,
           "frame": 29,
           "eventId": 6,
           "pageIndex": 0,
@@ -2314,10 +2370,12 @@
           "isScrollMessage": false,
           "scrollLines": null,
           "isScript": false,
-          "scriptLines": null
+          "scriptLines": null,
+          "routeSymbolOrdinal": 1
         },
         {
           "uid": 6,
+          "executionOrder": 6,
           "frame": 52,
           "eventId": 6,
           "pageIndex": 0,
@@ -2376,10 +2434,12 @@
           "isScrollMessage": false,
           "scrollLines": null,
           "isScript": false,
-          "scriptLines": null
+          "scriptLines": null,
+          "routeSymbolOrdinal": 1
         },
         {
           "uid": 7,
+          "executionOrder": 7,
           "frame": 52,
           "eventId": 6,
           "pageIndex": 0,
@@ -2438,10 +2498,12 @@
           "isScrollMessage": false,
           "scrollLines": null,
           "isScript": false,
-          "scriptLines": null
+          "scriptLines": null,
+          "routeSymbolOrdinal": 1
         },
         {
           "uid": 8,
+          "executionOrder": 8,
           "frame": 53,
           "eventId": 6,
           "pageIndex": 0,
@@ -2472,6 +2534,7 @@
         },
         {
           "uid": 9,
+          "executionOrder": 9,
           "frame": 94,
           "eventId": 6,
           "pageIndex": 0,
@@ -2504,6 +2567,7 @@
         },
         {
           "uid": 14,
+          "executionOrder": 14,
           "frame": 150,
           "eventId": 6,
           "pageIndex": 0,
@@ -2549,6 +2613,7 @@
         },
         {
           "uid": 15,
+          "executionOrder": 15,
           "frame": 150,
           "eventId": 6,
           "pageIndex": 0,
@@ -2594,6 +2659,7 @@
         },
         {
           "uid": 16,
+          "executionOrder": 16,
           "frame": 173,
           "eventId": 6,
           "pageIndex": 0,
@@ -2637,10 +2703,12 @@
           "isScrollMessage": false,
           "scrollLines": null,
           "isScript": false,
-          "scriptLines": null
+          "scriptLines": null,
+          "routeSymbolOrdinal": 1
         },
         {
           "uid": 17,
+          "executionOrder": 17,
           "frame": 174,
           "eventId": 6,
           "pageIndex": 0,
@@ -2687,6 +2755,7 @@
         },
         {
           "uid": 18,
+          "executionOrder": 18,
           "frame": 194,
           "eventId": 6,
           "pageIndex": 0,
@@ -2730,10 +2799,12 @@
           "isScrollMessage": false,
           "scrollLines": null,
           "isScript": false,
-          "scriptLines": null
+          "scriptLines": null,
+          "routeSymbolOrdinal": 2
         },
         {
           "uid": 22,
+          "executionOrder": 22,
           "frame": 195,
           "eventId": 6,
           "pageIndex": 0,
@@ -2778,6 +2849,7 @@
         },
         {
           "uid": 23,
+          "executionOrder": 23,
           "frame": 215,
           "eventId": 6,
           "pageIndex": 0,
@@ -2821,10 +2893,12 @@
           "isScrollMessage": false,
           "scrollLines": null,
           "isScript": false,
-          "scriptLines": null
+          "scriptLines": null,
+          "routeSymbolOrdinal": 2
         },
         {
           "uid": 24,
+          "executionOrder": 24,
           "frame": 216,
           "eventId": 6,
           "pageIndex": 0,
@@ -2859,6 +2933,7 @@
         },
         {
           "uid": 29,
+          "executionOrder": 29,
           "frame": 216,
           "eventId": 6,
           "pageIndex": 0,
@@ -2905,6 +2980,7 @@
         },
         {
           "uid": 30,
+          "executionOrder": 30,
           "frame": 216,
           "eventId": 6,
           "pageIndex": 0,
@@ -2951,6 +3027,7 @@
         },
         {
           "uid": 31,
+          "executionOrder": 31,
           "frame": 216,
           "eventId": 6,
           "pageIndex": 0,
@@ -2994,10 +3071,12 @@
           "isScrollMessage": false,
           "scrollLines": null,
           "isScript": false,
-          "scriptLines": null
+          "scriptLines": null,
+          "routeSymbolOrdinal": 3
         },
         {
           "uid": 32,
+          "executionOrder": 32,
           "frame": 217,
           "eventId": 6,
           "pageIndex": 0,
@@ -3043,6 +3122,7 @@
         },
         {
           "uid": 33,
+          "executionOrder": 33,
           "frame": 240,
           "eventId": 6,
           "pageIndex": 0,
@@ -3086,10 +3166,12 @@
           "isScrollMessage": false,
           "scrollLines": null,
           "isScript": false,
-          "scriptLines": null
+          "scriptLines": null,
+          "routeSymbolOrdinal": 4
         },
         {
           "uid": 35,
+          "executionOrder": 35,
           "frame": 241,
           "eventId": 6,
           "pageIndex": 0,
@@ -3136,6 +3218,7 @@
         },
         {
           "uid": 36,
+          "executionOrder": 36,
           "frame": 241,
           "eventId": 6,
           "pageIndex": 0,
@@ -3181,6 +3264,7 @@
         },
         {
           "uid": 37,
+          "executionOrder": 37,
           "frame": 301,
           "eventId": 6,
           "pageIndex": 0,
@@ -3225,10 +3309,12 @@
           "isScrollMessage": false,
           "scrollLines": null,
           "isScript": false,
-          "scriptLines": null
+          "scriptLines": null,
+          "routeSymbolOrdinal": 3
         },
         {
           "uid": 38,
+          "executionOrder": 38,
           "frame": 301,
           "eventId": 6,
           "pageIndex": 0,
@@ -3264,6 +3350,7 @@
         },
         {
           "uid": 39,
+          "executionOrder": 39,
           "frame": 301,
           "eventId": 6,
           "pageIndex": 0,
@@ -3336,10 +3423,12 @@
           "isScrollMessage": false,
           "scrollLines": null,
           "isScript": false,
-          "scriptLines": null
+          "scriptLines": null,
+          "routeSymbolOrdinal": 1
         },
         {
-          "uid": 72,
+          "uid": 40,
+          "executionOrder": 40,
           "frame": 374,
           "eventId": 6,
           "pageIndex": 0,
@@ -3389,10 +3478,12 @@
           "isScrollMessage": false,
           "scrollLines": null,
           "isScript": false,
-          "scriptLines": null
+          "scriptLines": null,
+          "routeSymbolOrdinal": 5
         },
         {
-          "uid": 40,
+          "uid": 41,
+          "executionOrder": 41,
           "frame": 412,
           "eventId": 6,
           "pageIndex": 0,
@@ -3427,7 +3518,8 @@
           "scriptLines": null
         },
         {
-          "uid": 41,
+          "uid": 42,
+          "executionOrder": 42,
           "frame": 412,
           "eventId": 6,
           "pageIndex": 0,
@@ -3461,7 +3553,8 @@
           "scriptLines": null
         },
         {
-          "uid": 42,
+          "uid": 43,
+          "executionOrder": 43,
           "frame": 412,
           "eventId": 6,
           "pageIndex": 0,
@@ -3520,10 +3613,12 @@
           "isScrollMessage": false,
           "scrollLines": null,
           "isScript": false,
-          "scriptLines": null
+          "scriptLines": null,
+          "routeSymbolOrdinal": 1
         },
         {
-          "uid": 43,
+          "uid": 44,
+          "executionOrder": 44,
           "frame": 554,
           "eventId": 6,
           "pageIndex": 0,
@@ -3558,7 +3653,8 @@
           "scriptLines": null
         },
         {
-          "uid": 44,
+          "uid": 45,
+          "executionOrder": 45,
           "frame": 554,
           "eventId": 6,
           "pageIndex": 0,
@@ -3616,10 +3712,12 @@
           "isScrollMessage": false,
           "scrollLines": null,
           "isScript": false,
-          "scriptLines": null
+          "scriptLines": null,
+          "routeSymbolOrdinal": 2
         },
         {
-          "uid": 46,
+          "uid": 47,
+          "executionOrder": 47,
           "frame": 905,
           "eventId": 6,
           "pageIndex": 0,
@@ -3663,7 +3761,8 @@
           "scriptLines": null
         },
         {
-          "uid": 47,
+          "uid": 48,
+          "executionOrder": 48,
           "frame": 905,
           "eventId": 6,
           "pageIndex": 0,
@@ -3707,7 +3806,8 @@
           "scriptLines": null
         },
         {
-          "uid": 48,
+          "uid": 49,
+          "executionOrder": 49,
           "frame": 905,
           "eventId": 6,
           "pageIndex": 0,
@@ -3752,7 +3852,8 @@
           "scriptLines": null
         },
         {
-          "uid": 49,
+          "uid": 50,
+          "executionOrder": 50,
           "frame": 905,
           "eventId": 6,
           "pageIndex": 0,
@@ -3789,7 +3890,8 @@
           "scriptLines": null
         },
         {
-          "uid": 50,
+          "uid": 51,
+          "executionOrder": 51,
           "frame": 905,
           "eventId": 6,
           "pageIndex": 0,
@@ -3820,7 +3922,8 @@
           "scriptLines": null
         },
         {
-          "uid": 55,
+          "uid": 58,
+          "executionOrder": 58,
           "frame": 905,
           "eventId": 6,
           "pageIndex": 0,
@@ -3851,7 +3954,57 @@
           "scriptLines": null
         },
         {
-          "uid": 52,
+          "uid": 53,
+          "executionOrder": 53,
+          "frame": 929,
+          "eventId": 6,
+          "pageIndex": 0,
+          "command": {
+            "code": 205,
+            "indent": 1,
+            "parameters": [
+              2,
+              {
+                "repeat": false,
+                "skippable": false,
+                "wait": false,
+                "list": [
+                  {
+                    "code": 45,
+                    "parameters": [
+                      "this.setImageZXC('$kanbu2_2', 0, 2)"
+                    ]
+                  },
+                  {
+                    "code": 0,
+                    "parameters": []
+                  }
+                ]
+              }
+            ]
+          },
+          "wait": 0,
+          "rowType": "char",
+          "rowKey": "char:2",
+          "charId": 2,
+          "isComment": false,
+          "commentLines": null,
+          "isMemo": false,
+          "memoSize": "S",
+          "memoText": "",
+          "isMessage": false,
+          "messageLines": null,
+          "messageExt": null,
+          "popupPortrait": null,
+          "isScrollMessage": false,
+          "scrollLines": null,
+          "isScript": false,
+          "scriptLines": null,
+          "routeSymbolOrdinal": 6
+        },
+        {
+          "uid": 54,
+          "executionOrder": 54,
           "frame": 929,
           "eventId": 6,
           "pageIndex": 0,
@@ -3895,7 +4048,57 @@
           "scriptLines": null
         },
         {
-          "uid": 53,
+          "uid": 55,
+          "executionOrder": 55,
+          "frame": 929,
+          "eventId": 6,
+          "pageIndex": 0,
+          "command": {
+            "code": 205,
+            "indent": 1,
+            "parameters": [
+              2,
+              {
+                "repeat": false,
+                "skippable": false,
+                "wait": false,
+                "list": [
+                  {
+                    "code": 45,
+                    "parameters": [
+                      "this.setImageZXC('$kanbu2_2', 0, 2), this.startFrameAnimation([3,4,5], 6, true)"
+                    ]
+                  },
+                  {
+                    "code": 0,
+                    "parameters": []
+                  }
+                ]
+              }
+            ]
+          },
+          "wait": 0,
+          "rowType": "char",
+          "rowKey": "char:2",
+          "charId": 2,
+          "isComment": false,
+          "commentLines": null,
+          "isMemo": false,
+          "memoSize": "S",
+          "memoText": "",
+          "isMessage": false,
+          "messageLines": null,
+          "messageExt": null,
+          "popupPortrait": null,
+          "isScrollMessage": false,
+          "scrollLines": null,
+          "isScript": false,
+          "scriptLines": null,
+          "routeSymbolOrdinal": 7
+        },
+        {
+          "uid": 56,
+          "executionOrder": 56,
           "frame": 929,
           "eventId": 6,
           "pageIndex": 0,
@@ -3940,144 +4143,9 @@
           "scriptLines": null
         },
         {
-          "uid": 54,
-          "frame": 929,
-          "eventId": 6,
-          "pageIndex": 0,
-          "command": {
-            "code": 101,
-            "indent": 1,
-            "parameters": [
-              "",
-              0,
-              0,
-              2
-            ]
-          },
-          "wait": 0,
-          "rowType": "main",
-          "rowKey": "main",
-          "charId": null,
-          "isComment": false,
-          "commentLines": null,
-          "isMemo": false,
-          "memoSize": "S",
-          "memoText": "",
-          "isMessage": true,
-          "messageLines": [
-            "ギャハハハ",
-            "ハ！！！"
-          ],
-          "messageExt": {
-            "windowType": 1,
-            "tailDir": 4,
-            "targetMode": "char",
-            "targetCharId": 2,
-            "targetX": 0,
-            "targetY": 0,
-            "addX": 0,
-            "addY": 0
-          },
-          "popupPortrait": null,
-          "isScrollMessage": false,
-          "scrollLines": null,
-          "isScript": false,
-          "scriptLines": null
-        },
-        {
-          "uid": 56,
-          "frame": 929,
-          "eventId": 6,
-          "pageIndex": 0,
-          "command": {
-            "code": 101,
-            "indent": 1,
-            "parameters": [
-              "",
-              0,
-              0,
-              2
-            ]
-          },
-          "wait": 0,
-          "rowType": "main",
-          "rowKey": "main",
-          "charId": null,
-          "isComment": false,
-          "commentLines": null,
-          "isMemo": false,
-          "memoSize": "S",
-          "memoText": "",
-          "isMessage": true,
-          "messageLines": [
-            "おのれ…余裕",
-            "ぶっコキやがって！"
-          ],
-          "messageExt": {
-            "windowType": 1,
-            "tailDir": 4,
-            "targetMode": "char",
-            "targetCharId": 2,
-            "targetX": 0,
-            "targetY": 0,
-            "addX": 0,
-            "addY": 0
-          },
-          "popupPortrait": null,
-          "isScrollMessage": false,
-          "scrollLines": null,
-          "isScript": false,
-          "scriptLines": null
-        },
-        {
           "uid": 57,
-          "frame": 930,
-          "eventId": 6,
-          "pageIndex": 0,
-          "command": {
-            "code": 101,
-            "indent": 1,
-            "parameters": [
-              "",
-              0,
-              0,
-              2
-            ]
-          },
-          "wait": 0,
-          "rowType": "main",
-          "rowKey": "main",
-          "charId": null,
-          "isComment": false,
-          "commentLines": null,
-          "isMemo": false,
-          "memoSize": "S",
-          "memoText": "",
-          "isMessage": true,
-          "messageLines": [
-            "しかし…その慢心！",
-            "油断！それが貴様らに",
-            "破滅をもたらすだろう！！"
-          ],
-          "messageExt": {
-            "windowType": 1,
-            "tailDir": 4,
-            "targetMode": "char",
-            "targetCharId": 2,
-            "targetX": 0,
-            "targetY": 0,
-            "addX": 0,
-            "addY": 0
-          },
-          "popupPortrait": null,
-          "isScrollMessage": false,
-          "scrollLines": null,
-          "isScript": false,
-          "scriptLines": null
-        },
-        {
-          "uid": 58,
-          "frame": 931,
+          "executionOrder": 57,
+          "frame": 929,
           "eventId": 6,
           "pageIndex": 0,
           "command": {
@@ -4122,13 +4190,19 @@
         },
         {
           "uid": 59,
-          "frame": 931,
+          "executionOrder": 59,
+          "frame": 929,
           "eventId": 6,
           "pageIndex": 0,
           "command": {
-            "code": 404,
-            "indent": 0,
-            "parameters": []
+            "code": 101,
+            "indent": 1,
+            "parameters": [
+              "",
+              0,
+              0,
+              2
+            ]
           },
           "wait": 0,
           "rowType": "main",
@@ -4139,9 +4213,21 @@
           "isMemo": false,
           "memoSize": "S",
           "memoText": "",
-          "isMessage": false,
-          "messageLines": null,
-          "messageExt": null,
+          "isMessage": true,
+          "messageLines": [
+            "おのれ…余裕",
+            "ぶっコキやがって！"
+          ],
+          "messageExt": {
+            "windowType": 1,
+            "tailDir": 4,
+            "targetMode": "char",
+            "targetCharId": 2,
+            "targetX": 0,
+            "targetY": 0,
+            "addX": 0,
+            "addY": 0
+          },
           "popupPortrait": null,
           "isScrollMessage": false,
           "scrollLines": null,
@@ -4149,13 +4235,14 @@
           "scriptLines": null
         },
         {
-          "uid": 73,
-          "frame": 931,
+          "uid": 60,
+          "executionOrder": 60,
+          "frame": 929,
           "eventId": 6,
           "pageIndex": 0,
           "command": {
             "code": 205,
-            "indent": 0,
+            "indent": 1,
             "parameters": [
               2,
               {
@@ -4193,16 +4280,65 @@
           "isScrollMessage": false,
           "scrollLines": null,
           "isScript": false,
+          "scriptLines": null,
+          "routeSymbolOrdinal": 8
+        },
+        {
+          "uid": 61,
+          "executionOrder": 61,
+          "frame": 929,
+          "eventId": 6,
+          "pageIndex": 0,
+          "command": {
+            "code": 101,
+            "indent": 1,
+            "parameters": [
+              "",
+              0,
+              0,
+              2
+            ]
+          },
+          "wait": 0,
+          "rowType": "main",
+          "rowKey": "main",
+          "charId": null,
+          "isComment": false,
+          "commentLines": null,
+          "isMemo": false,
+          "memoSize": "S",
+          "memoText": "",
+          "isMessage": true,
+          "messageLines": [
+            "しかし…その慢心！",
+            "油断！それが貴様らに",
+            "破滅をもたらすだろう！！"
+          ],
+          "messageExt": {
+            "windowType": 1,
+            "tailDir": 4,
+            "targetMode": "char",
+            "targetCharId": 2,
+            "targetX": 0,
+            "targetY": 0,
+            "addX": 0,
+            "addY": 0
+          },
+          "popupPortrait": null,
+          "isScrollMessage": false,
+          "scrollLines": null,
+          "isScript": false,
           "scriptLines": null
         },
         {
-          "uid": 74,
-          "frame": 932,
+          "uid": 62,
+          "executionOrder": 62,
+          "frame": 929,
           "eventId": 6,
           "pageIndex": 0,
           "command": {
             "code": 205,
-            "indent": 0,
+            "indent": 1,
             "parameters": [
               2,
               {
@@ -4240,11 +4376,88 @@
           "isScrollMessage": false,
           "scrollLines": null,
           "isScript": false,
+          "scriptLines": null,
+          "routeSymbolOrdinal": 9
+        },
+        {
+          "uid": 63,
+          "executionOrder": 63,
+          "frame": 929,
+          "eventId": 6,
+          "pageIndex": 0,
+          "command": {
+            "code": 101,
+            "indent": 1,
+            "parameters": [
+              "",
+              0,
+              0,
+              2
+            ]
+          },
+          "wait": 0,
+          "rowType": "main",
+          "rowKey": "main",
+          "charId": null,
+          "isComment": false,
+          "commentLines": null,
+          "isMemo": false,
+          "memoSize": "S",
+          "memoText": "",
+          "isMessage": true,
+          "messageLines": [
+            "ギャハハハ",
+            "ハ！！！"
+          ],
+          "messageExt": {
+            "windowType": 1,
+            "tailDir": 4,
+            "targetMode": "char",
+            "targetCharId": 2,
+            "targetX": 0,
+            "targetY": 0,
+            "addX": 0,
+            "addY": 0
+          },
+          "popupPortrait": null,
+          "isScrollMessage": false,
+          "scrollLines": null,
+          "isScript": false,
           "scriptLines": null
         },
         {
-          "uid": 75,
-          "frame": 954,
+          "uid": 64,
+          "executionOrder": 64,
+          "frame": 929,
+          "eventId": 6,
+          "pageIndex": 0,
+          "command": {
+            "code": 404,
+            "indent": 0,
+            "parameters": []
+          },
+          "wait": 0,
+          "rowType": "main",
+          "rowKey": "main",
+          "charId": null,
+          "isComment": false,
+          "commentLines": null,
+          "isMemo": false,
+          "memoSize": "S",
+          "memoText": "",
+          "isMessage": false,
+          "messageLines": null,
+          "messageExt": null,
+          "popupPortrait": null,
+          "isScrollMessage": false,
+          "scrollLines": null,
+          "isScript": false,
+          "scriptLines": null
+        },
+        {
+          "uid": 65,
+          "executionOrder": 65,
+          "frame": 952,
           "eventId": 6,
           "pageIndex": 0,
           "command": {
@@ -4293,11 +4506,13 @@
           "isScrollMessage": false,
           "scrollLines": null,
           "isScript": false,
-          "scriptLines": null
+          "scriptLines": null,
+          "routeSymbolOrdinal": 10
         },
         {
-          "uid": 60,
-          "frame": 955,
+          "uid": 66,
+          "executionOrder": 66,
+          "frame": 953,
           "eventId": 6,
           "pageIndex": 0,
           "command": {
@@ -4342,8 +4557,9 @@
           "scriptLines": null
         },
         {
-          "uid": 61,
-          "frame": 955,
+          "uid": 67,
+          "executionOrder": 67,
+          "frame": 953,
           "eventId": 6,
           "pageIndex": 0,
           "command": {
@@ -4387,8 +4603,9 @@
           "scriptLines": null
         },
         {
-          "uid": 62,
-          "frame": 990,
+          "uid": 68,
+          "executionOrder": 68,
+          "frame": 988,
           "eventId": 6,
           "pageIndex": 0,
           "command": {
@@ -4437,11 +4654,13 @@
           "isScrollMessage": false,
           "scrollLines": null,
           "isScript": false,
-          "scriptLines": null
+          "scriptLines": null,
+          "routeSymbolOrdinal": 11
         },
         {
-          "uid": 63,
-          "frame": 1031,
+          "uid": 69,
+          "executionOrder": 69,
+          "frame": 1006,
           "eventId": 6,
           "pageIndex": 0,
           "command": {
@@ -4472,8 +4691,9 @@
           ]
         },
         {
-          "uid": 64,
-          "frame": 1080,
+          "uid": 70,
+          "executionOrder": 70,
+          "frame": 1055,
           "eventId": 6,
           "pageIndex": 0,
           "command": {
@@ -4504,8 +4724,9 @@
           ]
         },
         {
-          "uid": 65,
-          "frame": 1171,
+          "uid": 71,
+          "executionOrder": 71,
+          "frame": 1146,
           "eventId": 6,
           "pageIndex": 0,
           "command": {
@@ -4553,11 +4774,13 @@
           "isScrollMessage": false,
           "scrollLines": null,
           "isScript": false,
-          "scriptLines": null
+          "scriptLines": null,
+          "routeSymbolOrdinal": 4
         },
         {
-          "uid": 66,
-          "frame": 1171,
+          "uid": 72,
+          "executionOrder": 72,
+          "frame": 1146,
           "eventId": 6,
           "pageIndex": 0,
           "command": {
@@ -4601,11 +4824,13 @@
           "isScrollMessage": false,
           "scrollLines": null,
           "isScript": false,
-          "scriptLines": null
+          "scriptLines": null,
+          "routeSymbolOrdinal": 2
         },
         {
-          "uid": 67,
-          "frame": 1195,
+          "uid": 73,
+          "executionOrder": 73,
+          "frame": 1170,
           "eventId": 6,
           "pageIndex": 0,
           "command": {
@@ -4646,11 +4871,13 @@
           "isScrollMessage": false,
           "scrollLines": null,
           "isScript": false,
-          "scriptLines": null
+          "scriptLines": null,
+          "routeSymbolOrdinal": 2
         },
         {
-          "uid": 68,
-          "frame": 1195,
+          "uid": 74,
+          "executionOrder": 74,
+          "frame": 1170,
           "eventId": 6,
           "pageIndex": 0,
           "command": {
@@ -4691,11 +4918,13 @@
           "isScrollMessage": false,
           "scrollLines": null,
           "isScript": false,
-          "scriptLines": null
+          "scriptLines": null,
+          "routeSymbolOrdinal": 3
         },
         {
-          "uid": 69,
-          "frame": 1195,
+          "uid": 75,
+          "executionOrder": 75,
+          "frame": 1170,
           "eventId": 6,
           "pageIndex": 0,
           "command": {
@@ -4724,8 +4953,9 @@
           "scriptLines": null
         },
         {
-          "uid": 70,
-          "frame": 1196,
+          "uid": 76,
+          "executionOrder": 76,
+          "frame": 1171,
           "eventId": 6,
           "pageIndex": 0,
           "command": {
@@ -4760,6 +4990,10 @@
       ]
     }
   ],
+  "documents": {
+    "events": [],
+    "troops": []
+  },
   "mode": "map",
   "mapId": 51
 }

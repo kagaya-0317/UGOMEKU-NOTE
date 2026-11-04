@@ -214,20 +214,35 @@
             this.showTipAt(0, 0, '');
             return;
         }
+        if (this.isPointInTimelineFixedLabel(x)) {
+            if (Number(this.hoverRangeUid || 0) !== 0 || String(this.hoverRangePart || '') !== '') {
+                this.hoverRangeUid = 0;
+                this.hoverRangePart = '';
+                this.timelineDirty = true;
+            }
+            if (this.hoverEndMarker) {
+                this.hoverEndMarker = false;
+                this.timelineDirty = true;
+            }
+            this.setHoverNode(null);
+            if (Number(this.hoverFrame) !== -1) {
+                this.hoverFrame = -1;
+                this.timelineCursorDirty = true;
+            }
+            if (this.timeline.style.cursor !== 'pointer') this.timeline.style.cursor = 'pointer';
+            this.showTipAt(0, 0, '');
+            return;
+        }
         var onRulerAny = this.isTimelineRulerPoint(x, y, true);
-        var onFixedLabel = (!onRulerAny && this.isPointInTimelineFixedLabel(x));
         var preBranchBtn = onRulerAny ? null : this.hitTestBranchModeButton(x, y);
         var preOrderBtn = onRulerAny ? null : this.hitTestOrderButton(x, y);
         var preComment = onRulerAny ? null : this.hitTestComment(x, y);
         var preNode = onRulerAny ? null : this.hitTestNode(x, y);
-        // When circles overlap the fixed label column, keep node/button hits active.
-        var allowFixedLabelUiHit = !!(preBranchBtn || preOrderBtn || preComment || preNode);
-        var suppressFixedLabelHits = onFixedLabel && !allowFixedLabelUiHit;
-        var hc = (onRulerAny || suppressFixedLabelHits) ? null : preComment;
-        var hn = (onRulerAny || suppressFixedLabelHits) ? null : preNode;
-        var hb = (onRulerAny || suppressFixedLabelHits || hn) ? null : this.hitTestBar(x, y);
-        var hob = (onRulerAny || suppressFixedLabelHits) ? null : preOrderBtn;
-        var hib = (onRulerAny || suppressFixedLabelHits) ? null : preBranchBtn;
+        var hc = onRulerAny ? null : preComment;
+        var hn = onRulerAny ? null : preNode;
+        var hb = (onRulerAny || hn) ? null : this.hitTestBar(x, y);
+        var hob = onRulerAny ? null : preOrderBtn;
+        var hib = onRulerAny ? null : preBranchBtn;
         var hru = (hb && hb.routeRangeUid) ? Math.floor(Number(hb.routeRangeUid || 0)) : 0;
         var hrp = (hb && hb.routeRangeUid) ? String(hb.routeRangePart || '') : '';
         if (Number(this.hoverRangeUid || 0) !== hru || String(this.hoverRangePart || '') !== hrp) {
@@ -257,8 +272,6 @@
         } else if (hib) {
             cursor = 'pointer';
         } else if (hob) {
-            cursor = 'pointer';
-        } else if (onFixedLabel) {
             cursor = 'pointer';
         } else if (hn || hc || hb) {
             cursor = 'pointer';
@@ -308,6 +321,30 @@
         if (!tr) return;
         var de = this.findEntryInSelectedTrack(Number(this.dragState.uid || 0));
         if (!de) return;
+        var dragBoundaryEdge = String(this.dragState.branchDragBoundary || this.dragState.branchBoundary || '');
+        if (dragBoundaryEdge) {
+            var dxBoundary = x - this.dragState.startX;
+            var dyBoundary = y - this.dragState.startY;
+            if (!this.dragState.moved && (Math.abs(dxBoundary) > 3 || Math.abs(dyBoundary) > 3)) {
+                this.dragState.moved = true;
+            }
+            if (!this.dragState.moved) return;
+            var boundaryPlan = this.branchBoundaryMovePlan(
+                tr,
+                Math.floor(Number(this.dragState.branchOwnerUid || 0)),
+                dragBoundaryEdge,
+                this.xToFrame(x)
+            );
+            this.dragState.targetFrame = boundaryPlan
+                ? Math.max(0, Math.floor(Number(boundaryPlan.frame || 0)))
+                : Math.max(0, Math.floor(Number(this.dragState.startFrame || 0)));
+            this.dragState.targetRowKey = 'main';
+            this.dragState.valid = !!(boundaryPlan && boundaryPlan.valid);
+            this.dragState.boundaryClamped = !!(boundaryPlan && boundaryPlan.clamped);
+            this.dragState.boundaryInvalidReason = boundaryPlan ? String(boundaryPlan.reason || '') : 'missing-boundary';
+            this.timelineDirty = true;
+            return;
+        }
         var dx = x - this.dragState.startX, dy = y - this.dragState.startY;
         if (!this.dragState.moved && (Math.abs(dx) > 3 || Math.abs(dy) > 3)) this.dragState.moved = true;
         if (!this.dragState.moved) return;
@@ -402,12 +439,15 @@
         var preBranchBtn = onRulerAny ? null : this.hitTestBranchModeButton(x, y);
         var commandModifier = !!(e.shiftKey || e.ctrlKey || e.metaKey);
         var inFixedLabel = this.isPointInTimelineFixedLabel(x);
-        var bypassFixedLabel = !!(preBranchBtn || preOrderBtn || preNode || preComment || preBar);
-        if (inFixedLabel && !this.isTimelineRulerY(y) && !bypassFixedLabel) {
+        if (inFixedLabel) {
             e.preventDefault();
             this.closeRouteRangeContextMenu();
             if (this.hasRangeSelection()) this.clearRangeSelection();
             this.setTimelineSelectionAnchorItem(null);
+            if (this.isTimelineRulerY(y)) {
+                this.showTipAt(0, 0, '');
+                return;
+            }
             var labelRow = this.rowFromY(y);
             if (!labelRow && this.timelineWrap) {
                 var sy = Math.max(0, Number(this.timelineWrap.scrollTop || 0));
@@ -525,7 +565,14 @@
         this.setHoverNode(hoverNode || null);
         var nodeRouteListIndex = node ? this.nodeRouteIndex(node.routeListIndex) : -1;
         var prevRouteListIndex = this.nodeRouteIndex(this.selRouteListIndex);
-        var wasSelected = !!node && Number(this.selUid || 0) === Number(node.uid || 0) && prevRouteListIndex === nodeRouteListIndex;
+        var nodeBoundaryPart = node ? String(node.branchBoundary || '') : '';
+        var nodeDragBoundaryPart = node ? String(node.branchDragBoundary || nodeBoundaryPart) : '';
+        var nodeBranchOwnerUid = node
+            ? Math.floor(Number(node.branchOwnerUid || (nodeDragBoundaryPart === 'start' ? node.uid : 0)) || 0)
+            : 0;
+        var wasSelected = !!node && Number(this.selUid || 0) === Number(node.uid || 0) &&
+            prevRouteListIndex === nodeRouteListIndex &&
+            String(this.selBranchBoundaryPart || '') === nodeBoundaryPart;
         var rangeUid = (hb && hb.routeRangeUid) ? Math.floor(Number(hb.routeRangeUid || 0)) : 0;
         var rangeEntry = rangeUid > 0 ? this.findRouteRangeEntryByUid(rangeUid) : null;
         if (!node && rangeEntry) {
@@ -581,11 +628,15 @@
             startEntryFrame: rangeEntry ? Math.max(0, Math.floor(Number(rangeEntry.frame || 0))) : 0,
             targetWait: rangeEntry ? rangeStartWait : 0,
             isRangeDrag: !!rangeEntry && !(node && nodeRouteListIndex >= 0),
-            mainRouteProxy: !!(node && node.mainRouteProxy)
+            mainRouteProxy: !!(node && node.mainRouteProxy),
+            branchBoundary: nodeBoundaryPart,
+            branchDragBoundary: nodeDragBoundaryPart,
+            branchOwnerUid: nodeBranchOwnerUid
         };
         if (node) {
             this.selUid = node.uid;
             this.selRouteListIndex = nodeRouteListIndex;
+            this.selBranchBoundaryPart = nodeBoundaryPart;
             this.frame = node.frame;
             this.setTimelineSelectionAnchorItem(nodeRouteListIndex >= 0
                 ? { kind: 'routeCmd', uid: Number(node.uid || 0), routeListIndex: nodeRouteListIndex }
@@ -594,6 +645,7 @@
         } else if (rangeEntry) {
             this.selUid = rangeEntry.uid;
             this.selRouteListIndex = -1;
+            this.selBranchBoundaryPart = '';
             this.frame = Math.max(0, Math.floor(Number(rangeEntry.frame || 0)));
             this.setTimelineSelectionAnchorItem({ kind: 'entry', uid: Number(rangeEntry.uid || 0) });
             this.timelineDirty = true;
@@ -612,10 +664,10 @@
         var p = this.timelinePointFromClient(e.clientX, e.clientY);
         if (!p) return;
         var x = p.x, y = p.y;
+        if (this.isPointInTimelineFixedLabel(x)) return;
         if (this.isTimelineRulerY(y)) return;
         var hitNode = this.hitTestNode(x, y);
         var hitRange = this.hitTestBar(x, y);
-        if (this.isPointInTimelineFixedLabel(x) && !hitNode && !hitRange) return;
         var frame = this.xToFrame(x);
         if (hitNode) {
             if (hitNode.isEndMarker) {
@@ -624,12 +676,15 @@
             }
             this.selUid = Number(hitNode.uid || 0);
             this.selRouteListIndex = this.nodeRouteIndex(hitNode.routeListIndex);
+            this.selBranchBoundaryPart = String(hitNode.branchBoundary || '');
             this.frame = Math.max(0, Math.floor(Number(hitNode.frame || 0)));
             this.setTimelineSelectionAnchorItem(this.selRouteListIndex >= 0
                 ? { kind: 'routeCmd', uid: this.selUid, routeListIndex: this.selRouteListIndex }
                 : { kind: 'entry', uid: this.selUid });
             this.timelineDirty = true;
-            if (this.selUid) this.openEditor(this.selUid, this.selRouteListIndex >= 0 ? this.selRouteListIndex : undefined);
+            if (this.selUid && this.selBranchBoundaryPart !== 'end') {
+                this.openEditor(this.selUid, this.selRouteListIndex >= 0 ? this.selRouteListIndex : undefined);
+            }
             return;
         }
         if (hitRange && hitRange.routeRangeUid) {
@@ -651,6 +706,7 @@
         var rowKey = row ? row.key : 'main';
         this.selUid = 0;
         this.selRouteListIndex = -1;
+        this.selBranchBoundaryPart = '';
         this.frame = frame;
         this.timelineDirty = true;
         if (String(rowKey || '').indexOf('char:') === 0) {
@@ -678,14 +734,14 @@
         var p = this.timelinePointFromClient(e.clientX, e.clientY);
         if (!p) return;
         var x = p.x, y = p.y;
+        if (this.isPointInTimelineFixedLabel(x)) {
+            this.showTipAt(0, 0, '');
+            return;
+        }
         var clickedFrame = this.xToFrame(x);
         var onRulerAny = this.isTimelineRulerPoint(x, y, true);
         var hn = onRulerAny ? null : this.hitTestNode(x, y);
         var hb = onRulerAny ? null : this.hitTestBar(x, y);
-        if (!this.isTimelineRulerY(y) && this.isPointInTimelineFixedLabel(x) && !hn && !hb) {
-            this.showTipAt(0, 0, '');
-            return;
-        }
         if (hn && hn.isEndMarker) {
             var endFrame = Math.max(0, Math.floor(Number(hn.frame || clickedFrame || 0)));
             this.frame = endFrame;
@@ -706,6 +762,7 @@
                 if (this.hasRangeSelection()) this.clearRangeSelection();
                 this.selUid = Number(hn.uid || 0);
                 this.selRouteListIndex = hnrli;
+                this.selBranchBoundaryPart = '';
                 this.frame = Math.max(0, Math.floor(Number(hn.frame || clickedFrame || 0)));
                 this.setTimelineSelectionAnchorItem({ kind: 'routeCmd', uid: this.selUid, routeListIndex: hnrli });
                 this.timelineDirty = true;
@@ -735,6 +792,7 @@
             if (this.hasRangeSelection()) this.clearRangeSelection();
             this.selUid = uid;
             this.selRouteListIndex = -1;
+            this.selBranchBoundaryPart = '';
             this.setTimelineSelectionAnchorItem({ kind: 'entry', uid: uid });
             var e2 = this.findEntryInSelectedTrack(uid);
             if (e2) this.frame = Math.max(0, Math.floor(Number(e2.frame || 0)));
@@ -753,6 +811,9 @@
                 this.selRouteListIndex = (hn && Number(hn.uid || 0) === cmdUid)
                     ? this.nodeRouteIndex(hn.routeListIndex)
                     : -1;
+                this.selBranchBoundaryPart = (hn && Number(hn.uid || 0) === cmdUid)
+                    ? String(hn.branchBoundary || '')
+                    : '';
                 this.setTimelineSelectionAnchorItem(this.selRouteListIndex >= 0
                     ? { kind: 'routeCmd', uid: cmdUid, routeListIndex: this.selRouteListIndex }
                     : { kind: 'entry', uid: cmdUid });
@@ -883,6 +944,51 @@
                 if (ds.wasSelected) this.openEditor(ds.uid, ds.routeListIndex);
                 return;
             }
+            var boundaryDragEdge = String(ds.branchDragBoundary || ds.branchBoundary || '');
+            if (boundaryDragEdge) {
+                var branchTrack = this.model.tracks[this.selKey];
+                var boundaryContext = branchTrack
+                    ? this.branchBoundaryContextForOwnerUid(branchTrack, Math.floor(Number(ds.branchOwnerUid || 0)))
+                    : null;
+                var branchBoundaryEntry = boundaryContext
+                    ? (boundaryDragEdge === 'end' ? boundaryContext.endEntry : boundaryContext.ownerEntry)
+                    : null;
+                if (!branchTrack || !branchBoundaryEntry) return;
+                this.selUid = Math.floor(Number(ds.uid || branchBoundaryEntry.uid || 0));
+                this.selRouteListIndex = -1;
+                this.selBranchBoundaryPart = String(ds.branchBoundary || '');
+                var branchTargetFrame = Math.max(0, Math.floor(Number(
+                    ds.targetFrame == null ? ds.startFrame : ds.targetFrame
+                ) || 0));
+                if (ds.moved) {
+                    var boundaryPlan = this.branchBoundaryMovePlan(
+                        branchTrack,
+                        Math.floor(Number(ds.branchOwnerUid || 0)),
+                        boundaryDragEdge,
+                        branchTargetFrame
+                    );
+                    if (!boundaryPlan || !boundaryPlan.valid) {
+                        this.msg('ドロップ失敗（分岐範囲 / ウェイト重複）');
+                        this.timelineDirty = true;
+                        this.seek(Math.max(0, Math.floor(Number(branchBoundaryEntry.frame || ds.startFrame || 0))));
+                        return;
+                    }
+                    if (boundaryPlan.changed) {
+                        this.pushSnap(boundaryDragEdge === 'end' ? 'branchEndFrame' : 'branchStartFrame');
+                        var boundaryResult = this.applyBranchBoundaryMovePlan(branchTrack, boundaryPlan);
+                        if (boundaryResult && boundaryResult.changed) {
+                            this.frame = boundaryResult.frame;
+                            this.commitTrackMutation({ earliestChangedFrame: boundaryResult.earliestChangedFrame });
+                            this.seek(this.frame);
+                            return;
+                        }
+                    }
+                }
+                this.frame = Math.max(0, Math.floor(Number(branchBoundaryEntry.frame || ds.startFrame || 0)));
+                this.seek(this.frame);
+                if (!ds.moved && ds.wasSelected && ds.branchBoundary !== 'end') this.openEditor(ds.uid);
+                return;
+            }
             if (ds.moved) {
                 var tr = this.model.tracks[this.selKey];
                 if (!tr) return;
@@ -908,19 +1014,22 @@
                 }
                 this.selUid = de.uid;
                 this.selRouteListIndex = -1;
+                this.selBranchBoundaryPart = String(ds.branchBoundary || '');
                 this.frame = de.frame;
                 this.commitTrackMutation({ earliestChangedFrame: Math.min(ds.startFrame, de.frame) });
                 this.seek(this.frame);
                 return;
             }
             this.selRouteListIndex = -1;
+            this.selBranchBoundaryPart = String(ds.branchBoundary || '');
             this.seek(ds.startFrame);
-            if (ds.wasSelected) this.openEditor(ds.uid);
+            if (ds.wasSelected && ds.branchBoundary !== 'end') this.openEditor(ds.uid);
             return;
         }
         if (ds.emptyClick && !ds.moved) {
             this.selUid = 0;
             this.selRouteListIndex = -1;
+            this.selBranchBoundaryPart = '';
             this.setTimelineSelectionAnchorItem(null);
             this.closeEditor();
             this.seek(ds.startFrame);
@@ -1435,8 +1544,10 @@
             var f = Math.max(0, Math.floor(Number(e.frame || 0)));
             var cmd = clone(e.command || { code: 0, indent: 0, parameters: [] });
             var cmdIndent = Math.max(0, Math.floor(Number(cmd.indent || 0)));
+            var isBranchEnd = cmd.code === 404 || cmd.code === 412;
             lf = SH.branchFrameBeforeBoundary(branchFrameState, cmd.code, cmdIndent, lf);
-            if (f > lf) {
+            var branchEndPadding = isBranchEnd ? Math.max(0, f - lf) : 0;
+            if (!isBranchEnd && f > lf) {
                 out.push({
                     code: 230,
                     indent: this.waitIndentForTrackInsertionIndex(tr, i, cmdIndent),
@@ -1529,7 +1640,19 @@
                 out.push(cmd);
             }
             SH.openBranchFrame(branchFrameState, cmd.code, cmdIndent, f);
-            lf = Math.max(lf, f + Math.max(0, Math.floor(Number(e.wait || 0))));
+            if (isBranchEnd) {
+                if (branchEndPadding > 0) {
+                    out.push({
+                        code: 230,
+                        indent: cmdIndent,
+                        parameters: [branchEndPadding],
+                        _eeBranchEndWait: true
+                    });
+                }
+                lf = Math.max(lf, f) + Math.max(0, Math.floor(Number(e.wait || 0)));
+            } else {
+                lf = Math.max(lf, f + Math.max(0, Math.floor(Number(e.wait || 0))));
+            }
         }
         var endFrame = this.normalizeTrackEndFrame(tr);
         if (endFrame > lf) {

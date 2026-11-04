@@ -816,6 +816,11 @@
         return rowKey === 'main';
     };
 
+    EE.prototype.mainLaneDisplaySlotCountForEntry = function(entry) {
+        if (!this.isMainLaneDisplayEntry(entry)) return 0;
+        return this.isBranchOwnerEntry(entry) ? 2 : 1;
+    };
+
     EE.prototype.timelineEndPaddingFrames = function() {
         var n = Math.floor(Number(this.endMarkerPadFrames == null ? 40 : this.endMarkerPadFrames));
         return Math.max(8, n);
@@ -871,6 +876,9 @@
             if (battleMode && typeof this.normalizeTrackRowsForCurrentMode === 'function') {
                 this.normalizeTrackRowsForCurrentMode(this.model.tracks[k]);
             }
+            if (typeof this.repairTemporalBranchNesting === 'function') {
+                this.repairTemporalBranchNesting(this.model.tracks[k]);
+            }
             this.normalizeTrackExecutionMetadata(this.model.tracks[k]);
             this.normalizeTrackEndFrame(this.model.tracks[k]);
             return this.model.tracks[k];
@@ -881,6 +889,7 @@
             : (((($dataMap.events[eid] || {}).pages || [])[page] || {}).list) || [];
         var f = 0;
         var branchFrameState = SH.createBranchFrameState();
+        var pendingBranchEnd = null;
         this._eeTrackParseMode = true;
         try {
             for (var i = 0; i < list.length; i++) {
@@ -889,9 +898,17 @@
                 var cmdIndent = Math.max(0, Math.floor(Number(cmd.indent || 0)));
                 f = SH.branchFrameBeforeBoundary(branchFrameState, cmd.code, cmdIndent, f);
                 if (cmd.code === 230) {
-                    f += Math.max(0, Math.floor(Number((cmd.parameters || [0])[0] || 0)));
+                    var waitFrames = Math.max(0, Math.floor(Number((cmd.parameters || [0])[0] || 0)));
+                    f += waitFrames;
+                    if (pendingBranchEnd && cmd._eeBranchEndWait === true &&
+                        pendingBranchEnd.indent === cmdIndent) {
+                        pendingBranchEnd.entry.frame = f;
+                    } else {
+                        pendingBranchEnd = null;
+                    }
                     continue;
                 }
+                pendingBranchEnd = null;
                 if (cmd.code === 408 || cmd.code === 505) continue;
                 if (cmd.code === 108) {
                     var commentHead = String((cmd.parameters || [''])[0] || '');
@@ -966,6 +983,9 @@
                 tr.commands.push(e);
                 SH.openBranchFrame(branchFrameState, cmd.code, cmdIndent, f);
                 f += Math.max(0, Math.floor(e.wait || 0));
+                if (cmd.code === 404 || cmd.code === 412) {
+                    pendingBranchEnd = { entry: e, indent: cmdIndent };
+                }
             }
         } finally {
             this._eeTrackParseMode = false;
@@ -3564,8 +3584,16 @@
         if (!e) return out;
         if (!this.isSameFrameReorderTargetEntry(e)) return out;
         out.frame = Math.max(0, Math.floor(Number(e.frame || 0)));
+        var hiddenByBranch = this.computeBranchHiddenUidMapForTrack(tr);
+        if (this.isBranchEndEntry(e)) {
+            out.canPrev = !!this.branchEndBoundaryMovePlan(tr, e, 'prev', hiddenByBranch);
+            out.canNext = !!this.branchEndBoundaryMovePlan(tr, e, 'next', hiddenByBranch);
+            out.show = out.canPrev || out.canNext;
+            return out;
+        }
         var ordered = tr.commands.filter(function(ce) {
             return ce &&
+                !hiddenByBranch[String(Math.floor(Number(ce.uid || 0)))] &&
                 this.isSameFrameReorderTargetEntry(ce) &&
                 Math.max(0, Math.floor(Number(ce.frame || 0))) === out.frame;
         }, this).sort(compareEntriesByFrameWaitUid);
@@ -3575,9 +3603,11 @@
             if (Number(ordered[i].uid || 0) === out.uid) { idx = i; break; }
         }
         if (idx < 0) return out;
-        out.show = true;
-        out.canPrev = idx > 0;
-        out.canNext = idx >= 0 && idx < ordered.length - 1;
+        var previous = idx > 0 ? ordered[idx - 1] : null;
+        var next = idx < ordered.length - 1 ? ordered[idx + 1] : null;
+        out.canPrev = !!previous && (!this.isBranchEndEntry(previous) || !!this.branchEndBoundaryMovePlan(tr, previous, 'next'));
+        out.canNext = !!next && (!this.isBranchEndEntry(next) || !!this.branchEndBoundaryMovePlan(tr, next, 'prev'));
+        out.show = out.canPrev || out.canNext;
         return out;
     };
 
@@ -3591,8 +3621,10 @@
         if (dir === 'next' && !info.canNext) return false;
         var tr = this.ensureTrack(this.selEid, this.selPage);
         if (!tr || !Array.isArray(tr.commands)) return false;
+        var hiddenByBranch = this.computeBranchHiddenUidMapForTrack(tr);
         var ordered = tr.commands.filter(function(ce) {
             return ce &&
+                !hiddenByBranch[String(Math.floor(Number(ce.uid || 0)))] &&
                 this.isSameFrameReorderTargetEntry(ce) &&
                 Math.max(0, Math.floor(Number(ce.frame || 0))) === info.frame;
         }, this).sort(compareEntriesByFrameWaitUid);
@@ -3604,6 +3636,34 @@
         var target = (dir === 'prev') ? ordered[idx - 1] : ordered[idx + 1];
         var selfEntry = this.findEntryInSelectedTrack(uid);
         if (!selfEntry || !target) return false;
+        if (this.isBranchEndEntry(selfEntry)) {
+            var boundaryPlan = this.branchEndBoundaryMovePlan(tr, selfEntry, dir);
+            if (!boundaryPlan) return false;
+            this.pushSnap('reorderBranchEnd');
+            if (!this.applyBranchEndBoundaryMovePlan(tr, boundaryPlan)) return false;
+            this.selUid = Math.floor(Number(selfEntry.uid || 0));
+            this.selRouteListIndex = -1;
+            this.selBranchBoundaryPart = 'end';
+            this.frame = Math.max(0, Math.floor(Number(selfEntry.frame || info.frame || this.frame || 0)));
+            this.commitTrackMutation({ earliestChangedFrame: info.frame });
+            this.seek(this.frame);
+            this.refreshRouteRangeContextMenu();
+            return true;
+        }
+        if (this.isBranchEndEntry(target)) {
+            var targetBoundaryDir = dir === 'prev' ? 'next' : 'prev';
+            var targetBoundaryPlan = this.branchEndBoundaryMovePlan(tr, target, targetBoundaryDir);
+            if (!targetBoundaryPlan) return false;
+            this.pushSnap('reorderBranchEnd');
+            if (!this.applyBranchEndBoundaryMovePlan(tr, targetBoundaryPlan)) return false;
+            this.selUid = Math.floor(Number(selfEntry.uid || 0));
+            this.selRouteListIndex = -1;
+            this.frame = Math.max(0, Math.floor(Number(selfEntry.frame || info.frame || this.frame || 0)));
+            this.commitTrackMutation({ earliestChangedFrame: info.frame });
+            this.seek(this.frame);
+            this.refreshRouteRangeContextMenu();
+            return true;
+        }
         this.pushSnap('reorderFrame');
         var selfOrder = Number(selfEntry.executionOrder);
         var targetOrder = Number(target.executionOrder);
@@ -3718,6 +3778,31 @@
         var moved = [];
         var earliestChangedFrame = Infinity;
         entryUids = Array.isArray(entryUids) ? entryUids : [];
+        if (!fromRangeSelection && entryUids.length === 1) {
+            var boundaryEntry = this.findEntryInSelectedTrack(Math.floor(Number(entryUids[0] || 0)));
+            var boundaryEdge = this.isBranchEndEntry(boundaryEntry)
+                ? 'end'
+                : (this.isBranchOwnerEntry(boundaryEntry) ? 'start' : '');
+            if (boundaryEdge) {
+                var boundaryContext = this.resolveBranchBoundaryContextForEntry(boundaryEntry, tr);
+                var boundaryOwnerUid = boundaryContext && boundaryContext.ownerEntry
+                    ? Math.floor(Number(boundaryContext.ownerEntry.uid || 0))
+                    : 0;
+                var boundaryTarget = Math.floor(Number(boundaryEntry.frame || 0)) + delta;
+                var boundaryPlan = this.branchBoundaryMovePlan(tr, boundaryOwnerUid, boundaryEdge, boundaryTarget);
+                if (!boundaryPlan || !boundaryPlan.valid || !boundaryPlan.changed) return false;
+                this.pushSnap(boundaryEdge === 'end' ? 'branchEndFrame' : 'branchStartFrame');
+                var boundaryResult = this.applyBranchBoundaryMovePlan(tr, boundaryPlan);
+                if (!boundaryResult || !boundaryResult.changed) return false;
+                this.selUid = boundaryEntry.uid;
+                this.selRouteListIndex = -1;
+                if (boundaryEdge === 'end') this.selBranchBoundaryPart = 'end';
+                this.frame = boundaryResult.frame;
+                this.commitTrackMutation({ earliestChangedFrame: boundaryResult.earliestChangedFrame });
+                this.seek(this.frame);
+                return true;
+            }
+        }
         for (var i = 0; i < entryUids.length; i++) {
             var uid = Math.floor(Number(entryUids[i] || 0));
             if (uid <= 0 || seen[uid]) continue;
@@ -4566,6 +4651,7 @@
         if (uid <= 0) return null;
         var entry = this.findEntryInSelectedTrack(uid);
         if (!entry || !entry.command || Number(entry.command.code || 0) <= 0) return null;
+        if (this.isBranchEndEntry(entry)) return null;
         if (routeListIndex >= 0) {
             if (Number(entry.command.code || 0) !== 205 || entry.rowType !== 'char') return null;
             var route = entry.command.parameters && entry.command.parameters[1];
@@ -4877,7 +4963,7 @@
             if (!this.isMainLaneDisplayEntry(e)) continue;
             var f = Math.max(0, Math.floor(Number(e.frame || 0)));
             if (f !== targetFrame) continue;
-            count++;
+            count += this.mainLaneDisplaySlotCountForEntry(e);
         }
         return Math.max(0, Math.floor(Number(count || 0)));
     };
@@ -4892,7 +4978,7 @@
             if (hiddenByIf[String(Math.floor(Number(e.uid || 0)))]) continue;
             if (!this.isMainLaneDisplayEntry(e)) continue;
             var f = Math.max(0, Math.floor(Number(e.frame || 0)));
-            c[f] = (c[f] || 0) + 1;
+            c[f] = (c[f] || 0) + this.mainLaneDisplaySlotCountForEntry(e);
         }
         var m = 1, ks = Object.keys(c);
         for (var j = 0; j < ks.length; j++) m = Math.max(m, Number(c[ks[j]] || 0));
@@ -5037,9 +5123,8 @@
 
     EE.prototype.isTimelineRulerPoint = function(x, y, includeLabel, totalHeight) {
         if (!this.isTimelineRulerY(y, totalHeight)) return false;
-        if (includeLabel) return true;
-        x = Number(x || 0);
-        return x >= Number(this.labelW || 0);
+        if (typeof this.isPointInTimelineFixedLabel === 'function' && this.isPointInTimelineFixedLabel(x)) return false;
+        return true;
     };
 
     EE.prototype.rowFromY = function(y) {
@@ -5053,11 +5138,38 @@
     };
 
     EE.prototype.hitTestNode = function(x, y) {
-        for (var i = this.hitNodes.length - 1; i >= 0; i--) {
+        if (!Array.isArray(this.hitNodes) || !this.hitNodes.length) return null;
+        var best = null;
+        var bestDistance = Infinity;
+        var bestDepth = -1;
+        var bestBoundaryPriority = -1;
+        var bestIndex = -1;
+        var legacyLastHit = null;
+        var hasBranchHit = false;
+        for (var i = 0; i < this.hitNodes.length; i++) {
             var n = this.hitNodes[i];
-            if (this.timelineCircleHitPoint(x, y, n.x, n.y, this.scaleTimelineCircleRadius(Number(n.r || 0)) + 4)) return n;
+            var radius = this.scaleTimelineCircleRadius(Number(n.r || 0)) + 4;
+            if (!this.timelineCircleHitPoint(x, y, n.x, n.y, radius)) continue;
+            legacyLastHit = n;
+            if (n.branchBoundary || n.branchDragBoundary) hasBranchHit = true;
+            var distance = this.timelineCircleHitDistance2(x, y, n.x, n.y);
+            var depth = Math.max(0, Math.floor(Number(n.branchNestingDepth || 0)));
+            var boundaryPriority = n.branchBoundary ? 2 : (n.branchDragBoundary ? 1 : 0);
+            var nearer = distance < bestDistance - 0.01;
+            var sameDistance = Math.abs(distance - bestDistance) <= 0.01;
+            if (!best || nearer || (sameDistance && (
+                depth > bestDepth ||
+                (depth === bestDepth && boundaryPriority > bestBoundaryPriority) ||
+                (depth === bestDepth && boundaryPriority === bestBoundaryPriority && i > bestIndex)
+            ))) {
+                best = n;
+                bestDistance = distance;
+                bestDepth = depth;
+                bestBoundaryPriority = boundaryPriority;
+                bestIndex = i;
+            }
         }
-        return null;
+        return hasBranchHit ? best : legacyLastHit;
     };
 
     EE.prototype.hitTestComment = function(x, y) {
@@ -5161,9 +5273,13 @@
     EE.prototype.setHoverNode = function(node) {
         var uid = node ? Number(node.uid || 0) : 0;
         var routeListIndex = node ? this.nodeRouteIndex(node.routeListIndex) : -1;
-        var changed = (uid !== Number(this.hoverUid || 0)) || (routeListIndex !== this.nodeRouteIndex(this.hoverRouteListIndex));
+        var boundaryPart = node ? String(node.branchBoundary || '') : '';
+        var changed = (uid !== Number(this.hoverUid || 0)) ||
+            (routeListIndex !== this.nodeRouteIndex(this.hoverRouteListIndex)) ||
+            (boundaryPart !== String(this.hoverBranchBoundaryPart || ''));
         this.hoverUid = uid;
         this.hoverRouteListIndex = routeListIndex;
+        this.hoverBranchBoundaryPart = boundaryPart;
         if (changed) this.timelineDirty = true;
     };
 
@@ -5431,6 +5547,7 @@
         this.selRouteListIndex = focusItem.kind === 'routeCmd'
             ? this.nodeRouteIndex(focusItem.routeListIndex)
             : -1;
+        this.selBranchBoundaryPart = '';
         this.frame = this.timelineSelectionItemFrame(focusItem);
         this.timelineDirty = true;
     };
@@ -5882,6 +5999,7 @@
             });
             this.selUid = 0;
             this.selRouteListIndex = -1;
+            this.selBranchBoundaryPart = '';
             var memoryItems = this.normalizeRangeSelectionItems(this.rangeSelection && this.rangeSelection.items || []);
             this.setTimelineSelectionAnchorItem(memoryItems.length ? memoryItems[0] : null);
             this.timelineDirty = true;
@@ -7388,6 +7506,7 @@
             117: 'コモンイベント',
             118: 'ラベル',
             119: 'ラベルジャンプ',
+            404: '選択肢分岐終了',
             411: 'それ以外のとき',
             412: '分岐終了',
             121: 'スイッチの操作',
@@ -7771,7 +7890,7 @@
             if (ra == null) ra = 999;
             if (rb == null) rb = 999;
             if (ra !== rb) return ra - rb;
-            return Math.floor(Number(a.uid || 0)) - Math.floor(Number(b.uid || 0));
+            return SH.compareEntriesByFrameWaitUid(a, b);
         });
         return list;
     };
@@ -7782,8 +7901,18 @@
         opt = opt || {};
         if (opt.excludeMoveRoute205 && Number(entry.command.code || 0) === 205) return [];
         var rowKey = String(entry.rowKey || (entry.rowType === 'char' ? ('char:' + entry.charId) : 'main'));
-        var cmdRawColor = this.commandNodeFillColorForEntry(entry, -1, rowKey);
-        var cmdColor = opt.color || this.commandTextColorForEntry(entry, -1, rowKey);
+        var rawCode = Math.floor(Number(entry.command.code || 0));
+        var isBoundaryEnd = rawCode === COMMAND_CODE.CHOICE_END || rawCode === COMMAND_CODE.CONDITIONAL_END;
+        var boundaryContext = isBoundaryEnd ? this.resolveBranchBoundaryContextForEntry(entry) : null;
+        if (isBoundaryEnd && !boundaryContext) {
+            boundaryContext = {
+                type: rawCode === COMMAND_CODE.CHOICE_END ? 'choice' : 'if',
+                nestingDepth: 0
+            };
+        }
+        var boundaryColor = boundaryContext ? this.branchBoundaryColorForContext(boundaryContext) : '';
+        var cmdRawColor = boundaryColor || this.commandNodeFillColorForEntry(entry, -1, rowKey);
+        var cmdColor = opt.color || boundaryColor || this.commandTextColorForEntry(entry, -1, rowKey);
         var bulletColor = opt.bulletColor || cmdRawColor;
         var detailColor = opt.detailColor || cmdColor;
         var code = this.mainCommandDisplayCodeForEntry(entry);
@@ -7791,7 +7920,8 @@
         if (entry.command && Number(entry.command.code || 0) === 205) {
             nm += this.routeSymbolForEntry(entry) + ' [' + this.rowLabelForCharId(this.normalizeMoveTarget(entry.charId)) + ']';
         }
-        var out = [{ text: indent + '●' + nm, dim: !!opt.dim, color: cmdColor, bold: !!opt.bold, bulletWhite: true, bulletColor: bulletColor }];
+        var bullet = (code === COMMAND_CODE.CHOICE_END || code === COMMAND_CODE.CONDITIONAL_END) ? '○' : '●';
+        var out = [{ text: indent + bullet + nm, dim: !!opt.dim, color: cmdColor, bold: !!opt.bold, bulletWhite: true, bulletColor: bulletColor }];
         var detail = this.commandTooltipDetailText(entry);
         if (detail) out.push({
             text: indent + '　' + detail,
@@ -8035,6 +8165,15 @@
 
     EE.prototype.commandTooltipLinesForHit = function(hit) {
         if (!hit) return [];
+        if (hit.branchBoundary) {
+            var branchKind = String(hit.branchType || '') === 'choice' ? '選択肢' : '条件';
+            var boundaryName = String(hit.branchBoundary || '') === 'start' ? '分岐開始' : '分岐終了';
+            var boundaryColor = this.branchBoundaryColorForContext({
+                type: String(hit.branchType || '') === 'choice' ? 'choice' : 'if',
+                nestingDepth: Math.max(0, Math.floor(Number(hit.branchNestingDepth || 0)))
+            });
+            return [{ text: '○' + branchKind + boundaryName, dim: false, color: boundaryColor }];
+        }
         if (hit.isEndMarker) {
             return [
                 { text: '終了', dim: false },

@@ -492,15 +492,73 @@
         return choiceSpan < ifSpan ? choiceScope : ifScope;
     };
 
+    EE.prototype.branchFrameInsertionPlacement = function(frame, tr) {
+        frame = Math.max(0, Math.floor(Number(frame || 0)));
+        tr = tr || this.selectedTrack();
+        if (!tr || !Array.isArray(tr.commands) || !tr.commands.length) return null;
+        var boundaryInfo = this.branchBoundaryDisplayInfoForTrack(tr);
+        var contexts = Array.isArray(boundaryInfo.contexts) ? boundaryInfo.contexts : [];
+        var best = null;
+        for (var i = 0; i < contexts.length; i++) {
+            var context = contexts[i];
+            if (!context || !context.ownerEntry || !context.endEntry) continue;
+            var startFrame = Math.max(0, Math.floor(Number(context.ownerEntry.frame || 0)));
+            var endFrame = Math.max(startFrame, Math.floor(Number(context.endEntry.frame || 0)));
+            if (frame <= startFrame || frame >= endFrame) continue;
+            var active = this.branchBoundaryActiveRange(tr, context);
+            if (!active || active.available === false) continue;
+            var span = Math.max(1, endFrame - startFrame);
+            var depth = Math.max(0, Math.floor(Number(context.nestingDepth || 0)));
+            if (!best || depth > best.depth || (depth === best.depth && span < best.span)) {
+                best = { context: context, active: active, depth: depth, span: span };
+            }
+        }
+        if (!best) return null;
+
+        var list = Array.isArray(best.context.list) ? best.context.list : [];
+        var startIndex = Math.max(0, Math.floor(Number(best.active.startIndex || 0)));
+        var stopIndex = Math.max(startIndex, Math.min(list.length, Math.floor(Number(best.active.stopIndex || startIndex))));
+        var branchIndent = Math.max(0, Math.floor(Number(best.context.indent || 0))) + 1;
+        var insertIndex = stopIndex;
+        for (i = startIndex; i < stopIndex; i++) {
+            var entry = list[i];
+            if (!entry || !entry.command) continue;
+            var entryFrame = Math.max(0, Math.floor(Number(entry.frame || 0)));
+            var entryIndent = Math.max(0, Math.floor(Number(entry.command.indent || 0)));
+            if (entryFrame > frame && entryIndent === branchIndent) {
+                insertIndex = i;
+                break;
+            }
+        }
+        if (insertIndex < 0 || insertIndex >= list.length) return null;
+        var shiftMap = this.buildIfBranchShiftUidMap(list, insertIndex, list.length - 1);
+        if (!Object.keys(shiftMap).length) return null;
+        return {
+            branchInsertIndent: branchIndent,
+            branchOwnerUid: Math.floor(Number(best.context.ownerEntry.uid || 0)),
+            branchShiftUidMap: shiftMap
+        };
+    };
+
     EE.prototype.makeAddPlacementContextFromFrame = function(frame) {
         frame = Math.max(0, Math.floor(Number(frame || 0)));
-        return {
+        var out = {
             mode: 'frame',
             source: 'frame',
             frame: frame,
             uid: 0,
-            routeListIndex: -1
+            routeListIndex: -1,
+            branchInsertIndent: null,
+            branchOwnerUid: 0,
+            branchShiftUidMap: null
         };
+        var branchPlacement = this.branchFrameInsertionPlacement(frame);
+        if (branchPlacement) {
+            out.branchInsertIndent = branchPlacement.branchInsertIndent;
+            out.branchOwnerUid = branchPlacement.branchOwnerUid;
+            out.branchShiftUidMap = branchPlacement.branchShiftUidMap;
+        }
+        return out;
     };
 
     EE.prototype.makeAddPlacementContextFromWaitInsertContext = function(ctx, mode) {

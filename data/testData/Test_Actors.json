@@ -3,6 +3,6 @@ null,
 {"id":1,"battlerName":"","characterIndex":0,"characterName":"$yusya","classId":1,"equips":[0,1,2,3,0],"faceIndex":0,"faceName":"","traits":[],"initialLevel":1,"maxLevel":99,"name":"ゆうしゃ","nickname":"","note":"","profile":""},
 {"id":2,"battlerName":"001","characterIndex":0,"characterName":"$001","classId":2,"equips":[0,0,0,0,0],"faceIndex":0,"faceName":"face","traits":[],"initialLevel":1,"maxLevel":99,"name":"ぷれいや","nickname":"","note":"","profile":""},
 {"id":3,"battlerName":"002","characterIndex":0,"characterName":"$002","classId":3,"equips":[0,0,0,0,0],"faceIndex":0,"faceName":"","traits":[],"initialLevel":3,"maxLevel":99,"name":"みぃー","nickname":"","note":"","profile":""},
-{"id":4,"battlerName":"001","characterIndex":0,"characterName":"$003","classId":4,"equips":[0,0,0,0,0],"faceIndex":0,"faceName":"","traits":[],"initialLevel":1,"maxLevel":99,"name":"ゆめちゃん","nickname":"","note":"","profile":""},
+{"id":4,"battlerName":"003","characterIndex":0,"characterName":"$003","classId":4,"equips":[0,0,0,0,0],"faceIndex":0,"faceName":"","traits":[],"initialLevel":1,"maxLevel":99,"name":"ゆめちゃん","nickname":"","note":"","profile":""},
 {"id":5,"battlerName":"001","characterIndex":0,"characterName":"Actor1","classId":5,"equips":[0,0,0,0,0],"faceIndex":0,"faceName":"","traits":[],"initialLevel":1,"maxLevel":99,"name":"なかま４","nickname":"","note":"","profile":""}
 ]

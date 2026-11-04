@@ -45,6 +45,7 @@
         this.hitOrderButtons = [];
         this.hitIfBranchButtons = [];
         this.orderButtonAnchorEntry = null;
+        this.orderButtonAnchorPart = '';
         this.orderButtonAnchorY = 0;
         this.suppressTimelineDblClickUntil = 0;
         this.dragState = null;
@@ -94,9 +95,11 @@
         this.runtimeDisplayY = null;
         this.keepRuntimeDisplayOnPlayStart = false;
         this.selRouteListIndex = -1;
+        this.selBranchBoundaryPart = '';
         this.panelSelectedCharId = null;
         this.hoverUid = 0;
         this.hoverRouteListIndex = -1;
+        this.hoverBranchBoundaryPart = '';
         this.hoverFrame = -1;
         this.hoverRangeUid = 0;
         this.hoverRangePart = '';
@@ -5287,6 +5290,20 @@
         entry.command.indent = Math.max(0, indent);
     };
 
+    EE.prototype.branchSourceInsertionAnchorUid = function(tr, placement) {
+        if (!tr || !Array.isArray(tr.commands) || !placement ||
+            !placement.branchShiftUidMap || typeof placement.branchShiftUidMap !== 'object' ||
+            Array.isArray(placement.branchShiftUidMap)) return 0;
+        var shiftMap = placement.branchShiftUidMap;
+        var anchorUid = 0;
+        for (var i = 0; i < tr.commands.length; i++) {
+            var uid = Math.floor(Number(tr.commands[i] && tr.commands[i].uid || 0));
+            if (uid <= 0 || !shiftMap[String(uid)]) continue;
+            if (anchorUid <= 0 || uid < anchorUid) anchorUid = uid;
+        }
+        return anchorUid;
+    };
+
     EE.prototype.applyCommandAddWithPlacement = function(tr, entry, placement, options) {
         if (!tr || !entry) return false;
         options = options || {};
@@ -5358,7 +5375,10 @@
         }
 
         entry.frame = targetFrame;
-        if (waitFrames <= 0) {
+        var branchSourceAnchorUid = this.branchSourceInsertionAnchorUid(tr, placement);
+        if (branchSourceAnchorUid > 0) {
+            entry.uid = this.reserveUidBeforeAnchor(tr, branchSourceAnchorUid);
+        } else if (waitFrames <= 0) {
             if (placement.mode === 'before') {
                 if (anchorIdx >= 0 && anchorUid > 0) entry.uid = this.reserveUidBeforeAnchor(tr, anchorUid);
                 else {
@@ -5386,8 +5406,10 @@
         this.selUid = entry.uid;
         this.selRouteListIndex = -1;
         this.frame = this.advanceTargetFrameByWait(entry.frame, entry.wait);
-        this.commitTrackMutation({ earliestChangedFrame: entry.frame });
-        this.playFrom(this.frame);
+        if (!options.deferCommit) {
+            this.commitTrackMutation({ earliestChangedFrame: entry.frame });
+            this.playFrom(this.frame);
+        }
         return true;
     };
 
@@ -5398,7 +5420,10 @@
             entry._pendingAddPlacement || this.addPlacementContext || this.makeAddPlacementContextFromFrame(entry.frame),
             entry.frame
         );
-        var ok = this.applyCommandAddWithPlacement(tr, entry, placement, { skipSnapshot: false });
+        var ok = this.applyCommandAddWithPlacement(tr, entry, placement, {
+            skipSnapshot: false,
+            deferCommit: true
+        });
         if (!ok) {
             if (removed) {
                 tr.commands.push(entry);
@@ -5412,6 +5437,8 @@
         }
         entry._pendingAddPlacement = null;
         this._pendingNewConfirmed = true;
+        this.commitTrackMutation({ earliestChangedFrame: entry.frame });
+        this.playFrom(this.frame);
         return true;
     };
 

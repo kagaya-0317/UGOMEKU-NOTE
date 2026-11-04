@@ -37,6 +37,7 @@ var $plugins =
 {"name":"KNH_ZXC_System","status":true,"description":"ZXCシステム","parameters":{}},
 {"name":"KNH_ZXC_PopupPortrait","status":true,"description":"Character portraits for popup message bubbles.","parameters":{}},
 {"name":"KNH_ZXC_Battle","status":true,"description":"ZXC戦闘","parameters":{}},
+{"name":"KNH_ZXC_Battle_Yume","status":true,"description":"Yume battle arms and weapons","parameters":{}},
 {"name":"KNH_ZXC_Menu","status":true,"description":"ZXCメニュー画面系","parameters":{}},
 {"name":"KNH_ZXC_Data","status":true,"description":"ZXCデータ管理","parameters":{}},
 {"name":"KNH_ZXC_Translation","status":true,"description":"Export JP texts (Show Text / Show Choices) from Maps + Troops into ONE column and copy to clipboard. v2.1 (1-column)","parameters":{}},
@@ -54,5 +55,6 @@ var $plugins =
 {"name":"MapFilterManager","status":false,"description":"マップのFilterを管理する。セーブ/ロード対応。","parameters":{}},
 {"name":"TiltShiftFilter","status":false,"description":"ジオラマ風の見た目になります。","parameters":{}},
 {"name":"FilterExample","status":false,"description":"BloomFilter,TiltShiftFilter,GrayScale,Sepiaをプラグインコマンドから利用できます。","parameters":{}},
+{"name":"KNH_ZXC_Afterimage","status":true,"description":"Frozen character afterimages, including meshes, filters and masks.","parameters":{}},
 {"name":"KNH_SteamBridge","status":true,"description":"[MV] Steam bootstrap bridge for Greenworks overlay.","parameters":{"AppId":"0","ForceRestartViaSteam":"false","VerboseLog":"true"}}
 ];

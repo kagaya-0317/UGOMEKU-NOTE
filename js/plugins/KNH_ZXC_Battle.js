@@ -851,6 +851,10 @@ function Sprite_Bullet() {
         action.apply(target);
         if (target.isEnemy()) this.addTotalDamage(target, target.result().hpDamage);
         target.startDamagePopup();
+        if (target.isEnemy() && $gameTroop._troopId === 42 && target.isDead() && // 番人
+            $gameTroop.aliveMembers().length === 1) {
+            $gameSwitches.setValue(35, true);
+        }
         var es = SceneManager._scene._enemySprites.filter(esp => esp._battler === target)[0];
         if (target.isEnemy() && !es._collapsePhase) {
             if (!$gameTroop.aliveMembers().length || this._inFinish) {
@@ -2122,6 +2126,7 @@ function Sprite_Bullet() {
         this._animationFrames = 0;
         this._animationLoop = false;
         this._animationWait = 0;
+        this._animationFrameCells = null;
         this._animationCount = 0;
         this._live2d = null;
         this._actions = [];
@@ -2142,7 +2147,7 @@ function Sprite_Bullet() {
         this.scale.x = this._displayMirror ? -scaleX : scaleX;
     };
 
-    Sprite_NewBattler.prototype.setAnimation = function(type, loop, wait, duration) {
+    Sprite_NewBattler.prototype.setAnimation = function(type, loop, wait, duration, frameCells) {
         if ((this._battler.isDead() && !this._battler.isStateAffected(3)) &&
             (type !== 'wait' && type !== 'dead' && type !== 'smile')) return;
         if (this._live2d) return;
@@ -2151,6 +2156,7 @@ function Sprite_Bullet() {
         this._animationIndex = 0;
         this._animationFrames = 1;
         this.updateBitmap();
+        this._animationFrameCells = Array.isArray(frameCells) ? frameCells.slice() : null;
         var bitmap = this._baseBitmap || this.bitmap;
         if (bitmap) bitmap.addLoadListener(function() {
             this._animationFrames = 0;
@@ -2162,11 +2168,41 @@ function Sprite_Bullet() {
 //            this._yuraInfo = this._animationFrames <= 1 ? [24, 24] : null;
         }.bind(this))
         this._animationLoop = !!loop;
-        this._animationWait = wait || 0;
-        this._animationDuration = duration || (loop ? 60 : 0);
+        if (this._animationFrameCells) {
+            this._animationWait = wait || 6;
+            this._animationDuration = duration || (loop ? 60 : this._animationWait * this._animationFrameCells.length);
+        } else {
+            this._animationWait = wait || 0;
+            this._animationDuration = duration || (loop ? 60 : 0);
+        }
         this._animationCount = 0;
-        this.setFrame(this._animationIndex * this._frameSize, (this._animationType % 10) * this._frameSize, this._frameSize, this._frameSize);
+        this.setFrame(animationFrameCellAt(this, 0) * this._frameSize, (this._animationType % 10) * this._frameSize, this._frameSize, this._frameSize);
     };
+
+    function normalizeAnimationFrameCells(cells) {
+        if (typeof cells === 'number') {
+            if (!Number.isInteger(cells) || cells < 1) return null;
+            return Array.from({ length: cells }, function(_, i) { return i; });
+        }
+        if (!Array.isArray(cells) || !cells.length) return null;
+        cells = cells.map(function(cell) { return Number(cell); });
+        return cells.every(function(cell) { return Number.isInteger(cell) && cell >= 0; }) ? cells : null;
+    }
+
+    Sprite_NewBattler.prototype.setAnimationCustom = function(type, cells, wait, loop, duration) {
+        var frameCells = normalizeAnimationFrameCells(cells);
+        if (!frameCells) return;
+        this.setAnimation(type, loop, wait, duration, frameCells);
+    };
+
+    function animationFrameCellAt(sprite, index) {
+        var cells = sprite._animationFrameCells;
+        return cells && cells.length ? cells[Math.max(0, Math.min(index, cells.length - 1))] : index;
+    }
+
+    function animationFrameLength(sprite) {
+        return sprite._animationFrameCells ? sprite._animationFrameCells.length : sprite._animationFrames;
+    }
     
     Sprite_NewBattler.prototype.updateFrame = function() {
         if (this._live2d) return;
@@ -2179,22 +2215,26 @@ function Sprite_Bullet() {
         } else if (this._yuraInfo && !this._collapsePhase) {
             this._yuraInfo = null;
         }
+        var frameLength = Math.max(1, animationFrameLength(this));
         if (!this._animationLoop) {
-            this._animationIndex = Math.min(Math.floor((this._animationCount / this.animationWait())), this._animationFrames - 1);
-            if (this._animationType && Math.floor((this._animationCount / this.animationWait())) >= this._animationFrames) {
+            var frameStep = Math.floor(this._animationCount / this.animationWait());
+            this._animationIndex = Math.min(frameStep, frameLength - 1);
+            if (this._animationType && frameStep >= frameLength) {
                 //ループなしで最終フレームへ到達
                 if (this._animationCount >= this._animationDuration) return this.setAnimation('', true); //終了
                 else if (this._animationDuration === Infinity) { //最終3枚フレームをアニメさせる
-                    this._animationIndex = this._animationFrames - 3 + (Math.floor((this._animationCount / this.animationWait())) - this._animationFrames) % 3;
+                    var lastFrameLength = Math.min(3, frameLength);
+                    this._animationIndex = frameLength - lastFrameLength + (frameStep - frameLength) % lastFrameLength;
                 }
             }
                 
         } else { //曲にのる
             if (this._animationType && this._animationCount >= this._animationDuration) return this.setAnimation('', true);
-            this._animationIndex = Math.floor(($gameSystem.sceneCount() % (this.animationWait() * this._animationFrames)) / this.animationWait());
+            this._animationIndex = Math.floor(($gameSystem.sceneCount() % (this.animationWait() * frameLength)) / this.animationWait());
         }
         this._animationCount++;
-        this.setFrame(this._animationIndex * this._frameSize, (this._animationType % 10) * this._frameSize, this._frameSize, this._frameSize);
+        this.setFrame(animationFrameCellAt(this, this._animationIndex) * this._frameSize,
+            (this._animationType % 10) * this._frameSize, this._frameSize, this._frameSize);
     };
     
     Sprite_NewBattler.prototype.animationWait = function() {
@@ -2246,7 +2286,8 @@ function Sprite_Bullet() {
         this._actions.push(action);
         this.resetForAction();
         if (!action.test) {
-            this.setAnimation('', true);
+            if (!this.keepAnimationOnActionStart || !this.keepAnimationOnActionStart(action))
+                this.setAnimation('', true);
             if (this._battler.isActor() && SceneManager._scene._numOfSkill)
                 SceneManager._scene._numOfSkill[skillId] = (SceneManager._scene._numOfSkill[skillId] || 0) + 1;
         }
@@ -2262,6 +2303,54 @@ function Sprite_Bullet() {
         this._rotateOffsetX = this._rotateOffsetY = 0;
         if (this._particle) this._particle._params = [];
     };
+
+    function splitSetAnimeCustomArgs(text) {
+        var args = [];
+        var start = 0;
+        var depth = 0;
+        for (var i = 0; i < text.length; i++) {
+            var character = text[i];
+            if (character === '[') {
+                depth++;
+            } else if (character === ']') {
+                if (--depth < 0) return null;
+            } else if (character === ',' && depth === 0) {
+                args.push(text.slice(start, i).trim());
+                start = i + 1;
+            }
+        }
+        if (depth !== 0) return null;
+        args.push(text.slice(start).trim());
+        return args;
+    }
+
+    function parseSetAnimeCustomAction(data) {
+        var separator = data.indexOf(':');
+        var args = splitSetAnimeCustomArgs(separator >= 0 ? data.slice(separator + 1).trim() : '');
+        if (!args || (args.length !== 4 && args.length !== 5) || !args[0]) return null;
+
+        var cellsText = args[1];
+        var cells = cellsText.charAt(0) === '[' ? cellsText.slice(1, -1).split(',') : Number(cellsText);
+        cells = normalizeAnimationFrameCells(cells);
+        if (!cells || (args[2] !== 'true' && args[2] !== 'false')) return null;
+
+        var wait = Number(args[3] || 6);
+        if (!Number.isInteger(wait) || wait < 0) return null;
+
+        var duration;
+        if (args.length === 5 && args[4]) {
+            duration = args[4] === 'Infinity' ? Infinity : Number(args[4]);
+            if (duration < 0 || (duration !== Infinity && !Number.isInteger(duration))) return null;
+        }
+
+        return {
+            type: args[0],
+            cells: cells,
+            loop: args[2] === 'true',
+            wait: wait || 6,
+            duration: duration
+        };
+    }
     
     Sprite_NewBattler.prototype.updateActions = function(forceAction) {
         var deleteList = [];
@@ -2283,8 +2372,10 @@ function Sprite_Bullet() {
 
             //===
             var data = action.list.shift();
-            var args = (data.split(':')[1] || '').split(',').map(function (a) { return Number(a) || Number(a) === 0 ? Number(a) : a });
             var nowAction = (data.split(':')[0] || data).trim();
+            var isCustomAnime = nowAction === 'setAnimeCustom';
+            var customAnime = isCustomAnime ? parseSetAnimeCustomAction(data) : null;
+            var args = isCustomAnime ? [] : (data.split(':')[1] || '').split(',').map(function (a) { return Number(a) || Number(a) === 0 ? Number(a) : a });
             var target = this.targetSprite();
             var xRate = this._actionMirror ? -1 : 1;
             var isTest = action.test;
@@ -2308,6 +2399,12 @@ function Sprite_Bullet() {
                 if (!isTest && isMain) {
                     if (this._live2d) this._live2d.setAnimation(0, [args[0], 'wait'], 'sequential', 'continue', true);
                     else this.setAnimation(args[0], args[1] === 'true', args[2], args[3]);
+                }
+
+            } else if (nowAction === 'setAnimeCustom') { //任意のフレーム列でモーション
+                if (customAnime && !isTest && isMain) {
+                    if (this._live2d) this._live2d.setAnimation(0, [customAnime.type, 'wait'], 'sequential', 'continue', true);
+                    else this.setAnimationCustom(customAnime.type, customAnime.cells, customAnime.wait, customAnime.loop, customAnime.duration);
                 }
 
             } else if (nowAction === 'setRandomAttackAnime') { //攻撃モーションを範囲内でランダム
@@ -2336,12 +2433,16 @@ function Sprite_Bullet() {
                 if (args.contains('wait') || isLast) action.wait = args[2];
 
             } else if (nowAction === 'moveRandom') { //ランダム移動 (こうもり用)
-                while (true) {
-                    var tx = _rand(target._homeX + target.baseOffsetX() - this._homeX + 100, this.baseOffsetX());
-                    var ty = _rand(34, 272) - this._homeY + this._floatHeight + 100;
-                    if (Math.sqrt(Math.pow(tx - this._offsetX, 2) + Math.pow(ty - this._offsetY, 2), 2) > 100) break;
+                if (!isTest && isMain) {
+                    var tx = this.baseOffsetX();
+                    var ty = this.baseOffsetY();
+                    for (var moveRandomTry = 0; moveRandomTry < 100; moveRandomTry++) {
+                        tx = _rand(target._homeX + target.baseOffsetX() - this._homeX + 100, this.baseOffsetX());
+                        ty = _rand(34, 272) - this._homeY + this._floatHeight + 100;
+                        if (Math.sqrt(Math.pow(tx - this._offsetX, 2) + Math.pow(ty - this._offsetY, 2), 2) > 100) break;
+                    }
+                    this.startMove(tx, ty, args[0]);
                 }
-                if (!isTest && isMain) this.startMove(tx, ty, args[0]);
                 if (args.contains('wait') || isLast) action.wait = args[0];
 
             } else if (nowAction === 'back') { //定位置へ
@@ -2420,13 +2521,16 @@ function Sprite_Bullet() {
 
             } else if (nowAction === 'waitRelease') { //ボタンを離すまでウェイト
                 action.waitRelease = true;
+            } else if (this.processExtraActionCommand) {
+                this.processExtraActionCommand(nowAction, args, action, isLast);
             }
         })
         deleteList.forEach(action => this._actions.splice(this._actions.indexOf(action), 1));
     };
 
     Sprite_NewBattler.prototype.actionApply = function (action) {
-        if (this._battler.isActor()) {
+        // Timing probes count applies without changing battlers or playing damage effects.
+        if (!action.test && this._battler.isActor()) {
             //エネミーダメージ
             var ts = this.targetSprite();
             SceneManager._scene.playDamageAnimation(this, ts, action.skillId, action.judgment);
@@ -2437,7 +2541,7 @@ function Sprite_Bullet() {
                     ts.setAnimation('damage', false, 6, Infinity);
                 } else ts.setAnimation('damage', false, 6);
             }
-        } else if (action.info) {
+        } else if (!action.test && action.info) {
             //アクターダメージ　ガードの結果を待ってから処理
             var button = SceneManager._scene._buttonSprites.filter(function (bs) {
                 return bs._info.enemy && bs._info.timing === action.info.timing &&
@@ -2449,28 +2553,47 @@ function Sprite_Bullet() {
         action.appliedNum++;
     }
 
+    var ACTION_WAIT_TEST_LIMIT = 10000;
+
     //アクションがapplyされるまでの時間を取得
     Sprite_NewBattler.prototype.getActionWaits = function(skillId) {
         var cachePass = [skillId, this.x, this.y, this.width, this.height];
         var cache = this._cachesActionWait[cachePass];
         if (cache) return cache;
-        this._actionTest = true;
-        var action = this.startAction(skillId);
+        var action = null;
         var waits = [0];
         var lastAppliedNum = 0;
-        while (action.list.length || !action.applied) {
-            this.updateActions(action);
-            waits[waits.length - 1]++;
-            if (action.appliedNum !== lastAppliedNum) {
-                waits.push(waits[waits.length - 1]);
-                lastAppliedNum = action.appliedNum;
+        var frameCount = 0;
+        this._actionTest = true;
+        try {
+            action = this.startAction(skillId);
+            while (action.list.length || action.applyList.length) {
+                if (frameCount >= ACTION_WAIT_TEST_LIMIT) {
+                    throw new Error('Action wait test exceeded ' + ACTION_WAIT_TEST_LIMIT + ' frames for skill ' + skillId);
+                }
+                this.updateActions(action);
+                frameCount++;
+                waits[waits.length - 1]++;
+                if (action.appliedNum !== lastAppliedNum) {
+                    waits.push(waits[waits.length - 1]);
+                    lastAppliedNum = action.appliedNum;
+                }
+            }
+            if (lastAppliedNum > 0) waits.pop(); //最後一つ余分になるので消す
+            else waits = [0]; //applyを持たない補助スキル
+            this._cachesActionWait[cachePass] = waits;
+            return waits;
+        } finally {
+            if (action && this._actions) {
+                var actionIndex = this._actions.indexOf(action);
+                if (actionIndex >= 0) this._actions.splice(actionIndex, 1);
+            }
+            try {
+                this.resetForAction();
+            } finally {
+                this._actionTest = false;
             }
         }
-        waits.pop(); //最後一つ余分になるので消す
-        this.resetForAction();
-        this._actionTest = false;
-        this._cachesActionWait[cachePass] = waits;
-        return waits;
     };
     
     Sprite_NewBattler.prototype.setupDamagePopup = function() {
@@ -2983,6 +3106,7 @@ function Sprite_Bullet() {
         else if (imageName === 'biribiri') this._frames = 6, this._frameCount = 6, this._moveParam3 = Math.randomInt(360);
         else if (imageName === 'hikidashi') this._frames = 3, this._frameCount = 8, this._autoRotation = true;
         else if (imageName === 'flagShot') this._frames = 4, this._frameCount = 3, this._autoRotation = true;
+        else if (imageName === 'luiLaser') this._frames = 3, this._frameCount = 8, this._autoRotation = true;
         else                                this._frames = 3, this._frameCount = 8;
 
         if (this.bitmap.isReady()) {

@@ -40,6 +40,12 @@ function createMemoryFs() {
             delete files[fromKey];
             delete mtimes[fromKey];
         },
+        copyFileSync: function(fromPath, toPath) {
+            var fromKey = path.resolve(fromPath);
+            var toKey = path.resolve(toPath);
+            files[toKey] = files[fromKey];
+            mtimes[toKey] = writeClock++;
+        },
         unlinkSync: function(filePath) {
             var key = path.resolve(filePath);
             delete files[key];
@@ -101,5 +107,26 @@ assert.strictEqual(memoryFs.readdirSync(backupDir).filter(function(name) {
 storage.removeFileIfExists(filePath);
 assert.strictEqual(storage.exists(filePath), false);
 assert.strictEqual(storage.removeFileIfExists(filePath), true);
+
+var renameBlockedFs = createMemoryFs();
+var blockedFilePath = path.join(root, 'data', 'recovery', 'Map001.recovery.json');
+renameBlockedFs.writeFileSync(blockedFilePath, 'old', { encoding: 'utf8' });
+renameBlockedFs.renameSync = function() {
+    var error = new Error('operation not permitted');
+    error.code = 'EPERM';
+    throw error;
+};
+var blockedStorage = services.createStorage({
+    fs: renameBlockedFs,
+    path: path,
+    processId: 8,
+    now: function() { return clock++; },
+    random: function() { return 0.5; }
+});
+blockedStorage.writeTextAtomic(blockedFilePath, 'new');
+assert.strictEqual(blockedStorage.readText(blockedFilePath), 'new');
+assert.strictEqual(renameBlockedFs.readdirSync(path.dirname(blockedFilePath)).some(function(name) {
+    return /\.tmp$/.test(name);
+}), false);
 
 console.log('Event editor services: OK');

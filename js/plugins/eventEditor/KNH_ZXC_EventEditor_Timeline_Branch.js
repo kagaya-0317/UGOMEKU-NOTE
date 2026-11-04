@@ -321,6 +321,679 @@
         return info;
     };
 
+    EE.prototype.isBranchOwnerEntry = function(entry) {
+        if (!entry || !entry.command) return false;
+        var code = Math.floor(Number(entry.command.code || 0));
+        return code === COMMAND_CODE.SHOW_CHOICES || code === COMMAND_CODE.CONDITIONAL_BRANCH;
+    };
+
+    EE.prototype.isBranchEndEntry = function(entry) {
+        if (!entry || !entry.command) return false;
+        var code = Math.floor(Number(entry.command.code || 0));
+        return code === COMMAND_CODE.CHOICE_END || code === COMMAND_CODE.CONDITIONAL_END;
+    };
+
+    EE.prototype.branchBoundaryDisplayInfoForTrack = function(tr) {
+        var out = {
+            contexts: [],
+            startByUid: Object.create(null),
+            endByUid: Object.create(null)
+        };
+        if (!tr || !Array.isArray(tr.commands) || !tr.commands.length) return out;
+
+        var append = function(type, info, block, ownerIndex, endIndex) {
+            var list = info && Array.isArray(info.list) ? info.list : [];
+            ownerIndex = Math.floor(Number(ownerIndex == null ? -1 : ownerIndex));
+            endIndex = Math.floor(Number(endIndex == null ? -1 : endIndex));
+            var ownerEntry = ownerIndex >= 0 && ownerIndex < list.length ? list[ownerIndex] : null;
+            var endEntry = endIndex >= 0 && endIndex < list.length ? list[endIndex] : null;
+            if (!ownerEntry || !endEntry) return;
+            var expectedEndCode = type === 'choice' ? COMMAND_CODE.CHOICE_END : COMMAND_CODE.CONDITIONAL_END;
+            if (!endEntry.command || Math.floor(Number(endEntry.command.code || 0)) !== expectedEndCode) return;
+            var context = {
+                type: type,
+                info: info,
+                list: list,
+                block: block,
+                ownerEntry: ownerEntry,
+                endEntry: endEntry,
+                indent: Math.max(0, Math.floor(Number(block && block.indent || 0)))
+            };
+            var ownerUid = Math.floor(Number(ownerEntry.uid || 0));
+            var endUid = Math.floor(Number(endEntry.uid || 0));
+            if (ownerUid <= 0 || endUid <= 0) return;
+            out.contexts.push(context);
+            out.startByUid[String(ownerUid)] = context;
+            out.endByUid[String(endUid)] = context;
+        };
+
+        var ifInfo = this.computeIfBranchDisplayInfoForTrack(tr);
+        var ifBlocks = Array.isArray(ifInfo.blocks) ? ifInfo.blocks : [];
+        for (var i = 0; i < ifBlocks.length; i++) {
+            var ifBlock = ifBlocks[i];
+            if (!ifBlock) continue;
+            append('if', ifInfo, ifBlock, ifBlock.ifIndex, ifBlock.endIndex);
+        }
+
+        var choiceInfo = this.computeChoiceBranchDisplayInfoForTrack(tr);
+        var choiceBlocks = Array.isArray(choiceInfo.blocks) ? choiceInfo.blocks : [];
+        for (i = 0; i < choiceBlocks.length; i++) {
+            var choiceBlock = choiceBlocks[i];
+            if (!choiceBlock) continue;
+            append('choice', choiceInfo, choiceBlock, choiceBlock.choiceIndex, choiceBlock.endIndex);
+        }
+
+        var source = SH.commandsInSourceOrder(tr);
+        for (i = 0; i < out.contexts.length; i++) {
+            var sourceContext = out.contexts[i];
+            sourceContext.sourceOwnerIndex = SH.findEntryIndexByUid(
+                source,
+                Math.floor(Number(sourceContext.ownerEntry && sourceContext.ownerEntry.uid || 0))
+            );
+            sourceContext.sourceEndIndex = SH.findEntryIndexByUid(
+                source,
+                Math.floor(Number(sourceContext.endEntry && sourceContext.endEntry.uid || 0))
+            );
+            sourceContext.ownerUid = Math.floor(Number(sourceContext.ownerEntry && sourceContext.ownerEntry.uid || 0));
+            sourceContext.endUid = Math.floor(Number(sourceContext.endEntry && sourceContext.endEntry.uid || 0));
+            sourceContext.parentOwnerUid = 0;
+            sourceContext.childOwnerUids = [];
+        }
+        for (i = 0; i < out.contexts.length; i++) {
+            var childContext = out.contexts[i];
+            var nearestParent = null;
+            var nearestSpan = Infinity;
+            for (var parentIndex = 0; parentIndex < out.contexts.length; parentIndex++) {
+                if (parentIndex === i) continue;
+                var structuralParent = out.contexts[parentIndex];
+                if (structuralParent.sourceOwnerIndex >= childContext.sourceOwnerIndex ||
+                    structuralParent.sourceEndIndex <= childContext.sourceEndIndex) continue;
+                var structuralSpan = structuralParent.sourceEndIndex - structuralParent.sourceOwnerIndex;
+                if (!nearestParent || structuralSpan < nearestSpan) {
+                    nearestParent = structuralParent;
+                    nearestSpan = structuralSpan;
+                }
+            }
+            if (!nearestParent) continue;
+            childContext.parentOwnerUid = Math.floor(Number(nearestParent.ownerUid || 0));
+            nearestParent.childOwnerUids.push(Math.floor(Number(childContext.ownerUid || 0)));
+        }
+        for (i = 0; i < out.contexts.length; i++) {
+            var nestedContext = out.contexts[i];
+            var nestingDepth = 0;
+            for (var ni = 0; ni < out.contexts.length; ni++) {
+                if (ni === i) continue;
+                var parentContext = out.contexts[ni];
+                if (parentContext.sourceOwnerIndex < nestedContext.sourceOwnerIndex &&
+                    parentContext.sourceEndIndex > nestedContext.sourceEndIndex) nestingDepth++;
+            }
+            nestedContext.nestingDepth = nestingDepth;
+        }
+        var byIndent = out.contexts.slice(0).sort(function(a, b) {
+            var indentDelta = Math.floor(Number(a && a.indent || 0)) - Math.floor(Number(b && b.indent || 0));
+            if (indentDelta) return indentDelta;
+            return Math.floor(Number(a && a.sourceOwnerIndex || 0)) - Math.floor(Number(b && b.sourceOwnerIndex || 0));
+        });
+        for (i = 0; i < byIndent.length; i++) {
+            nestedContext = byIndent[i];
+            var nestedIndent = Math.max(0, Math.floor(Number(nestedContext && nestedContext.indent || 0)));
+            if (nestedIndent <= 0) continue;
+            var nestedStartFrame = Math.max(0, Math.floor(Number(nestedContext.ownerEntry && nestedContext.ownerEntry.frame || 0)));
+            var nestedEndFrame = Math.max(nestedStartFrame, Math.floor(Number(nestedContext.endEntry && nestedContext.endEntry.frame || 0)));
+            var temporalParent = null;
+            for (var pi = 0; pi < byIndent.length; pi++) {
+                var parentCandidate = byIndent[pi];
+                if (!parentCandidate || parentCandidate === nestedContext) continue;
+                var parentIndent = Math.max(0, Math.floor(Number(parentCandidate.indent || 0)));
+                if (parentIndent >= nestedIndent) continue;
+                var parentStartFrame = Math.max(0, Math.floor(Number(parentCandidate.ownerEntry && parentCandidate.ownerEntry.frame || 0)));
+                var parentEndFrame = Math.max(parentStartFrame, Math.floor(Number(parentCandidate.endEntry && parentCandidate.endEntry.frame || 0)));
+                if (parentStartFrame > nestedStartFrame || parentEndFrame < nestedEndFrame) continue;
+                var candidateSpan = parentEndFrame - parentStartFrame;
+                var currentParentIndent = temporalParent
+                    ? Math.max(0, Math.floor(Number(temporalParent.indent || 0)))
+                    : -1;
+                var currentParentStart = temporalParent
+                    ? Math.max(0, Math.floor(Number(temporalParent.ownerEntry && temporalParent.ownerEntry.frame || 0)))
+                    : 0;
+                var currentParentEnd = temporalParent
+                    ? Math.max(currentParentStart, Math.floor(Number(temporalParent.endEntry && temporalParent.endEntry.frame || 0)))
+                    : Infinity;
+                if (!temporalParent || parentIndent > currentParentIndent ||
+                    (parentIndent === currentParentIndent && candidateSpan < currentParentEnd - currentParentStart)) {
+                    temporalParent = parentCandidate;
+                }
+            }
+            if (!temporalParent) continue;
+            var temporalParentIndent = Math.max(0, Math.floor(Number(temporalParent.indent || 0)));
+            var inferredDepth = Math.max(0, Math.floor(Number(temporalParent.nestingDepth || 0))) +
+                Math.max(1, nestedIndent - temporalParentIndent);
+            nestedContext.nestingDepth = Math.max(
+                Math.max(0, Math.floor(Number(nestedContext.nestingDepth || 0))),
+                inferredDepth
+            );
+        }
+        for (i = 0; i < out.contexts.length; i++) {
+            nestedContext = out.contexts[i];
+            var orphanStart = Math.max(0, Math.floor(Number(nestedContext.ownerEntry && nestedContext.ownerEntry.frame || 0)));
+            var orphanEnd = Math.max(orphanStart, Math.floor(Number(nestedContext.endEntry && nestedContext.endEntry.frame || 0)));
+            var temporalContainer = null;
+            var temporalContainerSpan = Infinity;
+            for (ni = 0; ni < out.contexts.length; ni++) {
+                if (ni === i) continue;
+                parentContext = out.contexts[ni];
+                if (!parentContext || nestedContext.sourceOwnerIndex <= parentContext.sourceEndIndex) continue;
+                var containerStart = Math.max(0, Math.floor(Number(parentContext.ownerEntry && parentContext.ownerEntry.frame || 0)));
+                var containerEnd = Math.max(containerStart, Math.floor(Number(parentContext.endEntry && parentContext.endEntry.frame || 0)));
+                if (containerStart >= orphanStart || containerEnd <= orphanEnd) continue;
+                var containerSpan = containerEnd - containerStart;
+                if (!temporalContainer || containerSpan < temporalContainerSpan) {
+                    temporalContainer = parentContext;
+                    temporalContainerSpan = containerSpan;
+                }
+            }
+            if (!temporalContainer) continue;
+            nestedContext.nestingDepth = Math.max(
+                Math.max(0, Math.floor(Number(nestedContext.nestingDepth || 0))),
+                Math.max(0, Math.floor(Number(temporalContainer.nestingDepth || 0))) + 1
+            );
+        }
+        return out;
+    };
+
+    EE.prototype.resolveBranchBoundaryContextForEntry = function(entry, tr) {
+        if (!entry) return null;
+        tr = tr || this.resolveTrackForEntry(entry);
+        if (!tr) return null;
+        var info = this.branchBoundaryDisplayInfoForTrack(tr);
+        var uid = String(Math.floor(Number(entry.uid || 0)));
+        return info.startByUid[uid] || info.endByUid[uid] || null;
+    };
+
+    EE.prototype.branchExecutionPathHasPrefix = function(path, prefix) {
+        path = Array.isArray(path) ? path : [];
+        prefix = Array.isArray(prefix) ? prefix : [];
+        if (path.length < prefix.length) return false;
+        for (var i = 0; i < prefix.length; i++) {
+            var a = path[i] || {};
+            var b = prefix[i] || {};
+            if (a.type !== b.type || Number(a.ownerUid || 0) !== Number(b.ownerUid || 0) ||
+                Number(a.value) !== Number(b.value)) return false;
+        }
+        return true;
+    };
+
+    EE.prototype.branchBoundaryContextForOwnerUid = function(tr, ownerUid, boundaryInfo) {
+        if (!tr || !Array.isArray(tr.commands)) return null;
+        boundaryInfo = boundaryInfo || this.branchBoundaryDisplayInfoForTrack(tr);
+        ownerUid = Math.floor(Number(ownerUid || 0));
+        return ownerUid > 0 && boundaryInfo.startByUid
+            ? (boundaryInfo.startByUid[String(ownerUid)] || null)
+            : null;
+    };
+
+    EE.prototype.isBranchStructuralMarkerEntry = function(entry) {
+        var code = Math.floor(Number(entry && entry.command && entry.command.code || 0));
+        return code === COMMAND_CODE.CHOICE_BRANCH || code === COMMAND_CODE.CHOICE_CANCEL ||
+            code === COMMAND_CODE.CHOICE_END || code === COMMAND_CODE.CONDITIONAL_ELSE ||
+            code === COMMAND_CODE.CONDITIONAL_END;
+    };
+
+    EE.prototype.branchBoundaryParentContext = function(context, boundaryInfo) {
+        if (!context || !boundaryInfo || !boundaryInfo.startByUid) return null;
+        var parentOwnerUid = Math.floor(Number(context.parentOwnerUid || 0));
+        return parentOwnerUid > 0 ? (boundaryInfo.startByUid[String(parentOwnerUid)] || null) : null;
+    };
+
+    EE.prototype.branchStartBoundaryMinimumFrame = function(tr, context, boundaryInfo) {
+        if (!tr || !context || !context.ownerEntry) return 0;
+        var parent = this.branchBoundaryParentContext(context, boundaryInfo);
+        return parent && parent.ownerEntry
+            ? Math.max(0, Math.floor(Number(parent.ownerEntry.frame || 0)))
+            : 0;
+    };
+
+    EE.prototype.branchStartBoundaryMaximumFrame = function(tr, context) {
+        if (!tr || !context || !context.ownerEntry || !context.endEntry) return 0;
+        var list = Array.isArray(context.list) ? context.list : [];
+        var ownerIndex = Math.floor(Number(context.sourceOwnerIndex == null ? -1 : context.sourceOwnerIndex));
+        var endIndex = Math.floor(Number(context.sourceEndIndex == null ? -1 : context.sourceEndIndex));
+        var maximum = Math.max(0, Math.floor(Number(context.endEntry.frame || 0)));
+        if (ownerIndex < 0 || endIndex <= ownerIndex || endIndex > list.length) return maximum;
+        for (var i = ownerIndex + 1; i < endIndex; i++) {
+            var entry = list[i];
+            if (!entry || this.isBranchStructuralMarkerEntry(entry)) continue;
+            maximum = Math.min(maximum, Math.max(0, Math.floor(Number(entry.frame || 0))));
+        }
+        return maximum;
+    };
+
+    EE.prototype.branchEndBoundaryMinimumFrame = function(tr, endEntry, context) {
+        if (!tr || !Array.isArray(tr.commands) || !this.isBranchEndEntry(endEntry)) return 0;
+        context = context || this.resolveBranchBoundaryContextForEntry(endEntry, tr);
+        if (!context || context.endEntry !== endEntry) return Math.max(0, Math.floor(Number(endEntry.frame || 0)));
+        var list = Array.isArray(context.list) ? context.list : [];
+        var ownerIndex = Math.floor(Number(context.sourceOwnerIndex == null ? -1 : context.sourceOwnerIndex));
+        var endIndex = Math.floor(Number(context.sourceEndIndex == null ? -1 : context.sourceEndIndex));
+        var minimum = Math.max(0, Math.floor(Number(context.ownerEntry && context.ownerEntry.frame || 0)));
+        if (ownerIndex < 0 || endIndex <= ownerIndex || endIndex > list.length) return minimum;
+        for (var i = ownerIndex + 1; i < endIndex; i++) {
+            var entry = list[i];
+            if (!entry) continue;
+            var frame = Math.max(0, Math.floor(Number(entry.frame || 0)));
+            var wait = Math.max(0, Math.floor(Number(entry.wait || 0)));
+            minimum = Math.max(minimum, frame + wait);
+        }
+        return minimum;
+    };
+
+    EE.prototype.branchEndBoundaryMaximumFrame = function(tr, context, boundaryInfo) {
+        if (!tr || !context || !context.endEntry) return Infinity;
+        var maximum = Infinity;
+        var parent = this.branchBoundaryParentContext(context, boundaryInfo);
+        if (parent && parent.endEntry) {
+            maximum = Math.max(0, Math.floor(Number(parent.endEntry.frame || 0)));
+        }
+        var source = Array.isArray(context.list) ? context.list : SH.commandsInSourceOrder(tr);
+        var endIndex = Math.floor(Number(context.sourceEndIndex == null ? -1 : context.sourceEndIndex));
+        if (endIndex < 0 || endIndex >= source.length) return maximum;
+        var pathMap = this.computeBranchExecutionPathMapForTrack(tr);
+        var parentPath = pathMap[String(Math.floor(Number(context.endEntry.uid || 0)))] || [];
+        for (var i = endIndex + 1; i < source.length; i++) {
+            var entry = source[i];
+            if (!entry || this.isBranchStructuralMarkerEntry(entry)) continue;
+            var entryPath = pathMap[String(Math.floor(Number(entry.uid || 0)))] || [];
+            if (!this.branchExecutionPathHasPrefix(entryPath, parentPath)) continue;
+            maximum = Math.min(maximum, Math.max(0, Math.floor(Number(entry.frame || 0))));
+        }
+        return maximum;
+    };
+
+    EE.prototype.branchBoundaryMovePlan = function(tr, ownerUid, edge, targetFrame, boundaryInfo) {
+        edge = String(edge || '') === 'end' ? 'end' : 'start';
+        if (!tr || !Array.isArray(tr.commands)) return null;
+        boundaryInfo = boundaryInfo || this.branchBoundaryDisplayInfoForTrack(tr);
+        var context = this.branchBoundaryContextForOwnerUid(tr, ownerUid, boundaryInfo);
+        if (!context || !context.ownerEntry || !context.endEntry) return null;
+        var entry = edge === 'end' ? context.endEntry : context.ownerEntry;
+        var minimumFrame = edge === 'end'
+            ? this.branchEndBoundaryMinimumFrame(tr, context.endEntry, context)
+            : this.branchStartBoundaryMinimumFrame(tr, context, boundaryInfo);
+        var maximumFrame = edge === 'end'
+            ? this.branchEndBoundaryMaximumFrame(tr, context, boundaryInfo)
+            : this.branchStartBoundaryMaximumFrame(tr, context);
+        var oldFrame = Math.max(0, Math.floor(Number(entry.frame || 0)));
+        var requestedFrame = Math.max(0, Math.floor(Number(targetFrame || 0)));
+        var valid = maximumFrame >= minimumFrame;
+        var frame = valid ? Math.max(minimumFrame, requestedFrame) : oldFrame;
+        if (valid && isFinite(maximumFrame)) frame = Math.min(frame, maximumFrame);
+        var reason = valid ? '' : 'invalid-branch-range';
+        if (valid && edge === 'start' && frame !== oldFrame && typeof this.canPlaceEntry === 'function' &&
+            !this.canPlaceEntry(tr, entry, frame, 'main', entry.uid)) {
+            valid = false;
+            frame = oldFrame;
+            reason = 'timeline-overlap';
+        }
+        return {
+            kind: 'branchBoundary',
+            edge: edge,
+            ownerUid: Math.floor(Number(context.ownerEntry.uid || 0)),
+            entryUid: Math.floor(Number(entry.uid || 0)),
+            context: context,
+            entry: entry,
+            oldFrame: oldFrame,
+            requestedFrame: requestedFrame,
+            frame: frame,
+            minimumFrame: minimumFrame,
+            maximumFrame: maximumFrame,
+            clamped: valid && frame !== requestedFrame,
+            valid: valid,
+            reason: reason,
+            changed: valid && frame !== oldFrame
+        };
+    };
+
+    EE.prototype.applyBranchBoundaryMovePlan = function(tr, plan) {
+        if (!tr || !plan || !plan.valid || !plan.entry) return null;
+        if (plan.changed) {
+            plan.entry.frame = Math.max(0, Math.floor(Number(plan.frame || 0)));
+            SH.sortTrackCommands(tr);
+        }
+        return {
+            changed: !!plan.changed,
+            edge: plan.edge,
+            ownerUid: plan.ownerUid,
+            entryUid: plan.entryUid,
+            frame: Math.max(0, Math.floor(Number(plan.frame || 0))),
+            minimumFrame: plan.minimumFrame,
+            maximumFrame: plan.maximumFrame,
+            clamped: !!plan.clamped,
+            valid: true,
+            earliestChangedFrame: Math.min(plan.oldFrame, plan.frame)
+        };
+    };
+
+    EE.prototype.moveBranchBoundaryToFrame = function(tr, ownerUid, edge, targetFrame) {
+        var plan = this.branchBoundaryMovePlan(tr, ownerUid, edge, targetFrame);
+        if (!plan) return null;
+        if (!plan.valid) return {
+            changed: false,
+            edge: plan.edge,
+            ownerUid: plan.ownerUid,
+            entryUid: plan.entryUid,
+            frame: plan.oldFrame,
+            minimumFrame: plan.minimumFrame,
+            maximumFrame: plan.maximumFrame,
+            clamped: false,
+            valid: false,
+            reason: plan.reason,
+            earliestChangedFrame: plan.oldFrame
+        };
+        return this.applyBranchBoundaryMovePlan(tr, plan);
+    };
+
+    EE.prototype.moveBranchStartBoundaryToFrame = function(tr, ownerEntry, targetFrame) {
+        if (!tr || !ownerEntry || !this.isBranchOwnerEntry(ownerEntry)) return null;
+        return this.moveBranchBoundaryToFrame(tr, ownerEntry.uid, 'start', targetFrame);
+    };
+
+    EE.prototype.moveBranchEndBoundaryToFrame = function(tr, endEntry, targetFrame) {
+        if (!tr || !endEntry || !this.isBranchEndEntry(endEntry)) return null;
+        var context = this.resolveBranchBoundaryContextForEntry(endEntry, tr);
+        if (!context || context.endEntry !== endEntry || !context.ownerEntry) return null;
+        return this.moveBranchBoundaryToFrame(tr, context.ownerEntry.uid, 'end', targetFrame);
+    };
+
+    EE.prototype.choiceBranchActiveRangeForBlock = function(tr, info, block, modeMap) {
+        if (!block) return null;
+        info = info || {};
+        var list = Array.isArray(info.list) ? info.list : [];
+        if (!list.length) return null;
+        var choiceIndex = Math.max(0, Math.floor(Number(block.choiceIndex || 0)));
+        var endIndex = Math.floor(Number(block.endIndex || -1));
+        if (endIndex < 0 || endIndex > list.length) endIndex = list.length;
+        var selected = this.choiceBranchEffectiveResultForBlock(tr, info, block, modeMap);
+        var branches = Array.isArray(block.branches) ? block.branches : [];
+        var selectedBranch = null;
+        for (var i = 0; i < branches.length; i++) {
+            var branch = branches[i];
+            if (!branch) continue;
+            if (selected === -1) {
+                if (String(branch.type || '') === 'cancel') {
+                    selectedBranch = branch;
+                    break;
+                }
+                continue;
+            }
+            if (String(branch.type || '') !== 'choice') continue;
+            if (Math.floor(Number(branch.choiceIndex == null ? -1 : branch.choiceIndex)) !== Math.floor(Number(selected || 0))) continue;
+            selectedBranch = branch;
+            break;
+        }
+        var startIndex = choiceIndex + 1;
+        var stopIndex = startIndex;
+        if (selectedBranch) {
+            startIndex = Math.max(0, Math.floor(Number(selectedBranch.startIndex || startIndex)));
+            var branchEnd = Math.floor(Number(selectedBranch.endIndex == null ? endIndex : selectedBranch.endIndex));
+            if (branchEnd < 0 || branchEnd > list.length) branchEnd = endIndex;
+            stopIndex = Math.max(startIndex, branchEnd);
+        }
+        startIndex = Math.max(0, Math.min(list.length, startIndex));
+        stopIndex = Math.max(startIndex, Math.min(list.length, stopIndex));
+        return {
+            selected: selected,
+            available: !!selectedBranch,
+            choiceIndex: choiceIndex,
+            endIndex: endIndex,
+            endIndexInclusive: Math.max(startIndex - 1, Math.min(list.length - 1, Math.max(0, endIndex - 1))),
+            startIndex: startIndex,
+            stopIndex: stopIndex
+        };
+    };
+
+    EE.prototype.branchBoundaryActiveRange = function(tr, context) {
+        if (!tr || !context || !context.block) return null;
+        var block = context.block;
+        var info = context.info || {};
+        var list = Array.isArray(context.list) ? context.list : [];
+        if (!list.length) return null;
+        if (context.type === 'choice') {
+            var choiceModes = this.normalizeChoiceBranchViewModes(tr._eeChoiceBranchViewModes);
+            return this.choiceBranchActiveRangeForBlock(tr, info, block, choiceModes);
+        }
+        var ifModes = this.normalizeIfBranchViewModes(tr._eeIfBranchViewModes);
+        var mode = this.ifBranchEffectiveModeForBlock(tr, info, block, ifModes);
+        var endIndex = Math.max(0, Math.min(list.length, Math.floor(Number(block.endIndex || 0))));
+        var elseIndex = Math.floor(Number(block.elseIndex == null ? -1 : block.elseIndex));
+        var startIndex;
+        var stopIndex;
+        if (mode === 'else' && elseIndex >= 0) {
+            startIndex = Math.min(list.length, elseIndex + 1);
+            stopIndex = endIndex;
+        } else if (mode === 'else') {
+            startIndex = endIndex;
+            stopIndex = endIndex;
+        } else {
+            startIndex = Math.min(list.length, Math.max(0, Math.floor(Number(block.ifIndex || 0))) + 1);
+            stopIndex = elseIndex >= 0 ? Math.min(endIndex, elseIndex) : endIndex;
+        }
+        return {
+            mode: mode,
+            available: mode !== 'else' || elseIndex >= 0,
+            startIndex: Math.max(0, startIndex),
+            stopIndex: Math.max(Math.max(0, startIndex), stopIndex),
+            endIndex: endIndex
+        };
+    };
+
+    EE.prototype.branchSourceGroupForEntry = function(tr, list, entry) {
+        list = Array.isArray(list) ? list : [];
+        var index = SH.findEntryIndexByUid(list, Math.floor(Number(entry && entry.uid || 0)));
+        if (index < 0) return null;
+        var endIndex = index;
+        var code = Math.floor(Number(entry && entry.command && entry.command.code || 0));
+        if (code === COMMAND_CODE.CONDITIONAL_BRANCH) {
+            var ifInfo = this.computeIfBranchDisplayInfoForTrack(tr);
+            var ifBlocks = Array.isArray(ifInfo.blocks) ? ifInfo.blocks : [];
+            for (var i = 0; i < ifBlocks.length; i++) {
+                var ifBlock = ifBlocks[i];
+                if (!ifBlock || Math.floor(Number(ifBlock.ifIndex == null ? -1 : ifBlock.ifIndex)) !== index) continue;
+                endIndex = Math.floor(Number(ifBlock.endIndex || index));
+                break;
+            }
+        } else if (code === COMMAND_CODE.SHOW_CHOICES) {
+            var choiceInfo = this.computeChoiceBranchDisplayInfoForTrack(tr);
+            var choiceBlocks = Array.isArray(choiceInfo.blocks) ? choiceInfo.blocks : [];
+            for (i = 0; i < choiceBlocks.length; i++) {
+                var choiceBlock = choiceBlocks[i];
+                if (!choiceBlock || Math.floor(Number(choiceBlock.choiceIndex == null ? -1 : choiceBlock.choiceIndex)) !== index) continue;
+                endIndex = Math.floor(Number(choiceBlock.endIndex || index));
+                break;
+            }
+        }
+        endIndex = Math.max(index, Math.min(list.length - 1, endIndex));
+        return { startIndex: index, endIndex: endIndex, entries: list.slice(index, endIndex + 1) };
+    };
+
+    EE.prototype.branchEndBoundaryMovePlan = function(tr, endEntry, dir, hiddenByBranch) {
+        dir = String(dir || 'prev') === 'next' ? 'next' : 'prev';
+        if (!tr || !Array.isArray(tr.commands) || !this.isBranchEndEntry(endEntry)) return null;
+        var context = this.resolveBranchBoundaryContextForEntry(endEntry, tr);
+        if (!context || context.endEntry !== endEntry) return null;
+        var list = Array.isArray(context.list) ? context.list : [];
+        var active = this.branchBoundaryActiveRange(tr, context);
+        if (!list.length || !active || active.available === false) return null;
+
+        hiddenByBranch = hiddenByBranch || this.computeBranchHiddenUidMapForTrack(tr);
+        var frame = Math.max(0, Math.floor(Number(endEntry.frame || 0)));
+        var ordered = tr.commands.filter(function(entry) {
+            if (!entry || !this.isMainLaneDisplayEntry(entry)) return false;
+            var uid = Math.floor(Number(entry.uid || 0));
+            if (uid > 0 && hiddenByBranch[String(uid)]) return false;
+            return Math.max(0, Math.floor(Number(entry.frame || 0))) === frame;
+        }, this).sort(SH.compareEntriesByFrameWaitUid);
+        var displayIndex = -1;
+        for (var oi = 0; oi < ordered.length; oi++) {
+            if (ordered[oi] === endEntry) {
+                displayIndex = oi;
+                break;
+            }
+        }
+        if (displayIndex < 0) return null;
+        var candidate = dir === 'prev' ? ordered[displayIndex - 1] : ordered[displayIndex + 1];
+        if (!candidate || !candidate.command) return null;
+        var candidateCode = Math.floor(Number(candidate.command.code || 0));
+        if (candidateCode === COMMAND_CODE.CHOICE_BRANCH || candidateCode === COMMAND_CODE.CHOICE_CANCEL ||
+            candidateCode === COMMAND_CODE.CONDITIONAL_ELSE || this.isBranchEndEntry(candidate)) return null;
+
+        var group = this.branchSourceGroupForEntry(tr, list, candidate);
+        if (!group || !group.entries.length) return null;
+        var baseIndent = Math.max(0, Math.floor(Number(context.indent || 0)));
+        var candidateIndent = Math.max(0, Math.floor(Number(candidate.command.indent || 0)));
+        var endSourceIndex = SH.findEntryIndexByUid(list, Math.floor(Number(endEntry.uid || 0)));
+        if (endSourceIndex < 0) return null;
+        var activeStart = Math.max(0, Math.floor(Number(active.startIndex || 0)));
+        var activeStop = Math.max(activeStart, Math.floor(Number(active.stopIndex || activeStart)));
+        var insertAnchor = null;
+        var indentDelta = 0;
+
+        if (dir === 'prev') {
+            if (candidateIndent !== baseIndent + 1) return null;
+            if (group.startIndex < activeStart || group.endIndex >= activeStop) return null;
+            insertAnchor = endEntry;
+            indentDelta = -1;
+        } else {
+            if (candidateIndent !== baseIndent) return null;
+            if (group.startIndex <= endSourceIndex) return null;
+            insertAnchor = activeStop >= 0 && activeStop < list.length ? list[activeStop] : endEntry;
+            if (!insertAnchor) return null;
+            indentDelta = 1;
+        }
+
+        var desired = list.slice(0);
+        var moving = desired.splice(group.startIndex, group.entries.length);
+        var anchorIndex = desired.indexOf(insertAnchor);
+        if (anchorIndex < 0) return null;
+        if (dir === 'prev') anchorIndex++;
+        desired.splice.apply(desired, [anchorIndex, 0].concat(moving));
+        return {
+            dir: dir,
+            frame: frame,
+            context: context,
+            endEntry: endEntry,
+            candidate: candidate,
+            groupEntries: group.entries,
+            indentDelta: indentDelta,
+            sourceBefore: list,
+            sourceAfter: desired
+        };
+    };
+
+    EE.prototype.applyBranchSourceOrderPlan = function(tr, plan) {
+        if (!tr || !plan || !Array.isArray(plan.sourceBefore) || !Array.isArray(plan.sourceAfter)) return false;
+        var before = plan.sourceBefore;
+        var after = plan.sourceAfter;
+        if (before.length !== after.length || !before.length) return false;
+
+        var group = Array.isArray(plan.groupEntries) ? plan.groupEntries : [];
+        var indentDelta = Math.floor(Number(plan.indentDelta || 0));
+        for (var gi = 0; gi < group.length; gi++) {
+            var groupEntry = group[gi];
+            if (!groupEntry || !groupEntry.command) continue;
+            var oldIndent = Math.max(0, Math.floor(Number(groupEntry.command.indent || 0)));
+            groupEntry.command.indent = Math.max(0, oldIndent + indentDelta);
+        }
+
+        var endEntry = plan.executionEntryA || plan.endEntry;
+        var candidate = plan.executionEntryB || plan.candidate;
+        var endOrder = Number(endEntry && endEntry.executionOrder);
+        var candidateOrder = Number(candidate && candidate.executionOrder);
+        if (!isFinite(endOrder)) endOrder = Number(endEntry && endEntry.uid || 0);
+        if (!isFinite(candidateOrder)) candidateOrder = Number(candidate && candidate.uid || 0);
+        if (endEntry && candidate) {
+            endEntry.executionOrder = candidateOrder;
+            candidate.executionOrder = endOrder;
+        }
+
+        var uidSlots = [];
+        var oldUidByEntry = [];
+        for (var i = 0; i < before.length; i++) uidSlots.push(Math.floor(Number(before[i] && before[i].uid || 0)));
+        for (i = 0; i < after.length; i++) oldUidByEntry.push(Math.floor(Number(after[i] && after[i].uid || 0)));
+        var uidMap = Object.create(null);
+        for (i = 0; i < after.length; i++) {
+            var oldUid = oldUidByEntry[i];
+            var newUid = uidSlots[i];
+            if (oldUid > 0 && newUid > 0) uidMap[String(oldUid)] = newUid;
+        }
+        for (i = 0; i < after.length; i++) after[i].uid = uidSlots[i];
+        if (typeof this.remapCommandUidReferences === 'function') this.remapCommandUidReferences(uidMap);
+        SH.sortTrackCommands(tr);
+        return true;
+    };
+
+    EE.prototype.applyBranchEndBoundaryMovePlan = function(tr, plan) {
+        return this.applyBranchSourceOrderPlan(tr, plan);
+    };
+
+    EE.prototype.repairTemporalBranchNesting = function(tr) {
+        if (!tr || !Array.isArray(tr.commands) || !tr.commands.length || this._repairingTemporalBranchNesting) return false;
+        if (typeof this.branchFrameInsertionPlacement !== 'function') return false;
+        this._repairingTemporalBranchNesting = true;
+        var changed = false;
+        try {
+            var maxPasses = Math.max(1, tr.commands.length);
+            for (var pass = 0; pass < maxPasses; pass++) {
+                var boundaryInfo = this.branchBoundaryDisplayInfoForTrack(tr);
+                var contexts = Array.isArray(boundaryInfo.contexts) ? boundaryInfo.contexts : [];
+                var repaired = false;
+                for (var i = 0; i < contexts.length; i++) {
+                    var child = contexts[i];
+                    if (!child || !child.ownerEntry || !child.endEntry) continue;
+                    var childFrame = Math.max(0, Math.floor(Number(child.ownerEntry.frame || 0)));
+                    var placement = this.branchFrameInsertionPlacement(childFrame, tr);
+                    if (!placement || Number(placement.branchOwnerUid || 0) === Number(child.ownerEntry.uid || 0)) continue;
+                    var parent = boundaryInfo.startByUid[String(Math.floor(Number(placement.branchOwnerUid || 0)))];
+                    if (!parent) continue;
+                    var source = SH.commandsInSourceOrder(tr);
+                    var group = this.branchSourceGroupForEntry(tr, source, child.ownerEntry);
+                    if (!group || !group.entries.length) continue;
+                    var parentStartIndex = Math.floor(Number(parent.sourceOwnerIndex == null ? -1 : parent.sourceOwnerIndex));
+                    var parentEndIndex = Math.floor(Number(parent.sourceEndIndex == null ? -1 : parent.sourceEndIndex));
+                    var outsideBeforeParent = group.endIndex < parentStartIndex;
+                    var outsideAfterParent = group.startIndex > parentEndIndex;
+                    if (!outsideBeforeParent && !outsideAfterParent) continue;
+                    var anchorUid = this.branchSourceInsertionAnchorUid(tr, placement);
+                    var anchorIndex = SH.findEntryIndexByUid(source, anchorUid);
+                    if (anchorIndex < 0 || (anchorIndex >= group.startIndex && anchorIndex <= group.endIndex)) continue;
+
+                    var sourceAfter = source.slice(0);
+                    var moving = sourceAfter.splice(group.startIndex, group.entries.length);
+                    var anchorEntry = source[anchorIndex];
+                    var targetIndex = sourceAfter.indexOf(anchorEntry);
+                    if (targetIndex < 0) continue;
+                    sourceAfter.splice.apply(sourceAfter, [targetIndex, 0].concat(moving));
+                    var childIndent = Math.max(0, Math.floor(Number(child.indent || 0)));
+                    if (!this.applyBranchSourceOrderPlan(tr, {
+                        sourceBefore: source,
+                        sourceAfter: sourceAfter,
+                        groupEntries: group.entries,
+                        indentDelta: Math.floor(Number(placement.branchInsertIndent || 0)) - childIndent
+                    })) continue;
+                    changed = true;
+                    repaired = true;
+                    break;
+                }
+                if (!repaired) break;
+            }
+        } finally {
+            this._repairingTemporalBranchNesting = false;
+        }
+        if (changed && typeof this.normalizeChoiceBranchStructuresForTrack === 'function') {
+            this.normalizeChoiceBranchStructuresForTrack(tr);
+        }
+        return changed;
+    };
+
     EE.prototype.captureChoiceBranchStructure = function(tr, choiceEntry) {
         if (!tr || !Array.isArray(tr.commands) || !choiceEntry || !choiceEntry.command ||
             Number(choiceEntry.command.code || 0) !== 102) return null;
@@ -388,10 +1061,18 @@
         if (remove[String(Math.floor(Number(this.editUid || 0)))]) this.editUid = fallbackUid;
     };
 
-    EE.prototype.createChoiceStructureEntryBefore = function(tr, anchorEntry, choiceEntry, command) {
+    EE.prototype.createChoiceStructureEntryBefore = function(tr, anchorEntry, choiceEntry, command, options) {
         if (!tr || !Array.isArray(tr.commands) || !choiceEntry || !anchorEntry) return null;
-        var uid = this.reserveUidBeforeAnchor(tr, Math.floor(Number(anchorEntry.uid || 0)));
-        var frame = Math.max(0, Math.floor(Number(anchorEntry.frame || choiceEntry.frame || 0)));
+        options = options || {};
+        var uid = this.reserveUidBetween(
+            tr,
+            Math.floor(Number(choiceEntry.uid || 0)),
+            Math.floor(Number(anchorEntry.uid || 0))
+        );
+        var frameSource = options.frame == null
+            ? (anchorEntry.frame == null ? choiceEntry.frame : anchorEntry.frame)
+            : options.frame;
+        var frame = Math.max(0, Math.floor(Number(frameSource || 0)));
         var e = this.entryFromCommand(
             clone(command),
             Number(choiceEntry.eventId || 0),
@@ -407,13 +1088,11 @@
 
     EE.prototype.createChoiceStructureEndEntry = function(tr, choiceEntry, command) {
         if (!tr || !Array.isArray(tr.commands) || !choiceEntry) return null;
-        SH.sortTrackCommands(tr);
-        var choiceIndex = this.ifBranchFindEntryIndexByUid(tr.commands, Math.floor(Number(choiceEntry.uid || 0)));
-        var next = (choiceIndex >= 0 && choiceIndex + 1 < tr.commands.length) ? tr.commands[choiceIndex + 1] : null;
+        var source = SH.commandsInSourceOrder(tr);
+        var choiceIndex = this.ifBranchFindEntryIndexByUid(source, Math.floor(Number(choiceEntry.uid || 0)));
+        var next = (choiceIndex >= 0 && choiceIndex + 1 < source.length) ? source[choiceIndex + 1] : null;
         var frame = Math.max(0, Math.floor(Number(choiceEntry.frame || 0)));
-        if (next && Math.max(0, Math.floor(Number(next.frame || 0))) === frame) {
-            return this.createChoiceStructureEntryBefore(tr, next, choiceEntry, command);
-        }
+        if (next) return this.createChoiceStructureEntryBefore(tr, next, choiceEntry, command, { frame: frame });
         var uid = Math.max(1, Math.floor(Number(this.model.nextUid || 1)));
         this.model.nextUid = uid + 1;
         var e = this.entryFromCommand(
@@ -551,31 +1230,49 @@
                 if (updatedEnd > newMergeFrame) newMergeFrame = updatedEnd;
             }
         }
-        var mergeDelta = newMergeFrame - oldMergeFrame;
-        endEntry.frame = newMergeFrame;
+        var newBoundaryFrame = Math.max(newMergeFrame, Math.max(0, Math.floor(Number(endEntry.frame || 0))));
+        var mergeDelta = newBoundaryFrame - oldMergeFrame;
+        endEntry.frame = newBoundaryFrame;
         if (mergeDelta) {
             var sourceAfter = SH.commandsInSourceOrder(tr);
             var endSourceIndex = SH.findEntryIndexByUid(sourceAfter, endEntry.uid);
-            var pathHasPrefix = function(path, prefix) {
-                path = Array.isArray(path) ? path : [];
-                prefix = Array.isArray(prefix) ? prefix : [];
-                if (path.length < prefix.length) return false;
-                for (var pi = 0; pi < prefix.length; pi++) {
-                    var a = path[pi] || {};
-                    var b = prefix[pi] || {};
-                    if (a.type !== b.type || Number(a.ownerUid || 0) !== Number(b.ownerUid || 0) ||
-                        Number(a.value) !== Number(b.value)) return false;
-                }
-                return true;
-            };
             for (var sai = endSourceIndex + 1; sai < sourceAfter.length; sai++) {
                 var afterEntry = sourceAfter[sai];
                 if (!afterEntry) continue;
                 var afterPath = oldBranchPathMap[String(Math.floor(Number(afterEntry.uid || 0)))] || [];
-                if (!pathHasPrefix(afterPath, choiceParentPath)) continue;
+                if (!this.branchExecutionPathHasPrefix(afterPath, choiceParentPath)) continue;
                 afterEntry.frame = Math.max(0, Math.floor(Number(afterEntry.frame || 0)) + mergeDelta);
             }
         }
+        SH.sortTrackCommands(tr);
+        return true;
+    };
+
+    EE.prototype.removeOrphanChoiceBranchMarkers = function(tr) {
+        if (!tr || !Array.isArray(tr.commands) || !tr.commands.length) return false;
+        var info = this.computeChoiceBranchDisplayInfoForTrack(tr);
+        var blocks = Array.isArray(info.blocks) ? info.blocks : [];
+        var attached = Object.create(null);
+        for (var i = 0; i < blocks.length; i++) {
+            var branches = Array.isArray(blocks[i] && blocks[i].branches) ? blocks[i].branches : [];
+            for (var bi = 0; bi < branches.length; bi++) {
+                var branch = branches[bi];
+                var markerIndex = branch && branch.markerIndex != null
+                    ? Math.floor(Number(branch.markerIndex))
+                    : -1;
+                var marker = markerIndex >= 0 && markerIndex < info.list.length ? info.list[markerIndex] : null;
+                var markerUid = Math.floor(Number(marker && marker.uid || 0));
+                if (markerUid > 0) attached[String(markerUid)] = true;
+            }
+        }
+        var orphaned = tr.commands.filter(function(entry) {
+            var code = Math.floor(Number(entry && entry.command && entry.command.code || 0));
+            var uid = Math.floor(Number(entry && entry.uid || 0));
+            return (code === COMMAND_CODE.CHOICE_BRANCH || code === COMMAND_CODE.CHOICE_CANCEL) &&
+                uid > 0 && !attached[String(uid)];
+        });
+        if (!orphaned.length) return false;
+        this.removeChoiceBranchEntries(tr, orphaned, 0);
         SH.sortTrackCommands(tr);
         return true;
     };
@@ -590,6 +1287,7 @@
         for (var i = choices.length - 1; i >= 0; i--) {
             if (this.synchronizeChoiceBranchStructure(tr, choices[i])) changed = true;
         }
+        if (this.removeOrphanChoiceBranchMarkers(tr)) changed = true;
         return changed;
     };
 
@@ -811,7 +1509,9 @@
             }
 
             if (code === 412) {
-                if (uid > 0) out.hidden[uidKey] = true;
+                // The end marker is a visible Main-lane boundary. Hide it only
+                // when an enclosing branch is not the active display path.
+                if (!parentVisible && uid > 0) out.hidden[uidKey] = true;
                 for (var cs = stack.length - 1; cs >= 0; cs--) {
                     if (Math.max(0, Math.floor(Number(stack[cs].indent || 0))) >= indent) stack.splice(cs, 1);
                 }
@@ -922,7 +1622,9 @@
             }
 
             if (code === 404) {
-                if (uid > 0) hidden[String(uid)] = true;
+                // Choice-end is rendered as the explicit end boundary. An end
+                // nested in an inactive parent branch remains hidden.
+                if (!parentVisible && uid > 0) hidden[String(uid)] = true;
                 for (var cs = stack.length - 1; cs >= 0; cs--) {
                     if (Math.max(0, Math.floor(Number(stack[cs].indent || 0))) >= indent) stack.splice(cs, 1);
                 }

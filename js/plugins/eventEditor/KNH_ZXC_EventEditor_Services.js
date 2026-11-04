@@ -41,6 +41,48 @@
                 String(now()) + '-' + String(Math.floor(random() * 1000000)) + '.tmp';
         }
 
+        function isReplaceBlockedError(error) {
+            var code = String(error && error.code || '');
+            return code === 'EPERM' || code === 'EACCES' || code === 'EBUSY' ||
+                code === 'EEXIST' || code === 'ENOTEMPTY';
+        }
+
+        function waitForReplaceRetry(milliseconds) {
+            var until = Date.now() + Math.max(0, Math.floor(Number(milliseconds || 0)));
+            while (Date.now() < until) {}
+        }
+
+        function replaceTempFile(tempPath, filePath, text) {
+            var renameError = null;
+            for (var attempt = 0; attempt < 3; attempt++) {
+                try {
+                    fs.renameSync(tempPath, filePath);
+                    return true;
+                } catch (error) {
+                    if (!isReplaceBlockedError(error)) throw error;
+                    renameError = error;
+                    if (attempt < 2) waitForReplaceRetry((attempt + 1) * 8);
+                }
+            }
+            try {
+                if (typeof fs.copyFileSync === 'function') {
+                    fs.copyFileSync(tempPath, filePath);
+                } else {
+                    fs.writeFileSync(filePath, String(text == null ? '' : text), { encoding: 'utf8' });
+                }
+            } catch (copyError) {
+                try {
+                    fs.writeFileSync(filePath, String(text == null ? '' : text), { encoding: 'utf8' });
+                } catch (writeError) {
+                    writeError.atomicRenameError = renameError;
+                    writeError.atomicCopyError = copyError;
+                    throw writeError;
+                }
+            }
+            try { if (fs.existsSync(tempPath)) fs.unlinkSync(tempPath); } catch (_) {}
+            return true;
+        }
+
         function writeTextAtomic(filePath, text) {
             ensureParent(filePath);
             var tempPath = tempPathFor(filePath);
@@ -50,7 +92,7 @@
                     encoding: 'utf8',
                     flag: 'wx'
                 });
-                fs.renameSync(tempPath, filePath);
+                replaceTempFile(tempPath, filePath, text);
                 committed = true;
             } finally {
                 if (!committed) {

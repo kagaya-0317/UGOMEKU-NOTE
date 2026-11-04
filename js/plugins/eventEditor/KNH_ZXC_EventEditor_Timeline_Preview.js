@@ -2484,6 +2484,10 @@
             if (tr.commands[i].uid === uid) { e = tr.commands[i]; break; }
         }
         if (!e) return;
+        if (this.isBranchEndEntry && this.isBranchEndEntry(e)) {
+            this.msg('分岐終了○は上下ボタンで調整します');
+            return;
+        }
         this.editUid = uid;
         this.editRouteListIndex = -1;
         this.editSchema = null;
@@ -3971,6 +3975,15 @@
         }
     };
 
+    EE.prototype.discardRecoverySnapshot = function() {
+        if (!this.clearRecoverySnapshot()) {
+            this._recoverySnapshotDecision = 'declined';
+            return false;
+        }
+        this._recoverySnapshotDecision = 'discarded';
+        return true;
+    };
+
     EE.prototype.applyRecoverySnapshot = function(recovery) {
         if (!recovery || !recovery.model || !recovery.model.tracks) throw new Error('invalid recovery model');
         this.model = clone(recovery.model);
@@ -4000,6 +4013,12 @@
         this.selUid = Number(selection.uid || 0);
         this.selRouteListIndex = Number(selection.routeListIndex == null ? -1 : selection.routeListIndex);
         this.frame = Math.max(0, Math.floor(Number(selection.frame || 0)));
+        if (typeof this.repairTemporalBranchNesting === 'function') {
+            var trackKeys = Object.keys(this.model.tracks);
+            for (var ti = 0; ti < trackKeys.length; ti++) {
+                this.repairTemporalBranchNesting(this.model.tracks[trackKeys[ti]]);
+            }
+        }
         this._scheduleEntriesByTrack = null;
         this._trackRevisionByKey = {};
         this.rebuildSchedule({ skipRouteNormalize: true });
@@ -4036,7 +4055,7 @@
                         return false;
                     }
                 },
-                onCancel: function() { self._recoverySnapshotDecision = 'declined'; }
+                onCancel: function() { self.discardRecoverySnapshot(); }
             });
             return true;
         } catch (e2) {

@@ -1,9 +1,9 @@
 {
-  "startMode": "test",
-  "startModeTestSave": "モンスター城 罠1",
+  "startMode": "new",
+  "startModeTestSave": "コルク村 到着",
   "startModeYuraA": 6,
   "startModeYuraB": 5,
-  "editEventMode": true,
+  "editEventMode": false,
   "language": 0,
   "recordMode": 0,
   "firstMembers": [
@@ -13,10 +13,10 @@
     false
   ],
   "tileC": false,
-  "testAuto": false,
+  "testAuto": true,
   "testAutoQuality": 10,
   "battleSim": false,
-  "testInitDifficulty": 0,
+  "testInitDifficulty": 7,
   "skillTest": 0,
   "enemySkillTest": 0
 }

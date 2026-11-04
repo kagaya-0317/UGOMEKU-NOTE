@@ -4024,6 +4024,7 @@ const _createOutlineFilter = function(w, h, bw, ww) {
             this._live2d = null, this._forceFrame = null, this._collapsePhase = null;
             this._animationType = 0, this._animationIndex = 0;
             this._animationFrames = 1, this._animationLoop = true;
+            this._animationFrameCells = null;
             this._animationWait = 0, this._animationDuration = 0, this._animationCount = 0;
             this.getAnimationType = Sprite_NewEnemy.prototype.getAnimationType;
             this._needEnemyAnimInit = true;
