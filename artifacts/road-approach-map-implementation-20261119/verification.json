@@ -1,0 +1,102 @@
+{
+  "beforeBossGate": true,
+  "hallToApproach": {
+    "map": 63,
+    "xy": [
+      5.5,
+      27
+    ],
+    "through": false,
+    "progress": 2,
+    "followers": true
+  },
+  "deadEndBranchWalked": true,
+  "middleWallBlockedAt": [
+    6.5,
+    17
+  ],
+  "approachToRoad": {
+    "map": 55,
+    "xy": [
+      1.5,
+      23.5
+    ],
+    "through": false,
+    "progress": 2,
+    "followers": true
+  },
+  "roadToApproach": {
+    "map": 63,
+    "xy": [
+      18.5,
+      10.5
+    ],
+    "through": false,
+    "progress": 2,
+    "followers": true
+  },
+  "approachToHall": {
+    "map": 54,
+    "xy": [
+      10,
+      9.5
+    ],
+    "through": false,
+    "progress": 2,
+    "followers": true
+  },
+  "secondEntry": {
+    "map": 63,
+    "xy": [
+      5.5,
+      27
+    ],
+    "through": false,
+    "progress": 2,
+    "followers": true
+  },
+  "nativeSaveLoad": {
+    "slot": 301,
+    "map": 63,
+    "walkingAfterLoad": true
+  },
+  "oldSaveReload": [
+    {
+      "mapId": 54,
+      "eventId": 7,
+      "reloaded": true
+    },
+    {
+      "mapId": 55,
+      "eventId": 11,
+      "reloaded": true
+    }
+  ],
+  "savedMapScreenshot": true,
+  "newMapEventPositions": [
+    {
+      "id": 1,
+      "saved": [
+        5,
+        28
+      ],
+      "loaded": [
+        5.5,
+        28.5
+      ]
+    },
+    {
+      "id": 2,
+      "saved": [
+        20,
+        10
+      ],
+      "loaded": [
+        20,
+        10.5
+      ]
+    }
+  ],
+  "nativeEntranceEdgeCases": 8,
+  "visualReview": "Native game screenshots reviewed: approach artwork, party, branch, and original road entrance floor"
+}

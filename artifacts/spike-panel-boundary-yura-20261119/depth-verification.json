@@ -1,0 +1,67 @@
+{
+  "unchanged": [
+    "data/Map061.json",
+    "data/Map050.json",
+    "data/CommonEvents.json",
+    "js/plugins/KNH_ZXC_Gimmick_SpikeFloor.js",
+    "js/plugins/KNH_ZXC_Setting.js",
+    "js/plugins/KNH_ZXC_System.js",
+    "img/characters/$trap.png",
+    "img/parallaxes/!map114_room.png"
+  ],
+  "stages": {
+    "entry": {
+      "renderedFrames": 134,
+      "invalidComparisons": 0,
+      "wrongOrders": 0,
+      "visibleSpritesPerActor": 1
+    },
+    "idle": {
+      "renderedFrames": 124,
+      "invalidComparisons": 0,
+      "wrongOrders": 0,
+      "visibleSpritesPerActor": 1
+    },
+    "walking": {
+      "renderedFrames": 80,
+      "invalidComparisons": 0,
+      "wrongOrders": 0,
+      "visibleSpritesPerActor": 1
+    },
+    "active-reentry": {
+      "renderedFrames": 32,
+      "invalidComparisons": 0,
+      "wrongOrders": 0,
+      "visibleSpritesPerActor": 1
+    },
+    "completed-reentry": {
+      "renderedFrames": 36,
+      "invalidComparisons": 0,
+      "wrongOrders": 0,
+      "visibleSpritesPerActor": 1
+    }
+  },
+  "idleOrder": [
+    2,
+    3,
+    4
+  ],
+  "firstFloor": {
+    "xy": [
+      30.5,
+      25
+    ],
+    "sprite": [
+      338,
+      1237,
+      1
+    ],
+    "expected": [
+      338,
+      1237,
+      1
+    ],
+    "visible": true,
+    "mesh": true
+  }
+}

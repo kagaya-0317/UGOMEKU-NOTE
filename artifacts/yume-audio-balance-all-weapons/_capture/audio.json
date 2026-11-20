@@ -1,0 +1,506 @@
+[
+  {
+    "frame": 40,
+    "name": "Machine",
+    "volume": 8,
+    "pitch": 102,
+    "loop": false,
+    "kind": "movement",
+    "stopFrame": 59
+  },
+  {
+    "frame": 62,
+    "name": "00_shot1",
+    "volume": 24,
+    "pitch": 106,
+    "loop": false,
+    "kind": "weapon",
+    "stopFrame": 131
+  },
+  {
+    "frame": 68,
+    "name": "Blow1",
+    "volume": 14,
+    "pitch": 112,
+    "loop": false,
+    "kind": "weapon",
+    "stopFrame": 84
+  },
+  {
+    "frame": 75,
+    "name": "Machine",
+    "volume": 8,
+    "pitch": 101,
+    "loop": false,
+    "kind": "movement",
+    "stopFrame": 100
+  },
+  {
+    "frame": 100,
+    "name": "Machine",
+    "volume": 8,
+    "pitch": 102,
+    "loop": false,
+    "kind": "movement",
+    "stopFrame": 119
+  },
+  {
+    "frame": 122,
+    "name": "00_shot1",
+    "volume": 26,
+    "pitch": 96,
+    "loop": false,
+    "kind": "weapon",
+    "stopFrame": 205
+  },
+  {
+    "frame": 128,
+    "name": "Blow1",
+    "volume": 15,
+    "pitch": 104,
+    "loop": false,
+    "kind": "weapon",
+    "stopFrame": 147
+  },
+  {
+    "frame": 135,
+    "name": "Machine",
+    "volume": 8,
+    "pitch": 98,
+    "loop": false,
+    "kind": "movement",
+    "stopFrame": 165
+  },
+  {
+    "frame": 200,
+    "name": "Machine",
+    "volume": 8,
+    "pitch": 98,
+    "loop": false,
+    "kind": "movement",
+    "stopFrame": 235
+  },
+  {
+    "frame": 270,
+    "name": "Explosion2",
+    "volume": 30,
+    "pitch": 92,
+    "loop": false,
+    "kind": "weapon",
+    "stopFrame": 387
+  },
+  {
+    "frame": 307,
+    "name": "Explosion1",
+    "volume": 30,
+    "pitch": 88,
+    "loop": false,
+    "kind": "weapon",
+    "stopFrame": 416
+  },
+  {
+    "frame": 341,
+    "name": "Machine",
+    "volume": 8,
+    "pitch": 104,
+    "loop": false,
+    "kind": "movement",
+    "stopFrame": 377
+  },
+  {
+    "frame": 420,
+    "name": "Equip1",
+    "volume": 18,
+    "pitch": 88,
+    "loop": false,
+    "kind": "movement",
+    "stopFrame": 444
+  },
+  {
+    "frame": 457,
+    "name": "Magic1",
+    "volume": 18,
+    "pitch": 90,
+    "loop": false,
+    "kind": "weapon",
+    "stopFrame": 492
+  },
+  {
+    "frame": 492,
+    "name": "YumeChargeHold",
+    "volume": 12,
+    "pitch": 100,
+    "loop": true,
+    "kind": "weapon",
+    "stopFrame": 577
+  },
+  {
+    "frame": 577,
+    "name": "Shot2",
+    "volume": 26,
+    "pitch": 88,
+    "loop": false,
+    "kind": "weapon",
+    "stopFrame": 601
+  },
+  {
+    "frame": 594,
+    "name": "Thunder3",
+    "volume": 18,
+    "pitch": 112,
+    "loop": false,
+    "kind": "weapon",
+    "stopFrame": 611
+  },
+  {
+    "frame": 614,
+    "name": "Equip1",
+    "volume": 18,
+    "pitch": 88,
+    "loop": false,
+    "kind": "movement",
+    "stopFrame": 633
+  },
+  {
+    "frame": 760,
+    "name": "Machine",
+    "volume": 8,
+    "pitch": 99,
+    "loop": false,
+    "kind": "movement",
+    "stopFrame": 766
+  },
+  {
+    "frame": 766,
+    "name": "Machine",
+    "volume": 8,
+    "pitch": 100,
+    "loop": false,
+    "kind": "movement",
+    "stopFrame": 772
+  },
+  {
+    "frame": 772,
+    "name": "Machine",
+    "volume": 8,
+    "pitch": 96,
+    "loop": false,
+    "kind": "movement",
+    "stopFrame": 778
+  },
+  {
+    "frame": 778,
+    "name": "Equip1",
+    "volume": 18,
+    "pitch": 88,
+    "loop": false,
+    "kind": "movement",
+    "stopFrame": 784
+  },
+  {
+    "frame": 784,
+    "name": "Equip1",
+    "volume": 18,
+    "pitch": 90,
+    "loop": false,
+    "kind": "movement",
+    "stopFrame": 790
+  },
+  {
+    "frame": 790,
+    "name": "Equip1",
+    "volume": 18,
+    "pitch": 84,
+    "loop": false,
+    "kind": "movement",
+    "stopFrame": 796
+  },
+  {
+    "frame": 796,
+    "name": "Equip1",
+    "volume": 18,
+    "pitch": 88,
+    "loop": false,
+    "kind": "movement",
+    "stopFrame": 808
+  },
+  {
+    "frame": 797,
+    "name": "00_drill",
+    "volume": 42,
+    "pitch": 96,
+    "loop": false,
+    "kind": "weapon",
+    "stopFrame": 856
+  },
+  {
+    "frame": 804,
+    "name": "00_shot1",
+    "volume": 12,
+    "pitch": 96,
+    "loop": false,
+    "kind": "weapon",
+    "stopFrame": 837
+  },
+  {
+    "frame": 809,
+    "name": "Fire2",
+    "volume": 16,
+    "pitch": 96,
+    "loop": false,
+    "kind": "weapon",
+    "stopFrame": 846
+  },
+  {
+    "frame": 810,
+    "name": "00_shot1",
+    "volume": 12,
+    "pitch": 98,
+    "loop": false,
+    "kind": "weapon",
+    "stopFrame": 847
+  },
+  {
+    "frame": 815,
+    "name": "Magic1",
+    "volume": 18,
+    "pitch": 90,
+    "loop": false,
+    "kind": "weapon",
+    "stopFrame": 846
+  },
+  {
+    "frame": 816,
+    "name": "00_shot1",
+    "volume": 12,
+    "pitch": 94,
+    "loop": false,
+    "kind": "weapon",
+    "stopFrame": 858
+  },
+  {
+    "frame": 822,
+    "name": "00_shot1",
+    "volume": 12,
+    "pitch": 96,
+    "loop": false,
+    "kind": "weapon",
+    "stopFrame": 863
+  },
+  {
+    "frame": 826,
+    "name": "00_shot1",
+    "volume": 9,
+    "pitch": 106,
+    "loop": false,
+    "kind": "weapon",
+    "stopFrame": 864
+  },
+  {
+    "frame": 828,
+    "name": "00_shot1",
+    "volume": 12,
+    "pitch": 98,
+    "loop": false,
+    "kind": "weapon",
+    "stopFrame": 870
+  },
+  {
+    "frame": 830,
+    "name": "Explosion2",
+    "volume": 30,
+    "pitch": 92,
+    "loop": false,
+    "kind": "weapon",
+    "stopFrame": 888
+  },
+  {
+    "frame": 832,
+    "name": "00_shot1",
+    "volume": 9,
+    "pitch": 108,
+    "loop": false,
+    "kind": "weapon",
+    "stopFrame": 870
+  },
+  {
+    "frame": 838,
+    "name": "00_shot1",
+    "volume": 9,
+    "pitch": 104,
+    "loop": false,
+    "kind": "weapon",
+    "stopFrame": 878
+  },
+  {
+    "frame": 839,
+    "name": "Equip1",
+    "volume": 18,
+    "pitch": 90,
+    "loop": false,
+    "kind": "movement",
+    "stopFrame": 851
+  },
+  {
+    "frame": 844,
+    "name": "00_shot1",
+    "volume": 9,
+    "pitch": 106,
+    "loop": false,
+    "kind": "weapon",
+    "stopFrame": 884
+  },
+  {
+    "frame": 846,
+    "name": "Launch",
+    "volume": 18,
+    "pitch": 108,
+    "loop": false,
+    "kind": "weapon",
+    "stopFrame": 944
+  },
+  {
+    "frame": 850,
+    "name": "YumeChargeHold",
+    "volume": 12,
+    "pitch": 100,
+    "loop": true,
+    "kind": "weapon",
+    "stopFrame": 935
+  },
+  {
+    "frame": 850,
+    "name": "00_shot1",
+    "volume": 9,
+    "pitch": 108,
+    "loop": false,
+    "kind": "weapon",
+    "stopFrame": 888
+  },
+  {
+    "frame": 856,
+    "name": "00_shot1",
+    "volume": 9,
+    "pitch": 104,
+    "loop": false,
+    "kind": "weapon",
+    "stopFrame": 895
+  },
+  {
+    "frame": 862,
+    "name": "00_shot1",
+    "volume": 9,
+    "pitch": 106,
+    "loop": false,
+    "kind": "weapon",
+    "stopFrame": 899
+  },
+  {
+    "frame": 863,
+    "name": "Machine",
+    "volume": 8,
+    "pitch": 97,
+    "loop": false,
+    "kind": "movement",
+    "stopFrame": 881
+  },
+  {
+    "frame": 866,
+    "name": "Explosion1",
+    "volume": 30,
+    "pitch": 88,
+    "loop": false,
+    "kind": "weapon",
+    "stopFrame": 924
+  },
+  {
+    "frame": 868,
+    "name": "00_shot1",
+    "volume": 9,
+    "pitch": 108,
+    "loop": false,
+    "kind": "weapon",
+    "stopFrame": 905
+  },
+  {
+    "frame": 874,
+    "name": "00_shot1",
+    "volume": 9,
+    "pitch": 104,
+    "loop": false,
+    "kind": "weapon",
+    "stopFrame": 918
+  },
+  {
+    "frame": 881,
+    "name": "Machine",
+    "volume": 8,
+    "pitch": 96,
+    "loop": false,
+    "kind": "movement",
+    "stopFrame": 885
+  },
+  {
+    "frame": 885,
+    "name": "Equip1",
+    "volume": 18,
+    "pitch": 84,
+    "loop": false,
+    "kind": "movement",
+    "stopFrame": 898
+  },
+  {
+    "frame": 901,
+    "name": "Machine",
+    "volume": 8,
+    "pitch": 103,
+    "loop": false,
+    "kind": "movement",
+    "stopFrame": 928
+  },
+  {
+    "frame": 922,
+    "name": "Explosion1",
+    "volume": 24,
+    "pitch": 108,
+    "loop": false,
+    "kind": "weapon",
+    "stopFrame": 989
+  },
+  {
+    "frame": 928,
+    "name": "Equip1",
+    "volume": 18,
+    "pitch": 88,
+    "loop": false,
+    "kind": "movement",
+    "stopFrame": 949
+  },
+  {
+    "frame": 935,
+    "name": "Shot2",
+    "volume": 26,
+    "pitch": 88,
+    "loop": false,
+    "kind": "weapon",
+    "stopFrame": 960
+  },
+  {
+    "frame": 952,
+    "name": "Thunder3",
+    "volume": 18,
+    "pitch": 112,
+    "loop": false,
+    "kind": "weapon",
+    "stopFrame": 983
+  },
+  {
+    "frame": 972,
+    "name": "Equip1",
+    "volume": 18,
+    "pitch": 88,
+    "loop": false,
+    "kind": "movement",
+    "stopFrame": 993
+  }
+]

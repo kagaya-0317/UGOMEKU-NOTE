@@ -1,0 +1,36 @@
+{
+  "onlyTrapOutlineBlockRemoved": true,
+  "protectedFilesUnchanged": [
+    "data/Map061.json",
+    "data/Map050.json",
+    "data/CommonEvents.json",
+    "js/plugins/KNH_ZXC_Gimmick_SpikeFloor.js",
+    "img/characters/$trap.png",
+    "img/parallaxes/!map114_room.png"
+  ],
+  "hatching": {
+    "sourceDifferences": 0,
+    "comparedSourceChannels": 261888,
+    "downLeftDifference": 1630976,
+    "downRightDifference": 5753312,
+    "identicalFloorMaterial": true,
+    "poses": [
+      {
+        "cell": 3,
+        "changedOutsideSpikes": 0,
+        "changedInsideSpikes": 98990
+      },
+      {
+        "cell": 4,
+        "changedOutsideSpikes": 0,
+        "changedInsideSpikes": 75421
+      },
+      {
+        "cell": 5,
+        "changedOutsideSpikes": 0,
+        "changedInsideSpikes": 48183
+      }
+    ]
+  },
+  "body": ".WebGL mode."
+}

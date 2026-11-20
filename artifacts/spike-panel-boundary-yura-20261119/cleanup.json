@@ -1,0 +1,83 @@
+{
+    "TemporaryPngCount":  13,
+    "TemporaryPngBytes":  4852461,
+    "EarlierCompletedCapturePngBytes":  1152379791,
+    "TotalPngBytes":  1157232252,
+    "RawVideoCount":  1,
+    "RawVideoBytes":  23325015,
+    "FinalVideoPath":  "C:\\Users\\kgygn\\Dropbox\\ゲーム\\Game_NewGame\\NewGame\\artifacts\\spike-panel-boundary-yura-20261119\\spike_panel_puzzle.mp4",
+    "FinalVideoBytes":  60965080,
+    "FinalScreenshotRetained":  true,
+    "Deleted":  [
+                    {
+                        "Path":  "C:\\Users\\kgygn\\Dropbox\\ゲーム\\Game_NewGame\\NewGame\\artifacts\\spike-panel-boundary-yura-20261119\\_video_work\\check-00.png",
+                        "Bytes":  199649,
+                        "Kind":  "temporary PNG"
+                    },
+                    {
+                        "Path":  "C:\\Users\\kgygn\\Dropbox\\ゲーム\\Game_NewGame\\NewGame\\artifacts\\spike-panel-boundary-yura-20261119\\_video_work\\check-01.png",
+                        "Bytes":  199332,
+                        "Kind":  "temporary PNG"
+                    },
+                    {
+                        "Path":  "C:\\Users\\kgygn\\Dropbox\\ゲーム\\Game_NewGame\\NewGame\\artifacts\\spike-panel-boundary-yura-20261119\\_video_work\\check-02.png",
+                        "Bytes":  192974,
+                        "Kind":  "temporary PNG"
+                    },
+                    {
+                        "Path":  "C:\\Users\\kgygn\\Dropbox\\ゲーム\\Game_NewGame\\NewGame\\artifacts\\spike-panel-boundary-yura-20261119\\_video_work\\check-03.png",
+                        "Bytes":  190101,
+                        "Kind":  "temporary PNG"
+                    },
+                    {
+                        "Path":  "C:\\Users\\kgygn\\Dropbox\\ゲーム\\Game_NewGame\\NewGame\\artifacts\\spike-panel-boundary-yura-20261119\\_video_work\\check-04.png",
+                        "Bytes":  198217,
+                        "Kind":  "temporary PNG"
+                    },
+                    {
+                        "Path":  "C:\\Users\\kgygn\\Dropbox\\ゲーム\\Game_NewGame\\NewGame\\artifacts\\spike-panel-boundary-yura-20261119\\_video_work\\check-05.png",
+                        "Bytes":  196927,
+                        "Kind":  "temporary PNG"
+                    },
+                    {
+                        "Path":  "C:\\Users\\kgygn\\Dropbox\\ゲーム\\Game_NewGame\\NewGame\\artifacts\\spike-panel-boundary-yura-20261119\\_video_work\\check-06.png",
+                        "Bytes":  207979,
+                        "Kind":  "temporary PNG"
+                    },
+                    {
+                        "Path":  "C:\\Users\\kgygn\\Dropbox\\ゲーム\\Game_NewGame\\NewGame\\artifacts\\spike-panel-boundary-yura-20261119\\_video_work\\check-07.png",
+                        "Bytes":  180504,
+                        "Kind":  "temporary PNG"
+                    },
+                    {
+                        "Path":  "C:\\Users\\kgygn\\Dropbox\\ゲーム\\Game_NewGame\\NewGame\\artifacts\\spike-panel-boundary-yura-20261119\\_video_work\\contact-sheet.png",
+                        "Bytes":  1751878,
+                        "Kind":  "temporary PNG"
+                    },
+                    {
+                        "Path":  "C:\\Users\\kgygn\\Dropbox\\ゲーム\\Game_NewGame\\NewGame\\artifacts\\spike-panel-boundary-yura-20261119\\_work\\before-motion.png",
+                        "Bytes":  269436,
+                        "Kind":  "temporary PNG"
+                    },
+                    {
+                        "Path":  "C:\\Users\\kgygn\\Dropbox\\ゲーム\\Game_NewGame\\NewGame\\artifacts\\spike-panel-boundary-yura-20261119\\_work\\after-motion.png",
+                        "Bytes":  352380,
+                        "Kind":  "temporary PNG"
+                    },
+                    {
+                        "Path":  "C:\\Users\\kgygn\\Dropbox\\ゲーム\\Game_NewGame\\NewGame\\artifacts\\spike-panel-boundary-yura-20261119\\_work\\spike-poses.png",
+                        "Bytes":  23753,
+                        "Kind":  "temporary PNG"
+                    },
+                    {
+                        "Path":  "C:\\Users\\kgygn\\Dropbox\\ゲーム\\Game_NewGame\\NewGame\\artifacts\\spike-panel-boundary-yura-20261119\\party-overlap.png",
+                        "Bytes":  889331,
+                        "Kind":  "temporary PNG"
+                    },
+                    {
+                        "Path":  "C:\\Users\\kgygn\\Dropbox\\ゲーム\\Game_NewGame\\NewGame\\artifacts\\spike-panel-boundary-yura-20261119\\_video_work\\spike-panel-puzzle-1795085420601.webm",
+                        "Bytes":  23325015,
+                        "Kind":  "superseded raw video"
+                    }
+                ]
+}

@@ -1,0 +1,10 @@
+{
+  "tool": "built-in image_gen",
+  "reference": "img/characters/$kanbu2.png, top-left standing cell",
+  "runtime": "img/characters/$castleTsunehi_vial_tmp.png",
+  "editable": "../画像/tsunehi_vial_tmp.aseprite",
+  "prompt": "Create ONE alternate standing game sprite of the exact same lanky monster character in the TOP LEFT STANDING CELL of the reference sprite sheet. That top-left cell is the identity reference; ignore all jumping and crouching poses below. Preserve his very long hooked beak/nose, tall angular pointed ears/horns, curled head tuft, narrow buttoned tailcoat with curled trailing tail, long thin legs and oversize curved boots. Full body, FRONT / slight three-quarter view, both boots planted level. NEW POSE: one elbow bent outward and that hand holding a small sealed upright glass potion vial filled with dark liquid at shoulder height, clearly away from his body with a visible gap; the other arm rests at his side. The small bottle is a fantasy potion prop with a round stopper, not a syringe. Neutral firm expression and ordinary standing posture. No needles, no contact with skin, no wounds, no injury or distress, no medical procedure. Match the reference's crude monochrome outlined hand-drawn pixel art: hard angular stepped edges, graphite #474e51 outlines, flat pale white fill, no gradients or soft shading. One character, one pose, REAL TRANSPARENT background, no scene, no caption, no other object. Desired canvas 288x320 pixels; centered at x=144, top of horns around y=40, foot baseline y=310, full body entirely inside with transparent margins. Preserve original body proportions and coat design, and do not output the reference sheet.",
+  "role": "Alternate temporary pose holding a sealed dark potion vial away from the body; no needle or skin contact",
+  "normalization": "Native Aseprite asset workflow, 288x320 fixed cell, 270px standing height, baseline 311, #474e51 ink and white fill, event scale stays 65%",
+  "editableRoundtrip": "Saved Aseprite reopened; its exported PNG matches runtime PNG byte for byte"
+}

@@ -7,6 +7,22 @@
  * @author kagaya
  *
  * @help
+ * Rocket launch: available on events, the player and followers.
+ *   this.character(0).startRocketLaunch({ smokeScale: 1 });
+ *   this.command_startRocketLaunch(0, { smokeScale: 1 }, true);
+ * The interpreter command accepts a character id or a character object.
+ * Its last argument waits until the smoke has completely disappeared.
+ *   character.isRocketLaunching();
+ *   character.clearRocketLaunch(); // Restore the original display/movement.
+ * The launched character stays hidden until cleared or transferred.
+ * Start on a stationary character; false means moving, jumping or already active.
+ * Options (durations are game frames; height/offsets are map pixels):
+ *   shakeFrames:48, flightFrames:96, height:960, smokeScale:1,
+ *   frameWait:10, fadeDelay:12, fadeStep:10, footOffsetX:0, footOffsetY:0
+ * Smoke 2 draws in front and starts fading after smoke 1 has disappeared.
+ * By default, the next fade starts on the previous segment's second fade cell.
+ * Smoke cells share the yurayura clock; frameWait defaults to its interval.
+ * Vibration builds during shakeFrames and continues at full strength in flight.
  */
 
 
@@ -486,5 +502,308 @@
         return prefix + seg1 + '\u30FB\n' + seg2;
     };
     window.KNH_ZXC_GimmickName = zxcGimmickName;
+
+    //-----------------------------------------------------------------------------
+    // Rocket launch: serializable character state, scene-owned smoke sprites.
+    //-----------------------------------------------------------------------------
+
+    var ROCKET_TRAIL_CELL_SIZE = 96;
+    // Both visible fade cells are retained, even when adjacent fades overlap.
+    var ROCKET_TRAIL_FADE_VISIBLE_CELLS = 2;
+
+    function rocketNumber(value, fallback, min, max) {
+        var n = value == null ? fallback : Number(value);
+        if (!isFinite(n)) n = fallback;
+        return Math.max(min, Math.min(max, n));
+    }
+
+    function rocketOptions(options) {
+        var o = options || {};
+        var zoom = $gameScreen.zoomScale() || 1;
+        var frameWait = Math.floor(rocketNumber(o.frameWait, $gameSystem.animationWait(), 1, 120));
+        return {
+            shakeFrames: Math.floor(rocketNumber(o.shakeFrames, 48, 0, 3600)),
+            flightFrames: Math.floor(rocketNumber(o.flightFrames, 96, 1, 3600)),
+            height: rocketNumber(o.height, Math.max(960, Graphics.height / zoom + 256), 1, 8192),
+            smokeScale: rocketNumber(o.smokeScale, 1, 0.25, 8),
+            frameWait: frameWait,
+            fadeDelay: Math.floor(rocketNumber(o.fadeDelay, 12, 0, 3600)),
+            fadeStep: Math.floor(rocketNumber(o.fadeStep, frameWait, frameWait, 3600)),
+            footOffsetX: rocketNumber(o.footOffsetX, 0, -2048, 2048),
+            footOffsetY: rocketNumber(o.footOffsetY, 0, -2048, 2048)
+        };
+    }
+
+    Game_CharacterBase.prototype.startRocketLaunch = function(options) {
+        if (this.isRocketLaunching() || this.isMoving() || this.isJumping()) return false;
+        var o = rocketOptions(options);
+        var tileHeight = ROCKET_TRAIL_CELL_SIZE * o.smokeScale;
+        var puffStart = Math.max(0, o.shakeFrames - o.frameWait * 6);
+        var fadeStart = Math.max(puffStart + o.frameWait * 15,
+            o.shakeFrames + o.flightFrames + o.fadeDelay);
+        this._rocketLaunch = {
+            options: o, mapId: $gameMap.mapId(), frame: 0, ready: false,
+            animationFrame: 0, animationStep: null,
+            originX: this._realX, originY: this._realY,
+            offsetX: this.screenX() - $gameMap.adjustX(this._realX) * $gameMap.tileWidth(),
+            offsetY: this.screenY() - $gameMap.adjustY(this._realY) * $gameMap.tileHeight(),
+            height: 0, shakeX: 0, shakeRotation: 0, shakeNextFrame: 0, hidden: false, done: false,
+            puffStart: puffStart, fadeStart: fadeStart,
+            endFrame: Math.max(puffStart + o.frameWait * 15,
+                fadeStart + (Math.ceil(o.height / tileHeight) - 1) * o.fadeStep + o.frameWait * ROCKET_TRAIL_FADE_VISIBLE_CELLS)
+        };
+        ImageManager.loadCharacter('rocketSmog');
+        ImageManager.loadCharacter('rocketSmog2');
+        $gameMap.rejudgeEvents();
+        return true;
+    };
+
+    Game_CharacterBase.prototype.isRocketLaunching = function() {
+        return !!this._rocketLaunch && !this._rocketLaunch.done;
+    };
+
+    function rocketCharacterSprite(character) {
+        var scene = SceneManager._scene;
+        return scene && scene._spriteset && character.sprite();
+    }
+
+    Game_CharacterBase.prototype.clearRocketLaunch = function() {
+        if (!this._rocketLaunch) return;
+        this._rocketLaunch = null;
+        var sprite = rocketCharacterSprite(this);
+        if (sprite) clearRocketSmoke(sprite);
+        $gameMap.rejudgeEvents();
+    };
+
+    function syncRocketAnimation(state, step) {
+        if ($gameSwitches.value(1)) return;
+        if (step == null) step = Math.floor($gameSystem.sceneCount() / state.options.frameWait);
+        if (state.animationStep !== step) {
+            state.animationStep = step;
+            state.animationFrame = state.frame;
+        }
+    }
+
+    function updateRocketShake(state) {
+        if (state.hidden) {
+            state.shakeX = 0;
+            state.shakeRotation = 0;
+            return;
+        }
+        if (state.frame < (state.shakeNextFrame || 0)) return;
+        var power = Math.min(1, state.frame / Math.max(1, state.options.shakeFrames));
+        var direction = state.shakeX > 0 ? -1 : 1;
+        state.shakeX = direction * (0.4 + 2.6 * power) * (0.6 + Math.random() * 0.4);
+        state.shakeRotation = (Math.random() * 2 - 1) * (0.4 + 4.1 * power) * Math.PI / 180;
+        // Hold this random pose until the next tick, including across save/load.
+        state.shakeNextFrame = state.frame + Math.round(5 - 3 * power);
+    }
+
+    Game_CharacterBase.prototype.updateRocketLaunch = function() {
+        var s = this._rocketLaunch;
+        if (!s || s.done) return;
+        if (!s.ready) {
+            if (!ImageManager.loadCharacter('rocketSmog').isReady() ||
+                !ImageManager.loadCharacter('rocketSmog2').isReady()) return;
+            s.ready = true;
+        }
+        var o = s.options;
+        var frame = ++s.frame;
+        syncRocketAnimation(s);
+        var t = Math.min(1, Math.max(0, frame - o.shakeFrames) / o.flightFrames);
+        s.height = o.height * t * t;
+        s.hidden = frame >= o.shakeFrames + o.flightFrames;
+        updateRocketShake(s);
+        s.done = s.animationFrame >= s.endFrame;
+        if (s.done) {
+            var sprite = rocketCharacterSprite(this);
+            if (sprite) clearRocketSmoke(sprite);
+        }
+    };
+
+    // Keep logical map positions and all original character settings intact.
+    var rocketCharacterUpdate = Game_CharacterBase.prototype.update;
+    Game_CharacterBase.prototype.update = function() {
+        if (this._rocketLaunch) {
+            this.updateAnimation();
+            this.updateRocketLaunch();
+        } else {
+            rocketCharacterUpdate.apply(this, arguments);
+        }
+    };
+
+    var rocketNeedNotUpdate = Game_CharacterBase.prototype.needNotUpdate;
+    Game_CharacterBase.prototype.needNotUpdate = function() {
+        return this.isRocketLaunching() ? false : rocketNeedNotUpdate.apply(this, arguments);
+    };
+
+    var rocketIsThrough = Game_CharacterBase.prototype.isThrough;
+    Game_CharacterBase.prototype.isThrough = function() {
+        return !!(this._rocketLaunch && this._rocketLaunch.frame >= this._rocketLaunch.options.shakeFrames) ||
+            rocketIsThrough.apply(this, arguments);
+    };
+
+    var rocketPlayerCanMove = Game_Player.prototype.canMove;
+    Game_Player.prototype.canMove = function() {
+        return !this._rocketLaunch && rocketPlayerCanMove.apply(this, arguments);
+    };
+
+    var rocketFollowerChase = Game_Follower.prototype.chaseCharacter;
+    Game_Follower.prototype.chaseCharacter = function(character) {
+        if (!this._rocketLaunch) rocketFollowerChase.apply(this, arguments);
+    };
+
+    var rocketEventErase = Game_Event.prototype.erase;
+    Game_Event.prototype.erase = function() {
+        this.clearRocketLaunch();
+        rocketEventErase.apply(this, arguments);
+    };
+
+    var rocketPerformTransfer = Game_Player.prototype.performTransfer;
+    Game_Player.prototype.performTransfer = function() {
+        if (this.isTransferring()) {
+            this.clearRocketLaunch();
+            this.followers().forEach(function(follower) { follower.clearRocketLaunch(); });
+        }
+        rocketPerformTransfer.apply(this, arguments);
+    };
+
+    Game_Interpreter.prototype.command_startRocketLaunch = function(character, options, wait) {
+        var target = typeof character === 'object' && character ? character : this.character(character == null ? 0 : character);
+        if (!target || !target.startRocketLaunch) return false;
+        var started = target.startRocketLaunch(options);
+        if (wait && target.isRocketLaunching()) {
+            this._rocketLaunchWaitCharacter = target;
+            this.setWaitMode('rocketLaunch');
+        }
+        return started;
+    };
+
+    var rocketUpdateWaitMode = Game_Interpreter.prototype.updateWaitMode;
+    Game_Interpreter.prototype.updateWaitMode = function() {
+        if (this._waitMode !== 'rocketLaunch') return rocketUpdateWaitMode.apply(this, arguments);
+        var target = this._rocketLaunchWaitCharacter;
+        if (target && target.isRocketLaunching()) return true;
+        this._rocketLaunchWaitCharacter = null;
+        this._waitMode = '';
+        return false;
+    };
+
+    function Sprite_RocketSmoke(character, state) {
+        this.initialize(character, state);
+    }
+    Sprite_RocketSmoke.prototype = Object.create(Sprite.prototype);
+    Sprite_RocketSmoke.prototype.constructor = Sprite_RocketSmoke;
+
+    Sprite_RocketSmoke.prototype.destroy = function(options) {
+        if (this._rocketDisposed) return;
+        this._rocketDisposed = true;
+        this.clearYuraFilterZXC();
+        Sprite.prototype.destroy.call(this, options);
+    };
+
+    Sprite_RocketSmoke.prototype.initialize = function(character, state) {
+        Sprite.prototype.initialize.call(this);
+        this._character = character;
+        this._state = state;
+        this._segments = [];
+        this._puff = new Sprite(ImageManager.loadCharacter('rocketSmog'));
+        this._puff.anchor.set(0.5, 0.5);
+        this.addChild(this._puff);
+        this.z = 3;
+        this.setYuraFilterZXC({ blockSize: 12, maxShake: 5, pixelSnap: true });
+    };
+
+    Sprite_RocketSmoke.prototype.update = function() {
+        var s = this._state, o = s.options;
+        this.visible = this._character._rocketLaunch === s && s.ready && !s.done;
+        if (!this.visible) return;
+        this.x = $gameMap.adjustX(s.originX) * $gameMap.tileWidth() + s.offsetX + o.footOffsetX;
+        this.y = $gameMap.adjustY(s.originY) * $gameMap.tileHeight() + s.offsetY + o.footOffsetY;
+        Sprite.prototype.update.call(this);
+        var filter = this._yuraFilterZXC;
+        var step = filter && o.frameWait === $gameSystem.animationWait() ? filter.uniforms.stepCount : null;
+        syncRocketAnimation(s, step);
+        var animationFrame = s.animationFrame || 0;
+        var puffFrame = Math.floor((animationFrame - s.puffStart) / o.frameWait);
+        this._puff.visible = puffFrame >= 0 && puffFrame < 15;
+        if (this._puff.visible) {
+            var puffWidth = this._puff.bitmap.width / 3;
+            var puffHeight = this._puff.bitmap.height / 5;
+            this._puff.setFrame(puffFrame % 3 * puffWidth, Math.floor(puffFrame / 3) * puffHeight, puffWidth, puffHeight);
+            this._puff.scale.set(o.smokeScale, o.smokeScale);
+        }
+        var cellSize = ROCKET_TRAIL_CELL_SIZE;
+        var tileHeight = cellSize * o.smokeScale;
+        var count = Math.ceil(s.height / tileHeight);
+        var loopFrame = Math.floor(Math.max(0, animationFrame - o.shakeFrames) / o.frameWait) % 3;
+        var bitmap = ImageManager.loadCharacter('rocketSmog2');
+        for (var i = 0; i < Math.max(count, this._segments.length); i++) {
+            var segment = this._segments[i];
+            if (!segment) {
+                segment = this._segments[i] = new Sprite(bitmap);
+                segment.anchor.x = 0.5;
+                this.addChild(segment);
+            }
+            var fadeAge = animationFrame - s.fadeStart - i * o.fadeStep;
+            var fadeFrame = Math.floor(fadeAge / o.frameWait);
+            segment.visible = i < count && fadeFrame < ROCKET_TRAIL_FADE_VISIBLE_CELLS;
+            if (!segment.visible) continue;
+            // Crop the growing top segment; never stretch the smoke artwork.
+            var cellHeight = Math.min(cellSize, Math.max(0, s.height / o.smokeScale - i * cellSize));
+            var sourceY = cellSize - cellHeight;
+            var column = fadeAge >= 0 ? fadeFrame : loopFrame;
+            segment.setFrame(column * cellSize, (fadeAge >= 0 ? cellSize : 0) + sourceY, cellSize, cellHeight);
+            segment.scale.set(o.smokeScale, o.smokeScale);
+            segment.y = -i * tileHeight - cellHeight * o.smokeScale;
+        }
+    };
+
+    function clearRocketSmoke(sprite) {
+        var smoke = sprite._rocketSmoke;
+        if (!smoke) return;
+        if (smoke.parent) smoke.parent.removeChild(smoke);
+        smoke.destroy({ children: true, texture: false, baseTexture: false });
+        sprite._rocketSmoke = null;
+    }
+
+    var rocketSpritePosition = Sprite_Character.prototype.updatePosition;
+    Sprite_Character.prototype.updatePosition = function() {
+        rocketSpritePosition.apply(this, arguments);
+        var s = this._character._rocketLaunch;
+        if (s) {
+            this.x += s.shakeX;
+            this.y -= s.height;
+            if (s.height > 0) this.z = Math.max(5, this.z);
+        }
+    };
+
+    var rocketSpriteVisibility = Sprite_Character.prototype.updateVisibility;
+    Sprite_Character.prototype.updateVisibility = function() {
+        rocketSpriteVisibility.apply(this, arguments);
+        if (this._character._rocketLaunch && this._character._rocketLaunch.hidden) this.visible = false;
+    };
+
+    var rocketSpriteUpdate = Sprite_Character.prototype.update;
+    Sprite_Character.prototype.update = function() {
+        rocketSpriteUpdate.apply(this, arguments);
+        var s = this._character._rocketLaunch;
+        if (s) this.rotation = this._character.angle() * Math.PI / 180 + (s.shakeRotation || 0);
+        if (this._rocketSmoke && (this._rocketSmoke._state !== s || !s || s.done ||
+            s.mapId !== $gameMap.mapId() || this._character._erased)) clearRocketSmoke(this);
+        if (s && !s.done && !this._character._erased && s.mapId === $gameMap.mapId() && this.parent) {
+            if (!this._rocketSmoke) {
+                this._rocketSmoke = new Sprite_RocketSmoke(this._character, s);
+                this._rocketSmoke.update();
+            }
+            if (this._rocketSmoke.parent !== this.parent) this.parent.addChild(this._rocketSmoke);
+        }
+    };
+
+    var rocketSpriteDestroy = Sprite_Character.prototype.destroy;
+    Sprite_Character.prototype.destroy = function() {
+        clearRocketSmoke(this);
+        rocketSpriteDestroy.apply(this, arguments);
+    };
 
 })();

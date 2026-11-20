@@ -1,0 +1,29 @@
+{
+  "file": "C:\\Users\\kgygn\\Dropbox\\ゲーム\\Game_NewGame\\NewGame\\artifacts\\spike-panel-boundary-yura-20261119\\spike_panel_puzzle.mp4",
+  "seconds": 56.47,
+  "bytes": 60965080,
+  "codec": "H.264/AAC",
+  "resolution": [
+    816,
+    624
+  ],
+  "meanAudioDb": -14.6,
+  "fullDecode": true,
+  "visualCheckPending": false,
+  "temporaryPngs": [
+    "C:\\Users\\kgygn\\Dropbox\\ゲーム\\Game_NewGame\\NewGame\\artifacts\\spike-panel-boundary-yura-20261119\\_video_work\\check-00.png",
+    "C:\\Users\\kgygn\\Dropbox\\ゲーム\\Game_NewGame\\NewGame\\artifacts\\spike-panel-boundary-yura-20261119\\_video_work\\check-01.png",
+    "C:\\Users\\kgygn\\Dropbox\\ゲーム\\Game_NewGame\\NewGame\\artifacts\\spike-panel-boundary-yura-20261119\\_video_work\\check-02.png",
+    "C:\\Users\\kgygn\\Dropbox\\ゲーム\\Game_NewGame\\NewGame\\artifacts\\spike-panel-boundary-yura-20261119\\_video_work\\check-03.png",
+    "C:\\Users\\kgygn\\Dropbox\\ゲーム\\Game_NewGame\\NewGame\\artifacts\\spike-panel-boundary-yura-20261119\\_video_work\\check-04.png",
+    "C:\\Users\\kgygn\\Dropbox\\ゲーム\\Game_NewGame\\NewGame\\artifacts\\spike-panel-boundary-yura-20261119\\_video_work\\check-05.png",
+    "C:\\Users\\kgygn\\Dropbox\\ゲーム\\Game_NewGame\\NewGame\\artifacts\\spike-panel-boundary-yura-20261119\\_video_work\\check-06.png",
+    "C:\\Users\\kgygn\\Dropbox\\ゲーム\\Game_NewGame\\NewGame\\artifacts\\spike-panel-boundary-yura-20261119\\_video_work\\check-07.png",
+    "C:\\Users\\kgygn\\Dropbox\\ゲーム\\Game_NewGame\\NewGame\\artifacts\\spike-panel-boundary-yura-20261119\\_video_work\\contact-sheet.png"
+  ],
+  "visualCheckPassed": true,
+  "visualCheck": "Inspected the native recording and consecutive motion crops: 4px combined-footprint border behind the spikes, no lines at timed-section interfaces, boundary retained in the retracted/completed floor, visible yura, stable party overlap, native damage and safe return",
+  "implementationSha256": "7e68151146d6b531fe222dd3bf895d146ed07eb0cc84971e4d23a8046c1211e0",
+  "gameplayAndRenderingVerification": "verification.json",
+  "partyVerification": "depth-verification.json"
+}

@@ -1,0 +1,27 @@
+{
+  "file": "C:\\Users\\kgygn\\Dropbox\\ゲーム\\Game_NewGame\\NewGame\\artifacts\\spike-panel-regular-grid-video-20261119\\spike_panel_puzzle.mp4",
+  "seconds": 56.53,
+  "bytes": 30648665,
+  "codec": "H.264/AAC",
+  "resolution": [
+    816,
+    624
+  ],
+  "meanAudioDb": -14.7,
+  "fullDecode": true,
+  "visualCheckPending": false,
+  "temporaryPngs": [
+    "C:\\Users\\kgygn\\Dropbox\\ゲーム\\Game_NewGame\\NewGame\\artifacts\\spike-panel-regular-grid-video-20261119\\_video_work\\check-00.png",
+    "C:\\Users\\kgygn\\Dropbox\\ゲーム\\Game_NewGame\\NewGame\\artifacts\\spike-panel-regular-grid-video-20261119\\_video_work\\check-01.png",
+    "C:\\Users\\kgygn\\Dropbox\\ゲーム\\Game_NewGame\\NewGame\\artifacts\\spike-panel-regular-grid-video-20261119\\_video_work\\check-02.png",
+    "C:\\Users\\kgygn\\Dropbox\\ゲーム\\Game_NewGame\\NewGame\\artifacts\\spike-panel-regular-grid-video-20261119\\_video_work\\check-03.png",
+    "C:\\Users\\kgygn\\Dropbox\\ゲーム\\Game_NewGame\\NewGame\\artifacts\\spike-panel-regular-grid-video-20261119\\_video_work\\check-04.png",
+    "C:\\Users\\kgygn\\Dropbox\\ゲーム\\Game_NewGame\\NewGame\\artifacts\\spike-panel-regular-grid-video-20261119\\_video_work\\check-05.png",
+    "C:\\Users\\kgygn\\Dropbox\\ゲーム\\Game_NewGame\\NewGame\\artifacts\\spike-panel-regular-grid-video-20261119\\_video_work\\check-06.png",
+    "C:\\Users\\kgygn\\Dropbox\\ゲーム\\Game_NewGame\\NewGame\\artifacts\\spike-panel-regular-grid-video-20261119\\_video_work\\check-07.png",
+    "C:\\Users\\kgygn\\Dropbox\\ゲーム\\Game_NewGame\\NewGame\\artifacts\\spike-panel-regular-grid-video-20261119\\_video_work\\contact-sheet.png"
+  ],
+  "visualCheckPassed": true,
+  "visualCheck": "Inspected eight native video frames: entrance, panel toggles, spike hit/return, upper panels, key pickup, 3F return; regular staggered floor visible",
+  "implementationSha256": "ee1e6fb5bc8af3f953c6d97a7991ebdba8159b7f0fd54d0c1dceebe78676bd17"
+}

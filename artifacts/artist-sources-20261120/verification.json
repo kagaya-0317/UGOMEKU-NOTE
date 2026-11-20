@@ -1,0 +1,1573 @@
+{
+  "results": [
+    {
+      "party": [
+        2,
+        3,
+        4
+      ],
+      "messages": [
+        {
+          "text": [
+            "……来たか"
+          ],
+          "speaker": 3,
+          "rect": [
+            298,
+            105.63364108709544,
+            220,
+            113
+          ],
+          "boss": [
+            10,
+            10,
+            "$castleTsunehi",
+            0,
+            8
+          ],
+          "scale": 65,
+          "tone": 0,
+          "proxyActors": [
+            [
+              7,
+              3
+            ],
+            [
+              8,
+              4
+            ]
+          ]
+        },
+        {
+          "text": [
+            "ツネヒ…？"
+          ],
+          "speaker": 7,
+          "rect": [
+            234,
+            340.90700304764823,
+            204,
+            113
+          ],
+          "boss": [
+            10,
+            10,
+            "$castleTsunehi",
+            0,
+            8
+          ],
+          "scale": 65,
+          "tone": 0,
+          "proxyActors": [
+            [
+              7,
+              3
+            ],
+            [
+              8,
+              4
+            ]
+          ]
+        },
+        {
+          "text": [
+            "モンスターの",
+            "王は？"
+          ],
+          "speaker": 7,
+          "rect": [
+            226.5,
+            274.3803289972375,
+            219,
+            146
+          ],
+          "boss": [
+            10,
+            10,
+            "$castleTsunehi",
+            0,
+            8
+          ],
+          "scale": 65,
+          "tone": 0,
+          "proxyActors": [
+            [
+              7,
+              3
+            ],
+            [
+              8,
+              4
+            ]
+          ]
+        },
+        {
+          "text": [
+            "王はここには",
+            "いねえ"
+          ],
+          "speaker": 3,
+          "rect": [
+            291.5,
+            41.22715233036482,
+            233,
+            146
+          ],
+          "boss": [
+            10,
+            10,
+            "$castleTsunehi",
+            0,
+            8
+          ],
+          "scale": 65,
+          "tone": 0,
+          "proxyActors": [
+            [
+              7,
+              3
+            ],
+            [
+              8,
+              4
+            ]
+          ]
+        },
+        {
+          "text": [
+            "そんな簡単に",
+            "会わせてたまるかよ"
+          ],
+          "speaker": 3,
+          "rect": [
+            253,
+            41.24086921721627,
+            310,
+            146
+          ],
+          "boss": [
+            10,
+            10,
+            "$castleTsunehi",
+            0,
+            8
+          ],
+          "scale": 65,
+          "tone": 0,
+          "proxyActors": [
+            [
+              7,
+              3
+            ],
+            [
+              8,
+              4
+            ]
+          ]
+        },
+        {
+          "text": [
+            "俺には王を守る",
+            "大事な任務があんだ"
+          ],
+          "speaker": 3,
+          "rect": [
+            238.5,
+            41.249546194457565,
+            339,
+            146
+          ],
+          "boss": [
+            10,
+            10,
+            "$castleTsunehi",
+            0,
+            2
+          ],
+          "scale": 65,
+          "tone": 0,
+          "proxyActors": [
+            [
+              7,
+              3
+            ],
+            [
+              8,
+              4
+            ]
+          ]
+        },
+        {
+          "text": [
+            "それ以上近づくな"
+          ],
+          "speaker": 3,
+          "rect": [
+            259,
+            107.87495956878536,
+            298,
+            113
+          ],
+          "boss": [
+            10,
+            10,
+            "$castleTsunehi",
+            0,
+            2
+          ],
+          "scale": 65,
+          "tone": 0,
+          "proxyActors": [
+            [
+              7,
+              3
+            ],
+            [
+              8,
+              4
+            ]
+          ]
+        },
+        {
+          "text": [
+            "近づくつもりは",
+            "ないわ"
+          ],
+          "speaker": 8,
+          "rect": [
+            355,
+            274.4374838421753,
+            250,
+            146
+          ],
+          "boss": [
+            10,
+            10,
+            "$castleTsunehi",
+            0,
+            2
+          ],
+          "scale": 65,
+          "tone": 0,
+          "proxyActors": [
+            [
+              7,
+              3
+            ],
+            [
+              8,
+              4
+            ]
+          ]
+        },
+        {
+          "text": [
+            "あなたが悪い",
+            "モンスターじゃないの",
+            "を知ってるからよ"
+          ],
+          "speaker": 8,
+          "rect": [
+            318,
+            241.12499354272944,
+            324,
+            179
+          ],
+          "boss": [
+            10,
+            10,
+            "$castleTsunehi",
+            0,
+            2
+          ],
+          "scale": 65,
+          "tone": 0,
+          "proxyActors": [
+            [
+              7,
+              3
+            ],
+            [
+              8,
+              4
+            ]
+          ]
+        },
+        {
+          "text": [
+            "…あ？"
+          ],
+          "speaker": 3,
+          "rect": [
+            331.5,
+            107.87499919694616,
+            153,
+            113
+          ],
+          "boss": [
+            10,
+            10,
+            "$castleTsunehi",
+            0,
+            2
+          ],
+          "scale": 65,
+          "tone": 0,
+          "proxyActors": [
+            [
+              7,
+              3
+            ],
+            [
+              8,
+              4
+            ]
+          ]
+        },
+        {
+          "text": [
+            "話し合いに",
+            "来たんだ"
+          ],
+          "speaker": 7,
+          "rect": [
+            227.5,
+            274.4374996790697,
+            217,
+            146
+          ],
+          "boss": [
+            10,
+            10,
+            "$castleTsunehi",
+            0,
+            2
+          ],
+          "scale": 65,
+          "tone": 0,
+          "proxyActors": [
+            [
+              7,
+              3
+            ],
+            [
+              8,
+              4
+            ]
+          ]
+        },
+        {
+          "text": [
+            "村を襲ったことには",
+            "怒ってるけど…"
+          ],
+          "speaker": 7,
+          "rect": [
+            182,
+            274.4374998717443,
+            308,
+            146
+          ],
+          "boss": [
+            10,
+            10,
+            "$castleTsunehi",
+            0,
+            2
+          ],
+          "scale": 65,
+          "tone": 0,
+          "proxyActors": [
+            [
+              7,
+              3
+            ],
+            [
+              8,
+              4
+            ]
+          ]
+        },
+        {
+          "text": [
+            "でも…平和的に",
+            "解決できないかな？"
+          ],
+          "speaker": 7,
+          "rect": [
+            168,
+            274.43749995284475,
+            336,
+            146
+          ],
+          "boss": [
+            10,
+            10,
+            "$castleTsunehi",
+            0,
+            2
+          ],
+          "scale": 65,
+          "tone": 0,
+          "proxyActors": [
+            [
+              7,
+              3
+            ],
+            [
+              8,
+              4
+            ]
+          ]
+        },
+        {
+          "text": [
+            "…作戦失敗か"
+          ],
+          "speaker": 3,
+          "rect": [
+            278.5,
+            107.87499998115504,
+            259,
+            113
+          ],
+          "boss": [
+            10,
+            10,
+            "$castleTsunehi",
+            0,
+            2
+          ],
+          "scale": 65,
+          "tone": 0,
+          "proxyActors": [
+            [
+              7,
+              3
+            ],
+            [
+              8,
+              4
+            ]
+          ]
+        },
+        {
+          "text": [
+            "なら、こうする",
+            "しかねェな"
+          ],
+          "speaker": 3,
+          "rect": [
+            295.5,
+            41.24999999246879,
+            225,
+            146
+          ],
+          "boss": [
+            10,
+            10,
+            "$castleTsunehi",
+            0,
+            2
+          ],
+          "scale": 65,
+          "tone": 0,
+          "proxyActors": [
+            [
+              7,
+              3
+            ],
+            [
+              8,
+              4
+            ]
+          ]
+        },
+        {
+          "text": [
+            "何をしたの！？"
+          ],
+          "speaker": 7,
+          "rect": [
+            213.5,
+            341.06249999991655,
+            245,
+            113
+          ],
+          "boss": [
+            10,
+            10,
+            "$castleTsunehi",
+            0,
+            4
+          ],
+          "scale": 65,
+          "tone": 0,
+          "proxyActors": [
+            [
+              7,
+              3
+            ],
+            [
+              8,
+              4
+            ]
+          ],
+          "visual": {
+            "source": "img/characters/$castleTsunehi.png",
+            "width": 864,
+            "height": 1280,
+            "rect": null,
+            "frame": [
+              288,
+              320
+            ],
+            "mesh": true
+          }
+        },
+        {
+          "text": [
+            "……",
+            "これでいい"
+          ],
+          "speaker": 3,
+          "rect": [
+            303,
+            41.249999999993776,
+            210,
+            146
+          ],
+          "boss": [
+            10,
+            10,
+            "$castleTsunehi",
+            2,
+            6
+          ],
+          "scale": 65,
+          "tone": 0,
+          "proxyActors": [
+            [
+              7,
+              3
+            ],
+            [
+              8,
+              4
+            ]
+          ]
+        },
+        {
+          "text": [
+            "これで",
+            "テメェらと戦える"
+          ],
+          "speaker": 3,
+          "rect": [
+            273.5,
+            41.2499999999977,
+            265,
+            146
+          ],
+          "boss": [
+            10,
+            10,
+            "$castleTsunehi",
+            0,
+            6
+          ],
+          "scale": 65,
+          "tone": 0,
+          "proxyActors": [
+            [
+              7,
+              3
+            ],
+            [
+              8,
+              4
+            ]
+          ]
+        },
+        {
+          "text": [
+            "クソども！！",
+            "ぶっ殺してやる！！！"
+          ],
+          "speaker": 3,
+          "rect": [
+            262.5,
+            41.24999999999906,
+            295,
+            146
+          ],
+          "boss": [
+            10,
+            10,
+            "$castleTsunehi",
+            2,
+            6
+          ],
+          "scale": 65,
+          "tone": 1,
+          "proxyActors": [
+            [
+              7,
+              3
+            ],
+            [
+              8,
+              4
+            ]
+          ]
+        }
+      ],
+      "battle": {
+        "troop": 48,
+        "party": [
+          2,
+          3,
+          4
+        ],
+        "partyAttacks": false,
+        "enemyAttacks": false
+      },
+      "forcedVictoryForCleanupOnly": true,
+      "lunge": true,
+      "restored": true
+    },
+    {
+      "party": [
+        2,
+        4,
+        3
+      ],
+      "messages": [
+        {
+          "text": [
+            "……来たか"
+          ],
+          "speaker": 3,
+          "rect": [
+            298,
+            105.63364106036414,
+            220,
+            113
+          ],
+          "boss": [
+            10,
+            10,
+            "$castleTsunehi",
+            0,
+            8
+          ],
+          "scale": 65,
+          "tone": 0,
+          "proxyActors": [
+            [
+              7,
+              3
+            ],
+            [
+              8,
+              4
+            ]
+          ]
+        },
+        {
+          "text": [
+            "ツネヒ…？"
+          ],
+          "speaker": 7,
+          "rect": [
+            234,
+            340.4721403736733,
+            204,
+            113
+          ],
+          "boss": [
+            10,
+            10,
+            "$castleTsunehi",
+            0,
+            8
+          ],
+          "scale": 65,
+          "tone": 0,
+          "proxyActors": [
+            [
+              7,
+              3
+            ],
+            [
+              8,
+              4
+            ]
+          ]
+        },
+        {
+          "text": [
+            "モンスターの",
+            "王は？"
+          ],
+          "speaker": 7,
+          "rect": [
+            226.5,
+            274.2015702269251,
+            219,
+            146
+          ],
+          "boss": [
+            10,
+            10,
+            "$castleTsunehi",
+            0,
+            8
+          ],
+          "scale": 65,
+          "tone": 0,
+          "proxyActors": [
+            [
+              7,
+              3
+            ],
+            [
+              8,
+              4
+            ]
+          ]
+        },
+        {
+          "text": [
+            "王はここには",
+            "いねえ"
+          ],
+          "speaker": 3,
+          "rect": [
+            291.5,
+            41.15571364412321,
+            233,
+            146
+          ],
+          "boss": [
+            10,
+            10,
+            "$castleTsunehi",
+            0,
+            8
+          ],
+          "scale": 65,
+          "tone": 0,
+          "proxyActors": [
+            [
+              7,
+              3
+            ],
+            [
+              8,
+              4
+            ]
+          ]
+        },
+        {
+          "text": [
+            "そんな簡単に",
+            "会わせてたまるかよ"
+          ],
+          "speaker": 3,
+          "rect": [
+            253,
+            41.21231964796695,
+            310,
+            146
+          ],
+          "boss": [
+            10,
+            10,
+            "$castleTsunehi",
+            0,
+            8
+          ],
+          "scale": 65,
+          "tone": 0,
+          "proxyActors": [
+            [
+              7,
+              3
+            ],
+            [
+              8,
+              4
+            ]
+          ]
+        },
+        {
+          "text": [
+            "俺には王を守る",
+            "大事な任務があんだ"
+          ],
+          "speaker": 3,
+          "rect": [
+            238.5,
+            41.247964416561956,
+            339,
+            146
+          ],
+          "boss": [
+            10,
+            10,
+            "$castleTsunehi",
+            0,
+            2
+          ],
+          "scale": 65,
+          "tone": 0,
+          "proxyActors": [
+            [
+              7,
+              3
+            ],
+            [
+              8,
+              4
+            ]
+          ]
+        },
+        {
+          "text": [
+            "それ以上近づくな"
+          ],
+          "speaker": 3,
+          "rect": [
+            259,
+            107.8744638403262,
+            298,
+            113
+          ],
+          "boss": [
+            10,
+            10,
+            "$castleTsunehi",
+            0,
+            2
+          ],
+          "scale": 65,
+          "tone": 0,
+          "proxyActors": [
+            [
+              7,
+              3
+            ],
+            [
+              8,
+              4
+            ]
+          ]
+        },
+        {
+          "text": [
+            "近づくつもりは",
+            "ないわ"
+          ],
+          "speaker": 8,
+          "rect": [
+            355,
+            274.43728573055387,
+            250,
+            146
+          ],
+          "boss": [
+            10,
+            10,
+            "$castleTsunehi",
+            0,
+            2
+          ],
+          "scale": 65,
+          "tone": 0,
+          "proxyActors": [
+            [
+              7,
+              3
+            ],
+            [
+              8,
+              4
+            ]
+          ]
+        },
+        {
+          "text": [
+            "あなたが悪い",
+            "モンスターじゃないの",
+            "を知ってるからよ"
+          ],
+          "speaker": 8,
+          "rect": [
+            318,
+            241.12491436992042,
+            324,
+            179
+          ],
+          "boss": [
+            10,
+            10,
+            "$castleTsunehi",
+            0,
+            2
+          ],
+          "scale": 65,
+          "tone": 0,
+          "proxyActors": [
+            [
+              7,
+              3
+            ],
+            [
+              8,
+              4
+            ]
+          ]
+        },
+        {
+          "text": [
+            "…あ？"
+          ],
+          "speaker": 3,
+          "rect": [
+            331.5,
+            107.87496577901948,
+            153,
+            113
+          ],
+          "boss": [
+            10,
+            10,
+            "$castleTsunehi",
+            0,
+            2
+          ],
+          "scale": 65,
+          "tone": 0,
+          "proxyActors": [
+            [
+              7,
+              3
+            ],
+            [
+              8,
+              4
+            ]
+          ]
+        },
+        {
+          "text": [
+            "話し合いに",
+            "来たんだ"
+          ],
+          "speaker": 7,
+          "rect": [
+            227.5,
+            274.4374863240172,
+            217,
+            146
+          ],
+          "boss": [
+            10,
+            10,
+            "$castleTsunehi",
+            0,
+            2
+          ],
+          "scale": 65,
+          "tone": 0,
+          "proxyActors": [
+            [
+              7,
+              3
+            ],
+            [
+              8,
+              4
+            ]
+          ]
+        },
+        {
+          "text": [
+            "村を襲ったことには",
+            "怒ってるけど…"
+          ],
+          "speaker": 7,
+          "rect": [
+            182,
+            274.43749453456616,
+            308,
+            146
+          ],
+          "boss": [
+            10,
+            10,
+            "$castleTsunehi",
+            0,
+            2
+          ],
+          "scale": 65,
+          "tone": 0,
+          "proxyActors": [
+            [
+              7,
+              3
+            ],
+            [
+              8,
+              4
+            ]
+          ]
+        },
+        {
+          "text": [
+            "でも…平和的に",
+            "解決できないかな？"
+          ],
+          "speaker": 7,
+          "rect": [
+            168,
+            274.43749781580834,
+            336,
+            146
+          ],
+          "boss": [
+            10,
+            10,
+            "$castleTsunehi",
+            0,
+            2
+          ],
+          "scale": 65,
+          "tone": 0,
+          "proxyActors": [
+            [
+              7,
+              3
+            ],
+            [
+              8,
+              4
+            ]
+          ]
+        },
+        {
+          "text": [
+            "…作戦失敗か"
+          ],
+          "speaker": 3,
+          "rect": [
+            278.5,
+            107.87499912711539,
+            259,
+            113
+          ],
+          "boss": [
+            10,
+            10,
+            "$castleTsunehi",
+            0,
+            2
+          ],
+          "scale": 65,
+          "tone": 0,
+          "proxyActors": [
+            [
+              7,
+              3
+            ],
+            [
+              8,
+              4
+            ]
+          ]
+        },
+        {
+          "text": [
+            "なら、こうする",
+            "しかねェな"
+          ],
+          "speaker": 3,
+          "rect": [
+            295.5,
+            41.249999651162625,
+            225,
+            146
+          ],
+          "boss": [
+            10,
+            10,
+            "$castleTsunehi",
+            0,
+            2
+          ],
+          "scale": 65,
+          "tone": 0,
+          "proxyActors": [
+            [
+              7,
+              3
+            ],
+            [
+              8,
+              4
+            ]
+          ]
+        },
+        {
+          "text": [
+            "何をしたの！？"
+          ],
+          "speaker": 7,
+          "rect": [
+            213.5,
+            341.06249999543337,
+            245,
+            113
+          ],
+          "boss": [
+            10,
+            10,
+            "$castleTsunehi",
+            0,
+            4
+          ],
+          "scale": 65,
+          "tone": 0,
+          "proxyActors": [
+            [
+              7,
+              3
+            ],
+            [
+              8,
+              4
+            ]
+          ],
+          "visual": {
+            "source": "img/characters/$castleTsunehi.png",
+            "width": 864,
+            "height": 1280,
+            "rect": null,
+            "frame": [
+              288,
+              320
+            ],
+            "mesh": true
+          }
+        },
+        {
+          "text": [
+            "……",
+            "これでいい"
+          ],
+          "speaker": 3,
+          "rect": [
+            301,
+            41.24999999879708,
+            210,
+            146
+          ],
+          "boss": [
+            10,
+            10,
+            "$castleTsunehi",
+            1,
+            6
+          ],
+          "scale": 65,
+          "tone": 0,
+          "proxyActors": [
+            [
+              7,
+              3
+            ],
+            [
+              8,
+              4
+            ]
+          ]
+        },
+        {
+          "text": [
+            "これで",
+            "テメェらと戦える"
+          ],
+          "speaker": 3,
+          "rect": [
+            277.5,
+            41.249999999519275,
+            265,
+            146
+          ],
+          "boss": [
+            10,
+            10,
+            "$castleTsunehi",
+            0,
+            6
+          ],
+          "scale": 65,
+          "tone": 0,
+          "proxyActors": [
+            [
+              7,
+              3
+            ],
+            [
+              8,
+              4
+            ]
+          ]
+        },
+        {
+          "text": [
+            "クソども！！",
+            "ぶっ殺してやる！！！"
+          ],
+          "speaker": 3,
+          "rect": [
+            259.5,
+            41.2499999998079,
+            295,
+            146
+          ],
+          "boss": [
+            10,
+            10,
+            "$castleTsunehi",
+            2,
+            6
+          ],
+          "scale": 65,
+          "tone": 1,
+          "proxyActors": [
+            [
+              7,
+              3
+            ],
+            [
+              8,
+              4
+            ]
+          ]
+        }
+      ],
+      "battle": {
+        "troop": 48,
+        "party": [
+          2,
+          4,
+          3
+        ],
+        "partyAttacks": false,
+        "enemyAttacks": false
+      },
+      "forcedVictoryForCleanupOnly": true,
+      "lunge": true,
+      "restored": true
+    },
+    {
+      "party": [
+        2
+      ],
+      "messages": [
+        {
+          "text": [
+            "……来たか"
+          ],
+          "speaker": 3,
+          "rect": [
+            298,
+            105.6118407480225,
+            220,
+            113
+          ],
+          "boss": [
+            10,
+            10,
+            "$castleTsunehi",
+            0,
+            8
+          ],
+          "scale": 65,
+          "tone": 0,
+          "proxyActors": []
+        },
+        {
+          "text": [
+            "王はここには",
+            "いねえ"
+          ],
+          "speaker": 3,
+          "rect": [
+            291.5,
+            40.65389831066835,
+            233,
+            146
+          ],
+          "boss": [
+            10,
+            10,
+            "$castleTsunehi",
+            0,
+            8
+          ],
+          "scale": 65,
+          "tone": 0,
+          "proxyActors": []
+        },
+        {
+          "text": [
+            "そんな簡単に",
+            "会わせてたまるかよ"
+          ],
+          "speaker": 3,
+          "rect": [
+            253,
+            41.01177548392232,
+            310,
+            146
+          ],
+          "boss": [
+            10,
+            10,
+            "$castleTsunehi",
+            0,
+            8
+          ],
+          "scale": 65,
+          "tone": 0,
+          "proxyActors": []
+        },
+        {
+          "text": [
+            "俺には王を守る",
+            "大事な任務があんだ"
+          ],
+          "speaker": 3,
+          "rect": [
+            238.5,
+            41.2347950584213,
+            339,
+            146
+          ],
+          "boss": [
+            10,
+            10,
+            "$castleTsunehi",
+            0,
+            2
+          ],
+          "scale": 65,
+          "tone": 0,
+          "proxyActors": []
+        },
+        {
+          "text": [
+            "それ以上近づくな"
+          ],
+          "speaker": 3,
+          "rect": [
+            259,
+            107.87099511552117,
+            298,
+            113
+          ],
+          "boss": [
+            10,
+            10,
+            "$castleTsunehi",
+            0,
+            2
+          ],
+          "scale": 65,
+          "tone": 0,
+          "proxyActors": []
+        },
+        {
+          "text": [
+            "…あ？"
+          ],
+          "speaker": 3,
+          "rect": [
+            331.5,
+            107.87339949846816,
+            153,
+            113
+          ],
+          "boss": [
+            10,
+            10,
+            "$castleTsunehi",
+            0,
+            2
+          ],
+          "scale": 65,
+          "tone": 0,
+          "proxyActors": []
+        },
+        {
+          "text": [
+            "…作戦失敗か"
+          ],
+          "speaker": 3,
+          "rect": [
+            278.5,
+            107.87436037976448,
+            259,
+            113
+          ],
+          "boss": [
+            10,
+            10,
+            "$castleTsunehi",
+            0,
+            2
+          ],
+          "scale": 65,
+          "tone": 0,
+          "proxyActors": []
+        },
+        {
+          "text": [
+            "なら、こうする",
+            "しかねェな"
+          ],
+          "speaker": 3,
+          "rect": [
+            295.5,
+            41.24974438384609,
+            225,
+            146
+          ],
+          "boss": [
+            10,
+            10,
+            "$castleTsunehi",
+            0,
+            2
+          ],
+          "scale": 65,
+          "tone": 0,
+          "proxyActors": []
+        },
+        {
+          "text": [
+            "……",
+            "これでいい"
+          ],
+          "speaker": 3,
+          "rect": [
+            303,
+            41.24999636279733,
+            210,
+            146
+          ],
+          "boss": [
+            10,
+            10,
+            "$castleTsunehi",
+            2,
+            6
+          ],
+          "scale": 65,
+          "tone": 0,
+          "proxyActors": []
+        },
+        {
+          "text": [
+            "これで",
+            "テメェらと戦える"
+          ],
+          "speaker": 3,
+          "rect": [
+            275.5,
+            41.249999041983955,
+            265,
+            146
+          ],
+          "boss": [
+            10,
+            10,
+            "$castleTsunehi",
+            1,
+            6
+          ],
+          "scale": 65,
+          "tone": 0,
+          "proxyActors": []
+        },
+        {
+          "text": [
+            "クソども！！",
+            "ぶっ殺してやる！！！"
+          ],
+          "speaker": 3,
+          "rect": [
+            262.5,
+            41.2499996171409,
+            295,
+            146
+          ],
+          "boss": [
+            10,
+            10,
+            "$castleTsunehi",
+            0,
+            6
+          ],
+          "scale": 65,
+          "tone": 1,
+          "proxyActors": []
+        }
+      ],
+      "battle": {
+        "troop": 48,
+        "party": [
+          2
+        ],
+        "partyAttacks": false,
+        "enemyAttacks": false
+      },
+      "forcedVictoryForCleanupOnly": true,
+      "lunge": true,
+      "restored": true
+    }
+  ],
+  "completedReentry": true,
+  "saveLoad": true,
+  "nativeWalking": [
+    [
+      8.5,
+      13.5,
+      false
+    ],
+    [
+      11.5,
+      13.5,
+      false
+    ],
+    [
+      10,
+      13,
+      false
+    ],
+    [
+      10,
+      11,
+      false
+    ],
+    [
+      10,
+      10,
+      false
+    ]
+  ],
+  "combatBalanceNotEvaluated": true
+}

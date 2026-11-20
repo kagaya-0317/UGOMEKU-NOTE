@@ -1,0 +1,11 @@
+{
+  "onlyEvent3DialogueChanged": true,
+  "positionsPassageTransfersPreserved": true,
+  "backgroundUnchanged": true,
+  "encodingPreserved": true,
+  "existingPluginOutsideRoadIntroUnchanged": true,
+  "laughGap": 80,
+  "dialoguePages": 15,
+  "dialogueLines": 36,
+  "finalSourceVerified": true
+}

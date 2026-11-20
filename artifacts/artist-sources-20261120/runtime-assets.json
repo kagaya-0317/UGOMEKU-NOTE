@@ -1,0 +1,36 @@
+{
+  "gate": {
+    "image": "castleThroneDoor",
+    "frame": [
+      192,
+      192
+    ],
+    "pos": [
+      25.5,
+      11
+    ],
+    "scale": [
+      180,
+      180
+    ]
+  },
+  "gateNativeOpening": true,
+  "completedGateReentry": true,
+  "beastAsideReentry": true,
+  "beast": {
+    "pos": [
+      64,
+      372
+    ],
+    "name": "castleBeast",
+    "party": [
+      2,
+      3,
+      4
+    ],
+    "frame": [
+      144,
+      144
+    ]
+  }
+}

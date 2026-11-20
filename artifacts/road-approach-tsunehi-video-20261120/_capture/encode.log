@@ -1,0 +1,51 @@
+Input #0, matroska,webm, from 'C:\Users\kgygn\Dropbox\ゲーム\Game_NewGame\NewGame\artifacts\road-approach-tsunehi-video-20261120\_capture\tsunehi_intro_realtime.webm':
+  Metadata:
+    encoder         : Chrome
+  Duration: N/A, start: 0.000000, bitrate: N/A
+  Stream #0:0(eng): Audio: opus, 48000 Hz, stereo, fltp (default)
+  Stream #0:1(eng): Video: vp8, yuv420p(progressive), 816x624, SAR 1:1 DAR 17:13, 30 fps, 30 tbr, 1k tbn (default)
+    Metadata:
+      alpha_mode      : 1
+Stream mapping:
+  Stream #0:0 (opus) -> aresample:default
+  Stream #0:1 (vp8) -> fps:default
+  fade:default -> Stream #0:0 (libx264)
+  afade:default -> Stream #0:1 (aac)
+Press [q] to stop, [?] for help
+[libx264 @ 00000205c1651980] using SAR=1/1
+[libx264 @ 00000205c1651980] using cpu capabilities: MMX2 SSE2Fast SSSE3 SSE4.2 AVX FMA3 BMI2 AVX2
+[libx264 @ 00000205c1651980] profile High, level 3.1, 4:2:0, 8-bit
+[libx264 @ 00000205c1651980] 264 - core 164 r3172 c1c9931 - H.264/MPEG-4 AVC codec - Copyleft 2003-2023 - http://www.videolan.org/x264.html - options: cabac=1 ref=2 deblock=1:0:0 analyse=0x3:0x113 me=hex subme=6 psy=1 psy_rd=1.00:0.00 mixed_ref=1 me_range=16 chroma_me=1 trellis=1 8x8dct=1 cqm=0 deadzone=21,11 fast_pskip=1 chroma_qp_offset=-2 threads=18 lookahead_threads=3 sliced_threads=0 nr=0 decimate=1 interlaced=0 bluray_compat=0 constrained_intra=0 bframes=3 b_pyramid=2 b_adapt=1 b_bias=0 direct=1 weightb=1 open_gop=0 weightp=1 keyint=250 keyint_min=25 scenecut=40 intra_refresh=0 rc_lookahead=30 rc=crf mbtree=1 crf=19.0 qcomp=0.60 qpmin=0 qpmax=69 qpstep=4 ip_ratio=1.40 aq=1:1.00
+Output #0, mp4, to 'C:\Users\kgygn\Dropbox\ゲーム\Game_NewGame\NewGame\artifacts\road-approach-tsunehi-video-20261120\tsunehi_intro.mp4':
+  Metadata:
+    encoder         : Lavf60.16.100
+  Stream #0:0: Video: h264 (avc1 / 0x31637661), yuv420p(tv, bt470bg/unknown/unknown, progressive), 816x624 [SAR 1:1 DAR 17:13], q=2-31, 30 fps, 15360 tbn
+    Metadata:
+      encoder         : Lavc60.31.102 libx264
+    Side data:
+      cpb: bitrate max/min/avg: 0/0/0 buffer size: 0 vbv_delay: N/A
+  Stream #0:1: Audio: aac (LC) (mp4a / 0x6134706D), 48000 Hz, stereo, fltp, 160 kb/s
+    Metadata:
+      encoder         : Lavc60.31.102 aac
+frame=    0 fps=0.0 q=0.0 size=       0kB time=-00:00:00.02 bitrate=N/A speed=N/A    frame=   67 fps=0.0 q=25.0 size=     512kB time=00:00:04.13 bitrate=1013.5kbits/s speed=8.01x    frame=  210 fps=207 q=25.0 size=    1792kB time=00:00:08.87 bitrate=1654.2kbits/s speed=8.73x    frame=  377 fps=248 q=25.0 size=    3328kB time=00:00:14.44 bitrate=1887.7kbits/s speed=9.52x    frame=  549 fps=272 q=25.0 size=    4608kB time=00:00:20.20 bitrate=1868.5kbits/s speed=  10x    frame=  714 fps=283 q=25.0 size=    5632kB time=00:00:25.70 bitrate=1794.8kbits/s speed=10.2x    frame=  849 fps=281 q=25.0 size=    6912kB time=00:00:30.20 bitrate=1874.5kbits/s speed=  10x    frame=  992 fps=282 q=25.0 size=    7936kB time=00:00:34.88 bitrate=1863.9kbits/s speed=9.91x    frame= 1138 fps=283 q=25.0 size=    8960kB time=00:00:39.78 bitrate=1844.9kbits/s speed=9.89x    [mp4 @ 00000205c1b64dc0] Starting second pass: moving the moov atom to the beginning of the file
+[out#0/mp4 @ 00000205c163c9c0] video:8962kB audio:805kB subtitle:0kB other streams:0kB global headers:0kB muxing overhead: 0.467647%
+frame= 1243 fps=287 q=-1.0 Lsize=    9812kB time=00:00:41.45 bitrate=1939.2kbits/s speed=9.56x    
+[libx264 @ 00000205c1651980] frame I:7     Avg QP:14.96  size: 82496
+[libx264 @ 00000205c1651980] frame P:367   Avg QP:19.06  size: 20694
+[libx264 @ 00000205c1651980] frame B:869   Avg QP:23.90  size:  1155
+[libx264 @ 00000205c1651980] consecutive B-frames:  2.8%  8.8%  9.2% 79.2%
+[libx264 @ 00000205c1651980] mb I  I16..4: 53.3%  3.0% 43.7%
+[libx264 @ 00000205c1651980] mb P  I16..4:  3.4%  1.0%  3.9%  P16..4: 21.5%  7.5%  8.9%  0.0%  0.0%    skip:53.7%
+[libx264 @ 00000205c1651980] mb B  I16..4:  0.4%  0.1%  0.1%  B16..8:  8.1%  1.6%  0.6%  direct: 1.8%  skip:87.3%  L0:51.3% L1:44.1% BI: 4.6%
+[libx264 @ 00000205c1651980] 8x8 transform intra:10.6% inter:25.3%
+[libx264 @ 00000205c1651980] coded y,uvDC,uvAC intra: 69.9% 12.4% 3.0% inter: 7.6% 2.0% 0.0%
+[libx264 @ 00000205c1651980] i16 v,h,dc,p: 23% 46% 23%  7%
+[libx264 @ 00000205c1651980] i8 v,h,dc,ddl,ddr,vr,hd,vl,hu: 32% 14% 40%  2%  2%  2%  2%  2%  4%
+[libx264 @ 00000205c1651980] i4 v,h,dc,ddl,ddr,vr,hd,vl,hu: 17% 35% 22%  4%  4%  4%  5%  4%  7%
+[libx264 @ 00000205c1651980] i8c dc,h,v,p: 76% 12% 11%  0%
+[libx264 @ 00000205c1651980] Weighted P-Frames: Y:3.5% UV:2.7%
+[libx264 @ 00000205c1651980] ref P L0: 77.3% 22.7%
+[libx264 @ 00000205c1651980] ref B L0: 85.2% 14.8%
+[libx264 @ 00000205c1651980] ref B L1: 95.3%  4.7%
+[libx264 @ 00000205c1651980] kb/s:1771.72
+[aac @ 00000205c1651180] Qavg: 8410.818

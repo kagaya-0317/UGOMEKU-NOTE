@@ -1,0 +1,16 @@
+{
+  "lip": {
+    "text": [
+      "リップクリームを渡そう"
+    ],
+    "fukidashi": false,
+    "tail": 5,
+    "height": 113
+  },
+  "restored": {
+    "fukidashi": true,
+    "tail": 9,
+    "switch4": false
+  },
+  "wrongItemAndCancelRestoreNpc": true
+}

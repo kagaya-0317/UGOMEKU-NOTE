@@ -1,0 +1,554 @@
+{
+  "normalYuraInterval": 8,
+  "definition": "A fixed pose without yurayura for more than eight frames; moving and authored-cell poses are tracked separately.",
+  "skills": [
+    {
+      "skillId": 46,
+      "skillName": "gun-1",
+      "hits": 3,
+      "armStatic": [],
+      "bodyStatic": [],
+      "phases": [
+        {
+          "phase": "active",
+          "moving": true,
+          "armYura": false,
+          "bodyYura": false,
+          "firing": false,
+          "drilling": false,
+          "spraying": false,
+          "recoiling": false
+        },
+        {
+          "phase": "active",
+          "moving": false,
+          "armYura": true,
+          "bodyYura": true,
+          "firing": false,
+          "drilling": false,
+          "spraying": false,
+          "recoiling": false
+        },
+        {
+          "phase": "pending",
+          "moving": false,
+          "armYura": true,
+          "bodyYura": true,
+          "firing": false,
+          "drilling": false,
+          "spraying": false,
+          "recoiling": false
+        },
+        {
+          "phase": "retracting",
+          "moving": true,
+          "armYura": false,
+          "bodyYura": false,
+          "firing": false,
+          "drilling": false,
+          "spraying": false,
+          "recoiling": false
+        }
+      ]
+    },
+    {
+      "skillId": 47,
+      "skillName": "gun-2",
+      "hits": 3,
+      "armStatic": [],
+      "bodyStatic": [],
+      "phases": [
+        {
+          "phase": "active",
+          "moving": true,
+          "armYura": false,
+          "bodyYura": false,
+          "firing": false,
+          "drilling": false,
+          "spraying": false,
+          "recoiling": false
+        },
+        {
+          "phase": "active",
+          "moving": false,
+          "armYura": true,
+          "bodyYura": true,
+          "firing": false,
+          "drilling": false,
+          "spraying": false,
+          "recoiling": false
+        },
+        {
+          "phase": "pending",
+          "moving": false,
+          "armYura": true,
+          "bodyYura": true,
+          "firing": false,
+          "drilling": false,
+          "spraying": false,
+          "recoiling": false
+        },
+        {
+          "phase": "retracting",
+          "moving": true,
+          "armYura": false,
+          "bodyYura": false,
+          "firing": false,
+          "drilling": false,
+          "spraying": false,
+          "recoiling": false
+        }
+      ]
+    },
+    {
+      "skillId": 48,
+      "skillName": "cannon",
+      "hits": 3,
+      "armStatic": [],
+      "bodyStatic": [],
+      "phases": [
+        {
+          "phase": "active",
+          "moving": true,
+          "armYura": false,
+          "bodyYura": true,
+          "firing": false,
+          "drilling": false,
+          "spraying": false,
+          "recoiling": false
+        },
+        {
+          "phase": "active",
+          "moving": false,
+          "armYura": true,
+          "bodyYura": true,
+          "firing": false,
+          "drilling": false,
+          "spraying": false,
+          "recoiling": false
+        },
+        {
+          "phase": "active",
+          "moving": false,
+          "armYura": true,
+          "bodyYura": true,
+          "firing": true,
+          "drilling": false,
+          "spraying": false,
+          "recoiling": false
+        },
+        {
+          "phase": "active",
+          "moving": false,
+          "armYura": true,
+          "bodyYura": false,
+          "firing": true,
+          "drilling": false,
+          "spraying": false,
+          "recoiling": false
+        },
+        {
+          "phase": "pending",
+          "moving": false,
+          "armYura": true,
+          "bodyYura": true,
+          "firing": false,
+          "drilling": false,
+          "spraying": false,
+          "recoiling": false
+        },
+        {
+          "phase": "retracting",
+          "moving": true,
+          "armYura": false,
+          "bodyYura": true,
+          "firing": false,
+          "drilling": false,
+          "spraying": false,
+          "recoiling": false
+        }
+      ],
+      "bulletStatic": []
+    },
+    {
+      "skillId": 49,
+      "skillName": "drill",
+      "hits": 3,
+      "armStatic": [],
+      "bodyStatic": [],
+      "phases": [
+        {
+          "phase": "active",
+          "moving": true,
+          "armYura": false,
+          "bodyYura": false,
+          "firing": false,
+          "drilling": false,
+          "spraying": false,
+          "recoiling": false
+        },
+        {
+          "phase": "active",
+          "moving": false,
+          "armYura": true,
+          "bodyYura": false,
+          "firing": false,
+          "drilling": false,
+          "spraying": false,
+          "recoiling": false
+        },
+        {
+          "phase": "active",
+          "moving": false,
+          "armYura": false,
+          "bodyYura": false,
+          "firing": true,
+          "drilling": true,
+          "spraying": false,
+          "recoiling": false
+        },
+        {
+          "phase": "pending",
+          "moving": false,
+          "armYura": true,
+          "bodyYura": false,
+          "firing": false,
+          "drilling": false,
+          "spraying": false,
+          "recoiling": false
+        },
+        {
+          "phase": "retracting",
+          "moving": true,
+          "armYura": false,
+          "bodyYura": false,
+          "firing": false,
+          "drilling": false,
+          "spraying": false,
+          "recoiling": false
+        }
+      ]
+    },
+    {
+      "skillId": 50,
+      "skillName": "flamethrower",
+      "hits": 3,
+      "armStatic": [
+        {
+          "start": 77,
+          "end": 141,
+          "phase": "active",
+          "moving": false,
+          "firing": true,
+          "drilling": false,
+          "spraying": true,
+          "recoiling": false,
+          "frames": 65
+        },
+        {
+          "start": 317,
+          "end": 381,
+          "phase": "active",
+          "moving": false,
+          "firing": true,
+          "drilling": false,
+          "spraying": true,
+          "recoiling": false,
+          "frames": 65
+        },
+        {
+          "start": 557,
+          "end": 621,
+          "phase": "active",
+          "moving": false,
+          "firing": true,
+          "drilling": false,
+          "spraying": true,
+          "recoiling": false,
+          "frames": 65
+        }
+      ],
+      "bodyStatic": [],
+      "phases": [
+        {
+          "phase": "active",
+          "moving": true,
+          "armYura": false,
+          "bodyYura": false,
+          "firing": false,
+          "drilling": false,
+          "spraying": false,
+          "recoiling": false
+        },
+        {
+          "phase": "active",
+          "moving": false,
+          "armYura": true,
+          "bodyYura": false,
+          "firing": false,
+          "drilling": false,
+          "spraying": false,
+          "recoiling": false
+        },
+        {
+          "phase": "active",
+          "moving": false,
+          "armYura": false,
+          "bodyYura": false,
+          "firing": true,
+          "drilling": false,
+          "spraying": true,
+          "recoiling": false
+        },
+        {
+          "phase": "pending",
+          "moving": false,
+          "armYura": true,
+          "bodyYura": false,
+          "firing": false,
+          "drilling": false,
+          "spraying": false,
+          "recoiling": false
+        },
+        {
+          "phase": "retracting",
+          "moving": true,
+          "armYura": false,
+          "bodyYura": false,
+          "firing": false,
+          "drilling": false,
+          "spraying": false,
+          "recoiling": false
+        }
+      ]
+    },
+    {
+      "skillId": 51,
+      "skillName": "charge-cannon",
+      "hits": 3,
+      "armStatic": [],
+      "bodyStatic": [],
+      "phases": [
+        {
+          "phase": "active",
+          "moving": true,
+          "armYura": false,
+          "bodyYura": false,
+          "firing": false,
+          "drilling": false,
+          "spraying": false,
+          "recoiling": false
+        },
+        {
+          "phase": "active",
+          "moving": false,
+          "armYura": true,
+          "bodyYura": false,
+          "firing": false,
+          "drilling": false,
+          "spraying": false,
+          "recoiling": false
+        },
+        {
+          "phase": "active",
+          "moving": false,
+          "armYura": true,
+          "bodyYura": false,
+          "firing": true,
+          "drilling": false,
+          "spraying": false,
+          "recoiling": false
+        },
+        {
+          "phase": "active",
+          "moving": false,
+          "armYura": false,
+          "bodyYura": false,
+          "firing": true,
+          "drilling": false,
+          "spraying": false,
+          "recoiling": true
+        },
+        {
+          "phase": "pending",
+          "moving": false,
+          "armYura": true,
+          "bodyYura": false,
+          "firing": false,
+          "drilling": false,
+          "spraying": false,
+          "recoiling": false
+        },
+        {
+          "phase": "retracting",
+          "moving": true,
+          "armYura": false,
+          "bodyYura": false,
+          "firing": false,
+          "drilling": false,
+          "spraying": false,
+          "recoiling": false
+        }
+      ],
+      "bulletStatic": []
+    },
+    {
+      "skillId": 52,
+      "skillName": "machine-gun",
+      "hits": 15,
+      "armStatic": [],
+      "bodyStatic": [],
+      "phases": [
+        {
+          "phase": "active",
+          "moving": true,
+          "armYura": false,
+          "bodyYura": false,
+          "firing": false,
+          "drilling": false,
+          "spraying": false,
+          "recoiling": false
+        },
+        {
+          "phase": "active",
+          "moving": false,
+          "armYura": true,
+          "bodyYura": false,
+          "firing": true,
+          "drilling": false,
+          "spraying": false,
+          "recoiling": true
+        },
+        {
+          "phase": "active",
+          "moving": false,
+          "armYura": true,
+          "bodyYura": false,
+          "firing": false,
+          "drilling": false,
+          "spraying": false,
+          "recoiling": false
+        },
+        {
+          "phase": "retracting",
+          "moving": true,
+          "armYura": false,
+          "bodyYura": false,
+          "firing": false,
+          "drilling": false,
+          "spraying": false,
+          "recoiling": false
+        }
+      ]
+    },
+    {
+      "skillId": 53,
+      "skillName": "gatling",
+      "hits": 33,
+      "armStatic": [],
+      "bodyStatic": [],
+      "phases": [
+        {
+          "phase": "active",
+          "moving": true,
+          "armYura": false,
+          "bodyYura": false,
+          "firing": false,
+          "drilling": false,
+          "spraying": false,
+          "recoiling": false
+        },
+        {
+          "phase": "active",
+          "moving": false,
+          "armYura": true,
+          "bodyYura": false,
+          "firing": true,
+          "drilling": false,
+          "spraying": false,
+          "recoiling": true
+        },
+        {
+          "phase": "active",
+          "moving": false,
+          "armYura": true,
+          "bodyYura": false,
+          "firing": false,
+          "drilling": false,
+          "spraying": false,
+          "recoiling": false
+        },
+        {
+          "phase": "retracting",
+          "moving": true,
+          "armYura": false,
+          "bodyYura": false,
+          "firing": false,
+          "drilling": false,
+          "spraying": false,
+          "recoiling": false
+        }
+      ]
+    },
+    {
+      "skillId": 54,
+      "skillName": "homing-missile",
+      "hits": 3,
+      "armStatic": [],
+      "bodyStatic": [],
+      "phases": [
+        {
+          "phase": "active",
+          "moving": true,
+          "armYura": false,
+          "bodyYura": false,
+          "firing": false,
+          "drilling": false,
+          "spraying": false,
+          "recoiling": false
+        },
+        {
+          "phase": "active",
+          "moving": false,
+          "armYura": true,
+          "bodyYura": false,
+          "firing": false,
+          "drilling": false,
+          "spraying": false,
+          "recoiling": false
+        },
+        {
+          "phase": "active",
+          "moving": false,
+          "armYura": false,
+          "bodyYura": false,
+          "firing": true,
+          "drilling": false,
+          "spraying": false,
+          "recoiling": true
+        },
+        {
+          "phase": "pending",
+          "moving": false,
+          "armYura": true,
+          "bodyYura": false,
+          "firing": false,
+          "drilling": false,
+          "spraying": false,
+          "recoiling": false
+        },
+        {
+          "phase": "retracting",
+          "moving": true,
+          "armYura": false,
+          "bodyYura": false,
+          "firing": false,
+          "drilling": false,
+          "spraying": false,
+          "recoiling": false
+        }
+      ],
+      "bulletStatic": []
+    }
+  ]
+}

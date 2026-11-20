@@ -1,0 +1,262 @@
+[
+  {
+    "party": [
+      2,
+      3,
+      4
+    ],
+    "requested": false,
+    "states": [
+      {
+        "scene": "Scene_NewBattle",
+        "phase": "turnEnd",
+        "flag": 1,
+        "text": [
+          "\\>ツネヒが あらわれた！\\|\\.\\.\\^"
+        ],
+        "busy": true,
+        "partyHP": [
+          50,
+          48,
+          65
+        ],
+        "enemyHP": [
+          0
+        ],
+        "skip": false,
+        "troopRunning": false,
+        "troopIndex": 0,
+        "troopWait": "",
+        "command": null
+      },
+      {
+        "scene": "Scene_NewBattle",
+        "phase": "turnEnd",
+        "flag": 1,
+        "text": [
+          "\\>ツネヒが あらわれた！\\|\\.\\.\\^"
+        ],
+        "busy": true,
+        "partyHP": [
+          50,
+          48,
+          65
+        ],
+        "enemyHP": [
+          0
+        ],
+        "skip": false,
+        "troopRunning": false,
+        "troopIndex": 0,
+        "troopWait": "",
+        "command": null
+      },
+      {
+        "scene": "Scene_NewBattle",
+        "phase": "turnEnd",
+        "flag": 1,
+        "text": [],
+        "busy": false,
+        "partyHP": [
+          50,
+          48,
+          65
+        ],
+        "enemyHP": [
+          0
+        ],
+        "skip": true,
+        "troopRunning": false,
+        "troopIndex": 0,
+        "troopWait": "",
+        "command": null
+      },
+      {
+        "scene": "Scene_NewBattle",
+        "phase": "turnEnd",
+        "flag": 1,
+        "text": [],
+        "busy": false,
+        "partyHP": [
+          50,
+          48,
+          65
+        ],
+        "enemyHP": [
+          0
+        ],
+        "skip": true,
+        "troopRunning": false,
+        "troopIndex": 0,
+        "troopWait": "",
+        "command": null
+      },
+      {
+        "scene": "Scene_NewBattle",
+        "phase": "turn",
+        "flag": 1,
+        "text": [],
+        "busy": false,
+        "partyHP": [
+          50,
+          48,
+          65
+        ],
+        "enemyHP": [
+          0
+        ],
+        "skip": false,
+        "troopRunning": false,
+        "troopIndex": 0,
+        "troopWait": "",
+        "command": null
+      },
+      {
+        "scene": "Scene_NewBattle",
+        "phase": "turn",
+        "flag": 1,
+        "text": [],
+        "busy": false,
+        "partyHP": [
+          50,
+          48,
+          65
+        ],
+        "enemyHP": [
+          0
+        ],
+        "skip": false,
+        "troopRunning": false,
+        "troopIndex": 0,
+        "troopWait": "",
+        "command": null
+      },
+      {
+        "scene": "Scene_NewBattle",
+        "phase": "turn",
+        "flag": 1,
+        "text": [],
+        "busy": false,
+        "partyHP": [
+          50,
+          48,
+          65
+        ],
+        "enemyHP": [
+          1
+        ],
+        "skip": false,
+        "finish": true,
+        "troopRunning": false,
+        "troopIndex": 0,
+        "troopWait": "",
+        "command": null
+      },
+      {
+        "scene": "Scene_NewBattle",
+        "phase": "turn",
+        "flag": 1,
+        "text": [],
+        "busy": false,
+        "partyHP": [
+          50,
+          48,
+          65
+        ],
+        "enemyHP": [
+          1
+        ],
+        "skip": false,
+        "finish": true,
+        "troopRunning": false,
+        "troopIndex": 0,
+        "troopWait": "",
+        "command": null
+      },
+      {
+        "scene": "Scene_NewBattle",
+        "phase": "turn",
+        "flag": 1,
+        "text": [],
+        "busy": false,
+        "partyHP": [
+          50,
+          48,
+          65
+        ],
+        "enemyHP": [
+          1
+        ],
+        "skip": false,
+        "finish": true,
+        "troopRunning": false,
+        "troopIndex": 0,
+        "troopWait": "",
+        "command": null
+      },
+      {
+        "scene": "Scene_NewBattle",
+        "phase": "turn",
+        "flag": 1,
+        "text": [],
+        "busy": false,
+        "partyHP": [
+          50,
+          48,
+          65
+        ],
+        "enemyHP": [
+          1
+        ],
+        "skip": false,
+        "finish": true,
+        "troopRunning": false,
+        "troopIndex": 0,
+        "troopWait": "",
+        "command": null
+      },
+      {
+        "scene": "Scene_NewBattle",
+        "phase": "turn",
+        "flag": 1,
+        "text": [],
+        "busy": false,
+        "partyHP": [
+          50,
+          48,
+          65
+        ],
+        "enemyHP": [
+          1
+        ],
+        "skip": false,
+        "finish": true,
+        "troopRunning": false,
+        "troopIndex": 0,
+        "troopWait": "",
+        "command": null
+      },
+      {
+        "scene": "Scene_NewBattle",
+        "phase": "turn",
+        "flag": 1,
+        "text": [],
+        "busy": false,
+        "partyHP": [
+          50,
+          48,
+          65
+        ],
+        "enemyHP": [
+          1
+        ],
+        "skip": false,
+        "finish": true,
+        "troopRunning": false,
+        "troopIndex": 0,
+        "troopWait": "",
+        "command": null
+      }
+    ]
+  }
+]

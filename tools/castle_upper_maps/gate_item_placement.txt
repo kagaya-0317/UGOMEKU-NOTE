@@ -1,0 +1,26 @@
+    // Keep the native item selector on the current book page, clear of the spine.
+    var gateItemStart = Window_EventItem.prototype.start;
+    Window_EventItem.prototype.start = function() {
+        var gate = $gameMap.mapId() === 60 && $gameMap._interpreter._eventId === 8;
+        if (gate) {
+            if (!this._castleGateOriginalWidth) this._castleGateOriginalWidth = this.width;
+            this.width = 400;
+        } else if (this._castleGateOriginalWidth) {
+            this.width = this._castleGateOriginalWidth;
+            delete this._castleGateOriginalWidth;
+        }
+        this._castleGateSelection = gate;
+        this._castleGateExcludedItemId = gate ? Number($gameMap._interpreter._castleGateFirstKey) || 0 : 0;
+        return gateItemStart.apply(this, arguments);
+    };
+    var gateItemIncludes = Window_EventItem.prototype.includes;
+    Window_EventItem.prototype.includes = function(item) {
+        return gateItemIncludes.apply(this, arguments) &&
+            !(this._castleGateSelection && item.id === this._castleGateExcludedItemId);
+    };
+    var gateItemPlacement = Window_EventItem.prototype.updatePlacement;
+    Window_EventItem.prototype.updatePlacement = function() {
+        gateItemPlacement.apply(this, arguments);
+        this.x = this._castleGateSelection ? $gameMap.getCenterXForUI() - this.width / 2 : 0;
+    };
+

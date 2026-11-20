@@ -1,0 +1,35 @@
+{
+  "firstFloor": {
+    "event": [
+      100,
+      100
+    ],
+    "sprite": [
+      1,
+      1
+    ]
+  },
+  "status": {
+    "firstPanel": {
+      "clock": 62,
+      "total": 8,
+      "on": [
+        5
+      ],
+      "complete": false
+    },
+    "textureScale": 1,
+    "traps": true,
+    "layerBelowCharacters": true,
+    "body": ".WebGL mode."
+  },
+  "reentry": {
+    "textureScale": 1,
+    "on": [
+      5
+    ],
+    "scale": 100
+  },
+  "oldCacheMigrated": true,
+  "mapAndNativeHitFunctionUnchanged": true
+}

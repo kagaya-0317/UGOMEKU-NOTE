@@ -1,0 +1,19 @@
+{
+  "frames": 720,
+  "seconds": 12,
+  "hits": 3,
+  "smoothFlight": true,
+  "impactFrames": [
+    147,
+    387,
+    627
+  ],
+  "damageFrames": [
+    148,
+    388,
+    628
+  ],
+  "videoBytes": 705218,
+  "pngFiles": [],
+  "peak": "-6.3 dB"
+}

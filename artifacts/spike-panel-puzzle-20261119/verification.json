@@ -1,0 +1,524 @@
+{
+  "static": {
+    "terrainAndArtworkUnchanged": true,
+    "existingChestAndTransfersPreserved": true,
+    "firstFloorAndNativeHitFunctionUnchanged": true,
+    "panels": 8,
+    "commonEvent": 41
+  },
+  "previousWalkingTrace": [
+    {
+      "x": 15,
+      "y": 23,
+      "frame": 47,
+      "panels": {
+        "clock": 96,
+        "total": 8,
+        "on": [
+          5
+        ],
+        "complete": false
+      },
+      "hp": 50
+    },
+    {
+      "x": 15,
+      "y": 24,
+      "frame": 97,
+      "panels": {
+        "clock": 165,
+        "total": 8,
+        "on": [
+          5
+        ],
+        "complete": false
+      },
+      "hp": 50
+    },
+    {
+      "x": 15,
+      "y": 23,
+      "frame": 136,
+      "panels": {
+        "clock": 204,
+        "total": 8,
+        "on": [],
+        "complete": false
+      },
+      "hp": 50
+    },
+    {
+      "x": 15,
+      "y": 24,
+      "frame": 162,
+      "panels": {
+        "clock": 242,
+        "total": 8,
+        "on": [],
+        "complete": false
+      },
+      "hp": 50
+    },
+    {
+      "x": 15,
+      "y": 23,
+      "frame": 200,
+      "panels": {
+        "clock": 283,
+        "total": 8,
+        "on": [
+          5
+        ],
+        "complete": false
+      },
+      "hp": 50
+    },
+    {
+      "x": 10.5,
+      "y": 23,
+      "frame": 474,
+      "panels": {
+        "clock": 615,
+        "total": 8,
+        "on": [
+          5,
+          6
+        ],
+        "complete": false
+      },
+      "hp": 49
+    },
+    {
+      "x": 4.5,
+      "y": 23,
+      "frame": 582,
+      "panels": {
+        "clock": 761,
+        "total": 8,
+        "on": [
+          5,
+          6,
+          7
+        ],
+        "complete": false
+      },
+      "hp": 49
+    },
+    {
+      "x": 4.5,
+      "y": 17,
+      "frame": 707,
+      "panels": {
+        "clock": 931,
+        "total": 8,
+        "on": [
+          5,
+          6,
+          7,
+          8
+        ],
+        "complete": false
+      },
+      "hp": 49
+    },
+    {
+      "x": 10.5,
+      "y": 17,
+      "frame": 850,
+      "panels": {
+        "clock": 1101,
+        "total": 8,
+        "on": [
+          5,
+          6,
+          7,
+          8,
+          9
+        ],
+        "complete": false
+      },
+      "hp": 49
+    },
+    {
+      "x": 15,
+      "y": 17,
+      "frame": 979,
+      "panels": {
+        "clock": 1253,
+        "total": 8,
+        "on": [
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "complete": false
+      },
+      "hp": 49
+    },
+    {
+      "x": 15,
+      "y": 14.5,
+      "frame": 1094,
+      "panels": {
+        "clock": 1399,
+        "total": 8,
+        "on": [
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11
+        ],
+        "complete": false
+      },
+      "hp": 49
+    },
+    {
+      "x": 10.5,
+      "y": 14.5,
+      "frame": 1380,
+      "panels": {
+        "clock": 1593,
+        "total": 8,
+        "on": [
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12
+        ],
+        "complete": true
+      },
+      "hp": 49
+    }
+  ],
+  "precedingChecks": "Toggle hold/reentry, native HP damage, retained panel state and eight-panel walking route passed before the camera-wait correction",
+  "complete": {
+    "status": {
+      "clock": 5,
+      "total": 8,
+      "on": [
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12
+      ],
+      "complete": true
+    },
+    "activeTraps": 0,
+    "camera": [
+      null,
+      null
+    ],
+    "offset": [
+      0,
+      0
+    ]
+  },
+  "serialized": {
+    "status": {
+      "clock": 110,
+      "total": 8,
+      "on": [
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12
+      ],
+      "complete": true
+    },
+    "keys": 1
+  },
+  "reentry": {
+    "status": {
+      "clock": 31,
+      "total": 8,
+      "on": [
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12
+      ],
+      "complete": true
+    },
+    "panels": [
+      {
+        "id": 5,
+        "x": 15,
+        "y": 23
+      },
+      {
+        "id": 6,
+        "x": 10.5,
+        "y": 23
+      },
+      {
+        "id": 7,
+        "x": 4.5,
+        "y": 23
+      },
+      {
+        "id": 8,
+        "x": 4.5,
+        "y": 17
+      },
+      {
+        "id": 9,
+        "x": 10.5,
+        "y": 17
+      },
+      {
+        "id": 10,
+        "x": 15,
+        "y": 17
+      },
+      {
+        "id": 11,
+        "x": 15,
+        "y": 14.5
+      },
+      {
+        "id": 12,
+        "x": 10.5,
+        "y": 14.5
+      }
+    ],
+    "running": false,
+    "key": 1
+  },
+  "trace": [
+    {
+      "x": 15,
+      "y": 23,
+      "frame": 47,
+      "panels": {
+        "clock": 96,
+        "total": 8,
+        "on": [
+          5
+        ],
+        "complete": false
+      },
+      "hp": 50
+    },
+    {
+      "x": 15,
+      "y": 24,
+      "frame": 97,
+      "panels": {
+        "clock": 165,
+        "total": 8,
+        "on": [
+          5
+        ],
+        "complete": false
+      },
+      "hp": 50
+    },
+    {
+      "x": 15,
+      "y": 23,
+      "frame": 136,
+      "panels": {
+        "clock": 204,
+        "total": 8,
+        "on": [],
+        "complete": false
+      },
+      "hp": 50
+    },
+    {
+      "x": 15,
+      "y": 24,
+      "frame": 162,
+      "panels": {
+        "clock": 242,
+        "total": 8,
+        "on": [],
+        "complete": false
+      },
+      "hp": 50
+    },
+    {
+      "x": 15,
+      "y": 23,
+      "frame": 200,
+      "panels": {
+        "clock": 283,
+        "total": 8,
+        "on": [
+          5
+        ],
+        "complete": false
+      },
+      "hp": 50
+    },
+    {
+      "x": 10.5,
+      "y": 23,
+      "frame": 474,
+      "panels": {
+        "clock": 615,
+        "total": 8,
+        "on": [
+          5,
+          6
+        ],
+        "complete": false
+      },
+      "hp": 49
+    },
+    {
+      "x": 4.5,
+      "y": 23,
+      "frame": 582,
+      "panels": {
+        "clock": 761,
+        "total": 8,
+        "on": [
+          5,
+          6,
+          7
+        ],
+        "complete": false
+      },
+      "hp": 49
+    },
+    {
+      "x": 4.5,
+      "y": 17,
+      "frame": 707,
+      "panels": {
+        "clock": 931,
+        "total": 8,
+        "on": [
+          5,
+          6,
+          7,
+          8
+        ],
+        "complete": false
+      },
+      "hp": 49
+    },
+    {
+      "x": 10.5,
+      "y": 17,
+      "frame": 850,
+      "panels": {
+        "clock": 1101,
+        "total": 8,
+        "on": [
+          5,
+          6,
+          7,
+          8,
+          9
+        ],
+        "complete": false
+      },
+      "hp": 49
+    },
+    {
+      "x": 15,
+      "y": 17,
+      "frame": 979,
+      "panels": {
+        "clock": 1253,
+        "total": 8,
+        "on": [
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "complete": false
+      },
+      "hp": 49
+    },
+    {
+      "x": 15,
+      "y": 14.5,
+      "frame": 1094,
+      "panels": {
+        "clock": 1399,
+        "total": 8,
+        "on": [
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11
+        ],
+        "complete": false
+      },
+      "hp": 49
+    },
+    {
+      "x": 10.5,
+      "y": 14.5,
+      "frame": 1380,
+      "panels": {
+        "clock": 1593,
+        "total": 8,
+        "on": [
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12
+        ],
+        "complete": true
+      },
+      "hp": 49
+    },
+    {
+      "x": 10,
+      "y": 9,
+      "frame": 6696,
+      "panels": {
+        "clock": 103,
+        "total": 8,
+        "on": [
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12
+        ],
+        "complete": true
+      },
+      "hp": 49
+    }
+  ]
+}

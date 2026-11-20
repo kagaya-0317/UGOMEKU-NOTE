@@ -1,0 +1,162 @@
+{
+  "unchanged": [
+    "data/Map061.json",
+    "data/Map050.json",
+    "data/CommonEvents.json",
+    "js/plugins/KNH_ZXC_Gimmick_SpikeFloor.js",
+    "img/characters/$trap.png"
+  ],
+  "nativeGameplayPrefixUnchanged": true,
+  "geometry": {
+    "outside": 0,
+    "tested": 781016,
+    "bounds": {
+      "x": 9,
+      "y": 7,
+      "right": 39,
+      "bottom": 53,
+      "w": 30,
+      "h": 46
+    },
+    "regions": 11,
+    "fixtures": [
+      {
+        "size": [
+          384,
+          288
+        ],
+        "count": 104,
+        "nativePitchEstimate": 96,
+        "edgeGaps": [
+          1,
+          1,
+          1,
+          1
+        ]
+      },
+      {
+        "size": [
+          72,
+          144
+        ],
+        "count": 10,
+        "nativePitchEstimate": 9,
+        "edgeGaps": [
+          1,
+          1,
+          1,
+          1
+        ]
+      },
+      {
+        "size": [
+          144,
+          72
+        ],
+        "count": 9,
+        "nativePitchEstimate": 9,
+        "edgeGaps": [
+          1,
+          1,
+          1,
+          1
+        ]
+      },
+      {
+        "size": [
+          48,
+          144
+        ],
+        "count": 5,
+        "nativePitchEstimate": 6,
+        "edgeGaps": [
+          1,
+          1,
+          1,
+          1
+        ]
+      }
+    ],
+    "areas": [
+      354816,
+      10368,
+      15552,
+      15552,
+      15552,
+      10368,
+      3456,
+      10368,
+      15552,
+      15552,
+      3456
+    ],
+    "placements": [
+      318,
+      9,
+      11,
+      16,
+      11,
+      9,
+      2,
+      9,
+      16,
+      16,
+      2
+    ],
+    "scale": 1,
+    "belowCharacters": true,
+    "panels": [
+      {
+        "id": 5,
+        "x": 15,
+        "y": 23
+      },
+      {
+        "id": 6,
+        "x": 10.5,
+        "y": 23
+      },
+      {
+        "id": 7,
+        "x": 4.5,
+        "y": 23
+      },
+      {
+        "id": 8,
+        "x": 4.5,
+        "y": 17
+      },
+      {
+        "id": 9,
+        "x": 10.5,
+        "y": 17
+      },
+      {
+        "id": 10,
+        "x": 15,
+        "y": 17
+      },
+      {
+        "id": 11,
+        "x": 15,
+        "y": 14.5
+      },
+      {
+        "id": 12,
+        "x": 10.5,
+        "y": 14.5
+      }
+    ],
+    "body": ".WebGL mode."
+  },
+  "afterHit": {
+    "xy": [
+      15,
+      23
+    ],
+    "on": [
+      5
+    ]
+  },
+  "reentry": true
+}

@@ -1,0 +1,86 @@
+[
+  {
+    "frame": 40,
+    "name": "Equip1",
+    "volume": 22,
+    "pitch": 86,
+    "stopFrame": 75
+  },
+  {
+    "frame": 90,
+    "name": "Launch",
+    "volume": 22,
+    "pitch": 110,
+    "stopFrame": 251
+  },
+  {
+    "frame": 221,
+    "name": "Explosion1",
+    "volume": 28,
+    "pitch": 108,
+    "stopFrame": 324
+  },
+  {
+    "frame": 227,
+    "name": "Equip1",
+    "volume": 22,
+    "pitch": 86,
+    "stopFrame": 263
+  },
+  {
+    "frame": 340,
+    "name": "Equip1",
+    "volume": 22,
+    "pitch": 86,
+    "stopFrame": 375
+  },
+  {
+    "frame": 390,
+    "name": "Launch",
+    "volume": 22,
+    "pitch": 110,
+    "stopFrame": 563
+  },
+  {
+    "frame": 521,
+    "name": "Explosion1",
+    "volume": 28,
+    "pitch": 108,
+    "stopFrame": 610
+  },
+  {
+    "frame": 527,
+    "name": "Equip1",
+    "volume": 22,
+    "pitch": 86,
+    "stopFrame": 563
+  },
+  {
+    "frame": 640,
+    "name": "Equip1",
+    "volume": 22,
+    "pitch": 86,
+    "stopFrame": 675
+  },
+  {
+    "frame": 690,
+    "name": "Launch",
+    "volume": 22,
+    "pitch": 110,
+    "stopFrame": 876
+  },
+  {
+    "frame": 821,
+    "name": "Explosion1",
+    "volume": 28,
+    "pitch": 108,
+    "stopFrame": 921
+  },
+  {
+    "frame": 827,
+    "name": "Equip1",
+    "volume": 22,
+    "pitch": 86,
+    "stopFrame": 863
+  }
+]

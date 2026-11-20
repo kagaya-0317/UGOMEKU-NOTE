@@ -1,0 +1,13 @@
+{
+  "status": "not deleted",
+  "reason": "Automatic approval review rejected temporary-file deletion: blocked by policy",
+  "finalVideo": "C:\\Users\\kgygn\\Dropbox\\ゲーム\\Game_NewGame\\NewGame\\artifacts\\road-approach-tsunehi-video-20261120\\tsunehi_intro.mp4",
+  "finalVideoBytes": 10047692,
+  "remainingDirectory": "C:\\Users\\kgygn\\Dropbox\\ゲーム\\Game_NewGame\\NewGame\\artifacts\\road-approach-tsunehi-video-20261120\\_capture",
+  "remainingPngBytes": 1200112,
+  "remainingIntermediateVideoBytes": 11419351,
+  "remainingFiles": [
+    "C:\\Users\\kgygn\\Dropbox\\ゲーム\\Game_NewGame\\NewGame\\artifacts\\road-approach-tsunehi-video-20261120\\_capture\\dialogue-contact.png",
+    "C:\\Users\\kgygn\\Dropbox\\ゲーム\\Game_NewGame\\NewGame\\artifacts\\road-approach-tsunehi-video-20261120\\_capture\\tsunehi_intro_realtime.webm"
+  ]
+}

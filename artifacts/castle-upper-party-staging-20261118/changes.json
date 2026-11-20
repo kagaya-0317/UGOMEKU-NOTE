@@ -1,0 +1,26 @@
+[
+  {
+    "file": "data/Map059.json",
+    "before": "2fbc331c4ea0643fbaadd4f7a5ede6a0f30720e5a572d53c59feede709efb30f",
+    "after": "2fbc331c4ea0643fbaadd4f7a5ede6a0f30720e5a572d53c59feede709efb30f",
+    "controllers": [],
+    "addedEvents": []
+  },
+  {
+    "file": "data/Map060.json",
+    "before": "5dc3ff0a0bac34dc902e1e2d1a2254103d8a3dc30e263f2be102bb2eda4090cf",
+    "after": "5dc3ff0a0bac34dc902e1e2d1a2254103d8a3dc30e263f2be102bb2eda4090cf",
+    "controllers": [],
+    "addedEvents": []
+  },
+  {
+    "file": "data/Map062.json",
+    "before": "aacd6e53e6fbbb2231c350d436d2469c4f632af3d90da361882c8779404ea3bc",
+    "after": "ab68251ac185d4476d6b9061df4339b0236d4f164646346a3a0b39eb8834fa65",
+    "controllers": [
+      7,
+      8
+    ],
+    "addedEvents": []
+  }
+]

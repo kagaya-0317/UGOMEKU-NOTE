@@ -1,0 +1,29 @@
+{
+  "file": "C:\\Users\\kgygn\\Dropbox\\ゲーム\\Game_NewGame\\NewGame\\artifacts\\spike-panel-puzzle-20261119\\spike_panel_puzzle.mp4",
+  "seconds": 59.23,
+  "bytes": 55937803,
+  "codec": "H.264/AAC",
+  "resolution": [
+    816,
+    624
+  ],
+  "meanAudioDb": -14.6,
+  "fullDecode": true,
+  "visualCheckPending": false,
+  "temporaryPngs": [
+    "C:\\Users\\kgygn\\Dropbox\\ゲーム\\Game_NewGame\\NewGame\\artifacts\\spike-panel-puzzle-20261119\\_video_work\\check-00.png",
+    "C:\\Users\\kgygn\\Dropbox\\ゲーム\\Game_NewGame\\NewGame\\artifacts\\spike-panel-puzzle-20261119\\_video_work\\check-01.png",
+    "C:\\Users\\kgygn\\Dropbox\\ゲーム\\Game_NewGame\\NewGame\\artifacts\\spike-panel-puzzle-20261119\\_video_work\\check-02.png",
+    "C:\\Users\\kgygn\\Dropbox\\ゲーム\\Game_NewGame\\NewGame\\artifacts\\spike-panel-puzzle-20261119\\_video_work\\check-03.png",
+    "C:\\Users\\kgygn\\Dropbox\\ゲーム\\Game_NewGame\\NewGame\\artifacts\\spike-panel-puzzle-20261119\\_video_work\\check-04.png",
+    "C:\\Users\\kgygn\\Dropbox\\ゲーム\\Game_NewGame\\NewGame\\artifacts\\spike-panel-puzzle-20261119\\_video_work\\check-05.png",
+    "C:\\Users\\kgygn\\Dropbox\\ゲーム\\Game_NewGame\\NewGame\\artifacts\\spike-panel-puzzle-20261119\\_video_work\\check-06.png",
+    "C:\\Users\\kgygn\\Dropbox\\ゲーム\\Game_NewGame\\NewGame\\artifacts\\spike-panel-puzzle-20261119\\_video_work\\check-07.png",
+    "C:\\Users\\kgygn\\Dropbox\\ゲーム\\Game_NewGame\\NewGame\\artifacts\\spike-panel-puzzle-20261119\\_video_work\\contact-sheet.png"
+  ],
+  "visualCheck": {
+    "passed": true,
+    "checked": "Native room entry, toggle ON/OFF, damage, safe return, solved panels, key pickup and 3F return",
+    "delivered": true
+  }
+}

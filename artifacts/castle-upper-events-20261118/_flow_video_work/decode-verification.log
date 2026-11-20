@@ -1,0 +1,43 @@
+Input #0, mov,mp4,m4a,3gp,3g2,mj2, from 'C:\Users\kgygn\Dropbox\ゲーム\Game_NewGame\NewGame\artifacts\castle-upper-events-20261118\castle_upper_floor_flow.mp4':
+  Metadata:
+    major_brand     : isom
+    minor_version   : 512
+    compatible_brands: isomiso2avc1mp41
+    encoder         : Lavf60.16.100
+  Duration: 00:03:27.67, start: 0.000000, bitrate: 3503 kb/s
+  Stream #0:0[0x1](und): Video: h264 (High) (avc1 / 0x31637661), yuv420p(tv, bt470bg/unknown/unknown, progressive), 816x624 [SAR 1:1 DAR 17:13], 3327 kb/s, 30 fps, 30 tbr, 15360 tbn (default)
+    Metadata:
+      handler_name    : VideoHandler
+      vendor_id       : [0][0][0][0]
+      encoder         : Lavc60.31.102 libx264
+  Stream #0:1[0x2](und): Audio: aac (LC) (mp4a / 0x6134706D), 48000 Hz, stereo, fltp, 165 kb/s (default)
+    Metadata:
+      handler_name    : SoundHandler
+      vendor_id       : [0][0][0][0]
+[Parsed_volumedetect_0 @ 0000025c72b13e40] n_samples: 0
+Stream mapping:
+  Stream #0:0 -> #0:0 (h264 (native) -> wrapped_avframe (native))
+  Stream #0:1 -> #0:1 (aac (native) -> pcm_s16le (native))
+Press [q] to stop, [?] for help
+Output #0, null, to 'NUL':
+  Metadata:
+    major_brand     : isom
+    minor_version   : 512
+    compatible_brands: isomiso2avc1mp41
+    encoder         : Lavf60.16.100
+  Stream #0:0(und): Video: wrapped_avframe, yuv420p(tv, bt470bg/unknown/unknown, progressive), 816x624 [SAR 1:1 DAR 17:13], q=2-31, 200 kb/s, 30 fps, 30 tbn (default)
+    Metadata:
+      handler_name    : VideoHandler
+      vendor_id       : [0][0][0][0]
+      encoder         : Lavc60.31.102 wrapped_avframe
+  Stream #0:1(und): Audio: pcm_s16le, 48000 Hz, stereo, s16, 1536 kb/s (default)
+    Metadata:
+      handler_name    : SoundHandler
+      vendor_id       : [0][0][0][0]
+      encoder         : Lavc60.31.102 pcm_s16le
+frame=    1 fps=0.0 q=-0.0 size=N/A time=00:00:00.38 bitrate=N/A speed= 8.3x    frame=  523 fps=0.0 q=-0.0 size=N/A time=00:00:17.81 bitrate=N/A speed=32.4x    frame=  966 fps=919 q=-0.0 size=N/A time=00:00:32.58 bitrate=N/A speed=  31x    frame= 1410 fps=909 q=-0.0 size=N/A time=00:00:47.38 bitrate=N/A speed=30.5x    frame= 1854 fps=900 q=-0.0 size=N/A time=00:01:02.17 bitrate=N/A speed=30.2x    frame= 2179 fps=851 q=-0.0 size=N/A time=00:01:13.00 bitrate=N/A speed=28.5x    frame= 2773 fps=905 q=-0.0 size=N/A time=00:01:32.81 bitrate=N/A speed=30.3x    frame= 3055 fps=857 q=-0.0 size=N/A time=00:01:42.21 bitrate=N/A speed=28.7x    frame= 3173 fps=780 q=-0.0 size=N/A time=00:01:46.13 bitrate=N/A speed=26.1x    frame= 3534 fps=774 q=-0.0 size=N/A time=00:01:58.19 bitrate=N/A speed=25.9x    frame= 3948 fps=779 q=-0.0 size=N/A time=00:02:11.97 bitrate=N/A speed=  26x    frame= 4293 fps=771 q=-0.0 size=N/A time=00:02:23.50 bitrate=N/A speed=25.8x    frame= 4751 fps=782 q=-0.0 size=N/A time=00:02:38.74 bitrate=N/A speed=26.1x    frame= 5337 fps=812 q=-0.0 size=N/A time=00:02:58.28 bitrate=N/A speed=27.1x    frame= 5900 fps=834 q=-0.0 size=N/A time=00:03:17.01 bitrate=N/A speed=27.9x    [out#0/null @ 0000025c72b4dc00] video:2920kB audio:38936kB subtitle:0kB other streams:0kB global headers:0kB muxing overhead: unknown
+frame= 6230 fps=837 q=-0.0 Lsize=N/A time=00:03:27.64 bitrate=N/A speed=27.9x    
+[Parsed_volumedetect_0 @ 0000025c73d7eec0] n_samples: 19935232
+[Parsed_volumedetect_0 @ 0000025c73d7eec0] mean_volume: -13.3 dB
+[Parsed_volumedetect_0 @ 0000025c73d7eec0] max_volume: 0.0 dB
+[Parsed_volumedetect_0 @ 0000025c73d7eec0] histogram_0db: 31065

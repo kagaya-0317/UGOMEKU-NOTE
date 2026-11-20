@@ -1,0 +1,45 @@
+Input #0, mov,mp4,m4a,3gp,3g2,mj2, from 'C:\Users\kgygn\Dropbox\ゲーム\Game_NewGame\NewGame\artifacts\spike-panel-hatching-20261119\spike_panel_puzzle.mp4':
+  Metadata:
+    major_brand     : isom
+    minor_version   : 512
+    compatible_brands: isomiso2avc1mp41
+    encoder         : Lavf60.16.100
+  Duration: 00:00:56.22, start: 0.000000, bitrate: 3972 kb/s
+  Stream #0:0[0x1](eng): Video: h264 (High) (avc1 / 0x31637661), yuv420p(tv, bt470bg/unknown/unknown, progressive), 816x624 [SAR 1:1 DAR 17:13], 3799 kb/s, 30 fps, 30 tbr, 15360 tbn (default)
+    Metadata:
+      handler_name    : VideoHandler
+      vendor_id       : [0][0][0][0]
+      encoder         : Lavc60.31.102 libx264
+  Stream #0:1[0x2](eng): Audio: aac (LC) (mp4a / 0x6134706D), 48000 Hz, stereo, fltp, 163 kb/s (default)
+    Metadata:
+      handler_name    : SoundHandler
+      vendor_id       : [0][0][0][0]
+[Parsed_volumedetect_0 @ 000001ff15830e40] n_samples: 0
+Stream mapping:
+  Stream #0:0 -> #0:0 (h264 (native) -> wrapped_avframe (native))
+  Stream #0:1 -> #0:1 (aac (native) -> pcm_s16le (native))
+Press [q] to stop, [?] for help
+Output #0, null, to 'NUL':
+  Metadata:
+    major_brand     : isom
+    minor_version   : 512
+    compatible_brands: isomiso2avc1mp41
+    encoder         : Lavf60.16.100
+  Stream #0:0(eng): Video: wrapped_avframe, yuv420p(tv, bt470bg/unknown/unknown, progressive), 816x624 [SAR 1:1 DAR 17:13], q=2-31, 200 kb/s, 30 fps, 30 tbn (default)
+    Metadata:
+      handler_name    : VideoHandler
+      vendor_id       : [0][0][0][0]
+      encoder         : Lavc60.31.102 wrapped_avframe
+  Stream #0:1(eng): Audio: pcm_s16le, 48000 Hz, stereo, s16, 1536 kb/s (default)
+    Metadata:
+      handler_name    : SoundHandler
+      vendor_id       : [0][0][0][0]
+      encoder         : Lavc60.31.102 pcm_s16le
+frame=    0 fps=0.0 q=-0.0 size=N/A time=00:00:00.38 bitrate=N/A speed=17.5x    frame=  616 fps=0.0 q=-0.0 size=N/A time=00:00:20.90 bitrate=N/A speed=39.7x    frame= 1226 fps=1192 q=-0.0 size=N/A time=00:00:41.25 bitrate=N/A speed=40.1x    [out#0/null @ 000001ff15a28440] video:790kB audio:10536kB subtitle:0kB other streams:0kB global headers:0kB muxing overhead: unknown
+frame= 1686 fps=1161 q=-0.0 Lsize=N/A time=00:00:56.21 bitrate=N/A speed=38.7x    
+[Parsed_volumedetect_0 @ 000001ff16a11e80] n_samples: 5394432
+[Parsed_volumedetect_0 @ 000001ff16a11e80] mean_volume: -14.7 dB
+[Parsed_volumedetect_0 @ 000001ff16a11e80] max_volume: 0.0 dB
+[Parsed_volumedetect_0 @ 000001ff16a11e80] histogram_0db: 407
+[Parsed_volumedetect_0 @ 000001ff16a11e80] histogram_1db: 2561
+[Parsed_volumedetect_0 @ 000001ff16a11e80] histogram_2db: 6052

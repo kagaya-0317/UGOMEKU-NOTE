@@ -1,0 +1,875 @@
+{
+  "party": [
+    2,
+    3,
+    4
+  ],
+  "initial": {
+    "speed": 4.5,
+    "camera": [
+      0,
+      0
+    ],
+    "visible": true
+  },
+  "reports": [
+    {
+      "scope": "before",
+      "index": 0,
+      "text": [
+        "ボクは幹部、モーネ"
+      ],
+      "rect": [
+        253.5,
+        147.9467942738862,
+        309,
+        113
+      ],
+      "tone": 0,
+      "battle": false,
+      "speaker": 3,
+      "moving": false
+    },
+    {
+      "scope": "before",
+      "index": 1,
+      "text": [
+        "人間ってさ",
+        "つまらないんだよね"
+      ],
+      "rect": [
+        250.5,
+        116.80690237312734,
+        315,
+        146
+      ],
+      "tone": 0,
+      "battle": false,
+      "speaker": 3,
+      "moving": false
+    },
+    {
+      "scope": "before",
+      "index": 2,
+      "text": [
+        "考えてることが",
+        "すぐ顔に出るから"
+      ],
+      "rect": [
+        264.5,
+        116.96035363460277,
+        287,
+        146
+      ],
+      "tone": 0,
+      "battle": false,
+      "speaker": 3,
+      "moving": false
+    },
+    {
+      "scope": "before",
+      "index": 3,
+      "text": [
+        "怖がってるな、とか",
+        "逃げたいんだな、とか"
+      ],
+      "rect": [
+        236,
+        117.0486920001282,
+        344,
+        146
+      ],
+      "tone": 0,
+      "battle": false,
+      "speaker": 3,
+      "moving": false
+    },
+    {
+      "scope": "before",
+      "index": 4,
+      "text": [
+        "でも、キミはちがう",
+        "何考えてるか",
+        "よくわかんない"
+      ],
+      "rect": [
+        267,
+        50.43198180713739,
+        282,
+        179
+      ],
+      "tone": 0,
+      "battle": false,
+      "speaker": 3,
+      "moving": false
+    },
+    {
+      "scope": "before",
+      "index": 5,
+      "text": [
+        "なんかニコニコしてるし",
+        "尻と太ももしかないし"
+      ],
+      "rect": [
+        231,
+        117.06029472387371,
+        354,
+        146
+      ],
+      "tone": 0,
+      "battle": false,
+      "speaker": 3,
+      "moving": false
+    },
+    {
+      "scope": "before",
+      "index": 6,
+      "text": [
+        "かわいい",
+        "癒し系",
+        "普通に好き"
+      ],
+      "rect": [
+        296.5,
+        50.43661868923152,
+        223,
+        179
+      ],
+      "tone": 0,
+      "battle": false,
+      "speaker": 3,
+      "moving": false
+    },
+    {
+      "scope": "before",
+      "index": 7,
+      "text": [
+        "えっ…",
+        "じゃあ、通してくれる？"
+      ],
+      "rect": [
+        172,
+        316.93714779527545,
+        328,
+        146
+      ],
+      "tone": 0,
+      "battle": false,
+      "speaker": 8,
+      "moving": false
+    },
+    {
+      "scope": "before",
+      "index": 8,
+      "text": [
+        "ううん",
+        "殺すよ"
+      ],
+      "rect": [
+        331,
+        117.06235924582734,
+        154,
+        146
+      ],
+      "tone": 0,
+      "battle": false,
+      "speaker": 3,
+      "moving": false
+    },
+    {
+      "scope": "before",
+      "index": 9,
+      "text": [
+        "ボク、好きになった子を",
+        "殺すのが大好きなんだ"
+      ],
+      "rect": [
+        227.5,
+        117.06244374937148,
+        361,
+        146
+      ],
+      "tone": 0,
+      "battle": false,
+      "speaker": 3,
+      "moving": false
+    },
+    {
+      "scope": "before",
+      "index": 10,
+      "text": [
+        "困った好きになり方ね"
+      ],
+      "rect": [
+        308,
+        350.24997752014633,
+        344,
+        113
+      ],
+      "tone": 0,
+      "battle": false,
+      "speaker": 9,
+      "moving": false
+    },
+    {
+      "scope": "before",
+      "index": 11,
+      "text": [
+        "そう？",
+        "嫌いな子と遊んでも",
+        "楽しくないでしょ"
+      ],
+      "rect": [
+        242.5,
+        50.43749101621023,
+        331,
+        179
+      ],
+      "tone": 0,
+      "battle": false,
+      "speaker": 3,
+      "moving": false
+    },
+    {
+      "scope": "battle0",
+      "index": 0,
+      "text": [
+        "いいね",
+        "ちゃんと避けてくれる"
+      ],
+      "rect": [
+        229,
+        203.875,
+        315,
+        146
+      ],
+      "tone": 0,
+      "battle": true,
+      "speaker": "enemy",
+      "moving": false,
+      "enemy": [
+        {
+          "pos": [
+            544,
+            288
+          ],
+          "anchor": [
+            0.5,
+            1
+          ],
+          "size": 144,
+          "scale": [
+            2,
+            2
+          ]
+        }
+      ]
+    },
+    {
+      "scope": "battle0",
+      "index": 1,
+      "text": [
+        "すぐ死んじゃうと",
+        "さびしいから"
+      ],
+      "rect": [
+        275,
+        203.875,
+        269,
+        146
+      ],
+      "tone": 0,
+      "battle": true,
+      "speaker": "enemy",
+      "moving": false,
+      "enemy": [
+        {
+          "pos": [
+            544,
+            288
+          ],
+          "anchor": [
+            0.5,
+            1
+          ],
+          "size": 144,
+          "scale": [
+            2,
+            2
+          ]
+        }
+      ]
+    },
+    {
+      "scope": "battle0",
+      "index": 2,
+      "text": [
+        "死なないように",
+        "避けてるんだよ！"
+      ],
+      "rect": [
+        112,
+        270.5,
+        276,
+        146
+      ],
+      "tone": 0,
+      "battle": true,
+      "speaker": 3,
+      "moving": false,
+      "enemy": [
+        {
+          "pos": [
+            544,
+            288
+          ],
+          "anchor": [
+            0.5,
+            1
+          ],
+          "size": 144,
+          "scale": [
+            2,
+            2
+          ]
+        }
+      ]
+    },
+    {
+      "scope": "battle0",
+      "index": 3,
+      "text": [
+        "うん",
+        "だから、うれしい"
+      ],
+      "rect": [
+        277,
+        203.875,
+        267,
+        146
+      ],
+      "tone": 0,
+      "battle": true,
+      "speaker": "enemy",
+      "moving": false,
+      "enemy": [
+        {
+          "pos": [
+            544,
+            288
+          ],
+          "anchor": [
+            0.5,
+            1
+          ],
+          "size": 144,
+          "scale": [
+            2,
+            2
+          ]
+        }
+      ]
+    },
+    {
+      "scope": "resume",
+      "turn": 0,
+      "flags": {
+        "0": true
+      },
+      "phase": 1,
+      "pressing": false
+    },
+    {
+      "scope": "battle1",
+      "index": 0,
+      "text": [
+        "いたいなあ"
+      ],
+      "rect": [
+        327,
+        203.875,
+        217,
+        113
+      ],
+      "tone": 0,
+      "battle": true,
+      "speaker": "enemy",
+      "moving": false,
+      "enemy": [
+        {
+          "pos": [
+            544,
+            288
+          ],
+          "anchor": [
+            0.5,
+            1
+          ],
+          "size": 144,
+          "scale": [
+            2,
+            2
+          ]
+        }
+      ]
+    },
+    {
+      "scope": "battle1",
+      "index": 1,
+      "text": [
+        "そんなに怒らなくても",
+        "ちゃんと戦ってあげるよ"
+      ],
+      "rect": [
+        206,
+        203.875,
+        338,
+        146
+      ],
+      "tone": 0,
+      "battle": true,
+      "speaker": "enemy",
+      "moving": false,
+      "enemy": [
+        {
+          "pos": [
+            544,
+            288
+          ],
+          "anchor": [
+            0.5,
+            1
+          ],
+          "size": 144,
+          "scale": [
+            2,
+            2
+          ]
+        }
+      ]
+    },
+    {
+      "scope": "battle1",
+      "index": 2,
+      "text": [
+        "キミは、ぼくたちが",
+        "憎くないの！？"
+      ],
+      "rect": [
+        272,
+        270.5,
+        292,
+        146
+      ],
+      "tone": 0,
+      "battle": true,
+      "speaker": 3,
+      "moving": false,
+      "enemy": [
+        {
+          "pos": [
+            544,
+            288
+          ],
+          "anchor": [
+            0.5,
+            1
+          ],
+          "size": 144,
+          "scale": [
+            2,
+            2
+          ]
+        }
+      ]
+    },
+    {
+      "scope": "battle1",
+      "index": 3,
+      "text": [
+        "全然",
+        "好きって言ったでしょ"
+      ],
+      "rect": [
+        231,
+        203.875,
+        313,
+        146
+      ],
+      "tone": 0,
+      "battle": true,
+      "speaker": "enemy",
+      "moving": false,
+      "enemy": [
+        {
+          "pos": [
+            544,
+            288
+          ],
+          "anchor": [
+            0.5,
+            1
+          ],
+          "size": 144,
+          "scale": [
+            2,
+            2
+          ]
+        }
+      ]
+    },
+    {
+      "scope": "battle1",
+      "index": 4,
+      "text": [
+        "殺すのに憎しみなんて",
+        "必要ないよ"
+      ],
+      "rect": [
+        196,
+        203.875,
+        348,
+        146
+      ],
+      "tone": 0,
+      "battle": true,
+      "speaker": "enemy",
+      "moving": false,
+      "enemy": [
+        {
+          "pos": [
+            544,
+            288
+          ],
+          "anchor": [
+            0.5,
+            1
+          ],
+          "size": 144,
+          "scale": [
+            2,
+            2
+          ]
+        }
+      ]
+    },
+    {
+      "scope": "resume",
+      "turn": 1,
+      "flags": {
+        "0": true,
+        "1": true
+      },
+      "phase": 2,
+      "pressing": false
+    },
+    {
+      "scope": "battle2",
+      "index": 0,
+      "text": [
+        "ずっと遊んでいたいな"
+      ],
+      "rect": [
+        193,
+        203.875,
+        351,
+        113
+      ],
+      "tone": 0,
+      "battle": true,
+      "speaker": "enemy",
+      "moving": false,
+      "enemy": [
+        {
+          "pos": [
+            544,
+            288
+          ],
+          "anchor": [
+            0.5,
+            1
+          ],
+          "size": 144,
+          "scale": [
+            2,
+            2
+          ]
+        }
+      ]
+    },
+    {
+      "scope": "battle2",
+      "index": 1,
+      "text": [
+        "でも、キミが倒れるところも",
+        "見てみたい"
+      ],
+      "rect": [
+        161,
+        203.875,
+        383,
+        146
+      ],
+      "tone": 0,
+      "battle": true,
+      "speaker": "enemy",
+      "moving": false,
+      "enemy": [
+        {
+          "pos": [
+            544,
+            288
+          ],
+          "anchor": [
+            0.5,
+            1
+          ],
+          "size": 144,
+          "scale": [
+            2,
+            2
+          ]
+        }
+      ]
+    },
+    {
+      "scope": "battle2",
+      "index": 2,
+      "text": [
+        "どんな顔するんだろう",
+        "そのときは",
+        "考えてること、わかるかな"
+      ],
+      "rect": [
+        179,
+        203.875,
+        365,
+        179
+      ],
+      "tone": 0,
+      "battle": true,
+      "speaker": "enemy",
+      "moving": false,
+      "enemy": [
+        {
+          "pos": [
+            544,
+            288
+          ],
+          "anchor": [
+            0.5,
+            1
+          ],
+          "size": 144,
+          "scale": [
+            2,
+            2
+          ]
+        }
+      ]
+    },
+    {
+      "scope": "resume",
+      "turn": 2,
+      "flags": {
+        "0": true,
+        "1": true,
+        "2": true
+      },
+      "phase": 3,
+      "pressing": false
+    },
+    {
+      "scope": "after",
+      "index": 0,
+      "text": [
+        "……負けちゃった"
+      ],
+      "rect": [
+        272.5,
+        150.3749999999966,
+        271,
+        113
+      ],
+      "tone": 0,
+      "battle": false,
+      "speaker": 3,
+      "moving": false
+    },
+    {
+      "scope": "after",
+      "index": 1,
+      "text": [
+        "ボクを殺さないの？"
+      ],
+      "rect": [
+        250,
+        150.37499999999955,
+        316,
+        113
+      ],
+      "tone": 0,
+      "battle": false,
+      "speaker": 3,
+      "moving": false
+    },
+    {
+      "scope": "after",
+      "index": 2,
+      "text": [
+        "うん",
+        "通してくれれば",
+        "それでいいんだ"
+      ],
+      "rect": [
+        204,
+        250.31249999999955,
+        264,
+        179
+      ],
+      "tone": 0,
+      "battle": false,
+      "speaker": 8,
+      "moving": false
+    },
+    {
+      "scope": "after",
+      "index": 3,
+      "text": [
+        "ふうん…"
+      ],
+      "rect": [
+        321.5,
+        150.37499999999955,
+        173,
+        113
+      ],
+      "tone": 0,
+      "battle": false,
+      "speaker": 3,
+      "moving": false
+    },
+    {
+      "scope": "after",
+      "index": 4,
+      "text": [
+        "ボク、キミが死ぬところを",
+        "見たかったんだけど"
+      ],
+      "rect": [
+        226,
+        117.06249999999955,
+        364,
+        146
+      ],
+      "tone": 0,
+      "battle": false,
+      "speaker": 3,
+      "moving": false
+    },
+    {
+      "scope": "after",
+      "index": 5,
+      "text": [
+        "生きてるキミも",
+        "もう少し見たくなった"
+      ],
+      "rect": [
+        245,
+        117.06249999999955,
+        326,
+        146
+      ],
+      "tone": 0,
+      "battle": false,
+      "speaker": 3,
+      "moving": false
+    },
+    {
+      "scope": "after",
+      "index": 6,
+      "text": [
+        "それじゃ、しばらくは",
+        "見るだけにしてね"
+      ],
+      "rect": [
+        328.5,
+        316.93749999999955,
+        303,
+        146
+      ],
+      "tone": 0,
+      "battle": false,
+      "speaker": 9,
+      "moving": false
+    },
+    {
+      "scope": "after",
+      "index": 7,
+      "text": [
+        "うん",
+        "そうしてみる"
+      ],
+      "rect": [
+        301,
+        117.06249999999955,
+        214,
+        146
+      ],
+      "tone": 0,
+      "battle": false,
+      "speaker": 3,
+      "moving": false
+    },
+    {
+      "scope": "after",
+      "index": 8,
+      "text": [
+        "階段はあっちだよ"
+      ],
+      "rect": [
+        268,
+        150.37499999999955,
+        280,
+        113
+      ],
+      "tone": 0,
+      "battle": false,
+      "speaker": 3,
+      "moving": false
+    },
+    {
+      "scope": "after",
+      "index": 9,
+      "text": [
+        "またね",
+        "キミのこと、覚えとく"
+      ],
+      "rect": [
+        260,
+        117.06249999999955,
+        296,
+        146
+      ],
+      "tone": 0,
+      "battle": false,
+      "speaker": 3,
+      "moving": false
+    }
+  ],
+  "final": {
+    "speed": 4.5,
+    "camera": [
+      0,
+      0
+    ],
+    "visible": true,
+    "boss": [
+      10,
+      15,
+      1
+    ],
+    "tail": 0
+  },
+  "forcedHpThresholdsAndVictoryForFlowOnly": true
+}

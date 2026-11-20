@@ -1,0 +1,27 @@
+{
+  "fullDecode": true,
+  "duration": 10.43,
+  "video": {
+    "codec": "h264",
+    "width": 816,
+    "height": 624,
+    "fps": 30
+  },
+  "audio": {
+    "codec": "aac",
+    "meanDb": -15.2,
+    "maxDb": -0.5,
+    "tailMax": 0
+  },
+  "endpoints": [
+    {
+      "min": 0,
+      "max": 0
+    },
+    {
+      "min": 0,
+      "max": 0
+    }
+  ],
+  "unexpectedBlackFrames": false
+}

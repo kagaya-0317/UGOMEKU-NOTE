@@ -1,0 +1,14 @@
+{
+  "files": {
+    "js/plugins/KNH_ZXC_Gimmick_SpikePanel.js": "7e68151146d6b531fe222dd3bf895d146ed07eb0cc84971e4d23a8046c1211e0",
+    "AGENTS.md": "7108e25e0dcd020bde3ac4df46bd1839533d2f55e10d5ebb9bd16b2ad47e2ed1",
+    "data/Map061.json": "e5293b55f64e33855a731debaa3f8f12837510ed759c20200a8e041fd51e03b5",
+    "data/Map050.json": "457340d10450e81f94b3c1d1416537210347b13a011167288b5e5b339dcad860",
+    "data/CommonEvents.json": "f0a9d8ed52b6ad112c3b9472a7cdb9918bd534e915667b8697f3304b2fa8f46b",
+    "js/plugins/KNH_ZXC_Gimmick_SpikeFloor.js": "fc841ea62e96e1ec6ea0f22685bb792e36b3aeab9c055101487a22ce9fce10d4",
+    "js/plugins/KNH_ZXC_Setting.js": "f255a330416e674f959dcb714966afb6ef3ba4a4e31b1cc1512ff512df9d682d",
+    "js/plugins/KNH_ZXC_System.js": "b36e0194065fcbdba6e3cbaa8b1c1ed995c6c44e929b88f81220fab1bb05ec7b",
+    "img/characters/$trap.png": "48046e297d2924baebfd9691625612a508ef2f2ceabc041c02330466f9c5e2cf",
+    "img/parallaxes/!map114_room.png": "7ec8247a170fefc6efb33acfb8645da94f04fe5eff8f551371670ffa88632daa"
+  }
+}

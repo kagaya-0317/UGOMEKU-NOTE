@@ -1,0 +1,28 @@
+{
+  "file": "C:\\Users\\kgygn\\Dropbox\\ゲーム\\Game_NewGame\\NewGame\\artifacts\\spike-panel-hatching-20261119\\spike_panel_puzzle.mp4",
+  "seconds": 56.22,
+  "bytes": 27916202,
+  "codec": "H.264/AAC",
+  "resolution": [
+    816,
+    624
+  ],
+  "meanAudioDb": -14.7,
+  "fullDecode": true,
+  "visualCheckPending": false,
+  "temporaryPngs": [
+    "C:\\Users\\kgygn\\Dropbox\\ゲーム\\Game_NewGame\\NewGame\\artifacts\\spike-panel-hatching-20261119\\_video_work\\check-00.png",
+    "C:\\Users\\kgygn\\Dropbox\\ゲーム\\Game_NewGame\\NewGame\\artifacts\\spike-panel-hatching-20261119\\_video_work\\check-01.png",
+    "C:\\Users\\kgygn\\Dropbox\\ゲーム\\Game_NewGame\\NewGame\\artifacts\\spike-panel-hatching-20261119\\_video_work\\check-02.png",
+    "C:\\Users\\kgygn\\Dropbox\\ゲーム\\Game_NewGame\\NewGame\\artifacts\\spike-panel-hatching-20261119\\_video_work\\check-03.png",
+    "C:\\Users\\kgygn\\Dropbox\\ゲーム\\Game_NewGame\\NewGame\\artifacts\\spike-panel-hatching-20261119\\_video_work\\check-04.png",
+    "C:\\Users\\kgygn\\Dropbox\\ゲーム\\Game_NewGame\\NewGame\\artifacts\\spike-panel-hatching-20261119\\_video_work\\check-05.png",
+    "C:\\Users\\kgygn\\Dropbox\\ゲーム\\Game_NewGame\\NewGame\\artifacts\\spike-panel-hatching-20261119\\_video_work\\check-06.png",
+    "C:\\Users\\kgygn\\Dropbox\\ゲーム\\Game_NewGame\\NewGame\\artifacts\\spike-panel-hatching-20261119\\_video_work\\check-07.png",
+    "C:\\Users\\kgygn\\Dropbox\\ゲーム\\Game_NewGame\\NewGame\\artifacts\\spike-panel-hatching-20261119\\_video_work\\contact-sheet.png"
+  ],
+  "visualCheckPassed": true,
+  "visualCheck": "Inspected the native recording: down-left hatch direction across every trap section, matching floor material in raised/retracted/completed states, spike edges, normal party walking, damage return, key and exit",
+  "implementationSha256": "1120607560048475710a8c9b6280adac0e032b0ab4e39bb1391cfec98dae32b4",
+  "hatchingVerification": "verification.json"
+}

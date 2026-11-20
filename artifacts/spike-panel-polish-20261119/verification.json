@@ -1,0 +1,403 @@
+{
+  "static": {
+    "terrainAndArtworkUnchanged": true,
+    "existingChestAndTransfersPreserved": true,
+    "firstFloorAndNativeHitFunctionUnchanged": true,
+    "panels": 8,
+    "commonEvent": 41
+  },
+  "initial": {
+    "status": {
+      "clock": 37,
+      "total": 8,
+      "on": [],
+      "complete": false
+    },
+    "panels": [
+      {
+        "id": 5,
+        "x": 15,
+        "y": 23
+      },
+      {
+        "id": 6,
+        "x": 10.5,
+        "y": 23
+      },
+      {
+        "id": 7,
+        "x": 4.5,
+        "y": 23
+      },
+      {
+        "id": 8,
+        "x": 4.5,
+        "y": 17
+      },
+      {
+        "id": 9,
+        "x": 10.5,
+        "y": 17
+      },
+      {
+        "id": 10,
+        "x": 15,
+        "y": 17
+      },
+      {
+        "id": 11,
+        "x": 15,
+        "y": 14.5
+      },
+      {
+        "id": 12,
+        "x": 10.5,
+        "y": 14.5
+      }
+    ],
+    "through": false
+  },
+  "hit": {
+    "on": [
+      5
+    ],
+    "hp": 49,
+    "safe": {
+      "x": 14.5,
+      "y": 23
+    },
+    "target": {
+      "x": 15,
+      "y": 23
+    }
+  },
+  "returned": {
+    "xy": [
+      15,
+      23
+    ],
+    "on": [
+      5
+    ]
+  },
+  "complete": {
+    "status": {
+      "clock": 1593,
+      "total": 8,
+      "on": [
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12
+      ],
+      "complete": true
+    },
+    "activeTraps": 0,
+    "camera": [
+      null,
+      null
+    ],
+    "offset": [
+      0,
+      0
+    ]
+  },
+  "serialized": {
+    "status": {
+      "clock": 1695,
+      "total": 8,
+      "on": [
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12
+      ],
+      "complete": true
+    },
+    "keys": 1
+  },
+  "reentry": {
+    "status": {
+      "clock": 21,
+      "total": 8,
+      "on": [
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12
+      ],
+      "complete": true
+    },
+    "panels": [
+      {
+        "id": 5,
+        "x": 15,
+        "y": 23
+      },
+      {
+        "id": 6,
+        "x": 10.5,
+        "y": 23
+      },
+      {
+        "id": 7,
+        "x": 4.5,
+        "y": 23
+      },
+      {
+        "id": 8,
+        "x": 4.5,
+        "y": 17
+      },
+      {
+        "id": 9,
+        "x": 10.5,
+        "y": 17
+      },
+      {
+        "id": 10,
+        "x": 15,
+        "y": 17
+      },
+      {
+        "id": 11,
+        "x": 15,
+        "y": 14.5
+      },
+      {
+        "id": 12,
+        "x": 10.5,
+        "y": 14.5
+      }
+    ],
+    "running": false,
+    "key": 1
+  },
+  "trace": [
+    {
+      "x": 15,
+      "y": 23,
+      "frame": 49,
+      "panels": {
+        "clock": 88,
+        "total": 8,
+        "on": [
+          5
+        ],
+        "complete": false
+      },
+      "hp": 50
+    },
+    {
+      "x": 15,
+      "y": 24,
+      "frame": 116,
+      "panels": {
+        "clock": 157,
+        "total": 8,
+        "on": [
+          5
+        ],
+        "complete": false
+      },
+      "hp": 50
+    },
+    {
+      "x": 15,
+      "y": 23,
+      "frame": 153,
+      "panels": {
+        "clock": 196,
+        "total": 8,
+        "on": [],
+        "complete": false
+      },
+      "hp": 50
+    },
+    {
+      "x": 15,
+      "y": 24,
+      "frame": 188,
+      "panels": {
+        "clock": 234,
+        "total": 8,
+        "on": [],
+        "complete": false
+      },
+      "hp": 50
+    },
+    {
+      "x": 15,
+      "y": 23,
+      "frame": 222,
+      "panels": {
+        "clock": 273,
+        "total": 8,
+        "on": [
+          5
+        ],
+        "complete": false
+      },
+      "hp": 50
+    },
+    {
+      "x": 10.5,
+      "y": 23,
+      "frame": 540,
+      "panels": {
+        "clock": 604,
+        "total": 8,
+        "on": [
+          5,
+          6
+        ],
+        "complete": false
+      },
+      "hp": 49
+    },
+    {
+      "x": 4.5,
+      "y": 23,
+      "frame": 689,
+      "panels": {
+        "clock": 761,
+        "total": 8,
+        "on": [
+          5,
+          6,
+          7
+        ],
+        "complete": false
+      },
+      "hp": 49
+    },
+    {
+      "x": 4.5,
+      "y": 17,
+      "frame": 852,
+      "panels": {
+        "clock": 931,
+        "total": 8,
+        "on": [
+          5,
+          6,
+          7,
+          8
+        ],
+        "complete": false
+      },
+      "hp": 49
+    },
+    {
+      "x": 10.5,
+      "y": 17,
+      "frame": 1018,
+      "panels": {
+        "clock": 1101,
+        "total": 8,
+        "on": [
+          5,
+          6,
+          7,
+          8,
+          9
+        ],
+        "complete": false
+      },
+      "hp": 49
+    },
+    {
+      "x": 15,
+      "y": 17,
+      "frame": 1164,
+      "panels": {
+        "clock": 1253,
+        "total": 8,
+        "on": [
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "complete": false
+      },
+      "hp": 49
+    },
+    {
+      "x": 15,
+      "y": 14.5,
+      "frame": 1308,
+      "panels": {
+        "clock": 1399,
+        "total": 8,
+        "on": [
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11
+        ],
+        "complete": false
+      },
+      "hp": 49
+    },
+    {
+      "x": 10.5,
+      "y": 14.5,
+      "frame": 1724,
+      "panels": {
+        "clock": 1593,
+        "total": 8,
+        "on": [
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12
+        ],
+        "complete": true
+      },
+      "hp": 49
+    },
+    {
+      "x": 10,
+      "y": 9,
+      "frame": 1819,
+      "panels": {
+        "clock": 1691,
+        "total": 8,
+        "on": [
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12
+        ],
+        "complete": true
+      },
+      "hp": 49
+    }
+  ]
+}

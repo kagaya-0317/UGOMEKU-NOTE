@@ -1,0 +1,5 @@
+const fs=require('node:fs'),path=require('node:path'),assert=require('node:assert/strict');const {keySpan,patchRecords}=require('../castle_upper_maps/implement_events.cjs');
+const file=path.resolve(__dirname,'../../data/Map060.json'),before=fs.readFileSync(file),s=before.toString('utf8'),map=JSON.parse(s),marker=structuredClone(map.events[11]);assert.ok(marker&&!map.events[12]);
+const initializer=structuredClone(marker);initializer.id=12;initializer.name='死の猛獣_退避位置復元';initializer.note='<important>';initializer.x=0;initializer.y=0;initializer.pages[1].list[1].parameters[0]='beast.locateToCharacter(this.character(11));beast.setDirection(6);';
+marker.pages=[marker.pages[0]];marker.pages[0].trigger=0;marker.pages[0].list=[{code:0,indent:0,parameters:[]}];
+const [a,b]=keySpan(s,'events'),next=s.slice(0,a)+patchRecords(s.slice(a,b),[[11,marker]],[initializer])+s.slice(b);assert.ok(fs.readFileSync(file).equals(before));fs.writeFileSync(file,next);console.log('Separated persistent marker from one-shot per-visit initialization');

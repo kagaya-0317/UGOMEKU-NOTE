@@ -1,0 +1,14 @@
+{
+  "onlyMapCapAndCompletionWaitChanged": true,
+  "editorPlacementsPreserved": true,
+  "encodingAndLineEndingsPreserved": true,
+  "protectedFilesUnchanged": [
+    "data/Map050.json",
+    "data/CommonEvents.json",
+    "js/plugins/KNH_ZXC_Gimmick_SpikeFloor.js",
+    "js/plugins/KNH_ZXC_Setting.js",
+    "js/plugins/KNH_ZXC_System.js",
+    "img/characters/$trap.png",
+    "img/parallaxes/!map114_room.png"
+  ]
+}

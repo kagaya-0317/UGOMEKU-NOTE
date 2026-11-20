@@ -1,0 +1,45 @@
+{
+  "file": "gnuro_prebattle.mp4",
+  "seconds": 36.64,
+  "bytes": 28570443,
+  "frames": 1099,
+  "codec": "H.264/AAC",
+  "resolution": [
+    816,
+    624
+  ],
+  "fps": 30,
+  "fullVideoAndAudioDecode": true,
+  "unexpectedDarkMapFrames": 0,
+  "firstAndLastFrameRgbMaximum": 0,
+  "audioTailPeak": 0,
+  "firstPopupAboveBoss": true,
+  "belowBossPopupFrames": 0,
+  "ordinaryPartyAttacks": 1,
+  "partyCases": [
+    [
+      2,
+      3,
+      4
+    ],
+    [
+      2,
+      4,
+      3
+    ],
+    [
+      2,
+      3
+    ],
+    [
+      2,
+      4
+    ],
+    [
+      2
+    ]
+  ],
+  "saveLoad": true,
+  "walkingTransfersBothDirections": true,
+  "forcedVictoryOnlyForReturnVerification": true
+}

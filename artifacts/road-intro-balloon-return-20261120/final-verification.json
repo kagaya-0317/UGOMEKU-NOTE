@@ -1,0 +1,40 @@
+{
+  "hashes": {
+    "data/Map063.json": "dbde50e1d1ab7fcc4cfc9ee9e909cc42617a8e1a1e7aed7720036f24f3e1a68d",
+    "data/System.json": "cee676321e7fd3a4447a055e958c6d7bd06f77492dba589547c50eda70cdf1ea",
+    "js/plugins/KNH_ZXC_CastleUpper.js": "cbd88d7e983ccddffdee85909f29610c0f2721d60952b33b6b9d2610a3e3db38"
+  },
+  "openingExclamation": 11,
+  "walkingReturnPartyCases": [
+    [
+      2,
+      3,
+      4
+    ],
+    [
+      2,
+      4,
+      3
+    ],
+    [
+      2,
+      3
+    ],
+    [
+      2,
+      4
+    ],
+    [
+      2
+    ]
+  ],
+  "seamlessHandoff": true,
+  "normalFollowing": true,
+  "onceOnReentry": true,
+  "nativeSaveLoad": true,
+  "visualReviewPassed": true,
+  "deliveredScreenshots": [
+    "intro-exclamation.png",
+    "party-returned.png"
+  ]
+}

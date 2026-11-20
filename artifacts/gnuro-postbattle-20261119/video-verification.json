@@ -1,0 +1,169 @@
+{
+  "forcedVictoryBeforeClip": true,
+  "seconds": 10.206000000005588,
+  "party": [
+    2,
+    3,
+    4
+  ],
+  "messages": [
+    {
+      "text": "ワシは幹部",
+      "frame": 385,
+      "map": 54,
+      "battle": false,
+      "time": 8197.000000043772
+    },
+    {
+      "text": "グミ・グヌロッベン！",
+      "frame": 385,
+      "map": 54,
+      "battle": false,
+      "time": 8197.000000043772
+    },
+    {
+      "text": "ワシは四天王の中でも、",
+      "frame": 401,
+      "map": 54,
+      "battle": false,
+      "time": 8495.000000111759
+    },
+    {
+      "text": "最強の腕力を持つ男…",
+      "frame": 401,
+      "map": 54,
+      "battle": false,
+      "time": 8495.000000111759
+    },
+    {
+      "text": "この先へ進みたければ…",
+      "frame": 412,
+      "map": 54,
+      "battle": false,
+      "time": 8697.000000043772
+    },
+    {
+      "text": "ワシを倒していくの！？",
+      "frame": 412,
+      "map": 54,
+      "battle": false,
+      "time": 8697.000000043772
+    },
+    {
+      "text": "クックック…",
+      "frame": 424,
+      "map": 54,
+      "battle": false,
+      "time": 8895.000000018626
+    },
+    {
+      "text": "ワーッハッハッハ！",
+      "frame": 436,
+      "map": 54,
+      "battle": false,
+      "time": 9095.000000088476
+    },
+    {
+      "text": "ドワッハッハッハ！",
+      "frame": 448,
+      "map": 54,
+      "battle": false,
+      "time": 9296.000000089407
+    },
+    {
+      "text": "ドワーッハッハッハ！",
+      "frame": 460,
+      "map": 54,
+      "battle": false,
+      "time": 9496.00000004284
+    },
+    {
+      "text": "ブワッハッハッハ！",
+      "frame": 472,
+      "map": 54,
+      "battle": false,
+      "time": 9695.000000065193
+    },
+    {
+      "text": "おっと、失礼しました",
+      "frame": 501,
+      "map": 54,
+      "battle": false,
+      "time": 10195.999999996275
+    },
+    {
+      "text": "では、改めまして…",
+      "frame": 519,
+      "map": 54,
+      "battle": false,
+      "time": 10495.000000111759
+    },
+    {
+      "text": "ワシのこの斧で、",
+      "frame": 531,
+      "map": 54,
+      "battle": false,
+      "time": 10695.000000065193
+    },
+    {
+      "text": "みじん切りにしてくれるわ！！",
+      "frame": 531,
+      "map": 54,
+      "battle": false,
+      "time": 10695.000000065193
+    },
+    {
+      "text": "なんとか倒せたね…",
+      "frame": 2153,
+      "map": 54,
+      "battle": false,
+      "time": 38745.00000011176
+    },
+    {
+      "text": "すごい人だったね",
+      "frame": 2153,
+      "map": 54,
+      "battle": false,
+      "time": 38745.00000011176
+    },
+    {
+      "text": "ええ、毎朝欠かさず",
+      "frame": 2337,
+      "map": 54,
+      "battle": false,
+      "time": 41878.00000002608
+    },
+    {
+      "text": "伸ばしてるんですって！",
+      "frame": 2337,
+      "map": 54,
+      "battle": false,
+      "time": 41878.00000002608
+    },
+    {
+      "text": "足の話！？",
+      "frame": 2463,
+      "map": 54,
+      "battle": false,
+      "time": 44045.00000004191
+    }
+  ],
+  "camera": [
+    0,
+    0
+  ],
+  "followers": [
+    {
+      "actor": 3,
+      "x": 10,
+      "y": 16
+    },
+    {
+      "actor": 4,
+      "x": 10,
+      "y": 16.5
+    }
+  ],
+  "temp": false,
+  "error": null
+}

@@ -1,0 +1,27 @@
+{
+  "map": 54,
+  "parallax": "!map111_hallway",
+  "canvas": [
+    1008,
+    1440
+  ],
+  "display": [
+    0.49999999999999467,
+    -0.49999999999999467
+  ],
+  "player": [
+    10,
+    22
+  ],
+  "boss": [
+    10,
+    13
+  ],
+  "running": false,
+  "progress": 0,
+  "capturedDisplay": [
+    0,
+    0
+  ],
+  "file": "hallway-full.png"
+}

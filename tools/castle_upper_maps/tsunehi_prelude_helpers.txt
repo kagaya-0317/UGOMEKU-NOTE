@@ -1,0 +1,50 @@
+    api.throneActorSpeaker = function(actorId) {
+        var state = $gameTemp._castleUpperScene;
+        if (!state || state.mapId !== 62 || state.eventId !== 3) return false;
+        var member = state.members.filter(function(member) { return member.actorId === actorId; })[0];
+        if (!member) return false;
+        api.mapSpeaker(member.eventId);
+        $gameMessage._popupHeight = 0;
+        return true;
+    };
+    api.throneBossSpeaker = function(shout) {
+        api.mapSpeaker(3);
+        $gameMessage._popupHeight = 0;
+        $gameVariables.setValue(14, shout ? 1 : 0);
+    };
+    api.thronePose = function(pose) {
+        if ($gameMap.mapId() !== 62) return;
+        var ch = $gameMap.event(3);
+        if (!ch) return;
+        if (ch._frameAnimation || ch._lastInfoForFA) ch.endFrameAnimation();
+        ch.stopShiverX();
+        ch.stopGatagata();
+        // Single-pose PNGs use a fixed cell; the original sheets use native cells.
+        ch._cssRect = pose === 'inject' ? {x: 0, y: 0, width: 288, height: 320} : null;
+        ch._patternFix = true;
+        ch._pattern = 0;
+        var sp = ch.sprite();
+        if (sp) sp._lastFrame = null;
+        var image = pose === 'mad' ? '$kanbu2_2' : pose === 'inject' ? '$castleTsunehi_vial_tmp' : '$kanbu2';
+        ch.setImageZXC(image, 0, 2);
+        if (pose === 'inject') {
+            ch.startShiverX();
+        } else if (pose === 'mad') {
+            ch.startFrameAnimation([3, 4, 5], 6, true);
+            ch.startGatagata();
+        } else if (pose === 'attack') {
+            ch._throneLungeOrigin = {x: ch.x, y: ch.y};
+            ch.startFrameAnimation([5], 1, false);
+            ch.jump(0, 1, 0.25, 3);
+        }
+    };
+    api.throneRecover = function() {
+        var ch = $gameMap.event(3);
+        api.thronePose('front');
+        if (ch && ch._throneLungeOrigin) {
+            ch.goTo(ch._throneLungeOrigin.x, ch._throneLungeOrigin.y);
+            delete ch._throneLungeOrigin;
+        }
+        return ch;
+    };
+

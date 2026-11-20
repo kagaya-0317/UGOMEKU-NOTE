@@ -1,0 +1,13 @@
+{
+  "midWaveVictoryReleasesFilters": true,
+  "gnuro": {
+    "wave": false,
+    "depth": 90,
+    "filter": true,
+    "barPoint": {
+      "x": 363.5,
+      "y": 126
+    }
+  },
+  "forcedVictoryForCleanupOnly": true
+}

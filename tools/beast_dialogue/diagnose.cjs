@@ -1,0 +1,8 @@
+// Inspect the native friendly encounter when messages are advanced rapidly.
+const fs=require('node:fs'),path=require('node:path');const {connect}=require('../gnuro_prebattle/client.cjs');
+async function main(){const q=await connect();try{
+ await q.ready();await q.evaluate('DataManager.setupNewGame();$gameParty._actors=[2,3];$gamePlayer.refresh();true');await q.evaluate(fs.readFileSync(path.resolve(__dirname,'../gnuro_prebattle/driver.js'),'utf8'));
+ await q.map(60,6,18.5);await q.evaluate('__gnuroIntroQA.auto=true;$gamePlayer.moveStraight(8);true');
+ for(let i=0;i<20;i++){await q.sleep(500);console.log(JSON.stringify(await q.evaluate('({scene:SceneManager._scene.constructor.name,phase:BattleManager._phase,flag:$gameVariables.value(64),message:$gameMessage._texts,window:SceneManager._scene._messageWindow&&{open:SceneManager._scene._messageWindow.openness,closing:SceneManager._scene._messageWindow._closing,pause:SceneManager._scene._messageWindow.pause},troop:$gameTroop._troopId,interpreter:{index:$gameTroop._interpreter._index,wait:$gameTroop._interpreter._waitMode,running:$gameTroop.isEventRunning()},eventFlags:$gameTroop._eventFlags,fade:$gameScreen._fadeInDuration,bar:SceneManager._scene.barVisible&&SceneManager._scene.barVisible(),battleEnd:SceneManager._scene._battleEndCount,messages:__gnuroIntroQA.messages.map(m=>m.text),error:__gnuroIntroQA.error})')));if(await q.evaluate('SceneManager._scene instanceof Scene_Map&&$gameVariables.value(64)===2&&!$gameMap.isEventRunning()'))break;}
+}finally{try{await q.call('Browser.close');}catch(_){}q.ws.close();}}
+main().catch(e=>{console.error(e);process.exitCode=1;});

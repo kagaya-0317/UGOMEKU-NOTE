@@ -1,0 +1,12 @@
+{
+  "runtimeDiagnosticOnly": true,
+  "correction": "Assign each hidden trap sprite its character screenZ; no source files changed",
+  "hiddenTrapSprites": 49,
+  "invalidComparisonsBefore": 49,
+  "invalidComparisonsAfter": 0,
+  "observedFrames": 136,
+  "orderChanges": 0,
+  "orders": [
+    "2,3,4"
+  ]
+}

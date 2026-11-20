@@ -1,0 +1,78 @@
+{
+  "nativeWalking": true,
+  "through": false,
+  "checks": [
+    {
+      "from": 54,
+      "approach": [
+        9,
+        9
+      ],
+      "direction": 8,
+      "to": 63
+    },
+    {
+      "from": 54,
+      "approach": [
+        11,
+        9
+      ],
+      "direction": 8,
+      "to": 63
+    },
+    {
+      "from": 63,
+      "approach": [
+        3.5,
+        28
+      ],
+      "direction": 2,
+      "to": 54
+    },
+    {
+      "from": 63,
+      "approach": [
+        6.5,
+        28
+      ],
+      "direction": 2,
+      "to": 54
+    },
+    {
+      "from": 63,
+      "approach": [
+        18.5,
+        9
+      ],
+      "direction": 6,
+      "to": 55
+    },
+    {
+      "from": 63,
+      "approach": [
+        18.5,
+        12
+      ],
+      "direction": 6,
+      "to": 55
+    },
+    {
+      "from": 55,
+      "approach": [
+        2,
+        22
+      ],
+      "direction": 4,
+      "to": 63
+    },
+    {
+      "from": 55,
+      "approach": [
+        2,
+        25
+      ],
+      "direction": 4,
+      "to": 63
+    }
+  ]
+}

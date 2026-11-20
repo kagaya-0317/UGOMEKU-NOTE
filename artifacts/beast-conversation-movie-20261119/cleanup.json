@@ -1,0 +1,26 @@
+{
+  "finalVideo": "C:/Users/kgygn/Dropbox/ゲーム/Game_NewGame/NewGame/artifacts/beast-conversation-movie-20261119/beast_conversation.mp4",
+  "finalVideoBytes": 16073017,
+  "temporaryPngDeletedBytes": 2996248,
+  "prototypeAndSourceVideoDeletedBytes": 20311874,
+  "captureDirectoryRemoved": true,
+  "remainingQaProfiles": [
+    {
+      "path": "C:/Users/kgygn/AppData/Local/Temp/beast-silent-capture-20261119-profile",
+      "bytes": 16671917
+    },
+    {
+      "path": "C:/Users/kgygn/AppData/Local/Temp/beast-fourth-slot-20261119-profile",
+      "bytes": 11315088
+    },
+    {
+      "path": "C:/Users/kgygn/AppData/Local/Temp/beast-dialogue-20261119-profile",
+      "bytes": 11254226
+    },
+    {
+      "path": "C:/Users/kgygn/AppData/Local/Temp/gnuro-postbattle-20261119-profile",
+      "bytes": 19642745
+    }
+  ],
+  "remainingProfileDeletion": "Automatic approval review rejected bulk recursive deletion; profiles were retained"
+}

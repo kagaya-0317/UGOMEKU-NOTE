@@ -1,0 +1,27 @@
+{
+  "mone": {
+    "ok": true,
+    "speaker": "enemy",
+    "popup": {
+      "x": 780,
+      "y": 210
+    },
+    "tail": 9
+  },
+  "beast": {
+    "popup": {
+      "x": 88,
+      "y": 342
+    },
+    "expected": {
+      "x": 88,
+      "y": 342
+    },
+    "tail": 4,
+    "party": [
+      2,
+      3,
+      4
+    ]
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "files": {
+    "data/Map054.json": "af74eee61ccfa2769312f45b5c4a3f3144446065df46be037f1ae5394624cabb",
+    "data/Map055.json": "66da37e3d7ab4d20a71f1712519ec0320e3257cbc44cdab239da2dc93277a01f",
+    "data/MapInfos.json": "f79a62777bf6a4995f4fe23f4b0b17c3d7d885d03e9eaf331d74ab942081f05a",
+    "data/System.json": "f6ce4de17514c58df13aa3ec3b755dd48f0ae87da68dbcdf6790e9b8a7f866ea",
+    "data/CommonEvents.json": "f0a9d8ed52b6ad112c3b9472a7cdb9918bd534e915667b8697f3304b2fa8f46b",
+    "img/parallaxes/!map112.png": "9031b98bd77526903c54dd153886a624a5b6677135cfbbffc1acc75e8a66370b"
+  }
+}

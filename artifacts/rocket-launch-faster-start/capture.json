@@ -1,0 +1,12 @@
+{
+  "frames": 320,
+  "fps": 60,
+  "firstWait": 5,
+  "scales": {
+    "characterX": 1,
+    "characterY": 1,
+    "puff": 2,
+    "trail": 2
+  },
+  "completed": true
+}

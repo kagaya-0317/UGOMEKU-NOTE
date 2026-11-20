@@ -1,0 +1,419 @@
+{
+  "steps": [
+    {
+      "map": 60,
+      "pos": [
+        14.5,
+        25.5
+      ],
+      "dir": 2,
+      "canMove": true,
+      "half": true,
+      "speed": 4.5,
+      "playerThrough": false,
+      "stair": null,
+      "pass": [
+        {
+          "d": 2,
+          "ok": true
+        },
+        {
+          "d": 4,
+          "ok": true
+        },
+        {
+          "d": 6,
+          "ok": true
+        },
+        {
+          "d": 8,
+          "ok": true
+        }
+      ],
+      "running": false,
+      "event": 0
+    },
+    {
+      "map": 59,
+      "pos": [
+        10,
+        7.5
+      ],
+      "dir": 2,
+      "canMove": true,
+      "half": true,
+      "speed": 4.5,
+      "playerThrough": false,
+      "stair": {
+        "x": 10,
+        "y": 5.5,
+        "page": 0,
+        "trigger": 1
+      },
+      "pass": [
+        {
+          "d": 2,
+          "ok": true
+        },
+        {
+          "d": 4,
+          "ok": true
+        },
+        {
+          "d": 6,
+          "ok": true
+        },
+        {
+          "d": 8,
+          "ok": true
+        }
+      ],
+      "running": false,
+      "event": 0
+    }
+  ],
+  "up": [
+    {
+      "map": 59,
+      "pos": [
+        10,
+        7.5
+      ],
+      "dir": 2,
+      "canMove": true,
+      "half": true,
+      "speed": 4.5,
+      "playerThrough": false,
+      "stair": {
+        "x": 10,
+        "y": 5.5,
+        "page": 0,
+        "trigger": 1
+      },
+      "pass": [
+        {
+          "d": 2,
+          "ok": true
+        },
+        {
+          "d": 4,
+          "ok": true
+        },
+        {
+          "d": 6,
+          "ok": true
+        },
+        {
+          "d": 8,
+          "ok": true
+        }
+      ],
+      "running": false,
+      "event": 0
+    },
+    {
+      "map": 59,
+      "pos": [
+        10,
+        7
+      ],
+      "dir": 8,
+      "canMove": true,
+      "half": true,
+      "speed": 4.5,
+      "playerThrough": false,
+      "stair": {
+        "x": 10,
+        "y": 5.5,
+        "page": 0,
+        "trigger": 1
+      },
+      "pass": [
+        {
+          "d": 2,
+          "ok": true
+        },
+        {
+          "d": 4,
+          "ok": true
+        },
+        {
+          "d": 6,
+          "ok": true
+        },
+        {
+          "d": 8,
+          "ok": true
+        }
+      ],
+      "running": false,
+      "event": 0
+    },
+    {
+      "map": 59,
+      "pos": [
+        10,
+        6.5
+      ],
+      "dir": 8,
+      "canMove": true,
+      "half": true,
+      "speed": 4.5,
+      "playerThrough": false,
+      "stair": {
+        "x": 10,
+        "y": 5.5,
+        "page": 0,
+        "trigger": 1
+      },
+      "pass": [
+        {
+          "d": 2,
+          "ok": true
+        },
+        {
+          "d": 4,
+          "ok": true
+        },
+        {
+          "d": 6,
+          "ok": true
+        },
+        {
+          "d": 8,
+          "ok": true
+        }
+      ],
+      "running": false,
+      "event": 0
+    },
+    {
+      "map": 59,
+      "pos": [
+        10,
+        6
+      ],
+      "dir": 8,
+      "canMove": true,
+      "half": true,
+      "speed": 4.5,
+      "playerThrough": false,
+      "stair": {
+        "x": 10,
+        "y": 5.5,
+        "page": 0,
+        "trigger": 1
+      },
+      "pass": [
+        {
+          "d": 2,
+          "ok": true
+        },
+        {
+          "d": 4,
+          "ok": true
+        },
+        {
+          "d": 6,
+          "ok": true
+        },
+        {
+          "d": 8,
+          "ok": true
+        }
+      ],
+      "running": false,
+      "event": 0
+    },
+    {
+      "map": 59,
+      "pos": [
+        10,
+        5.5
+      ],
+      "dir": 8,
+      "canMove": true,
+      "half": true,
+      "speed": 4.5,
+      "playerThrough": false,
+      "stair": {
+        "x": 10,
+        "y": 5.5,
+        "page": 0,
+        "trigger": 1
+      },
+      "pass": [
+        {
+          "d": 2,
+          "ok": true
+        },
+        {
+          "d": 4,
+          "ok": true
+        },
+        {
+          "d": 6,
+          "ok": true
+        },
+        {
+          "d": 8,
+          "ok": true
+        }
+      ],
+      "running": false,
+      "event": 0
+    },
+    {
+      "map": 59,
+      "pos": [
+        10,
+        5
+      ],
+      "dir": 8,
+      "canMove": true,
+      "half": true,
+      "speed": 4.5,
+      "playerThrough": false,
+      "stair": {
+        "x": 10,
+        "y": 5.5,
+        "page": 0,
+        "trigger": 1
+      },
+      "pass": [
+        {
+          "d": 2,
+          "ok": true
+        },
+        {
+          "d": 4,
+          "ok": true
+        },
+        {
+          "d": 6,
+          "ok": true
+        },
+        {
+          "d": 8,
+          "ok": true
+        }
+      ],
+      "running": false,
+      "event": 0
+    },
+    {
+      "map": 59,
+      "pos": [
+        10,
+        4.5
+      ],
+      "dir": 8,
+      "canMove": true,
+      "half": true,
+      "speed": 4.5,
+      "playerThrough": false,
+      "stair": {
+        "x": 10,
+        "y": 5.5,
+        "page": 0,
+        "trigger": 1
+      },
+      "pass": [
+        {
+          "d": 2,
+          "ok": true
+        },
+        {
+          "d": 4,
+          "ok": true
+        },
+        {
+          "d": 6,
+          "ok": true
+        },
+        {
+          "d": 8,
+          "ok": true
+        }
+      ],
+      "running": false,
+      "event": 0
+    },
+    {
+      "map": 59,
+      "pos": [
+        10,
+        4
+      ],
+      "dir": 8,
+      "canMove": true,
+      "half": true,
+      "speed": 4.5,
+      "playerThrough": false,
+      "stair": {
+        "x": 10,
+        "y": 5.5,
+        "page": 0,
+        "trigger": 1
+      },
+      "pass": [
+        {
+          "d": 2,
+          "ok": true
+        },
+        {
+          "d": 4,
+          "ok": true
+        },
+        {
+          "d": 6,
+          "ok": true
+        },
+        {
+          "d": 8,
+          "ok": false
+        }
+      ],
+      "running": false,
+      "event": 0
+    },
+    {
+      "map": 59,
+      "pos": [
+        10,
+        4
+      ],
+      "dir": 8,
+      "canMove": true,
+      "half": true,
+      "speed": 4.5,
+      "playerThrough": false,
+      "stair": {
+        "x": 10,
+        "y": 5.5,
+        "page": 0,
+        "trigger": 1
+      },
+      "pass": [
+        {
+          "d": 2,
+          "ok": true
+        },
+        {
+          "d": 4,
+          "ok": true
+        },
+        {
+          "d": 6,
+          "ok": true
+        },
+        {
+          "d": 8,
+          "ok": false
+        }
+      ],
+      "running": false,
+      "event": 0
+    }
+  ]
+}

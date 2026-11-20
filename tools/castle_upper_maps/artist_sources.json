@@ -1,0 +1,95 @@
+{
+  "assets": [
+    {
+      "name": "モーネの間",
+      "editable": "C:\\Users\\kgygn\\Dropbox\\ゲーム\\Game_NewGame\\画像\\!map113.aseprite",
+      "runtime": "C:\\Users\\kgygn\\Dropbox\\ゲーム\\Game_NewGame\\NewGame\\img\\parallaxes\\!map113.png",
+      "width": 1000,
+      "height": 1414
+    },
+    {
+      "name": "モンスター城3階",
+      "editable": "C:\\Users\\kgygn\\Dropbox\\ゲーム\\Game_NewGame\\画像\\!map114.aseprite",
+      "runtime": "C:\\Users\\kgygn\\Dropbox\\ゲーム\\Game_NewGame\\NewGame\\img\\parallaxes\\!map114.png",
+      "width": 2000,
+      "height": 1414
+    },
+    {
+      "name": "3階ギミック部屋",
+      "editable": "C:\\Users\\kgygn\\Dropbox\\ゲーム\\Game_NewGame\\画像\\!map114_room.aseprite",
+      "runtime": "C:\\Users\\kgygn\\Dropbox\\ゲーム\\Game_NewGame\\NewGame\\img\\parallaxes\\!map114_room.png",
+      "width": 1000,
+      "height": 1414
+    },
+    {
+      "name": "玉座の間",
+      "editable": "C:\\Users\\kgygn\\Dropbox\\ゲーム\\Game_NewGame\\画像\\!map115.aseprite",
+      "runtime": "C:\\Users\\kgygn\\Dropbox\\ゲーム\\Game_NewGame\\NewGame\\img\\parallaxes\\!map115.png",
+      "width": 1000,
+      "height": 1414
+    },
+    {
+      "name": "大きい扉",
+      "editable": "C:\\Users\\kgygn\\Dropbox\\ゲーム\\Game_NewGame\\画像\\玉座の間_大扉.aseprite",
+      "runtime": "C:\\Users\\kgygn\\Dropbox\\ゲーム\\Game_NewGame\\NewGame\\img\\characters\\castleThroneDoor.png",
+      "width": 384,
+      "height": 192,
+      "cellWidth": 192,
+      "cellHeight": 192
+    },
+    {
+      "name": "死の猛獣・歩行",
+      "editable": "C:\\Users\\kgygn\\Dropbox\\ゲーム\\Game_NewGame\\画像\\死の猛獣_歩行.aseprite",
+      "runtime": "C:\\Users\\kgygn\\Dropbox\\ゲーム\\Game_NewGame\\NewGame\\img\\characters\\$castleBeast.png",
+      "width": 432,
+      "height": 576,
+      "cellWidth": 144,
+      "cellHeight": 144
+    },
+    {
+      "name": "死の猛獣・戦闘",
+      "editable": "C:\\Users\\kgygn\\Dropbox\\ゲーム\\Game_NewGame\\画像\\死の猛獣_戦闘.aseprite",
+      "runtime": "C:\\Users\\kgygn\\Dropbox\\ゲーム\\Game_NewGame\\NewGame\\img\\sv_actors\\castleBeast.png",
+      "width": 144,
+      "height": 144,
+      "cellWidth": 144,
+      "cellHeight": 144
+    },
+    {
+      "name": "ツネヒ・マップ",
+      "editable": "C:\\Users\\kgygn\\Dropbox\\ゲーム\\Game_NewGame\\画像\\ツネヒ_マップ.aseprite",
+      "runtime": "C:\\Users\\kgygn\\Dropbox\\ゲーム\\Game_NewGame\\NewGame\\img\\characters\\$castleTsunehi.png",
+      "width": 864,
+      "height": 1280,
+      "cellWidth": 288,
+      "cellHeight": 320
+    },
+    {
+      "name": "モーネ・戦闘",
+      "editable": "C:\\Users\\kgygn\\Dropbox\\ゲーム\\Game_NewGame\\画像\\モーネ_戦闘.aseprite",
+      "runtime": "C:\\Users\\kgygn\\Dropbox\\ゲーム\\Game_NewGame\\NewGame\\img\\sv_enemies\\castleMone_tmp.png",
+      "width": 144,
+      "height": 1152,
+      "cellWidth": 144,
+      "cellHeight": 144
+    },
+    {
+      "name": "ツネヒ・戦闘",
+      "editable": "C:\\Users\\kgygn\\Dropbox\\ゲーム\\Game_NewGame\\画像\\ツネヒ_戦闘.aseprite",
+      "runtime": "C:\\Users\\kgygn\\Dropbox\\ゲーム\\Game_NewGame\\NewGame\\img\\sv_enemies\\castleTsunehi_tmp.png",
+      "width": 144,
+      "height": 1152,
+      "cellWidth": 144,
+      "cellHeight": 144
+    },
+    {
+      "name": "城のカギ",
+      "editable": "C:\\Users\\kgygn\\Dropbox\\ゲーム\\Game_NewGame\\画像\\城のカギ.aseprite",
+      "runtime": "C:\\Users\\kgygn\\Dropbox\\ゲーム\\Game_NewGame\\NewGame\\img\\items\\Item9.png",
+      "width": 576,
+      "height": 288,
+      "cellWidth": 144,
+      "cellHeight": 144
+    }
+  ]
+}

@@ -1,0 +1,1222 @@
+{
+  "reference": [
+    {
+      "home": [
+        136,
+        252
+      ],
+      "position": [
+        272,
+        312
+      ]
+    },
+    {
+      "home": [
+        112,
+        292
+      ],
+      "position": [
+        112,
+        292
+      ]
+    },
+    {
+      "home": [
+        88,
+        332
+      ],
+      "position": [
+        88,
+        332
+      ]
+    },
+    {
+      "home": [
+        64,
+        372
+      ],
+      "position": [
+        64,
+        372
+      ]
+    }
+  ],
+  "cases": [
+    {
+      "party": [
+        2,
+        3,
+        4
+      ],
+      "bubbles": [
+        {
+          "guest": {
+            "home": [
+              64,
+              372
+            ],
+            "position": [
+              64,
+              372
+            ],
+            "scale": [
+              1.2,
+              1.2
+            ],
+            "forward": false
+          },
+          "allies": [
+            {
+              "home": [
+                136,
+                252
+              ],
+              "position": [
+                272,
+                312
+              ]
+            },
+            {
+              "home": [
+                112,
+                292
+              ],
+              "position": [
+                112,
+                292
+              ]
+            },
+            {
+              "home": [
+                88,
+                332
+              ],
+              "position": [
+                88,
+                332
+              ]
+            }
+          ],
+          "party": [
+            2,
+            3,
+            4
+          ],
+          "guestInActions": false,
+          "popup": {
+            "x": 120.1,
+            "y": 203.875,
+            "w": 187,
+            "h": 113
+          },
+          "tone": 1
+        },
+        {
+          "guest": {
+            "home": [
+              64,
+              372
+            ],
+            "position": [
+              64,
+              372
+            ],
+            "scale": [
+              1.2,
+              1.2
+            ],
+            "forward": false
+          },
+          "allies": [
+            {
+              "home": [
+                136,
+                252
+              ],
+              "position": [
+                272,
+                312
+              ]
+            },
+            {
+              "home": [
+                112,
+                292
+              ],
+              "position": [
+                112,
+                292
+              ]
+            },
+            {
+              "home": [
+                88,
+                332
+              ],
+              "position": [
+                88,
+                332
+              ]
+            }
+          ],
+          "party": [
+            2,
+            3,
+            4
+          ],
+          "guestInActions": false,
+          "popup": {
+            "x": 154.60000000000002,
+            "y": 203.875,
+            "w": 302,
+            "h": 146
+          },
+          "tone": 1
+        },
+        {
+          "guest": {
+            "home": [
+              64,
+              372
+            ],
+            "position": [
+              64,
+              372
+            ],
+            "scale": [
+              1.2,
+              1.2
+            ],
+            "forward": false
+          },
+          "allies": [
+            {
+              "home": [
+                136,
+                252
+              ],
+              "position": [
+                272,
+                312
+              ]
+            },
+            {
+              "home": [
+                112,
+                292
+              ],
+              "position": [
+                112,
+                292
+              ]
+            },
+            {
+              "home": [
+                88,
+                332
+              ],
+              "position": [
+                88,
+                332
+              ]
+            }
+          ],
+          "party": [
+            2,
+            3,
+            4
+          ],
+          "guestInActions": false,
+          "popup": {
+            "x": 173.5,
+            "y": 203.875,
+            "w": 365,
+            "h": 146
+          },
+          "tone": 0
+        },
+        {
+          "guest": {
+            "home": [
+              64,
+              372
+            ],
+            "position": [
+              64,
+              372
+            ],
+            "scale": [
+              1.2,
+              1.2
+            ],
+            "forward": false
+          },
+          "allies": [
+            {
+              "home": [
+                136,
+                252
+              ],
+              "position": [
+                272,
+                312
+              ]
+            },
+            {
+              "home": [
+                112,
+                292
+              ],
+              "position": [
+                112,
+                292
+              ]
+            },
+            {
+              "home": [
+                88,
+                332
+              ],
+              "position": [
+                88,
+                332
+              ]
+            }
+          ],
+          "party": [
+            2,
+            3,
+            4
+          ],
+          "guestInActions": false,
+          "popup": {
+            "x": 123.70000000000002,
+            "y": 203.875,
+            "w": 199,
+            "h": 113
+          },
+          "tone": 0
+        }
+      ],
+      "after": {
+        "party": [
+          2,
+          3,
+          4
+        ],
+        "shown": true,
+        "camera": [
+          0,
+          0
+        ],
+        "proxiesHidden": true,
+        "chest": 1,
+        "error": null
+      }
+    },
+    {
+      "party": [
+        2,
+        4,
+        3
+      ],
+      "bubbles": [
+        {
+          "guest": {
+            "home": [
+              64,
+              372
+            ],
+            "position": [
+              64,
+              372
+            ],
+            "scale": [
+              1.2,
+              1.2
+            ],
+            "forward": false
+          },
+          "allies": [
+            {
+              "home": [
+                136,
+                252
+              ],
+              "position": [
+                272,
+                312
+              ]
+            },
+            {
+              "home": [
+                112,
+                292
+              ],
+              "position": [
+                112,
+                292
+              ]
+            },
+            {
+              "home": [
+                88,
+                332
+              ],
+              "position": [
+                88,
+                332
+              ]
+            }
+          ],
+          "party": [
+            2,
+            4,
+            3
+          ],
+          "guestInActions": false,
+          "popup": {
+            "x": 120.1,
+            "y": 203.875,
+            "w": 187,
+            "h": 113
+          },
+          "tone": 1
+        },
+        {
+          "guest": {
+            "home": [
+              64,
+              372
+            ],
+            "position": [
+              64,
+              372
+            ],
+            "scale": [
+              1.2,
+              1.2
+            ],
+            "forward": false
+          },
+          "allies": [
+            {
+              "home": [
+                136,
+                252
+              ],
+              "position": [
+                272,
+                312
+              ]
+            },
+            {
+              "home": [
+                112,
+                292
+              ],
+              "position": [
+                112,
+                292
+              ]
+            },
+            {
+              "home": [
+                88,
+                332
+              ],
+              "position": [
+                88,
+                332
+              ]
+            }
+          ],
+          "party": [
+            2,
+            4,
+            3
+          ],
+          "guestInActions": false,
+          "popup": {
+            "x": 154.60000000000002,
+            "y": 203.875,
+            "w": 302,
+            "h": 146
+          },
+          "tone": 1
+        },
+        {
+          "guest": {
+            "home": [
+              64,
+              372
+            ],
+            "position": [
+              64,
+              372
+            ],
+            "scale": [
+              1.2,
+              1.2
+            ],
+            "forward": false
+          },
+          "allies": [
+            {
+              "home": [
+                136,
+                252
+              ],
+              "position": [
+                272,
+                312
+              ]
+            },
+            {
+              "home": [
+                112,
+                292
+              ],
+              "position": [
+                112,
+                292
+              ]
+            },
+            {
+              "home": [
+                88,
+                332
+              ],
+              "position": [
+                88,
+                332
+              ]
+            }
+          ],
+          "party": [
+            2,
+            4,
+            3
+          ],
+          "guestInActions": false,
+          "popup": {
+            "x": 173.5,
+            "y": 203.875,
+            "w": 365,
+            "h": 146
+          },
+          "tone": 0
+        },
+        {
+          "guest": {
+            "home": [
+              64,
+              372
+            ],
+            "position": [
+              64,
+              372
+            ],
+            "scale": [
+              1.2,
+              1.2
+            ],
+            "forward": false
+          },
+          "allies": [
+            {
+              "home": [
+                136,
+                252
+              ],
+              "position": [
+                272,
+                312
+              ]
+            },
+            {
+              "home": [
+                112,
+                292
+              ],
+              "position": [
+                112,
+                292
+              ]
+            },
+            {
+              "home": [
+                88,
+                332
+              ],
+              "position": [
+                88,
+                332
+              ]
+            }
+          ],
+          "party": [
+            2,
+            4,
+            3
+          ],
+          "guestInActions": false,
+          "popup": {
+            "x": 123.70000000000002,
+            "y": 203.875,
+            "w": 199,
+            "h": 113
+          },
+          "tone": 0
+        }
+      ],
+      "after": {
+        "party": [
+          2,
+          4,
+          3
+        ],
+        "shown": true,
+        "camera": [
+          0,
+          0
+        ],
+        "proxiesHidden": true,
+        "chest": 1,
+        "error": null
+      }
+    },
+    {
+      "party": [
+        2,
+        3
+      ],
+      "bubbles": [
+        {
+          "guest": {
+            "home": [
+              64,
+              372
+            ],
+            "position": [
+              64,
+              372
+            ],
+            "scale": [
+              1.2,
+              1.2
+            ],
+            "forward": false
+          },
+          "allies": [
+            {
+              "home": [
+                136,
+                252
+              ],
+              "position": [
+                272,
+                312
+              ]
+            },
+            {
+              "home": [
+                112,
+                292
+              ],
+              "position": [
+                112,
+                292
+              ]
+            }
+          ],
+          "party": [
+            2,
+            3
+          ],
+          "guestInActions": false,
+          "popup": {
+            "x": 120.1,
+            "y": 203.875,
+            "w": 187,
+            "h": 113
+          },
+          "tone": 1
+        },
+        {
+          "guest": {
+            "home": [
+              64,
+              372
+            ],
+            "position": [
+              64,
+              372
+            ],
+            "scale": [
+              1.2,
+              1.2
+            ],
+            "forward": false
+          },
+          "allies": [
+            {
+              "home": [
+                136,
+                252
+              ],
+              "position": [
+                272,
+                312
+              ]
+            },
+            {
+              "home": [
+                112,
+                292
+              ],
+              "position": [
+                112,
+                292
+              ]
+            }
+          ],
+          "party": [
+            2,
+            3
+          ],
+          "guestInActions": false,
+          "popup": {
+            "x": 154.60000000000002,
+            "y": 203.875,
+            "w": 302,
+            "h": 146
+          },
+          "tone": 1
+        },
+        {
+          "guest": {
+            "home": [
+              64,
+              372
+            ],
+            "position": [
+              64,
+              372
+            ],
+            "scale": [
+              1.2,
+              1.2
+            ],
+            "forward": false
+          },
+          "allies": [
+            {
+              "home": [
+                136,
+                252
+              ],
+              "position": [
+                272,
+                312
+              ]
+            },
+            {
+              "home": [
+                112,
+                292
+              ],
+              "position": [
+                112,
+                292
+              ]
+            }
+          ],
+          "party": [
+            2,
+            3
+          ],
+          "guestInActions": false,
+          "popup": {
+            "x": 173.5,
+            "y": 203.875,
+            "w": 365,
+            "h": 146
+          },
+          "tone": 0
+        },
+        {
+          "guest": {
+            "home": [
+              64,
+              372
+            ],
+            "position": [
+              64,
+              372
+            ],
+            "scale": [
+              1.2,
+              1.2
+            ],
+            "forward": false
+          },
+          "allies": [
+            {
+              "home": [
+                136,
+                252
+              ],
+              "position": [
+                272,
+                312
+              ]
+            },
+            {
+              "home": [
+                112,
+                292
+              ],
+              "position": [
+                112,
+                292
+              ]
+            }
+          ],
+          "party": [
+            2,
+            3
+          ],
+          "guestInActions": false,
+          "popup": {
+            "x": 123.70000000000002,
+            "y": 203.875,
+            "w": 199,
+            "h": 113
+          },
+          "tone": 0
+        }
+      ],
+      "after": {
+        "party": [
+          2,
+          3
+        ],
+        "shown": true,
+        "camera": [
+          0,
+          0
+        ],
+        "proxiesHidden": true,
+        "chest": 1,
+        "error": null
+      }
+    },
+    {
+      "party": [
+        2,
+        4
+      ],
+      "bubbles": [
+        {
+          "guest": {
+            "home": [
+              64,
+              372
+            ],
+            "position": [
+              64,
+              372
+            ],
+            "scale": [
+              1.2,
+              1.2
+            ],
+            "forward": false
+          },
+          "allies": [
+            {
+              "home": [
+                136,
+                252
+              ],
+              "position": [
+                272,
+                312
+              ]
+            },
+            {
+              "home": [
+                112,
+                292
+              ],
+              "position": [
+                112,
+                292
+              ]
+            }
+          ],
+          "party": [
+            2,
+            4
+          ],
+          "guestInActions": false,
+          "popup": {
+            "x": 120.1,
+            "y": 203.875,
+            "w": 187,
+            "h": 113
+          },
+          "tone": 1
+        },
+        {
+          "guest": {
+            "home": [
+              64,
+              372
+            ],
+            "position": [
+              64,
+              372
+            ],
+            "scale": [
+              1.2,
+              1.2
+            ],
+            "forward": false
+          },
+          "allies": [
+            {
+              "home": [
+                136,
+                252
+              ],
+              "position": [
+                272,
+                312
+              ]
+            },
+            {
+              "home": [
+                112,
+                292
+              ],
+              "position": [
+                112,
+                292
+              ]
+            }
+          ],
+          "party": [
+            2,
+            4
+          ],
+          "guestInActions": false,
+          "popup": {
+            "x": 154.60000000000002,
+            "y": 203.875,
+            "w": 302,
+            "h": 146
+          },
+          "tone": 1
+        },
+        {
+          "guest": {
+            "home": [
+              64,
+              372
+            ],
+            "position": [
+              64,
+              372
+            ],
+            "scale": [
+              1.2,
+              1.2
+            ],
+            "forward": false
+          },
+          "allies": [
+            {
+              "home": [
+                136,
+                252
+              ],
+              "position": [
+                272,
+                312
+              ]
+            },
+            {
+              "home": [
+                112,
+                292
+              ],
+              "position": [
+                112,
+                292
+              ]
+            }
+          ],
+          "party": [
+            2,
+            4
+          ],
+          "guestInActions": false,
+          "popup": {
+            "x": 173.5,
+            "y": 203.875,
+            "w": 365,
+            "h": 146
+          },
+          "tone": 0
+        },
+        {
+          "guest": {
+            "home": [
+              64,
+              372
+            ],
+            "position": [
+              64,
+              372
+            ],
+            "scale": [
+              1.2,
+              1.2
+            ],
+            "forward": false
+          },
+          "allies": [
+            {
+              "home": [
+                136,
+                252
+              ],
+              "position": [
+                272,
+                312
+              ]
+            },
+            {
+              "home": [
+                112,
+                292
+              ],
+              "position": [
+                112,
+                292
+              ]
+            }
+          ],
+          "party": [
+            2,
+            4
+          ],
+          "guestInActions": false,
+          "popup": {
+            "x": 123.70000000000002,
+            "y": 203.875,
+            "w": 199,
+            "h": 113
+          },
+          "tone": 0
+        }
+      ],
+      "after": {
+        "party": [
+          2,
+          4
+        ],
+        "shown": true,
+        "camera": [
+          0,
+          0
+        ],
+        "proxiesHidden": true,
+        "chest": 1,
+        "error": null
+      }
+    },
+    {
+      "party": [
+        2
+      ],
+      "bubbles": [
+        {
+          "guest": {
+            "home": [
+              64,
+              372
+            ],
+            "position": [
+              64,
+              372
+            ],
+            "scale": [
+              1.2,
+              1.2
+            ],
+            "forward": false
+          },
+          "allies": [
+            {
+              "home": [
+                136,
+                252
+              ],
+              "position": [
+                272,
+                312
+              ]
+            }
+          ],
+          "party": [
+            2
+          ],
+          "guestInActions": false,
+          "popup": {
+            "x": 120.1,
+            "y": 203.875,
+            "w": 187,
+            "h": 113
+          },
+          "tone": 1
+        },
+        {
+          "guest": {
+            "home": [
+              64,
+              372
+            ],
+            "position": [
+              64,
+              372
+            ],
+            "scale": [
+              1.2,
+              1.2
+            ],
+            "forward": false
+          },
+          "allies": [
+            {
+              "home": [
+                136,
+                252
+              ],
+              "position": [
+                272,
+                312
+              ]
+            }
+          ],
+          "party": [
+            2
+          ],
+          "guestInActions": false,
+          "popup": {
+            "x": 154.60000000000002,
+            "y": 203.875,
+            "w": 302,
+            "h": 146
+          },
+          "tone": 1
+        },
+        {
+          "guest": {
+            "home": [
+              64,
+              372
+            ],
+            "position": [
+              64,
+              372
+            ],
+            "scale": [
+              1.2,
+              1.2
+            ],
+            "forward": false
+          },
+          "allies": [
+            {
+              "home": [
+                136,
+                252
+              ],
+              "position": [
+                272,
+                312
+              ]
+            }
+          ],
+          "party": [
+            2
+          ],
+          "guestInActions": false,
+          "popup": {
+            "x": 173.5,
+            "y": 203.875,
+            "w": 365,
+            "h": 146
+          },
+          "tone": 0
+        },
+        {
+          "guest": {
+            "home": [
+              64,
+              372
+            ],
+            "position": [
+              64,
+              372
+            ],
+            "scale": [
+              1.2,
+              1.2
+            ],
+            "forward": false
+          },
+          "allies": [
+            {
+              "home": [
+                136,
+                252
+              ],
+              "position": [
+                272,
+                312
+              ]
+            }
+          ],
+          "party": [
+            2
+          ],
+          "guestInActions": false,
+          "popup": {
+            "x": 123.70000000000002,
+            "y": 203.875,
+            "w": 199,
+            "h": 113
+          },
+          "tone": 0
+        }
+      ],
+      "after": {
+        "party": [
+          2
+        ],
+        "shown": true,
+        "camera": [
+          0,
+          0
+        ],
+        "proxiesHidden": true,
+        "chest": 1,
+        "error": null
+      }
+    }
+  ]
+}

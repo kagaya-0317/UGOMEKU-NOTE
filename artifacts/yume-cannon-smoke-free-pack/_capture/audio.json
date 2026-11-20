@@ -1,0 +1,110 @@
+[
+  {
+    "frame": 40,
+    "name": "Machine",
+    "volume": 8,
+    "pitch": 99,
+    "loop": false,
+    "kind": "movement",
+    "stopFrame": 75
+  },
+  {
+    "frame": 110,
+    "name": "Explosion2",
+    "volume": 30,
+    "pitch": 92,
+    "loop": false,
+    "kind": "weapon",
+    "stopFrame": 232
+  },
+  {
+    "frame": 147,
+    "name": "Explosion1",
+    "volume": 30,
+    "pitch": 88,
+    "loop": false,
+    "kind": "weapon",
+    "stopFrame": 279
+  },
+  {
+    "frame": 181,
+    "name": "Machine",
+    "volume": 8,
+    "pitch": 100,
+    "loop": false,
+    "kind": "movement",
+    "stopFrame": 217
+  },
+  {
+    "frame": 280,
+    "name": "Machine",
+    "volume": 8,
+    "pitch": 102,
+    "loop": false,
+    "kind": "movement",
+    "stopFrame": 315
+  },
+  {
+    "frame": 350,
+    "name": "Explosion2",
+    "volume": 30,
+    "pitch": 92,
+    "loop": false,
+    "kind": "weapon",
+    "stopFrame": 457
+  },
+  {
+    "frame": 387,
+    "name": "Explosion1",
+    "volume": 30,
+    "pitch": 88,
+    "loop": false,
+    "kind": "weapon",
+    "stopFrame": 492
+  },
+  {
+    "frame": 421,
+    "name": "Machine",
+    "volume": 8,
+    "pitch": 104,
+    "loop": false,
+    "kind": "movement",
+    "stopFrame": 457
+  },
+  {
+    "frame": 520,
+    "name": "Machine",
+    "volume": 8,
+    "pitch": 102,
+    "loop": false,
+    "kind": "movement",
+    "stopFrame": 555
+  },
+  {
+    "frame": 590,
+    "name": "Explosion2",
+    "volume": 30,
+    "pitch": 92,
+    "loop": false,
+    "kind": "weapon",
+    "stopFrame": 680
+  },
+  {
+    "frame": 627,
+    "name": "Explosion1",
+    "volume": 30,
+    "pitch": 88,
+    "loop": false,
+    "kind": "weapon",
+    "stopFrame": 710
+  },
+  {
+    "frame": 661,
+    "name": "Machine",
+    "volume": 8,
+    "pitch": 102,
+    "loop": false,
+    "kind": "movement",
+    "stopFrame": 697
+  }
+]

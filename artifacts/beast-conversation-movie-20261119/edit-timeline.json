@@ -1,0 +1,43 @@
+{
+  "source": "C:\\Users\\kgygn\\Dropbox\\ゲーム\\Game_NewGame\\NewGame\\artifacts\\beast-conversation-movie-20261119\\_capture\\beast_conversation_realtime.webm",
+  "sourceEnd": 35.5,
+  "black": [
+    {
+      "start": 10.861,
+      "end": 12.127,
+      "duration": 1.266
+    },
+    {
+      "start": 22.986,
+      "end": 25.089,
+      "duration": 2.103
+    }
+  ],
+  "cuts": [
+    {
+      "start": 10.733333333333333,
+      "end": 12.233333333333333
+    },
+    {
+      "start": 22.866666666666667,
+      "end": 25.2
+    }
+  ],
+  "segments": [
+    {
+      "start": 0,
+      "end": 10.733333333333333
+    },
+    {
+      "start": 12.233333333333333,
+      "end": 22.866666666666667
+    },
+    {
+      "start": 25.2,
+      "end": 35.5
+    }
+  ],
+  "contentDuration": 31.666666666666668,
+  "duration": 31.96666666666667,
+  "fade": 30.866666666666667
+}

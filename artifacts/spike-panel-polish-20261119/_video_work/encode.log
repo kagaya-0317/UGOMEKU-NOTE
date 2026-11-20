@@ -1,0 +1,174 @@
+Input #0, matroska,webm, from 'C:\Users\kgygn\Dropbox\ゲーム\Game_NewGame\NewGame\artifacts\spike-panel-polish-20261119\_video_work\spike-panel-puzzle-1795062829756.webm':
+  Metadata:
+    encoder         : Chrome
+  Duration: N/A, start: 0.000000, bitrate: N/A
+  Stream #0:0(eng): Video: vp8, yuv420p(progressive), 816x624, SAR 1:1 DAR 17:13, 30 fps, 30 tbr, 1k tbn (default)
+    Metadata:
+      alpha_mode      : 1
+  Stream #0:1(eng): Audio: opus, 48000 Hz, stereo, fltp (default)
+Stream mapping:
+  Stream #0:0 -> #0:0 (vp8 (native) -> h264 (libx264))
+  Stream #0:1 -> #0:1 (opus (native) -> aac (native))
+Press [q] to stop, [?] for help
+[libx264 @ 0000020b5d681700] using SAR=1/1
+[libx264 @ 0000020b5d681700] using cpu capabilities: MMX2 SSE2Fast SSSE3 SSE4.2 AVX FMA3 BMI2 AVX2
+[libx264 @ 0000020b5d681700] profile High, level 3.1, 4:2:0, 8-bit
+[libx264 @ 0000020b5d681700] 264 - core 164 r3172 c1c9931 - H.264/MPEG-4 AVC codec - Copyleft 2003-2023 - http://www.videolan.org/x264.html - options: cabac=1 ref=2 deblock=1:0:0 analyse=0x3:0x113 me=hex subme=6 psy=1 psy_rd=1.00:0.00 mixed_ref=1 me_range=16 chroma_me=1 trellis=1 8x8dct=1 cqm=0 deadzone=21,11 fast_pskip=1 chroma_qp_offset=-2 threads=18 lookahead_threads=3 sliced_threads=0 nr=0 decimate=1 interlaced=0 bluray_compat=0 constrained_intra=0 bframes=3 b_pyramid=2 b_adapt=1 b_bias=0 direct=1 weightb=1 open_gop=0 weightp=1 keyint=250 keyint_min=25 scenecut=40 intra_refresh=0 rc_lookahead=30 rc=crf mbtree=1 crf=19.0 qcomp=0.60 qpmin=0 qpmax=69 qpstep=4 ip_ratio=1.40 aq=1:1.00
+Output #0, mp4, to 'C:\Users\kgygn\Dropbox\ゲーム\Game_NewGame\NewGame\artifacts\spike-panel-polish-20261119\spike_panel_puzzle.mp4':
+  Metadata:
+    encoder         : Lavf60.16.100
+  Stream #0:0(eng): Video: h264 (avc1 / 0x31637661), yuv420p(tv, bt470bg/unknown/unknown, progressive), 816x624 [SAR 1:1 DAR 17:13], q=2-31, 30 fps, 15360 tbn (default)
+    Metadata:
+      alpha_mode      : 1
+      encoder         : Lavc60.31.102 libx264
+    Side data:
+      cpb: bitrate max/min/avg: 0/0/0 buffer size: 0 vbv_delay: N/A
+  Stream #0:1(eng): Audio: aac (LC) (mp4a / 0x6134706D), 48000 Hz, stereo, fltp, 160 kb/s (default)
+    Metadata:
+      encoder         : Lavc60.31.102 aac
+frame=    0 fps=0.0 q=0.0 size=       0kB time=00:00:00.36 bitrate=   1.1kbits/s speed=6.45x    [aac @ 0000020b5ba72200] Queue input is backward in time
+[mp4 @ 0000020b5ba41a00] Non-monotonic DTS in output stream 0:1; previous: 20752, current: 20624; changing to 20753. This may result in incorrect timestamps in the output file.
+[aac @ 0000020b5ba72200] Queue input is backward in time
+[mp4 @ 0000020b5ba41a00] Non-monotonic DTS in output stream 0:1; previous: 38400, current: 38272; changing to 38401. This may result in incorrect timestamps in the output file.
+[aac @ 0000020b5ba72200] Queue input is backward in time
+[mp4 @ 0000020b5ba41a00] Non-monotonic DTS in output stream 0:1; previous: 75712, current: 75632; changing to 75713. This may result in incorrect timestamps in the output file.
+[aac @ 0000020b5ba72200] Queue input is backward in time
+[mp4 @ 0000020b5ba41a00] Non-monotonic DTS in output stream 0:1; previous: 107888, current: 107616; changing to 107889. This may result in incorrect timestamps in the output file.
+[aac @ 0000020b5ba72200] Queue input is backward in time
+[mp4 @ 0000020b5ba41a00] Non-monotonic DTS in output stream 0:1; previous: 122128, current: 122048; changing to 122129. This may result in incorrect timestamps in the output file.
+frame=   33 fps=0.0 q=25.0 size=     768kB time=00:00:04.00 bitrate=1570.0kbits/s speed=7.18x    [aac @ 0000020b5ba72200] Queue input is backward in time
+[mp4 @ 0000020b5ba41a00] Non-monotonic DTS in output stream 0:1; previous: 204784, current: 204656; changing to 204785. This may result in incorrect timestamps in the output file.
+[aac @ 0000020b5ba72200] Queue input is backward in time
+[mp4 @ 0000020b5ba41a00] Non-monotonic DTS in output stream 0:1; previous: 222528, current: 222208; changing to 222529. This may result in incorrect timestamps in the output file.
+[aac @ 0000020b5ba72200] Queue input is backward in time
+[mp4 @ 0000020b5ba41a00] Non-monotonic DTS in output stream 0:1; previous: 236816, current: 236496; changing to 236817. This may result in incorrect timestamps in the output file.
+[aac @ 0000020b5ba72200] Queue input is backward in time
+[mp4 @ 0000020b5ba41a00] Non-monotonic DTS in output stream 0:1; previous: 251200, current: 250928; changing to 251201. This may result in incorrect timestamps in the output file.
+[aac @ 0000020b5ba72200] Queue input is backward in time
+[mp4 @ 0000020b5ba41a00] Non-monotonic DTS in output stream 0:1; previous: 259984, current: 259952; changing to 259985. This may result in incorrect timestamps in the output file.
+[aac @ 0000020b5ba72200] Queue input is backward in time
+[mp4 @ 0000020b5ba41a00] Non-monotonic DTS in output stream 0:1; previous: 268944, current: 268672; changing to 268945. This may result in incorrect timestamps in the output file.
+[aac @ 0000020b5ba72200] Queue input is backward in time
+[mp4 @ 0000020b5ba41a00] Non-monotonic DTS in output stream 0:1; previous: 279872, current: 279792; changing to 279873. This may result in incorrect timestamps in the output file.
+[aac @ 0000020b5ba72200] Queue input is backward in time
+[mp4 @ 0000020b5ba41a00] Non-monotonic DTS in output stream 0:1; previous: 294160, current: 294032; changing to 294161. This may result in incorrect timestamps in the output file.
+[aac @ 0000020b5ba72200] Queue input is backward in time
+[mp4 @ 0000020b5ba41a00] Non-monotonic DTS in output stream 0:1; previous: 306160, current: 306032; changing to 306161. This may result in incorrect timestamps in the output file.
+[aac @ 0000020b5ba72200] Queue input is backward in time
+frame=  136 fps=128 q=25.0 size=    2304kB time=00:00:06.67 bitrate=2826.4kbits/s speed= 6.3x    [mp4 @ 0000020b5ba41a00] Non-monotonic DTS in output stream 0:1; previous: 320544, current: 320368; changing to 320545. This may result in incorrect timestamps in the output file.
+[aac @ 0000020b5ba72200] Queue input is backward in time
+[mp4 @ 0000020b5ba41a00] Non-monotonic DTS in output stream 0:1; previous: 338192, current: 337920; changing to 338193. This may result in incorrect timestamps in the output file.
+[aac @ 0000020b5ba72200] Queue input is backward in time
+[mp4 @ 0000020b5ba41a00] Non-monotonic DTS in output stream 0:1; previous: 352528, current: 352304; changing to 352529. This may result in incorrect timestamps in the output file.
+[aac @ 0000020b5ba72200] Queue input is backward in time
+[mp4 @ 0000020b5ba41a00] Non-monotonic DTS in output stream 0:1; previous: 384608, current: 384000; changing to 384609. This may result in incorrect timestamps in the output file.
+[aac @ 0000020b5ba72200] Queue input is backward in time
+[mp4 @ 0000020b5ba41a00] Non-monotonic DTS in output stream 0:1; previous: 409824, current: 409792; changing to 409825. This may result in incorrect timestamps in the output file.
+[aac @ 0000020b5ba72200] Queue input is backward in time
+[mp4 @ 0000020b5ba41a00] Non-monotonic DTS in output stream 0:1; previous: 420848, current: 420816; changing to 420849. This may result in incorrect timestamps in the output file.
+[aac @ 0000020b5ba72200] Queue input is backward in time
+[mp4 @ 0000020b5ba41a00] Non-monotonic DTS in output stream 0:1; previous: 435136, current: 435104; changing to 435137. This may result in incorrect timestamps in the output file.
+[aac @ 0000020b5ba72200] Queue input is backward in time
+[mp4 @ 0000020b5ba41a00] Non-monotonic DTS in output stream 0:1; previous: 481600, current: 481328; changing to 481601. This may result in incorrect timestamps in the output file.
+frame=  239 fps=153 q=25.0 size=    3584kB time=00:00:10.14 bitrate=2895.4kbits/s speed= 6.5x    [aac @ 0000020b5ba72200] Queue input is backward in time
+[mp4 @ 0000020b5ba41a00] Non-monotonic DTS in output stream 0:1; previous: 510224, current: 510192; changing to 510225. This may result in incorrect timestamps in the output file.
+[aac @ 0000020b5ba72200] Queue input is backward in time
+[mp4 @ 0000020b5ba41a00] Non-monotonic DTS in output stream 0:1; previous: 550848, current: 550768; changing to 550849. This may result in incorrect timestamps in the output file.
+[aac @ 0000020b5ba72200] Queue input is backward in time
+[mp4 @ 0000020b5ba41a00] Non-monotonic DTS in output stream 0:1; previous: 654560, current: 654480; changing to 654561. This may result in incorrect timestamps in the output file.
+frame=  375 fps=182 q=25.0 size=    5120kB time=00:00:14.64 bitrate=2864.1kbits/s speed= 7.1x    [aac @ 0000020b5ba72200] Queue input is backward in time
+frame=  507 fps=197 q=25.0 size=    6400kB time=00:00:19.03 bitrate=2754.2kbits/s speed=7.41x    [mp4 @ 0000020b5ba41a00] Non-monotonic DTS in output stream 0:1; previous: 913728, current: 913408; changing to 913729. This may result in incorrect timestamps in the output file.
+[aac @ 0000020b5ba72200] Queue input is backward in time
+[mp4 @ 0000020b5ba41a00] Non-monotonic DTS in output stream 0:1; previous: 928016, current: 927840; changing to 928017. This may result in incorrect timestamps in the output file.
+frame=  646 fps=210 q=25.0 size=    7936kB time=00:00:23.62 bitrate=2752.2kbits/s speed=7.66x    [aac @ 0000020b5ba72200] Queue input is backward in time
+[mp4 @ 0000020b5ba41a00] Non-monotonic DTS in output stream 0:1; previous: 1172800, current: 1172480; changing to 1172801. This may result in incorrect timestamps in the output file.
+[aac @ 0000020b5ba72200] Queue input is backward in time
+[mp4 @ 0000020b5ba41a00] Non-monotonic DTS in output stream 0:1; previous: 1190448, current: 1190272; changing to 1190449. This may result in incorrect timestamps in the output file.
+[aac @ 0000020b5ba72200] Queue input is backward in time
+[mp4 @ 0000020b5ba41a00] Non-monotonic DTS in output stream 0:1; previous: 1242000, current: 1241968; changing to 1242001. This may result in incorrect timestamps in the output file.
+frame=  765 fps=213 q=25.0 size=    9216kB time=00:00:27.59 bitrate=2735.6kbits/s speed= 7.7x    [aac @ 0000020b5ba72200] Queue input is backward in time
+[mp4 @ 0000020b5ba41a00] Non-monotonic DTS in output stream 0:1; previous: 1342400, current: 1342368; changing to 1342401. This may result in incorrect timestamps in the output file.
+[aac @ 0000020b5ba72200] Queue input is backward in time
+[mp4 @ 0000020b5ba41a00] Non-monotonic DTS in output stream 0:1; previous: 1356832, current: 1356704; changing to 1356833. This may result in incorrect timestamps in the output file.
+[aac @ 0000020b5ba72200] Queue input is backward in time
+[mp4 @ 0000020b5ba41a00] Non-monotonic DTS in output stream 0:1; previous: 1374384, current: 1374256; changing to 1374385. This may result in incorrect timestamps in the output file.
+[aac @ 0000020b5ba72200] Queue input is backward in time
+[mp4 @ 0000020b5ba41a00] Non-monotonic DTS in output stream 0:1; previous: 1431824, current: 1431792; changing to 1431825. This may result in incorrect timestamps in the output file.
+frame=  881 fps=216 q=25.0 size=   10752kB time=00:00:31.50 bitrate=2796.0kbits/s speed=7.71x    [aac @ 0000020b5ba72200] Queue input is backward in time
+[mp4 @ 0000020b5ba41a00] Non-monotonic DTS in output stream 0:1; previous: 1518864, current: 1518640; changing to 1518865. This may result in incorrect timestamps in the output file.
+[aac @ 0000020b5ba72200] Queue input is backward in time
+[mp4 @ 0000020b5ba41a00] Non-monotonic DTS in output stream 0:1; previous: 1550896, current: 1550624; changing to 1550897. This may result in incorrect timestamps in the output file.
+[aac @ 0000020b5ba72200] Queue input is backward in time
+[mp4 @ 0000020b5ba41a00] Non-monotonic DTS in output stream 0:1; previous: 1604832, current: 1604656; changing to 1604833. This may result in incorrect timestamps in the output file.
+[aac @ 0000020b5ba72200] Queue input is backward in time
+[mp4 @ 0000020b5ba41a00] Non-monotonic DTS in output stream 0:1; previous: 1651248, current: 1651024; changing to 1651249. This may result in incorrect timestamps in the output file.
+[aac @ 0000020b5ba72200] Queue input is backward in time
+[mp4 @ 0000020b5ba41a00] Non-monotonic DTS in output stream 0:1; previous: 1665584, current: 1665312; changing to 1665585. This may result in incorrect timestamps in the output file.
+[aac @ 0000020b5ba72200] Queue input is backward in time
+[mp4 @ 0000020b5ba41a00] Non-monotonic DTS in output stream 0:1; previous: 1679872, current: 1679696; changing to 1679873. This may result in incorrect timestamps in the output file.
+[aac @ 0000020b5ba72200] Queue input is backward in time
+[mp4 @ 0000020b5ba41a00] Non-monotonic DTS in output stream 0:1; previous: 1702800, current: 1702768; changing to 1702801. This may result in incorrect timestamps in the output file.
+frame= 1007 fps=219 q=25.0 size=   12032kB time=00:00:35.70 bitrate=2760.7kbits/s speed=7.77x    [aac @ 0000020b5ba72200] Queue input is backward in time
+[mp4 @ 0000020b5ba41a00] Non-monotonic DTS in output stream 0:1; previous: 1734928, current: 1734656; changing to 1734929. This may result in incorrect timestamps in the output file.
+[aac @ 0000020b5ba72200] Queue input is backward in time
+[mp4 @ 0000020b5ba41a00] Non-monotonic DTS in output stream 0:1; previous: 1766912, current: 1766640; changing to 1766913. This may result in incorrect timestamps in the output file.
+[aac @ 0000020b5ba72200] Queue input is backward in time
+[mp4 @ 0000020b5ba41a00] Non-monotonic DTS in output stream 0:1; previous: 1817536, current: 1817504; changing to 1817537. This may result in incorrect timestamps in the output file.
+[aac @ 0000020b5ba72200] Queue input is backward in time
+[mp4 @ 0000020b5ba41a00] Non-monotonic DTS in output stream 0:1; previous: 1835184, current: 1835056; changing to 1835185. This may result in incorrect timestamps in the output file.
+frame= 1121 fps=219 q=25.0 size=   13312kB time=00:00:39.47 bitrate=2762.7kbits/s speed= 7.7x    [aac @ 0000020b5ba72200] Queue input is backward in time
+[mp4 @ 0000020b5ba41a00] Non-monotonic DTS in output stream 0:1; previous: 1910320, current: 1910096; changing to 1910321. This may result in incorrect timestamps in the output file.
+[aac @ 0000020b5ba72200] Queue input is backward in time
+[mp4 @ 0000020b5ba41a00] Non-monotonic DTS in output stream 0:1; previous: 1921248, current: 1921168; changing to 1921249. This may result in incorrect timestamps in the output file.
+[aac @ 0000020b5ba72200] Queue input is backward in time
+[mp4 @ 0000020b5ba41a00] Non-monotonic DTS in output stream 0:1; previous: 1935632, current: 1935408; changing to 1935633. This may result in incorrect timestamps in the output file.
+[aac @ 0000020b5ba72200] Queue input is backward in time
+[mp4 @ 0000020b5ba41a00] Non-monotonic DTS in output stream 0:1; previous: 1950944, current: 1950768; changing to 1950945. This may result in incorrect timestamps in the output file.
+frame= 1211 fps=215 q=25.0 size=   15872kB time=00:00:42.47 bitrate=3061.0kbits/s speed=7.54x    [aac @ 0000020b5ba72200] Queue input is backward in time
+[mp4 @ 0000020b5ba41a00] Non-monotonic DTS in output stream 0:1; previous: 2149312, current: 2149280; changing to 2149313. This may result in incorrect timestamps in the output file.
+frame= 1293 fps=210 q=25.0 size=   17920kB time=00:00:45.35 bitrate=3236.4kbits/s speed=7.37x    [aac @ 0000020b5ba72200] Queue input is backward in time
+[mp4 @ 0000020b5ba41a00] Non-monotonic DTS in output stream 0:1; previous: 2210064, current: 2209840; changing to 2210065. This may result in incorrect timestamps in the output file.
+[aac @ 0000020b5ba72200] Queue input is backward in time
+[mp4 @ 0000020b5ba41a00] Non-monotonic DTS in output stream 0:1; previous: 2256432, current: 2256160; changing to 2256433. This may result in incorrect timestamps in the output file.
+[aac @ 0000020b5ba72200] Queue input is backward in time
+[mp4 @ 0000020b5ba41a00] Non-monotonic DTS in output stream 0:1; previous: 2310416, current: 2310144; changing to 2310417. This may result in incorrect timestamps in the output file.
+frame= 1396 fps=210 q=25.0 size=   20224kB time=00:00:48.70 bitrate=3401.5kbits/s speed=7.32x    [aac @ 0000020b5ba72200] Queue input is backward in time
+[mp4 @ 0000020b5ba41a00] Non-monotonic DTS in output stream 0:1; previous: 2356736, current: 2356176; changing to 2356737. This may result in incorrect timestamps in the output file.
+[aac @ 0000020b5ba72200] Queue input is backward in time
+[mp4 @ 0000020b5ba41a00] Non-monotonic DTS in output stream 0:1; previous: 2411696, current: 2411568; changing to 2411697. This may result in incorrect timestamps in the output file.
+[aac @ 0000020b5ba72200] Queue input is backward in time
+[mp4 @ 0000020b5ba41a00] Non-monotonic DTS in output stream 0:1; previous: 2426032, current: 2425808; changing to 2426033. This may result in incorrect timestamps in the output file.
+[aac @ 0000020b5ba72200] Queue input is backward in time
+[mp4 @ 0000020b5ba41a00] Non-monotonic DTS in output stream 0:1; previous: 2440368, current: 2440096; changing to 2440369. This may result in incorrect timestamps in the output file.
+frame= 1497 fps=209 q=25.0 size=   22272kB time=00:00:52.03 bitrate=3506.4kbits/s speed=7.27x    [aac @ 0000020b5ba72200] Queue input is backward in time
+[mp4 @ 0000020b5ba41a00] Non-monotonic DTS in output stream 0:1; previous: 2540768, current: 2540544; changing to 2540769. This may result in incorrect timestamps in the output file.
+[aac @ 0000020b5ba72200] Queue input is backward in time
+[mp4 @ 0000020b5ba41a00] Non-monotonic DTS in output stream 0:1; previous: 2642048, current: 2641968; changing to 2642049. This may result in incorrect timestamps in the output file.
+[aac @ 0000020b5ba72200] Queue input is backward in time
+[mp4 @ 0000020b5ba41a00] Non-monotonic DTS in output stream 0:1; previous: 2656384, current: 2656208; changing to 2656385. This may result in incorrect timestamps in the output file.
+[aac @ 0000020b5ba72200] Queue input is backward in time
+frame= 1605 fps=210 q=25.0 size=   24064kB time=00:00:55.64 bitrate=3543.0kbits/s speed=7.26x    [mp4 @ 0000020b5ba41a00] Non-monotonic DTS in output stream 0:1; previous: 2670720, current: 2670496; changing to 2670721. This may result in incorrect timestamps in the output file.
+[aac @ 0000020b5ba72200] Queue input is backward in time
+[mp4 @ 0000020b5ba41a00] Non-monotonic DTS in output stream 0:1; previous: 2688464, current: 2688192; changing to 2688465. This may result in incorrect timestamps in the output file.
+[mp4 @ 0000020b5ba41a00] Starting second pass: moving the moov atom to the beginning of the file
+[out#0/mp4 @ 0000020b5ba41900] video:24514kB audio:1123kB subtitle:0kB other streams:0kB global headers:0kB muxing overhead: 0.285905%
+frame= 1687 fps=209 q=-1.0 Lsize=   25710kB time=00:00:56.16 bitrate=3749.8kbits/s speed=6.96x    
+[libx264 @ 0000020b5d681700] frame I:11    Avg QP:14.23  size: 68376
+[libx264 @ 0000020b5d681700] frame P:639   Avg QP:22.21  size: 33471
+[libx264 @ 0000020b5d681700] frame B:1037  Avg QP:27.39  size:  2856
+[libx264 @ 0000020b5d681700] consecutive B-frames: 12.2% 15.3%  6.6% 65.9%
+[libx264 @ 0000020b5d681700] mb I  I16..4: 30.8% 12.6% 56.6%
+[libx264 @ 0000020b5d681700] mb P  I16..4:  0.7%  1.0%  3.9%  P16..4: 30.7%  6.7%  8.9%  0.0%  0.0%    skip:48.1%
+[libx264 @ 0000020b5d681700] mb B  I16..4:  0.2%  0.0%  0.3%  B16..8:  6.6%  1.9%  1.3%  direct: 2.8%  skip:86.9%  L0:45.9% L1:42.0% BI:12.1%
+[libx264 @ 0000020b5d681700] 8x8 transform intra:16.1% inter:12.2%
+[libx264 @ 0000020b5d681700] coded y,uvDC,uvAC intra: 72.7% 12.6% 1.4% inter: 15.6% 2.4% 0.0%
+[libx264 @ 0000020b5d681700] i16 v,h,dc,p: 37% 35% 25%  3%
+[libx264 @ 0000020b5d681700] i8 v,h,dc,ddl,ddr,vr,hd,vl,hu: 42% 22% 27%  4%  1%  1%  1%  1%  2%
+[libx264 @ 0000020b5d681700] i4 v,h,dc,ddl,ddr,vr,hd,vl,hu: 22% 27% 17%  9%  4%  4%  4%  6%  7%
+[libx264 @ 0000020b5d681700] i8c dc,h,v,p: 79% 11% 10%  0%
+[libx264 @ 0000020b5d681700] Weighted P-Frames: Y:1.7% UV:0.5%
+[libx264 @ 0000020b5d681700] ref P L0: 84.2% 15.8%
+[libx264 @ 0000020b5d681700] ref B L0: 90.4%  9.6%
+[libx264 @ 0000020b5d681700] ref B L1: 96.5%  3.5%
+[libx264 @ 0000020b5d681700] kb/s:3571.07
+[aac @ 0000020b5ba72200] Qavg: 529.611

@@ -1,0 +1,19 @@
+{
+  "renderedTransition": [
+    3,
+    4,
+    5,
+    6
+  ],
+  "noSpikeReraising": true,
+  "completedDamageDisabled": true,
+  "cameraHeldUntilRetraction": true,
+  "savedElapsed": 6,
+  "restoredElapsedRange": [
+    7,
+    18
+  ],
+  "nativeSerializedSaveRestore": true,
+  "completedReentry": true,
+  "panelCount": 8
+}

@@ -1,0 +1,458 @@
+{
+  "sound": {
+    "pcOutputMuted": true,
+    "speakerGain": 0,
+    "blockedSpeakerConnections": 1,
+    "context": "running",
+    "track": "live",
+    "rms": 0.1260664323581689,
+    "bgm": "00_New_Dungeon4"
+  },
+  "initial": {
+    "boss": [
+      5,
+      14
+    ],
+    "marker": [
+      2.5,
+      14
+    ],
+    "markerErased": false,
+    "path": [
+      {
+        "x": 5,
+        "pass": true
+      },
+      {
+        "x": 4.5,
+        "pass": true
+      },
+      {
+        "x": 4,
+        "pass": true
+      },
+      {
+        "x": 3.5,
+        "pass": true
+      },
+      {
+        "x": 3,
+        "pass": true
+      }
+    ]
+  },
+  "bubbles": [
+    {
+      "text": [
+        "ぬおッ！？"
+      ],
+      "rect": {
+        "x": 144.1,
+        "y": 270.5,
+        "w": 187,
+        "h": 113
+      },
+      "guest": [
+        64,
+        372
+      ],
+      "tone": 1,
+      "tail": 4
+    },
+    {
+      "text": [
+        "なぜこちら側に！？",
+        "間違えたなり！！"
+      ],
+      "rect": {
+        "x": 178.60000000000002,
+        "y": 270.5,
+        "w": 302,
+        "h": 146
+      },
+      "guest": [
+        64,
+        372
+      ],
+      "tone": 1,
+      "tail": 4
+    },
+    {
+      "text": [
+        "でも…こっち側も",
+        "なんだか悪くないのじゃ"
+      ],
+      "rect": {
+        "x": 197.5,
+        "y": 270.5,
+        "w": 365,
+        "h": 146
+      },
+      "guest": [
+        64,
+        372
+      ],
+      "tone": 0,
+      "tail": 4
+    },
+    {
+      "text": [
+        "ヘッヘッ…"
+      ],
+      "rect": {
+        "x": 147.70000000000002,
+        "y": 270.5,
+        "w": 199,
+        "h": 113
+      },
+      "guest": [
+        64,
+        372
+      ],
+      "tone": 0,
+      "tail": 4
+    }
+  ],
+  "aside": {
+    "boss": [
+      2.5,
+      14
+    ],
+    "real": [
+      2.5,
+      14
+    ],
+    "dir": 6,
+    "flag": 2,
+    "chest": 1
+  },
+  "walkFrames": 39,
+  "reentry": {
+    "boss": [
+      2.5,
+      14
+    ],
+    "frames": [
+      {
+        "serial": 2,
+        "x": 2.5,
+        "y": 14,
+        "brightness": 63.75
+      },
+      {
+        "serial": 2,
+        "x": 2.5,
+        "y": 14,
+        "brightness": 116.875
+      },
+      {
+        "serial": 2,
+        "x": 2.5,
+        "y": 14,
+        "brightness": 127.5
+      },
+      {
+        "serial": 2,
+        "x": 2.5,
+        "y": 14,
+        "brightness": 127.5
+      },
+      {
+        "serial": 2,
+        "x": 2.5,
+        "y": 14,
+        "brightness": 138.125
+      },
+      {
+        "serial": 2,
+        "x": 2.5,
+        "y": 14,
+        "brightness": 148.75
+      },
+      {
+        "serial": 2,
+        "x": 2.5,
+        "y": 14,
+        "brightness": 159.375
+      },
+      {
+        "serial": 2,
+        "x": 2.5,
+        "y": 14,
+        "brightness": 170
+      },
+      {
+        "serial": 2,
+        "x": 2.5,
+        "y": 14,
+        "brightness": 180.625
+      },
+      {
+        "serial": 2,
+        "x": 2.5,
+        "y": 14,
+        "brightness": 191.25
+      },
+      {
+        "serial": 2,
+        "x": 2.5,
+        "y": 14,
+        "brightness": 201.875
+      },
+      {
+        "serial": 2,
+        "x": 2.5,
+        "y": 14,
+        "brightness": 223.125
+      },
+      {
+        "serial": 2,
+        "x": 2.5,
+        "y": 14,
+        "brightness": 233.75
+      },
+      {
+        "serial": 2,
+        "x": 2.5,
+        "y": 14,
+        "brightness": 244.375
+      },
+      {
+        "serial": 2,
+        "x": 2.5,
+        "y": 14,
+        "brightness": 255
+      },
+      {
+        "serial": 2,
+        "x": 2.5,
+        "y": 14,
+        "brightness": 255
+      },
+      {
+        "serial": 2,
+        "x": 2.5,
+        "y": 14,
+        "brightness": 255
+      },
+      {
+        "serial": 2,
+        "x": 2.5,
+        "y": 14,
+        "brightness": 255
+      },
+      {
+        "serial": 2,
+        "x": 2.5,
+        "y": 14,
+        "brightness": 255
+      },
+      {
+        "serial": 2,
+        "x": 2.5,
+        "y": 14,
+        "brightness": 255
+      },
+      {
+        "serial": 2,
+        "x": 2.5,
+        "y": 14,
+        "brightness": 255
+      },
+      {
+        "serial": 2,
+        "x": 2.5,
+        "y": 14,
+        "brightness": 255
+      },
+      {
+        "serial": 2,
+        "x": 2.5,
+        "y": 14,
+        "brightness": 255
+      },
+      {
+        "serial": 2,
+        "x": 2.5,
+        "y": 14,
+        "brightness": 255
+      },
+      {
+        "serial": 2,
+        "x": 2.5,
+        "y": 14,
+        "brightness": 255
+      },
+      {
+        "serial": 2,
+        "x": 2.5,
+        "y": 14,
+        "brightness": 255
+      },
+      {
+        "serial": 2,
+        "x": 2.5,
+        "y": 14,
+        "brightness": 255
+      },
+      {
+        "serial": 2,
+        "x": 2.5,
+        "y": 14,
+        "brightness": 255
+      },
+      {
+        "serial": 2,
+        "x": 2.5,
+        "y": 14,
+        "brightness": 255
+      },
+      {
+        "serial": 2,
+        "x": 2.5,
+        "y": 14,
+        "brightness": 255
+      },
+      {
+        "serial": 2,
+        "x": 2.5,
+        "y": 14,
+        "brightness": 255
+      },
+      {
+        "serial": 2,
+        "x": 2.5,
+        "y": 14,
+        "brightness": 255
+      },
+      {
+        "serial": 2,
+        "x": 2.5,
+        "y": 14,
+        "brightness": 255
+      },
+      {
+        "serial": 2,
+        "x": 2.5,
+        "y": 14,
+        "brightness": 255
+      },
+      {
+        "serial": 2,
+        "x": 2.5,
+        "y": 14,
+        "brightness": 255
+      },
+      {
+        "serial": 2,
+        "x": 2.5,
+        "y": 14,
+        "brightness": 255
+      },
+      {
+        "serial": 2,
+        "x": 2.5,
+        "y": 14,
+        "brightness": 255
+      },
+      {
+        "serial": 2,
+        "x": 2.5,
+        "y": 14,
+        "brightness": 255
+      },
+      {
+        "serial": 2,
+        "x": 2.5,
+        "y": 14,
+        "brightness": 255
+      },
+      {
+        "serial": 2,
+        "x": 2.5,
+        "y": 14,
+        "brightness": 255
+      },
+      {
+        "serial": 2,
+        "x": 2.5,
+        "y": 14,
+        "brightness": 255
+      },
+      {
+        "serial": 2,
+        "x": 2.5,
+        "y": 14,
+        "brightness": 255
+      },
+      {
+        "serial": 2,
+        "x": 2.5,
+        "y": 14,
+        "brightness": 255
+      },
+      {
+        "serial": 2,
+        "x": 2.5,
+        "y": 14,
+        "brightness": 255
+      },
+      {
+        "serial": 2,
+        "x": 2.5,
+        "y": 14,
+        "brightness": 255
+      },
+      {
+        "serial": 2,
+        "x": 2.5,
+        "y": 14,
+        "brightness": 255
+      },
+      {
+        "serial": 2,
+        "x": 2.5,
+        "y": 14,
+        "brightness": 255
+      },
+      {
+        "serial": 2,
+        "x": 2.5,
+        "y": 14,
+        "brightness": 255
+      },
+      {
+        "serial": 2,
+        "x": 2.5,
+        "y": 14,
+        "brightness": 255
+      },
+      {
+        "serial": 2,
+        "x": 2.5,
+        "y": 14,
+        "brightness": 255
+      },
+      {
+        "serial": 2,
+        "x": 2.5,
+        "y": 14,
+        "brightness": 255
+      }
+    ],
+    "proxiesHidden": true,
+    "temp": false
+  },
+  "saveLoad": true,
+  "boundary": [
+    [
+      2,
+      4,
+      3
+    ],
+    [
+      2
+    ]
+  ],
+  "nativeWalkingPastBeast": true
+}

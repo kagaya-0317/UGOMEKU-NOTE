@@ -1,0 +1,22 @@
+// Normalize actual media timestamps and remove blank page-transition intervals.
+const fs=require('node:fs'),path=require('node:path'),assert=require('node:assert/strict'),{spawnSync}=require('node:child_process');
+const root=path.resolve(__dirname,'../..'),out=path.resolve(root,process.env.MOVIE_DIR||process.env.BEAST_MOVIE_DIR||'artifacts/beast-conversation-movie-20261119'),work=path.join(out,'_capture'),ff=path.join(root,'tools/bgm_video_maker/node_modules/ffmpeg-static/ffmpeg.exe'),source=path.join(work,process.env.MOVIE_SOURCE_NAME||'beast_conversation_realtime.webm');
+const run=args=>{const r=spawnSync(ff,args,{encoding:'utf8',maxBuffer:8e6});assert.equal(r.status,0,r.stderr.slice(-2500));return r;};
+const probe=run(['-hide_banner','-i',source,'-vf','showinfo,blackdetect=d=0.1:pix_th=0.45:pic_th=0.98','-af','ashowinfo','-f','null','-']);
+const video=probe.stderr.split('\n').filter(l=>l.includes('Parsed_showinfo')&&l.includes('pts_time:')).map(l=>Number(l.match(/pts_time:([\d.\-]+)/)[1]));
+const audio=probe.stderr.split('\n').filter(l=>l.includes('Parsed_ashowinfo')&&l.includes('pts_time:')).map(l=>({pts:Number(l.match(/pts_time:([\d.\-]+)/)[1]),samples:Number(l.match(/nb_samples:(\d+)/)[1])}));
+const end=Math.ceil((video.at(-1)+1/30)*30)/30,audioSpan=audio.at(-1).pts+audio.at(-1).samples/48000-audio[0].pts,audioSamples=audio.reduce((s,a)=>s+a.samples,0)/48000;
+const timing={videoFrames:video.length,videoEnd:video.at(-1),audioFirst:audio[0].pts,audioEnd:audio.at(-1).pts+audio.at(-1).samples/48000,audioSpan,audioSamples,audioTimestampPaddingSeconds:audioSpan-audioSamples};
+console.log('Actual source timing '+JSON.stringify(timing));fs.writeFileSync(path.join(out,'source-timing.json'),JSON.stringify(timing,null,2));
+assert.ok(Math.abs(timing.audioEnd-timing.videoEnd)<.2,'Audio/video clocks must agree');
+const black=[...probe.stderr.matchAll(/black_start:([\d.]+) black_end:([\d.]+) black_duration:([\d.]+)/g)].map(m=>({start:Number(m[1]),end:Number(m[2]),duration:Number(m[3])}));
+const cuts=black.filter(c=>c.start>.5&&c.end<end-.5).map(c=>({start:Math.max(0,Math.floor((c.start-.1)*30)/30),end:Math.min(end,Math.ceil((c.end+.1)*30)/30)}));
+const segments=[];let cursor=0;for(const cut of cuts){if(cut.start>cursor)segments.push({start:cursor,end:cut.start});cursor=Math.max(cursor,cut.end);}if(cursor<end)segments.push({start:cursor,end});
+const contentDuration=segments.reduce((s,p)=>s+p.end-p.start,0),duration=contentDuration+.3,fade=Math.max(0,duration-1.1),n=segments.length;
+const filters=[`[0:v]fps=30,split=${n}${segments.map((_,i)=>`[v${i}]`).join('')}`,`[0:a]aresample=async=1:first_pts=0,apad=whole_dur=${end},asplit=${n}${segments.map((_,i)=>`[a${i}]`).join('')}`];
+segments.forEach((p,i)=>{filters.push(`[v${i}]trim=start=${p.start}:end=${p.end},setpts=PTS-STARTPTS[vt${i}]`);filters.push(`[a${i}]atrim=start=${p.start}:end=${p.end},asetpts=PTS-STARTPTS[at${i}]`);});
+filters.push(segments.map((_,i)=>`[vt${i}][at${i}]`).join('')+`concat=n=${n}:v=1:a=1[vc][ac]`);
+filters.push(`[vc]tpad=stop_mode=clone:stop_duration=0.3,fade=t=in:st=0:d=0.4:color=black,fade=t=out:st=${fade}:d=0.8:color=black[vo]`);
+filters.push(`[ac]apad=pad_dur=0.3,afade=t=in:st=0:d=0.4,afade=t=out:st=${fade}:d=0.8[ao]`);
+const output=path.join(out,process.env.MOVIE_OUTPUT_NAME||'beast_conversation.mp4'),encoded=run(['-hide_banner','-y','-i',source,'-filter_complex',filters.join(';'),'-map','[vo]','-map','[ao]','-c:v','libx264','-crf','19','-preset','fast','-pix_fmt','yuv420p','-c:a','aac','-b:a','160k','-t',String(duration),'-movflags','+faststart',output]);
+fs.writeFileSync(path.join(work,'encode.log'),encoded.stderr);fs.writeFileSync(path.join(out,'edit-timeline.json'),JSON.stringify({source,sourceEnd:end,black,cuts,segments,contentDuration,duration,fade},null,2));console.log(JSON.stringify({output,duration,bytes:fs.statSync(output).size,removedBlackSeconds:end-contentDuration}));

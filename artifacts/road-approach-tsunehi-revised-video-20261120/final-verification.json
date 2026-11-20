@@ -1,0 +1,164 @@
+{
+  "file": "C:\\Users\\kgygn\\Dropbox\\ゲーム\\Game_NewGame\\NewGame\\artifacts\\road-approach-tsunehi-revised-video-20261120\\tsunehi_intro.mp4",
+  "seconds": 60.83,
+  "bytes": 14523203,
+  "resolution": [
+    816,
+    624
+  ],
+  "codec": "H.264/AAC",
+  "fullDecode": true,
+  "meanAudioDb": -14.9,
+  "localMonitorMuted": true,
+  "dialoguePages": 15,
+  "frames": [
+    {
+      "key": "よくぞここまで|たどり着いた|愚か者どもよ…",
+      "text": [
+        "よくぞここまで",
+        "たどり着いた",
+        "愚か者どもよ…"
+      ],
+      "seconds": 6.266000000038185
+    },
+    {
+      "key": "あら、この声は|ツネヒだわ",
+      "text": [
+        "あら、この声は",
+        "ツネヒだわ"
+      ],
+      "seconds": 9.396000000042841
+    },
+    {
+      "key": "だが、この先が|キサマらの墓場と|なるだろう",
+      "text": [
+        "だが、この先が",
+        "キサマらの墓場と",
+        "なるだろう"
+      ],
+      "seconds": 12.780999999935739
+    },
+    {
+      "key": "この先は|地獄の通り道…",
+      "text": [
+        "この先は",
+        "地獄の通り道…"
+      ],
+      "seconds": 15.847000000043773
+    },
+    {
+      "key": "題して、|88,888,888番通路だ！",
+      "text": [
+        "題して、",
+        "88,888,888番通路だ！"
+      ],
+      "seconds": 19.16500000001397
+    },
+    {
+      "key": "88,888,888番|通路！？！？",
+      "text": [
+        "88,888,888番",
+        "通路！？！？"
+      ],
+      "seconds": 22.464000000013037
+    },
+    {
+      "key": "ここは何の変哲もない|通路…しかしそこには|「異変」が現れることがある",
+      "text": [
+        "ここは何の変哲もない",
+        "通路…しかしそこには",
+        "「異変」が現れることがある"
+      ],
+      "seconds": 26.88100000002887
+    },
+    {
+      "key": "ルールは簡単だ|異変があれば、引き返せ！|異変が無ければ進め！",
+      "text": [
+        "ルールは簡単だ",
+        "異変があれば、引き返せ！",
+        "異変が無ければ進め！"
+      ],
+      "seconds": 31.91399999996647
+    },
+    {
+      "key": "フッフッフ…|簡単だろう？",
+      "text": [
+        "フッフッフ…",
+        "簡単だろう？"
+      ],
+      "seconds": 35.496000000019556
+    },
+    {
+      "key": "もし間違えたら、|なんと、最初から|だ！！！",
+      "text": [
+        "もし間違えたら、",
+        "なんと、最初から",
+        "だ！！！"
+      ],
+      "seconds": 38.93099999995902
+    },
+    {
+      "key": "予言しよう…",
+      "text": [
+        "予言しよう…"
+      ],
+      "seconds": 41.62800000000279
+    },
+    {
+      "key": "キサマらはここで|彷徨い続け、一生出る|ことはできないッ！！",
+      "text": [
+        "キサマらはここで",
+        "彷徨い続け、一生出る",
+        "ことはできないッ！！"
+      ],
+      "seconds": 45.51600000003818
+    },
+    {
+      "key": "そ、そんなァ！|！！！",
+      "text": [
+        "そ、そんなァ！",
+        "！！！"
+      ],
+      "seconds": 48.97700000004843
+    },
+    {
+      "key": "せいぜい死ぬまで|もがき苦しみ続け|るがいい…",
+      "text": [
+        "せいぜい死ぬまで",
+        "もがき苦しみ続け",
+        "るがいい…"
+      ],
+      "seconds": 52.37999999998137
+    },
+    {
+      "key": "ギャハハ|ハハ！！！！",
+      "text": [
+        "ギャハハ",
+        "ハハ！！！！"
+      ],
+      "seconds": 55.43099999995902
+    }
+  ],
+  "silences": [
+    {
+      "end": 60.8427,
+      "duration": 0.316146
+    }
+  ],
+  "visualCheckPending": false,
+  "temporaryPngs": [
+    "C:\\Users\\kgygn\\Dropbox\\ゲーム\\Game_NewGame\\NewGame\\artifacts\\road-approach-tsunehi-revised-video-20261120\\_capture\\dialogue-contact-1.png",
+    "C:\\Users\\kgygn\\Dropbox\\ゲーム\\Game_NewGame\\NewGame\\artifacts\\road-approach-tsunehi-revised-video-20261120\\_capture\\dialogue-contact-2.png",
+    "C:\\Users\\kgygn\\Dropbox\\ゲーム\\Game_NewGame\\NewGame\\artifacts\\road-approach-tsunehi-revised-video-20261120\\_capture\\single-line-check.png"
+  ],
+  "intermediateVideos": [
+    "C:\\Users\\kgygn\\Dropbox\\ゲーム\\Game_NewGame\\NewGame\\artifacts\\road-approach-tsunehi-revised-video-20261120\\_capture\\tsunehi_intro_realtime.webm"
+  ],
+  "visualReview": {
+    "pages": 15,
+    "portraitHeadroom": true,
+    "allPartyVisible": true,
+    "normalCompanionBubbles": true,
+    "checkedAt": "2026-11-20T05:30:46.245Z"
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "frameWait": 10,
+  "shots": [
+    {
+      "frame": 9,
+      "puffX": 0,
+      "puffWidth": 222,
+      "puffHeight": 154,
+      "trailX": null,
+      "trailWidth": null
+    },
+    {
+      "frame": 10,
+      "puffX": 222,
+      "puffWidth": 222,
+      "puffHeight": 154,
+      "trailX": null,
+      "trailWidth": null
+    },
+    {
+      "frame": 57,
+      "puffX": 444,
+      "puffWidth": 222,
+      "puffHeight": 154,
+      "trailX": 0,
+      "trailWidth": 96
+    },
+    {
+      "frame": 58,
+      "puffX": 444,
+      "puffWidth": 222,
+      "puffHeight": 154,
+      "trailX": 96,
+      "trailWidth": 96
+    }
+  ]
+}

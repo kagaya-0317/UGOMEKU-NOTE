@@ -1,0 +1,58 @@
+{
+  "roadExit": {
+    "map": 59,
+    "x": 4.5,
+    "y": 24.5,
+    "walkable": true
+  },
+  "roadReturn": {
+    "map": 55,
+    "x": 19,
+    "y": 10,
+    "walkable": true
+  },
+  "stairsUp": {
+    "map": 60,
+    "x": 14.5,
+    "y": 25,
+    "walkable": true
+  },
+  "stairsDown": {
+    "map": 59,
+    "x": 10,
+    "y": 7.5,
+    "walkable": true
+  },
+  "gimmickFirst": {
+    "flag": 2,
+    "beast": 0,
+    "exit": 0
+  },
+  "b1Return": {
+    "map": 60,
+    "x": 37,
+    "y": 12.5,
+    "walkable": true
+  },
+  "reverseOrder": [
+    1,
+    1
+  ],
+  "intro": {
+    "camera": [
+      0,
+      -6
+    ],
+    "ui": false,
+    "boss": [
+      10,
+      10
+    ],
+    "bossFrame": {
+      "x": 0,
+      "y": 0,
+      "width": 288,
+      "height": 320
+    }
+  }
+}

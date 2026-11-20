@@ -1,0 +1,177 @@
+{
+  "maps": [
+    {
+      "id": 59,
+      "name": "113.モーネの間",
+      "file": "data/Map059.json",
+      "background": "img/parallaxes/!map113.png",
+      "source": "../aseprite/!map113.aseprite",
+      "sha256": "c54c4739857a82ed424fbb2ac1f69e1c261b47d7c184ca8e4cd380e817e2ecd8",
+      "events": 0,
+      "progression": false,
+      "probes": [
+        [
+          3,
+          24.5
+        ],
+        [
+          10,
+          22
+        ],
+        [
+          10,
+          16
+        ],
+        [
+          10,
+          11
+        ],
+        [
+          10,
+          5.5
+        ]
+      ]
+    },
+    {
+      "id": 60,
+      "name": "114.モンスター城 3F",
+      "file": "data/Map060.json",
+      "background": "img/parallaxes/!map114.png",
+      "source": "../aseprite/!map114.aseprite",
+      "sha256": "b96361cb7bf4ae883360ac56ed314ff218723492644412f5d1bad04fb2325c9f",
+      "events": 0,
+      "progression": false,
+      "probes": [
+        [
+          14.5,
+          25
+        ],
+        [
+          20,
+          18
+        ],
+        [
+          20,
+          12
+        ],
+        [
+          25,
+          9
+        ],
+        [
+          7,
+          18
+        ],
+        [
+          5,
+          15
+        ],
+        [
+          6,
+          11
+        ],
+        [
+          34,
+          18
+        ],
+        [
+          34,
+          15
+        ],
+        [
+          37,
+          12
+        ],
+        [
+          32,
+          12
+        ]
+      ]
+    },
+    {
+      "id": 61,
+      "name": "3F ギミック部屋",
+      "file": "data/Map061.json",
+      "background": "img/parallaxes/!map114_room.png",
+      "source": "../aseprite/!map114_room.aseprite",
+      "sha256": "65f5149ec62fe681df710e50a4dc1db699763b43001ae027d0d919f5c46a356f",
+      "events": 0,
+      "progression": false,
+      "probes": [
+        [
+          15.5,
+          25
+        ],
+        [
+          10,
+          23
+        ],
+        [
+          7,
+          18
+        ],
+        [
+          13.5,
+          18
+        ],
+        [
+          8,
+          12
+        ],
+        [
+          12,
+          12
+        ],
+        [
+          10,
+          8
+        ],
+        [
+          4,
+          25
+        ]
+      ]
+    },
+    {
+      "id": 62,
+      "name": "115.玉座の間",
+      "file": "data/Map062.json",
+      "background": "img/parallaxes/!map115.png",
+      "source": "../aseprite/!map115.aseprite",
+      "sha256": "840c303e54007fa4c76b2600f6c2d7decf69875fa40b8a5b69c335057e674adc",
+      "events": 0,
+      "progression": false,
+      "probes": [
+        [
+          10,
+          25.5
+        ],
+        [
+          10,
+          23
+        ],
+        [
+          10,
+          17
+        ],
+        [
+          10,
+          12
+        ],
+        [
+          10,
+          9
+        ],
+        [
+          8,
+          7.5
+        ],
+        [
+          12,
+          7.5
+        ]
+      ]
+    }
+  ],
+  "scope": "Backgrounds, map registration and static walkability only. No events, transfers, items, switches or progression logic."
+}

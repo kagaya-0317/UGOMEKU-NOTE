@@ -1,0 +1,1102 @@
+{
+  "nativeFriendlyBattle": true,
+  "forcedVictory": false,
+  "saveLoad": true,
+  "cases": [
+    {
+      "party": [
+        2,
+        3,
+        4
+      ],
+      "initial": {
+        "speed": 4.5,
+        "camera": [
+          0,
+          0
+        ],
+        "boss": [
+          5,
+          14
+        ],
+        "chest": 0,
+        "proxies": [
+          {
+            "id": 9,
+            "x": 4.5,
+            "y": 17,
+            "hidden": true
+          },
+          {
+            "id": 10,
+            "x": 6.5,
+            "y": 17,
+            "hidden": true
+          }
+        ]
+      },
+      "bubbles": [
+        {
+          "text": [
+            "ぐるるるる…"
+          ],
+          "battle": false,
+          "tone": 0,
+          "shape": 0,
+          "rect": {
+            "x": 159,
+            "y": 145.54829596710096,
+            "w": 210,
+            "h": 113
+          },
+          "textHeight": 33,
+          "guest": null,
+          "party": [
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "text": [
+            "我は魔王城の番犬",
+            "「死の猛獣」なり…"
+          ],
+          "battle": false,
+          "tone": 0,
+          "shape": 0,
+          "rect": {
+            "x": 104,
+            "y": 80.33331088615876,
+            "w": 320,
+            "h": 146
+          },
+          "textHeight": 66,
+          "guest": null,
+          "party": [
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "text": [
+            "侵入者どもを",
+            "生かしておくわけには",
+            "いかぬのじゃ！！"
+          ],
+          "battle": false,
+          "tone": 1,
+          "shape": 1,
+          "rect": {
+            "x": 95,
+            "y": 47.35445648103354,
+            "w": 338,
+            "h": 179
+          },
+          "textHeight": 99,
+          "guest": null,
+          "party": [
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "text": [
+            "ぬおッ！？"
+          ],
+          "battle": true,
+          "tone": 1,
+          "shape": 1,
+          "rect": {
+            "x": 273.7,
+            "y": 37.3125,
+            "w": 187,
+            "h": 113
+          },
+          "textHeight": 33,
+          "guest": {
+            "actor": 6,
+            "party": [
+              2,
+              3,
+              4
+            ],
+            "inActions": false,
+            "enemyHidden": true,
+            "active": false
+          },
+          "party": [
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "text": [
+            "なぜこちら側に！？",
+            "間違えたなり！！"
+          ],
+          "battle": true,
+          "tone": 1,
+          "shape": 1,
+          "rect": {
+            "x": 216.2,
+            "y": 137.25,
+            "w": 302,
+            "h": 146
+          },
+          "textHeight": 66,
+          "guest": {
+            "actor": 6,
+            "party": [
+              2,
+              3,
+              4
+            ],
+            "inActions": false,
+            "enemyHidden": true,
+            "active": false
+          },
+          "party": [
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "text": [
+            "でも…こっち側も",
+            "なんだか悪くないのじゃ"
+          ],
+          "battle": true,
+          "tone": 0,
+          "shape": 0,
+          "rect": {
+            "x": 184.7,
+            "y": 137.25,
+            "w": 365,
+            "h": 146
+          },
+          "textHeight": 66,
+          "guest": {
+            "actor": 6,
+            "party": [
+              2,
+              3,
+              4
+            ],
+            "inActions": false,
+            "enemyHidden": true,
+            "active": false
+          },
+          "party": [
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "text": [
+            "ヘッヘッ…"
+          ],
+          "battle": true,
+          "tone": 0,
+          "shape": 0,
+          "rect": {
+            "x": 267.7,
+            "y": 37.3125,
+            "w": 199,
+            "h": 113
+          },
+          "textHeight": 33,
+          "guest": {
+            "actor": 6,
+            "party": [
+              2,
+              3,
+              4
+            ],
+            "inActions": false,
+            "enemyHidden": true,
+            "active": false
+          },
+          "party": [
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "text": [
+            "うむ…仕方ない",
+            "通行を許可しようぞ"
+          ],
+          "battle": false,
+          "tone": 0,
+          "shape": 0,
+          "rect": {
+            "x": 101,
+            "y": 80.83749999240081,
+            "w": 326,
+            "h": 146
+          },
+          "textHeight": 66,
+          "guest": {
+            "actor": 6,
+            "party": [
+              2,
+              3,
+              4
+            ],
+            "inActions": false,
+            "enemyHidden": true,
+            "active": false
+          },
+          "party": [
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "text": [
+            "我々…なんだか",
+            "友達になれた気がするのじゃ"
+          ],
+          "battle": false,
+          "tone": 0,
+          "shape": 0,
+          "rect": {
+            "x": 51.5,
+            "y": 80.8374999979984,
+            "w": 425,
+            "h": 146
+          },
+          "textHeight": 66,
+          "guest": {
+            "actor": 6,
+            "party": [
+              2,
+              3,
+              4
+            ],
+            "inActions": false,
+            "enemyHidden": true,
+            "active": false
+          },
+          "party": [
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "text": [
+            "ヘッヘッ…"
+          ],
+          "battle": false,
+          "tone": 0,
+          "shape": 0,
+          "rect": {
+            "x": 164.5,
+            "y": 147.46249999965255,
+            "w": 199,
+            "h": 113
+          },
+          "textHeight": 33,
+          "guest": {
+            "actor": 6,
+            "party": [
+              2,
+              3,
+              4
+            ],
+            "inActions": false,
+            "enemyHidden": true,
+            "active": false
+          },
+          "party": [
+            2,
+            3,
+            4
+          ]
+        }
+      ],
+      "after": {
+        "party": [
+          2,
+          3,
+          4
+        ],
+        "speed": 4.5,
+        "camera": [
+          0,
+          0
+        ],
+        "followersShown": true,
+        "followers": [
+          {
+            "actor": 3,
+            "x": 6,
+            "y": 18
+          },
+          {
+            "actor": 4,
+            "x": 6,
+            "y": 20
+          }
+        ],
+        "proxiesHidden": true,
+        "boss": [
+          5,
+          14
+        ],
+        "chest": 1,
+        "tone": 0,
+        "fukidashi": false,
+        "popup": null,
+        "messages": [
+          {
+            "text": "ぐるるるる…",
+            "battle": false,
+            "tone": 0
+          },
+          {
+            "text": "我は魔王城の番犬",
+            "battle": false,
+            "tone": 0
+          },
+          {
+            "text": "「死の猛獣」なり…",
+            "battle": false,
+            "tone": 0
+          },
+          {
+            "text": "侵入者どもを",
+            "battle": false,
+            "tone": 1
+          },
+          {
+            "text": "生かしておくわけには",
+            "battle": false,
+            "tone": 1
+          },
+          {
+            "text": "いかぬのじゃ！！",
+            "battle": false,
+            "tone": 1
+          },
+          {
+            "text": "ぬおッ！？",
+            "battle": true,
+            "tone": 1
+          },
+          {
+            "text": "なぜこちら側に！？",
+            "battle": true,
+            "tone": 1
+          },
+          {
+            "text": "間違えたなり！！",
+            "battle": true,
+            "tone": 1
+          },
+          {
+            "text": "でも…こっち側も",
+            "battle": true,
+            "tone": 0
+          },
+          {
+            "text": "なんだか悪くないのじゃ",
+            "battle": true,
+            "tone": 0
+          },
+          {
+            "text": "ヘッヘッ…",
+            "battle": true,
+            "tone": 0
+          },
+          {
+            "text": "うむ…仕方ない",
+            "battle": false,
+            "tone": 0
+          },
+          {
+            "text": "通行を許可しようぞ",
+            "battle": false,
+            "tone": 0
+          },
+          {
+            "text": "我々…なんだか",
+            "battle": false,
+            "tone": 0
+          },
+          {
+            "text": "友達になれた気がするのじゃ",
+            "battle": false,
+            "tone": 0
+          },
+          {
+            "text": "ヘッヘッ…",
+            "battle": false,
+            "tone": 0
+          }
+        ],
+        "guest": {
+          "actor": 6,
+          "party": [
+            2,
+            3,
+            4
+          ],
+          "inActions": false,
+          "enemyHidden": true,
+          "active": false
+        },
+        "error": null
+      },
+      "movementFrames": 525
+    },
+    {
+      "party": [
+        2,
+        4,
+        3
+      ],
+      "initial": {
+        "speed": 4.5,
+        "camera": [
+          0,
+          0
+        ],
+        "boss": [
+          5,
+          14
+        ],
+        "chest": 0,
+        "proxies": [
+          {
+            "id": 9,
+            "x": 4.5,
+            "y": 17,
+            "hidden": true
+          },
+          {
+            "id": 10,
+            "x": 6.5,
+            "y": 17,
+            "hidden": true
+          }
+        ]
+      },
+      "bubbles": [],
+      "after": {
+        "party": [
+          2,
+          4,
+          3
+        ],
+        "speed": 4.5,
+        "camera": [
+          0,
+          0
+        ],
+        "followersShown": true,
+        "followers": [
+          {
+            "actor": 4,
+            "x": 6,
+            "y": 18
+          },
+          {
+            "actor": 3,
+            "x": 6,
+            "y": 19.5
+          }
+        ],
+        "proxiesHidden": true,
+        "boss": [
+          5,
+          14
+        ],
+        "chest": 1,
+        "tone": 0,
+        "fukidashi": false,
+        "popup": null,
+        "messages": [
+          {
+            "text": "ぐるるるる…",
+            "battle": false,
+            "tone": 0
+          },
+          {
+            "text": "我は魔王城の番犬",
+            "battle": false,
+            "tone": 0
+          },
+          {
+            "text": "「死の猛獣」なり…",
+            "battle": false,
+            "tone": 0
+          },
+          {
+            "text": "侵入者どもを",
+            "battle": false,
+            "tone": 1
+          },
+          {
+            "text": "生かしておくわけには",
+            "battle": false,
+            "tone": 1
+          },
+          {
+            "text": "いかぬのじゃ！！",
+            "battle": false,
+            "tone": 1
+          },
+          {
+            "text": "ぬおッ！？",
+            "battle": true,
+            "tone": 1
+          },
+          {
+            "text": "なぜこちら側に！？",
+            "battle": true,
+            "tone": 1
+          },
+          {
+            "text": "間違えたなり！！",
+            "battle": true,
+            "tone": 1
+          },
+          {
+            "text": "でも…こっち側も",
+            "battle": true,
+            "tone": 0
+          },
+          {
+            "text": "なんだか悪くないのじゃ",
+            "battle": true,
+            "tone": 0
+          },
+          {
+            "text": "ヘッヘッ…",
+            "battle": true,
+            "tone": 0
+          },
+          {
+            "text": "うむ…仕方ない",
+            "battle": false,
+            "tone": 0
+          },
+          {
+            "text": "通行を許可しようぞ",
+            "battle": false,
+            "tone": 0
+          },
+          {
+            "text": "我々…なんだか",
+            "battle": false,
+            "tone": 0
+          },
+          {
+            "text": "友達になれた気がするのじゃ",
+            "battle": false,
+            "tone": 0
+          },
+          {
+            "text": "ヘッヘッ…",
+            "battle": false,
+            "tone": 0
+          }
+        ],
+        "guest": {
+          "actor": 6,
+          "party": [
+            2,
+            4,
+            3
+          ],
+          "inActions": false,
+          "enemyHidden": true,
+          "active": false
+        },
+        "error": null
+      },
+      "movementFrames": 498
+    },
+    {
+      "party": [
+        2,
+        3
+      ],
+      "initial": {
+        "speed": 4.5,
+        "camera": [
+          0,
+          0
+        ],
+        "boss": [
+          5,
+          14
+        ],
+        "chest": 0,
+        "proxies": [
+          {
+            "id": 9,
+            "x": 4.5,
+            "y": 17,
+            "hidden": true
+          },
+          {
+            "id": 10,
+            "x": 6.5,
+            "y": 17,
+            "hidden": true
+          }
+        ]
+      },
+      "bubbles": [],
+      "after": {
+        "party": [
+          2,
+          3
+        ],
+        "speed": 4.5,
+        "camera": [
+          0,
+          0
+        ],
+        "followersShown": true,
+        "followers": [
+          {
+            "actor": 3,
+            "x": 6,
+            "y": 18
+          }
+        ],
+        "proxiesHidden": true,
+        "boss": [
+          5,
+          14
+        ],
+        "chest": 1,
+        "tone": 0,
+        "fukidashi": false,
+        "popup": null,
+        "messages": [
+          {
+            "text": "ぐるるるる…",
+            "battle": false,
+            "tone": 0
+          },
+          {
+            "text": "我は魔王城の番犬",
+            "battle": false,
+            "tone": 0
+          },
+          {
+            "text": "「死の猛獣」なり…",
+            "battle": false,
+            "tone": 0
+          },
+          {
+            "text": "侵入者どもを",
+            "battle": false,
+            "tone": 1
+          },
+          {
+            "text": "生かしておくわけには",
+            "battle": false,
+            "tone": 1
+          },
+          {
+            "text": "いかぬのじゃ！！",
+            "battle": false,
+            "tone": 1
+          },
+          {
+            "text": "ぬおッ！？",
+            "battle": true,
+            "tone": 1
+          },
+          {
+            "text": "なぜこちら側に！？",
+            "battle": true,
+            "tone": 1
+          },
+          {
+            "text": "間違えたなり！！",
+            "battle": true,
+            "tone": 1
+          },
+          {
+            "text": "でも…こっち側も",
+            "battle": true,
+            "tone": 0
+          },
+          {
+            "text": "なんだか悪くないのじゃ",
+            "battle": true,
+            "tone": 0
+          },
+          {
+            "text": "ヘッヘッ…",
+            "battle": true,
+            "tone": 0
+          },
+          {
+            "text": "うむ…仕方ない",
+            "battle": false,
+            "tone": 0
+          },
+          {
+            "text": "通行を許可しようぞ",
+            "battle": false,
+            "tone": 0
+          },
+          {
+            "text": "我々…なんだか",
+            "battle": false,
+            "tone": 0
+          },
+          {
+            "text": "友達になれた気がするのじゃ",
+            "battle": false,
+            "tone": 0
+          },
+          {
+            "text": "ヘッヘッ…",
+            "battle": false,
+            "tone": 0
+          }
+        ],
+        "guest": {
+          "actor": 6,
+          "party": [
+            2,
+            3
+          ],
+          "inActions": false,
+          "enemyHidden": true,
+          "active": false
+        },
+        "error": null
+      },
+      "movementFrames": 448
+    },
+    {
+      "party": [
+        2,
+        4
+      ],
+      "initial": {
+        "speed": 4.5,
+        "camera": [
+          0,
+          0
+        ],
+        "boss": [
+          5,
+          14
+        ],
+        "chest": 0,
+        "proxies": [
+          {
+            "id": 9,
+            "x": 4.5,
+            "y": 17,
+            "hidden": true
+          },
+          {
+            "id": 10,
+            "x": 6.5,
+            "y": 17,
+            "hidden": true
+          }
+        ]
+      },
+      "bubbles": [],
+      "after": {
+        "party": [
+          2,
+          4
+        ],
+        "speed": 4.5,
+        "camera": [
+          0,
+          0
+        ],
+        "followersShown": true,
+        "followers": [
+          {
+            "actor": 4,
+            "x": 6,
+            "y": 18
+          }
+        ],
+        "proxiesHidden": true,
+        "boss": [
+          5,
+          14
+        ],
+        "chest": 1,
+        "tone": 0,
+        "fukidashi": false,
+        "popup": null,
+        "messages": [
+          {
+            "text": "ぐるるるる…",
+            "battle": false,
+            "tone": 0
+          },
+          {
+            "text": "我は魔王城の番犬",
+            "battle": false,
+            "tone": 0
+          },
+          {
+            "text": "「死の猛獣」なり…",
+            "battle": false,
+            "tone": 0
+          },
+          {
+            "text": "侵入者どもを",
+            "battle": false,
+            "tone": 1
+          },
+          {
+            "text": "生かしておくわけには",
+            "battle": false,
+            "tone": 1
+          },
+          {
+            "text": "いかぬのじゃ！！",
+            "battle": false,
+            "tone": 1
+          },
+          {
+            "text": "ぬおッ！？",
+            "battle": true,
+            "tone": 1
+          },
+          {
+            "text": "なぜこちら側に！？",
+            "battle": true,
+            "tone": 1
+          },
+          {
+            "text": "間違えたなり！！",
+            "battle": true,
+            "tone": 1
+          },
+          {
+            "text": "でも…こっち側も",
+            "battle": true,
+            "tone": 0
+          },
+          {
+            "text": "なんだか悪くないのじゃ",
+            "battle": true,
+            "tone": 0
+          },
+          {
+            "text": "ヘッヘッ…",
+            "battle": true,
+            "tone": 0
+          },
+          {
+            "text": "うむ…仕方ない",
+            "battle": false,
+            "tone": 0
+          },
+          {
+            "text": "通行を許可しようぞ",
+            "battle": false,
+            "tone": 0
+          },
+          {
+            "text": "我々…なんだか",
+            "battle": false,
+            "tone": 0
+          },
+          {
+            "text": "友達になれた気がするのじゃ",
+            "battle": false,
+            "tone": 0
+          },
+          {
+            "text": "ヘッヘッ…",
+            "battle": false,
+            "tone": 0
+          }
+        ],
+        "guest": {
+          "actor": 6,
+          "party": [
+            2,
+            4
+          ],
+          "inActions": false,
+          "enemyHidden": true,
+          "active": false
+        },
+        "error": null
+      },
+      "movementFrames": 433
+    },
+    {
+      "party": [
+        2
+      ],
+      "initial": {
+        "speed": 4.5,
+        "camera": [
+          0,
+          0
+        ],
+        "boss": [
+          5,
+          14
+        ],
+        "chest": 0,
+        "proxies": [
+          {
+            "id": 9,
+            "x": 4.5,
+            "y": 17,
+            "hidden": true
+          },
+          {
+            "id": 10,
+            "x": 6.5,
+            "y": 17,
+            "hidden": true
+          }
+        ]
+      },
+      "bubbles": [],
+      "after": {
+        "party": [
+          2
+        ],
+        "speed": 4.5,
+        "camera": [
+          0,
+          0
+        ],
+        "followersShown": true,
+        "followers": [],
+        "proxiesHidden": true,
+        "boss": [
+          5,
+          14
+        ],
+        "chest": 1,
+        "tone": 0,
+        "fukidashi": false,
+        "popup": null,
+        "messages": [
+          {
+            "text": "ぐるるるる…",
+            "battle": false,
+            "tone": 0
+          },
+          {
+            "text": "我は魔王城の番犬",
+            "battle": false,
+            "tone": 0
+          },
+          {
+            "text": "「死の猛獣」なり…",
+            "battle": false,
+            "tone": 0
+          },
+          {
+            "text": "侵入者どもを",
+            "battle": false,
+            "tone": 1
+          },
+          {
+            "text": "生かしておくわけには",
+            "battle": false,
+            "tone": 1
+          },
+          {
+            "text": "いかぬのじゃ！！",
+            "battle": false,
+            "tone": 1
+          },
+          {
+            "text": "ぬおッ！？",
+            "battle": true,
+            "tone": 1
+          },
+          {
+            "text": "なぜこちら側に！？",
+            "battle": true,
+            "tone": 1
+          },
+          {
+            "text": "間違えたなり！！",
+            "battle": true,
+            "tone": 1
+          },
+          {
+            "text": "でも…こっち側も",
+            "battle": true,
+            "tone": 0
+          },
+          {
+            "text": "なんだか悪くないのじゃ",
+            "battle": true,
+            "tone": 0
+          },
+          {
+            "text": "ヘッヘッ…",
+            "battle": true,
+            "tone": 0
+          },
+          {
+            "text": "うむ…仕方ない",
+            "battle": false,
+            "tone": 0
+          },
+          {
+            "text": "通行を許可しようぞ",
+            "battle": false,
+            "tone": 0
+          },
+          {
+            "text": "我々…なんだか",
+            "battle": false,
+            "tone": 0
+          },
+          {
+            "text": "友達になれた気がするのじゃ",
+            "battle": false,
+            "tone": 0
+          },
+          {
+            "text": "ヘッヘッ…",
+            "battle": false,
+            "tone": 0
+          }
+        ],
+        "guest": {
+          "actor": 6,
+          "party": [
+            2
+          ],
+          "inActions": false,
+          "enemyHidden": true,
+          "active": false
+        },
+        "error": null
+      },
+      "movementFrames": 400
+    }
+  ]
+}

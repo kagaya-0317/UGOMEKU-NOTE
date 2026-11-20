@@ -1,0 +1,326 @@
+{
+  "cases": [
+    {
+      "party": [
+        2,
+        3,
+        4
+      ],
+      "before": [
+        {
+          "actor": 2,
+          "x": 25.5,
+          "y": 12,
+          "d": 8,
+          "speed": 4.5,
+          "fix": false
+        },
+        {
+          "actor": 3,
+          "x": 25.5,
+          "y": 13.5,
+          "d": 8,
+          "speed": 4.5,
+          "fix": false
+        },
+        {
+          "actor": 4,
+          "x": 25.5,
+          "y": 15.5,
+          "d": 8,
+          "speed": 4.5,
+          "fix": false
+        }
+      ],
+      "after": [
+        {
+          "actor": 2,
+          "x": 25.5,
+          "y": 12,
+          "d": 8,
+          "speed": 4.5,
+          "fix": false
+        },
+        {
+          "actor": 3,
+          "x": 25.5,
+          "y": 13.5,
+          "d": 8,
+          "speed": 4.5,
+          "fix": false
+        },
+        {
+          "actor": 4,
+          "x": 25.5,
+          "y": 15.5,
+          "d": 8,
+          "speed": 4.5,
+          "fix": false
+        }
+      ],
+      "speaking": {
+        "members": [
+          {
+            "actorId": 3,
+            "eventId": 13,
+            "returnPoint": {
+              "x": 25.5,
+              "y": 13.5,
+              "direction": 8
+            }
+          },
+          {
+            "actorId": 4,
+            "eventId": 14,
+            "returnPoint": {
+              "x": 25.5,
+              "y": 15.5,
+              "direction": 8
+            }
+          }
+        ],
+        "hero": [
+          25.5,
+          13.5,
+          4
+        ],
+        "mii": [
+          24,
+          14,
+          6
+        ],
+        "yume": [
+          27,
+          14,
+          4
+        ],
+        "speaker": 13,
+        "rendered": [
+          {
+            "actor": 3,
+            "event": 13,
+            "x": 336,
+            "y": 498
+          },
+          {
+            "actor": 4,
+            "event": 14,
+            "x": 480,
+            "y": 498
+          },
+          {
+            "actor": 2,
+            "event": null,
+            "x": 408,
+            "y": 474
+          }
+        ],
+        "hiddenBeast": true,
+        "gate": 1
+      },
+      "formationFrames": 273,
+      "openingAfterMovement": true,
+      "returnedByWalking": true
+    },
+    {
+      "party": [
+        2,
+        4,
+        3
+      ],
+      "before": [
+        {
+          "actor": 2,
+          "x": 25.5,
+          "y": 12,
+          "d": 8,
+          "speed": 4.5,
+          "fix": false
+        },
+        {
+          "actor": 4,
+          "x": 25.5,
+          "y": 13.5,
+          "d": 8,
+          "speed": 4.5,
+          "fix": false
+        },
+        {
+          "actor": 3,
+          "x": 25.5,
+          "y": 15.5,
+          "d": 8,
+          "speed": 4.5,
+          "fix": false
+        }
+      ],
+      "after": [
+        {
+          "actor": 2,
+          "x": 25.5,
+          "y": 12,
+          "d": 8,
+          "speed": 4.5,
+          "fix": false
+        },
+        {
+          "actor": 4,
+          "x": 25.5,
+          "y": 13.5,
+          "d": 8,
+          "speed": 4.5,
+          "fix": false
+        },
+        {
+          "actor": 3,
+          "x": 25.5,
+          "y": 15.5,
+          "d": 8,
+          "speed": 4.5,
+          "fix": false
+        }
+      ],
+      "speaking": {
+        "members": [
+          {
+            "actorId": 3,
+            "eventId": 13,
+            "returnPoint": {
+              "x": 25.5,
+              "y": 15.5,
+              "direction": 8
+            }
+          },
+          {
+            "actorId": 4,
+            "eventId": 14,
+            "returnPoint": {
+              "x": 25.5,
+              "y": 13.5,
+              "direction": 8
+            }
+          }
+        ],
+        "hero": [
+          25.5,
+          13.5,
+          4
+        ],
+        "mii": [
+          24,
+          14,
+          6
+        ],
+        "yume": [
+          27,
+          14,
+          4
+        ],
+        "speaker": 13,
+        "rendered": [
+          {
+            "actor": 3,
+            "event": 13,
+            "x": 336,
+            "y": 498
+          },
+          {
+            "actor": 4,
+            "event": 14,
+            "x": 480,
+            "y": 498
+          },
+          {
+            "actor": 2,
+            "event": null,
+            "x": 408,
+            "y": 474
+          }
+        ],
+        "hiddenBeast": true,
+        "gate": 1
+      },
+      "formationFrames": 260,
+      "openingAfterMovement": true,
+      "returnedByWalking": true
+    },
+    {
+      "party": [
+        2,
+        4
+      ],
+      "before": [
+        {
+          "actor": 2,
+          "x": 25.5,
+          "y": 12,
+          "d": 8,
+          "speed": 4.5,
+          "fix": false
+        },
+        {
+          "actor": 4,
+          "x": 25.5,
+          "y": 13.5,
+          "d": 8,
+          "speed": 4.5,
+          "fix": false
+        }
+      ],
+      "after": [
+        {
+          "actor": 2,
+          "x": 25.5,
+          "y": 12,
+          "d": 8,
+          "speed": 4.5,
+          "fix": false
+        },
+        {
+          "actor": 4,
+          "x": 25.5,
+          "y": 13.5,
+          "d": 8,
+          "speed": 4.5,
+          "fix": false
+        }
+      ],
+      "speaking": null,
+      "formationFrames": 220,
+      "openingAfterMovement": true,
+      "returnedByWalking": true
+    },
+    {
+      "party": [
+        2
+      ],
+      "before": [
+        {
+          "actor": 2,
+          "x": 25.5,
+          "y": 12,
+          "d": 8,
+          "speed": 4.5,
+          "fix": false
+        }
+      ],
+      "after": [
+        {
+          "actor": 2,
+          "x": 25.5,
+          "y": 12,
+          "d": 8,
+          "speed": 4.5,
+          "fix": false
+        }
+      ],
+      "speaking": null,
+      "formationFrames": 202,
+      "openingAfterMovement": true,
+      "returnedByWalking": true
+    }
+  ],
+  "completedReentry": true,
+  "saveLoad": true,
+  "beastScopeUnchanged": true
+}

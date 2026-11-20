@@ -1,0 +1,27 @@
+{
+  "unrelatedRecordsPreserved": true,
+  "backgroundsAndCollisionPreserved": true,
+  "encodingPreserved": true,
+  "scriptsParsed": 62,
+  "dialogueLines": 24,
+  "newVariables": [
+    61,
+    62,
+    63,
+    64,
+    65,
+    66,
+    67
+  ],
+  "actor": 6,
+  "keys": [
+    53,
+    54
+  ],
+  "troops": [
+    46,
+    47,
+    48
+  ],
+  "gimmickObjects": 0
+}

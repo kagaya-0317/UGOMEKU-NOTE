@@ -1,0 +1,28 @@
+{
+  "frames": 720,
+  "seconds": 12,
+  "video": "h264",
+  "audio": "aac",
+  "decode": "passed",
+  "hits": [
+    {
+      "frame": 67,
+      "skillId": 46
+    },
+    {
+      "frame": 307,
+      "skillId": 47
+    },
+    {
+      "frame": 562,
+      "skillId": 50
+    }
+  ],
+  "staticGunYura": "passed",
+  "rotorFrames": "passed",
+  "flameArmsYura": 65,
+  "finalCleanup": "passed",
+  "pngFiles": 0,
+  "bytes": 596487,
+  "maxVolume": "-12.6 dB"
+}

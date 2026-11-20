@@ -14,6 +14,78 @@
 - After editing a file that contains Japanese text, inspect the relevant lines
   and make sure existing text was not changed into mojibake.
 
+## Temporary artwork registry and cleanup preparation
+
+- The project-root `仮素材一覧.md` is the authoritative registry of temporary
+  artwork, cleanup status, editable sources, runtime outputs and drawing specs.
+  Read it when the user asks about temporary artwork, registers an asset, or
+  starts drawing/cleaning up a registered asset. Do not rely on chat memory or
+  infer completion from filenames, modification dates or the absence of `tmp`.
+- Treat requests such as `〇〇を仮素材登録` as instructions to prepare the
+  actual editable artwork AND register it, without asking for routine permission.
+  Adding a name to the registry alone does not complete registration. Inspect
+  existing sources, live game references and export conventions first. Prepare
+  the requested scope only; do not invent extra poses or change gameplay.
+- Store active editable `.aseprite` sources in `../画像/` with meaningful names.
+  Map backgrounds keep the exact runtime base name, including `!`. Preserve
+  native character prefixes such as `$` on runtime PNGs. Keep walking, battle
+  and other independently exported uses separate when their formats differ.
+- Use existing local Aseprite files as references for layers and animation.
+  Put the current graphics in a locked `下書き` group, normally at opacity
+  100/255, and provide an editable `清書` group with empty, clearly named drawing
+  layers. Label poses/cells through layer names and record the full layout.
+  Preserve existing user artwork, layers, cels, tags and in-progress cleanup;
+  reuse or extend prepared files rather than resetting them. Never replace newer
+  editable artwork with an older generated copy. Check for concurrent edits.
+- Record a stable ID, name/aliases, status, editable source, draft location,
+  runtime output, actual usage (map/event/actor/enemy/item as applicable),
+  canvas/cell dimensions, rows/columns, frame/pose order, timing, export scale,
+  filename constraints and any alignment/rendering requirements. Mark unknown
+  details as unverified rather than inventing them. Resolve internal map IDs
+  through live map data instead of equating them with display numbers.
+- Registration must leave a usable export path. Reuse and update
+  `tools/castle_upper_maps/artist_sources.json` and its export helper where the
+  format is supported; otherwise extend the workflow for the specific format
+  or document a verified equivalent. Keep the registry and export mapping in
+  sync. Export cleanup without draft pixels; fully blank cleanup must preserve
+  the current runtime PNG. Warn in the instructions that partially drawn cleanup
+  will export if it has pixels. Preserve configured dimensions, scale, pose
+  mapping, transparency, canonical colors and yurayura handling.
+- Reopen saved Aseprite files and verify their structure and rendered draft
+  against the current runtime graphics before marking preparation complete.
+  Load numbered PNGs as individual images, not automatically detected image
+  sequences. Verify export behavior without overwriting real cleanup work.
+  Registration alone should preserve the current game appearance; if a dedicated
+  runtime image or native sheet is needed, connect and verify it in the real
+  engine, preserving existing animation, placement and gameplay rules.
+- For requests such as `仮素材教えて`, list unresolved registered artwork with
+  status, clickable editable/draft location, exact PNG output and the drawing
+  specs needed to begin. For a named asset or drawing request, give its specific
+  layout, dimensions, export steps and constraints. Check current files and
+  references before answering; report stale/missing entries and repair them
+  within the requested scope. Unregistered artwork is not implicitly final.
+- Track states as `仮`, `清書中`, `清書済み`, `差し替え確認済み`. Keep partial
+  pose/frame completion and remaining work explicit. Preparation, saving or
+  exporting alone never proves cleanup complete. Update completion when the
+  user identifies it or the requested completion is established, and mark
+  replacement verified only after checking the saved source, runtime export
+  and actual game rendering. Keep completed records for traceability and omit
+  them from the unfinished list; call out pending integration separately.
+- When making additional temporary graphics during other requested work,
+  apply this preparation/registration workflow as part of delivering them.
+  Summarize the registered name, editable source and output to the user.
+
+## Reuse existing game implementations
+
+- Before implementing an event, save point, item pickup, transition or effect,
+  inspect saved maps, common events and plugins for an existing equivalent.
+  Follow its calls, flags, presentation and cleanup rather than creating a
+  parallel system that bypasses the game's existing behavior.
+- When copying events or pages, check event IDs, variable IDs, template names
+  and other references as well as coordinates; copied references may be stale.
+- Create only the requested assets, events and progression logic. Brainstormed
+  ideas are not accepted specifications until the user chooses them.
+
 ## PIXI bitmap masks
 
 - When a `Bitmap` is updated manually with canvas APIs such as `putImageData()`,
@@ -61,12 +133,74 @@ bitmap.checkDirty();
   is the base sprite or the yurayura mesh. Many "sprite is wrong" bugs in this
   game are actually stale mesh, stale base bitmap, or origin/anchor mismatch
   problems.
+- Inspect existing `cssRect`, `CGScale`, `CGShift` and related image settings
+  before reusing artwork. The intended picture may occupy an interior sheet
+  cell rather than the top-left cell or a standard character-sheet frame.
+- Hidden sprites still participate in Tilemap sorting. When skipping their
+  bitmap or mesh updates, preserve native `updatePosition()` so their position
+  and depth stay valid. An unset `z` produces NaN comparisons and can scramble
+  the rendering order of unrelated visible characters.
+- The yura filter divides `maxShake` by five. With `pixelSnap` enabled, a
+  subpixel displacement can round away completely. Verify visible pixel
+  changes across animation steps rather than only checking updated uniforms.
+
+## Recording gameplay
+
+- By default, record silently on this PC while keeping BGM and normal game
+  audio in the delivered video, unless the user explicitly requests otherwise.
+- Mute only local monitoring in the isolated recording app; keep the recording
+  audio mix active. Reuse the verified routing in
+  `tools/beast_dialogue/preview/setup.js`: capture audio before the zero-gain
+  local monitor. Do not change system volume or saved game audio settings.
+- Before a full take, verify that local monitoring is silent and the capture
+  receives audio. After encoding, verify that the final video contains audible
+  BGM. If silent monitoring is unavailable, explain the limitation before using
+  local playback; never silently deliver a video with its BGM muted.
+- Preserve the configured character and boss scale in recordings. Do not resize
+  combatants just to fit the capture frame.
+- Keep normal party attacks enabled. Do not suppress them for clearer enemy
+  footage unless the user explicitly requests an isolated attack demonstration.
 
 ## Game-specific color rules
 
 - Treat `#474e51` as the game's canonical visual black. Use it for in-game
   "black" pixels, drawings, fills, and similar artwork-facing colors unless a
   true technical black is explicitly required for masks, outlines, or debugging.
+
+## Game-specific hatching rules
+
+- Shading hatch strokes always slant down-left (`/` in screen coordinates).
+  Never mirror hatch textures or reverse their stroke direction when tiling.
+
+## Map backgrounds and editable artwork
+
+- Map display numbers, internal map IDs and background names are separate.
+  Resolve transfers through `data/MapInfos.json` and the actual map data rather
+  than assuming a display number is the map ID.
+- Store editable map-background `.aseprite` files in `../画像/` and runtime
+  PNGs in `img/parallaxes/`, using the same base name, including the leading
+  `!`. Keep the editable artwork and exported PNG in sync after changes.
+- Older helpers and copies may use `../aseprite/`. For these map backgrounds,
+  the user-designated image directory above is authoritative; do not overwrite
+  newer user edits with an older generated copy or rerun a stale generator.
+- The upper-castle backgrounds use these page formats:
+
+  | Format | Runtime PNG | Map size in tiles |
+  | --- | --- | --- |
+  | One page | 1000x1414 | 21x30 |
+  | Two-page spread | 2000x1414 | 41x30 |
+
+- Some older editable files are 500x707 or 1000x707 and export at 2x. The current
+  `!map113`, `!map114`, `!map114_room` and `!map115` editable files already match
+  their runtime PNG dimensions and export at 1x. Check both dimensions before
+  exporting; do not apply a blanket scale factor to all source files.
+- Background artwork and passage data are separate. Match floors, walls,
+  fences, stairs and entrances to the actual collision data, and account for
+  the gutter in two-page spreads. Preserve existing map events when changing
+  artwork or collision; do not rebuild a populated map as a background-only map.
+- Half-step positions and `HM` note tags affect actual placement. Check the
+  loaded position and passage at fractional coordinates, including both ends
+  of a transfer; an integer-coordinate check alone is insufficient.
 
 ## Game-specific message rules
 
@@ -87,6 +221,18 @@ bitmap.checkDirty();
   `_sceneInfo.systemMessage` is active. Prefer setting and clearing
   `_sceneInfo.systemMessage` for temporary system confirmations instead of
   repurposing shop flags or relying on player-relative popup placement.
+- Frame event cameras for the character's actual image height and scale, the
+  speech bubble and the whole party. Focusing only on the boss's foot position
+  can hide companions or put the bubble outside the screen.
+
+## Game-specific dialogue rules
+
+- The protagonist (actor 2) is silent. Do not give the protagonist spoken lines.
+- Companion speakers are Mii (actor 3) and Yume (actor 4). Resolve speakers by
+  actor ID, not party order, and never fall back to the protagonist.
+- Read existing character dialogue before writing new lines and preserve each
+  character's established voice.
+- Do not use Japanese full stops (U+3002) in game dialogue.
 
 ## Game-specific event rules
 
@@ -97,6 +243,41 @@ bitmap.checkDirty();
   temporary arrays matters.
 - Do not use `$gameMap.events()` for total counts, global searches, or systems
   such as darkness/light collection where offscreen events may still matter.
+- After a progression change unlocks offscreen events, refresh the relevant
+  event pages and event selection as needed. The upper-castle implementation
+  uses `KNH_CastleUpper.refreshEvents()` for this. Do not refresh every event
+  every frame or assume a nearby-only refresh has updated a distant chest.
+- Use named game variables for progression shared between events or maps, and
+  self switches for local state such as a chest already being opened. Inspect
+  current variable usage before allocating IDs; do not repurpose occupied IDs.
+- Give progression values explicit meanings and follow the convention for the
+  flow being edited. Provide a completed page so autoruns and rewards do not
+  repeat on reentry or load.
+
+## Editor-owned event placement
+
+- Map event `x` and `y` saved by RPG Maker are the authoritative initial
+  position. Animation initialization must not overwrite these coordinates.
+- Do not add hard-coded `locate(...)`, `setPosition(...)`, or equivalent
+  position resets to page initialization, animation setup, or repeating routes.
+  Explicitly requested teleports or fixed spawn points are exceptions.
+- Keep animation setup limited to sprite/frame/scale/timing configuration.
+  Do not persist temporary screenshot staging coordinates as initialization.
+- Moving events must depart from their editor placement. Use relative movement
+  and actual passage/map boundaries for endpoints when the behavior should
+  continue to a dead end; do not assume a fixed starting coordinate or distance.
+- When copying maps, events, or pages, inspect copied initialization scripts and
+  custom/forced movement routes for stale absolute coordinates.
+- After placement-related changes, load the saved map normally and confirm that
+  stationary events retain the editor coordinates after animation starts and on
+  map reentry. For moving events, verify the editor start point and end behavior.
+- After character placement, scale, or other visible map changes, attach a fresh
+  game/editor screenshot. Runtime-only staging is not a saved implementation.
+- Preserve user edits already saved in map files. Check for concurrent changes
+  before writing; do not restore earlier coordinates from an agent snapshot.
+- If files are changed while RPG Maker or a playtest is open, explain that the
+  project/playtest must be reopened to load the changes and avoid stale editor
+  data overwriting the fix. Never close apps or discard unsaved work automatically.
 
 ## Game-specific follower rules
 
@@ -110,10 +291,39 @@ bitmap.checkDirty();
   `$gamePlayer.followers().follower(3)`, not `follower(0)` and `follower(1)`.
 - Do not assume `visibleFollowers()[0]` means the first party follower when
   follower order, party-member targeting, hit detection, or scripted movement
-  needs to match this spacing system. Inspect `_memberIndex` or use the known
-  spacer-aware indices.
+  needs to match this spacing system. Inspect `_memberIndex` and resolve the
+  actual follower by `follower.actor().actorId()` when matching a character,
+  guarding against spacer followers without an actor.
 - Spacer followers still participate in the follow chain and movement spacing
   even though they have no visible actor sprite.
+- For staged automatic scenes, move the protagonist and present companions
+  from their current positions into formation, wait for movement to finish,
+  then face the speaker and start the camera/dialogue sequence. Do not just
+  hide companions and leave the protagonist at the trigger position.
+- When map stand-ins take over from followers, copy their actual rendered
+  positions and image settings. After hiding or showing followers, also call
+  `$gamePlayer.refresh()` as native event command 216 does; changing visibility
+  alone can leave duplicate sprites or missing companions.
+- At the handoff back, copy stand-in positions and directions to the actual
+  followers, hide the stand-ins, reset spacer/follow history as needed, and
+  restore the captured movement speed, direction lock, visibility and camera.
+  Do not hard-code a presumed default movement speed or collapse the visible
+  party onto the protagonist at the end of the scene.
+- `goTo(...)` is scripted repositioning, not normal route finding. Keep staged
+  moves clear of obstacles; use actual walking to verify traversable routes.
+- Reference Map051 event 6 and Map053 event 4 for staging, and Map012 event 10
+  for returning stand-in positions to followers. The upper-castle helpers are
+  in `js/plugins/KNH_ZXC_CastleUpper.js`.
+
+## Save points
+
+- Reuse the `save` template and its paired sticky-note event. Map015 events
+  18 and 19 are reference examples. Set `<TE:save><save:VARIABLE_ID>` and the
+  matching sticky-note condition to the save point's discovery variable, and
+  preserve the existing note orientation, image shifts and presentation.
+- Native event command 352 opens this game's custom save UI through
+  `Scene_Base.startSave()` while staying in `Scene_Map`. Do not implement or
+  verify the flow on the assumption that standard `Scene_Save` will appear.
 
 ## Template event and item rules
 
@@ -150,3 +360,132 @@ bitmap.checkDirty();
   `KNH_PlayerDrawing.itemImageFrame(bitmap, info)` when available, rather than
   reading `item.meta.image` directly. Registered player drawings must override
   the note-tag image in menu, battle, and map item displays.
+- Reuse existing chest pickup presentation and opened-state handling rather
+  than only changing inventory. For a multi-key gate, check all required keys
+  before consuming any, consume them once, and persist a permanently open
+  state so later entry does not ask for or consume the keys again.
+
+## Temporary battle guests
+
+- A character shown on the ally side for an encounter does not necessarily
+  need to join the party. Keep display-only guests outside party membership
+  and battle action/target arrays when the scene requires only a visual guest.
+- The current battle scheduler requires a valid enemy action even for a hidden
+  dummy in a noncombat encounter. Use an existing valid nondamaging action;
+  an empty action list can crash before an immediate battle abort takes effect.
+- Scope special battle behavior to the intended encounter. Do not disable
+  normal party attacks or change other battles to support a friendly scene.
+
+## Verification of saved maps and events
+
+- Verify the saved implementation in the real engine after reloading it. Check
+  first entry, completed-state reentry, save/load persistence and alternative
+  key acquisition orders where relevant. Walking transfers must work in both
+  directions with normal collision; teleporting or enabling through mode is
+  not proof of reachability.
+- For party scenes, check reordered and absent companions, visible rendered
+  sprite counts, battle return and resumed following. Logical visibility flags
+  alone do not establish that exactly one sprite per companion is rendered.
+- Use a dedicated test profile and save directory so verification cannot
+  overwrite the user's saves. Keep actual battle outcomes separate from claims
+  about final combat balance, especially when test setup forces victory.
+- For exported artwork, reopen the saved Aseprite file and check that its
+  rendered pixels match the intended runtime PNG, not only that the file exists.
+
+## Upper-castle implementation reference (2026-11-19)
+
+- These are the current saved mappings, not IDs to reuse for new content.
+  Recheck the live data before editing or allocating additional records.
+
+  | Internal map ID | Display location | Background base name |
+  | --- | --- | --- |
+  | 59 | 113, Mone's room | `!map113` |
+  | 60 | 114, monster castle 3F | `!map114` |
+  | 61 | 3F gimmick room | `!map114_room` |
+  | 62 | 115, throne room | `!map115` |
+  | 63 | 88,888,888 approach corridor | `!map112` |
+
+- Map063 connects Map054's rear door to Map055's left entrance, with native
+  page-turn transfers in both directions. Map054 event 7 requires variable 60
+  to be at least 2 (the existing first-executive completion flag). Map055 event
+  11 returns to Map063. The `!map112` source is 500x707 and its existing runtime
+  PNG is 1000x1414; preserve its 2x export scale if editing that artwork.
+- Map063 event 3 is the one-time remote Tsunehi introduction at the arrow sign.
+  Its self switch A stores completion; events 4/5 are scoped companion stand-ins.
+  Reuse Map053 event 4's `$kanbu2_2` popup portrait and no-tail voice placement.
+  Reactions belong to actor 3, with actor 4 as the absent-Mii fallback; skip them
+  when neither companion is present. Never assign these lines to actor 2.
+  The revised introduction also has an explicit actor-4 line identifying
+  Tsunehi's voice; skip that line when Yume is absent rather than changing its
+  speaker. Place that bubble to Yume's left (tail direction 6) so it does not
+  cover Mii above her. Preserve the approved line breaks in `intro_dialogue.cjs`.
+  The road's animated laugh uses an 80px text gap so none of its three portrait
+  poses overlap the short two-line text.
+  One-line remote-voice pages also set free-popup Y to 180 before Show Text;
+  textbox-only screen clamping otherwise clips the taller portrait above it.
+  Keep the hero at the scene anchor's center, Mii upper-left and Yume lower-left,
+  with everyone facing right throughout the dialogue. Companion reactions use
+  normal bubbles (variable 14 = 0), not the jagged shout shape. The optional
+  `playerStandPoint` in `beginScene` is for explicit staged moves only; other
+  encounters retain their existing formation calculation.
+- The four upper-castle editable backgrounds now have `下書き` and `清書`
+  groups in `../画像/`. Their current furniture and other objects remain part
+  of a flattened draft, not separately editable object artwork. See
+  `仮素材一覧.md` for the active sources and cleanup status.
+- Current progression variables:
+
+  | Variable | Purpose | Values |
+  | --- | --- | --- |
+  | 61, 62 | Mone/throne save point discovery | 0 undiscovered, 1 discovered |
+  | 63 | Mone encounter | 0 waiting, 1 running, 2 complete |
+  | 64 | Beast friendship | 0 waiting, 1 running, 2 complete |
+  | 65 | Final gimmick | 0 waiting, 1 active, 2 complete |
+  | 66 | Throne gate | 0 locked, 1 permanently open |
+  | 67 | Tsunehi encounter | 0 waiting, 1 running, 2 complete |
+
+- Items 53 and 54 are the round and triangular keys. The gate consumes one of
+  each on initial opening. The beast uses actor 6 as a display-only guest in
+  troop 47; it never joins the party. Troops 46 and 48 are the temporary Mone
+  and Tsunehi battles; combat balance and final attacks remain provisional.
+- Map061 now contains eight editor-owned toggle panels (events 5-12). All call
+  common event 41; each panel's self switch A stores its persistent ON state.
+  Event 1 handles instructions and completion, not forced success.
+- `KNH_ZXC_Gimmick_SpikePanel.js` registers trap rectangles through the original
+  `command_updateSpikeFloor(...)` used on 1F. Preserve its hit tests, damage,
+  follower handling and return to the previous safe floor. Damage does not
+  reset any panel; landing after damage must not count as a new panel entry.
+- All eight panels ON sets variable 65 to 2, retracts the spikes and refreshes
+  the key chest and exit. Panel states survive save/load and map reentry.
+  The puzzle camera is released on completion and when leaving the map.
+- Final-panel completion captures each trap's current pose and retracts it
+  through native 1F cells toward 6 at six-frame intervals (18 frames total).
+  Already retracted traps stay down; damage stops immediately. Map061 event 1
+  waits in `spikePanelRetraction` before releasing the puzzle camera and panning
+  to the chest. Completed-state reentry does not replay the retraction.
+- Map061's `<spikePanelTop:11.75>` clips both native hit rectangles and the
+  composed footprint, leaving normal floor in front of the chest. Saved trap
+  event placements remain the source rectangles; clipped-empty rectangles are
+  inactive and omitted from rendered geometry.
+- Spike artwork uses one connected `Sprite_SpikePanelFloor` and one yura filter.
+  Floor hatching repeats in world space; complete 1F spike drawings are fitted
+  inside each connected section at 1x, with room for every animation pose.
+  Use one world-space 48x24px staggered grid, shifting alternate rows by 24px
+  as in 1F. Keep its spacing and phase across all sections and use unmirrored
+  native spike drawings. Never redistribute columns or rows to fit a section's
+  width or height; that breaks the regular diagonal alignment.
+  The native 1F retracted-floor hatching has an exact 132x124px repeat. Use
+  that unmirrored period at one world-space origin for every trap section and
+  every animation pose. Keep its colors and contrast unchanged while spikes
+  extend, retract or stop on completion; only the spike artwork changes.
+  Clip only the hatching to the floor silhouette, never the spike drawings.
+  Trap events retain their native hit rectangles and have no separate visible
+  sprite meshes. Do not stretch the source frame into each rectangle.
+  Draw one 4px boundary from the union of all trap rectangles, including retracted
+  timed crossings. Only trap-floor versus normal-floor edges get a line; never
+  stroke interfaces between trap sections. Draw this boundary before all spike
+  artwork so it passes behind the spikes and persists in every pose.
+  The shared yura filter uses a 20px block and `maxShake: 10` (up to 2px actual
+  displacement), with a world-space noise offset so scrolling keeps it aligned.
+- Keep this floor in `_baseSprite` before `_tilemap`, below all character
+  meshes. Panel artwork uses a 30px CGShift to center it on each safe island;
+  saved event coordinates and activation regions remain authoritative.

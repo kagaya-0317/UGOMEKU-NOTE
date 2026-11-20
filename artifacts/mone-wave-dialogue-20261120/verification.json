@@ -1,0 +1,169 @@
+{
+  "results": [
+    {
+      "party": [
+        2,
+        3,
+        4
+      ],
+      "messages": [
+        {
+          "texts": [
+            "いいね",
+            "ちゃんとまだ",
+            "生きてる"
+          ],
+          "speaker": "enemy",
+          "rect": [
+            566,
+            237.1875,
+            214,
+            179
+          ],
+          "wave": null
+        },
+        {
+          "texts": [
+            "すぐ死んじゃうと",
+            "さびしいからね"
+          ],
+          "speaker": "enemy",
+          "rect": [
+            511,
+            237.1875,
+            269,
+            146
+          ],
+          "wave": null
+        },
+        {
+          "texts": [
+            "じゃあ　これは",
+            "どうかな？"
+          ],
+          "speaker": "enemy",
+          "rect": [
+            525,
+            237.1875,
+            255,
+            146
+          ],
+          "wave": null
+        },
+        {
+          "texts": [
+            "なんだ！？"
+          ],
+          "speaker": 3,
+          "rect": [
+            112,
+            237.1875,
+            199,
+            113
+          ],
+          "wave": {
+            "amp": 24,
+            "elapsed": 0,
+            "pending": true,
+            "revealing": false,
+            "phase": 3.141592653589793
+          }
+        },
+        {
+          "texts": [
+            "ほら、もっと",
+            "遊ぼうよ！"
+          ],
+          "speaker": "enemy",
+          "rect": [
+            576,
+            237.1875,
+            204,
+            146
+          ],
+          "wave": {
+            "amp": 24,
+            "elapsed": 0,
+            "pending": true,
+            "revealing": false,
+            "phase": 3.141592653589793
+          }
+        }
+      ],
+      "twoPlayableRoundsAfterDialogue": true
+    },
+    {
+      "party": [
+        2,
+        4
+      ],
+      "messages": [
+        {
+          "texts": [
+            "いいね",
+            "ちゃんとまだ",
+            "生きてる"
+          ],
+          "speaker": "enemy",
+          "rect": [
+            566,
+            237.1875,
+            214,
+            179
+          ],
+          "wave": null
+        },
+        {
+          "texts": [
+            "すぐ死んじゃうと",
+            "さびしいからね"
+          ],
+          "speaker": "enemy",
+          "rect": [
+            511,
+            237.1875,
+            269,
+            146
+          ],
+          "wave": null
+        },
+        {
+          "texts": [
+            "じゃあ　これは",
+            "どうかな？"
+          ],
+          "speaker": "enemy",
+          "rect": [
+            525,
+            237.1875,
+            255,
+            146
+          ],
+          "wave": null
+        },
+        {
+          "texts": [
+            "ほら、もっと",
+            "遊ぼうよ！"
+          ],
+          "speaker": "enemy",
+          "rect": [
+            576,
+            237.1875,
+            204,
+            146
+          ],
+          "wave": {
+            "amp": 24,
+            "elapsed": 0,
+            "pending": true,
+            "revealing": false,
+            "phase": 3.141592653589793
+          }
+        }
+      ],
+      "twoPlayableRoundsAfterDialogue": true
+    }
+  ],
+  "controlledHpForFlowOnly": true
+}

@@ -1,0 +1,17 @@
+{
+  "onlyIntroEventsChanged": [
+    3,
+    4,
+    5
+  ],
+  "dialogueUnchanged": true,
+  "existingTransfersAndPassageUnchanged": true,
+  "systemOnlyVersionChanged": true,
+  "protectedFiles": [
+    "data/Map059.json",
+    "data/Map054.json",
+    "data/Map055.json",
+    "img/parallaxes/!map112.png"
+  ],
+  "encodingPreserved": true
+}

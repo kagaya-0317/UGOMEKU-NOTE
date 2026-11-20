@@ -1,0 +1,25 @@
+{
+  "file": "C:\\Users\\kgygn\\Dropbox\\ゲーム\\Game_NewGame\\NewGame\\artifacts\\spike-panel-finish-retraction-20261119\\puzzle_ending.mp4",
+  "startInSource": 34.65300000004936,
+  "endInSource": 48.37899999995716,
+  "seconds": 13.73,
+  "bytes": 12764124,
+  "codec": "H.264/AAC",
+  "resolution": [
+    816,
+    624
+  ],
+  "meanAudioDb": -15.2,
+  "fullDecode": true,
+  "visualCheckPending": false,
+  "temporaryPngs": [
+    "C:\\Users\\kgygn\\Dropbox\\ゲーム\\Game_NewGame\\NewGame\\artifacts\\spike-panel-finish-retraction-20261119\\_video_work\\ending-check-00.png",
+    "C:\\Users\\kgygn\\Dropbox\\ゲーム\\Game_NewGame\\NewGame\\artifacts\\spike-panel-finish-retraction-20261119\\_video_work\\ending-check-01.png",
+    "C:\\Users\\kgygn\\Dropbox\\ゲーム\\Game_NewGame\\NewGame\\artifacts\\spike-panel-finish-retraction-20261119\\_video_work\\ending-check-02.png",
+    "C:\\Users\\kgygn\\Dropbox\\ゲーム\\Game_NewGame\\NewGame\\artifacts\\spike-panel-finish-retraction-20261119\\_video_work\\ending-check-03.png",
+    "C:\\Users\\kgygn\\Dropbox\\ゲーム\\Game_NewGame\\NewGame\\artifacts\\spike-panel-finish-retraction-20261119\\_video_work\\ending-check-04.png",
+    "C:\\Users\\kgygn\\Dropbox\\ゲーム\\Game_NewGame\\NewGame\\artifacts\\spike-panel-finish-retraction-20261119\\_video_work\\ending-check-05.png",
+    "C:\\Users\\kgygn\\Dropbox\\ゲーム\\Game_NewGame\\NewGame\\artifacts\\spike-panel-finish-retraction-20261119\\_video_work\\ending-contact.png"
+  ],
+  "visualCheck": "Reviewed native-video frames before completion, all three shrinking poses, flat floor, and key chest clearance"
+}

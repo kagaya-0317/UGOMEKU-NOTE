@@ -1,0 +1,14 @@
+{
+  "initialAim": 632,
+  "movedAim": 686,
+  "hits": [
+    {
+      "frame": 137,
+      "skillId": 54
+    }
+  ],
+  "actions": 0,
+  "arms": 0,
+  "flights": 0,
+  "bullets": 0
+}

@@ -1,0 +1,22 @@
+{
+  "mapOnlyAddedEvents": [
+    3,
+    4,
+    5
+  ],
+  "existingTransfersAndPassagePreserved": true,
+  "systemOnlyVersionChanged": true,
+  "sharedPluginExistingCodeByteIdentical": true,
+  "protectedFilesUnchanged": [
+    "data/Map054.json",
+    "data/Map055.json",
+    "data/MapInfos.json",
+    "data/CommonEvents.json",
+    "js/plugins/KNH_ZXC_PopupPortrait.js",
+    "img/characters/$kanbu2_2.png",
+    "img/parallaxes/!map112.png"
+  ],
+  "encodingAndLineEndingsPreserved": true,
+  "finalSourceVerified": true,
+  "finalLaughHeadroomVerified": true
+}

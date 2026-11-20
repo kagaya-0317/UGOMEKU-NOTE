@@ -1,0 +1,29 @@
+{
+  "frames": 326,
+  "fps": 60,
+  "flightFrames": 96,
+  "samples": [
+    {
+      "frame": 48,
+      "height": 0,
+      "hidden": false
+    },
+    {
+      "frame": 96,
+      "height": 240,
+      "hidden": false
+    },
+    {
+      "frame": 144,
+      "height": 960,
+      "hidden": true
+    }
+  ],
+  "scales": {
+    "characterX": 1,
+    "characterY": 1,
+    "puff": 2,
+    "trail": 2
+  },
+  "completed": true
+}

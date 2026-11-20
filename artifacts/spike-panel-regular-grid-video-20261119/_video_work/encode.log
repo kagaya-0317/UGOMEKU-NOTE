@@ -1,0 +1,70 @@
+Input #0, matroska,webm, from 'C:\Users\kgygn\Dropbox\ゲーム\Game_NewGame\NewGame\artifacts\spike-panel-regular-grid-video-20261119\_video_work\spike-panel-puzzle-1795081720098.webm':
+  Metadata:
+    encoder         : Chrome
+  Duration: N/A, start: 0.000000, bitrate: N/A
+  Stream #0:0(eng): Audio: opus, 48000 Hz, stereo, fltp (default)
+  Stream #0:1(eng): Video: vp8, yuv420p(progressive), 816x624, SAR 1:1 DAR 17:13, 60 tbr, 1k tbn (default)
+    Metadata:
+      alpha_mode      : 1
+Stream mapping:
+  Stream #0:1 -> #0:0 (vp8 (native) -> h264 (libx264))
+  Stream #0:0 -> #0:1 (opus (native) -> aac (native))
+Press [q] to stop, [?] for help
+[aac @ 0000018cd3e50b00] Queue input is backward in time
+[libx264 @ 0000018cd3e63140] using SAR=1/1
+[libx264 @ 0000018cd3e63140] using cpu capabilities: MMX2 SSE2Fast SSSE3 SSE4.2 AVX FMA3 BMI2 AVX2
+[libx264 @ 0000018cd3e63140] profile High, level 3.1, 4:2:0, 8-bit
+[libx264 @ 0000018cd3e63140] 264 - core 164 r3172 c1c9931 - H.264/MPEG-4 AVC codec - Copyleft 2003-2023 - http://www.videolan.org/x264.html - options: cabac=1 ref=2 deblock=1:0:0 analyse=0x3:0x113 me=hex subme=6 psy=1 psy_rd=1.00:0.00 mixed_ref=1 me_range=16 chroma_me=1 trellis=1 8x8dct=1 cqm=0 deadzone=21,11 fast_pskip=1 chroma_qp_offset=-2 threads=18 lookahead_threads=3 sliced_threads=0 nr=0 decimate=1 interlaced=0 bluray_compat=0 constrained_intra=0 bframes=3 b_pyramid=2 b_adapt=1 b_bias=0 direct=1 weightb=1 open_gop=0 weightp=1 keyint=250 keyint_min=25 scenecut=40 intra_refresh=0 rc_lookahead=30 rc=crf mbtree=1 crf=19.0 qcomp=0.60 qpmin=0 qpmax=69 qpstep=4 ip_ratio=1.40 aq=1:1.00
+Output #0, mp4, to 'C:\Users\kgygn\Dropbox\ゲーム\Game_NewGame\NewGame\artifacts\spike-panel-regular-grid-video-20261119\spike_panel_puzzle.mp4':
+  Metadata:
+    encoder         : Lavf60.16.100
+  Stream #0:0(eng): Video: h264 (avc1 / 0x31637661), yuv420p(tv, bt470bg/unknown/unknown, progressive), 816x624 [SAR 1:1 DAR 17:13], q=2-31, 30 fps, 15360 tbn (default)
+    Metadata:
+      alpha_mode      : 1
+      encoder         : Lavc60.31.102 libx264
+    Side data:
+      cpb: bitrate max/min/avg: 0/0/0 buffer size: 0 vbv_delay: N/A
+  Stream #0:1(eng): Audio: aac (LC) (mp4a / 0x6134706D), 48000 Hz, stereo, fltp, 160 kb/s (default)
+    Metadata:
+      encoder         : Lavc60.31.102 aac
+[mp4 @ 0000018cd433eb00] Non-monotonic DTS in output stream 0:1; previous: 5840, current: 5808; changing to 5841. This may result in incorrect timestamps in the output file.
+frame=    0 fps=0.0 q=0.0 size=       0kB time=00:00:00.41 bitrate=   0.9kbits/s speed= 8.7x    [aac @ 0000018cd3e50b00] Queue input is backward in time
+[mp4 @ 0000018cd433eb00] Non-monotonic DTS in output stream 0:1; previous: 37872, current: 37696; changing to 37873. This may result in incorrect timestamps in the output file.
+[aac @ 0000018cd3e50b00] Queue input is backward in time
+[mp4 @ 0000018cd433eb00] Non-monotonic DTS in output stream 0:1; previous: 52208, current: 51984; changing to 52209. This may result in incorrect timestamps in the output file.
+[aac @ 0000018cd3e50b00] Queue input is backward in time
+[mp4 @ 0000018cd433eb00] Non-monotonic DTS in output stream 0:1; previous: 121600, current: 121520; changing to 121601. This may result in incorrect timestamps in the output file.
+[aac @ 0000018cd3e50b00] Queue input is backward in time
+[mp4 @ 0000018cd433eb00] Non-monotonic DTS in output stream 0:1; previous: 135888, current: 135856; changing to 135889. This may result in incorrect timestamps in the output file.
+frame=   21 fps=0.0 q=25.0 size=     512kB time=00:00:03.70 bitrate=1131.3kbits/s speed=6.76x    frame=  115 fps=110 q=25.0 size=    1792kB time=00:00:05.92 bitrate=2477.9kbits/s speed=5.65x    frame=  210 fps=136 q=25.0 size=    3072kB time=00:00:09.17 bitrate=2743.7kbits/s speed=5.92x    [aac @ 0000018cd3e50b00] Queue input is backward in time
+[mp4 @ 0000018cd433eb00] Non-monotonic DTS in output stream 0:1; previous: 596736, current: 596656; changing to 596737. This may result in incorrect timestamps in the output file.
+frame=  314 fps=153 q=25.0 size=    4352kB time=00:00:12.58 bitrate=2832.1kbits/s speed=6.14x    frame=  404 fps=158 q=25.0 size=    5632kB time=00:00:15.59 bitrate=2958.2kbits/s speed=6.11x    [aac @ 0000018cd3e50b00] Queue input is backward in time
+[mp4 @ 0000018cd433eb00] Non-monotonic DTS in output stream 0:1; previous: 859168, current: 858944; changing to 859169. This may result in incorrect timestamps in the output file.
+frame=  507 fps=166 q=25.0 size=    6912kB time=00:00:19.13 bitrate=2959.0kbits/s speed=6.26x    frame=  608 fps=171 q=25.0 size=    8192kB time=00:00:22.48 bitrate=2984.7kbits/s speed=6.31x    frame=  700 fps=172 q=25.0 size=    9472kB time=00:00:25.42 bitrate=3051.6kbits/s speed=6.26x    [aac @ 0000018cd3e50b00] Queue input is backward in time
+[mp4 @ 0000018cd433eb00] Non-monotonic DTS in output stream 0:1; previous: 1305584, current: 1305408; changing to 1305585. This may result in incorrect timestamps in the output file.
+frame=  811 fps=178 q=25.0 size=   10752kB time=00:00:29.33 bitrate=3003.1kbits/s speed=6.43x    [aac @ 0000018cd3e50b00] Queue input is backward in time
+[mp4 @ 0000018cd433eb00] Non-monotonic DTS in output stream 0:1; previous: 1434656, current: 1434432; changing to 1434657. This may result in incorrect timestamps in the output file.
+frame=  904 fps=178 q=25.0 size=   12288kB time=00:00:32.31 bitrate=3115.0kbits/s speed=6.37x    [aac @ 0000018cd3e50b00] Queue input is backward in time
+[mp4 @ 0000018cd433eb00] Non-monotonic DTS in output stream 0:1; previous: 1564704, current: 1564480; changing to 1564705. This may result in incorrect timestamps in the output file.
+frame= 1015 fps=182 q=25.0 size=   13824kB time=00:00:35.92 bitrate=3152.3kbits/s speed=6.45x    frame= 1111 fps=183 q=22.0 size=   15104kB time=00:00:39.35 bitrate=3144.1kbits/s speed=6.48x    frame= 1182 fps=180 q=25.0 size=   17664kB time=00:00:41.58 bitrate=3480.0kbits/s speed=6.33x    frame= 1259 fps=178 q=25.0 size=   19200kB time=00:00:44.09 bitrate=3566.8kbits/s speed=6.22x    frame= 1328 fps=174 q=25.0 size=   22528kB time=00:00:46.38 bitrate=3978.9kbits/s speed=6.07x    frame= 1436 fps=176 q=25.0 size=   24320kB time=00:00:49.96 bitrate=3987.7kbits/s speed=6.12x    frame= 1527 fps=176 q=25.0 size=   27136kB time=00:00:53.20 bitrate=4178.0kbits/s speed=6.14x    frame= 1644 fps=179 q=25.0 size=   28672kB time=00:00:56.45 bitrate=4160.8kbits/s speed=6.15x    [mp4 @ 0000018cd433eb00] Starting second pass: moving the moov atom to the beginning of the file
+[out#0/mp4 @ 0000018cd3eeeec0] video:28727kB audio:1130kB subtitle:0kB other streams:0kB global headers:0kB muxing overhead: 0.247345%
+frame= 1696 fps=179 q=-1.0 Lsize=   29930kB time=00:00:56.51 bitrate=4338.9kbits/s speed=5.97x    
+[libx264 @ 0000018cd3e63140] frame I:19    Avg QP:17.49  size:133766
+[libx264 @ 0000018cd3e63140] frame P:557   Avg QP:22.32  size: 43032
+[libx264 @ 0000018cd3e63140] frame B:1120  Avg QP:27.10  size:  2594
+[libx264 @ 0000018cd3e63140] consecutive B-frames:  6.9% 11.2% 11.9% 70.0%
+[libx264 @ 0000018cd3e63140] mb I  I16..4: 37.3% 10.5% 52.2%
+[libx264 @ 0000018cd3e63140] mb P  I16..4:  1.5%  1.3%  5.4%  P16..4: 32.8%  7.1%  7.5%  0.0%  0.0%    skip:44.3%
+[libx264 @ 0000018cd3e63140] mb B  I16..4:  0.2%  0.0%  0.2%  B16..8:  5.3%  1.3%  0.9%  direct: 3.1%  skip:88.9%  L0:47.3% L1:42.7% BI:10.0%
+[libx264 @ 0000018cd3e63140] 8x8 transform intra:14.0% inter:11.3%
+[libx264 @ 0000018cd3e63140] coded y,uvDC,uvAC intra: 76.6% 9.8% 0.8% inter: 15.2% 1.9% 0.0%
+[libx264 @ 0000018cd3e63140] i16 v,h,dc,p: 27% 20% 50%  4%
+[libx264 @ 0000018cd3e63140] i8 v,h,dc,ddl,ddr,vr,hd,vl,hu: 38% 23% 27%  4%  3%  1%  1%  1%  2%
+[libx264 @ 0000018cd3e63140] i4 v,h,dc,ddl,ddr,vr,hd,vl,hu: 18% 22% 17% 11%  7%  5%  6%  6%  8%
+[libx264 @ 0000018cd3e63140] i8c dc,h,v,p: 80% 11%  9%  0%
+[libx264 @ 0000018cd3e63140] Weighted P-Frames: Y:4.5% UV:1.1%
+[libx264 @ 0000018cd3e63140] ref P L0: 82.3% 17.7%
+[libx264 @ 0000018cd3e63140] ref B L0: 90.3%  9.7%
+[libx264 @ 0000018cd3e63140] ref B L1: 97.7%  2.3%
+[libx264 @ 0000018cd3e63140] kb/s:4162.54
+[aac @ 0000018cd3e50b00] Qavg: 502.176

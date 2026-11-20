@@ -1,0 +1,21 @@
+{
+  "mismatches": [],
+  "regions": 11,
+  "textureScale": 1,
+  "framesPerSecond": 57.50130684961852,
+  "animationCells": [
+    "3",
+    "4",
+    "5",
+    "6"
+  ],
+  "reentry": {
+    "scale": 1,
+    "regions": 11,
+    "on": [
+      5
+    ],
+    "layer": true
+  },
+  "gameplayAndMapDataUnchanged": true
+}

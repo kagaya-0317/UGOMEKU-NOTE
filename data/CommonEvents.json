@@ -39,5 +39,6 @@ null,
 {"id":37,"list":[{"code":0,"indent":0,"parameters":[]}],"name":"","switchId":1,"trigger":0},
 {"id":38,"list":[{"code":0,"indent":0,"parameters":[]}],"name":"","switchId":1,"trigger":0},
 {"id":39,"list":[{"code":0,"indent":0,"parameters":[]}],"name":"","switchId":1,"trigger":0},
-{"id":40,"list":[{"code":0,"indent":0,"parameters":[]}],"name":"","switchId":1,"trigger":0}
+{"id":40,"list":[{"code":0,"indent":0,"parameters":[]}],"name":"","switchId":1,"trigger":0},
+{"id":41,"name":"トゲ床パネル_共通切替","trigger":0,"switchId":1,"list":[{"code":355,"indent":0,"parameters":["this.setWaitMode(\"spikePanelLanding\");"]},{"code":355,"indent":0,"parameters":["KNH_SpikePanel.toggle(this._eventId);"]},{"code":0,"indent":0,"parameters":[]}]}
 ]

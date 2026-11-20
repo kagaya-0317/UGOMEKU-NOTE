@@ -1,0 +1,22 @@
+{
+  "frames": 720,
+  "seconds": 12,
+  "launches": [
+    86,
+    326,
+    566
+  ],
+  "previousLaunches": [
+    111,
+    351,
+    591
+  ],
+  "earlierFrames": 25,
+  "hits": [
+    123,
+    363,
+    603
+  ],
+  "videoBytes": 679637,
+  "pngFiles": []
+}

@@ -1,0 +1,35 @@
+{
+  "frames": 720,
+  "seconds": 12,
+  "casts": [
+    {
+      "partialFadePoses": [
+        0.7407407407407408,
+        0.2592592592592592
+      ],
+      "lastVisible": 216
+    },
+    {
+      "partialFadePoses": [
+        0.7407407407407408,
+        0.2592592592592592
+      ],
+      "lastVisible": 456
+    },
+    {
+      "partialFadePoses": [
+        0.7407407407407408,
+        0.2592592592592592
+      ],
+      "lastVisible": 696
+    }
+  ],
+  "damageFrames": [
+    148,
+    388,
+    628
+  ],
+  "videoBytes": 729888,
+  "pngFiles": [],
+  "peak": "-6.3 dB"
+}

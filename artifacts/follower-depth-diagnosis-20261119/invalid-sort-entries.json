@@ -1,0 +1,460 @@
+{
+  "count": 71,
+  "invalid": [
+    {
+      "type": "ZLayer",
+      "z": 0,
+      "y": -24,
+      "visible": true,
+      "againstPlayer": -3
+    },
+    {
+      "type": "ZLayer",
+      "z": 4,
+      "y": -24,
+      "visible": true,
+      "againstPlayer": 1
+    },
+    {
+      "type": "Sprite_Character",
+      "y": 0,
+      "spriteId": 670,
+      "visible": false,
+      "event": 33,
+      "note": "<important><spikePanelTrap:1,1,wall,0><HM初期半歩X:+><HM初期半歩Y:+>",
+      "againstPlayer": null
+    },
+    {
+      "type": "Sprite_Character",
+      "y": 0,
+      "spriteId": 671,
+      "visible": false,
+      "event": 34,
+      "note": "<important><spikePanelTrap:3,1,wall,0><HM初期半歩X:+><HM初期半歩Y:+>",
+      "againstPlayer": null
+    },
+    {
+      "type": "Sprite_Character",
+      "y": 0,
+      "spriteId": 672,
+      "visible": false,
+      "event": 35,
+      "note": "<important><spikePanelTrap:2.5,2,wall,0><HM初期半歩X:+>",
+      "againstPlayer": null
+    },
+    {
+      "type": "Sprite_Character",
+      "y": 0,
+      "spriteId": 673,
+      "visible": false,
+      "event": 36,
+      "note": "<important><spikePanelTrap:1.5,3,wall,0><HM初期半歩X:+>",
+      "againstPlayer": null
+    },
+    {
+      "type": "Sprite_Character",
+      "y": 0,
+      "spriteId": 674,
+      "visible": false,
+      "event": 37,
+      "note": "<important><spikePanelTrap:0.5,3,wall,0><HM初期半歩X:+>",
+      "againstPlayer": null
+    },
+    {
+      "type": "Sprite_Character",
+      "y": 0,
+      "spriteId": 675,
+      "visible": false,
+      "event": 38,
+      "note": "<important><spikePanelTrap:2,2,wall,0><HM初期半歩X:+>",
+      "againstPlayer": null
+    },
+    {
+      "type": "Sprite_Character",
+      "y": 0,
+      "spriteId": 676,
+      "visible": false,
+      "event": 39,
+      "note": "<important><spikePanelTrap:2,3,wall,0>",
+      "againstPlayer": null
+    },
+    {
+      "type": "Sprite_Character",
+      "y": 0,
+      "spriteId": 677,
+      "visible": false,
+      "event": 40,
+      "note": "<important><spikePanelTrap:2.5,3,wall,0>",
+      "againstPlayer": null
+    },
+    {
+      "type": "Sprite_Character",
+      "y": 0,
+      "spriteId": 678,
+      "visible": false,
+      "event": 41,
+      "note": "<important><spikePanelTrap:4,1.5,wall,0><HM初期半歩X:+>",
+      "againstPlayer": null
+    },
+    {
+      "type": "Sprite_Character",
+      "y": 0,
+      "spriteId": 679,
+      "visible": false,
+      "event": 42,
+      "note": "<important><spikePanelTrap:0.5,1.5,wall,0><HM初期半歩X:+>",
+      "againstPlayer": null
+    },
+    {
+      "type": "Sprite_Character",
+      "y": 0,
+      "spriteId": 680,
+      "visible": false,
+      "event": 43,
+      "note": "<important><spikePanelTrap:3,1.5,wall,0><HM初期半歩X:+>",
+      "againstPlayer": null
+    },
+    {
+      "type": "Sprite_Character",
+      "y": 0,
+      "spriteId": 681,
+      "visible": false,
+      "event": 44,
+      "note": "<important><spikePanelTrap:2,2.5,wall,0>",
+      "againstPlayer": null
+    },
+    {
+      "type": "Sprite_Character",
+      "y": 0,
+      "spriteId": 682,
+      "visible": false,
+      "event": 45,
+      "note": "<important><spikePanelTrap:2.5,1,wall,0>",
+      "againstPlayer": null
+    },
+    {
+      "type": "Sprite_Character",
+      "y": 0,
+      "spriteId": 683,
+      "visible": false,
+      "event": 46,
+      "note": "<important><spikePanelTrap:2,1.5,wall,0><HM初期半歩X:+>",
+      "againstPlayer": null
+    },
+    {
+      "type": "Sprite_Character",
+      "y": 0,
+      "spriteId": 650,
+      "visible": false,
+      "event": 13,
+      "note": "<important><spikePanelTrap:3.5,3,wall,0><HM初期半歩X:+>",
+      "againstPlayer": null
+    },
+    {
+      "type": "Sprite_Character",
+      "y": 0,
+      "spriteId": 685,
+      "visible": false,
+      "event": 48,
+      "note": "<important><spikePanelTrap:4,0.5,wall,0>",
+      "againstPlayer": null
+    },
+    {
+      "type": "Sprite_Character",
+      "y": 0,
+      "spriteId": 686,
+      "visible": false,
+      "event": 49,
+      "note": "<important><spikePanelTrap:3,0.5,wall,0>",
+      "againstPlayer": null
+    },
+    {
+      "type": "Sprite_Character",
+      "y": 0,
+      "spriteId": 687,
+      "visible": false,
+      "event": 50,
+      "note": "<important><spikePanelTrap:2,1,wall,0><HM初期半歩X:+><HM初期半歩Y:+>",
+      "againstPlayer": null
+    },
+    {
+      "type": "Sprite_Character",
+      "y": 0,
+      "spriteId": 688,
+      "visible": false,
+      "event": 51,
+      "note": "<important><spikePanelTrap:0.5,1,wall,0><HM初期半歩X:+><HM初期半歩Y:+>",
+      "againstPlayer": null
+    },
+    {
+      "type": "Sprite_Character",
+      "y": 0,
+      "spriteId": 689,
+      "visible": false,
+      "event": 52,
+      "note": "<important><spikePanelTrap:3,1.5,timed,0><HM初期半歩X:+><HM初期半歩Y:+>",
+      "againstPlayer": null
+    },
+    {
+      "type": "Sprite_Character",
+      "y": 0,
+      "spriteId": 690,
+      "visible": false,
+      "event": 53,
+      "note": "<important><spikePanelTrap:4.5,1.5,timed,85><HM初期半歩X:+><HM初期半歩Y:+>",
+      "againstPlayer": null
+    },
+    {
+      "type": "Sprite_Character",
+      "y": 0,
+      "spriteId": 691,
+      "visible": false,
+      "event": 54,
+      "note": "<important><spikePanelTrap:1.5,4.5,timed,170>",
+      "againstPlayer": null
+    },
+    {
+      "type": "Sprite_Character",
+      "y": 0,
+      "spriteId": 692,
+      "visible": false,
+      "event": 55,
+      "note": "<important><spikePanelTrap:4.5,1.5,timed,0><HM初期半歩X:+><HM初期半歩Y:+>",
+      "againstPlayer": null
+    },
+    {
+      "type": "Sprite_Character",
+      "y": 0,
+      "spriteId": 693,
+      "visible": false,
+      "event": 56,
+      "note": "<important><spikePanelTrap:3,1.5,timed,85><HM初期半歩X:+><HM初期半歩Y:+>",
+      "againstPlayer": null
+    },
+    {
+      "type": "Sprite_Character",
+      "y": 0,
+      "spriteId": 694,
+      "visible": false,
+      "event": 57,
+      "note": "<important><spikePanelTrap:1.5,1,timed,170><HM初期半歩X:+><HM初期半歩Y:+>",
+      "againstPlayer": null
+    },
+    {
+      "type": "Sprite_Character",
+      "y": 0,
+      "spriteId": 695,
+      "visible": false,
+      "event": 58,
+      "note": "<important><spikePanelTrap:3,1.5,timed,0><HM初期半歩X:+>",
+      "againstPlayer": null
+    },
+    {
+      "type": "Sprite_Character",
+      "y": 0,
+      "spriteId": 696,
+      "visible": false,
+      "event": 59,
+      "note": "<important><spikePanelTrap:1.5,4.5,timed,85><HM初期半歩X:+>",
+      "againstPlayer": null
+    },
+    {
+      "type": "Sprite_Character",
+      "y": 0,
+      "spriteId": 697,
+      "visible": false,
+      "event": 60,
+      "note": "<important><spikePanelTrap:1.5,4.5,timed,170>",
+      "againstPlayer": null
+    },
+    {
+      "type": "Sprite_Character",
+      "y": 0,
+      "spriteId": 651,
+      "visible": false,
+      "event": 14,
+      "note": "<important><spikePanelTrap:1,3,wall,0><HM初期半歩X:+><HM初期半歩Y:+>",
+      "againstPlayer": null
+    },
+    {
+      "type": "Sprite_Character",
+      "y": 0,
+      "spriteId": 652,
+      "visible": false,
+      "event": 15,
+      "note": "<important><spikePanelTrap:1,3,wall,0><HM初期半歩Y:+>",
+      "againstPlayer": null
+    },
+    {
+      "type": "Sprite_Character",
+      "y": 0,
+      "spriteId": 653,
+      "visible": false,
+      "event": 16,
+      "note": "<important><spikePanelTrap:4,3,wall,0><HM初期半歩Y:+>",
+      "againstPlayer": null
+    },
+    {
+      "type": "Sprite_Character",
+      "y": 0,
+      "spriteId": 654,
+      "visible": false,
+      "event": 17,
+      "note": "<important><spikePanelTrap:3.5,3,wall,0><HM初期半歩X:+>",
+      "againstPlayer": null
+    },
+    {
+      "type": "Sprite_Character",
+      "y": 0,
+      "spriteId": 655,
+      "visible": false,
+      "event": 18,
+      "note": "<important><spikePanelTrap:1,3,wall,0><HM初期半歩X:+><HM初期半歩Y:+>",
+      "againstPlayer": null
+    },
+    {
+      "type": "Sprite_Character",
+      "y": 0,
+      "spriteId": 656,
+      "visible": false,
+      "event": 19,
+      "note": "<important><spikePanelTrap:1,3,wall,0><HM初期半歩Y:+>",
+      "againstPlayer": null
+    },
+    {
+      "type": "Sprite_Character",
+      "y": 0,
+      "spriteId": 657,
+      "visible": false,
+      "event": 20,
+      "note": "<important><spikePanelTrap:1.5,3,wall,0><HM初期半歩Y:+>",
+      "againstPlayer": null
+    },
+    {
+      "type": "Sprite_Character",
+      "y": 0,
+      "spriteId": 658,
+      "visible": false,
+      "event": 21,
+      "note": "<important><spikePanelTrap:4,2,wall,0><HM初期半歩Y:+>",
+      "againstPlayer": null
+    },
+    {
+      "type": "Sprite_Character",
+      "y": 0,
+      "spriteId": 659,
+      "visible": false,
+      "event": 22,
+      "note": "<important><spikePanelTrap:1.5,2,wall,0><HM初期半歩Y:+>",
+      "againstPlayer": null
+    },
+    {
+      "type": "Sprite_Character",
+      "y": 0,
+      "spriteId": 660,
+      "visible": false,
+      "event": 23,
+      "note": "<important><spikePanelTrap:4,1,wall,0><HM初期半歩Y:+>",
+      "againstPlayer": null
+    },
+    {
+      "type": "Sprite_Character",
+      "y": 0,
+      "spriteId": 661,
+      "visible": false,
+      "event": 24,
+      "note": "<important><spikePanelTrap:3.5,2,wall,0><HM初期半歩X:+>",
+      "againstPlayer": null
+    },
+    {
+      "type": "Sprite_Character",
+      "y": 0,
+      "spriteId": 662,
+      "visible": false,
+      "event": 25,
+      "note": "<important><spikePanelTrap:1.5,1,wall,0><HM初期半歩X:+><HM初期半歩Y:+>",
+      "againstPlayer": null
+    },
+    {
+      "type": "Sprite_Character",
+      "y": 0,
+      "spriteId": 663,
+      "visible": false,
+      "event": 26,
+      "note": "<important><spikePanelTrap:1,3,wall,0><HM初期半歩X:+><HM初期半歩Y:+>",
+      "againstPlayer": null
+    },
+    {
+      "type": "Sprite_Character",
+      "y": 0,
+      "spriteId": 664,
+      "visible": false,
+      "event": 27,
+      "note": "<important><spikePanelTrap:4,1,wall,0><HM初期半歩Y:+>",
+      "againstPlayer": null
+    },
+    {
+      "type": "Sprite_Character",
+      "y": 0,
+      "spriteId": 665,
+      "visible": false,
+      "event": 28,
+      "note": "<important><spikePanelTrap:1,3,wall,0><HM初期半歩X:+><HM初期半歩Y:+>",
+      "againstPlayer": null
+    },
+    {
+      "type": "Sprite_Character",
+      "y": 0,
+      "spriteId": 698,
+      "visible": false,
+      "event": 61,
+      "note": "<important><spikePanelTrap:1.5,1,timed,0><HM初期半歩Y:+>",
+      "againstPlayer": null
+    },
+    {
+      "type": "Sprite_Character",
+      "y": 0,
+      "spriteId": 666,
+      "visible": false,
+      "event": 29,
+      "note": "<important><spikePanelTrap:0.5,0.5,wall,0><HM初期半歩Y:+>",
+      "againstPlayer": null
+    },
+    {
+      "type": "Sprite_Character",
+      "y": 0,
+      "spriteId": 667,
+      "visible": false,
+      "event": 30,
+      "note": "<important><spikePanelTrap:1.5,0.5,wall,0><HM初期半歩X:+><HM初期半歩Y:+>",
+      "againstPlayer": null
+    },
+    {
+      "type": "Sprite_Character",
+      "y": 0,
+      "spriteId": 668,
+      "visible": false,
+      "event": 31,
+      "note": "<important><spikePanelTrap:1.5,2.5,wall,0><HM初期半歩X:+>",
+      "againstPlayer": null
+    },
+    {
+      "type": "Sprite_Character",
+      "y": 0,
+      "spriteId": 669,
+      "visible": false,
+      "event": 32,
+      "note": "<important><spikePanelTrap:2,2,wall,0><HM初期半歩X:+><HM初期半歩Y:+>",
+      "againstPlayer": null
+    },
+    {
+      "type": "Sprite_Character",
+      "y": 0,
+      "spriteId": 684,
+      "visible": false,
+      "event": 47,
+      "note": "<important><spikePanelTrap:4,0.5,wall,0>",
+      "againstPlayer": null
+    }
+  ]
+}

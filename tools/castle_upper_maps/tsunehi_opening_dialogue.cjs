@@ -1,0 +1,10 @@
+// Approved battle-opening dialogue. Preserve the selected text and line breaks.
+module.exports = [
+    {who: 3, lines: ['ツネヒ、戦いを', 'やめようよ']},
+    {who: 3, lines: ['キミを倒しに', '来たわけじゃ', 'ないんだ！']},
+    {who: 'enemy', lines: ['…いいぜ', 'だったら', '武器を捨てろ！']},
+    {who: 'enemy', tone: 1, lines: ['そして大人しく', 'オレに殺されろッ！！']},
+    {who: 4, lines: ['話し合う気は', 'ないようね♪']},
+    {who: 3, lines: ['まずは', 'ツネヒを止めよう']},
+    {who: 3, lines: ['話は', 'それからだ！']}
+];

@@ -1,0 +1,21 @@
+{
+  "status": "not deleted",
+  "reason": "Automatic approval review rejected the temporary-file deletion command: blocked by policy",
+  "finalVideo": "C:\\Users\\kgygn\\Dropbox\\ゲーム\\Game_NewGame\\NewGame\\artifacts\\spike-panel-finish-retraction-20261119\\puzzle_ending.mp4",
+  "finalVideoBytes": 12764124,
+  "remainingDirectory": "C:\\Users\\kgygn\\Dropbox\\ゲーム\\Game_NewGame\\NewGame\\artifacts\\spike-panel-finish-retraction-20261119",
+  "temporaryPngBytes": 3170786,
+  "intermediateVideoBytes": 76889139,
+  "remainingFiles": [
+    "C:\\Users\\kgygn\\Dropbox\\ゲーム\\Game_NewGame\\NewGame\\artifacts\\spike-panel-finish-retraction-20261119\\_video_work\\ending-check-00.png",
+    "C:\\Users\\kgygn\\Dropbox\\ゲーム\\Game_NewGame\\NewGame\\artifacts\\spike-panel-finish-retraction-20261119\\_video_work\\ending-check-01.png",
+    "C:\\Users\\kgygn\\Dropbox\\ゲーム\\Game_NewGame\\NewGame\\artifacts\\spike-panel-finish-retraction-20261119\\_video_work\\ending-check-02.png",
+    "C:\\Users\\kgygn\\Dropbox\\ゲーム\\Game_NewGame\\NewGame\\artifacts\\spike-panel-finish-retraction-20261119\\_video_work\\ending-check-03.png",
+    "C:\\Users\\kgygn\\Dropbox\\ゲーム\\Game_NewGame\\NewGame\\artifacts\\spike-panel-finish-retraction-20261119\\_video_work\\ending-check-04.png",
+    "C:\\Users\\kgygn\\Dropbox\\ゲーム\\Game_NewGame\\NewGame\\artifacts\\spike-panel-finish-retraction-20261119\\_video_work\\ending-check-05.png",
+    "C:\\Users\\kgygn\\Dropbox\\ゲーム\\Game_NewGame\\NewGame\\artifacts\\spike-panel-finish-retraction-20261119\\_video_work\\ending-contact.png",
+    "C:\\Users\\kgygn\\Dropbox\\ゲーム\\Game_NewGame\\NewGame\\artifacts\\spike-panel-finish-retraction-20261119\\puzzle-overview.png",
+    "C:\\Users\\kgygn\\Dropbox\\ゲーム\\Game_NewGame\\NewGame\\artifacts\\spike-panel-finish-retraction-20261119\\spike_panel_puzzle.mp4",
+    "C:\\Users\\kgygn\\Dropbox\\ゲーム\\Game_NewGame\\NewGame\\artifacts\\spike-panel-finish-retraction-20261119\\_video_work\\spike-panel-puzzle-1795086756413.webm"
+  ]
+}

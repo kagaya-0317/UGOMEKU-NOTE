@@ -1,0 +1,269 @@
+[
+  {
+    "frame": 40,
+    "name": "Equip1",
+    "volume": 22,
+    "pitch": 82,
+    "stopFrame": 75
+  },
+  {
+    "frame": 76,
+    "name": "00_shot1",
+    "volume": 16,
+    "pitch": 98,
+    "stopFrame": 201
+  },
+  {
+    "frame": 82,
+    "name": "00_shot1",
+    "volume": 16,
+    "pitch": 100,
+    "stopFrame": 209
+  },
+  {
+    "frame": 88,
+    "name": "00_shot1",
+    "volume": 16,
+    "pitch": 96,
+    "stopFrame": 224
+  },
+  {
+    "frame": 94,
+    "name": "00_shot1",
+    "volume": 16,
+    "pitch": 98,
+    "stopFrame": 230
+  },
+  {
+    "frame": 100,
+    "name": "00_shot1",
+    "volume": 16,
+    "pitch": 100,
+    "stopFrame": 239
+  },
+  {
+    "frame": 106,
+    "name": "00_shot1",
+    "volume": 16,
+    "pitch": 96,
+    "stopFrame": 256
+  },
+  {
+    "frame": 112,
+    "name": "00_shot1",
+    "volume": 16,
+    "pitch": 98,
+    "stopFrame": 260
+  },
+  {
+    "frame": 118,
+    "name": "00_shot1",
+    "volume": 16,
+    "pitch": 100,
+    "stopFrame": 268
+  },
+  {
+    "frame": 124,
+    "name": "00_shot1",
+    "volume": 16,
+    "pitch": 96,
+    "stopFrame": 285
+  },
+  {
+    "frame": 130,
+    "name": "00_shot1",
+    "volume": 16,
+    "pitch": 98,
+    "stopFrame": 290
+  },
+  {
+    "frame": 136,
+    "name": "00_shot1",
+    "volume": 16,
+    "pitch": 100,
+    "stopFrame": 295
+  },
+  {
+    "frame": 147,
+    "name": "Equip1",
+    "volume": 22,
+    "pitch": 82,
+    "stopFrame": 183
+  },
+  {
+    "frame": 280,
+    "name": "Equip1",
+    "volume": 22,
+    "pitch": 82,
+    "stopFrame": 315
+  },
+  {
+    "frame": 316,
+    "name": "00_shot1",
+    "volume": 16,
+    "pitch": 98,
+    "stopFrame": 439
+  },
+  {
+    "frame": 322,
+    "name": "00_shot1",
+    "volume": 16,
+    "pitch": 100,
+    "stopFrame": 447
+  },
+  {
+    "frame": 328,
+    "name": "00_shot1",
+    "volume": 16,
+    "pitch": 96,
+    "stopFrame": 462
+  },
+  {
+    "frame": 334,
+    "name": "00_shot1",
+    "volume": 16,
+    "pitch": 98,
+    "stopFrame": 471
+  },
+  {
+    "frame": 340,
+    "name": "00_shot1",
+    "volume": 16,
+    "pitch": 100,
+    "stopFrame": 480
+  },
+  {
+    "frame": 346,
+    "name": "00_shot1",
+    "volume": 16,
+    "pitch": 96,
+    "stopFrame": 496
+  },
+  {
+    "frame": 352,
+    "name": "00_shot1",
+    "volume": 16,
+    "pitch": 98,
+    "stopFrame": 501
+  },
+  {
+    "frame": 358,
+    "name": "00_shot1",
+    "volume": 16,
+    "pitch": 100,
+    "stopFrame": 507
+  },
+  {
+    "frame": 364,
+    "name": "00_shot1",
+    "volume": 16,
+    "pitch": 96,
+    "stopFrame": 524
+  },
+  {
+    "frame": 370,
+    "name": "00_shot1",
+    "volume": 16,
+    "pitch": 98,
+    "stopFrame": 528
+  },
+  {
+    "frame": 376,
+    "name": "00_shot1",
+    "volume": 16,
+    "pitch": 100,
+    "stopFrame": 535
+  },
+  {
+    "frame": 387,
+    "name": "Equip1",
+    "volume": 22,
+    "pitch": 82,
+    "stopFrame": 423
+  },
+  {
+    "frame": 520,
+    "name": "Equip1",
+    "volume": 22,
+    "pitch": 82,
+    "stopFrame": 555
+  },
+  {
+    "frame": 556,
+    "name": "00_shot1",
+    "volume": 16,
+    "pitch": 98,
+    "stopFrame": 684
+  },
+  {
+    "frame": 562,
+    "name": "00_shot1",
+    "volume": 16,
+    "pitch": 100,
+    "stopFrame": 690
+  },
+  {
+    "frame": 568,
+    "name": "00_shot1",
+    "volume": 16,
+    "pitch": 96,
+    "stopFrame": 704
+  },
+  {
+    "frame": 574,
+    "name": "00_shot1",
+    "volume": 16,
+    "pitch": 98,
+    "stopFrame": 708
+  },
+  {
+    "frame": 580,
+    "name": "00_shot1",
+    "volume": 16,
+    "pitch": 100,
+    "stopFrame": 717
+  },
+  {
+    "frame": 586,
+    "name": "00_shot1",
+    "volume": 16,
+    "pitch": 96
+  },
+  {
+    "frame": 592,
+    "name": "00_shot1",
+    "volume": 16,
+    "pitch": 98
+  },
+  {
+    "frame": 598,
+    "name": "00_shot1",
+    "volume": 16,
+    "pitch": 100
+  },
+  {
+    "frame": 604,
+    "name": "00_shot1",
+    "volume": 16,
+    "pitch": 96
+  },
+  {
+    "frame": 610,
+    "name": "00_shot1",
+    "volume": 16,
+    "pitch": 98
+  },
+  {
+    "frame": 616,
+    "name": "00_shot1",
+    "volume": 16,
+    "pitch": 100
+  },
+  {
+    "frame": 627,
+    "name": "Equip1",
+    "volume": 22,
+    "pitch": 82,
+    "stopFrame": 663
+  }
+]

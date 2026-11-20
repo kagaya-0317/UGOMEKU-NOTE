@@ -1,0 +1,66 @@
+    // The throne gate reuses the closed leaves and open arch in outsideObject3.
+    api.beginGate = function(eventId) {
+        api.clearMessage();
+        $gameTemp._castleGateCamera = ($gamePlayer._centerXy || [0, 0]).slice();
+        var gate = $gameMap.event(eventId);
+        $gameMap.scrollCameraTo(gate.x, gate.y, 60);
+    };
+    api.gateMiiSpeaker = function() {
+        var followers = $gamePlayer.followers();
+        if (!followers.isVisible()) return false;
+        var index = followers._data.indexOf(actorFollower(3));
+        if (index < 0) return false;
+        api.mapSpeaker(-index - 2);
+        $gameMessage._popupHeight = 0;
+        return true;
+    };
+    api.endGate = function() {
+        api.clearMessage();
+        var camera = $gameTemp._castleGateCamera;
+        if (camera) $gameMap.scrollCamera(camera[0], camera[1], 60);
+        delete $gameTemp._castleGateCamera;
+    };
+    var gateCharacterFrame = Sprite_Character.prototype.updateCharacterFrame;
+    Sprite_Character.prototype.updateCharacterFrame = function() {
+        var ch = this._character;
+        if (!(ch instanceof Game_Event) || !ch.event().meta.castleThroneGate) {
+            return gateCharacterFrame.apply(this, arguments);
+        }
+        var source = ImageManager.loadCharacter('outsideObject3');
+        if (!source.isReady()) return;
+        if ($gameVariables.value(66) >= 1) {
+            if (this._castleGateRender) {
+                this._baseBitmap = source;
+                this.bitmap = new Bitmap(source.width, source.height);
+                this._yuraDirect = this._castleGateRender.direct;
+                this._lastFrame = null;
+                delete this._castleGateRender;
+                delete ch._castleGateOpening;
+            }
+            ch.setSizeForMessagePopup(192, 192);
+            this.setFrame(192, 0, 192, 192);
+            return;
+        }
+        if (ch._castleGateOpening === undefined) return gateCharacterFrame.apply(this, arguments);
+        var state = this._castleGateRender;
+        if (!state) {
+            state = this._castleGateRender = {bitmap: new Bitmap(192, 192), direct: this._yuraDirect};
+            this._baseBitmap = state.bitmap;
+            this.bitmap = new Bitmap(192, 192);
+            this._yuraDirect = true;
+            this._lastFrame = null;
+        }
+        var t = Math.min(1, ch._castleGateOpening++ / 72);
+        var eased = t * t * (3 - 2 * t), width = Math.max(0, 96 * Math.cos(eased * Math.PI / 2));
+        var bitmap = state.bitmap;
+        bitmap.clear();
+        bitmap.blt(source, 192, 0, 192, 192, 0, 0);
+        if (width > 0.2) {
+            bitmap.blt(source, 0, 0, 96, 192, 0, 0, width, 192);
+            bitmap.blt(source, 96, 0, 96, 192, 192 - width, 0, width, 192);
+        }
+        bitmap._setDirty();
+        bitmap.checkDirty();
+        this.setFrame(0, 0, 192, 192);
+    };
+

@@ -1,0 +1,30 @@
+{
+  "nativeWalking": [
+    [
+      24,
+      14,
+      false
+    ],
+    [
+      27,
+      14,
+      false
+    ],
+    [
+      25.5,
+      13.5,
+      false
+    ],
+    [
+      25.5,
+      12,
+      false
+    ],
+    [
+      25.5,
+      16.5,
+      false
+    ]
+  ],
+  "throughEnabled": false
+}

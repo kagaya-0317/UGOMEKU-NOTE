@@ -1,0 +1,49 @@
+{
+  "oneKeyOnlyDoesNotUnlock": true,
+  "selector": {
+    "x": 288,
+    "y": 456,
+    "width": 400,
+    "height": 168,
+    "items": [
+      "テス～ト",
+      "まるい鍵",
+      "さんかくの鍵"
+    ],
+    "popupHeight": 113
+  },
+  "presentation": {
+    "party": [
+      {
+        "actor": 2,
+        "x": 408,
+        "y": 426
+      },
+      {
+        "actor": 3,
+        "x": 408,
+        "y": 450
+      },
+      {
+        "actor": 4,
+        "x": 408,
+        "y": 546
+      }
+    ],
+    "bubble": {
+      "x": 195,
+      "y": 145.12475607709598,
+      "width": 426,
+      "height": 146
+    },
+    "gate": [
+      25.5,
+      11
+    ],
+    "scale": 180
+  },
+  "normalSelectorRestored": {
+    "width": 816,
+    "x": 0
+  }
+}

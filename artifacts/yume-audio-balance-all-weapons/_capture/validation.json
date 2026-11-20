@@ -1,0 +1,42 @@
+{
+  "frames": 1200,
+  "durationSeconds": 20,
+  "hits": 23,
+  "skills": [
+    46,
+    47,
+    48,
+    49,
+    50,
+    51,
+    52,
+    53,
+    54
+  ],
+  "maxMovementVoices": 1,
+  "heldLoops": [
+    {
+      "frame": 492,
+      "name": "YumeChargeHold",
+      "volume": 12,
+      "pitch": 100,
+      "loop": true,
+      "kind": "weapon",
+      "stopFrame": 577
+    },
+    {
+      "frame": 850,
+      "name": "YumeChargeHold",
+      "volume": 12,
+      "pitch": 100,
+      "loop": true,
+      "kind": "weapon",
+      "stopFrame": 935
+    }
+  ],
+  "rawPeak": "-5.2 dB",
+  "rawMean": "-26.3 dB",
+  "encodedPeak": "-4.8 dB",
+  "videoBytes": 1853031,
+  "generatedPngBytes": 0
+}

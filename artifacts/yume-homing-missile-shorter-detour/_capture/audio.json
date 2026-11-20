@@ -1,0 +1,81 @@
+[
+  {
+    "frame": 40,
+    "name": "Equip1",
+    "volume": 22,
+    "pitch": 86,
+    "stopFrame": 75
+  },
+  {
+    "frame": 90,
+    "name": "Launch",
+    "volume": 22,
+    "pitch": 110,
+    "stopFrame": 677
+  },
+  {
+    "frame": 161,
+    "name": "Explosion1",
+    "volume": 28,
+    "pitch": 108
+  },
+  {
+    "frame": 167,
+    "name": "Equip1",
+    "volume": 22,
+    "pitch": 86,
+    "stopFrame": 203
+  },
+  {
+    "frame": 280,
+    "name": "Equip1",
+    "volume": 22,
+    "pitch": 86,
+    "stopFrame": 315
+  },
+  {
+    "frame": 330,
+    "name": "Launch",
+    "volume": 22,
+    "pitch": 110
+  },
+  {
+    "frame": 401,
+    "name": "Explosion1",
+    "volume": 28,
+    "pitch": 108
+  },
+  {
+    "frame": 407,
+    "name": "Equip1",
+    "volume": 22,
+    "pitch": 86,
+    "stopFrame": 443
+  },
+  {
+    "frame": 520,
+    "name": "Equip1",
+    "volume": 22,
+    "pitch": 86,
+    "stopFrame": 555
+  },
+  {
+    "frame": 570,
+    "name": "Launch",
+    "volume": 22,
+    "pitch": 110
+  },
+  {
+    "frame": 641,
+    "name": "Explosion1",
+    "volume": 28,
+    "pitch": 108
+  },
+  {
+    "frame": 647,
+    "name": "Equip1",
+    "volume": 22,
+    "pitch": 86,
+    "stopFrame": 683
+  }
+]

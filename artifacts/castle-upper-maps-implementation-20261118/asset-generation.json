@@ -1,0 +1,41 @@
+{
+  "method": "Built-in image_gen tool for background cleanup; Aseprite batch export for the project's native page sizes and two-color palette.",
+  "cleanup_prompt": "Use case: precise-object-edit. Convert this approved game map rough into the actual RPG Maker parallax background. Preserve the exact architecture, floor outline, wall corners, stair positions, linework, carpet, windows and decorative floor pattern. Remove ALL planning text, title, arrows, dotted route markings, pawn/circle character-position markers and their labels. Remove every movable rock, key, reset lever and save-point marker, restoring matching empty floor beneath. Remove the SMALL freestanding metal gate at the staircase or side return doorway, and remove the freestanding puzzle grille, restoring clear traversable floor: those will be separate event sprites. If the main third-floor map has the LARGE double-locked NORTH door, retain its stone arch/frame but remove the wooden door leaves and lock plaques and restore a clear white passage opening; the door will be a separate event sprite. Preserve the empty throne and the fan/toilet on their maps. Remove the beast-face planning marker from the third-floor floor, restoring floor tiles; a separate event sprite will stand there. Single game background image, white paper and canonical dark ink #474e51 only, all shading via sparse hatching. No added objects, text, grids or characters. Do not redesign, move or resize any room or connection. Show the complete existing map without cropping.",
+  "floor3_adjustment": "Moved the north arched passage to the right of the notebook gutter and the south arrival stair bay to its left, preserving the left courtyard and eastern balcony. No text, character markers or event objects.",
+  "outputs": [
+    {
+      "map": "mone",
+      "file": "img/parallaxes/!map113.png",
+      "editable": "../aseprite/!map113.aseprite",
+      "width": 1000,
+      "height": 1414
+    },
+    {
+      "map": "floor3",
+      "file": "img/parallaxes/!map114.png",
+      "editable": "../aseprite/!map114.aseprite",
+      "width": 2000,
+      "height": 1414
+    },
+    {
+      "map": "puzzle",
+      "file": "img/parallaxes/!map114_room.png",
+      "editable": "../aseprite/!map114_room.aseprite",
+      "width": 1000,
+      "height": 1414
+    },
+    {
+      "map": "throne",
+      "file": "img/parallaxes/!map115.png",
+      "editable": "../aseprite/!map115.aseprite",
+      "width": 1000,
+      "height": 1414
+    }
+  ],
+  "removed_unused_event_trials": {
+    "count": 2,
+    "bytes": 885725,
+    "deleted": true
+  },
+  "scope": "Backgrounds, map registration and static collision only; all four maps contain events:[null]."
+}

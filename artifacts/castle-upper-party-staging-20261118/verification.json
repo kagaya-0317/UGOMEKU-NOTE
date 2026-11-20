@@ -1,0 +1,287 @@
+[
+  {
+    "map": 59,
+    "initial": {
+      "speed": 4.5,
+      "proxies": [
+        {
+          "id": 3,
+          "x": 8.5,
+          "y": 18.5,
+          "hidden": true
+        },
+        {
+          "id": 4,
+          "x": 11.5,
+          "y": 18.5,
+          "hidden": true
+        }
+      ],
+      "boss": [
+        10,
+        15
+      ]
+    },
+    "hero": [
+      10,
+      18
+    ],
+    "members": [
+      {
+        "actor": 3,
+        "x": 8.5,
+        "y": 18.5,
+        "image": "$002",
+        "visible": true,
+        "scale": [
+          100,
+          100
+        ]
+      },
+      {
+        "actor": 4,
+        "x": 11.5,
+        "y": 18.5,
+        "image": "$003",
+        "visible": true,
+        "scale": [
+          100,
+          100
+        ]
+      }
+    ],
+    "movementFrames": 431,
+    "after": {
+      "hero": [
+        10,
+        18
+      ],
+      "followers": [
+        {
+          "id": 3,
+          "x": 8.5,
+          "y": 18.5
+        },
+        {
+          "id": 4,
+          "x": 11.5,
+          "y": 18.5
+        }
+      ],
+      "shown": true,
+      "proxiesHidden": true,
+      "speed": 4.5,
+      "camera": [
+        0,
+        0
+      ],
+      "temp": false
+    },
+    "reentry": {
+      "active": false,
+      "running": false,
+      "proxies": [
+        {
+          "x": 8.5,
+          "y": 18.5,
+          "hidden": true
+        },
+        {
+          "x": 11.5,
+          "y": 18.5,
+          "hidden": true
+        }
+      ]
+    }
+  },
+  {
+    "map": 60,
+    "initial": {
+      "speed": 4.5,
+      "proxies": [
+        {
+          "id": 3,
+          "x": 4.5,
+          "y": 17,
+          "hidden": true
+        },
+        {
+          "id": 4,
+          "x": 6.5,
+          "y": 17,
+          "hidden": true
+        }
+      ],
+      "boss": [
+        5,
+        14
+      ]
+    },
+    "hero": [
+      5.5,
+      16.5
+    ],
+    "members": [
+      {
+        "actor": 3,
+        "x": 4.5,
+        "y": 17,
+        "image": "$002",
+        "visible": true,
+        "scale": [
+          100,
+          100
+        ]
+      },
+      {
+        "actor": 4,
+        "x": 6.5,
+        "y": 17,
+        "image": "$003",
+        "visible": true,
+        "scale": [
+          100,
+          100
+        ]
+      }
+    ],
+    "movementFrames": 290,
+    "after": {
+      "hero": [
+        5.5,
+        16.5
+      ],
+      "followers": [
+        {
+          "id": 4,
+          "x": 6.5,
+          "y": 17
+        },
+        {
+          "id": 3,
+          "x": 4.5,
+          "y": 17
+        }
+      ],
+      "shown": true,
+      "proxiesHidden": true,
+      "speed": 4.5,
+      "camera": [
+        0,
+        0
+      ],
+      "temp": false
+    },
+    "reentry": {
+      "active": false,
+      "running": false,
+      "proxies": [
+        {
+          "x": 4.5,
+          "y": 17,
+          "hidden": true
+        },
+        {
+          "x": 6.5,
+          "y": 17,
+          "hidden": true
+        }
+      ]
+    }
+  },
+  {
+    "map": 62,
+    "initial": {
+      "speed": 4.5,
+      "proxies": [
+        {
+          "id": 3,
+          "x": 8.5,
+          "y": 13.5,
+          "hidden": true
+        },
+        {
+          "id": 4,
+          "x": 11.5,
+          "y": 13.5,
+          "hidden": true
+        }
+      ],
+      "boss": [
+        10,
+        10
+      ]
+    },
+    "hero": [
+      10,
+      13
+    ],
+    "members": [
+      {
+        "actor": 3,
+        "x": 8.5,
+        "y": 13.5,
+        "image": "$002",
+        "visible": true,
+        "scale": [
+          100,
+          100
+        ]
+      },
+      {
+        "actor": 4,
+        "x": 11.5,
+        "y": 13.5,
+        "image": "$003",
+        "visible": true,
+        "scale": [
+          100,
+          100
+        ]
+      }
+    ],
+    "movementFrames": 435,
+    "after": {
+      "hero": [
+        10,
+        13
+      ],
+      "followers": [
+        {
+          "id": 3,
+          "x": 8.5,
+          "y": 13.5
+        },
+        {
+          "id": 4,
+          "x": 11.5,
+          "y": 13.5
+        }
+      ],
+      "shown": true,
+      "proxiesHidden": true,
+      "speed": 4.5,
+      "camera": [
+        0,
+        0
+      ],
+      "temp": false
+    },
+    "reentry": {
+      "active": false,
+      "running": false,
+      "proxies": [
+        {
+          "x": 8.5,
+          "y": 13.5,
+          "hidden": true
+        },
+        {
+          "x": 11.5,
+          "y": 13.5,
+          "hidden": true
+        }
+      ]
+    }
+  }
+]

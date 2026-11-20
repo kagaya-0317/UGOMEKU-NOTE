@@ -1,0 +1,101 @@
+{
+  "file": "C:\\Users\\kgygn\\Dropbox\\ゲーム\\Game_NewGame\\NewGame\\artifacts\\road-approach-tsunehi-video-20261120\\tsunehi_intro.mp4",
+  "seconds": 41.47,
+  "bytes": 10047692,
+  "resolution": [
+    816,
+    624
+  ],
+  "codec": "H.264/AAC",
+  "fullDecode": true,
+  "meanAudioDb": -15.6,
+  "localMonitorMuted": true,
+  "dialoguePages": 9,
+  "frames": [
+    {
+      "key": "この先は地獄の通り道…|題して、88,888,888番通路だ！",
+      "text": [
+        "この先は地獄の通り道…",
+        "題して、88,888,888番通路だ！"
+      ],
+      "seconds": 8.381999999959953
+    },
+    {
+      "key": "88,888,888番通路！？",
+      "text": [
+        "88,888,888番通路！？"
+      ],
+      "seconds": 12.165999999945052
+    },
+    {
+      "key": "ルールは簡単だ|異変があれば、引き返せ！|異変が無ければ進め！",
+      "text": [
+        "ルールは簡単だ",
+        "異変があれば、引き返せ！",
+        "異変が無ければ進め！"
+      ],
+      "seconds": 16.1489999999525
+    },
+    {
+      "key": "フッフッフ…|簡単だろう？",
+      "text": [
+        "フッフッフ…",
+        "簡単だろう？"
+      ],
+      "seconds": 19.781999999983235
+    },
+    {
+      "key": "もし間違えたら、|なんと、最初からだ",
+      "text": [
+        "もし間違えたら、",
+        "なんと、最初からだ"
+      ],
+      "seconds": 22.8989999999525
+    },
+    {
+      "key": "予言しよう…|キサマらはここで彷徨い続け|一生出ることはできないッ！！",
+      "text": [
+        "予言しよう…",
+        "キサマらはここで彷徨い続け",
+        "一生出ることはできないッ！！"
+      ],
+      "seconds": 27.313999999989754
+    },
+    {
+      "key": "そ、そんな！！",
+      "text": [
+        "そ、そんな！！"
+      ],
+      "seconds": 30.798999999975784
+    },
+    {
+      "key": "せいぜいもがき|苦しむがいい…",
+      "text": [
+        "せいぜいもがき",
+        "苦しむがいい…"
+      ],
+      "seconds": 33.74899999992922
+    },
+    {
+      "key": "ギャハハハハ！！！",
+      "text": [
+        "ギャハハハハ！！！"
+      ],
+      "seconds": 36.266999999969265
+    }
+  ],
+  "silences": [
+    {
+      "end": 41.472,
+      "duration": 0.405021
+    }
+  ],
+  "visualCheckPending": false,
+  "temporaryPngs": [
+    "C:\\Users\\kgygn\\Dropbox\\ゲーム\\Game_NewGame\\NewGame\\artifacts\\road-approach-tsunehi-video-20261120\\_capture\\dialogue-contact.png"
+  ],
+  "intermediateVideos": [
+    "C:\\Users\\kgygn\\Dropbox\\ゲーム\\Game_NewGame\\NewGame\\artifacts\\road-approach-tsunehi-video-20261120\\_capture\\tsunehi_intro_realtime.webm"
+  ],
+  "visualReview": "Reviewed all nine dialogue pages from the encoded video; portraits, party and complete laughter pose fit the frame"
+}

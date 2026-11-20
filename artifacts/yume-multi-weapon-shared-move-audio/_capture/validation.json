@@ -1,0 +1,28 @@
+{
+  "frames": 720,
+  "durationSeconds": 12,
+  "hits": 38,
+  "movementEvents": 28,
+  "weaponSoundEvents": 42,
+  "maxMovementVoices": 1,
+  "drillProof": [
+    {
+      "start": 77,
+      "end": 136,
+      "movementStartsDuringCut": [
+        119
+      ]
+    },
+    {
+      "start": 397,
+      "end": 456,
+      "movementStartsDuringCut": [
+        439
+      ]
+    }
+  ],
+  "finalActions": 0,
+  "videoBytes": 1928020,
+  "pngFiles": [],
+  "verifyExit": 0
+}

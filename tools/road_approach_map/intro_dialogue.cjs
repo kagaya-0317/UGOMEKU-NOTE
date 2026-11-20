@@ -1,0 +1,18 @@
+// User-approved dialogue. Each entry is one popup; line breaks are intentional.
+module.exports=[
+ {speaker:'tsunehi',tone:0,lines:['よくぞここまで','たどり着いた','愚か者どもよ…'],shot:'tsunehi-greeting.png'},
+ {speaker:4,tone:0,lines:['あら、この声は','ツネヒだわ'],shot:'yume-introduction.png'},
+ {speaker:'tsunehi',tone:0,lines:['だが、この先が','キサマらの墓場と','なるだろう']},
+ {speaker:'tsunehi',tone:0,lines:['この先は','地獄の通り道…']},
+ {speaker:'tsunehi',tone:1,lines:['題して、','88,888,888番通路だ！'],shot:'tsunehi-title.png'},
+ {speaker:3,tone:0,lines:['88,888,888番','通路！？！？'],shot:'mii-reaction.png'},
+ {speaker:'tsunehi',tone:0,lines:['ここは何の変哲もない','通路…しかしそこには','「異変」が現れることがある']},
+ {speaker:'tsunehi',tone:0,lines:['ルールは簡単だ','異変があれば、引き返せ！','異変が無ければ進め！'],shot:'tsunehi-rules.png'},
+ {speaker:'tsunehi',tone:0,lines:['フッフッフ…','簡単だろう？']},
+ {speaker:'tsunehi',tone:1,lines:['もし間違えたら、','なんと、最初から','だ！！！']},
+ {speaker:'tsunehi',tone:0,lines:['予言しよう…']},
+ {speaker:'tsunehi',tone:1,lines:['キサマらはここで','彷徨い続け、一生出る','ことはできないッ！！']},
+ {speaker:3,tone:0,lines:['そ、そんなァ！','！！！']},
+ {speaker:'tsunehi',tone:0,lines:['せいぜい死ぬまで','もがき苦しみ続け','るがいい…']},
+ {speaker:'tsunehi',tone:1,laugh:true,lines:['ギャハハ','ハハ！！！！'],shot:'tsunehi-laugh.png'}
+];

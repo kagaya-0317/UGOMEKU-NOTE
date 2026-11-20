@@ -1,0 +1,26 @@
+{
+  "entries": [
+    {
+      "path": "C:\\Users\\kgygn\\Dropbox\\ゲーム\\Game_NewGame\\NewGame\\artifacts\\road-approach-tsunehi-revised-video-20261120\\_capture\\dialogue-contact-1.png",
+      "bytes": 1263161
+    },
+    {
+      "path": "C:\\Users\\kgygn\\Dropbox\\ゲーム\\Game_NewGame\\NewGame\\artifacts\\road-approach-tsunehi-revised-video-20261120\\_capture\\dialogue-contact-2.png",
+      "bytes": 830576
+    },
+    {
+      "path": "C:\\Users\\kgygn\\Dropbox\\ゲーム\\Game_NewGame\\NewGame\\artifacts\\road-approach-tsunehi-revised-video-20261120\\_capture\\single-line-check.png",
+      "bytes": 750575
+    },
+    {
+      "path": "C:\\Users\\kgygn\\Dropbox\\ゲーム\\Game_NewGame\\NewGame\\artifacts\\road-approach-tsunehi-revised-video-20261120\\_capture\\tsunehi_intro_realtime.webm",
+      "bytes": 17374975
+    }
+  ],
+  "finalMovie": {
+    "path": "C:\\Users\\kgygn\\Dropbox\\ゲーム\\Game_NewGame\\NewGame\\artifacts\\road-approach-tsunehi-revised-video-20261120\\tsunehi_intro.mp4",
+    "bytes": 14523203
+  },
+  "gameHashesMatch": true,
+  "visualReviewPassed": true
+}

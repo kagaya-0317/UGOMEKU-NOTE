@@ -1,0 +1,10 @@
+{
+  "files": {
+    "js/plugins/KNH_ZXC_Gimmick_SpikePanel.js": "bee251877c41bd99138dff124ff1d9dfdac486d39d61196547f6d0b167b7d4f9",
+    "data/Map061.json": "cf9c2724bf90cae9777564adf8d2851b3d6a844b3ce9ba1941438b5327d0c762",
+    "data/Map050.json": "457340d10450e81f94b3c1d1416537210347b13a011167288b5e5b339dcad860",
+    "data/CommonEvents.json": "f0a9d8ed52b6ad112c3b9472a7cdb9918bd534e915667b8697f3304b2fa8f46b",
+    "js/plugins/KNH_ZXC_Gimmick_SpikeFloor.js": "fc841ea62e96e1ec6ea0f22685bb792e36b3aeab9c055101487a22ce9fce10d4",
+    "AGENTS.md": "60405ae29781c1c84546d7bc16d9d4fbdc78f3a32d9e27239ed615d0137b11c5"
+  }
+}

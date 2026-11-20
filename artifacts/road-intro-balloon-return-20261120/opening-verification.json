@@ -1,0 +1,1034 @@
+{
+  "cases": [
+    {
+      "party": [
+        2,
+        3,
+        4
+      ],
+      "balloons": [
+        {
+          "hero": true,
+          "id": 11
+        }
+      ],
+      "opening": {
+        "text": [
+          "よくぞここまで",
+          "たどり着いた",
+          "愚か者どもよ…"
+        ],
+        "balloonId": 11,
+        "balloonDuration": 57,
+        "balloonVisible": true,
+        "balloonFrame": [
+          96,
+          480,
+          48,
+          48
+        ]
+      },
+      "targets": [
+        {
+          "actor": 3,
+          "target": {
+            "x": 12.5,
+            "y": 11,
+            "direction": 6,
+            "moving": false
+          },
+          "start": {
+            "x": 12.5,
+            "y": 10,
+            "direction": 6,
+            "moving": false
+          }
+        },
+        {
+          "actor": 4,
+          "target": {
+            "x": 10.5,
+            "y": 10.5,
+            "direction": 6,
+            "moving": false
+          },
+          "start": {
+            "x": 12.5,
+            "y": 12,
+            "direction": 6,
+            "moving": false
+          }
+        }
+      ],
+      "beforeHandoff": [
+        {
+          "actor": 3,
+          "position": {
+            "x": 12.5,
+            "y": 11,
+            "direction": 6,
+            "moving": false
+          }
+        },
+        {
+          "actor": 4,
+          "position": {
+            "x": 10.5,
+            "y": 10.5,
+            "direction": 6,
+            "moving": false
+          }
+        }
+      ],
+      "afterHandoff": [
+        {
+          "actor": 3,
+          "position": {
+            "x": 12.5,
+            "y": 11,
+            "direction": 6,
+            "moving": false
+          }
+        },
+        {
+          "actor": 4,
+          "position": {
+            "x": 10.5,
+            "y": 10.5,
+            "direction": 6,
+            "moving": false
+          }
+        }
+      ],
+      "returnFrames": [
+        {
+          "locked": true,
+          "members": [
+            {
+              "actor": 3,
+              "position": {
+                "x": 12.5,
+                "y": 10.0625,
+                "direction": 2,
+                "moving": true
+              }
+            },
+            {
+              "actor": 4,
+              "position": {
+                "x": 12.45,
+                "y": 11.95,
+                "direction": 4,
+                "moving": true
+              }
+            }
+          ]
+        },
+        {
+          "locked": true,
+          "members": [
+            {
+              "actor": 3,
+              "position": {
+                "x": 12.5,
+                "y": 10.125,
+                "direction": 2,
+                "moving": true
+              }
+            },
+            {
+              "actor": 4,
+              "position": {
+                "x": 12.399999999999999,
+                "y": 11.899999999999999,
+                "direction": 4,
+                "moving": true
+              }
+            }
+          ]
+        },
+        {
+          "locked": true,
+          "members": [
+            {
+              "actor": 3,
+              "position": {
+                "x": 12.5,
+                "y": 10.1875,
+                "direction": 2,
+                "moving": true
+              }
+            },
+            {
+              "actor": 4,
+              "position": {
+                "x": 12.349999999999998,
+                "y": 11.849999999999998,
+                "direction": 4,
+                "moving": true
+              }
+            }
+          ]
+        },
+        {
+          "locked": true,
+          "members": [
+            {
+              "actor": 3,
+              "position": {
+                "x": 12.5,
+                "y": 10.25,
+                "direction": 2,
+                "moving": true
+              }
+            },
+            {
+              "actor": 4,
+              "position": {
+                "x": 12.299999999999997,
+                "y": 11.799999999999997,
+                "direction": 4,
+                "moving": true
+              }
+            }
+          ]
+        },
+        {
+          "locked": true,
+          "members": [
+            {
+              "actor": 3,
+              "position": {
+                "x": 12.5,
+                "y": 10.3125,
+                "direction": 2,
+                "moving": true
+              }
+            },
+            {
+              "actor": 4,
+              "position": {
+                "x": 12.249999999999996,
+                "y": 11.749999999999996,
+                "direction": 4,
+                "moving": true
+              }
+            }
+          ]
+        },
+        {
+          "locked": true,
+          "members": [
+            {
+              "actor": 3,
+              "position": {
+                "x": 12.5,
+                "y": 10.375,
+                "direction": 2,
+                "moving": true
+              }
+            },
+            {
+              "actor": 4,
+              "position": {
+                "x": 12.199999999999996,
+                "y": 11.699999999999996,
+                "direction": 4,
+                "moving": true
+              }
+            }
+          ]
+        },
+        {
+          "locked": true,
+          "members": [
+            {
+              "actor": 3,
+              "position": {
+                "x": 12.5,
+                "y": 10.4375,
+                "direction": 2,
+                "moving": true
+              }
+            },
+            {
+              "actor": 4,
+              "position": {
+                "x": 12.149999999999995,
+                "y": 11.649999999999995,
+                "direction": 4,
+                "moving": true
+              }
+            }
+          ]
+        },
+        {
+          "locked": true,
+          "members": [
+            {
+              "actor": 3,
+              "position": {
+                "x": 12.5,
+                "y": 10.5,
+                "direction": 2,
+                "moving": true
+              }
+            },
+            {
+              "actor": 4,
+              "position": {
+                "x": 12.099999999999994,
+                "y": 11.599999999999994,
+                "direction": 4,
+                "moving": true
+              }
+            }
+          ]
+        },
+        {
+          "locked": true,
+          "members": [
+            {
+              "actor": 3,
+              "position": {
+                "x": 12.5,
+                "y": 10.5625,
+                "direction": 2,
+                "moving": true
+              }
+            },
+            {
+              "actor": 4,
+              "position": {
+                "x": 12.049999999999994,
+                "y": 11.549999999999994,
+                "direction": 4,
+                "moving": true
+              }
+            }
+          ]
+        },
+        {
+          "locked": true,
+          "members": [
+            {
+              "actor": 3,
+              "position": {
+                "x": 12.5,
+                "y": 10.625,
+                "direction": 2,
+                "moving": true
+              }
+            },
+            {
+              "actor": 4,
+              "position": {
+                "x": 11.999999999999993,
+                "y": 11.499999999999993,
+                "direction": 4,
+                "moving": true
+              }
+            }
+          ]
+        },
+        {
+          "locked": true,
+          "members": [
+            {
+              "actor": 3,
+              "position": {
+                "x": 12.5,
+                "y": 10.6875,
+                "direction": 2,
+                "moving": true
+              }
+            },
+            {
+              "actor": 4,
+              "position": {
+                "x": 11.949999999999992,
+                "y": 11.449999999999992,
+                "direction": 4,
+                "moving": true
+              }
+            }
+          ]
+        },
+        {
+          "locked": true,
+          "members": [
+            {
+              "actor": 3,
+              "position": {
+                "x": 12.5,
+                "y": 10.75,
+                "direction": 2,
+                "moving": true
+              }
+            },
+            {
+              "actor": 4,
+              "position": {
+                "x": 11.899999999999991,
+                "y": 11.399999999999991,
+                "direction": 4,
+                "moving": true
+              }
+            }
+          ]
+        },
+        {
+          "locked": true,
+          "members": [
+            {
+              "actor": 3,
+              "position": {
+                "x": 12.5,
+                "y": 10.8125,
+                "direction": 2,
+                "moving": true
+              }
+            },
+            {
+              "actor": 4,
+              "position": {
+                "x": 11.84999999999999,
+                "y": 11.34999999999999,
+                "direction": 4,
+                "moving": true
+              }
+            }
+          ]
+        },
+        {
+          "locked": true,
+          "members": [
+            {
+              "actor": 3,
+              "position": {
+                "x": 12.5,
+                "y": 10.875,
+                "direction": 2,
+                "moving": true
+              }
+            },
+            {
+              "actor": 4,
+              "position": {
+                "x": 11.79999999999999,
+                "y": 11.29999999999999,
+                "direction": 4,
+                "moving": true
+              }
+            }
+          ]
+        },
+        {
+          "locked": true,
+          "members": [
+            {
+              "actor": 3,
+              "position": {
+                "x": 12.5,
+                "y": 10.9375,
+                "direction": 2,
+                "moving": true
+              }
+            },
+            {
+              "actor": 4,
+              "position": {
+                "x": 11.74999999999999,
+                "y": 11.24999999999999,
+                "direction": 4,
+                "moving": true
+              }
+            }
+          ]
+        },
+        {
+          "locked": true,
+          "members": [
+            {
+              "actor": 3,
+              "position": {
+                "x": 12.5,
+                "y": 11,
+                "direction": 2,
+                "moving": false
+              }
+            },
+            {
+              "actor": 4,
+              "position": {
+                "x": 11.699999999999989,
+                "y": 11.199999999999989,
+                "direction": 4,
+                "moving": true
+              }
+            }
+          ]
+        },
+        {
+          "locked": true,
+          "members": [
+            {
+              "actor": 3,
+              "position": {
+                "x": 12.5,
+                "y": 11,
+                "direction": 2,
+                "moving": false
+              }
+            },
+            {
+              "actor": 4,
+              "position": {
+                "x": 11.649999999999988,
+                "y": 11.149999999999988,
+                "direction": 4,
+                "moving": true
+              }
+            }
+          ]
+        },
+        {
+          "locked": true,
+          "members": [
+            {
+              "actor": 3,
+              "position": {
+                "x": 12.5,
+                "y": 11,
+                "direction": 2,
+                "moving": false
+              }
+            },
+            {
+              "actor": 4,
+              "position": {
+                "x": 11.599999999999987,
+                "y": 11.099999999999987,
+                "direction": 4,
+                "moving": true
+              }
+            }
+          ]
+        },
+        {
+          "locked": true,
+          "members": [
+            {
+              "actor": 3,
+              "position": {
+                "x": 12.5,
+                "y": 11,
+                "direction": 2,
+                "moving": false
+              }
+            },
+            {
+              "actor": 4,
+              "position": {
+                "x": 11.549999999999986,
+                "y": 11.049999999999986,
+                "direction": 4,
+                "moving": true
+              }
+            }
+          ]
+        },
+        {
+          "locked": true,
+          "members": [
+            {
+              "actor": 3,
+              "position": {
+                "x": 12.5,
+                "y": 11,
+                "direction": 2,
+                "moving": false
+              }
+            },
+            {
+              "actor": 4,
+              "position": {
+                "x": 11.499999999999986,
+                "y": 10.999999999999986,
+                "direction": 4,
+                "moving": true
+              }
+            }
+          ]
+        },
+        {
+          "locked": true,
+          "members": [
+            {
+              "actor": 3,
+              "position": {
+                "x": 12.5,
+                "y": 11,
+                "direction": 2,
+                "moving": false
+              }
+            },
+            {
+              "actor": 4,
+              "position": {
+                "x": 11.449999999999985,
+                "y": 10.949999999999985,
+                "direction": 4,
+                "moving": true
+              }
+            }
+          ]
+        },
+        {
+          "locked": true,
+          "members": [
+            {
+              "actor": 3,
+              "position": {
+                "x": 12.5,
+                "y": 11,
+                "direction": 2,
+                "moving": false
+              }
+            },
+            {
+              "actor": 4,
+              "position": {
+                "x": 11.399999999999984,
+                "y": 10.899999999999984,
+                "direction": 4,
+                "moving": true
+              }
+            }
+          ]
+        },
+        {
+          "locked": true,
+          "members": [
+            {
+              "actor": 3,
+              "position": {
+                "x": 12.5,
+                "y": 11,
+                "direction": 2,
+                "moving": false
+              }
+            },
+            {
+              "actor": 4,
+              "position": {
+                "x": 11.349999999999984,
+                "y": 10.849999999999984,
+                "direction": 4,
+                "moving": true
+              }
+            }
+          ]
+        },
+        {
+          "locked": true,
+          "members": [
+            {
+              "actor": 3,
+              "position": {
+                "x": 12.5,
+                "y": 11,
+                "direction": 2,
+                "moving": false
+              }
+            },
+            {
+              "actor": 4,
+              "position": {
+                "x": 11.299999999999983,
+                "y": 10.799999999999983,
+                "direction": 4,
+                "moving": true
+              }
+            }
+          ]
+        },
+        {
+          "locked": true,
+          "members": [
+            {
+              "actor": 3,
+              "position": {
+                "x": 12.5,
+                "y": 11,
+                "direction": 2,
+                "moving": false
+              }
+            },
+            {
+              "actor": 4,
+              "position": {
+                "x": 11.249999999999982,
+                "y": 10.749999999999982,
+                "direction": 4,
+                "moving": true
+              }
+            }
+          ]
+        },
+        {
+          "locked": true,
+          "members": [
+            {
+              "actor": 3,
+              "position": {
+                "x": 12.5,
+                "y": 11,
+                "direction": 2,
+                "moving": false
+              }
+            },
+            {
+              "actor": 4,
+              "position": {
+                "x": 11.199999999999982,
+                "y": 10.699999999999982,
+                "direction": 4,
+                "moving": true
+              }
+            }
+          ]
+        },
+        {
+          "locked": true,
+          "members": [
+            {
+              "actor": 3,
+              "position": {
+                "x": 12.5,
+                "y": 11,
+                "direction": 2,
+                "moving": false
+              }
+            },
+            {
+              "actor": 4,
+              "position": {
+                "x": 11.14999999999998,
+                "y": 10.64999999999998,
+                "direction": 4,
+                "moving": true
+              }
+            }
+          ]
+        },
+        {
+          "locked": true,
+          "members": [
+            {
+              "actor": 3,
+              "position": {
+                "x": 12.5,
+                "y": 11,
+                "direction": 2,
+                "moving": false
+              }
+            },
+            {
+              "actor": 4,
+              "position": {
+                "x": 11.09999999999998,
+                "y": 10.59999999999998,
+                "direction": 4,
+                "moving": true
+              }
+            }
+          ]
+        },
+        {
+          "locked": true,
+          "members": [
+            {
+              "actor": 3,
+              "position": {
+                "x": 12.5,
+                "y": 11,
+                "direction": 2,
+                "moving": false
+              }
+            },
+            {
+              "actor": 4,
+              "position": {
+                "x": 11.04999999999998,
+                "y": 10.54999999999998,
+                "direction": 4,
+                "moving": true
+              }
+            }
+          ]
+        },
+        {
+          "locked": true,
+          "members": [
+            {
+              "actor": 3,
+              "position": {
+                "x": 12.5,
+                "y": 11,
+                "direction": 2,
+                "moving": false
+              }
+            },
+            {
+              "actor": 4,
+              "position": {
+                "x": 10.999999999999979,
+                "y": 10.5,
+                "direction": 4,
+                "moving": true
+              }
+            }
+          ]
+        },
+        {
+          "locked": true,
+          "members": [
+            {
+              "actor": 3,
+              "position": {
+                "x": 12.5,
+                "y": 11,
+                "direction": 2,
+                "moving": false
+              }
+            },
+            {
+              "actor": 4,
+              "position": {
+                "x": 10.937499999999979,
+                "y": 10.5,
+                "direction": 4,
+                "moving": true
+              }
+            }
+          ]
+        },
+        {
+          "locked": true,
+          "members": [
+            {
+              "actor": 3,
+              "position": {
+                "x": 12.5,
+                "y": 11,
+                "direction": 2,
+                "moving": false
+              }
+            },
+            {
+              "actor": 4,
+              "position": {
+                "x": 10.874999999999979,
+                "y": 10.5,
+                "direction": 4,
+                "moving": true
+              }
+            }
+          ]
+        },
+        {
+          "locked": true,
+          "members": [
+            {
+              "actor": 3,
+              "position": {
+                "x": 12.5,
+                "y": 11,
+                "direction": 2,
+                "moving": false
+              }
+            },
+            {
+              "actor": 4,
+              "position": {
+                "x": 10.812499999999979,
+                "y": 10.5,
+                "direction": 4,
+                "moving": true
+              }
+            }
+          ]
+        },
+        {
+          "locked": true,
+          "members": [
+            {
+              "actor": 3,
+              "position": {
+                "x": 12.5,
+                "y": 11,
+                "direction": 2,
+                "moving": false
+              }
+            },
+            {
+              "actor": 4,
+              "position": {
+                "x": 10.749999999999979,
+                "y": 10.5,
+                "direction": 4,
+                "moving": true
+              }
+            }
+          ]
+        },
+        {
+          "locked": true,
+          "members": [
+            {
+              "actor": 3,
+              "position": {
+                "x": 12.5,
+                "y": 11,
+                "direction": 2,
+                "moving": false
+              }
+            },
+            {
+              "actor": 4,
+              "position": {
+                "x": 10.687499999999979,
+                "y": 10.5,
+                "direction": 4,
+                "moving": true
+              }
+            }
+          ]
+        },
+        {
+          "locked": true,
+          "members": [
+            {
+              "actor": 3,
+              "position": {
+                "x": 12.5,
+                "y": 11,
+                "direction": 2,
+                "moving": false
+              }
+            },
+            {
+              "actor": 4,
+              "position": {
+                "x": 10.624999999999979,
+                "y": 10.5,
+                "direction": 4,
+                "moving": true
+              }
+            }
+          ]
+        },
+        {
+          "locked": true,
+          "members": [
+            {
+              "actor": 3,
+              "position": {
+                "x": 12.5,
+                "y": 11,
+                "direction": 2,
+                "moving": false
+              }
+            },
+            {
+              "actor": 4,
+              "position": {
+                "x": 10.562499999999979,
+                "y": 10.5,
+                "direction": 4,
+                "moving": true
+              }
+            }
+          ]
+        },
+        {
+          "locked": true,
+          "members": [
+            {
+              "actor": 3,
+              "position": {
+                "x": 12.5,
+                "y": 11,
+                "direction": 2,
+                "moving": false
+              }
+            },
+            {
+              "actor": 4,
+              "position": {
+                "x": 10.5,
+                "y": 10.5,
+                "direction": 4,
+                "moving": false
+              }
+            }
+          ]
+        }
+      ],
+      "followers": true,
+      "proxiesHidden": true,
+      "camera": [
+        0,
+        0
+      ],
+      "messages": [
+        "よくぞここまで",
+        "たどり着いた",
+        "愚か者どもよ…",
+        "あら、この声は",
+        "ツネヒだわ",
+        "だが、この先が",
+        "キサマらの墓場と",
+        "なるだろう",
+        "この先は",
+        "地獄の通り道…",
+        "題して、",
+        "88,888,888番通路だ！",
+        "88,888,888番",
+        "通路！？！？",
+        "ここは何の変哲もない",
+        "通路…しかしそこには",
+        "「異変」が現れることがある",
+        "ルールは簡単だ",
+        "異変があれば、引き返せ！",
+        "異変が無ければ進め！",
+        "フッフッフ…",
+        "簡単だろう？",
+        "もし間違えたら、",
+        "なんと、最初から",
+        "だ！！！",
+        "予言しよう…",
+        "キサマらはここで",
+        "彷徨い続け、一生出る",
+        "ことはできないッ！！",
+        "そ、そんなァ！",
+        "！！！",
+        "せいぜい死ぬまで",
+        "もがき苦しみ続け",
+        "るがいい…",
+        "ギャハハ",
+        "ハハ！！！！"
+      ],
+      "rendered": [
+        "$003",
+        "$002",
+        "$001"
+      ],
+      "onceOnReentry": true
+    }
+  ],
+  "nativeSaveLoad": true,
+  "saveDirectory": "C:\\Users\\kgygn\\AppData\\Local\\Temp\\codex-road-intro-capture-20261120-saves\\",
+  "saveSlot": 500
+}

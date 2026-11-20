@@ -1,0 +1,63 @@
+Input #0, mov,mp4,m4a,3gp,3g2,mj2, from 'C:\Users\kgygn\Dropbox\ゲーム\Game_NewGame\NewGame\artifacts\gnuro-first-break-impact-fixed-20261118\_capture\game-silent.mp4':
+  Metadata:
+    major_brand     : isom
+    minor_version   : 512
+    compatible_brands: isomiso2avc1mp41
+    encoder         : Lavf60.16.100
+  Duration: 00:00:08.93, start: 0.000000, bitrate: 2776 kb/s
+  Stream #0:0[0x1](und): Video: h264 (High) (avc1 / 0x31637661), yuv420p(tv, bt470bg/unknown/unknown, progressive), 816x624 [SAR 1:1 DAR 17:13], 2773 kb/s, 30 fps, 30 tbr, 15360 tbn (default)
+    Metadata:
+      handler_name    : VideoHandler
+      vendor_id       : [0][0][0][0]
+      encoder         : Lavc60.31.102 libx264
+[aist#1:0/pcm_s16le @ 0000013ad6204980] Guessed Channel Layout: stereo
+Input #1, wav, from 'C:\Users\kgygn\Dropbox\ゲーム\Game_NewGame\NewGame\artifacts\gnuro-first-break-impact-fixed-20261118\_capture\game-audio.wav':
+  Duration: 00:00:08.93, bitrate: 1411 kb/s
+  Stream #1:0: Audio: pcm_s16le ([1][0][0][0] / 0x0001), 44100 Hz, 2 channels, s16, 1411 kb/s
+Stream mapping:
+  Stream #0:0 -> #0:0 (h264 (native) -> h264 (libx264))
+  Stream #1:0 -> #0:1 (pcm_s16le (native) -> aac (native))
+Press [q] to stop, [?] for help
+[libx264 @ 0000013ad64ce8c0] using SAR=1/1
+[libx264 @ 0000013ad64ce8c0] using cpu capabilities: MMX2 SSE2Fast SSSE3 SSE4.2 AVX FMA3 BMI2 AVX2
+[libx264 @ 0000013ad64ce8c0] profile High, level 3.1, 4:2:0, 8-bit
+[libx264 @ 0000013ad64ce8c0] 264 - core 164 r3172 c1c9931 - H.264/MPEG-4 AVC codec - Copyleft 2003-2023 - http://www.videolan.org/x264.html - options: cabac=1 ref=5 deblock=1:0:0 analyse=0x3:0x113 me=hex subme=8 psy=1 psy_rd=1.00:0.00 mixed_ref=1 me_range=16 chroma_me=1 trellis=2 8x8dct=1 cqm=0 deadzone=21,11 fast_pskip=1 chroma_qp_offset=-2 threads=18 lookahead_threads=3 sliced_threads=0 nr=0 decimate=1 interlaced=0 bluray_compat=0 constrained_intra=0 bframes=3 b_pyramid=2 b_adapt=1 b_bias=0 direct=3 weightb=1 open_gop=0 weightp=2 keyint=250 keyint_min=25 scenecut=40 intra_refresh=0 rc_lookahead=50 rc=crf mbtree=1 crf=18.0 qcomp=0.60 qpmin=0 qpmax=69 qpstep=4 ip_ratio=1.40 aq=1:1.00
+Output #0, mp4, to 'C:\Users\kgygn\Dropbox\ゲーム\Game_NewGame\NewGame\artifacts\gnuro-first-break-impact-fixed-20261118\gnuro_first_break.mp4':
+  Metadata:
+    major_brand     : isom
+    minor_version   : 512
+    compatible_brands: isomiso2avc1mp41
+    encoder         : Lavf60.16.100
+  Stream #0:0(und): Video: h264 (avc1 / 0x31637661), yuv420p(tv, progressive), 816x624 [SAR 1:1 DAR 17:13], q=2-31, 30 fps, 15360 tbn (default)
+    Metadata:
+      handler_name    : VideoHandler
+      vendor_id       : [0][0][0][0]
+      encoder         : Lavc60.31.102 libx264
+    Side data:
+      cpb: bitrate max/min/avg: 0/0/0 buffer size: 0 vbv_delay: N/A
+  Stream #0:1: Audio: aac (LC) (mp4a / 0x6134706D), 44100 Hz, stereo, fltp, 192 kb/s
+    Metadata:
+      encoder         : Lavc60.31.102 aac
+frame=    0 fps=0.0 q=0.0 size=       0kB time=N/A bitrate=N/A speed=N/A    frame=    3 fps=0.0 q=24.0 size=       0kB time=00:00:02.41 bitrate=   0.2kbits/s speed=3.97x    frame=   36 fps= 32 q=24.0 size=     256kB time=00:00:03.52 bitrate= 594.3kbits/s speed=3.18x    frame=   96 fps= 60 q=24.0 size=     768kB time=00:00:05.52 bitrate=1138.5kbits/s speed=3.43x    frame=  134 fps= 62 q=24.0 size=    1024kB time=00:00:06.78 bitrate=1237.3kbits/s speed=3.12x    frame=  196 fps= 72 q=24.0 size=    1792kB time=00:00:08.40 bitrate=1746.5kbits/s speed=3.11x    [mp4 @ 0000013ad653fac0] Starting second pass: moving the moov atom to the beginning of the file
+[out#0/mp4 @ 0000013ad653f9c0] video:2216kB audio:224kB subtitle:0kB other streams:0kB global headers:0kB muxing overhead: 0.434667%
+frame=  271 fps= 80 q=-1.0 Lsize=    2450kB time=00:00:09.03 bitrate=2222.1kbits/s speed=2.67x    
+[libx264 @ 0000013ad64ce8c0] frame I:3     Avg QP:13.15  size: 60078
+[libx264 @ 0000013ad64ce8c0] frame P:132   Avg QP:19.78  size: 12880
+[libx264 @ 0000013ad64ce8c0] frame B:136   Avg QP:23.95  size:  2851
+[libx264 @ 0000013ad64ce8c0] consecutive B-frames: 24.0% 23.6% 11.1% 41.3%
+[libx264 @ 0000013ad64ce8c0] mb I  I16..4: 50.7% 12.7% 36.6%
+[libx264 @ 0000013ad64ce8c0] mb P  I16..4:  0.6%  0.5%  2.2%  P16..4: 17.3%  4.4%  7.8%  0.0%  0.0%    skip:67.2%
+[libx264 @ 0000013ad64ce8c0] mb B  I16..4:  0.1%  0.1%  0.2%  B16..8:  9.3%  2.2%  2.8%  direct: 5.1%  skip:80.2%  L0:44.2% L1:38.8% BI:17.1%
+[libx264 @ 0000013ad64ce8c0] 8x8 transform intra:15.2% inter:27.3%
+[libx264 @ 0000013ad64ce8c0] direct mvs  spatial:94.1% temporal:5.9%
+[libx264 @ 0000013ad64ce8c0] coded y,uvDC,uvAC intra: 59.8% 21.2% 5.1% inter: 8.2% 6.5% 0.0%
+[libx264 @ 0000013ad64ce8c0] i16 v,h,dc,p: 44% 42%  9%  4%
+[libx264 @ 0000013ad64ce8c0] i8 v,h,dc,ddl,ddr,vr,hd,vl,hu:  9% 12% 41%  6%  7%  6%  5%  5%  8%
+[libx264 @ 0000013ad64ce8c0] i4 v,h,dc,ddl,ddr,vr,hd,vl,hu: 18% 29% 15%  6%  6%  6%  6%  6%  9%
+[libx264 @ 0000013ad64ce8c0] i8c dc,h,v,p: 70% 19% 10%  1%
+[libx264 @ 0000013ad64ce8c0] Weighted P-Frames: Y:15.2% UV:10.6%
+[libx264 @ 0000013ad64ce8c0] ref P L0: 61.2%  5.0% 12.0%  6.2%  8.5%  7.1%  0.0%
+[libx264 @ 0000013ad64ce8c0] ref B L0: 88.4%  7.5%  3.3%  0.7%
+[libx264 @ 0000013ad64ce8c0] ref B L1: 95.4%  4.6%
+[libx264 @ 0000013ad64ce8c0] kb/s:2008.72
+[aac @ 0000013ad64a94c0] Qavg: 1556.563

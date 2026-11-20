@@ -1,0 +1,10 @@
+{
+  "mode": "built-in image_gen",
+  "prompt": "A single temporary game sprite: a friendly 'Beast of Death', a small shaggy black dog-like beast with two short horns, a big fluffy rounded head, tiny white dot eyes and little white fang. Full body, four squat legs, simple cheerful deadpan expression, facing right in three-quarter side view, upright resting pose. Rough hand drawn Japanese notebook RPG doodle, charming childish uneven thick lines and flat silhouette. ONLY dark charcoal #474e51 and white highlights, absolutely no pure technical black, no colors, no shading, no ground, no text, no props, no border. Transparent background. Entire creature centered with generous transparent margins. This will be reduced to a 144x144 cell and must read clearly. One creature only, no sprite sheet.",
+  "source": "C:/Users/kgygn/.codex/generated_images/01a1ec56-78c4-7483-aa94-cd08fdc223ee/exec-9861cb46-0644-48bd-b0bb-28c9413f4d0c.png",
+  "assets": [
+    "img/sv_actors/castleBeast_tmp.png",
+    "img/characters/$castleBeast_tmp.png"
+  ],
+  "formatting": "Native Aseprite: trim transparent margins, canonical charcoal and white, 144px cells. Mone/Tsunehi battle placeholders reuse existing character art; Item9 contains two simple native geometric keys."
+}

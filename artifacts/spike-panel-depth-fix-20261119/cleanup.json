@@ -1,0 +1,56 @@
+{
+    "TemporaryPngCount":  7,
+    "TemporaryPngBytes":  3147738,
+    "WorkVideoCount":  2,
+    "WorkVideoBytes":  49394025,
+    "FinalVideoPath":  "C:\\Users\\kgygn\\Dropbox\\ゲーム\\Game_NewGame\\NewGame\\artifacts\\spike-panel-depth-fix-20261119\\party_depth_fix.mp4",
+    "FinalVideoBytes":  7431611,
+    "FinalScreenshotRetained":  true,
+    "Deleted":  [
+                    {
+                        "Path":  "C:\\Users\\kgygn\\Dropbox\\ゲーム\\Game_NewGame\\NewGame\\artifacts\\spike-panel-depth-fix-20261119\\_video_work\\proof-00.png",
+                        "Bytes":  196213,
+                        "Kind":  "temporary PNG"
+                    },
+                    {
+                        "Path":  "C:\\Users\\kgygn\\Dropbox\\ゲーム\\Game_NewGame\\NewGame\\artifacts\\spike-panel-depth-fix-20261119\\_video_work\\proof-01.png",
+                        "Bytes":  220280,
+                        "Kind":  "temporary PNG"
+                    },
+                    {
+                        "Path":  "C:\\Users\\kgygn\\Dropbox\\ゲーム\\Game_NewGame\\NewGame\\artifacts\\spike-panel-depth-fix-20261119\\_video_work\\proof-02.png",
+                        "Bytes":  219263,
+                        "Kind":  "temporary PNG"
+                    },
+                    {
+                        "Path":  "C:\\Users\\kgygn\\Dropbox\\ゲーム\\Game_NewGame\\NewGame\\artifacts\\spike-panel-depth-fix-20261119\\_video_work\\proof-03.png",
+                        "Bytes":  202105,
+                        "Kind":  "temporary PNG"
+                    },
+                    {
+                        "Path":  "C:\\Users\\kgygn\\Dropbox\\ゲーム\\Game_NewGame\\NewGame\\artifacts\\spike-panel-depth-fix-20261119\\_video_work\\proof-contact.png",
+                        "Bytes":  870750,
+                        "Kind":  "temporary PNG"
+                    },
+                    {
+                        "Path":  "C:\\Users\\kgygn\\Dropbox\\ゲーム\\Game_NewGame\\NewGame\\artifacts\\spike-panel-depth-fix-20261119\\_video_work\\idle-contact.png",
+                        "Bytes":  549489,
+                        "Kind":  "temporary PNG"
+                    },
+                    {
+                        "Path":  "C:\\Users\\kgygn\\Dropbox\\ゲーム\\Game_NewGame\\NewGame\\artifacts\\spike-panel-depth-fix-20261119\\puzzle-overview.png",
+                        "Bytes":  889638,
+                        "Kind":  "temporary PNG"
+                    },
+                    {
+                        "Path":  "C:\\Users\\kgygn\\Dropbox\\ゲーム\\Game_NewGame\\NewGame\\artifacts\\spike-panel-depth-fix-20261119\\_video_work\\spike-panel-puzzle-1795083963829.webm",
+                        "Bytes":  19620266,
+                        "Kind":  "superseded unsubmitted video"
+                    },
+                    {
+                        "Path":  "C:\\Users\\kgygn\\Dropbox\\ゲーム\\Game_NewGame\\NewGame\\artifacts\\spike-panel-depth-fix-20261119\\spike_panel_puzzle.mp4",
+                        "Bytes":  29773759,
+                        "Kind":  "superseded unsubmitted video"
+                    }
+                ]
+}

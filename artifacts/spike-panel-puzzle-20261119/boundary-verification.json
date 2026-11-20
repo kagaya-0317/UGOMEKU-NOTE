@@ -1,0 +1,27 @@
+{
+  "partial": {
+    "clock": 34,
+    "total": 8,
+    "on": [
+      5
+    ],
+    "complete": false
+  },
+  "partialReentry": true,
+  "firstFloorHit": {
+    "hp": 48,
+    "target": {
+      "x": 25.5,
+      "y": 21
+    },
+    "puzzle": null,
+    "camera": [
+      null,
+      null
+    ]
+  },
+  "firstFloorReturn": [
+    25.5,
+    21
+  ]
+}

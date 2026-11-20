@@ -1,0 +1,7 @@
+const fs=require('node:fs'),path=require('node:path'),assert=require('node:assert/strict'),{spawnSync}=require('node:child_process');
+const root=path.resolve(__dirname,'../..'),out=path.join(root,'artifacts/mone-wave-20261120'),m=JSON.parse(fs.readFileSync(path.join(__dirname,'artist_sources.json'),'utf8'));
+const a=m.assets.find(a=>path.basename(a.runtime)==='castleMone_tmp.png');assert(a);
+const source=fs.readFileSync(a.editable),runtime=fs.readFileSync(a.runtime),backup=path.join(out,'before','artwork');fs.mkdirSync(backup,{recursive:true});
+for(const[f,b]of [[a.editable,source],[a.runtime,runtime]]){const dest=path.join(backup,path.basename(f));assert(!fs.existsSync(dest),'Already resized; inspect instead of repeating');fs.writeFileSync(dest,b);}
+assert(fs.readFileSync(a.editable).equals(source)&&fs.readFileSync(a.runtime).equals(runtime),'Concurrent artwork change');
+const log=path.join(out,'asset-resize.log');const r=spawnSync('C:/Program Files (x86)/Steam/steamapps/common/Aseprite/Aseprite.exe',['--batch','--script-param','source='+a.editable,'--script-param','runtime='+a.runtime,'--script-param','log='+log,'--script',path.join(__dirname,'halve_mone_art.lua')],{encoding:'utf8',windowsHide:true});assert.equal(r.status,0,r.stdout+r.stderr);assert.equal(fs.readFileSync(log,'utf8'),'OK');console.log('Halved Mone artwork around each cell foot baseline; sheet dimensions preserved.');

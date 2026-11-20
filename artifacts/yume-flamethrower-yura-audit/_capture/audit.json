@@ -1,0 +1,93 @@
+{
+  "skillId": 50,
+  "skillName": "flamethrower",
+  "hits": 3,
+  "armStatic": [
+    {
+      "start": 77,
+      "end": 141,
+      "phase": "active",
+      "moving": false,
+      "firing": true,
+      "drilling": false,
+      "spraying": true,
+      "recoiling": false,
+      "frames": 65
+    },
+    {
+      "start": 317,
+      "end": 381,
+      "phase": "active",
+      "moving": false,
+      "firing": true,
+      "drilling": false,
+      "spraying": true,
+      "recoiling": false,
+      "frames": 65
+    },
+    {
+      "start": 557,
+      "end": 621,
+      "phase": "active",
+      "moving": false,
+      "firing": true,
+      "drilling": false,
+      "spraying": true,
+      "recoiling": false,
+      "frames": 65
+    }
+  ],
+  "bodyStatic": [],
+  "phases": [
+    {
+      "phase": "active",
+      "moving": true,
+      "armYura": false,
+      "bodyYura": false,
+      "firing": false,
+      "drilling": false,
+      "spraying": false,
+      "recoiling": false
+    },
+    {
+      "phase": "active",
+      "moving": false,
+      "armYura": true,
+      "bodyYura": false,
+      "firing": false,
+      "drilling": false,
+      "spraying": false,
+      "recoiling": false
+    },
+    {
+      "phase": "active",
+      "moving": false,
+      "armYura": false,
+      "bodyYura": false,
+      "firing": true,
+      "drilling": false,
+      "spraying": true,
+      "recoiling": false
+    },
+    {
+      "phase": "pending",
+      "moving": false,
+      "armYura": true,
+      "bodyYura": false,
+      "firing": false,
+      "drilling": false,
+      "spraying": false,
+      "recoiling": false
+    },
+    {
+      "phase": "retracting",
+      "moving": true,
+      "armYura": false,
+      "bodyYura": false,
+      "firing": false,
+      "drilling": false,
+      "spraying": false,
+      "recoiling": false
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "files": {
+    "data/Map063.json": "f212f79b4b5ec182769e80a23fd377fe83e19092298fc449e93dfbb660f4e22f",
+    "data/System.json": "13e3712a27f9c1b8420536a86b0001b3764f85d229bd931a5cbf2130f2ac671d",
+    "js/plugins/KNH_ZXC_CastleUpper.js": "8982b2a7341d535742a96941c97322b647531f1a3046500389dffb539bb55c33",
+    "data/Map054.json": "11753585a0b06d548a3643a1a579d63f2d10bcf4745e90b7641b30c3628bfda8",
+    "data/Map055.json": "490cd1a5fe27f6d9a27161dd408034707f661aa4ea8f935d589f3ce2db001aed",
+    "data/MapInfos.json": "dc18f7edb145d6dd08bb1f391ac350ad535c498b583185b0db6ff44f4aa9cbae",
+    "data/CommonEvents.json": "f0a9d8ed52b6ad112c3b9472a7cdb9918bd534e915667b8697f3304b2fa8f46b",
+    "js/plugins/KNH_ZXC_PopupPortrait.js": "346996a63cdb4f05ce97049b9ffc06dfb2e2b0ee936c8c203078bf8c05302fca",
+    "img/characters/$kanbu2_2.png": "1ff4566e26d6ba9ae210f0eb487b365203c4f6a753239514ae67c399860fd040",
+    "img/parallaxes/!map112.png": "9031b98bd77526903c54dd153886a624a5b6677135cfbbffc1acc75e8a66370b",
+    "AGENTS.md": "021ec0c970e053aeb50452ba58b84a6316109060cafd9e21a0a8aeab2ce36146"
+  }
+}

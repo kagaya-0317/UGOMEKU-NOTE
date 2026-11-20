@@ -1,0 +1,28 @@
+{
+  "character": {
+    "scaleX": 2,
+    "scaleY": 2,
+    "meshVisible": true
+  },
+  "puff": {
+    "frameWidth": 222,
+    "frameHeight": 154,
+    "scaleX": 1,
+    "scaleY": 1,
+    "ratioX": 2,
+    "ratioY": 2
+  },
+  "trail": {
+    "frameWidth": 96,
+    "frameHeight": 96,
+    "scaleX": 1,
+    "scaleY": 1,
+    "ratioX": 2,
+    "ratioY": 2
+  },
+  "parentScale": {
+    "x": 1,
+    "y": 1
+  },
+  "zoom": 1
+}

@@ -1,0 +1,71 @@
+{
+    "TemporaryPngCount":  11,
+    "TemporaryPngBytes":  3418991,
+    "RawVideoCount":  1,
+    "RawVideoBytes":  19350513,
+    "FinalVideoPath":  "C:\\Users\\kgygn\\Dropbox\\ゲーム\\Game_NewGame\\NewGame\\artifacts\\spike-panel-hatching-20261119\\spike_panel_puzzle.mp4",
+    "FinalVideoBytes":  27916202,
+    "FinalScreenshotRetained":  true,
+    "Deleted":  [
+                    {
+                        "Path":  "C:\\Users\\kgygn\\Dropbox\\ゲーム\\Game_NewGame\\NewGame\\artifacts\\spike-panel-hatching-20261119\\_video_work\\check-00.png",
+                        "Bytes":  199805,
+                        "Kind":  "temporary PNG"
+                    },
+                    {
+                        "Path":  "C:\\Users\\kgygn\\Dropbox\\ゲーム\\Game_NewGame\\NewGame\\artifacts\\spike-panel-hatching-20261119\\_video_work\\check-01.png",
+                        "Bytes":  222768,
+                        "Kind":  "temporary PNG"
+                    },
+                    {
+                        "Path":  "C:\\Users\\kgygn\\Dropbox\\ゲーム\\Game_NewGame\\NewGame\\artifacts\\spike-panel-hatching-20261119\\_video_work\\check-02.png",
+                        "Bytes":  222429,
+                        "Kind":  "temporary PNG"
+                    },
+                    {
+                        "Path":  "C:\\Users\\kgygn\\Dropbox\\ゲーム\\Game_NewGame\\NewGame\\artifacts\\spike-panel-hatching-20261119\\_video_work\\check-03.png",
+                        "Bytes":  192514,
+                        "Kind":  "temporary PNG"
+                    },
+                    {
+                        "Path":  "C:\\Users\\kgygn\\Dropbox\\ゲーム\\Game_NewGame\\NewGame\\artifacts\\spike-panel-hatching-20261119\\_video_work\\check-04.png",
+                        "Bytes":  194372,
+                        "Kind":  "temporary PNG"
+                    },
+                    {
+                        "Path":  "C:\\Users\\kgygn\\Dropbox\\ゲーム\\Game_NewGame\\NewGame\\artifacts\\spike-panel-hatching-20261119\\_video_work\\check-05.png",
+                        "Bytes":  205433,
+                        "Kind":  "temporary PNG"
+                    },
+                    {
+                        "Path":  "C:\\Users\\kgygn\\Dropbox\\ゲーム\\Game_NewGame\\NewGame\\artifacts\\spike-panel-hatching-20261119\\_video_work\\check-06.png",
+                        "Bytes":  179563,
+                        "Kind":  "temporary PNG"
+                    },
+                    {
+                        "Path":  "C:\\Users\\kgygn\\Dropbox\\ゲーム\\Game_NewGame\\NewGame\\artifacts\\spike-panel-hatching-20261119\\_video_work\\check-07.png",
+                        "Bytes":  197209,
+                        "Kind":  "temporary PNG"
+                    },
+                    {
+                        "Path":  "C:\\Users\\kgygn\\Dropbox\\ゲーム\\Game_NewGame\\NewGame\\artifacts\\spike-panel-hatching-20261119\\_video_work\\contact-sheet.png",
+                        "Bytes":  1769631,
+                        "Kind":  "temporary PNG"
+                    },
+                    {
+                        "Path":  "C:\\Users\\kgygn\\Dropbox\\ゲーム\\Game_NewGame\\NewGame\\artifacts\\spike-panel-hatching-20261119\\_work\\native-floor.png",
+                        "Bytes":  11514,
+                        "Kind":  "temporary PNG"
+                    },
+                    {
+                        "Path":  "C:\\Users\\kgygn\\Dropbox\\ゲーム\\Game_NewGame\\NewGame\\artifacts\\spike-panel-hatching-20261119\\_work\\spike-poses.png",
+                        "Bytes":  23753,
+                        "Kind":  "temporary PNG"
+                    },
+                    {
+                        "Path":  "C:\\Users\\kgygn\\Dropbox\\ゲーム\\Game_NewGame\\NewGame\\artifacts\\spike-panel-hatching-20261119\\_video_work\\spike-panel-puzzle-1795082529091.webm",
+                        "Bytes":  19350513,
+                        "Kind":  "superseded raw video"
+                    }
+                ]
+}

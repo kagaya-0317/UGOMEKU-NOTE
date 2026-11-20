@@ -1,0 +1,302 @@
+[
+  {
+    "id": 59,
+    "events": 7,
+    "width": 21,
+    "height": 30,
+    "background": "!map113",
+    "reachableHalfSteps": 785,
+    "wallBlocked": true,
+    "probes": [
+      {
+        "at": [
+          3,
+          24.5
+        ],
+        "walkable": true,
+        "reachable": true
+      },
+      {
+        "at": [
+          10,
+          22
+        ],
+        "walkable": true,
+        "reachable": true
+      },
+      {
+        "at": [
+          10,
+          16
+        ],
+        "walkable": true,
+        "reachable": true
+      },
+      {
+        "at": [
+          10,
+          11
+        ],
+        "walkable": true,
+        "reachable": true
+      },
+      {
+        "at": [
+          10,
+          5.5
+        ],
+        "walkable": true,
+        "reachable": true
+      }
+    ],
+    "yura": true,
+    "mesh": true
+  },
+  {
+    "id": 60,
+    "events": 8,
+    "width": 41,
+    "height": 30,
+    "background": "!map114",
+    "reachableHalfSteps": 1414,
+    "wallBlocked": true,
+    "probes": [
+      {
+        "at": [
+          14.5,
+          25
+        ],
+        "walkable": true,
+        "reachable": true
+      },
+      {
+        "at": [
+          20,
+          18
+        ],
+        "walkable": true,
+        "reachable": true
+      },
+      {
+        "at": [
+          20,
+          12
+        ],
+        "walkable": true,
+        "reachable": true
+      },
+      {
+        "at": [
+          25,
+          9
+        ],
+        "walkable": true,
+        "reachable": true
+      },
+      {
+        "at": [
+          7,
+          18
+        ],
+        "walkable": true,
+        "reachable": true
+      },
+      {
+        "at": [
+          5,
+          15
+        ],
+        "walkable": true,
+        "reachable": true
+      },
+      {
+        "at": [
+          6,
+          11
+        ],
+        "walkable": true,
+        "reachable": true
+      },
+      {
+        "at": [
+          34,
+          18
+        ],
+        "walkable": true,
+        "reachable": true
+      },
+      {
+        "at": [
+          34,
+          15
+        ],
+        "walkable": true,
+        "reachable": true
+      },
+      {
+        "at": [
+          37,
+          12
+        ],
+        "walkable": true,
+        "reachable": true
+      },
+      {
+        "at": [
+          32,
+          12
+        ],
+        "walkable": true,
+        "reachable": true
+      }
+    ],
+    "yura": true,
+    "mesh": true
+  },
+  {
+    "id": 61,
+    "events": 4,
+    "width": 21,
+    "height": 30,
+    "background": "!map114_room",
+    "reachableHalfSteps": 828,
+    "wallBlocked": true,
+    "probes": [
+      {
+        "at": [
+          15.5,
+          25
+        ],
+        "walkable": true,
+        "reachable": true
+      },
+      {
+        "at": [
+          10,
+          23
+        ],
+        "walkable": true,
+        "reachable": true
+      },
+      {
+        "at": [
+          7,
+          18
+        ],
+        "walkable": true,
+        "reachable": true
+      },
+      {
+        "at": [
+          13.5,
+          18
+        ],
+        "walkable": true,
+        "reachable": true
+      },
+      {
+        "at": [
+          8,
+          12
+        ],
+        "walkable": true,
+        "reachable": true
+      },
+      {
+        "at": [
+          12,
+          12
+        ],
+        "walkable": true,
+        "reachable": true
+      },
+      {
+        "at": [
+          10,
+          8
+        ],
+        "walkable": true,
+        "reachable": true
+      },
+      {
+        "at": [
+          4,
+          25
+        ],
+        "walkable": true,
+        "reachable": true
+      }
+    ],
+    "yura": true,
+    "mesh": true
+  },
+  {
+    "id": 62,
+    "events": 6,
+    "width": 21,
+    "height": 30,
+    "background": "!map115",
+    "reachableHalfSteps": 793,
+    "wallBlocked": true,
+    "probes": [
+      {
+        "at": [
+          10,
+          25.5
+        ],
+        "walkable": true,
+        "reachable": true
+      },
+      {
+        "at": [
+          10,
+          23
+        ],
+        "walkable": true,
+        "reachable": true
+      },
+      {
+        "at": [
+          10,
+          17
+        ],
+        "walkable": true,
+        "reachable": true
+      },
+      {
+        "at": [
+          10,
+          12
+        ],
+        "walkable": true,
+        "reachable": true
+      },
+      {
+        "at": [
+          10,
+          9
+        ],
+        "walkable": true,
+        "reachable": true
+      },
+      {
+        "at": [
+          8,
+          7.5
+        ],
+        "walkable": true,
+        "reachable": true
+      },
+      {
+        "at": [
+          12,
+          7.5
+        ],
+        "walkable": true,
+        "reachable": true
+      }
+    ],
+    "yura": true,
+    "mesh": true
+  }
+]

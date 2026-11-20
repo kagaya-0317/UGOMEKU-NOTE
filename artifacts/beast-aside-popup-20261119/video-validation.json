@@ -1,0 +1,33 @@
+{
+  "fullDecode": true,
+  "duration": 33.53333333333333,
+  "audioRms": 0.23744895369116298,
+  "audioTailMax": 0,
+  "endpoints": {
+    "first": [
+      0,
+      0,
+      0
+    ],
+    "last": [
+      0,
+      0,
+      0
+    ],
+    "frames": 1006
+  },
+  "blackIntervals": [
+    {
+      "start": 0,
+      "end": 0.2,
+      "duration": 0.2
+    },
+    {
+      "start": 32.8667,
+      "end": 33.5,
+      "duration": 0.633333
+    }
+  ],
+  "noInteriorBlack": true,
+  "pcOutputMuted": true
+}

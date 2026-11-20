@@ -1,0 +1,101 @@
+[
+  {
+    "frame": 40,
+    "name": "Machine",
+    "volume": 8,
+    "pitch": 104,
+    "loop": false,
+    "kind": "movement",
+    "stopFrame": 59
+  },
+  {
+    "frame": 62,
+    "name": "00_shot1",
+    "volume": 24,
+    "pitch": 106,
+    "loop": false,
+    "kind": "weapon",
+    "stopFrame": 133
+  },
+  {
+    "frame": 68,
+    "name": "Blow1",
+    "volume": 14,
+    "pitch": 112,
+    "loop": false,
+    "kind": "weapon",
+    "stopFrame": 84
+  },
+  {
+    "frame": 75,
+    "name": "Machine",
+    "volume": 8,
+    "pitch": 104,
+    "loop": false,
+    "kind": "movement",
+    "stopFrame": 105
+  },
+  {
+    "frame": 280,
+    "name": "Machine",
+    "volume": 8,
+    "pitch": 98,
+    "loop": false,
+    "kind": "movement",
+    "stopFrame": 299
+  },
+  {
+    "frame": 302,
+    "name": "00_shot1",
+    "volume": 26,
+    "pitch": 96,
+    "loop": false,
+    "kind": "weapon",
+    "stopFrame": 377
+  },
+  {
+    "frame": 308,
+    "name": "Blow1",
+    "volume": 15,
+    "pitch": 104,
+    "loop": false,
+    "kind": "weapon",
+    "stopFrame": 327
+  },
+  {
+    "frame": 315,
+    "name": "Machine",
+    "volume": 8,
+    "pitch": 103,
+    "loop": false,
+    "kind": "movement",
+    "stopFrame": 345
+  },
+  {
+    "frame": 520,
+    "name": "Machine",
+    "volume": 8,
+    "pitch": 97,
+    "loop": false,
+    "kind": "movement",
+    "stopFrame": 555
+  },
+  {
+    "frame": 557,
+    "name": "Fire2",
+    "volume": 16,
+    "pitch": 96,
+    "loop": false,
+    "kind": "weapon",
+    "stopFrame": 616
+  },
+  {
+    "frame": 629,
+    "name": "Machine",
+    "volume": 8,
+    "pitch": 99,
+    "loop": false,
+    "kind": "movement",
+    "stopFrame": 665
+  }
+]

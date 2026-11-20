@@ -1,0 +1,45 @@
+    // Reuse encounter staging with scoped stand-ins and a captured return point.
+    api.beginGate = function(eventId) {
+        api.beginScene(eventId, true, {returnPlayer: true});
+    };
+    api.focusGate = function(eventId) {
+        var gate = $gameMap.event(eventId);
+        $gameMap.scrollCameraTo(gate.x, gate.y + 0.5, 60);
+    };
+    api.gateMiiSpeaker = function() {
+        var state = $gameTemp._castleUpperScene;
+        if (!state || state.eventId !== 8 || state.mapId !== $gameMap.mapId()) return false;
+        var member = state.members.filter(function(member) { return member.actorId === 3; })[0];
+        var mii = member && $gameMap.event(member.eventId);
+        if (!mii) return false;
+        $gamePlayer.turnTowardCharacter(mii);
+        state.members.forEach(function(member) {
+            if (member.actorId === 4) $gameMap.event(member.eventId).turnTowardCharacter(mii);
+        });
+        mii.turnTowardCharacter($gamePlayer);
+        api.mapSpeaker(mii.eventId());
+        $gameMessage._popupHeight = 0;
+        return true;
+    };
+    api.gateYumeSpeaker = function() {
+        var state = $gameTemp._castleUpperScene;
+        if (!state || state.eventId !== 8 || state.mapId !== $gameMap.mapId()) return false;
+        var member = state.members.filter(function(member) { return member.actorId === 4; })[0];
+        var yume = member && $gameMap.event(member.eventId);
+        if (!yume) return false;
+        $gamePlayer.turnTowardCharacter(yume);
+        state.members.forEach(function(member) {
+            if (member.actorId === 3) {
+                var mii = $gameMap.event(member.eventId);
+                mii.turnTowardCharacter(yume);
+                yume.turnTowardCharacter(mii);
+            }
+        });
+        api.mapSpeaker(yume.eventId());
+        $gameMessage._popupHeight = 0;
+        return true;
+    };
+    api.endGate = function() {
+        api.endScene();
+    };
+

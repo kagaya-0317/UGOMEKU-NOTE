@@ -1,0 +1,45 @@
+Input #0, mov,mp4,m4a,3gp,3g2,mj2, from 'C:\Users\kgygn\Dropbox\ゲーム\Game_NewGame\NewGame\artifacts\yume-gatling-even-link-hanger\yume_gatling_even_link_hanger.mp4':
+  Metadata:
+    major_brand     : isom
+    minor_version   : 512
+    compatible_brands: isomiso2avc1mp41
+    encoder         : Lavf60.16.100
+  Duration: 00:00:12.00, start: 0.000000, bitrate: 869 kb/s
+  Stream #0:0[0x1](und): Video: h264 (High) (avc1 / 0x31637661), yuv420p(progressive), 816x624, 734 kb/s, 60 fps, 60 tbr, 15360 tbn (default)
+    Metadata:
+      handler_name    : VideoHandler
+      vendor_id       : [0][0][0][0]
+      encoder         : Lavc60.31.102 libx264
+  Stream #0:1[0x2](und): Audio: aac (LC) (mp4a / 0x6134706D), 44100 Hz, mono, fltp, 120 kb/s (default)
+    Metadata:
+      handler_name    : SoundHandler
+      vendor_id       : [0][0][0][0]
+[Parsed_volumedetect_0 @ 00000140e542cd80] n_samples: 0
+Stream mapping:
+  Stream #0:0 -> #0:0 (h264 (native) -> wrapped_avframe (native))
+  Stream #0:1 -> #0:1 (aac (native) -> pcm_s16le (native))
+Press [q] to stop, [?] for help
+Output #0, null, to 'NUL':
+  Metadata:
+    major_brand     : isom
+    minor_version   : 512
+    compatible_brands: isomiso2avc1mp41
+    encoder         : Lavf60.16.100
+  Stream #0:0(und): Video: wrapped_avframe, yuv420p(progressive), 816x624, q=2-31, 200 kb/s, 60 fps, 60 tbn (default)
+    Metadata:
+      handler_name    : VideoHandler
+      vendor_id       : [0][0][0][0]
+      encoder         : Lavc60.31.102 wrapped_avframe
+  Stream #0:1(und): Audio: pcm_s16le, 44100 Hz, mono, s16, 705 kb/s (default)
+    Metadata:
+      handler_name    : SoundHandler
+      vendor_id       : [0][0][0][0]
+      encoder         : Lavc60.31.102 pcm_s16le
+frame=    0 fps=0.0 q=-0.0 size=N/A time=00:00:00.18 bitrate=N/A speed=15.6x    [out#0/null @ 00000140e46c1c80] video:338kB audio:1034kB subtitle:0kB other streams:0kB global headers:0kB muxing overhead: unknown
+frame=  720 fps=0.0 q=-0.0 Lsize=N/A time=00:00:11.98 bitrate=N/A speed=52.2x    
+[Parsed_volumedetect_0 @ 00000140e4cd6180] n_samples: 529408
+[Parsed_volumedetect_0 @ 00000140e4cd6180] mean_volume: -28.7 dB
+[Parsed_volumedetect_0 @ 00000140e4cd6180] max_volume: -13.4 dB
+[Parsed_volumedetect_0 @ 00000140e4cd6180] histogram_13db: 6
+[Parsed_volumedetect_0 @ 00000140e4cd6180] histogram_14db: 159
+[Parsed_volumedetect_0 @ 00000140e4cd6180] histogram_15db: 558

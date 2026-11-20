@@ -1,0 +1,61 @@
+{
+  "troop": 48,
+  "openingOnly": true,
+  "nativeMapEntry": true,
+  "approvedPopups": 7,
+  "approvedLines": 16,
+  "partyCases": [
+    [
+      2,
+      3,
+      4
+    ],
+    [
+      2,
+      4,
+      3
+    ],
+    [
+      2,
+      3
+    ],
+    [
+      2,
+      4
+    ],
+    [
+      2
+    ]
+  ],
+  "oncePerBattle": true,
+  "normalAttacksResume": true,
+  "popupCleanup": true,
+  "nativeSaveLoad": true,
+  "otherEncountersUnchanged": [
+    "Mone",
+    "Beast"
+  ],
+  "gnuroRegressionPassed": true,
+  "visualReviewPassed": true,
+  "screenshots": [
+    {
+      "file": "C:\\Users\\kgygn\\Dropbox\\ゲーム\\Game_NewGame\\NewGame\\artifacts\\tsunehi-battle-opening-20261120\\mii.png",
+      "bytes": 770861
+    },
+    {
+      "file": "C:\\Users\\kgygn\\Dropbox\\ゲーム\\Game_NewGame\\NewGame\\artifacts\\tsunehi-battle-opening-20261120\\tsunehi.png",
+      "bytes": 766037
+    },
+    {
+      "file": "C:\\Users\\kgygn\\Dropbox\\ゲーム\\Game_NewGame\\NewGame\\artifacts\\tsunehi-battle-opening-20261120\\yume.png",
+      "bytes": 770426
+    }
+  ],
+  "hashes": {
+    "data/Troops.json": "0d251ed9e5448f0f594eb2b05c2a6585b8f2df31e174c1cbba8170fb148603a5",
+    "data/testData/Test_Troops.json": "d9d4310c4097aa1ca218a0c3d9e5a8161349f12865b58ea296d8b9c29ff40b0b",
+    "data/testData/Test_Enemies.json": "a3d8aa4cfd7f12ba49706a4bdc8cd4ee129e5f353dd48ba1f4a631d607bb4155",
+    "js/plugins/KNH_ZXC_CastleUpper.js": "103a8ea134b00ae81cbdd6ec5eb9b28c581a2338690e48a0eb34da049652d003"
+  },
+  "captureAppClosed": true
+}

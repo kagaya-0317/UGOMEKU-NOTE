@@ -1,0 +1,559 @@
+{
+  "seconds": 56.758000000030734,
+  "stages": [
+    {
+      "name": "Entered puzzle room",
+      "map": 61,
+      "xy": [
+        15.5,
+        24.5
+      ],
+      "panels": {
+        "clock": 4,
+        "total": 8,
+        "on": [],
+        "complete": false
+      },
+      "seconds": 7.172999999951571
+    },
+    {
+      "name": "First panel ON",
+      "map": 61,
+      "xy": [
+        15,
+        23
+      ],
+      "panels": {
+        "clock": 55,
+        "total": 8,
+        "on": [
+          5
+        ],
+        "complete": false
+      },
+      "seconds": 8.033999999985099
+    },
+    {
+      "name": "Reentry toggles panel OFF",
+      "map": 61,
+      "xy": [
+        15,
+        23
+      ],
+      "panels": {
+        "clock": 299,
+        "total": 8,
+        "on": [],
+        "complete": false
+      },
+      "seconds": 12.09299999999348
+    },
+    {
+      "name": "Reentry toggles panel ON",
+      "map": 61,
+      "xy": [
+        15,
+        23
+      ],
+      "panels": {
+        "clock": 419,
+        "total": 8,
+        "on": [
+          5
+        ],
+        "complete": false
+      },
+      "seconds": 14.091999999945983
+    },
+    {
+      "name": "Native spike hit",
+      "map": 61,
+      "xy": [
+        14,
+        23
+      ],
+      "panels": {
+        "clock": 436,
+        "total": 8,
+        "on": [
+          5
+        ],
+        "complete": false
+      },
+      "seconds": 14.388999999966472
+    },
+    {
+      "name": "Returned to safe floor; panel retained",
+      "map": 61,
+      "xy": [
+        15,
+        23
+      ],
+      "panels": {
+        "clock": 573,
+        "total": 8,
+        "on": [
+          5
+        ],
+        "complete": false
+      },
+      "seconds": 16.6589999999851
+    },
+    {
+      "name": "Panel 2",
+      "map": 61,
+      "xy": [
+        10.5,
+        23
+      ],
+      "panels": {
+        "clock": 828,
+        "total": 8,
+        "on": [
+          5,
+          6
+        ],
+        "complete": false
+      },
+      "seconds": 20.915999999968335
+    },
+    {
+      "name": "Panel 3",
+      "map": 61,
+      "xy": [
+        4.5,
+        23
+      ],
+      "panels": {
+        "clock": 1016,
+        "total": 8,
+        "on": [
+          5,
+          6,
+          7
+        ],
+        "complete": false
+      },
+      "seconds": 24.042999999946915
+    },
+    {
+      "name": "Panel 4",
+      "map": 61,
+      "xy": [
+        4.5,
+        17
+      ],
+      "panels": {
+        "clock": 1186,
+        "total": 8,
+        "on": [
+          5,
+          6,
+          7,
+          8
+        ],
+        "complete": false
+      },
+      "seconds": 26.878000000026077
+    },
+    {
+      "name": "Panel 5",
+      "map": 61,
+      "xy": [
+        10.5,
+        17
+      ],
+      "panels": {
+        "clock": 1356,
+        "total": 8,
+        "on": [
+          5,
+          6,
+          7,
+          8,
+          9
+        ],
+        "complete": false
+      },
+      "seconds": 29.709999999962747
+    },
+    {
+      "name": "Panel 6",
+      "map": 61,
+      "xy": [
+        15,
+        17
+      ],
+      "panels": {
+        "clock": 1508,
+        "total": 8,
+        "on": [
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "complete": false
+      },
+      "seconds": 32.241999999969266
+    },
+    {
+      "name": "Panel 7",
+      "map": 61,
+      "xy": [
+        15,
+        14.5
+      ],
+      "panels": {
+        "clock": 1654,
+        "total": 8,
+        "on": [
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11
+        ],
+        "complete": false
+      },
+      "seconds": 34.67000000004191
+    },
+    {
+      "name": "Panel 8",
+      "map": 61,
+      "xy": [
+        10.5,
+        14.5
+      ],
+      "panels": {
+        "clock": 1848,
+        "total": 8,
+        "on": [
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12
+        ],
+        "complete": true
+      },
+      "seconds": 43.12199999997392
+    },
+    {
+      "name": "All panels ON; spikes stopped",
+      "map": 61,
+      "xy": [
+        10.5,
+        14.5
+      ],
+      "panels": {
+        "clock": 1848,
+        "total": 8,
+        "on": [
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12
+        ],
+        "complete": true
+      },
+      "seconds": 43.12599999993108
+    },
+    {
+      "name": "Triangle key acquired",
+      "map": 61,
+      "xy": [
+        10,
+        9
+      ],
+      "panels": {
+        "clock": 1955,
+        "total": 8,
+        "on": [
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12
+        ],
+        "complete": true
+      },
+      "seconds": 47.521999999997206
+    },
+    {
+      "name": "Returned to 3F",
+      "map": 60,
+      "xy": [
+        32,
+        12.5
+      ],
+      "panels": null,
+      "seconds": 54.68799999996554
+    }
+  ],
+  "trace": [
+    {
+      "x": 15,
+      "y": 23,
+      "frame": 427,
+      "panels": {
+        "clock": 55,
+        "total": 8,
+        "on": [
+          5
+        ],
+        "complete": false
+      },
+      "hp": 87
+    },
+    {
+      "x": 15,
+      "y": 24,
+      "frame": 591,
+      "panels": {
+        "clock": 260,
+        "total": 8,
+        "on": [
+          5
+        ],
+        "complete": false
+      },
+      "hp": 87
+    },
+    {
+      "x": 15,
+      "y": 23,
+      "frame": 624,
+      "panels": {
+        "clock": 299,
+        "total": 8,
+        "on": [],
+        "complete": false
+      },
+      "hp": 87
+    },
+    {
+      "x": 15,
+      "y": 24,
+      "frame": 700,
+      "panels": {
+        "clock": 380,
+        "total": 8,
+        "on": [],
+        "complete": false
+      },
+      "hp": 87
+    },
+    {
+      "x": 15,
+      "y": 23,
+      "frame": 730,
+      "panels": {
+        "clock": 419,
+        "total": 8,
+        "on": [
+          5
+        ],
+        "complete": false
+      },
+      "hp": 87
+    },
+    {
+      "x": 15,
+      "y": 23,
+      "frame": 900,
+      "panels": {
+        "clock": 598,
+        "total": 8,
+        "on": [
+          5
+        ],
+        "complete": false
+      },
+      "hp": 86
+    },
+    {
+      "x": 10.5,
+      "y": 23,
+      "frame": 1119,
+      "panels": {
+        "clock": 828,
+        "total": 8,
+        "on": [
+          5,
+          6
+        ],
+        "complete": false
+      },
+      "hp": 86
+    },
+    {
+      "x": 4.5,
+      "y": 23,
+      "frame": 1293,
+      "panels": {
+        "clock": 1016,
+        "total": 8,
+        "on": [
+          5,
+          6,
+          7
+        ],
+        "complete": false
+      },
+      "hp": 86
+    },
+    {
+      "x": 4.5,
+      "y": 17,
+      "frame": 1447,
+      "panels": {
+        "clock": 1186,
+        "total": 8,
+        "on": [
+          5,
+          6,
+          7,
+          8
+        ],
+        "complete": false
+      },
+      "hp": 86
+    },
+    {
+      "x": 10.5,
+      "y": 17,
+      "frame": 1612,
+      "panels": {
+        "clock": 1356,
+        "total": 8,
+        "on": [
+          5,
+          6,
+          7,
+          8,
+          9
+        ],
+        "complete": false
+      },
+      "hp": 86
+    },
+    {
+      "x": 15,
+      "y": 17,
+      "frame": 1749,
+      "panels": {
+        "clock": 1508,
+        "total": 8,
+        "on": [
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "complete": false
+      },
+      "hp": 86
+    },
+    {
+      "x": 15,
+      "y": 14.5,
+      "frame": 1889,
+      "panels": {
+        "clock": 1654,
+        "total": 8,
+        "on": [
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11
+        ],
+        "complete": false
+      },
+      "hp": 86
+    },
+    {
+      "x": 10.5,
+      "y": 14.5,
+      "frame": 2315,
+      "panels": {
+        "clock": 1848,
+        "total": 8,
+        "on": [
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12
+        ],
+        "complete": true
+      },
+      "hp": 86
+    },
+    {
+      "x": 10,
+      "y": 9,
+      "frame": 2405,
+      "panels": {
+        "clock": 1946,
+        "total": 8,
+        "on": [
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12
+        ],
+        "complete": true
+      },
+      "hp": 86
+    },
+    {
+      "x": 4,
+      "y": 24,
+      "frame": 2816,
+      "panels": {
+        "clock": 2241,
+        "total": 8,
+        "on": [
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12
+        ],
+        "complete": true
+      },
+      "hp": 86
+    }
+  ],
+  "source": "Native 816x624 canvas and WebAudio; actual walking and normal spike cycles"
+}

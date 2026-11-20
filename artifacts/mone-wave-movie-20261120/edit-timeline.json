@@ -1,0 +1,43 @@
+{
+  "source": "C:\\Users\\kgygn\\Dropbox\\ゲーム\\Game_NewGame\\NewGame\\artifacts\\mone-wave-movie-20261120\\_capture\\mone_wave_realtime.webm",
+  "sourceEnd": 110.96666666666667,
+  "black": [
+    {
+      "start": 31.971,
+      "end": 32.568,
+      "duration": 0.597
+    },
+    {
+      "start": 85.428,
+      "end": 86.26,
+      "duration": 0.832
+    }
+  ],
+  "cuts": [
+    {
+      "start": 31.866666666666667,
+      "end": 32.7
+    },
+    {
+      "start": 85.3,
+      "end": 86.36666666666666
+    }
+  ],
+  "segments": [
+    {
+      "start": 0,
+      "end": 31.866666666666667
+    },
+    {
+      "start": 32.7,
+      "end": 85.3
+    },
+    {
+      "start": 86.36666666666666,
+      "end": 110.96666666666667
+    }
+  ],
+  "contentDuration": 109.06666666666668,
+  "duration": 109.36666666666667,
+  "fade": 108.26666666666668
+}

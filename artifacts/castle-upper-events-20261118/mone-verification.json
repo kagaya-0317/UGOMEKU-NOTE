@@ -1,0 +1,21 @@
+{
+  "flag": 2,
+  "followers": true,
+  "camera": [
+    0,
+    0
+  ],
+  "tail": 0,
+  "hero": "ぷれいや",
+  "bossPage": 1,
+  "reentry": [
+    [
+      13,
+      25
+    ],
+    [
+      16,
+      24
+    ]
+  ]
+}

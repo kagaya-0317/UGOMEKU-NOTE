@@ -1,0 +1,24 @@
+{
+  "roundFirst": [
+    1,
+    54
+  ],
+  "triangleFirst": [
+    1,
+    53
+  ],
+  "restarted": [
+    1,
+    53,
+    54
+  ],
+  "ordinary": [
+    1,
+    53,
+    54
+  ],
+  "cancelConsumesNothing": true,
+  "wrongSecondConsumesNothing": true,
+  "opensWithDistinctKeys": true,
+  "ordinarySelectorUnaffected": true
+}

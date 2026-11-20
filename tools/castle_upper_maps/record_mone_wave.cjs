@@ -1,0 +1,33 @@
+// Native saved scene, silent local monitoring, live mixed audio in the movie.
+const fs=require('node:fs'),path=require('node:path'),assert=require('node:assert/strict');
+const{prepare}=require('../beast_dialogue/capture_client.cjs');
+const root=path.resolve(__dirname,'../..'),out=path.join(root,'artifacts/mone-wave-movie-20261120'),work=path.join(out,'_capture');fs.mkdirSync(work,{recursive:true});
+async function main(){const{q,sound}=await prepare();try{
+ await q.evaluate('$gameVariables.setValue(63,0);$gameParty.members().forEach(a=>{a.addParam(0,10000);a.setHp(a.mhp);});__gnuroIntroQA.auto=false;true');await q.map(59,4.5,24.5);
+ const source=path.join(work,'mone_wave_realtime.webm');
+ await q.evaluate(`(function(){var stream=Graphics._canvas.captureStream(30);stream.addTrack(__beastCaptureAudio.destination.stream.getAudioTracks()[0].clone());var m=window.__moneMovie={stream:stream,chunks:[],file:${JSON.stringify(source)},started:performance.now(),trace:[],done:false};
+ m.recorder=new MediaRecorder(stream,{mimeType:'video/webm;codecs=vp8,opus',videoBitsPerSecond:5000000,audioBitsPerSecond:160000});m.recorder.ondataavailable=function(e){if(e.data.size)m.chunks.push(e.data);};m.recorder.onstop=function(){var reader=new FileReader();reader.onload=function(){require('fs').writeFileSync(m.file,Buffer.from(new Uint8Array(reader.result)));m.seconds=(performance.now()-m.started)/1000;m.done=true;};reader.readAsArrayBuffer(new Blob(m.chunks,{type:'video/webm'}));stream.getTracks().forEach(function(t){t.stop();});};
+ var update=SceneManager.updateScene;SceneManager.updateScene=function(){var r=update.apply(this,arguments),s=SceneManager._scene,w=s._moneWave;if(Graphics.frameCount%3===0){var bar=s._barSprite;m.trace.push({time:(performance.now()-m.started)/1000,scene:s.constructor.name,text:$gameMessage._texts.slice(),brightness:$gameScreen.brightness(),phase:s._castleMoneDialogue&&s._castleMoneDialogue.phase,wave:w?{amp:w.amplitude,phase:w.phase,elapsed:w.elapsed,pending:w.pending,filters:w.filters.length,cursorX:s._carCursorSprite.x,cursorY:s._carCursorSprite.y,buttonError:Math.max(0,...s._buttonSprites.map(b=>Math.abs(b.y-(bar.height/2+(b._index%2?18:0))-KNH_ZXC_Battle_Mone.offset(b.x,bar.width,w.amplitude,w.phase,w.disorder,w.chaos))))}:null,last:s._moneWaveLast,combo:s._combo,actorAttacks:$gameSwitches.value(17),enemyAttacks:$gameSwitches.value(16),scale:s._enemySprites&&s._enemySprites[0].scale.x,camera:$gamePlayer._centerXy.slice(),staged:!!$gameTemp._castleUpperScene,pcGain:__beastCaptureAudio.silentMonitor.gain.value});}return r;};
+ m.recorder.start(1000);__gnuroIntroQA.recording=true;__gnuroIntroQA.pauseMs=1800;__gnuroIntroQA.pauseAt=0;__gnuroIntroQA.hallRouted=true;__gnuroIntroQA.route(10,20.5);return true;})()`);
+ let prepared=false,lowered50=false,lowered25=false,ended=false,completed=false,last='',thirdAt=0;
+ for(let i=0;i<900;i++){
+  const state=await q.evaluate('({scene:SceneManager._scene.constructor.name,ready:SceneManager._sceneStarted,text:$gameMessage._texts.slice(),phase:SceneManager._scene._castleMoneDialogue&&SceneManager._scene._castleMoneDialogue.phase,wave:!!SceneManager._scene._moneWave,last:!!SceneManager._scene._moneWaveLast,event:$gameTroop.isEventRunning(),mapEvent:$gameMap.isEventRunning(),busy:$gameMessage.isBusy(),flag:$gameVariables.value(63),staged:!!$gameTemp._castleUpperScene,error:__gnuroIntroQA.error})');if(state.error)throw Error(state.error);
+  const phase=state.scene+':'+state.text.join('|');if(phase!==last){console.log(JSON.stringify({scene:state.scene,text:state.text,phase:state.phase,wave:state.wave}));last=phase;}
+  if(state.scene==='Scene_Map'&&state.flag===0&&!state.mapEvent&&!await q.evaluate('__gnuroIntroQA.walking||$gamePlayer.isMoving()'))await q.evaluate('$gamePlayer.moveStraight(8);true');
+  if(state.scene==='Scene_NewBattle'&&state.ready){
+   if(!prepared){await q.evaluate('$gameTroop.members()[0].addParam(0,1000000);$gameTroop.members()[0].setHp(Math.floor($gameTroop.members()[0].mhp*.74));true');prepared=true;}
+   if(state.last&&!state.wave&&!lowered50&&!state.event&&!state.busy){await q.evaluate('$gameTroop.members()[0].setHp(Math.floor($gameTroop.members()[0].mhp*.49));true');lowered50=true;}
+   if(state.phase===2&&!lowered25&&!state.event&&!state.busy){await q.evaluate('$gameTroop.members()[0].setHp(Math.floor($gameTroop.members()[0].mhp*.24));true');lowered25=true;}
+   if(state.phase===3&&!ended&&!state.event&&!state.busy){if(!thirdAt)thirdAt=Date.now();if(Date.now()-thirdAt>2000){await q.evaluate('$gameTroop.members()[0].setHp(0);BattleManager.checkBattleEnd();true');ended=true;}}
+  }
+  if(state.scene==='Scene_Map'&&state.flag===2&&!state.mapEvent&&!state.busy&&!state.staged){completed=true;break;}
+  await q.sleep(250);
+ }
+ assert(completed&&prepared&&lowered50&&lowered25&&ended,'Full native scene must complete');
+ await q.evaluate('__gnuroIntroQA.route(10,21.5);true');await q.until('!__gnuroIntroQA.walking&&!$gamePlayer.isMoving()','following after scene');await q.sleep(800);
+ await q.evaluate('__moneMovie.recorder.stop();true');await q.until('__moneMovie.done','recording write');
+ const report=await q.evaluate('({seconds:__moneMovie.seconds,trace:__moneMovie.trace,messages:__gnuroIntroQA.messages,party:$gameParty._actors.slice(),camera:$gamePlayer._centerXy,shown:$gamePlayer.followers().isVisible(),flag:$gameVariables.value(63),error:__gnuroIntroQA.error,audio:{pcGain:__beastCaptureAudio.silentMonitor.gain.value,pcMuted:__beastCaptureAudio.pcOutputMuted,bgm:AudioManager._currentBgm.name}})');
+ assert.deepEqual(report.party,[2,3,4]);assert.deepEqual(report.camera,[0,0]);assert(report.shown);assert.equal(report.flag,2);assert.equal(report.error,null);assert(report.trace.every(t=>t.pcGain===0));assert(report.trace.some(t=>t.wave&&t.wave.amp>23));assert(report.trace.some(t=>t.last&&!t.wave));assert(report.trace.filter(t=>t.wave).every(t=>!t.actorAttacks&&!t.enemyAttacks&&t.scale===2&&t.wave.buttonError<1e-5));
+ fs.writeFileSync(path.join(out,'recording-verification.json'),JSON.stringify({initialAudio:sound,hpThresholdsAndVictoryControlledForPresentation:true,normalAttacksEnabled:true,moneArtworkScale:0.5,...report},null,2));console.log(JSON.stringify({source,bytes:fs.statSync(source).size,seconds:report.seconds}));
+ }finally{try{if(await q.evaluate('!!(window.__moneMovie&&__moneMovie.recorder.state==="recording")')){await q.evaluate('__moneMovie.recorder.stop();true');await q.until('__moneMovie.done','recover recording');}}finally{try{await q.call('Browser.close');}catch(_){}q.ws.close();}}}
+main().catch(e=>{console.error(e);process.exitCode=1;});

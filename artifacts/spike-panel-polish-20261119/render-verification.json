@@ -1,0 +1,64 @@
+{
+  "time": 123295.99999997299,
+  "frame": 7012,
+  "scale": 2,
+  "filter": true,
+  "patchMeshes": 0,
+  "events": true,
+  "body": ".WebGL mode.",
+  "framesPerSecond": 60.42128603091736,
+  "firstFloor": {
+    "visible": true,
+    "bitmap": true,
+    "scale": [
+      100,
+      100
+    ],
+    "puzzleSurface": false
+  },
+  "finalLayerAndPixelCheck": {
+    "layerBelowCharacters": true,
+    "sourceScale": 2,
+    "filter": true,
+    "patchMeshes": 0,
+    "samples": [
+      {
+        "id": 5,
+        "changedPixels": 1310
+      },
+      {
+        "id": 6,
+        "changedPixels": 1810
+      },
+      {
+        "id": 7,
+        "changedPixels": 2218
+      },
+      {
+        "id": 8,
+        "changedPixels": 1809
+      },
+      {
+        "id": 9,
+        "changedPixels": 1809
+      },
+      {
+        "id": 10,
+        "changedPixels": 1761
+      },
+      {
+        "id": 11,
+        "changedPixels": 2169
+      },
+      {
+        "id": 12,
+        "changedPixels": 1761
+      },
+      {
+        "id": "player",
+        "changedPixels": 1317
+      }
+    ],
+    "framesPerSecond": 57.251908394504426
+  }
+}

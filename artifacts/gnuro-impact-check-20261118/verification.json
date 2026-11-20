@@ -1,0 +1,56 @@
+[
+  {
+    "file": "gnuro_axe_impact.png",
+    "frame": 1627,
+    "age": 12,
+    "depth": 45.13155849909265,
+    "blade": {
+      "x": 408,
+      "y": 413.08035849909265
+    },
+    "contact": {
+      "x": 408,
+      "y": 413.08035849909265
+    },
+    "bossScale": {
+      "x": 2,
+      "y": 2
+    },
+    "allyAttacksDisabled": false,
+    "yura": true,
+    "meshVisible": true,
+    "meshStep": 124,
+    "held": 6,
+    "animation24": [
+      {
+        "x": 408,
+        "y": 396,
+        "duration": 25
+      }
+    ]
+  },
+  {
+    "file": "gnuro_axe_contact.png",
+    "frame": 1665,
+    "age": 50,
+    "depth": 90,
+    "blade": {
+      "x": 408,
+      "y": 436
+    },
+    "contact": {
+      "x": 408,
+      "y": 436
+    },
+    "bossScale": {
+      "x": 2,
+      "y": 2
+    },
+    "allyAttacksDisabled": false,
+    "yura": true,
+    "meshVisible": true,
+    "meshStep": 127,
+    "held": 6,
+    "animation24": []
+  }
+]

@@ -1,0 +1,70 @@
+{
+  "skillId": 51,
+  "skillName": "charge-cannon",
+  "hits": 3,
+  "armStatic": [],
+  "bodyStatic": [],
+  "phases": [
+    {
+      "phase": "active",
+      "moving": true,
+      "armYura": false,
+      "bodyYura": false,
+      "firing": false,
+      "drilling": false,
+      "spraying": false,
+      "recoiling": false
+    },
+    {
+      "phase": "active",
+      "moving": false,
+      "armYura": true,
+      "bodyYura": false,
+      "firing": false,
+      "drilling": false,
+      "spraying": false,
+      "recoiling": false
+    },
+    {
+      "phase": "active",
+      "moving": false,
+      "armYura": true,
+      "bodyYura": false,
+      "firing": true,
+      "drilling": false,
+      "spraying": false,
+      "recoiling": false
+    },
+    {
+      "phase": "active",
+      "moving": false,
+      "armYura": false,
+      "bodyYura": false,
+      "firing": true,
+      "drilling": false,
+      "spraying": false,
+      "recoiling": true
+    },
+    {
+      "phase": "pending",
+      "moving": false,
+      "armYura": true,
+      "bodyYura": false,
+      "firing": false,
+      "drilling": false,
+      "spraying": false,
+      "recoiling": false
+    },
+    {
+      "phase": "retracting",
+      "moving": true,
+      "armYura": false,
+      "bodyYura": false,
+      "firing": false,
+      "drilling": false,
+      "spraying": false,
+      "recoiling": false
+    }
+  ],
+  "bulletStatic": []
+}

@@ -1,0 +1,33 @@
+{
+  "root": "C:/Users/kgygn/Dropbox/ゲーム/Game_NewGame/NewGame/",
+  "sources": [
+    {
+      "key": "mone",
+      "name": "!map113",
+      "width": 1000,
+      "height": 1414,
+      "source": "C:/Users/kgygn/.codex/generated_images/01a1ec56-78c4-7483-aa94-cd08fdc223ee/exec-05f61112-f0bb-42b7-ab6b-b0826d5a68a9.png"
+    },
+    {
+      "key": "floor3",
+      "name": "!map114",
+      "width": 2000,
+      "height": 1414,
+      "source": "C:/Users/kgygn/.codex/generated_images/01a1ec56-78c4-7483-aa94-cd08fdc223ee/exec-0ab91ada-deb5-44f6-8894-21817f0e695d.png"
+    },
+    {
+      "key": "puzzle",
+      "name": "!map114_room",
+      "width": 1000,
+      "height": 1414,
+      "source": "C:/Users/kgygn/.codex/generated_images/01a1ec56-78c4-7483-aa94-cd08fdc223ee/exec-bd47c15b-7c0f-4908-bac3-aaf790cdedc8.png"
+    },
+    {
+      "key": "throne",
+      "name": "!map115",
+      "width": 1000,
+      "height": 1414,
+      "source": "C:/Users/kgygn/.codex/generated_images/01a1ec56-78c4-7483-aa94-cd08fdc223ee/exec-6c27c8ba-0095-4b07-9975-448dc27c6163.png"
+    }
+  ]
+}

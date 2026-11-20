@@ -1,0 +1,20 @@
+{
+  "frames": 720,
+  "durationSeconds": 12,
+  "casts": 3,
+  "checkedPoseFrames": 195,
+  "cadence": 5,
+  "impacts": [
+    147,
+    387,
+    627
+  ],
+  "damageFrames": [
+    148,
+    388,
+    628
+  ],
+  "videoBytes": 712737,
+  "pngFiles": [],
+  "audioPeak": "-6.3 dB"
+}

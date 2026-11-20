@@ -1,0 +1,275 @@
+{
+  "cases": [
+    {
+      "party": [
+        2,
+        3,
+        4
+      ],
+      "bubbles": [
+        {
+          "text": [
+            "ツネヒ、戦いを",
+            "やめようよ"
+          ],
+          "speaker": 3,
+          "turn": 0,
+          "eventFlags": {
+            "0": true
+          },
+          "tone": 0,
+          "shape": 0,
+          "rect": [
+            112,
+            270.5,
+            248,
+            146
+          ],
+          "party": [
+            2,
+            3,
+            4
+          ],
+          "hits": []
+        },
+        {
+          "text": [
+            "キミを倒しに",
+            "来たわけじゃ",
+            "ないんだ！"
+          ],
+          "speaker": 3,
+          "turn": 0,
+          "eventFlags": {
+            "0": true
+          },
+          "tone": 0,
+          "shape": 0,
+          "rect": [
+            112,
+            270.5,
+            233,
+            179
+          ],
+          "party": [
+            2,
+            3,
+            4
+          ],
+          "hits": []
+        },
+        {
+          "text": [
+            "…いいぜ",
+            "だったら",
+            "武器を捨てろ！"
+          ],
+          "speaker": "enemy",
+          "turn": 0,
+          "eventFlags": {
+            "0": true
+          },
+          "tone": 0,
+          "shape": 0,
+          "rect": [
+            527,
+            203.875,
+            253,
+            179
+          ],
+          "party": [
+            2,
+            3,
+            4
+          ],
+          "hits": []
+        },
+        {
+          "text": [
+            "そして大人しく",
+            "オレに殺されろッ！！"
+          ],
+          "speaker": "enemy",
+          "turn": 0,
+          "eventFlags": {
+            "0": true
+          },
+          "tone": 1,
+          "shape": 1,
+          "rect": [
+            477,
+            203.875,
+            303,
+            146
+          ],
+          "party": [
+            2,
+            3,
+            4
+          ],
+          "hits": []
+        },
+        {
+          "text": [
+            "話し合う気は",
+            "ないようね♪"
+          ],
+          "speaker": 4,
+          "turn": 0,
+          "eventFlags": {
+            "0": true
+          },
+          "tone": 0,
+          "shape": 0,
+          "rect": [
+            88,
+            303.8125,
+            238,
+            146
+          ],
+          "party": [
+            2,
+            3,
+            4
+          ],
+          "hits": []
+        },
+        {
+          "text": [
+            "まずは",
+            "ツネヒを止めよう"
+          ],
+          "speaker": 3,
+          "turn": 0,
+          "eventFlags": {
+            "0": true
+          },
+          "tone": 0,
+          "shape": 0,
+          "rect": [
+            112,
+            270.5,
+            274,
+            146
+          ],
+          "party": [
+            2,
+            3,
+            4
+          ],
+          "hits": []
+        },
+        {
+          "text": [
+            "話は",
+            "それからだ！"
+          ],
+          "speaker": 3,
+          "turn": 0,
+          "eventFlags": {
+            "0": true
+          },
+          "tone": 0,
+          "shape": 0,
+          "rect": [
+            112,
+            270.5,
+            219,
+            146
+          ],
+          "party": [
+            2,
+            3,
+            4
+          ],
+          "hits": []
+        }
+      ],
+      "clean": {
+        "popup": null,
+        "target": null,
+        "fukidashi": false,
+        "tone": 0,
+        "enemyAttacks": false,
+        "allyAttacks": false
+      },
+      "after": {
+        "turn": 2,
+        "messages": [
+          "\\>ツネヒが あらわれた！\\|\\.\\.\\^",
+          "ツネヒ、戦いを",
+          "やめようよ",
+          "キミを倒しに",
+          "来たわけじゃ",
+          "ないんだ！",
+          "…いいぜ",
+          "だったら",
+          "武器を捨てろ！",
+          "そして大人しく",
+          "オレに殺されろッ！！",
+          "話し合う気は",
+          "ないようね♪",
+          "まずは",
+          "ツネヒを止めよう",
+          "話は",
+          "それからだ！"
+        ],
+        "hits": [
+          {
+            "subject": 2,
+            "target": "enemy",
+            "during": false
+          },
+          {
+            "subject": "enemy",
+            "target": 2,
+            "during": false
+          },
+          {
+            "subject": 3,
+            "target": "enemy",
+            "during": false
+          },
+          {
+            "subject": 2,
+            "target": "enemy",
+            "during": false
+          },
+          {
+            "subject": 3,
+            "target": "enemy",
+            "during": false
+          },
+          {
+            "subject": "enemy",
+            "target": 3,
+            "during": false
+          },
+          {
+            "subject": 2,
+            "target": "enemy",
+            "during": false
+          },
+          {
+            "subject": 3,
+            "target": "enemy",
+            "during": false
+          },
+          {
+            "subject": 4,
+            "target": "enemy",
+            "during": false
+          }
+        ],
+        "flags": {
+          "0": true
+        }
+      },
+      "nativeMapEntry": true,
+      "forcedVictoryForReturnCheck": true
+    }
+  ],
+  "nativeMapEntry": true,
+  "nativeSaveLoad": true,
+  "completedReentry": true
+}

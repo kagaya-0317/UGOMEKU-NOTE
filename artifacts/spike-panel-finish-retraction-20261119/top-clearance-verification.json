@@ -1,0 +1,11 @@
+{
+  "limit": 11.75,
+  "minimumActiveRectY": 11.75,
+  "clippedEmpty": 5,
+  "newNormalFloorWalk": true,
+  "nativeBoundaryHit": true,
+  "returned": [
+    10,
+    11
+  ]
+}

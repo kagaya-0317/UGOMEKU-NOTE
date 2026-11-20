@@ -1,0 +1,10 @@
+{
+  "tool": "built-in image_gen",
+  "reference": "img/characters/$kanbu2.png, top-left standing cell",
+  "runtime": "img/characters/$castleTsunehi_back.png",
+  "editable": "../画像/tsunehi_back.aseprite",
+  "nativeNormalization": "Existing Aseprite asset workflow; 288x320 canvas, 270px standing height, foot baseline 311, #474e51 outlines and white fill; event scale remains 65%",
+  "editableRoundTrip": "Reopened the saved Aseprite and verified its PNG is byte-identical to the runtime PNG",
+  "prompt": "Generate one new full-body REAR VIEW game sprite of the exact same lanky monster in the TOP LEFT STANDING CELL of the reference sheet. Only the top-left standing character is the identity/proportion reference, ignore all jumping/crouching poses. He is standing still, facing away from the viewer/up, arms down, both long thin legs and oversize curved boots planted level. Back of tall pointed ears/horns, curled head tuft, narrow long coat/tailcoat; no eyes, beak, face, or coat buttons visible from behind. Preserve the reference's exact quirky hand-drawn crude pixel-art silhouette and body proportions. Hard angular stepped outlines in graphite #474e51, flat pale white body fill, no gradients, no soft shading. One character only, one pose only, isolated on REAL TRANSPARENT background, no text, no scenery, no other object or prop. Desired canvas 288x320 pixels, sprite centered x=144, foot baseline around y=310, top of horns around y=40, generous transparent margins. Keep same size as the reference's top-left cell. Do not output a full sheet or reproduce any front-view character. This is a neutral standing back-view pose, no action.",
+  "injectionVisual": "Dedicated injection-pose generation was rejected by the image safety system; implemented indirectly using an existing pose, sound effects and trembling. No needle or injury image was added."
+}

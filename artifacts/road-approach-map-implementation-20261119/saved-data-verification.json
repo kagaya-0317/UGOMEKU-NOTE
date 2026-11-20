@@ -1,0 +1,20 @@
+{
+  "maps": {
+    "data/Map054.json": {
+      "addedEvent": 7,
+      "preservedExistingEvents": true
+    },
+    "data/Map055.json": {
+      "addedEvent": 11,
+      "preservedExistingEvents": true,
+      "originalPassagePreserved": true,
+      "changedTiles": 0
+    }
+  },
+  "existingRecordsAndJapanesePreserved": true,
+  "mapInfoAppendOnly": true,
+  "systemOnlyVersionChanged": true,
+  "backgroundAndCommonEventsUnchanged": true,
+  "noNewProgressionVariables": true,
+  "finalExistingMapsOnlyNewEvents": true
+}

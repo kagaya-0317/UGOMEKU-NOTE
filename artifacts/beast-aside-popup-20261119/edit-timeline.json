@@ -1,0 +1,43 @@
+{
+  "source": "C:\\Users\\kgygn\\Dropbox\\ゲーム\\Game_NewGame\\NewGame\\artifacts\\beast-aside-popup-20261119\\_capture\\beast_conversation_realtime.webm",
+  "sourceEnd": 35.13333333333333,
+  "black": [
+    {
+      "start": 10.807,
+      "end": 11.469,
+      "duration": 0.662
+    },
+    {
+      "start": 22.806,
+      "end": 23.587,
+      "duration": 0.781
+    }
+  ],
+  "cuts": [
+    {
+      "start": 10.7,
+      "end": 11.6
+    },
+    {
+      "start": 22.7,
+      "end": 23.7
+    }
+  ],
+  "segments": [
+    {
+      "start": 0,
+      "end": 10.7
+    },
+    {
+      "start": 11.6,
+      "end": 22.7
+    },
+    {
+      "start": 23.7,
+      "end": 35.13333333333333
+    }
+  ],
+  "contentDuration": 33.233333333333334,
+  "duration": 33.53333333333333,
+  "fade": 32.43333333333333
+}

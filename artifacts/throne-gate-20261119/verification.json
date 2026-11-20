@@ -1,0 +1,90 @@
+{
+  "results": [
+    {
+      "pair": [
+        0
+      ],
+      "inventory": [
+        1,
+        1,
+        0
+      ]
+    },
+    {
+      "pair": [
+        1
+      ],
+      "inventory": [
+        1,
+        1,
+        0
+      ]
+    },
+    {
+      "pair": [
+        53,
+        0
+      ],
+      "inventory": [
+        1,
+        1,
+        0
+      ]
+    },
+    {
+      "pair": [
+        53,
+        1
+      ],
+      "inventory": [
+        1,
+        1,
+        0
+      ]
+    },
+    {
+      "pair": [
+        53,
+        53
+      ],
+      "inventory": [
+        1,
+        1,
+        0
+      ]
+    }
+  ],
+  "speaker": {
+    "actor": 3,
+    "rect": [
+      195,
+      178.43723063987744,
+      426,
+      146
+    ],
+    "gate": [
+      25.5,
+      11
+    ],
+    "frame": {
+      "x": 192,
+      "y": 0,
+      "width": 192,
+      "height": 192,
+      "type": 1
+    },
+    "mesh": true
+  },
+  "nativeTransfersBothWays": true,
+  "saveLoad": true,
+  "boundaries": [
+    [
+      2,
+      4,
+      3
+    ],
+    [
+      2
+    ]
+  ]
+}

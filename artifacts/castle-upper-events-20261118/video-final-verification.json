@@ -1,0 +1,68 @@
+{
+  "file": "C:\\Users\\kgygn\\Dropbox\\ゲーム\\Game_NewGame\\NewGame\\artifacts\\castle-upper-events-20261118\\castle_upper_floor_flow.mp4",
+  "seconds": 207.67000000000002,
+  "codec": "H.264/AAC",
+  "resolution": [
+    816,
+    624
+  ],
+  "audioMeanDb": -13.3,
+  "fullDecode": true,
+  "visualCheck": "Road, both saves, both bosses, friendly beast, both key pickups and gate checked in decoded video frames",
+  "chapters": [
+    {
+      "name": "Road exit",
+      "ends": 2.503000000026077
+    },
+    {
+      "name": "Mone save point",
+      "ends": 18.690999999991618
+    },
+    {
+      "name": "Mone encounter",
+      "ends": 62.76599999994505
+    },
+    {
+      "name": "Stairs to 3F",
+      "ends": 67.68400000000838
+    },
+    {
+      "name": "Beast encounter",
+      "ends": 92.13199999998324
+    },
+    {
+      "name": "Round key",
+      "ends": 96.31499999994412
+    },
+    {
+      "name": "Last gimmick room",
+      "ends": 108.8179999999702
+    },
+    {
+      "name": "Triangle key",
+      "ends": 115.69900000002235
+    },
+    {
+      "name": "Return door B2",
+      "ends": 121.98100000002887
+    },
+    {
+      "name": "Two-key gate",
+      "ends": 130.06499999994412
+    },
+    {
+      "name": "Throne save point",
+      "ends": 137.98200000007637
+    },
+    {
+      "name": "Tsunehi encounter",
+      "ends": 205.6140000000596
+    },
+    {
+      "name": "Complete",
+      "ends": 208.1360000000568
+    }
+  ],
+  "bytes": 90941284,
+  "temporaryPngs": 13
+}

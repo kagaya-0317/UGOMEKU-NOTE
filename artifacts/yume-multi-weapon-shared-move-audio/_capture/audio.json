@@ -1,0 +1,562 @@
+[
+  {
+    "frame": 40,
+    "name": "Machine",
+    "volume": 60,
+    "pitch": 105,
+    "kind": "movement",
+    "stopFrame": 46
+  },
+  {
+    "frame": 46,
+    "name": "Machine",
+    "volume": 60,
+    "pitch": 102,
+    "kind": "movement",
+    "stopFrame": 52
+  },
+  {
+    "frame": 52,
+    "name": "Machine",
+    "volume": 60,
+    "pitch": 96,
+    "kind": "movement",
+    "stopFrame": 58
+  },
+  {
+    "frame": 58,
+    "name": "Equip1",
+    "volume": 22,
+    "pitch": 85,
+    "kind": "movement",
+    "stopFrame": 64
+  },
+  {
+    "frame": 64,
+    "name": "Equip1",
+    "volume": 22,
+    "pitch": 90,
+    "kind": "movement",
+    "stopFrame": 70
+  },
+  {
+    "frame": 70,
+    "name": "Equip1",
+    "volume": 22,
+    "pitch": 82,
+    "kind": "movement",
+    "stopFrame": 76
+  },
+  {
+    "frame": 76,
+    "name": "Equip1",
+    "volume": 22,
+    "pitch": 86,
+    "kind": "movement",
+    "stopFrame": 88
+  },
+  {
+    "frame": 77,
+    "name": "00_drill",
+    "volume": 70,
+    "pitch": 100,
+    "kind": "weapon",
+    "stopFrame": 136
+  },
+  {
+    "frame": 84,
+    "name": "00_shot1",
+    "volume": 18,
+    "pitch": 98,
+    "kind": "weapon",
+    "stopFrame": 119
+  },
+  {
+    "frame": 89,
+    "name": "Fire2",
+    "volume": 65,
+    "pitch": 100,
+    "kind": "weapon",
+    "stopFrame": 123
+  },
+  {
+    "frame": 90,
+    "name": "00_shot1",
+    "volume": 18,
+    "pitch": 100,
+    "kind": "weapon",
+    "stopFrame": 126
+  },
+  {
+    "frame": 95,
+    "name": "Magic1",
+    "volume": 28,
+    "pitch": 82,
+    "kind": "weapon",
+    "stopFrame": 127
+  },
+  {
+    "frame": 96,
+    "name": "00_shot1",
+    "volume": 18,
+    "pitch": 96,
+    "kind": "weapon",
+    "stopFrame": 137
+  },
+  {
+    "frame": 102,
+    "name": "00_shot1",
+    "volume": 18,
+    "pitch": 98,
+    "kind": "weapon",
+    "stopFrame": 138
+  },
+  {
+    "frame": 106,
+    "name": "00_shot1",
+    "volume": 16,
+    "pitch": 98,
+    "kind": "weapon",
+    "stopFrame": 142
+  },
+  {
+    "frame": 108,
+    "name": "00_shot1",
+    "volume": 18,
+    "pitch": 100,
+    "kind": "weapon",
+    "stopFrame": 143
+  },
+  {
+    "frame": 110,
+    "name": "Explosion2",
+    "volume": 80,
+    "pitch": 90,
+    "kind": "weapon",
+    "stopFrame": 165
+  },
+  {
+    "frame": 112,
+    "name": "00_shot1",
+    "volume": 16,
+    "pitch": 100,
+    "kind": "weapon",
+    "stopFrame": 148
+  },
+  {
+    "frame": 118,
+    "name": "00_shot1",
+    "volume": 16,
+    "pitch": 96,
+    "kind": "weapon",
+    "stopFrame": 155
+  },
+  {
+    "frame": 119,
+    "name": "Equip1",
+    "volume": 22,
+    "pitch": 90,
+    "kind": "movement",
+    "stopFrame": 131
+  },
+  {
+    "frame": 124,
+    "name": "00_shot1",
+    "volume": 16,
+    "pitch": 98,
+    "kind": "weapon",
+    "stopFrame": 162
+  },
+  {
+    "frame": 126,
+    "name": "Launch",
+    "volume": 22,
+    "pitch": 110,
+    "kind": "weapon",
+    "stopFrame": 221
+  },
+  {
+    "frame": 130,
+    "name": "00_shot1",
+    "volume": 16,
+    "pitch": 100,
+    "kind": "weapon",
+    "stopFrame": 167
+  },
+  {
+    "frame": 131,
+    "name": "Shot2",
+    "volume": 34,
+    "pitch": 80,
+    "kind": "weapon",
+    "stopFrame": 148
+  },
+  {
+    "frame": 136,
+    "name": "00_shot1",
+    "volume": 16,
+    "pitch": 96,
+    "kind": "weapon",
+    "stopFrame": 179
+  },
+  {
+    "frame": 142,
+    "name": "00_shot1",
+    "volume": 16,
+    "pitch": 98,
+    "kind": "weapon",
+    "stopFrame": 186
+  },
+  {
+    "frame": 143,
+    "name": "Machine",
+    "volume": 60,
+    "pitch": 102,
+    "kind": "movement",
+    "stopFrame": 161
+  },
+  {
+    "frame": 148,
+    "name": "00_shot1",
+    "volume": 16,
+    "pitch": 100,
+    "kind": "weapon",
+    "stopFrame": 194
+  },
+  {
+    "frame": 154,
+    "name": "00_shot1",
+    "volume": 16,
+    "pitch": 96,
+    "kind": "weapon",
+    "stopFrame": 204
+  },
+  {
+    "frame": 161,
+    "name": "Machine",
+    "volume": 60,
+    "pitch": 96,
+    "kind": "movement",
+    "stopFrame": 165
+  },
+  {
+    "frame": 165,
+    "name": "Equip1",
+    "volume": 22,
+    "pitch": 82,
+    "kind": "movement",
+    "stopFrame": 168
+  },
+  {
+    "frame": 168,
+    "name": "Equip1",
+    "volume": 22,
+    "pitch": 85,
+    "kind": "movement",
+    "stopFrame": 181
+  },
+  {
+    "frame": 181,
+    "name": "Machine",
+    "volume": 60,
+    "pitch": 105,
+    "kind": "movement",
+    "stopFrame": 208
+  },
+  {
+    "frame": 202,
+    "name": "Explosion1",
+    "volume": 28,
+    "pitch": 108,
+    "kind": "weapon",
+    "stopFrame": 291
+  },
+  {
+    "frame": 208,
+    "name": "Equip1",
+    "volume": 22,
+    "pitch": 86,
+    "kind": "movement",
+    "stopFrame": 232
+  },
+  {
+    "frame": 360,
+    "name": "Machine",
+    "volume": 60,
+    "pitch": 100,
+    "kind": "movement",
+    "stopFrame": 366
+  },
+  {
+    "frame": 366,
+    "name": "Machine",
+    "volume": 60,
+    "pitch": 104,
+    "kind": "movement",
+    "stopFrame": 372
+  },
+  {
+    "frame": 372,
+    "name": "Machine",
+    "volume": 60,
+    "pitch": 104,
+    "kind": "movement",
+    "stopFrame": 378
+  },
+  {
+    "frame": 378,
+    "name": "Equip1",
+    "volume": 22,
+    "pitch": 85,
+    "kind": "movement",
+    "stopFrame": 384
+  },
+  {
+    "frame": 384,
+    "name": "Equip1",
+    "volume": 22,
+    "pitch": 90,
+    "kind": "movement",
+    "stopFrame": 390
+  },
+  {
+    "frame": 390,
+    "name": "Equip1",
+    "volume": 22,
+    "pitch": 82,
+    "kind": "movement",
+    "stopFrame": 396
+  },
+  {
+    "frame": 396,
+    "name": "Equip1",
+    "volume": 22,
+    "pitch": 86,
+    "kind": "movement",
+    "stopFrame": 412
+  },
+  {
+    "frame": 397,
+    "name": "00_drill",
+    "volume": 70,
+    "pitch": 100,
+    "kind": "weapon",
+    "stopFrame": 456
+  },
+  {
+    "frame": 404,
+    "name": "00_shot1",
+    "volume": 18,
+    "pitch": 98,
+    "kind": "weapon",
+    "stopFrame": 446
+  },
+  {
+    "frame": 409,
+    "name": "Fire2",
+    "volume": 65,
+    "pitch": 100,
+    "kind": "weapon",
+    "stopFrame": 450
+  },
+  {
+    "frame": 410,
+    "name": "00_shot1",
+    "volume": 18,
+    "pitch": 100,
+    "kind": "weapon",
+    "stopFrame": 451
+  },
+  {
+    "frame": 415,
+    "name": "Magic1",
+    "volume": 28,
+    "pitch": 82,
+    "kind": "weapon",
+    "stopFrame": 451
+  },
+  {
+    "frame": 416,
+    "name": "00_shot1",
+    "volume": 18,
+    "pitch": 96,
+    "kind": "weapon",
+    "stopFrame": 459
+  },
+  {
+    "frame": 422,
+    "name": "00_shot1",
+    "volume": 18,
+    "pitch": 98,
+    "kind": "weapon",
+    "stopFrame": 464
+  },
+  {
+    "frame": 426,
+    "name": "00_shot1",
+    "volume": 16,
+    "pitch": 98,
+    "kind": "weapon",
+    "stopFrame": 468
+  },
+  {
+    "frame": 428,
+    "name": "00_shot1",
+    "volume": 18,
+    "pitch": 100,
+    "kind": "weapon",
+    "stopFrame": 469
+  },
+  {
+    "frame": 430,
+    "name": "Explosion2",
+    "volume": 80,
+    "pitch": 90,
+    "kind": "weapon",
+    "stopFrame": 495
+  },
+  {
+    "frame": 432,
+    "name": "00_shot1",
+    "volume": 16,
+    "pitch": 100,
+    "kind": "weapon",
+    "stopFrame": 473
+  },
+  {
+    "frame": 438,
+    "name": "00_shot1",
+    "volume": 16,
+    "pitch": 96,
+    "kind": "weapon",
+    "stopFrame": 484
+  },
+  {
+    "frame": 439,
+    "name": "Equip1",
+    "volume": 22,
+    "pitch": 90,
+    "kind": "movement",
+    "stopFrame": 451
+  },
+  {
+    "frame": 444,
+    "name": "00_shot1",
+    "volume": 16,
+    "pitch": 98,
+    "kind": "weapon",
+    "stopFrame": 491
+  },
+  {
+    "frame": 446,
+    "name": "Launch",
+    "volume": 22,
+    "pitch": 110,
+    "kind": "weapon",
+    "stopFrame": 591
+  },
+  {
+    "frame": 450,
+    "name": "00_shot1",
+    "volume": 16,
+    "pitch": 100,
+    "kind": "weapon",
+    "stopFrame": 501
+  },
+  {
+    "frame": 451,
+    "name": "Shot2",
+    "volume": 34,
+    "pitch": 80,
+    "kind": "weapon",
+    "stopFrame": 474
+  },
+  {
+    "frame": 456,
+    "name": "00_shot1",
+    "volume": 16,
+    "pitch": 96,
+    "kind": "weapon",
+    "stopFrame": 513
+  },
+  {
+    "frame": 462,
+    "name": "00_shot1",
+    "volume": 16,
+    "pitch": 98,
+    "kind": "weapon",
+    "stopFrame": 522
+  },
+  {
+    "frame": 463,
+    "name": "Machine",
+    "volume": 60,
+    "pitch": 105,
+    "kind": "movement",
+    "stopFrame": 481
+  },
+  {
+    "frame": 468,
+    "name": "00_shot1",
+    "volume": 16,
+    "pitch": 100,
+    "kind": "weapon",
+    "stopFrame": 532
+  },
+  {
+    "frame": 474,
+    "name": "00_shot1",
+    "volume": 16,
+    "pitch": 96,
+    "kind": "weapon",
+    "stopFrame": 549
+  },
+  {
+    "frame": 481,
+    "name": "Machine",
+    "volume": 60,
+    "pitch": 99,
+    "kind": "movement",
+    "stopFrame": 485
+  },
+  {
+    "frame": 485,
+    "name": "Equip1",
+    "volume": 22,
+    "pitch": 82,
+    "kind": "movement",
+    "stopFrame": 488
+  },
+  {
+    "frame": 488,
+    "name": "Equip1",
+    "volume": 22,
+    "pitch": 85,
+    "kind": "movement",
+    "stopFrame": 501
+  },
+  {
+    "frame": 501,
+    "name": "Machine",
+    "volume": 60,
+    "pitch": 97,
+    "kind": "movement",
+    "stopFrame": 528
+  },
+  {
+    "frame": 522,
+    "name": "Explosion1",
+    "volume": 28,
+    "pitch": 108,
+    "kind": "weapon",
+    "stopFrame": 634
+  },
+  {
+    "frame": 528,
+    "name": "Equip1",
+    "volume": 22,
+    "pitch": 86,
+    "kind": "movement",
+    "stopFrame": 559
+  }
+]

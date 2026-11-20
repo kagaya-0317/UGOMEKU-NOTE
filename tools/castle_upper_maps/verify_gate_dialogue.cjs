@@ -1,0 +1,25 @@
+const fs=require('node:fs'),path=require('node:path'),assert=require('node:assert/strict');
+const{prepare}=require('../beast_dialogue/capture_client.cjs');
+const out=path.resolve(__dirname,'../../artifacts/throne-gate-dialogue-20261120');fs.mkdirSync(out,{recursive:true});
+const mii=[['おっきな','扉だね'],['この先が','王の部屋かな…'],['ぼくも出会ったことのない','モンスターの王…','いったいどんな人なんだろう'],['…']],yume=['きっとそうよ','準備していきましょ'];
+async function main(){const{q}=await prepare();try{
+ await q.evaluate(`(function(){window.__gateDialoguePeople=function(){return [$gamePlayer].concat($gamePlayer.followers()._data.filter(f=>f.actor())).map(ch=>({actor:ch.actor?ch.actor().actorId():2,x:ch._realX,y:ch._realY,d:ch.direction()}));};var begin=KNH_CastleUpper.beginGate;KNH_CastleUpper.beginGate=function(){window.__gateDialogueBefore=__gateDialoguePeople();return begin.apply(this,arguments);};var add=Game_Message.prototype.add;Game_Message.prototype.add=function(text){if(${JSON.stringify([...mii.map(lines=>lines[0]),yume[0]])}.includes(text))__gnuroIntroQA.auto=false;return add.apply(this,arguments);};Window_Message.prototype.getMessageSpeed=function(){return 0;};return true;})()`);
+ const selector=()=>q.until('$gameMessage.isItemChoice()&&SceneManager._scene._messageWindow._itemWindow.active','selector');
+ const choose=async id=>{await selector();await q.evaluate(`(function(){var w=SceneManager._scene._messageWindow._itemWindow;w.select(w._data.findIndex(i=>i.id===${id}));w.processOk();return true;})()`);await q.sleep(120);};
+ const paused=lines=>q.until(`JSON.stringify($gameMessage._texts)===${JSON.stringify(JSON.stringify(lines))}&&SceneManager._scene._messageWindow.pause`,'dialogue '+lines.join('/'),35000);
+ const speaker=()=>q.evaluate('({speaker:SceneManager._scene._messageWindow.getPopupTargetCharacter().eventId(),hero:$gamePlayer.direction(),mii:$gameMap.event(13).direction(),yume:$gameMap.event(14).direction(),text:$gameMessage._texts,rect:[SceneManager._scene._messageWindow.x,SceneManager._scene._messageWindow.y,SceneManager._scene._messageWindow.width,SceneManager._scene._messageWindow.height]})');
+ const shot=async name=>{await q.sleep(300);const b=await q.evaluate("Graphics._renderer.render(SceneManager._scene);Graphics._canvas.toDataURL('image/png').split(',')[1]");fs.writeFileSync(path.join(out,name+'.png'),Buffer.from(b,'base64'));};
+ const cases=[];for(const party of [[2,3,4],[2,4,3],[2,3],[2,4]]){
+  await q.evaluate(`$gameParty._actors=${JSON.stringify(party)};$gamePlayer.refresh();$gameVariables.setValue(64,2);$gameVariables.setValue(66,0);$gameParty.gainItem($dataItems[53],1-$gameParty.numItems($dataItems[53]));$gameParty.gainItem($dataItems[54],1-$gameParty.numItems($dataItems[54]));__gnuroIntroQA.auto=true;__gnuroIntroQA.messages=[];true`);await q.map(60,25.5,16.5);
+  await q.evaluate('__gnuroIntroQA.route(25.5,12.5);true');await q.until('!__gnuroIntroQA.walking&&!$gamePlayer.isMoving()||$gameMap.isEventRunning()','approach');for(let i=0;i<6&&!await q.evaluate('$gameMap.isEventRunning()');i++){await q.evaluate('$gamePlayer.moveStraight(8);true');await q.sleep(200);}await choose(53);await choose(54);
+  const spoken=[];if(party.includes(3)){
+   const showMii=async(lines,name)=>{await paused(lines);const current=await speaker();assert.equal(current.speaker,13);assert.equal(current.hero,4);if(party.includes(4))assert.equal(current.yume,4);assert.ok(current.rect[0]>=0&&current.rect[1]>=0&&current.rect[0]+current.rect[2]<=816&&current.rect[1]+current.rect[3]<=624);spoken.push(current);if(party.join(',')==='2,3,4')await shot(name);await q.evaluate('__gnuroIntroQA.auto=true;true');};
+   await showMii(mii[0],'mii_big_door');await showMii(mii[1],'mii_king_room');
+   if(party.includes(4)){await paused(yume);const reply=await speaker();assert.equal(reply.speaker,14);assert.equal(reply.hero,6);assert.equal(reply.mii,6);assert.equal(reply.yume,4);spoken.push(reply);if(party.join(',')==='2,3,4')await shot('yume_reply');await q.evaluate('__gnuroIntroQA.auto=true;true');}
+   await showMii(mii[2],'mii_unknown_king');await showMii(mii[3],'mii_silence');
+  }
+  await q.until('!$gameMap.isEventRunning()&&!$gameMessage.isBusy()&&!$gameTemp._castleUpperScene','return',35000);const result=await q.evaluate('({before:__gateDialogueBefore,after:__gateDialoguePeople(),camera:$gamePlayer._centerXy,flag:$gameVariables.value(66),hidden:[13,14].every(id=>$gameMap.event(id).isTransparent()),lines:__gnuroIntroQA.messages.map(m=>m.text)})');assert.deepEqual(result.after,result.before);assert.deepEqual(result.camera,[0,0]);assert.equal(result.flag,1);assert.equal(result.hidden,true);const actual=result.lines.filter(l=>mii.flat().includes(l)||yume.includes(l));assert.deepEqual(actual,party.includes(3)?[...mii[0],...mii[1],...(party.includes(4)?yume:[]),...mii[2],...mii[3]]:[]);cases.push({party,spoken,returned:true});console.log('PASS new dialogue and return '+party);
+ }
+ fs.writeFileSync(path.join(out,'verification.json'),JSON.stringify({cases},null,2));
+ }finally{try{await q.call('Browser.close');}catch(_){}q.ws.close();}}
+main().catch(e=>{console.error(e);process.exitCode=1;});

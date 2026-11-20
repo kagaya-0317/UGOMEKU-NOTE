@@ -1,0 +1,1153 @@
+{
+  "reason": "Popup layouts checked after the final scoped placement adjustment",
+  "cases": [
+    {
+      "party": [
+        2,
+        3,
+        4
+      ],
+      "initial": {
+        "speed": 4.5,
+        "directionFix": false,
+        "camera": [
+          0,
+          0
+        ],
+        "progress": [
+          2
+        ]
+      },
+      "bubbles": [
+        {
+          "text": [
+            "よくぞここまで",
+            "たどり着いた",
+            "愚か者どもよ…"
+          ],
+          "tone": 0,
+          "shape": 0,
+          "tail": 5,
+          "portrait": {
+            "fileName": "$kanbu2_2",
+            "index": 0,
+            "side": "right",
+            "direction": 2,
+            "pattern": 1,
+            "offsetX": 44,
+            "offsetY": 108,
+            "viewWidth": 96,
+            "reserveWidth": null,
+            "textGap": 48,
+            "scale": 1,
+            "mirror": false,
+            "maskInset": 2,
+            "animation": {
+              "type": "yura",
+              "timing": "custom",
+              "wait": 10,
+              "sequence": [
+                0,
+                1,
+                2,
+                1
+              ],
+              "phase": 0
+            },
+            "yura": {
+              "blockSize": 20,
+              "maxShake": 15
+            }
+          },
+          "portraitVisible": true,
+          "rect": [
+            201.00016624465968,
+            80.9915946315522,
+            406,
+            179
+          ],
+          "popup": 1,
+          "hero": [
+            14,
+            11
+          ],
+          "heroDirection": 6,
+          "members": [
+            {
+              "actor": 3,
+              "xy": [
+                12.5,
+                10
+              ],
+              "direction": 6
+            },
+            {
+              "actor": 4,
+              "xy": [
+                12.5,
+                12
+              ],
+              "direction": 6
+            }
+          ],
+          "renderedPartyRoots": [
+            "$002",
+            "$003",
+            "$001"
+          ]
+        },
+        {
+          "text": [
+            "あら、この声は",
+            "ツネヒだわ"
+          ],
+          "tone": 0,
+          "shape": 0,
+          "tail": 6,
+          "portrait": null,
+          "portraitVisible": false,
+          "rect": [
+            126.5,
+            416.87870493212904,
+            235,
+            146
+          ],
+          "popup": 5,
+          "hero": [
+            14,
+            11
+          ],
+          "heroDirection": 6,
+          "members": [
+            {
+              "actor": 3,
+              "xy": [
+                12.5,
+                10
+              ],
+              "direction": 6
+            },
+            {
+              "actor": 4,
+              "xy": [
+                12.5,
+                12
+              ],
+              "direction": 6
+            }
+          ],
+          "renderedPartyRoots": [
+            "$002",
+            "$003",
+            "$001"
+          ]
+        },
+        {
+          "text": [
+            "だが、この先が",
+            "キサマらの墓場と",
+            "なるだろう"
+          ],
+          "tone": 0,
+          "shape": 0,
+          "tail": 5,
+          "portrait": {
+            "fileName": "$kanbu2_2",
+            "index": 0,
+            "side": "right",
+            "direction": 2,
+            "pattern": 1,
+            "offsetX": 44,
+            "offsetY": 108,
+            "viewWidth": 96,
+            "reserveWidth": null,
+            "textGap": 48,
+            "scale": 1,
+            "mirror": false,
+            "maskInset": 2,
+            "animation": {
+              "type": "yura",
+              "timing": "custom",
+              "wait": 10,
+              "sequence": [
+                0,
+                1,
+                2,
+                1
+              ],
+              "phase": 0
+            },
+            "yura": {
+              "blockSize": 20,
+              "maxShake": 15
+            }
+          },
+          "portraitVisible": true,
+          "rect": [
+            191.5000007361333,
+            83.86112200736025,
+            425,
+            179
+          ],
+          "popup": 1,
+          "hero": [
+            14,
+            11
+          ],
+          "heroDirection": 6,
+          "members": [
+            {
+              "actor": 3,
+              "xy": [
+                12.5,
+                10
+              ],
+              "direction": 6
+            },
+            {
+              "actor": 4,
+              "xy": [
+                12.5,
+                12
+              ],
+              "direction": 6
+            }
+          ],
+          "renderedPartyRoots": [
+            "$002",
+            "$003",
+            "$001"
+          ]
+        },
+        {
+          "text": [
+            "この先は",
+            "地獄の通り道…"
+          ],
+          "tone": 0,
+          "shape": 0,
+          "tail": 5,
+          "portrait": {
+            "fileName": "$kanbu2_2",
+            "index": 0,
+            "side": "right",
+            "direction": 2,
+            "pattern": 1,
+            "offsetX": 44,
+            "offsetY": 108,
+            "viewWidth": 96,
+            "reserveWidth": null,
+            "textGap": 48,
+            "scale": 1,
+            "mirror": false,
+            "maskInset": 2,
+            "animation": {
+              "type": "yura",
+              "timing": "custom",
+              "wait": 10,
+              "sequence": [
+                0,
+                1,
+                2,
+                1
+              ],
+              "phase": 0
+            },
+            "yura": {
+              "blockSize": 20,
+              "maxShake": 15
+            }
+          },
+          "portraitVisible": true,
+          "rect": [
+            188.0000001938928,
+            83.87134462539484,
+            432,
+            146
+          ],
+          "popup": 1,
+          "hero": [
+            14,
+            11
+          ],
+          "heroDirection": 6,
+          "members": [
+            {
+              "actor": 3,
+              "xy": [
+                12.5,
+                10
+              ],
+              "direction": 6
+            },
+            {
+              "actor": 4,
+              "xy": [
+                12.5,
+                12
+              ],
+              "direction": 6
+            }
+          ],
+          "renderedPartyRoots": [
+            "$002",
+            "$003",
+            "$001"
+          ]
+        },
+        {
+          "text": [
+            "題して、",
+            "88,888,888番通路だ！"
+          ],
+          "tone": 1,
+          "shape": 1,
+          "tail": 5,
+          "portrait": {
+            "fileName": "$kanbu2_2",
+            "index": 0,
+            "side": "right",
+            "direction": 2,
+            "pattern": 1,
+            "offsetX": 44,
+            "offsetY": 108,
+            "viewWidth": 96,
+            "reserveWidth": null,
+            "textGap": 48,
+            "scale": 1,
+            "mirror": false,
+            "maskInset": 2,
+            "animation": {
+              "type": "yura",
+              "timing": "custom",
+              "wait": 10,
+              "sequence": [
+                0,
+                1,
+                2,
+                1
+              ],
+              "phase": 0
+            },
+            "yura": {
+              "blockSize": 20,
+              "maxShake": 15
+            }
+          },
+          "portraitVisible": true,
+          "rect": [
+            141.50000005107017,
+            83.87403719768042,
+            525,
+            146
+          ],
+          "popup": 1,
+          "hero": [
+            14,
+            11
+          ],
+          "heroDirection": 6,
+          "members": [
+            {
+              "actor": 3,
+              "xy": [
+                12.5,
+                10
+              ],
+              "direction": 6
+            },
+            {
+              "actor": 4,
+              "xy": [
+                12.5,
+                12
+              ],
+              "direction": 6
+            }
+          ],
+          "renderedPartyRoots": [
+            "$002",
+            "$003",
+            "$001"
+          ]
+        },
+        {
+          "text": [
+            "88,888,888番",
+            "通路！？！？"
+          ],
+          "tone": 0,
+          "shape": 0,
+          "tail": 2,
+          "portrait": null,
+          "portraitVisible": false,
+          "rect": [
+            299,
+            83.87489865356736,
+            266,
+            146
+          ],
+          "popup": 4,
+          "hero": [
+            14,
+            11
+          ],
+          "heroDirection": 6,
+          "members": [
+            {
+              "actor": 3,
+              "xy": [
+                12.5,
+                10
+              ],
+              "direction": 6
+            },
+            {
+              "actor": 4,
+              "xy": [
+                12.5,
+                12
+              ],
+              "direction": 6
+            }
+          ],
+          "renderedPartyRoots": [
+            "$002",
+            "$003",
+            "$001"
+          ]
+        },
+        {
+          "text": [
+            "ここは何の変哲もない",
+            "通路…しかしそこには",
+            "「異変」が現れることがある"
+          ],
+          "tone": 0,
+          "shape": 0,
+          "tail": 5,
+          "portrait": {
+            "fileName": "$kanbu2_2",
+            "index": 0,
+            "side": "right",
+            "direction": 2,
+            "pattern": 1,
+            "offsetX": 44,
+            "offsetY": 108,
+            "viewWidth": 96,
+            "reserveWidth": null,
+            "textGap": 48,
+            "scale": 1,
+            "mirror": false,
+            "maskInset": 2,
+            "animation": {
+              "type": "yura",
+              "timing": "custom",
+              "wait": 10,
+              "sequence": [
+                0,
+                1,
+                2,
+                1
+              ],
+              "phase": 0
+            },
+            "yura": {
+              "blockSize": 20,
+              "maxShake": 15
+            }
+          },
+          "portraitVisible": true,
+          "rect": [
+            137.50000000047896,
+            83.87499097067138,
+            533,
+            179
+          ],
+          "popup": 1,
+          "hero": [
+            14,
+            11
+          ],
+          "heroDirection": 6,
+          "members": [
+            {
+              "actor": 3,
+              "xy": [
+                12.5,
+                10
+              ],
+              "direction": 6
+            },
+            {
+              "actor": 4,
+              "xy": [
+                12.5,
+                12
+              ],
+              "direction": 6
+            }
+          ],
+          "renderedPartyRoots": [
+            "$002",
+            "$003",
+            "$001"
+          ]
+        },
+        {
+          "text": [
+            "ルールは簡単だ",
+            "異変があれば、引き返せ！",
+            "異変が無ければ進め！"
+          ],
+          "tone": 0,
+          "shape": 0,
+          "tail": 5,
+          "portrait": {
+            "fileName": "$kanbu2_2",
+            "index": 0,
+            "side": "right",
+            "direction": 2,
+            "pattern": 1,
+            "offsetX": 44,
+            "offsetY": 108,
+            "viewWidth": 96,
+            "reserveWidth": null,
+            "textGap": 48,
+            "scale": 1,
+            "mirror": false,
+            "maskInset": 2,
+            "animation": {
+              "type": "yura",
+              "timing": "custom",
+              "wait": 10,
+              "sequence": [
+                0,
+                1,
+                2,
+                1
+              ],
+              "phase": 0
+            },
+            "yura": {
+              "blockSize": 20,
+              "maxShake": 15
+            }
+          },
+          "portraitVisible": true,
+          "rect": [
+            141.0000000001262,
+            83.87499762173252,
+            526,
+            179
+          ],
+          "popup": 1,
+          "hero": [
+            14,
+            11
+          ],
+          "heroDirection": 6,
+          "members": [
+            {
+              "actor": 3,
+              "xy": [
+                12.5,
+                10
+              ],
+              "direction": 6
+            },
+            {
+              "actor": 4,
+              "xy": [
+                12.5,
+                12
+              ],
+              "direction": 6
+            }
+          ],
+          "renderedPartyRoots": [
+            "$002",
+            "$003",
+            "$001"
+          ]
+        },
+        {
+          "text": [
+            "フッフッフ…",
+            "簡単だろう？"
+          ],
+          "tone": 0,
+          "shape": 0,
+          "tail": 5,
+          "portrait": {
+            "fileName": "$kanbu2_2",
+            "index": 0,
+            "side": "right",
+            "direction": 2,
+            "pattern": 1,
+            "offsetX": 44,
+            "offsetY": 108,
+            "viewWidth": 96,
+            "reserveWidth": null,
+            "textGap": 48,
+            "scale": 1,
+            "mirror": false,
+            "maskInset": 2,
+            "animation": {
+              "type": "yura",
+              "timing": "custom",
+              "wait": 10,
+              "sequence": [
+                0,
+                1,
+                2,
+                1
+              ],
+              "phase": 0
+            },
+            "yura": {
+              "blockSize": 20,
+              "maxShake": 15
+            }
+          },
+          "portraitVisible": true,
+          "rect": [
+            221.50000000001216,
+            83.87499976968627,
+            365,
+            146
+          ],
+          "popup": 1,
+          "hero": [
+            14,
+            11
+          ],
+          "heroDirection": 6,
+          "members": [
+            {
+              "actor": 3,
+              "xy": [
+                12.5,
+                10
+              ],
+              "direction": 6
+            },
+            {
+              "actor": 4,
+              "xy": [
+                12.5,
+                12
+              ],
+              "direction": 6
+            }
+          ],
+          "renderedPartyRoots": [
+            "$002",
+            "$003",
+            "$001"
+          ]
+        },
+        {
+          "text": [
+            "もし間違えたら、",
+            "なんと、最初から",
+            "だ！！！"
+          ],
+          "tone": 1,
+          "shape": 1,
+          "tail": 5,
+          "portrait": {
+            "fileName": "$kanbu2_2",
+            "index": 0,
+            "side": "right",
+            "direction": 2,
+            "pattern": 1,
+            "offsetX": 44,
+            "offsetY": 108,
+            "viewWidth": 96,
+            "reserveWidth": null,
+            "textGap": 48,
+            "scale": 1,
+            "mirror": false,
+            "maskInset": 2,
+            "animation": {
+              "type": "yura",
+              "timing": "custom",
+              "wait": 10,
+              "sequence": [
+                0,
+                1,
+                2,
+                1
+              ],
+              "phase": 0
+            },
+            "yura": {
+              "blockSize": 20,
+              "maxShake": 15
+            }
+          },
+          "portraitVisible": true,
+          "rect": [
+            195.00000000000296,
+            83.8749999441898,
+            418,
+            179
+          ],
+          "popup": 1,
+          "hero": [
+            14,
+            11
+          ],
+          "heroDirection": 6,
+          "members": [
+            {
+              "actor": 3,
+              "xy": [
+                12.5,
+                10
+              ],
+              "direction": 6
+            },
+            {
+              "actor": 4,
+              "xy": [
+                12.5,
+                12
+              ],
+              "direction": 6
+            }
+          ],
+          "renderedPartyRoots": [
+            "$002",
+            "$003",
+            "$001"
+          ]
+        },
+        {
+          "text": [
+            "予言しよう…"
+          ],
+          "tone": 0,
+          "shape": 0,
+          "tail": 5,
+          "portrait": {
+            "fileName": "$kanbu2_2",
+            "index": 0,
+            "side": "right",
+            "direction": 2,
+            "pattern": 1,
+            "offsetX": 44,
+            "offsetY": 108,
+            "viewWidth": 96,
+            "reserveWidth": null,
+            "textGap": 48,
+            "scale": 1,
+            "mirror": false,
+            "maskInset": 2,
+            "animation": {
+              "type": "yura",
+              "timing": "custom",
+              "wait": 10,
+              "sequence": [
+                0,
+                1,
+                2,
+                1
+              ],
+              "phase": 0
+            },
+            "yura": {
+              "blockSize": 20,
+              "maxShake": 15
+            }
+          },
+          "portraitVisible": true,
+          "rect": [
+            219.50000000000068,
+            50.56249998647584,
+            369,
+            113
+          ],
+          "popup": 1,
+          "hero": [
+            14,
+            11
+          ],
+          "heroDirection": 6,
+          "members": [
+            {
+              "actor": 3,
+              "xy": [
+                12.5,
+                10
+              ],
+              "direction": 6
+            },
+            {
+              "actor": 4,
+              "xy": [
+                12.5,
+                12
+              ],
+              "direction": 6
+            }
+          ],
+          "renderedPartyRoots": [
+            "$002",
+            "$003",
+            "$001"
+          ]
+        },
+        {
+          "text": [
+            "キサマらはここで",
+            "彷徨い続け、一生出る",
+            "ことはできないッ！！"
+          ],
+          "tone": 1,
+          "shape": 1,
+          "tail": 5,
+          "portrait": {
+            "fileName": "$kanbu2_2",
+            "index": 0,
+            "side": "right",
+            "direction": 2,
+            "pattern": 1,
+            "offsetX": 44,
+            "offsetY": 108,
+            "viewWidth": 96,
+            "reserveWidth": null,
+            "textGap": 48,
+            "scale": 1,
+            "mirror": false,
+            "maskInset": 2,
+            "animation": {
+              "type": "yura",
+              "timing": "custom",
+              "wait": 10,
+              "sequence": [
+                0,
+                1,
+                2,
+                1
+              ],
+              "phase": 0
+            },
+            "yura": {
+              "blockSize": 20,
+              "maxShake": 15
+            }
+          },
+          "portraitVisible": true,
+          "rect": [
+            158.50000000000023,
+            83.8749999964378,
+            491,
+            179
+          ],
+          "popup": 1,
+          "hero": [
+            14,
+            11
+          ],
+          "heroDirection": 6,
+          "members": [
+            {
+              "actor": 3,
+              "xy": [
+                12.5,
+                10
+              ],
+              "direction": 6
+            },
+            {
+              "actor": 4,
+              "xy": [
+                12.5,
+                12
+              ],
+              "direction": 6
+            }
+          ],
+          "renderedPartyRoots": [
+            "$002",
+            "$003",
+            "$001"
+          ]
+        },
+        {
+          "text": [
+            "そ、そんなァ！",
+            "！！！"
+          ],
+          "tone": 0,
+          "shape": 0,
+          "tail": 2,
+          "portrait": null,
+          "portraitVisible": false,
+          "rect": [
+            325,
+            83.87499999879512,
+            214,
+            146
+          ],
+          "popup": 4,
+          "hero": [
+            14,
+            11
+          ],
+          "heroDirection": 6,
+          "members": [
+            {
+              "actor": 3,
+              "xy": [
+                12.5,
+                10
+              ],
+              "direction": 6
+            },
+            {
+              "actor": 4,
+              "xy": [
+                12.5,
+                12
+              ],
+              "direction": 6
+            }
+          ],
+          "renderedPartyRoots": [
+            "$002",
+            "$003",
+            "$001"
+          ]
+        },
+        {
+          "text": [
+            "せいぜい死ぬまで",
+            "もがき苦しみ続け",
+            "るがいい…"
+          ],
+          "tone": 0,
+          "shape": 0,
+          "tail": 5,
+          "portrait": {
+            "fileName": "$kanbu2_2",
+            "index": 0,
+            "side": "right",
+            "direction": 2,
+            "pattern": 1,
+            "offsetX": 44,
+            "offsetY": 108,
+            "viewWidth": 96,
+            "reserveWidth": null,
+            "textGap": 48,
+            "scale": 1,
+            "mirror": false,
+            "maskInset": 2,
+            "animation": {
+              "type": "yura",
+              "timing": "custom",
+              "wait": 10,
+              "sequence": [
+                0,
+                1,
+                2,
+                1
+              ],
+              "phase": 0
+            },
+            "yura": {
+              "blockSize": 20,
+              "maxShake": 15
+            }
+          },
+          "portraitVisible": true,
+          "rect": [
+            181.00000000000023,
+            83.87499999951851,
+            446,
+            179
+          ],
+          "popup": 1,
+          "hero": [
+            14,
+            11
+          ],
+          "heroDirection": 6,
+          "members": [
+            {
+              "actor": 3,
+              "xy": [
+                12.5,
+                10
+              ],
+              "direction": 6
+            },
+            {
+              "actor": 4,
+              "xy": [
+                12.5,
+                12
+              ],
+              "direction": 6
+            }
+          ],
+          "renderedPartyRoots": [
+            "$002",
+            "$003",
+            "$001"
+          ]
+        },
+        {
+          "text": [
+            "ギャハハ",
+            "ハハ！！！！"
+          ],
+          "tone": 1,
+          "shape": 1,
+          "tail": 5,
+          "portrait": {
+            "fileName": "$kanbu2_2",
+            "index": 0,
+            "side": "right",
+            "direction": 4,
+            "pattern": 0,
+            "offsetX": 0,
+            "offsetY": 108,
+            "viewWidth": 96,
+            "reserveWidth": null,
+            "textGap": 80,
+            "scale": 1,
+            "mirror": false,
+            "maskInset": 2,
+            "animation": {
+              "type": "pattern",
+              "timing": "custom",
+              "wait": 6,
+              "sequence": [
+                0,
+                1,
+                2
+              ],
+              "phase": 0
+            },
+            "yura": {
+              "blockSize": 20,
+              "maxShake": 15
+            }
+          },
+          "portraitVisible": true,
+          "rect": [
+            222.00000000000023,
+            83.87499999982299,
+            364,
+            146
+          ],
+          "popup": 1,
+          "hero": [
+            14,
+            11
+          ],
+          "heroDirection": 6,
+          "members": [
+            {
+              "actor": 3,
+              "xy": [
+                12.5,
+                10
+              ],
+              "direction": 6
+            },
+            {
+              "actor": 4,
+              "xy": [
+                12.5,
+                12
+              ],
+              "direction": 6
+            }
+          ],
+          "renderedPartyRoots": [
+            "$002",
+            "$003",
+            "$001"
+          ],
+          "laughInkTops": [
+            65.75939222780175,
+            59.759392227801754,
+            35.759392227801754
+          ],
+          "laughTextOverlap": [
+            0,
+            0,
+            0
+          ]
+        }
+      ],
+      "after": {
+        "party": [
+          2,
+          3,
+          4
+        ],
+        "speed": 4.5,
+        "directionFix": false,
+        "camera": [
+          0,
+          0
+        ],
+        "followers": true,
+        "hidden": true,
+        "portrait": null,
+        "popup": null,
+        "fukidashi": false,
+        "tail": 0,
+        "tone": 0,
+        "progress": [
+          2
+        ],
+        "messages": [
+          "よくぞここまで",
+          "たどり着いた",
+          "愚か者どもよ…",
+          "あら、この声は",
+          "ツネヒだわ",
+          "だが、この先が",
+          "キサマらの墓場と",
+          "なるだろう",
+          "この先は",
+          "地獄の通り道…",
+          "題して、",
+          "88,888,888番通路だ！",
+          "88,888,888番",
+          "通路！？！？",
+          "ここは何の変哲もない",
+          "通路…しかしそこには",
+          "「異変」が現れることがある",
+          "ルールは簡単だ",
+          "異変があれば、引き返せ！",
+          "異変が無ければ進め！",
+          "フッフッフ…",
+          "簡単だろう？",
+          "もし間違えたら、",
+          "なんと、最初から",
+          "だ！！！",
+          "予言しよう…",
+          "キサマらはここで",
+          "彷徨い続け、一生出る",
+          "ことはできないッ！！",
+          "そ、そんなァ！",
+          "！！！",
+          "せいぜい死ぬまで",
+          "もがき苦しみ続け",
+          "るがいい…",
+          "ギャハハ",
+          "ハハ！！！！"
+        ],
+        "frames": 513
+      },
+      "onceOnReentry": true
+    }
+  ]
+}

@@ -1,0 +1,50 @@
+{
+  "destination": "C:\\Users\\kgygn\\Dropbox\\ゲーム\\Game_NewGame\\画像",
+  "verification": "Native Aseprite reopen/export; exact RGBA pixel match with runtime PNG",
+  "maps": [
+    {
+      "name": "!map113",
+      "file": "C:\\Users\\kgygn\\Dropbox\\ゲーム\\Game_NewGame\\画像\\!map113.aseprite",
+      "width": 1000,
+      "height": 1414,
+      "frames": 1,
+      "sha256": "4c80343b6b5966b32d295e6576660b1f93dd0f680ea631f5024d9407e8a96ce1",
+      "exportPixelHash": "SHA256=e4dc218b9ef85c12d39e3dbf346acb362956f4d9f78cfcba598736aae581dfa1",
+      "verifiedAgainst": "C:\\Users\\kgygn\\Dropbox\\ゲーム\\Game_NewGame\\NewGame\\img\\parallaxes\\!map113.png",
+      "overwritten": true
+    },
+    {
+      "name": "!map114",
+      "file": "C:\\Users\\kgygn\\Dropbox\\ゲーム\\Game_NewGame\\画像\\!map114.aseprite",
+      "width": 2000,
+      "height": 1414,
+      "frames": 1,
+      "sha256": "5c5d3cc7e82e7d21b630d3a00cec5801035eb5035c99c91e7a079b8602910616",
+      "exportPixelHash": "SHA256=acbe9983e2233cc183ca930dfed0715374597f9c8537ca717e8bbadf0da1e8cc",
+      "verifiedAgainst": "C:\\Users\\kgygn\\Dropbox\\ゲーム\\Game_NewGame\\NewGame\\img\\parallaxes\\!map114.png",
+      "overwritten": true
+    },
+    {
+      "name": "!map114_room",
+      "file": "C:\\Users\\kgygn\\Dropbox\\ゲーム\\Game_NewGame\\画像\\!map114_room.aseprite",
+      "width": 1000,
+      "height": 1414,
+      "frames": 1,
+      "sha256": "e08b92f85cdf2539bd6ae64b7e05d8852de11e444129ccdd96d4c44bc30fd03f",
+      "exportPixelHash": "SHA256=ebfe246fe161e1fbd9a8c5280f33c2c29db6e64ede9aa716d7943bfcb015dbc6",
+      "verifiedAgainst": "C:\\Users\\kgygn\\Dropbox\\ゲーム\\Game_NewGame\\NewGame\\img\\parallaxes\\!map114_room.png",
+      "overwritten": false
+    },
+    {
+      "name": "!map115",
+      "file": "C:\\Users\\kgygn\\Dropbox\\ゲーム\\Game_NewGame\\画像\\!map115.aseprite",
+      "width": 1000,
+      "height": 1414,
+      "frames": 1,
+      "sha256": "721052015956feca95d51e4e55c10022716fd73d706acc63a00f05bf696af015",
+      "exportPixelHash": "SHA256=bbf5e3fa2325fe1cf3e359bb86e2c81ec5d227dd347d0b839de43332242f145b",
+      "verifiedAgainst": "C:\\Users\\kgygn\\Dropbox\\ゲーム\\Game_NewGame\\NewGame\\img\\parallaxes\\!map115.png",
+      "overwritten": false
+    }
+  ]
+}

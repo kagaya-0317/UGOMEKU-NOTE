@@ -1,0 +1,109 @@
+{
+  "generated_on": "2026-11-18",
+  "method": "Built-in image_gen tool",
+  "purpose": "Architectural composition roughs for the castle route after the 88,888,888 corridor. Planning annotations and position markers are not final game sprites.",
+  "page_templates": {
+    "one_page": {
+      "width": 1000,
+      "height": 1414,
+      "map_tiles": [
+        21,
+        30
+      ]
+    },
+    "two_pages": {
+      "width": 2000,
+      "height": 1414,
+      "map_tiles": [
+        41,
+        30
+      ]
+    }
+  },
+  "export_note": "Generated PNGs are composition studies at the recorded export resolutions; they have not been pixel-normalized or imported into RPG Maker.",
+  "references": [
+    "img/parallaxes/!map111.png",
+    "img/parallaxes/!map111_hallway.png"
+  ],
+  "connections": [
+    [
+      "existing-corridor",
+      "mone-room-lower-left"
+    ],
+    [
+      "mone-room-north-stairs",
+      "floor3-south-stairs"
+    ],
+    [
+      "floor3-west-court",
+      "round-key"
+    ],
+    [
+      "floor3-east-B1",
+      "puzzle-south-right-B1"
+    ],
+    [
+      "puzzle-south-left-B2",
+      "floor3-east-B2"
+    ],
+    [
+      "puzzle-north-alcove",
+      "triangle-key"
+    ],
+    [
+      "floor3-north-door-requires-both-keys",
+      "throne-room-south"
+    ]
+  ],
+  "maps": [
+    {
+      "name": "mone",
+      "file": "01-mone-room-1p.png",
+      "pages": 1,
+      "export": {
+        "Name": "01-mone-room-1p.png",
+        "Width": 1067,
+        "Height": 1474,
+        "Bytes": 2035743
+      },
+      "prompt": "Create a redesigned sibling rough map using the supplied existing castle maps ONLY as style and camera references, not as a layout to copy. This is a Japanese hand-drawn RPG Maker game level layout rough, a practical map illustration to draw over, not a graph or a poster. Match the reference's fixed top-down RPG view with visible north/back wall faces, broad walkable floor, and simple frontal stair flights. No perspective vanishing point, no isometric camera. Ink is the game's canonical dark gray #474e51 on pure white paper; use hand-drawn slightly uneven lines, sparse diagonal hatching for stone walls, a few familiar diamond/floral floor tiles, no other colors or gray shading. Rough readable architectural sketch, much less detail than the references. The entire playable layout must fit inside the page with margins. Wall silhouettes, floor connections and walkable stairs must be unambiguous. Normal corridors and stairs about four RPG tiles wide, at consistent character scale. No UI, no grid, no photorealism, no new major characters. Small schematic character-position markers and brief Japanese connection labels are planning annotations, not final sprites. North is image top. Do not burn detailed dialogue into the image.\nMAP 01: MONE ROOM, ONE NOTEBOOK PAGE. Exactly 1000 pixels wide by 1414 pixels high, portrait 1:sqrt(2), single uninterrupted full-page map, not a multi-panel board. Put the small title \"モーネの部屋 / 1ページ\" in the upper margin. A small left-edge entrance in the lower quarter is labeled \"88,888,888番通路から\"; this entrance joins a short horizontal walkway into a tall octagonal/rounded rectangular central chamber. In the middle of the chamber draw a sparse feather-like magic circle and one tiny neutral marker labeled \"モーネ\". Leave generous unobstructed floor for the three-person party in front of him. Behind Mone at the north end is a broad, straight UPWARD staircase, physically connected to the same central floor and climbing toward the top edge. Label its upper landing \"3階へ\". The stairs must be visibly directly BEHIND the boss, and the only forward route; do not replace them with a door. A low gate at the foot of the stairs is an event obstacle that opens after the boss; draw it lightly so the staircase remains readable. Side walls and two arched wall recesses, no side-room exits. Show the complete entrance-floor-boss-stairs connection with practical geometry."
+    },
+    {
+      "name": "floor3",
+      "file": "02-floor3-main-2p.png",
+      "pages": 2,
+      "export": {
+        "Name": "02-floor3-main-2p.png",
+        "Width": 1491,
+        "Height": 1055,
+        "Bytes": 2440092
+      },
+      "prompt": "Create a redesigned sibling rough map using the supplied existing castle maps ONLY as style and camera references, not as a layout to copy. This is a Japanese hand-drawn RPG Maker game level layout rough, a practical map illustration to draw over, not a graph or a poster. Match the reference's fixed top-down RPG view with visible north/back wall faces, broad walkable floor, and simple frontal stair flights. No perspective vanishing point, no isometric camera. Ink is the game's canonical dark gray #474e51 on pure white paper; use hand-drawn slightly uneven lines, sparse diagonal hatching for stone walls, a few familiar diamond/floral floor tiles, no other colors or gray shading. Rough readable architectural sketch, much less detail than the references. The entire playable layout must fit inside the page with margins. Wall silhouettes, floor connections and walkable stairs must be unambiguous. Normal corridors and stairs about four RPG tiles wide, at consistent character scale. No UI, no grid, no photorealism, no new major characters. Small schematic character-position markers and brief Japanese connection labels are planning annotations, not final sprites. North is image top. Do not burn detailed dialogue into the image.\nMAP 02: THIRD FLOOR MAIN MAP, TWO NOTEBOOK PAGES. Landscape drawing area 2000 wide by 1414 high, width:height = 1.414:1, one continuous architectural level plan across two side-by-side notebook pages, not two panels. Header only: \"3階 / 2ページ\". Use the newly supplied Mone room rough as the linework/detail reference and existing castle second-floor map as the architectural reference. Crucial layout: SOUTH CENTER is the arrival staircase from Mone's room below, labeled \"モーネの部屋から\". This leads up into a spacious central hall. At NORTH CENTER of the hall, an imposing CLOSED double door in the back wall, labeled \"ツネヒの部屋へ\". The closed door is the ONLY way forward to Tsunehi; it has two separate oversized keyhole plaques, a CIRCLE and a TRIANGLE, easy to distinguish in monochrome. It must have no walkable bypass. One small save-point marker by its approach.\nWEST BRANCH: from the central hall a broad corridor bends left into a small beast court, part of this SAME map. Place a large neutral beast-position marker \"死の猛獣\" at the court entrance, with a round-headed key on a small pedestal in the back of the court, labeled \"丸い鍵\". The beast blocks access before its encounter; leave a wide playable path after it moves.\nEAST BRANCH: from the central hall a broad floor path bends right and climbs a short stair flight to an eastern balcony with TWO north-wall doorways. The FAR RIGHT doorway is labeled \"B1 仕掛け部屋へ\"; the LEFT doorway, closer to the central hall, is labeled \"B2 帰り口\". These two connect to the SAME separate puzzle room on a different image. Show a small low gate at B2 to indicate it only opens on puzzle completion. B2 must return near the approach to the central double-locked door.\nKeep left beast court and eastern doorway balcony as real spaces connected to the central hall, not disconnected boxes. Include strong stone wall silhouettes, a few tall arched window recesses, floral tiles, sensible frontal stairs and level changes like the reference. No triangle key on this map: that key is inside the separate puzzle room. Do not add more stairs to another floor or a second boss. Preserve a practical generous walking scale."
+    },
+    {
+      "name": "puzzle",
+      "file": "03-final-puzzle-room-1p.png",
+      "pages": 1,
+      "export": {
+        "Name": "03-final-puzzle-room-1p.png",
+        "Width": 1067,
+        "Height": 1474,
+        "Bytes": 2368172
+      },
+      "prompt": "Create a redesigned sibling rough map using the supplied existing castle maps ONLY as style and camera references, not as a layout to copy. This is a Japanese hand-drawn RPG Maker game level layout rough, a practical map illustration to draw over, not a graph or a poster. Match the reference's fixed top-down RPG view with visible north/back wall faces, broad walkable floor, and simple frontal stair flights. No perspective vanishing point, no isometric camera. Ink is the game's canonical dark gray #474e51 on pure white paper; use hand-drawn slightly uneven lines, sparse diagonal hatching for stone walls, a few familiar diamond/floral floor tiles, no other colors or gray shading. Rough readable architectural sketch, much less detail than the references. The entire playable layout must fit inside the page with margins. Wall silhouettes, floor connections and walkable stairs must be unambiguous. Normal corridors and stairs about four RPG tiles wide, at consistent character scale. No UI, no grid, no photorealism, no new major characters. Small schematic character-position markers and brief Japanese connection labels are planning annotations, not final sprites. North is image top. Do not burn detailed dialogue into the image.\nMAP 03: FINAL PUZZLE ROOM, ONE NOTEBOOK PAGE. Portrait canvas 1000 wide by 1414 high, width:height = 1:sqrt(2). Header \"最後のギミック部屋 / 1ページ\". Match Mone rough's simple linework and existing castle map camera. A single roughly rectangular castle room enclosed by clear stone walls. TWO SOUTH-WALL doors: lower RIGHT entrance labeled \"B1 3階から\"; lower LEFT return door labeled \"B2 中央広間へ\", with a small gate initially closed. These match the B1 and B2 doors on the east balcony of the separate third-floor map. The main floor is roomy with a few LOW rail dividers that guide a short path but do not split the room into isolated cells.\nNORTH CENTER is a small raised alcove with a TRIANGLE-HEADED KEY on a pedestal, labeled \"三角の鍵\", protected by an iron grille across its entrance. Just south of that grille are TWO distinct square PRESSURE PLATES labeled \"床スイッチ\". In the middle/lower open floor, exactly TWO movable rocks, one near each side alcove; label them \"運べる岩\". It must be obvious players can carry/place a rock onto each plate to hold both down and open the north grille. Draw the rocks and plates separately in the initial state, not already solved. There must be a continuous walkable route from B1 to both rocks, both plates and the gate.\nA small accessible reset lever by B1 labeled \"やり直し\". On a north/right wall alcove show a comically strong ventilation FAN above a small toilet; a few sparse gas swirls from a wall pipe are sucked toward it, labeled just \"換気扇\". Fan/toilet are a side visual gag, not a second puzzle or a blocked required route.\nAfter the triangle key is taken, B2 is the shortcut out; indicate this only with a small dotted planning arrow from the key toward B2 along actual walkable floor. No circular key here. No boss here. Keep all walkable floor and every doorway fully in frame.",
+      "revision_prompt": "Use case: precise-object-edit. Edit only the provided castle puzzle-room rough. Preserve the portrait one-notebook-page composition, all Japanese labels except the rock-label arrows, both B1/B2 doors and their positions, the two pressure plates, the north barred key alcove, the triangle key, ventilation fan/toilet, reset lever, stone-wall drawing style and monochrome ink #474e51. Correct one playability problem: the two movable rocks must be UNAMBIGUOUSLY ACCESSIBLE on the OPEN CENTRAL FLOOR, not enclosed in side-wall cubbies. Remove the two rocks from their side niches and place exactly two rocks on open floor near lower-middle left and lower-middle right, between the low rail pieces, with broad unobstructed walking space on at least three sides of each rock and a clear route toward both pressure plates. Turn the old wall cubbies into ordinary walls or shallow EMPTY decorative recesses, with no extra rocks. Keep the \"運べる岩\" labels and redirect their arrows to the new rocks. Do not close any floor route with new walls. Keep the dotted return-route arrow clear of rocks. Do not solve the puzzle or put rocks on the switches. Exactly TWO movable rocks in total. Keep the entire map in frame. Requested page canvas is 1000 x 1414 pixels; preserve the one-page portrait proportion."
+    },
+    {
+      "name": "throne",
+      "file": "04-tsunehi-throne-room-1p.png",
+      "pages": 1,
+      "export": {
+        "Name": "04-tsunehi-throne-room-1p.png",
+        "Width": 1067,
+        "Height": 1474,
+        "Bytes": 2163284
+      },
+      "prompt": "Create a redesigned sibling rough map using the supplied existing castle maps ONLY as style and camera references, not as a layout to copy. This is a Japanese hand-drawn RPG Maker game level layout rough, a practical map illustration to draw over, not a graph or a poster. Match the reference's fixed top-down RPG view with visible north/back wall faces, broad walkable floor, and simple frontal stair flights. No perspective vanishing point, no isometric camera. Ink is the game's canonical dark gray #474e51 on pure white paper; use hand-drawn slightly uneven lines, sparse diagonal hatching for stone walls, a few familiar diamond/floral floor tiles, no other colors or gray shading. Rough readable architectural sketch, much less detail than the references. The entire playable layout must fit inside the page with margins. Wall silhouettes, floor connections and walkable stairs must be unambiguous. Normal corridors and stairs about four RPG tiles wide, at consistent character scale. No UI, no grid, no photorealism, no new major characters. Small schematic character-position markers and brief Japanese connection labels are planning annotations, not final sprites. North is image top. Do not burn detailed dialogue into the image.\nMAP 04: TSUNEHI THRONE ROOM, ONE NOTEBOOK PAGE. Portrait canvas 1000 wide by 1414 high, width:height = 1:sqrt(2). Header \"ツネヒの部屋 / 1ページ\". Match the Mone room rough's linework, stone walls and floor language. A tall nearly symmetric ceremonial room. One entrance at SOUTH CENTER labeled \"3階・二重鍵の扉から\". A long hatch-shaded carpet leads north across a broad open meeting/battle-event floor. NORTH CENTER on a modest raised dais is an EMPTY throne: the monster king is absent, do not put a king there. A neutral pawn-like marker labeled \"ツネヒ\" stands in front of the dais, below it on the main floor. Three very small unlabeled party position circles may stand together farther south, for event blocking only, preserving generous dialogue space between them and Tsunehi.\nThree simple stone pillars along each side, tall arched back-wall recesses, a few floral floor tiles matching the existing castle. Foreground walls kept low so they do not hide floor. No extra exits, no stair to a fourth floor, no keys or puzzle props inside this room. This room ends the castle route. Show the whole single-page playable room with margins."
+    }
+  ]
+}

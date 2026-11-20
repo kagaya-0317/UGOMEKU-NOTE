@@ -1,0 +1,46 @@
+{
+  "data/System.json": {
+    "before": "407701102e160d8c34683c9d1b5905a4c8468263a050151b6248ebc84c9b3ee2",
+    "after": "f6ce4de17514c58df13aa3ec3b755dd48f0ae87da68dbcdf6790e9b8a7f866ea"
+  },
+  "data/Actors.json": {
+    "before": "a4a339838ffd6623ffb26ef3401cb48d286681166b17f29e216d7499c5cb92a4",
+    "after": "39808fb7e983181b47e13a9dc95570008a5398e1a33c14cbb8fd1e517299fbca"
+  },
+  "data/Items.json": {
+    "before": "697e0968cf338851b6078d2156b412175689552f86d5e698cd3e37954f3fabcb",
+    "after": "3cc03fec9467f6c85e95f3df371f054c034d6ba3918b28a0c23f4df2292d447c"
+  },
+  "data/Enemies.json": {
+    "before": "a972f2238db203aff4a7d72d00d631c80304f5f3ac389b0c0150f63c70618af5",
+    "after": "ffb64ea90149e1641e1390208674a26187999d5adf6472c7e74c800fcaac3ead"
+  },
+  "data/Troops.json": {
+    "before": "ec92b074f84a66d27126142312a4896a80ec96d3eee86da3f18a4f935b1e869a",
+    "after": "a6f1a9ea6dd5fd9388fe5085555ee727146b615ca2f6c9dfa68ae4096017450a"
+  },
+  "data/Map059.json": {
+    "before": "c54c4739857a82ed424fbb2ac1f69e1c261b47d7c184ca8e4cd380e817e2ecd8",
+    "after": "2fbc331c4ea0643fbaadd4f7a5ede6a0f30720e5a572d53c59feede709efb30f"
+  },
+  "data/Map055.json": {
+    "before": "e37acdd9a591e5cf2cfe770b3940d8bdbfbe7aeeaa3e060b8e793a9f9b3005f0",
+    "after": "66da37e3d7ab4d20a71f1712519ec0320e3257cbc44cdab239da2dc93277a01f"
+  },
+  "js/plugins.js": {
+    "before": "ae8a65085d97b4efd8fddcaa620296f3de6717e54e232ffab7a6ef31ac3374cf",
+    "after": "b167ebda5e5fb98f187191865f6252e9b6572b4037e2bc83f2be49a79e1ada8c"
+  },
+  "data/Map060.json": {
+    "before": "b96361cb7bf4ae883360ac56ed314ff218723492644412f5d1bad04fb2325c9f",
+    "after": "5dc3ff0a0bac34dc902e1e2d1a2254103d8a3dc30e263f2be102bb2eda4090cf"
+  },
+  "data/Map061.json": {
+    "before": "65f5149ec62fe681df710e50a4dc1db699763b43001ae027d0d919f5c46a356f",
+    "after": "5fae51ea2270c2ec05ce339a4ad5dbab9fcf1524289a934ba7140c7d800ad0ec"
+  },
+  "data/Map062.json": {
+    "before": "840c303e54007fa4c76b2600f6c2d7decf69875fa40b8a5b69c335057e674adc",
+    "after": "ab68251ac185d4476d6b9061df4339b0236d4f164646346a3a0b39eb8834fa65"
+  }
+}

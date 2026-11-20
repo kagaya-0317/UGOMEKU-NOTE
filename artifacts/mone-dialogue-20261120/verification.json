@@ -1,0 +1,54 @@
+{
+  "sound": {
+    "pcOutputMuted": true,
+    "speakerGain": 0,
+    "blockedSpeakerConnections": 1,
+    "context": "running",
+    "track": "live",
+    "rms": 0.17237825713426758,
+    "bgm": "00_New_Dungeon4"
+  },
+  "results": [
+    {
+      "party": [
+        2,
+        3,
+        4
+      ],
+      "messages": 34,
+      "completedReentry": true,
+      "restored": true
+    },
+    {
+      "party": [
+        2,
+        4,
+        3
+      ],
+      "messages": 34,
+      "completedReentry": true,
+      "restored": true
+    },
+    {
+      "party": [
+        2
+      ],
+      "messages": 28,
+      "completedReentry": true,
+      "restored": true
+    },
+    {
+      "party": [
+        2,
+        4
+      ],
+      "messages": 30,
+      "completedReentry": true,
+      "restored": true
+    }
+  ],
+  "saveLoad": true,
+  "otherTroopConditionUnchanged": true,
+  "waveEffectNotImplemented": true,
+  "combatBalanceNotEvaluated": true
+}

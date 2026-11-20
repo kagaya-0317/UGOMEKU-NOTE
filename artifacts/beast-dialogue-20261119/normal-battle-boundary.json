@@ -1,0 +1,11 @@
+{
+  "troop": 43,
+  "active": true,
+  "skip": false,
+  "guest": false,
+  "party": [
+    2,
+    3,
+    4
+  ]
+}

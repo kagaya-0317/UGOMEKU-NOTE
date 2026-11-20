@@ -1,0 +1,14 @@
+{
+  "balloonId": 11,
+  "references": [
+    {
+      "map": 27,
+      "event": 2
+    },
+    {
+      "map": 53,
+      "event": 4
+    }
+  ],
+  "reason": "The existing Balloon sheet uses row 11 for the exclamation mark; row 1 contains emphasis rays."
+}

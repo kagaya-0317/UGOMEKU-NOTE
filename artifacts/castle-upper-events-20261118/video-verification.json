@@ -1,0 +1,212 @@
+{
+  "seconds": 208.8520000000717,
+  "trace": [
+    {
+      "stage": 0,
+      "name": "Road exit",
+      "seconds": 2.503000000026077,
+      "map": 59,
+      "flags": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "stage": 1,
+      "name": "Mone save point",
+      "seconds": 18.690999999991618,
+      "map": 59,
+      "flags": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "stage": 2,
+      "name": "Mone encounter",
+      "seconds": 62.76599999994505,
+      "map": 59,
+      "flags": [
+        2,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "stage": 3,
+      "name": "Stairs to 3F",
+      "seconds": 67.68400000000838,
+      "map": 60,
+      "flags": [
+        2,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "stage": 4,
+      "name": "Beast encounter",
+      "seconds": 92.13199999998324,
+      "map": 60,
+      "flags": [
+        2,
+        2,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "stage": 5,
+      "name": "Round key",
+      "seconds": 96.31499999994412,
+      "map": 60,
+      "flags": [
+        2,
+        2,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "stage": 6,
+      "name": "Last gimmick room",
+      "seconds": 108.8179999999702,
+      "map": 61,
+      "flags": [
+        2,
+        2,
+        2,
+        0,
+        0
+      ]
+    },
+    {
+      "stage": 7,
+      "name": "Triangle key",
+      "seconds": 115.69900000002235,
+      "map": 61,
+      "flags": [
+        2,
+        2,
+        2,
+        0,
+        0
+      ]
+    },
+    {
+      "stage": 8,
+      "name": "Return door B2",
+      "seconds": 121.98100000002887,
+      "map": 60,
+      "flags": [
+        2,
+        2,
+        2,
+        0,
+        0
+      ]
+    },
+    {
+      "stage": 9,
+      "name": "Two-key gate",
+      "seconds": 130.06499999994412,
+      "map": 62,
+      "flags": [
+        2,
+        2,
+        2,
+        1,
+        0
+      ]
+    },
+    {
+      "stage": 10,
+      "name": "Throne save point",
+      "seconds": 137.98200000007637,
+      "map": 62,
+      "flags": [
+        2,
+        2,
+        2,
+        1,
+        0
+      ]
+    },
+    {
+      "stage": 11,
+      "name": "Tsunehi encounter",
+      "seconds": 205.6140000000596,
+      "map": 62,
+      "flags": [
+        2,
+        2,
+        2,
+        1,
+        2
+      ]
+    },
+    {
+      "stage": 12,
+      "name": "Complete",
+      "seconds": 208.1360000000568,
+      "map": 62,
+      "flags": [
+        2,
+        2,
+        2,
+        1,
+        2
+      ]
+    }
+  ],
+  "status": {
+    "stage": 13,
+    "seconds": 208.90000000002328,
+    "map": 62,
+    "xy": [
+      6.5,
+      18
+    ],
+    "scene": "Scene_Map",
+    "flag": [
+      2,
+      2,
+      2,
+      1,
+      2
+    ],
+    "text": [],
+    "done": true,
+    "battle": null
+  },
+  "party": [
+    {
+      "id": 2,
+      "level": 8
+    },
+    {
+      "id": 3,
+      "level": 8
+    },
+    {
+      "id": 4,
+      "level": 8
+    }
+  ],
+  "choices": 2,
+  "part1Seconds": 131.15600000007544,
+  "part2Seconds": 77.69599999999627,
+  "join": "Same map state; recorder wait removed at throne entrance"
+}

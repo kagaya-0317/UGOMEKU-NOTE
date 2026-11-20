@@ -1,0 +1,252 @@
+[Parsed_volumedetect_339 @ 00000285a2808ec0] n_samples: 0
+Input #0, ogg, from 'C:\Users\kgygn\Dropbox\ゲーム\Game_NewGame\NewGame\audio\se\Machine.ogg':
+  Duration: 00:00:03.66, start: 0.000000, bitrate: 108 kb/s
+  Stream #0:0: Audio: vorbis, 44100 Hz, mono, fltp, 110 kb/s
+Input #1, ogg, from 'C:\Users\kgygn\Dropbox\ゲーム\Game_NewGame\NewGame\audio\se\00_shot1.ogg':
+  Duration: 00:00:01.36, start: 0.000000, bitrate: 297 kb/s
+  Stream #1:0: Audio: vorbis, 44100 Hz, stereo, fltp, 499 kb/s
+Input #2, ogg, from 'C:\Users\kgygn\Dropbox\ゲーム\Game_NewGame\NewGame\audio\se\Blow1.ogg':
+  Duration: 00:00:00.32, start: 0.000000, bitrate: 143 kb/s
+  Stream #2:0: Audio: vorbis, 22050 Hz, mono, fltp, 40 kb/s
+Input #3, ogg, from 'C:\Users\kgygn\Dropbox\ゲーム\Game_NewGame\NewGame\audio\se\Machine.ogg':
+  Duration: 00:00:03.66, start: 0.000000, bitrate: 108 kb/s
+  Stream #3:0: Audio: vorbis, 44100 Hz, mono, fltp, 110 kb/s
+Input #4, ogg, from 'C:\Users\kgygn\Dropbox\ゲーム\Game_NewGame\NewGame\audio\se\Machine.ogg':
+  Duration: 00:00:03.66, start: 0.000000, bitrate: 108 kb/s
+  Stream #4:0: Audio: vorbis, 44100 Hz, mono, fltp, 110 kb/s
+Input #5, ogg, from 'C:\Users\kgygn\Dropbox\ゲーム\Game_NewGame\NewGame\audio\se\00_shot1.ogg':
+  Duration: 00:00:01.36, start: 0.000000, bitrate: 297 kb/s
+  Stream #5:0: Audio: vorbis, 44100 Hz, stereo, fltp, 499 kb/s
+Input #6, ogg, from 'C:\Users\kgygn\Dropbox\ゲーム\Game_NewGame\NewGame\audio\se\Blow1.ogg':
+  Duration: 00:00:00.32, start: 0.000000, bitrate: 143 kb/s
+  Stream #6:0: Audio: vorbis, 22050 Hz, mono, fltp, 40 kb/s
+Input #7, ogg, from 'C:\Users\kgygn\Dropbox\ゲーム\Game_NewGame\NewGame\audio\se\Machine.ogg':
+  Duration: 00:00:03.66, start: 0.000000, bitrate: 108 kb/s
+  Stream #7:0: Audio: vorbis, 44100 Hz, mono, fltp, 110 kb/s
+Input #8, ogg, from 'C:\Users\kgygn\Dropbox\ゲーム\Game_NewGame\NewGame\audio\se\Machine.ogg':
+  Duration: 00:00:03.66, start: 0.000000, bitrate: 108 kb/s
+  Stream #8:0: Audio: vorbis, 44100 Hz, mono, fltp, 110 kb/s
+Input #9, ogg, from 'C:\Users\kgygn\Dropbox\ゲーム\Game_NewGame\NewGame\audio\se\Explosion2.ogg':
+  Duration: 00:00:01.82, start: 0.000000, bitrate: 63 kb/s
+  Stream #9:0: Audio: vorbis, 22050 Hz, mono, fltp, 40 kb/s
+Input #10, ogg, from 'C:\Users\kgygn\Dropbox\ゲーム\Game_NewGame\NewGame\audio\se\Explosion1.ogg':
+  Duration: 00:00:01.60, start: 0.000000, bitrate: 65 kb/s
+  Stream #10:0: Audio: vorbis, 22050 Hz, mono, fltp, 40 kb/s
+Input #11, ogg, from 'C:\Users\kgygn\Dropbox\ゲーム\Game_NewGame\NewGame\audio\se\Machine.ogg':
+  Duration: 00:00:03.66, start: 0.000000, bitrate: 108 kb/s
+  Stream #11:0: Audio: vorbis, 44100 Hz, mono, fltp, 110 kb/s
+Input #12, ogg, from 'C:\Users\kgygn\Dropbox\ゲーム\Game_NewGame\NewGame\audio\se\Equip1.ogg':
+  Duration: 00:00:00.35, start: 0.000000, bitrate: 219 kb/s
+  Stream #12:0: Audio: vorbis, 22050 Hz, mono, fltp, 89 kb/s
+Input #13, ogg, from 'C:\Users\kgygn\Dropbox\ゲーム\Game_NewGame\NewGame\audio\se\Magic1.ogg':
+  Duration: 00:00:01.00, start: 0.000000, bitrate: 122 kb/s
+  Stream #13:0: Audio: vorbis, 22050 Hz, mono, fltp, 89 kb/s
+Input #14, ogg, from 'C:\Users\kgygn\Dropbox\ゲーム\Game_NewGame\NewGame\audio\se\YumeChargeHold.ogg':
+  Duration: 00:00:01.00, start: 0.000000, bitrate: 55 kb/s
+  Stream #14:0: Audio: vorbis, 48000 Hz, mono, fltp, 96 kb/s
+    Metadata:
+      encoder         : Lavc60.31.102 libvorbis
+      LOOPSTART       : 0
+      LOOPLENGTH      : 48000
+Input #15, ogg, from 'C:\Users\kgygn\Dropbox\ゲーム\Game_NewGame\NewGame\audio\se\Shot2.ogg':
+  Duration: 00:00:00.52, start: 0.000000, bitrate: 89 kb/s
+  Stream #15:0: Audio: vorbis, 22050 Hz, mono, fltp, 40 kb/s
+Input #16, ogg, from 'C:\Users\kgygn\Dropbox\ゲーム\Game_NewGame\NewGame\audio\se\Thunder3.ogg':
+  Duration: 00:00:00.71, start: 0.000000, bitrate: 89 kb/s
+  Stream #16:0: Audio: vorbis, 22050 Hz, mono, fltp, 40 kb/s
+Input #17, ogg, from 'C:\Users\kgygn\Dropbox\ゲーム\Game_NewGame\NewGame\audio\se\Equip1.ogg':
+  Duration: 00:00:00.35, start: 0.000000, bitrate: 219 kb/s
+  Stream #17:0: Audio: vorbis, 22050 Hz, mono, fltp, 89 kb/s
+Input #18, ogg, from 'C:\Users\kgygn\Dropbox\ゲーム\Game_NewGame\NewGame\audio\se\Machine.ogg':
+  Duration: 00:00:03.66, start: 0.000000, bitrate: 108 kb/s
+  Stream #18:0: Audio: vorbis, 44100 Hz, mono, fltp, 110 kb/s
+Input #19, ogg, from 'C:\Users\kgygn\Dropbox\ゲーム\Game_NewGame\NewGame\audio\se\Machine.ogg':
+  Duration: 00:00:03.66, start: 0.000000, bitrate: 108 kb/s
+  Stream #19:0: Audio: vorbis, 44100 Hz, mono, fltp, 110 kb/s
+Input #20, ogg, from 'C:\Users\kgygn\Dropbox\ゲーム\Game_NewGame\NewGame\audio\se\Machine.ogg':
+  Duration: 00:00:03.66, start: 0.000000, bitrate: 108 kb/s
+  Stream #20:0: Audio: vorbis, 44100 Hz, mono, fltp, 110 kb/s
+Input #21, ogg, from 'C:\Users\kgygn\Dropbox\ゲーム\Game_NewGame\NewGame\audio\se\Equip1.ogg':
+  Duration: 00:00:00.35, start: 0.000000, bitrate: 219 kb/s
+  Stream #21:0: Audio: vorbis, 22050 Hz, mono, fltp, 89 kb/s
+Input #22, ogg, from 'C:\Users\kgygn\Dropbox\ゲーム\Game_NewGame\NewGame\audio\se\Equip1.ogg':
+  Duration: 00:00:00.35, start: 0.000000, bitrate: 219 kb/s
+  Stream #22:0: Audio: vorbis, 22050 Hz, mono, fltp, 89 kb/s
+Input #23, ogg, from 'C:\Users\kgygn\Dropbox\ゲーム\Game_NewGame\NewGame\audio\se\Equip1.ogg':
+  Duration: 00:00:00.35, start: 0.000000, bitrate: 219 kb/s
+  Stream #23:0: Audio: vorbis, 22050 Hz, mono, fltp, 89 kb/s
+Input #24, ogg, from 'C:\Users\kgygn\Dropbox\ゲーム\Game_NewGame\NewGame\audio\se\Equip1.ogg':
+  Duration: 00:00:00.35, start: 0.000000, bitrate: 219 kb/s
+  Stream #24:0: Audio: vorbis, 22050 Hz, mono, fltp, 89 kb/s
+Input #25, ogg, from 'C:\Users\kgygn\Dropbox\ゲーム\Game_NewGame\NewGame\audio\se\00_drill.ogg':
+  Duration: 00:00:02.55, start: 0.000000, bitrate: 504 kb/s
+  Stream #25:0: Audio: vorbis, 44100 Hz, stereo, fltp, 499 kb/s
+Input #26, ogg, from 'C:\Users\kgygn\Dropbox\ゲーム\Game_NewGame\NewGame\audio\se\00_shot1.ogg':
+  Duration: 00:00:01.36, start: 0.000000, bitrate: 297 kb/s
+  Stream #26:0: Audio: vorbis, 44100 Hz, stereo, fltp, 499 kb/s
+Input #27, ogg, from 'C:\Users\kgygn\Dropbox\ゲーム\Game_NewGame\NewGame\audio\se\Fire2.ogg':
+  Duration: 00:00:01.32, start: 0.000000, bitrate: 68 kb/s
+  Stream #27:0: Audio: vorbis, 22050 Hz, mono, fltp, 40 kb/s
+Input #28, ogg, from 'C:\Users\kgygn\Dropbox\ゲーム\Game_NewGame\NewGame\audio\se\00_shot1.ogg':
+  Duration: 00:00:01.36, start: 0.000000, bitrate: 297 kb/s
+  Stream #28:0: Audio: vorbis, 44100 Hz, stereo, fltp, 499 kb/s
+Input #29, ogg, from 'C:\Users\kgygn\Dropbox\ゲーム\Game_NewGame\NewGame\audio\se\Magic1.ogg':
+  Duration: 00:00:01.00, start: 0.000000, bitrate: 122 kb/s
+  Stream #29:0: Audio: vorbis, 22050 Hz, mono, fltp, 89 kb/s
+Input #30, ogg, from 'C:\Users\kgygn\Dropbox\ゲーム\Game_NewGame\NewGame\audio\se\00_shot1.ogg':
+  Duration: 00:00:01.36, start: 0.000000, bitrate: 297 kb/s
+  Stream #30:0: Audio: vorbis, 44100 Hz, stereo, fltp, 499 kb/s
+Input #31, ogg, from 'C:\Users\kgygn\Dropbox\ゲーム\Game_NewGame\NewGame\audio\se\00_shot1.ogg':
+  Duration: 00:00:01.36, start: 0.000000, bitrate: 297 kb/s
+  Stream #31:0: Audio: vorbis, 44100 Hz, stereo, fltp, 499 kb/s
+Input #32, ogg, from 'C:\Users\kgygn\Dropbox\ゲーム\Game_NewGame\NewGame\audio\se\00_shot1.ogg':
+  Duration: 00:00:01.36, start: 0.000000, bitrate: 297 kb/s
+  Stream #32:0: Audio: vorbis, 44100 Hz, stereo, fltp, 499 kb/s
+Input #33, ogg, from 'C:\Users\kgygn\Dropbox\ゲーム\Game_NewGame\NewGame\audio\se\00_shot1.ogg':
+  Duration: 00:00:01.36, start: 0.000000, bitrate: 297 kb/s
+  Stream #33:0: Audio: vorbis, 44100 Hz, stereo, fltp, 499 kb/s
+Input #34, ogg, from 'C:\Users\kgygn\Dropbox\ゲーム\Game_NewGame\NewGame\audio\se\Explosion2.ogg':
+  Duration: 00:00:01.82, start: 0.000000, bitrate: 63 kb/s
+  Stream #34:0: Audio: vorbis, 22050 Hz, mono, fltp, 40 kb/s
+Input #35, ogg, from 'C:\Users\kgygn\Dropbox\ゲーム\Game_NewGame\NewGame\audio\se\00_shot1.ogg':
+  Duration: 00:00:01.36, start: 0.000000, bitrate: 297 kb/s
+  Stream #35:0: Audio: vorbis, 44100 Hz, stereo, fltp, 499 kb/s
+Input #36, ogg, from 'C:\Users\kgygn\Dropbox\ゲーム\Game_NewGame\NewGame\audio\se\00_shot1.ogg':
+  Duration: 00:00:01.36, start: 0.000000, bitrate: 297 kb/s
+  Stream #36:0: Audio: vorbis, 44100 Hz, stereo, fltp, 499 kb/s
+Input #37, ogg, from 'C:\Users\kgygn\Dropbox\ゲーム\Game_NewGame\NewGame\audio\se\Equip1.ogg':
+  Duration: 00:00:00.35, start: 0.000000, bitrate: 219 kb/s
+  Stream #37:0: Audio: vorbis, 22050 Hz, mono, fltp, 89 kb/s
+Input #38, ogg, from 'C:\Users\kgygn\Dropbox\ゲーム\Game_NewGame\NewGame\audio\se\00_shot1.ogg':
+  Duration: 00:00:01.36, start: 0.000000, bitrate: 297 kb/s
+  Stream #38:0: Audio: vorbis, 44100 Hz, stereo, fltp, 499 kb/s
+Input #39, ogg, from 'C:\Users\kgygn\Dropbox\ゲーム\Game_NewGame\NewGame\audio\se\Launch.ogg':
+  Duration: 00:00:03.16, start: 0.000000, bitrate: 433 kb/s
+  Stream #39:0: Audio: vorbis, 44100 Hz, stereo, fltp, 499 kb/s
+Input #40, ogg, from 'C:\Users\kgygn\Dropbox\ゲーム\Game_NewGame\NewGame\audio\se\YumeChargeHold.ogg':
+  Duration: 00:00:01.00, start: 0.000000, bitrate: 55 kb/s
+  Stream #40:0: Audio: vorbis, 48000 Hz, mono, fltp, 96 kb/s
+    Metadata:
+      encoder         : Lavc60.31.102 libvorbis
+      LOOPSTART       : 0
+      LOOPLENGTH      : 48000
+Input #41, ogg, from 'C:\Users\kgygn\Dropbox\ゲーム\Game_NewGame\NewGame\audio\se\00_shot1.ogg':
+  Duration: 00:00:01.36, start: 0.000000, bitrate: 297 kb/s
+  Stream #41:0: Audio: vorbis, 44100 Hz, stereo, fltp, 499 kb/s
+Input #42, ogg, from 'C:\Users\kgygn\Dropbox\ゲーム\Game_NewGame\NewGame\audio\se\00_shot1.ogg':
+  Duration: 00:00:01.36, start: 0.000000, bitrate: 297 kb/s
+  Stream #42:0: Audio: vorbis, 44100 Hz, stereo, fltp, 499 kb/s
+Input #43, ogg, from 'C:\Users\kgygn\Dropbox\ゲーム\Game_NewGame\NewGame\audio\se\00_shot1.ogg':
+  Duration: 00:00:01.36, start: 0.000000, bitrate: 297 kb/s
+  Stream #43:0: Audio: vorbis, 44100 Hz, stereo, fltp, 499 kb/s
+Input #44, ogg, from 'C:\Users\kgygn\Dropbox\ゲーム\Game_NewGame\NewGame\audio\se\Machine.ogg':
+  Duration: 00:00:03.66, start: 0.000000, bitrate: 108 kb/s
+  Stream #44:0: Audio: vorbis, 44100 Hz, mono, fltp, 110 kb/s
+Input #45, ogg, from 'C:\Users\kgygn\Dropbox\ゲーム\Game_NewGame\NewGame\audio\se\Explosion1.ogg':
+  Duration: 00:00:01.60, start: 0.000000, bitrate: 65 kb/s
+  Stream #45:0: Audio: vorbis, 22050 Hz, mono, fltp, 40 kb/s
+Input #46, ogg, from 'C:\Users\kgygn\Dropbox\ゲーム\Game_NewGame\NewGame\audio\se\00_shot1.ogg':
+  Duration: 00:00:01.36, start: 0.000000, bitrate: 297 kb/s
+  Stream #46:0: Audio: vorbis, 44100 Hz, stereo, fltp, 499 kb/s
+Input #47, ogg, from 'C:\Users\kgygn\Dropbox\ゲーム\Game_NewGame\NewGame\audio\se\00_shot1.ogg':
+  Duration: 00:00:01.36, start: 0.000000, bitrate: 297 kb/s
+  Stream #47:0: Audio: vorbis, 44100 Hz, stereo, fltp, 499 kb/s
+Input #48, ogg, from 'C:\Users\kgygn\Dropbox\ゲーム\Game_NewGame\NewGame\audio\se\Machine.ogg':
+  Duration: 00:00:03.66, start: 0.000000, bitrate: 108 kb/s
+  Stream #48:0: Audio: vorbis, 44100 Hz, mono, fltp, 110 kb/s
+Input #49, ogg, from 'C:\Users\kgygn\Dropbox\ゲーム\Game_NewGame\NewGame\audio\se\Equip1.ogg':
+  Duration: 00:00:00.35, start: 0.000000, bitrate: 219 kb/s
+  Stream #49:0: Audio: vorbis, 22050 Hz, mono, fltp, 89 kb/s
+Input #50, ogg, from 'C:\Users\kgygn\Dropbox\ゲーム\Game_NewGame\NewGame\audio\se\Machine.ogg':
+  Duration: 00:00:03.66, start: 0.000000, bitrate: 108 kb/s
+  Stream #50:0: Audio: vorbis, 44100 Hz, mono, fltp, 110 kb/s
+Input #51, ogg, from 'C:\Users\kgygn\Dropbox\ゲーム\Game_NewGame\NewGame\audio\se\Explosion1.ogg':
+  Duration: 00:00:01.60, start: 0.000000, bitrate: 65 kb/s
+  Stream #51:0: Audio: vorbis, 22050 Hz, mono, fltp, 40 kb/s
+Input #52, ogg, from 'C:\Users\kgygn\Dropbox\ゲーム\Game_NewGame\NewGame\audio\se\Equip1.ogg':
+  Duration: 00:00:00.35, start: 0.000000, bitrate: 219 kb/s
+  Stream #52:0: Audio: vorbis, 22050 Hz, mono, fltp, 89 kb/s
+Input #53, ogg, from 'C:\Users\kgygn\Dropbox\ゲーム\Game_NewGame\NewGame\audio\se\Shot2.ogg':
+  Duration: 00:00:00.52, start: 0.000000, bitrate: 89 kb/s
+  Stream #53:0: Audio: vorbis, 22050 Hz, mono, fltp, 40 kb/s
+Input #54, ogg, from 'C:\Users\kgygn\Dropbox\ゲーム\Game_NewGame\NewGame\audio\se\Thunder3.ogg':
+  Duration: 00:00:00.71, start: 0.000000, bitrate: 89 kb/s
+  Stream #54:0: Audio: vorbis, 22050 Hz, mono, fltp, 40 kb/s
+Input #55, ogg, from 'C:\Users\kgygn\Dropbox\ゲーム\Game_NewGame\NewGame\audio\se\Equip1.ogg':
+  Duration: 00:00:00.35, start: 0.000000, bitrate: 219 kb/s
+  Stream #55:0: Audio: vorbis, 22050 Hz, mono, fltp, 89 kb/s
+Stream mapping:
+  Stream #0:0 (vorbis) -> aresample:default
+  Stream #1:0 (vorbis) -> aresample:default
+  Stream #2:0 (vorbis) -> aresample:default
+  Stream #3:0 (vorbis) -> aresample:default
+  Stream #4:0 (vorbis) -> aresample:default
+  Stream #5:0 (vorbis) -> aresample:default
+  Stream #6:0 (vorbis) -> aresample:default
+  Stream #7:0 (vorbis) -> aresample:default
+  Stream #8:0 (vorbis) -> aresample:default
+  Stream #9:0 (vorbis) -> aresample:default
+  Stream #10:0 (vorbis) -> aresample:default
+  Stream #11:0 (vorbis) -> aresample:default
+  Stream #12:0 (vorbis) -> aresample:default
+  Stream #13:0 (vorbis) -> aresample:default
+  Stream #14:0 (vorbis) -> aresample:default
+  Stream #15:0 (vorbis) -> aresample:default
+  Stream #16:0 (vorbis) -> aresample:default
+  Stream #17:0 (vorbis) -> aresample:default
+  Stream #18:0 (vorbis) -> aresample:default
+  Stream #19:0 (vorbis) -> aresample:default
+  Stream #20:0 (vorbis) -> aresample:default
+  Stream #21:0 (vorbis) -> aresample:default
+  Stream #22:0 (vorbis) -> aresample:default
+  Stream #23:0 (vorbis) -> aresample:default
+  Stream #24:0 (vorbis) -> aresample:default
+  Stream #25:0 (vorbis) -> aresample:default
+  Stream #26:0 (vorbis) -> aresample:default
+  Stream #27:0 (vorbis) -> aresample:default
+  Stream #28:0 (vorbis) -> aresample:default
+  Stream #29:0 (vorbis) -> aresample:default
+  Stream #30:0 (vorbis) -> aresample:default
+  Stream #31:0 (vorbis) -> aresample:default
+  Stream #32:0 (vorbis) -> aresample:default
+  Stream #33:0 (vorbis) -> aresample:default
+  Stream #34:0 (vorbis) -> aresample:default
+  Stream #35:0 (vorbis) -> aresample:default
+  Stream #36:0 (vorbis) -> aresample:default
+  Stream #37:0 (vorbis) -> aresample:default
+  Stream #38:0 (vorbis) -> aresample:default
+  Stream #39:0 (vorbis) -> aresample:default
+  Stream #40:0 (vorbis) -> aresample:default
+  Stream #41:0 (vorbis) -> aresample:default
+  Stream #42:0 (vorbis) -> aresample:default
+  Stream #43:0 (vorbis) -> aresample:default
+  Stream #44:0 (vorbis) -> aresample:default
+  Stream #45:0 (vorbis) -> aresample:default
+  Stream #46:0 (vorbis) -> aresample:default
+  Stream #47:0 (vorbis) -> aresample:default
+  Stream #48:0 (vorbis) -> aresample:default
+  Stream #49:0 (vorbis) -> aresample:default
+  Stream #50:0 (vorbis) -> aresample:default
+  Stream #51:0 (vorbis) -> aresample:default
+  Stream #52:0 (vorbis) -> aresample:default
+  Stream #53:0 (vorbis) -> aresample:default
+  Stream #54:0 (vorbis) -> aresample:default
+  Stream #55:0 (vorbis) -> aresample:default
+  volumedetect:default -> Stream #0:0 (pcm_s16le)
+Press [q] to stop, [?] for help
+Output #0, null, to 'NUL':
+  Metadata:
+    encoder         : Lavf60.16.100
+  Stream #0:0: Audio: pcm_s16le, 44100 Hz, mono, s16, 705 kb/s
+    Metadata:
+      encoder         : Lavc60.31.102 pcm_s16le
+size=       0kB time=00:00:00.00 bitrate=N/A speed=   0x    [out#0/null @ 00000285a358e980] video:0kB audio:1723kB subtitle:0kB other streams:0kB global headers:0kB muxing overhead: unknown
+size=N/A time=00:00:19.98 bitrate=N/A speed=62.2x    
+[Parsed_volumedetect_339 @ 00000285a3d61e40] n_samples: 882000
+[Parsed_volumedetect_339 @ 00000285a3d61e40] mean_volume: -26.3 dB
+[Parsed_volumedetect_339 @ 00000285a3d61e40] max_volume: -5.2 dB
+[Parsed_volumedetect_339 @ 00000285a3d61e40] histogram_5db: 3
+[Parsed_volumedetect_339 @ 00000285a3d61e40] histogram_6db: 14
+[Parsed_volumedetect_339 @ 00000285a3d61e40] histogram_7db: 119
+[Parsed_volumedetect_339 @ 00000285a3d61e40] histogram_8db: 303
+[Parsed_volumedetect_339 @ 00000285a3d61e40] histogram_9db: 518
