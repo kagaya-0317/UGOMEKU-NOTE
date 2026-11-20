@@ -1,0 +1,6874 @@
+{
+  "initialAudio": {
+    "pcOutputMuted": true,
+    "speakerGain": 0,
+    "blockedSpeakerConnections": 1,
+    "context": "running",
+    "track": "live",
+    "rms": 0.19763250013943648,
+    "bgm": "00_New_Dungeon4"
+  },
+  "staging": {
+    "before": [
+      {
+        "actor": 2,
+        "x": 25.5,
+        "y": 12,
+        "direction": 8
+      },
+      {
+        "actor": 3,
+        "x": 25.5,
+        "y": 13.5,
+        "direction": 8
+      },
+      {
+        "actor": 4,
+        "x": 25.5,
+        "y": 15.5,
+        "direction": 8
+      }
+    ],
+    "after": [
+      {
+        "actor": 2,
+        "x": 25.5,
+        "y": 12,
+        "direction": 8
+      },
+      {
+        "actor": 3,
+        "x": 25.5,
+        "y": 13.5,
+        "direction": 8
+      },
+      {
+        "actor": 4,
+        "x": 25.5,
+        "y": 15.5,
+        "direction": 8
+      }
+    ],
+    "followers": true,
+    "proxiesHidden": true
+  },
+  "seconds": 13.07999999995809,
+  "trace": [
+    {
+      "time": 0.03700000001117587,
+      "text": [
+        "カギを選ぼう"
+      ],
+      "item": {
+        "id": 53,
+        "x": 288,
+        "y": 456,
+        "width": 400
+      },
+      "flag": 0,
+      "camera": [
+        0,
+        0
+      ],
+      "pcGain": 0,
+      "formation": null
+    },
+    {
+      "time": 0.03899999998975545,
+      "text": [
+        "カギを選ぼう"
+      ],
+      "item": {
+        "id": 53,
+        "x": 288,
+        "y": 456,
+        "width": 400
+      },
+      "flag": 0,
+      "camera": [
+        0,
+        0
+      ],
+      "pcGain": 0,
+      "formation": null
+    },
+    {
+      "time": 0.08400000003166497,
+      "text": [
+        "カギを選ぼう"
+      ],
+      "item": {
+        "id": 53,
+        "x": 288,
+        "y": 456,
+        "width": 400
+      },
+      "flag": 0,
+      "camera": [
+        0,
+        0
+      ],
+      "pcGain": 0,
+      "formation": null
+    },
+    {
+      "time": 0.2850000000325963,
+      "text": [
+        "カギを選ぼう"
+      ],
+      "item": {
+        "id": 53,
+        "x": 288,
+        "y": 456,
+        "width": 400
+      },
+      "flag": 0,
+      "camera": [
+        0,
+        0
+      ],
+      "pcGain": 0,
+      "formation": null
+    },
+    {
+      "time": 0.33400000003166497,
+      "text": [
+        "カギを選ぼう"
+      ],
+      "item": {
+        "id": 53,
+        "x": 288,
+        "y": 456,
+        "width": 400
+      },
+      "flag": 0,
+      "camera": [
+        0,
+        0
+      ],
+      "pcGain": 0,
+      "formation": null
+    },
+    {
+      "time": 0.3839999999618158,
+      "text": [
+        "カギを選ぼう"
+      ],
+      "item": {
+        "id": 53,
+        "x": 288,
+        "y": 456,
+        "width": 400
+      },
+      "flag": 0,
+      "camera": [
+        0,
+        0
+      ],
+      "pcGain": 0,
+      "formation": null
+    },
+    {
+      "time": 0.4340000000083819,
+      "text": [
+        "カギを選ぼう"
+      ],
+      "item": {
+        "id": 53,
+        "x": 288,
+        "y": 456,
+        "width": 400
+      },
+      "flag": 0,
+      "camera": [
+        0,
+        0
+      ],
+      "pcGain": 0,
+      "formation": null
+    },
+    {
+      "time": 0.48499999998603016,
+      "text": [
+        "カギを選ぼう"
+      ],
+      "item": {
+        "id": 53,
+        "x": 288,
+        "y": 456,
+        "width": 400
+      },
+      "flag": 0,
+      "camera": [
+        0,
+        0
+      ],
+      "pcGain": 0,
+      "formation": null
+    },
+    {
+      "time": 0.5339999999850988,
+      "text": [
+        "カギを選ぼう"
+      ],
+      "item": {
+        "id": 53,
+        "x": 288,
+        "y": 456,
+        "width": 400
+      },
+      "flag": 0,
+      "camera": [
+        0,
+        0
+      ],
+      "pcGain": 0,
+      "formation": null
+    },
+    {
+      "time": 0.584000000031665,
+      "text": [
+        "カギを選ぼう"
+      ],
+      "item": {
+        "id": 53,
+        "x": 288,
+        "y": 456,
+        "width": 400
+      },
+      "flag": 0,
+      "camera": [
+        0,
+        0
+      ],
+      "pcGain": 0,
+      "formation": null
+    },
+    {
+      "time": 0.6330000000307336,
+      "text": [
+        "カギを選ぼう"
+      ],
+      "item": {
+        "id": 53,
+        "x": 288,
+        "y": 456,
+        "width": 400
+      },
+      "flag": 0,
+      "camera": [
+        0,
+        0
+      ],
+      "pcGain": 0,
+      "formation": null
+    },
+    {
+      "time": 0.6339999999618158,
+      "text": [
+        "カギを選ぼう"
+      ],
+      "item": {
+        "id": 53,
+        "x": 288,
+        "y": 456,
+        "width": 400
+      },
+      "flag": 0,
+      "camera": [
+        0,
+        0
+      ],
+      "pcGain": 0,
+      "formation": null
+    },
+    {
+      "time": 0.6840000000083819,
+      "text": [
+        "カギを選ぼう"
+      ],
+      "item": {
+        "id": 53,
+        "x": 288,
+        "y": 456,
+        "width": 400
+      },
+      "flag": 0,
+      "camera": [
+        0,
+        0
+      ],
+      "pcGain": 0,
+      "formation": null
+    },
+    {
+      "time": 0.7839999999850988,
+      "text": [
+        "カギを選ぼう"
+      ],
+      "item": {
+        "id": 53,
+        "x": 288,
+        "y": 456,
+        "width": 400
+      },
+      "flag": 0,
+      "camera": [
+        0,
+        0
+      ],
+      "pcGain": 0,
+      "formation": null
+    },
+    {
+      "time": 0.8349999999627471,
+      "text": [
+        "カギを選ぼう"
+      ],
+      "item": {
+        "id": 53,
+        "x": 288,
+        "y": 456,
+        "width": 400
+      },
+      "flag": 0,
+      "camera": [
+        0,
+        0
+      ],
+      "pcGain": 0,
+      "formation": null
+    },
+    {
+      "time": 0.8839999999618158,
+      "text": [
+        "カギを選ぼう"
+      ],
+      "item": {
+        "id": 53,
+        "x": 288,
+        "y": 456,
+        "width": 400
+      },
+      "flag": 0,
+      "camera": [
+        0,
+        0
+      ],
+      "pcGain": 0,
+      "formation": null
+    },
+    {
+      "time": 0.9359999999869615,
+      "text": [
+        "カギを選ぼう"
+      ],
+      "item": {
+        "id": 53,
+        "x": 288,
+        "y": 456,
+        "width": 400
+      },
+      "flag": 0,
+      "camera": [
+        0,
+        0
+      ],
+      "pcGain": 0,
+      "formation": null
+    },
+    {
+      "time": 0.9390000000130385,
+      "text": [
+        "カギを選ぼう"
+      ],
+      "item": {
+        "id": 53,
+        "x": 288,
+        "y": 456,
+        "width": 400
+      },
+      "flag": 0,
+      "camera": [
+        0,
+        0
+      ],
+      "pcGain": 0,
+      "formation": null
+    },
+    {
+      "time": 0.9860000000335276,
+      "text": [
+        "カギを選ぼう"
+      ],
+      "item": {
+        "id": 53,
+        "x": 288,
+        "y": 456,
+        "width": 400
+      },
+      "flag": 0,
+      "camera": [
+        0,
+        0
+      ],
+      "pcGain": 0,
+      "formation": null
+    },
+    {
+      "time": 1.084999999962747,
+      "text": [
+        "カギを選ぼう"
+      ],
+      "item": {
+        "id": 53,
+        "x": 288,
+        "y": 456,
+        "width": 400
+      },
+      "flag": 0,
+      "camera": [
+        0,
+        0
+      ],
+      "pcGain": 0,
+      "formation": null
+    },
+    {
+      "time": 1.1339999999618158,
+      "text": [
+        "カギを選ぼう"
+      ],
+      "item": {
+        "id": 53,
+        "x": 288,
+        "y": 456,
+        "width": 400
+      },
+      "flag": 0,
+      "camera": [
+        0,
+        0
+      ],
+      "pcGain": 0,
+      "formation": null
+    },
+    {
+      "time": 1.1829999999608845,
+      "text": [
+        "カギを選ぼう"
+      ],
+      "item": {
+        "id": 53,
+        "x": 288,
+        "y": 456,
+        "width": 400
+      },
+      "flag": 0,
+      "camera": [
+        0,
+        0
+      ],
+      "pcGain": 0,
+      "formation": null
+    },
+    {
+      "time": 1.2330000000074506,
+      "text": [
+        "カギを選ぼう"
+      ],
+      "item": {
+        "id": 53,
+        "x": 288,
+        "y": 456,
+        "width": 400
+      },
+      "flag": 0,
+      "camera": [
+        0,
+        0
+      ],
+      "pcGain": 0,
+      "formation": null
+    },
+    {
+      "time": 1.2339999999385327,
+      "text": [
+        "カギを選ぼう"
+      ],
+      "item": {
+        "id": 53,
+        "x": 288,
+        "y": 456,
+        "width": 400
+      },
+      "flag": 0,
+      "camera": [
+        0,
+        0
+      ],
+      "pcGain": 0,
+      "formation": null
+    },
+    {
+      "time": 1.2839999999850988,
+      "text": [
+        "カギを選ぼう"
+      ],
+      "item": {
+        "id": 53,
+        "x": 288,
+        "y": 456,
+        "width": 400
+      },
+      "flag": 0,
+      "camera": [
+        0,
+        0
+      ],
+      "pcGain": 0,
+      "formation": null
+    },
+    {
+      "time": 1.334999999962747,
+      "text": [
+        "カギを選ぼう"
+      ],
+      "item": {
+        "id": 53,
+        "x": 288,
+        "y": 456,
+        "width": 400
+      },
+      "flag": 0,
+      "camera": [
+        0,
+        0
+      ],
+      "pcGain": 0,
+      "formation": null
+    },
+    {
+      "time": 1.3830000000307336,
+      "text": [
+        "カギを選ぼう"
+      ],
+      "item": {
+        "id": 53,
+        "x": 288,
+        "y": 456,
+        "width": 400
+      },
+      "flag": 0,
+      "camera": [
+        0,
+        0
+      ],
+      "pcGain": 0,
+      "formation": null
+    },
+    {
+      "time": 1.434000000008382,
+      "text": [
+        "カギを選ぼう"
+      ],
+      "item": {
+        "id": 53,
+        "x": 288,
+        "y": 456,
+        "width": 400
+      },
+      "flag": 0,
+      "camera": [
+        0,
+        0
+      ],
+      "pcGain": 0,
+      "formation": null
+    },
+    {
+      "time": 1.4839999999385327,
+      "text": [
+        "カギを選ぼう"
+      ],
+      "item": {
+        "id": 53,
+        "x": 288,
+        "y": 456,
+        "width": 400
+      },
+      "flag": 0,
+      "camera": [
+        0,
+        0
+      ],
+      "pcGain": 0,
+      "formation": null
+    },
+    {
+      "time": 1.5350000000325963,
+      "text": [
+        "カギを選ぼう"
+      ],
+      "item": {
+        "id": 53,
+        "x": 288,
+        "y": 456,
+        "width": 400
+      },
+      "flag": 0,
+      "camera": [
+        0,
+        0
+      ],
+      "pcGain": 0,
+      "formation": null
+    },
+    {
+      "time": 1.584000000031665,
+      "text": [
+        "カギを選ぼう"
+      ],
+      "item": {
+        "id": 53,
+        "x": 288,
+        "y": 456,
+        "width": 400
+      },
+      "flag": 0,
+      "camera": [
+        0,
+        0
+      ],
+      "pcGain": 0,
+      "formation": null
+    },
+    {
+      "time": 1.6350000000093132,
+      "text": [
+        "カギを選ぼう"
+      ],
+      "item": {
+        "id": 53,
+        "x": 288,
+        "y": 456,
+        "width": 400
+      },
+      "flag": 0,
+      "camera": [
+        0,
+        0
+      ],
+      "pcGain": 0,
+      "formation": null
+    },
+    {
+      "time": 1.684000000008382,
+      "text": [
+        "カギを選ぼう"
+      ],
+      "item": {
+        "id": 53,
+        "x": 288,
+        "y": 456,
+        "width": 400
+      },
+      "flag": 0,
+      "camera": [
+        0,
+        0
+      ],
+      "pcGain": 0,
+      "formation": null
+    },
+    {
+      "time": 1.684000000008382,
+      "text": [
+        "カギを選ぼう"
+      ],
+      "item": {
+        "id": 53,
+        "x": 288,
+        "y": 456,
+        "width": 400
+      },
+      "flag": 0,
+      "camera": [
+        0,
+        0
+      ],
+      "pcGain": 0,
+      "formation": null
+    },
+    {
+      "time": 1.7339999999385327,
+      "text": [
+        "カギを選ぼう"
+      ],
+      "item": {
+        "id": 53,
+        "x": 288,
+        "y": 456,
+        "width": 400
+      },
+      "flag": 0,
+      "camera": [
+        0,
+        0
+      ],
+      "pcGain": 0,
+      "formation": null
+    },
+    {
+      "time": 1.7850000000325963,
+      "text": [
+        "カギを選ぼう"
+      ],
+      "item": {
+        "id": 53,
+        "x": 288,
+        "y": 456,
+        "width": 400
+      },
+      "flag": 0,
+      "camera": [
+        0,
+        0
+      ],
+      "pcGain": 0,
+      "formation": null
+    },
+    {
+      "time": 1.8630000000121072,
+      "text": [],
+      "item": null,
+      "flag": 0,
+      "camera": [
+        0,
+        0
+      ],
+      "pcGain": 0,
+      "formation": null
+    },
+    {
+      "time": 1.865999999921769,
+      "text": [],
+      "item": null,
+      "flag": 0,
+      "camera": [
+        0,
+        0
+      ],
+      "pcGain": 0,
+      "formation": null
+    },
+    {
+      "time": 1.9329999999608845,
+      "text": [],
+      "item": null,
+      "flag": 0,
+      "camera": [
+        0,
+        0
+      ],
+      "pcGain": 0,
+      "formation": null
+    },
+    {
+      "time": 1.9860000000335276,
+      "text": [],
+      "item": null,
+      "flag": 0,
+      "camera": [
+        0,
+        0
+      ],
+      "pcGain": 0,
+      "formation": null
+    },
+    {
+      "time": 2.0359999999636784,
+      "text": [],
+      "item": null,
+      "flag": 0,
+      "camera": [
+        0,
+        0
+      ],
+      "pcGain": 0,
+      "formation": null
+    },
+    {
+      "time": 2.084999999962747,
+      "text": [],
+      "item": null,
+      "flag": 0,
+      "camera": [
+        0,
+        0
+      ],
+      "pcGain": 0,
+      "formation": null
+    },
+    {
+      "time": 2.1339999999618158,
+      "text": [
+        "カギをもう1本選ぼう"
+      ],
+      "item": null,
+      "flag": 0,
+      "camera": [
+        0,
+        0
+      ],
+      "pcGain": 0,
+      "formation": null
+    },
+    {
+      "time": 2.184999999939464,
+      "text": [
+        "カギをもう1本選ぼう"
+      ],
+      "item": null,
+      "flag": 0,
+      "camera": [
+        0,
+        0
+      ],
+      "pcGain": 0,
+      "formation": null
+    },
+    {
+      "time": 2.2369999999646097,
+      "text": [
+        "カギをもう1本選ぼう"
+      ],
+      "item": null,
+      "flag": 0,
+      "camera": [
+        0,
+        0
+      ],
+      "pcGain": 0,
+      "formation": null
+    },
+    {
+      "time": 2.302999999956228,
+      "text": [
+        "カギをもう1本選ぼう"
+      ],
+      "item": null,
+      "flag": 0,
+      "camera": [
+        0,
+        0
+      ],
+      "pcGain": 0,
+      "formation": null
+    },
+    {
+      "time": 2.368000000016764,
+      "text": [
+        "カギをもう1本選ぼう"
+      ],
+      "item": null,
+      "flag": 0,
+      "camera": [
+        0,
+        0
+      ],
+      "pcGain": 0,
+      "formation": null
+    },
+    {
+      "time": 2.371999999973923,
+      "text": [
+        "カギをもう1本選ぼう"
+      ],
+      "item": null,
+      "flag": 0,
+      "camera": [
+        0,
+        0
+      ],
+      "pcGain": 0,
+      "formation": null
+    },
+    {
+      "time": 2.437000000034459,
+      "text": [
+        "カギをもう1本選ぼう"
+      ],
+      "item": {
+        "id": 54,
+        "x": 288,
+        "y": 456,
+        "width": 400
+      },
+      "flag": 0,
+      "camera": [
+        0,
+        0
+      ],
+      "pcGain": 0,
+      "formation": null
+    },
+    {
+      "time": 2.4839999999385327,
+      "text": [
+        "カギをもう1本選ぼう"
+      ],
+      "item": {
+        "id": 54,
+        "x": 288,
+        "y": 456,
+        "width": 400
+      },
+      "flag": 0,
+      "camera": [
+        0,
+        0
+      ],
+      "pcGain": 0,
+      "formation": null
+    },
+    {
+      "time": 2.533999999985099,
+      "text": [
+        "カギをもう1本選ぼう"
+      ],
+      "item": {
+        "id": 54,
+        "x": 288,
+        "y": 456,
+        "width": 400
+      },
+      "flag": 0,
+      "camera": [
+        0,
+        0
+      ],
+      "pcGain": 0,
+      "formation": null
+    },
+    {
+      "time": 2.584999999962747,
+      "text": [
+        "カギをもう1本選ぼう"
+      ],
+      "item": {
+        "id": 54,
+        "x": 288,
+        "y": 456,
+        "width": 400
+      },
+      "flag": 0,
+      "camera": [
+        0,
+        0
+      ],
+      "pcGain": 0,
+      "formation": null
+    },
+    {
+      "time": 2.6330000000307336,
+      "text": [
+        "カギをもう1本選ぼう"
+      ],
+      "item": {
+        "id": 54,
+        "x": 288,
+        "y": 456,
+        "width": 400
+      },
+      "flag": 0,
+      "camera": [
+        0,
+        0
+      ],
+      "pcGain": 0,
+      "formation": null
+    },
+    {
+      "time": 2.684000000008382,
+      "text": [
+        "カギをもう1本選ぼう"
+      ],
+      "item": {
+        "id": 54,
+        "x": 288,
+        "y": 456,
+        "width": 400
+      },
+      "flag": 0,
+      "camera": [
+        0,
+        0
+      ],
+      "pcGain": 0,
+      "formation": null
+    },
+    {
+      "time": 2.7339999999385327,
+      "text": [
+        "カギをもう1本選ぼう"
+      ],
+      "item": {
+        "id": 54,
+        "x": 288,
+        "y": 456,
+        "width": 400
+      },
+      "flag": 0,
+      "camera": [
+        0,
+        0
+      ],
+      "pcGain": 0,
+      "formation": null
+    },
+    {
+      "time": 2.7360000000335276,
+      "text": [
+        "カギをもう1本選ぼう"
+      ],
+      "item": {
+        "id": 54,
+        "x": 288,
+        "y": 456,
+        "width": 400
+      },
+      "flag": 0,
+      "camera": [
+        0,
+        0
+      ],
+      "pcGain": 0,
+      "formation": null
+    },
+    {
+      "time": 2.783999999985099,
+      "text": [
+        "カギをもう1本選ぼう"
+      ],
+      "item": {
+        "id": 54,
+        "x": 288,
+        "y": 456,
+        "width": 400
+      },
+      "flag": 0,
+      "camera": [
+        0,
+        0
+      ],
+      "pcGain": 0,
+      "formation": null
+    },
+    {
+      "time": 2.834000000031665,
+      "text": [
+        "カギをもう1本選ぼう"
+      ],
+      "item": {
+        "id": 54,
+        "x": 288,
+        "y": 456,
+        "width": 400
+      },
+      "flag": 0,
+      "camera": [
+        0,
+        0
+      ],
+      "pcGain": 0,
+      "formation": null
+    },
+    {
+      "time": 2.934999999939464,
+      "text": [
+        "カギをもう1本選ぼう"
+      ],
+      "item": {
+        "id": 54,
+        "x": 288,
+        "y": 456,
+        "width": 400
+      },
+      "flag": 0,
+      "camera": [
+        0,
+        0
+      ],
+      "pcGain": 0,
+      "formation": null
+    },
+    {
+      "time": 2.9839999999385327,
+      "text": [
+        "カギをもう1本選ぼう"
+      ],
+      "item": {
+        "id": 54,
+        "x": 288,
+        "y": 456,
+        "width": 400
+      },
+      "flag": 0,
+      "camera": [
+        0,
+        0
+      ],
+      "pcGain": 0,
+      "formation": null
+    },
+    {
+      "time": 3.0359999999636784,
+      "text": [
+        "カギをもう1本選ぼう"
+      ],
+      "item": {
+        "id": 54,
+        "x": 288,
+        "y": 456,
+        "width": 400
+      },
+      "flag": 0,
+      "camera": [
+        0,
+        0
+      ],
+      "pcGain": 0,
+      "formation": null
+    },
+    {
+      "time": 3.0860000000102445,
+      "text": [
+        "カギをもう1本選ぼう"
+      ],
+      "item": {
+        "id": 54,
+        "x": 288,
+        "y": 456,
+        "width": 400
+      },
+      "flag": 0,
+      "camera": [
+        0,
+        0
+      ],
+      "pcGain": 0,
+      "formation": null
+    },
+    {
+      "time": 3.1339999999618158,
+      "text": [
+        "カギをもう1本選ぼう"
+      ],
+      "item": {
+        "id": 54,
+        "x": 288,
+        "y": 456,
+        "width": 400
+      },
+      "flag": 0,
+      "camera": [
+        0,
+        0
+      ],
+      "pcGain": 0,
+      "formation": null
+    },
+    {
+      "time": 3.184000000008382,
+      "text": [
+        "カギをもう1本選ぼう"
+      ],
+      "item": {
+        "id": 54,
+        "x": 288,
+        "y": 456,
+        "width": 400
+      },
+      "flag": 0,
+      "camera": [
+        0,
+        0
+      ],
+      "pcGain": 0,
+      "formation": null
+    },
+    {
+      "time": 3.2339999999385327,
+      "text": [
+        "カギをもう1本選ぼう"
+      ],
+      "item": {
+        "id": 54,
+        "x": 288,
+        "y": 456,
+        "width": 400
+      },
+      "flag": 0,
+      "camera": [
+        0,
+        0
+      ],
+      "pcGain": 0,
+      "formation": null
+    },
+    {
+      "time": 3.2850000000325963,
+      "text": [
+        "カギをもう1本選ぼう"
+      ],
+      "item": {
+        "id": 54,
+        "x": 288,
+        "y": 456,
+        "width": 400
+      },
+      "flag": 0,
+      "camera": [
+        0,
+        0
+      ],
+      "pcGain": 0,
+      "formation": null
+    },
+    {
+      "time": 3.3519999999552965,
+      "text": [
+        "カギをもう1本選ぼう"
+      ],
+      "item": {
+        "id": 54,
+        "x": 288,
+        "y": 456,
+        "width": 400
+      },
+      "flag": 0,
+      "camera": [
+        0,
+        0
+      ],
+      "pcGain": 0,
+      "formation": null
+    },
+    {
+      "time": 3.353000000002794,
+      "text": [
+        "カギをもう1本選ぼう"
+      ],
+      "item": {
+        "id": 54,
+        "x": 288,
+        "y": 456,
+        "width": 400
+      },
+      "flag": 0,
+      "camera": [
+        0,
+        0
+      ],
+      "pcGain": 0,
+      "formation": null
+    },
+    {
+      "time": 3.400000000023283,
+      "text": [
+        "カギをもう1本選ぼう"
+      ],
+      "item": {
+        "id": 54,
+        "x": 288,
+        "y": 456,
+        "width": 400
+      },
+      "flag": 0,
+      "camera": [
+        0,
+        0
+      ],
+      "pcGain": 0,
+      "formation": null
+    },
+    {
+      "time": 3.449999999953434,
+      "text": [
+        "カギをもう1本選ぼう"
+      ],
+      "item": {
+        "id": 54,
+        "x": 288,
+        "y": 456,
+        "width": 400
+      },
+      "flag": 0,
+      "camera": [
+        0,
+        0
+      ],
+      "pcGain": 0,
+      "formation": null
+    },
+    {
+      "time": 3.500999999931082,
+      "text": [
+        "カギをもう1本選ぼう"
+      ],
+      "item": {
+        "id": 54,
+        "x": 288,
+        "y": 456,
+        "width": 400
+      },
+      "flag": 0,
+      "camera": [
+        0,
+        0
+      ],
+      "pcGain": 0,
+      "formation": null
+    },
+    {
+      "time": 3.6010000000242144,
+      "text": [
+        "カギをもう1本選ぼう"
+      ],
+      "item": {
+        "id": 54,
+        "x": 288,
+        "y": 456,
+        "width": 400
+      },
+      "flag": 0,
+      "camera": [
+        0,
+        0
+      ],
+      "pcGain": 0,
+      "formation": null
+    },
+    {
+      "time": 3.6520000000018626,
+      "text": [
+        "カギをもう1本選ぼう"
+      ],
+      "item": {
+        "id": 54,
+        "x": 288,
+        "y": 456,
+        "width": 400
+      },
+      "flag": 0,
+      "camera": [
+        0,
+        0
+      ],
+      "pcGain": 0,
+      "formation": null
+    },
+    {
+      "time": 3.7669999999925494,
+      "text": [
+        "カギをもう1本選ぼう"
+      ],
+      "item": {
+        "id": 54,
+        "x": 288,
+        "y": 456,
+        "width": 400
+      },
+      "flag": 0,
+      "camera": [
+        0,
+        0
+      ],
+      "pcGain": 0,
+      "formation": null
+    },
+    {
+      "time": 3.819000000017695,
+      "text": [
+        "カギをもう1本選ぼう"
+      ],
+      "item": {
+        "id": 54,
+        "x": 288,
+        "y": 456,
+        "width": 400
+      },
+      "flag": 0,
+      "camera": [
+        0,
+        0
+      ],
+      "pcGain": 0,
+      "formation": null
+    },
+    {
+      "time": 3.868999999947846,
+      "text": [
+        "カギをもう1本選ぼう"
+      ],
+      "item": {
+        "id": 54,
+        "x": 288,
+        "y": 456,
+        "width": 400
+      },
+      "flag": 0,
+      "camera": [
+        0,
+        0
+      ],
+      "pcGain": 0,
+      "formation": null
+    },
+    {
+      "time": 3.9179999999469146,
+      "text": [
+        "カギをもう1本選ぼう"
+      ],
+      "item": {
+        "id": 54,
+        "x": 288,
+        "y": 456,
+        "width": 400
+      },
+      "flag": 0,
+      "camera": [
+        0,
+        0
+      ],
+      "pcGain": 0,
+      "formation": null
+    },
+    {
+      "time": 3.968999999924563,
+      "text": [
+        "カギをもう1本選ぼう"
+      ],
+      "item": {
+        "id": 54,
+        "x": 288,
+        "y": 456,
+        "width": 400
+      },
+      "flag": 0,
+      "camera": [
+        0,
+        0
+      ],
+      "pcGain": 0,
+      "formation": null
+    },
+    {
+      "time": 4.0179999999236315,
+      "text": [
+        "カギをもう1本選ぼう"
+      ],
+      "item": {
+        "id": 54,
+        "x": 288,
+        "y": 456,
+        "width": 400
+      },
+      "flag": 0,
+      "camera": [
+        0,
+        0
+      ],
+      "pcGain": 0,
+      "formation": null
+    },
+    {
+      "time": 4.069999999948777,
+      "text": [
+        "カギをもう1本選ぼう"
+      ],
+      "item": {
+        "id": 54,
+        "x": 288,
+        "y": 456,
+        "width": 400
+      },
+      "flag": 0,
+      "camera": [
+        0,
+        0
+      ],
+      "pcGain": 0,
+      "formation": null
+    },
+    {
+      "time": 4.118999999947846,
+      "text": [
+        "カギをもう1本選ぼう"
+      ],
+      "item": {
+        "id": 54,
+        "x": 288,
+        "y": 456,
+        "width": 400
+      },
+      "flag": 0,
+      "camera": [
+        0,
+        0
+      ],
+      "pcGain": 0,
+      "formation": null
+    },
+    {
+      "time": 4.1670000000158325,
+      "text": [
+        "カギをもう1本選ぼう"
+      ],
+      "item": {
+        "id": 54,
+        "x": 288,
+        "y": 456,
+        "width": 400
+      },
+      "flag": 0,
+      "camera": [
+        0,
+        0
+      ],
+      "pcGain": 0,
+      "formation": null
+    },
+    {
+      "time": 4.167999999946915,
+      "text": [
+        "カギをもう1本選ぼう"
+      ],
+      "item": {
+        "id": 54,
+        "x": 288,
+        "y": 456,
+        "width": 400
+      },
+      "flag": 0,
+      "camera": [
+        0,
+        0
+      ],
+      "pcGain": 0,
+      "formation": null
+    },
+    {
+      "time": 4.2679999999236315,
+      "text": [
+        "カギをもう1本選ぼう"
+      ],
+      "item": {
+        "id": 54,
+        "x": 288,
+        "y": 456,
+        "width": 400
+      },
+      "flag": 0,
+      "camera": [
+        0,
+        0
+      ],
+      "pcGain": 0,
+      "formation": null
+    },
+    {
+      "time": 4.368000000016764,
+      "text": [
+        "カギをもう1本選ぼう"
+      ],
+      "item": {
+        "id": 54,
+        "x": 288,
+        "y": 456,
+        "width": 400
+      },
+      "flag": 0,
+      "camera": [
+        0,
+        0
+      ],
+      "pcGain": 0,
+      "formation": null
+    },
+    {
+      "time": 4.418999999994412,
+      "text": [
+        "カギをもう1本選ぼう"
+      ],
+      "item": {
+        "id": 54,
+        "x": 288,
+        "y": 456,
+        "width": 400
+      },
+      "flag": 0,
+      "camera": [
+        0,
+        0
+      ],
+      "pcGain": 0,
+      "formation": null
+    },
+    {
+      "time": 4.468999999924563,
+      "text": [
+        "カギをもう1本選ぼう"
+      ],
+      "item": {
+        "id": 54,
+        "x": 288,
+        "y": 456,
+        "width": 400
+      },
+      "flag": 0,
+      "camera": [
+        0,
+        0
+      ],
+      "pcGain": 0,
+      "formation": null
+    },
+    {
+      "time": 4.518999999971129,
+      "text": [
+        "カギをもう1本選ぼう"
+      ],
+      "item": {
+        "id": 54,
+        "x": 288,
+        "y": 456,
+        "width": 400
+      },
+      "flag": 0,
+      "camera": [
+        0,
+        0
+      ],
+      "pcGain": 0,
+      "formation": null
+    },
+    {
+      "time": 4.570999999996275,
+      "text": [],
+      "item": null,
+      "flag": 0,
+      "camera": [
+        0,
+        0
+      ],
+      "pcGain": 0,
+      "formation": null
+    },
+    {
+      "time": 4.619999999995343,
+      "text": [],
+      "item": null,
+      "flag": 0,
+      "camera": [
+        0,
+        0
+      ],
+      "pcGain": 0,
+      "formation": null
+    },
+    {
+      "time": 4.669999999925494,
+      "text": [],
+      "item": null,
+      "flag": 0,
+      "camera": [
+        0,
+        0
+      ],
+      "pcGain": 0,
+      "formation": null
+    },
+    {
+      "time": 4.7700000000186265,
+      "text": [],
+      "item": null,
+      "flag": 0,
+      "camera": [
+        0,
+        0
+      ],
+      "pcGain": 0,
+      "formation": null
+    },
+    {
+      "time": 4.819000000017695,
+      "text": [],
+      "item": null,
+      "flag": 0,
+      "camera": [
+        0,
+        0
+      ],
+      "pcGain": 0,
+      "formation": null
+    },
+    {
+      "time": 4.868000000016764,
+      "text": [],
+      "item": null,
+      "flag": 0,
+      "camera": [
+        0,
+        0
+      ],
+      "pcGain": 0,
+      "formation": null
+    },
+    {
+      "time": 4.917999999946915,
+      "text": [],
+      "item": null,
+      "flag": 0,
+      "camera": [
+        0,
+        0
+      ],
+      "pcGain": 0,
+      "formation": null
+    },
+    {
+      "time": 4.919999999925494,
+      "text": [],
+      "item": null,
+      "flag": 0,
+      "camera": [
+        0,
+        0
+      ],
+      "pcGain": 0,
+      "formation": null
+    },
+    {
+      "time": 4.986000000033528,
+      "text": [],
+      "item": null,
+      "flag": 0,
+      "camera": [
+        0,
+        0
+      ],
+      "pcGain": 0,
+      "formation": null
+    },
+    {
+      "time": 5.003999999957159,
+      "text": [],
+      "item": null,
+      "flag": 0,
+      "camera": [
+        0,
+        0
+      ],
+      "pcGain": 0,
+      "formation": {
+        "returning": false,
+        "hero": {
+          "x": 25.5,
+          "y": 12.08838834764832,
+          "d": 2,
+          "moving": true
+        },
+        "members": [
+          {
+            "actor": 3,
+            "event": 13,
+            "x": 25.45,
+            "y": 13.55,
+            "d": 4,
+            "moving": true
+          },
+          {
+            "actor": 4,
+            "event": 14,
+            "x": 25.55,
+            "y": 15.45,
+            "d": 8,
+            "moving": true
+          }
+        ]
+      }
+    },
+    {
+      "time": 5.069999999948777,
+      "text": [],
+      "item": null,
+      "flag": 0,
+      "camera": [
+        0,
+        0
+      ],
+      "pcGain": 0,
+      "formation": {
+        "returning": false,
+        "hero": {
+          "x": 25.5,
+          "y": 12.618718433538234,
+          "d": 2,
+          "moving": true
+        },
+        "members": [
+          {
+            "actor": 3,
+            "event": 13,
+            "x": 25.149999999999995,
+            "y": 13.850000000000005,
+            "d": 4,
+            "moving": true
+          },
+          {
+            "actor": 4,
+            "event": 14,
+            "x": 25.850000000000005,
+            "y": 15.149999999999995,
+            "d": 8,
+            "moving": true
+          }
+        ]
+      }
+    },
+    {
+      "time": 5.118000000016764,
+      "text": [],
+      "item": null,
+      "flag": 0,
+      "camera": [
+        0,
+        0
+      ],
+      "pcGain": 0,
+      "formation": {
+        "returning": false,
+        "hero": {
+          "x": 25.5,
+          "y": 12.883883476483192,
+          "d": 2,
+          "moving": true
+        },
+        "members": [
+          {
+            "actor": 3,
+            "event": 13,
+            "x": 24.999999999999993,
+            "y": 14,
+            "d": 4,
+            "moving": true
+          },
+          {
+            "actor": 4,
+            "event": 14,
+            "x": 26.000000000000007,
+            "y": 14.999999999999993,
+            "d": 8,
+            "moving": true
+          }
+        ]
+      }
+    },
+    {
+      "time": 5.167999999946915,
+      "text": [],
+      "item": null,
+      "flag": 0,
+      "camera": [
+        0,
+        0
+      ],
+      "pcGain": 0,
+      "formation": {
+        "returning": false,
+        "hero": {
+          "x": 25.5,
+          "y": 13.149048519428149,
+          "d": 2,
+          "moving": true
+        },
+        "members": [
+          {
+            "actor": 3,
+            "event": 13,
+            "x": 24.812499999999993,
+            "y": 14,
+            "d": 4,
+            "moving": true
+          },
+          {
+            "actor": 4,
+            "event": 14,
+            "x": 26.15000000000001,
+            "y": 14.84999999999999,
+            "d": 8,
+            "moving": true
+          }
+        ]
+      }
+    },
+    {
+      "time": 5.218999999924563,
+      "text": [],
+      "item": null,
+      "flag": 0,
+      "camera": [
+        0,
+        0
+      ],
+      "pcGain": 0,
+      "formation": {
+        "returning": false,
+        "hero": {
+          "x": 25.5,
+          "y": 13.414213562373106,
+          "d": 2,
+          "moving": true
+        },
+        "members": [
+          {
+            "actor": 3,
+            "event": 13,
+            "x": 24.624999999999993,
+            "y": 14,
+            "d": 4,
+            "moving": true
+          },
+          {
+            "actor": 4,
+            "event": 14,
+            "x": 26.30000000000001,
+            "y": 14.699999999999989,
+            "d": 8,
+            "moving": true
+          }
+        ]
+      }
+    },
+    {
+      "time": 5.2679999999236315,
+      "text": [],
+      "item": null,
+      "flag": 0,
+      "camera": [
+        0,
+        0
+      ],
+      "pcGain": 0,
+      "formation": {
+        "returning": false,
+        "hero": {
+          "x": 25.5,
+          "y": 13.5,
+          "d": 2,
+          "moving": false
+        },
+        "members": [
+          {
+            "actor": 3,
+            "event": 13,
+            "x": 24.437499999999993,
+            "y": 14,
+            "d": 4,
+            "moving": true
+          },
+          {
+            "actor": 4,
+            "event": 14,
+            "x": 26.450000000000014,
+            "y": 14.549999999999986,
+            "d": 8,
+            "moving": true
+          }
+        ]
+      }
+    },
+    {
+      "time": 5.329000000027008,
+      "text": [],
+      "item": null,
+      "flag": 0,
+      "camera": [
+        0,
+        0
+      ],
+      "pcGain": 0,
+      "formation": {
+        "returning": false,
+        "hero": {
+          "x": 25.5,
+          "y": 13.5,
+          "d": 2,
+          "moving": false
+        },
+        "members": [
+          {
+            "actor": 3,
+            "event": 13,
+            "x": 24.249999999999993,
+            "y": 14,
+            "d": 4,
+            "moving": true
+          },
+          {
+            "actor": 4,
+            "event": 14,
+            "x": 26.600000000000016,
+            "y": 14.399999999999984,
+            "d": 8,
+            "moving": true
+          }
+        ]
+      }
+    },
+    {
+      "time": 5.383999999961816,
+      "text": [],
+      "item": null,
+      "flag": 0,
+      "camera": [
+        0,
+        0
+      ],
+      "pcGain": 0,
+      "formation": {
+        "returning": false,
+        "hero": {
+          "x": 25.5,
+          "y": 13.5,
+          "d": 2,
+          "moving": false
+        },
+        "members": [
+          {
+            "actor": 3,
+            "event": 13,
+            "x": 24,
+            "y": 14,
+            "d": 4,
+            "moving": false
+          },
+          {
+            "actor": 4,
+            "event": 14,
+            "x": 26.80000000000002,
+            "y": 14.199999999999982,
+            "d": 8,
+            "moving": true
+          }
+        ]
+      }
+    },
+    {
+      "time": 5.4519999999320135,
+      "text": [],
+      "item": null,
+      "flag": 0,
+      "camera": [
+        0,
+        0
+      ],
+      "pcGain": 0,
+      "formation": {
+        "returning": false,
+        "hero": {
+          "x": 25.5,
+          "y": 13.5,
+          "d": 2,
+          "moving": false
+        },
+        "members": [
+          {
+            "actor": 3,
+            "event": 13,
+            "x": 24,
+            "y": 14,
+            "d": 4,
+            "moving": false
+          },
+          {
+            "actor": 4,
+            "event": 14,
+            "x": 27,
+            "y": 14,
+            "d": 8,
+            "moving": false
+          }
+        ]
+      }
+    },
+    {
+      "time": 5.527999999932945,
+      "text": [],
+      "item": null,
+      "flag": 0,
+      "camera": [
+        0,
+        -0.08246527777777778
+      ],
+      "pcGain": 0,
+      "formation": {
+        "returning": false,
+        "hero": {
+          "x": 25.5,
+          "y": 13.5,
+          "d": 8,
+          "moving": false
+        },
+        "members": [
+          {
+            "actor": 3,
+            "event": 13,
+            "x": 24,
+            "y": 14,
+            "d": 8,
+            "moving": false
+          },
+          {
+            "actor": 4,
+            "event": 14,
+            "x": 27,
+            "y": 14,
+            "d": 8,
+            "moving": false
+          }
+        ]
+      }
+    },
+    {
+      "time": 5.591999999945983,
+      "text": [],
+      "item": null,
+      "flag": 0,
+      "camera": [
+        0,
+        -0.3194444444444444
+      ],
+      "pcGain": 0,
+      "formation": {
+        "returning": false,
+        "hero": {
+          "x": 25.5,
+          "y": 13.5,
+          "d": 8,
+          "moving": false
+        },
+        "members": [
+          {
+            "actor": 3,
+            "event": 13,
+            "x": 24,
+            "y": 14,
+            "d": 8,
+            "moving": false
+          },
+          {
+            "actor": 4,
+            "event": 14,
+            "x": 27,
+            "y": 14,
+            "d": 8,
+            "moving": false
+          }
+        ]
+      }
+    },
+    {
+      "time": 5.635000000009313,
+      "text": [],
+      "item": null,
+      "flag": 0,
+      "camera": [
+        0,
+        -0.5407986111111112
+      ],
+      "pcGain": 0,
+      "formation": {
+        "returning": false,
+        "hero": {
+          "x": 25.5,
+          "y": 13.5,
+          "d": 8,
+          "moving": false
+        },
+        "members": [
+          {
+            "actor": 3,
+            "event": 13,
+            "x": 24,
+            "y": 14,
+            "d": 8,
+            "moving": false
+          },
+          {
+            "actor": 4,
+            "event": 14,
+            "x": 27,
+            "y": 14,
+            "d": 8,
+            "moving": false
+          }
+        ]
+      }
+    },
+    {
+      "time": 5.684999999939464,
+      "text": [],
+      "item": null,
+      "flag": 0,
+      "camera": [
+        0,
+        -0.7465277777777778
+      ],
+      "pcGain": 0,
+      "formation": {
+        "returning": false,
+        "hero": {
+          "x": 25.5,
+          "y": 13.5,
+          "d": 8,
+          "moving": false
+        },
+        "members": [
+          {
+            "actor": 3,
+            "event": 13,
+            "x": 24,
+            "y": 14,
+            "d": 8,
+            "moving": false
+          },
+          {
+            "actor": 4,
+            "event": 14,
+            "x": 27,
+            "y": 14,
+            "d": 8,
+            "moving": false
+          }
+        ]
+      }
+    },
+    {
+      "time": 5.73499999998603,
+      "text": [],
+      "item": null,
+      "flag": 0,
+      "camera": [
+        0,
+        -0.9366319444444444
+      ],
+      "pcGain": 0,
+      "formation": {
+        "returning": false,
+        "hero": {
+          "x": 25.5,
+          "y": 13.5,
+          "d": 8,
+          "moving": false
+        },
+        "members": [
+          {
+            "actor": 3,
+            "event": 13,
+            "x": 24,
+            "y": 14,
+            "d": 8,
+            "moving": false
+          },
+          {
+            "actor": 4,
+            "event": 14,
+            "x": 27,
+            "y": 14,
+            "d": 8,
+            "moving": false
+          }
+        ]
+      }
+    },
+    {
+      "time": 5.834999999962747,
+      "text": [],
+      "item": null,
+      "flag": 0,
+      "camera": [
+        0,
+        -1.2699652777777777
+      ],
+      "pcGain": 0,
+      "formation": {
+        "returning": false,
+        "hero": {
+          "x": 25.5,
+          "y": 13.5,
+          "d": 8,
+          "moving": false
+        },
+        "members": [
+          {
+            "actor": 3,
+            "event": 13,
+            "x": 24,
+            "y": 14,
+            "d": 8,
+            "moving": false
+          },
+          {
+            "actor": 4,
+            "event": 14,
+            "x": 27,
+            "y": 14,
+            "d": 8,
+            "moving": false
+          }
+        ]
+      }
+    },
+    {
+      "time": 5.934000000008382,
+      "text": [],
+      "item": null,
+      "flag": 0,
+      "camera": [
+        0,
+        -1.5407986111111112
+      ],
+      "pcGain": 0,
+      "formation": {
+        "returning": false,
+        "hero": {
+          "x": 25.5,
+          "y": 13.5,
+          "d": 8,
+          "moving": false
+        },
+        "members": [
+          {
+            "actor": 3,
+            "event": 13,
+            "x": 24,
+            "y": 14,
+            "d": 8,
+            "moving": false
+          },
+          {
+            "actor": 4,
+            "event": 14,
+            "x": 27,
+            "y": 14,
+            "d": 8,
+            "moving": false
+          }
+        ]
+      }
+    },
+    {
+      "time": 5.983999999938533,
+      "text": [],
+      "item": null,
+      "flag": 0,
+      "camera": [
+        0,
+        -1.6527777777777777
+      ],
+      "pcGain": 0,
+      "formation": {
+        "returning": false,
+        "hero": {
+          "x": 25.5,
+          "y": 13.5,
+          "d": 8,
+          "moving": false
+        },
+        "members": [
+          {
+            "actor": 3,
+            "event": 13,
+            "x": 24,
+            "y": 14,
+            "d": 8,
+            "moving": false
+          },
+          {
+            "actor": 4,
+            "event": 14,
+            "x": 27,
+            "y": 14,
+            "d": 8,
+            "moving": false
+          }
+        ]
+      }
+    },
+    {
+      "time": 6.035000000032596,
+      "text": [],
+      "item": null,
+      "flag": 0,
+      "camera": [
+        0,
+        -1.7491319444444444
+      ],
+      "pcGain": 0,
+      "formation": {
+        "returning": false,
+        "hero": {
+          "x": 25.5,
+          "y": 13.5,
+          "d": 8,
+          "moving": false
+        },
+        "members": [
+          {
+            "actor": 3,
+            "event": 13,
+            "x": 24,
+            "y": 14,
+            "d": 8,
+            "moving": false
+          },
+          {
+            "actor": 4,
+            "event": 14,
+            "x": 27,
+            "y": 14,
+            "d": 8,
+            "moving": false
+          }
+        ]
+      }
+    },
+    {
+      "time": 6.035999999963678,
+      "text": [],
+      "item": null,
+      "flag": 0,
+      "camera": [
+        0,
+        -1.7491319444444444
+      ],
+      "pcGain": 0,
+      "formation": {
+        "returning": false,
+        "hero": {
+          "x": 25.5,
+          "y": 13.5,
+          "d": 8,
+          "moving": false
+        },
+        "members": [
+          {
+            "actor": 3,
+            "event": 13,
+            "x": 24,
+            "y": 14,
+            "d": 8,
+            "moving": false
+          },
+          {
+            "actor": 4,
+            "event": 14,
+            "x": 27,
+            "y": 14,
+            "d": 8,
+            "moving": false
+          }
+        ]
+      }
+    },
+    {
+      "time": 6.084000000031665,
+      "text": [],
+      "item": null,
+      "flag": 0,
+      "camera": [
+        0,
+        -1.829861111111111
+      ],
+      "pcGain": 0,
+      "formation": {
+        "returning": false,
+        "hero": {
+          "x": 25.5,
+          "y": 13.5,
+          "d": 8,
+          "moving": false
+        },
+        "members": [
+          {
+            "actor": 3,
+            "event": 13,
+            "x": 24,
+            "y": 14,
+            "d": 8,
+            "moving": false
+          },
+          {
+            "actor": 4,
+            "event": 14,
+            "x": 27,
+            "y": 14,
+            "d": 8,
+            "moving": false
+          }
+        ]
+      }
+    },
+    {
+      "time": 6.135000000009313,
+      "text": [],
+      "item": null,
+      "flag": 0,
+      "camera": [
+        0,
+        -1.8949652777777777
+      ],
+      "pcGain": 0,
+      "formation": {
+        "returning": false,
+        "hero": {
+          "x": 25.5,
+          "y": 13.5,
+          "d": 8,
+          "moving": false
+        },
+        "members": [
+          {
+            "actor": 3,
+            "event": 13,
+            "x": 24,
+            "y": 14,
+            "d": 8,
+            "moving": false
+          },
+          {
+            "actor": 4,
+            "event": 14,
+            "x": 27,
+            "y": 14,
+            "d": 8,
+            "moving": false
+          }
+        ]
+      }
+    },
+    {
+      "time": 6.2019999999320135,
+      "text": [],
+      "item": null,
+      "flag": 0,
+      "camera": [
+        0,
+        -1.9444444444444442
+      ],
+      "pcGain": 0,
+      "formation": {
+        "returning": false,
+        "hero": {
+          "x": 25.5,
+          "y": 13.5,
+          "d": 8,
+          "moving": false
+        },
+        "members": [
+          {
+            "actor": 3,
+            "event": 13,
+            "x": 24,
+            "y": 14,
+            "d": 8,
+            "moving": false
+          },
+          {
+            "actor": 4,
+            "event": 14,
+            "x": 27,
+            "y": 14,
+            "d": 8,
+            "moving": false
+          }
+        ]
+      }
+    },
+    {
+      "time": 6.202999999979511,
+      "text": [],
+      "item": null,
+      "flag": 0,
+      "camera": [
+        0,
+        -1.9444444444444442
+      ],
+      "pcGain": 0,
+      "formation": {
+        "returning": false,
+        "hero": {
+          "x": 25.5,
+          "y": 13.5,
+          "d": 8,
+          "moving": false
+        },
+        "members": [
+          {
+            "actor": 3,
+            "event": 13,
+            "x": 24,
+            "y": 14,
+            "d": 8,
+            "moving": false
+          },
+          {
+            "actor": 4,
+            "event": 14,
+            "x": 27,
+            "y": 14,
+            "d": 8,
+            "moving": false
+          }
+        ]
+      }
+    },
+    {
+      "time": 6.250999999931082,
+      "text": [],
+      "item": null,
+      "flag": 0,
+      "camera": [
+        0,
+        -1.978298611111111
+      ],
+      "pcGain": 0,
+      "formation": {
+        "returning": false,
+        "hero": {
+          "x": 25.5,
+          "y": 13.5,
+          "d": 8,
+          "moving": false
+        },
+        "members": [
+          {
+            "actor": 3,
+            "event": 13,
+            "x": 24,
+            "y": 14,
+            "d": 8,
+            "moving": false
+          },
+          {
+            "actor": 4,
+            "event": 14,
+            "x": 27,
+            "y": 14,
+            "d": 8,
+            "moving": false
+          }
+        ]
+      }
+    },
+    {
+      "time": 6.300999999977648,
+      "text": [],
+      "item": null,
+      "flag": 0,
+      "camera": [
+        0,
+        -1.9965277777777777
+      ],
+      "pcGain": 0,
+      "formation": {
+        "returning": false,
+        "hero": {
+          "x": 25.5,
+          "y": 13.5,
+          "d": 8,
+          "moving": false
+        },
+        "members": [
+          {
+            "actor": 3,
+            "event": 13,
+            "x": 24,
+            "y": 14,
+            "d": 8,
+            "moving": false
+          },
+          {
+            "actor": 4,
+            "event": 14,
+            "x": 27,
+            "y": 14,
+            "d": 8,
+            "moving": false
+          }
+        ]
+      }
+    },
+    {
+      "time": 6.351000000024214,
+      "text": [],
+      "item": null,
+      "flag": 0,
+      "camera": [
+        0,
+        -2
+      ],
+      "pcGain": 0,
+      "formation": {
+        "returning": false,
+        "hero": {
+          "x": 25.5,
+          "y": 13.5,
+          "d": 8,
+          "moving": false
+        },
+        "members": [
+          {
+            "actor": 3,
+            "event": 13,
+            "x": 24,
+            "y": 14,
+            "d": 8,
+            "moving": false
+          },
+          {
+            "actor": 4,
+            "event": 14,
+            "x": 27,
+            "y": 14,
+            "d": 8,
+            "moving": false
+          }
+        ]
+      }
+    },
+    {
+      "time": 6.449999999953434,
+      "text": [],
+      "item": null,
+      "flag": 0,
+      "camera": [
+        0,
+        -2
+      ],
+      "pcGain": 0,
+      "formation": {
+        "returning": false,
+        "hero": {
+          "x": 25.5,
+          "y": 13.5,
+          "d": 8,
+          "moving": false
+        },
+        "members": [
+          {
+            "actor": 3,
+            "event": 13,
+            "x": 24,
+            "y": 14,
+            "d": 8,
+            "moving": false
+          },
+          {
+            "actor": 4,
+            "event": 14,
+            "x": 27,
+            "y": 14,
+            "d": 8,
+            "moving": false
+          }
+        ]
+      }
+    },
+    {
+      "time": 6.503000000026077,
+      "text": [],
+      "item": null,
+      "gateOpening": 2,
+      "flag": 0,
+      "camera": [
+        0,
+        -2
+      ],
+      "pcGain": 0,
+      "formation": {
+        "returning": false,
+        "hero": {
+          "x": 25.5,
+          "y": 13.5,
+          "d": 8,
+          "moving": false
+        },
+        "members": [
+          {
+            "actor": 3,
+            "event": 13,
+            "x": 24,
+            "y": 14,
+            "d": 8,
+            "moving": false
+          },
+          {
+            "actor": 4,
+            "event": 14,
+            "x": 27,
+            "y": 14,
+            "d": 8,
+            "moving": false
+          }
+        ]
+      }
+    },
+    {
+      "time": 6.567999999970198,
+      "text": [],
+      "item": null,
+      "gateOpening": 7,
+      "flag": 0,
+      "camera": [
+        0,
+        -2
+      ],
+      "pcGain": 0,
+      "formation": {
+        "returning": false,
+        "hero": {
+          "x": 25.5,
+          "y": 13.5,
+          "d": 8,
+          "moving": false
+        },
+        "members": [
+          {
+            "actor": 3,
+            "event": 13,
+            "x": 24,
+            "y": 14,
+            "d": 8,
+            "moving": false
+          },
+          {
+            "actor": 4,
+            "event": 14,
+            "x": 27,
+            "y": 14,
+            "d": 8,
+            "moving": false
+          }
+        ]
+      }
+    },
+    {
+      "time": 6.618999999947846,
+      "text": [],
+      "item": null,
+      "gateOpening": 10,
+      "flag": 0,
+      "camera": [
+        0,
+        -2
+      ],
+      "pcGain": 0,
+      "formation": {
+        "returning": false,
+        "hero": {
+          "x": 25.5,
+          "y": 13.5,
+          "d": 8,
+          "moving": false
+        },
+        "members": [
+          {
+            "actor": 3,
+            "event": 13,
+            "x": 24,
+            "y": 14,
+            "d": 8,
+            "moving": false
+          },
+          {
+            "actor": 4,
+            "event": 14,
+            "x": 27,
+            "y": 14,
+            "d": 8,
+            "moving": false
+          }
+        ]
+      }
+    },
+    {
+      "time": 6.669999999925494,
+      "text": [],
+      "item": null,
+      "gateOpening": 13,
+      "flag": 0,
+      "camera": [
+        0,
+        -2
+      ],
+      "pcGain": 0,
+      "formation": {
+        "returning": false,
+        "hero": {
+          "x": 25.5,
+          "y": 13.5,
+          "d": 8,
+          "moving": false
+        },
+        "members": [
+          {
+            "actor": 3,
+            "event": 13,
+            "x": 24,
+            "y": 14,
+            "d": 8,
+            "moving": false
+          },
+          {
+            "actor": 4,
+            "event": 14,
+            "x": 27,
+            "y": 14,
+            "d": 8,
+            "moving": false
+          }
+        ]
+      }
+    },
+    {
+      "time": 6.73699999996461,
+      "text": [],
+      "item": null,
+      "gateOpening": 16,
+      "flag": 0,
+      "camera": [
+        0,
+        -2
+      ],
+      "pcGain": 0,
+      "formation": {
+        "returning": false,
+        "hero": {
+          "x": 25.5,
+          "y": 13.5,
+          "d": 8,
+          "moving": false
+        },
+        "members": [
+          {
+            "actor": 3,
+            "event": 13,
+            "x": 24,
+            "y": 14,
+            "d": 8,
+            "moving": false
+          },
+          {
+            "actor": 4,
+            "event": 14,
+            "x": 27,
+            "y": 14,
+            "d": 8,
+            "moving": false
+          }
+        ]
+      }
+    },
+    {
+      "time": 6.738999999943189,
+      "text": [],
+      "item": null,
+      "gateOpening": 17,
+      "flag": 0,
+      "camera": [
+        0,
+        -2
+      ],
+      "pcGain": 0,
+      "formation": {
+        "returning": false,
+        "hero": {
+          "x": 25.5,
+          "y": 13.5,
+          "d": 8,
+          "moving": false
+        },
+        "members": [
+          {
+            "actor": 3,
+            "event": 13,
+            "x": 24,
+            "y": 14,
+            "d": 8,
+            "moving": false
+          },
+          {
+            "actor": 4,
+            "event": 14,
+            "x": 27,
+            "y": 14,
+            "d": 8,
+            "moving": false
+          }
+        ]
+      }
+    },
+    {
+      "time": 6.785000000032596,
+      "text": [],
+      "item": null,
+      "gateOpening": 19,
+      "flag": 0,
+      "camera": [
+        0,
+        -2
+      ],
+      "pcGain": 0,
+      "formation": {
+        "returning": false,
+        "hero": {
+          "x": 25.5,
+          "y": 13.5,
+          "d": 8,
+          "moving": false
+        },
+        "members": [
+          {
+            "actor": 3,
+            "event": 13,
+            "x": 24,
+            "y": 14,
+            "d": 8,
+            "moving": false
+          },
+          {
+            "actor": 4,
+            "event": 14,
+            "x": 27,
+            "y": 14,
+            "d": 8,
+            "moving": false
+          }
+        ]
+      }
+    },
+    {
+      "time": 6.787999999942258,
+      "text": [],
+      "item": null,
+      "gateOpening": 20,
+      "flag": 0,
+      "camera": [
+        0,
+        -2
+      ],
+      "pcGain": 0,
+      "formation": {
+        "returning": false,
+        "hero": {
+          "x": 25.5,
+          "y": 13.5,
+          "d": 8,
+          "moving": false
+        },
+        "members": [
+          {
+            "actor": 3,
+            "event": 13,
+            "x": 24,
+            "y": 14,
+            "d": 8,
+            "moving": false
+          },
+          {
+            "actor": 4,
+            "event": 14,
+            "x": 27,
+            "y": 14,
+            "d": 8,
+            "moving": false
+          }
+        ]
+      }
+    },
+    {
+      "time": 6.8360000000102445,
+      "text": [],
+      "item": null,
+      "gateOpening": 22,
+      "flag": 0,
+      "camera": [
+        0,
+        -2
+      ],
+      "pcGain": 0,
+      "formation": {
+        "returning": false,
+        "hero": {
+          "x": 25.5,
+          "y": 13.5,
+          "d": 8,
+          "moving": false
+        },
+        "members": [
+          {
+            "actor": 3,
+            "event": 13,
+            "x": 24,
+            "y": 14,
+            "d": 8,
+            "moving": false
+          },
+          {
+            "actor": 4,
+            "event": 14,
+            "x": 27,
+            "y": 14,
+            "d": 8,
+            "moving": false
+          }
+        ]
+      }
+    },
+    {
+      "time": 6.839999999967404,
+      "text": [],
+      "item": null,
+      "gateOpening": 23,
+      "flag": 0,
+      "camera": [
+        0,
+        -2
+      ],
+      "pcGain": 0,
+      "formation": {
+        "returning": false,
+        "hero": {
+          "x": 25.5,
+          "y": 13.5,
+          "d": 8,
+          "moving": false
+        },
+        "members": [
+          {
+            "actor": 3,
+            "event": 13,
+            "x": 24,
+            "y": 14,
+            "d": 8,
+            "moving": false
+          },
+          {
+            "actor": 4,
+            "event": 14,
+            "x": 27,
+            "y": 14,
+            "d": 8,
+            "moving": false
+          }
+        ]
+      }
+    },
+    {
+      "time": 6.902999999932945,
+      "text": [],
+      "item": null,
+      "gateOpening": 27,
+      "flag": 0,
+      "camera": [
+        0,
+        -2
+      ],
+      "pcGain": 0,
+      "formation": {
+        "returning": false,
+        "hero": {
+          "x": 25.5,
+          "y": 13.5,
+          "d": 8,
+          "moving": false
+        },
+        "members": [
+          {
+            "actor": 3,
+            "event": 13,
+            "x": 24,
+            "y": 14,
+            "d": 8,
+            "moving": false
+          },
+          {
+            "actor": 4,
+            "event": 14,
+            "x": 27,
+            "y": 14,
+            "d": 8,
+            "moving": false
+          }
+        ]
+      }
+    },
+    {
+      "time": 6.952999999979511,
+      "text": [],
+      "item": null,
+      "gateOpening": 30,
+      "flag": 0,
+      "camera": [
+        0,
+        -2
+      ],
+      "pcGain": 0,
+      "formation": {
+        "returning": false,
+        "hero": {
+          "x": 25.5,
+          "y": 13.5,
+          "d": 8,
+          "moving": false
+        },
+        "members": [
+          {
+            "actor": 3,
+            "event": 13,
+            "x": 24,
+            "y": 14,
+            "d": 8,
+            "moving": false
+          },
+          {
+            "actor": 4,
+            "event": 14,
+            "x": 27,
+            "y": 14,
+            "d": 8,
+            "moving": false
+          }
+        ]
+      }
+    },
+    {
+      "time": 7.069000000017695,
+      "text": [],
+      "item": null,
+      "gateOpening": 37,
+      "flag": 0,
+      "camera": [
+        0,
+        -2
+      ],
+      "pcGain": 0,
+      "formation": {
+        "returning": false,
+        "hero": {
+          "x": 25.5,
+          "y": 13.5,
+          "d": 8,
+          "moving": false
+        },
+        "members": [
+          {
+            "actor": 3,
+            "event": 13,
+            "x": 24,
+            "y": 14,
+            "d": 8,
+            "moving": false
+          },
+          {
+            "actor": 4,
+            "event": 14,
+            "x": 27,
+            "y": 14,
+            "d": 8,
+            "moving": false
+          }
+        ]
+      }
+    },
+    {
+      "time": 7.121999999973923,
+      "text": [],
+      "item": null,
+      "gateOpening": 40,
+      "flag": 0,
+      "camera": [
+        0,
+        -2
+      ],
+      "pcGain": 0,
+      "formation": {
+        "returning": false,
+        "hero": {
+          "x": 25.5,
+          "y": 13.5,
+          "d": 8,
+          "moving": false
+        },
+        "members": [
+          {
+            "actor": 3,
+            "event": 13,
+            "x": 24,
+            "y": 14,
+            "d": 8,
+            "moving": false
+          },
+          {
+            "actor": 4,
+            "event": 14,
+            "x": 27,
+            "y": 14,
+            "d": 8,
+            "moving": false
+          }
+        ]
+      }
+    },
+    {
+      "time": 7.170999999972992,
+      "text": [],
+      "item": null,
+      "gateOpening": 43,
+      "flag": 0,
+      "camera": [
+        0,
+        -2
+      ],
+      "pcGain": 0,
+      "formation": {
+        "returning": false,
+        "hero": {
+          "x": 25.5,
+          "y": 13.5,
+          "d": 8,
+          "moving": false
+        },
+        "members": [
+          {
+            "actor": 3,
+            "event": 13,
+            "x": 24,
+            "y": 14,
+            "d": 8,
+            "moving": false
+          },
+          {
+            "actor": 4,
+            "event": 14,
+            "x": 27,
+            "y": 14,
+            "d": 8,
+            "moving": false
+          }
+        ]
+      }
+    },
+    {
+      "time": 7.218999999924563,
+      "text": [],
+      "item": null,
+      "gateOpening": 46,
+      "flag": 0,
+      "camera": [
+        0,
+        -2
+      ],
+      "pcGain": 0,
+      "formation": {
+        "returning": false,
+        "hero": {
+          "x": 25.5,
+          "y": 13.5,
+          "d": 8,
+          "moving": false
+        },
+        "members": [
+          {
+            "actor": 3,
+            "event": 13,
+            "x": 24,
+            "y": 14,
+            "d": 8,
+            "moving": false
+          },
+          {
+            "actor": 4,
+            "event": 14,
+            "x": 27,
+            "y": 14,
+            "d": 8,
+            "moving": false
+          }
+        ]
+      }
+    },
+    {
+      "time": 7.327999999979511,
+      "text": [],
+      "item": null,
+      "gateOpening": 52,
+      "flag": 0,
+      "camera": [
+        0,
+        -2
+      ],
+      "pcGain": 0,
+      "formation": {
+        "returning": false,
+        "hero": {
+          "x": 25.5,
+          "y": 13.5,
+          "d": 8,
+          "moving": false
+        },
+        "members": [
+          {
+            "actor": 3,
+            "event": 13,
+            "x": 24,
+            "y": 14,
+            "d": 8,
+            "moving": false
+          },
+          {
+            "actor": 4,
+            "event": 14,
+            "x": 27,
+            "y": 14,
+            "d": 8,
+            "moving": false
+          }
+        ]
+      }
+    },
+    {
+      "time": 7.417999999946915,
+      "text": [],
+      "item": null,
+      "gateOpening": 58,
+      "flag": 0,
+      "camera": [
+        0,
+        -2
+      ],
+      "pcGain": 0,
+      "formation": {
+        "returning": false,
+        "hero": {
+          "x": 25.5,
+          "y": 13.5,
+          "d": 8,
+          "moving": false
+        },
+        "members": [
+          {
+            "actor": 3,
+            "event": 13,
+            "x": 24,
+            "y": 14,
+            "d": 8,
+            "moving": false
+          },
+          {
+            "actor": 4,
+            "event": 14,
+            "x": 27,
+            "y": 14,
+            "d": 8,
+            "moving": false
+          }
+        ]
+      }
+    },
+    {
+      "time": 7.518999999971129,
+      "text": [],
+      "item": null,
+      "gateOpening": 63,
+      "flag": 0,
+      "camera": [
+        0,
+        -2
+      ],
+      "pcGain": 0,
+      "formation": {
+        "returning": false,
+        "hero": {
+          "x": 25.5,
+          "y": 13.5,
+          "d": 8,
+          "moving": false
+        },
+        "members": [
+          {
+            "actor": 3,
+            "event": 13,
+            "x": 24,
+            "y": 14,
+            "d": 8,
+            "moving": false
+          },
+          {
+            "actor": 4,
+            "event": 14,
+            "x": 27,
+            "y": 14,
+            "d": 8,
+            "moving": false
+          }
+        ]
+      }
+    },
+    {
+      "time": 7.567999999970198,
+      "text": [],
+      "item": null,
+      "gateOpening": 67,
+      "flag": 0,
+      "camera": [
+        0,
+        -2
+      ],
+      "pcGain": 0,
+      "formation": {
+        "returning": false,
+        "hero": {
+          "x": 25.5,
+          "y": 13.5,
+          "d": 8,
+          "moving": false
+        },
+        "members": [
+          {
+            "actor": 3,
+            "event": 13,
+            "x": 24,
+            "y": 14,
+            "d": 8,
+            "moving": false
+          },
+          {
+            "actor": 4,
+            "event": 14,
+            "x": 27,
+            "y": 14,
+            "d": 8,
+            "moving": false
+          }
+        ]
+      }
+    },
+    {
+      "time": 7.618000000016764,
+      "text": [],
+      "item": null,
+      "gateOpening": 69,
+      "flag": 0,
+      "camera": [
+        0,
+        -2
+      ],
+      "pcGain": 0,
+      "formation": {
+        "returning": false,
+        "hero": {
+          "x": 25.5,
+          "y": 13.5,
+          "d": 8,
+          "moving": false
+        },
+        "members": [
+          {
+            "actor": 3,
+            "event": 13,
+            "x": 24,
+            "y": 14,
+            "d": 8,
+            "moving": false
+          },
+          {
+            "actor": 4,
+            "event": 14,
+            "x": 27,
+            "y": 14,
+            "d": 8,
+            "moving": false
+          }
+        ]
+      }
+    },
+    {
+      "time": 7.718999999924563,
+      "text": [],
+      "item": null,
+      "gateOpening": 76,
+      "flag": 0,
+      "camera": [
+        0,
+        -2
+      ],
+      "pcGain": 0,
+      "formation": {
+        "returning": false,
+        "hero": {
+          "x": 25.5,
+          "y": 13.5,
+          "d": 8,
+          "moving": false
+        },
+        "members": [
+          {
+            "actor": 3,
+            "event": 13,
+            "x": 24,
+            "y": 14,
+            "d": 8,
+            "moving": false
+          },
+          {
+            "actor": 4,
+            "event": 14,
+            "x": 27,
+            "y": 14,
+            "d": 8,
+            "moving": false
+          }
+        ]
+      }
+    },
+    {
+      "time": 7.768999999971129,
+      "text": [],
+      "item": null,
+      "gateOpening": 78,
+      "flag": 0,
+      "camera": [
+        0,
+        -2
+      ],
+      "pcGain": 0,
+      "formation": {
+        "returning": false,
+        "hero": {
+          "x": 25.5,
+          "y": 13.5,
+          "d": 8,
+          "moving": false
+        },
+        "members": [
+          {
+            "actor": 3,
+            "event": 13,
+            "x": 24,
+            "y": 14,
+            "d": 8,
+            "moving": false
+          },
+          {
+            "actor": 4,
+            "event": 14,
+            "x": 27,
+            "y": 14,
+            "d": 8,
+            "moving": false
+          }
+        ]
+      }
+    },
+    {
+      "time": 7.771999999997206,
+      "text": [],
+      "item": null,
+      "gateOpening": 79,
+      "flag": 0,
+      "camera": [
+        0,
+        -2
+      ],
+      "pcGain": 0,
+      "formation": {
+        "returning": false,
+        "hero": {
+          "x": 25.5,
+          "y": 13.5,
+          "d": 8,
+          "moving": false
+        },
+        "members": [
+          {
+            "actor": 3,
+            "event": 13,
+            "x": 24,
+            "y": 14,
+            "d": 8,
+            "moving": false
+          },
+          {
+            "actor": 4,
+            "event": 14,
+            "x": 27,
+            "y": 14,
+            "d": 8,
+            "moving": false
+          }
+        ]
+      }
+    },
+    {
+      "time": 7.837999999988824,
+      "text": [],
+      "item": null,
+      "gateOpening": 82,
+      "flag": 0,
+      "camera": [
+        0,
+        -2
+      ],
+      "pcGain": 0,
+      "formation": {
+        "returning": false,
+        "hero": {
+          "x": 25.5,
+          "y": 13.5,
+          "d": 8,
+          "moving": false
+        },
+        "members": [
+          {
+            "actor": 3,
+            "event": 13,
+            "x": 24,
+            "y": 14,
+            "d": 8,
+            "moving": false
+          },
+          {
+            "actor": 4,
+            "event": 14,
+            "x": 27,
+            "y": 14,
+            "d": 8,
+            "moving": false
+          }
+        ]
+      }
+    },
+    {
+      "time": 7.841000000014901,
+      "text": [],
+      "item": null,
+      "gateOpening": 83,
+      "flag": 0,
+      "camera": [
+        0,
+        -2
+      ],
+      "pcGain": 0,
+      "formation": {
+        "returning": false,
+        "hero": {
+          "x": 25.5,
+          "y": 13.5,
+          "d": 8,
+          "moving": false
+        },
+        "members": [
+          {
+            "actor": 3,
+            "event": 13,
+            "x": 24,
+            "y": 14,
+            "d": 8,
+            "moving": false
+          },
+          {
+            "actor": 4,
+            "event": 14,
+            "x": 27,
+            "y": 14,
+            "d": 8,
+            "moving": false
+          }
+        ]
+      }
+    },
+    {
+      "time": 7.893999999971129,
+      "text": [],
+      "item": null,
+      "flag": 1,
+      "camera": [
+        0,
+        -2
+      ],
+      "pcGain": 0,
+      "formation": {
+        "returning": false,
+        "hero": {
+          "x": 25.5,
+          "y": 13.5,
+          "d": 8,
+          "moving": false
+        },
+        "members": [
+          {
+            "actor": 3,
+            "event": 13,
+            "x": 24,
+            "y": 14,
+            "d": 8,
+            "moving": false
+          },
+          {
+            "actor": 4,
+            "event": 14,
+            "x": 27,
+            "y": 14,
+            "d": 8,
+            "moving": false
+          }
+        ]
+      }
+    },
+    {
+      "time": 7.934999999939464,
+      "text": [],
+      "item": null,
+      "flag": 1,
+      "camera": [
+        0,
+        -2
+      ],
+      "pcGain": 0,
+      "formation": {
+        "returning": false,
+        "hero": {
+          "x": 25.5,
+          "y": 13.5,
+          "d": 8,
+          "moving": false
+        },
+        "members": [
+          {
+            "actor": 3,
+            "event": 13,
+            "x": 24,
+            "y": 14,
+            "d": 8,
+            "moving": false
+          },
+          {
+            "actor": 4,
+            "event": 14,
+            "x": 27,
+            "y": 14,
+            "d": 8,
+            "moving": false
+          }
+        ]
+      }
+    },
+    {
+      "time": 8.00199999997858,
+      "text": [],
+      "item": null,
+      "flag": 1,
+      "camera": [
+        0,
+        -2
+      ],
+      "pcGain": 0,
+      "formation": {
+        "returning": false,
+        "hero": {
+          "x": 25.5,
+          "y": 13.5,
+          "d": 8,
+          "moving": false
+        },
+        "members": [
+          {
+            "actor": 3,
+            "event": 13,
+            "x": 24,
+            "y": 14,
+            "d": 8,
+            "moving": false
+          },
+          {
+            "actor": 4,
+            "event": 14,
+            "x": 27,
+            "y": 14,
+            "d": 8,
+            "moving": false
+          }
+        ]
+      }
+    },
+    {
+      "time": 8.050999999977648,
+      "text": [],
+      "item": null,
+      "flag": 1,
+      "camera": [
+        0,
+        -2
+      ],
+      "pcGain": 0,
+      "formation": {
+        "returning": false,
+        "hero": {
+          "x": 25.5,
+          "y": 13.5,
+          "d": 8,
+          "moving": false
+        },
+        "members": [
+          {
+            "actor": 3,
+            "event": 13,
+            "x": 24,
+            "y": 14,
+            "d": 8,
+            "moving": false
+          },
+          {
+            "actor": 4,
+            "event": 14,
+            "x": 27,
+            "y": 14,
+            "d": 8,
+            "moving": false
+          }
+        ]
+      }
+    },
+    {
+      "time": 8.101000000024214,
+      "text": [],
+      "item": null,
+      "flag": 1,
+      "camera": [
+        0,
+        -2
+      ],
+      "pcGain": 0,
+      "formation": {
+        "returning": false,
+        "hero": {
+          "x": 25.5,
+          "y": 13.5,
+          "d": 8,
+          "moving": false
+        },
+        "members": [
+          {
+            "actor": 3,
+            "event": 13,
+            "x": 24,
+            "y": 14,
+            "d": 8,
+            "moving": false
+          },
+          {
+            "actor": 4,
+            "event": 14,
+            "x": 27,
+            "y": 14,
+            "d": 8,
+            "moving": false
+          }
+        ]
+      }
+    },
+    {
+      "time": 8.103000000002794,
+      "text": [],
+      "item": null,
+      "flag": 1,
+      "camera": [
+        0,
+        -2
+      ],
+      "pcGain": 0,
+      "formation": {
+        "returning": false,
+        "hero": {
+          "x": 25.5,
+          "y": 13.5,
+          "d": 8,
+          "moving": false
+        },
+        "members": [
+          {
+            "actor": 3,
+            "event": 13,
+            "x": 24,
+            "y": 14,
+            "d": 8,
+            "moving": false
+          },
+          {
+            "actor": 4,
+            "event": 14,
+            "x": 27,
+            "y": 14,
+            "d": 8,
+            "moving": false
+          }
+        ]
+      }
+    },
+    {
+      "time": 8.150999999954365,
+      "text": [],
+      "item": null,
+      "flag": 1,
+      "camera": [
+        0,
+        -2
+      ],
+      "pcGain": 0,
+      "formation": {
+        "returning": false,
+        "hero": {
+          "x": 25.5,
+          "y": 13.5,
+          "d": 8,
+          "moving": false
+        },
+        "members": [
+          {
+            "actor": 3,
+            "event": 13,
+            "x": 24,
+            "y": 14,
+            "d": 8,
+            "moving": false
+          },
+          {
+            "actor": 4,
+            "event": 14,
+            "x": 27,
+            "y": 14,
+            "d": 8,
+            "moving": false
+          }
+        ]
+      }
+    },
+    {
+      "time": 8.199999999953434,
+      "text": [],
+      "item": null,
+      "flag": 1,
+      "camera": [
+        0,
+        -2
+      ],
+      "pcGain": 0,
+      "formation": {
+        "returning": false,
+        "hero": {
+          "x": 25.5,
+          "y": 13.5,
+          "d": 8,
+          "moving": false
+        },
+        "members": [
+          {
+            "actor": 3,
+            "event": 13,
+            "x": 24,
+            "y": 14,
+            "d": 8,
+            "moving": false
+          },
+          {
+            "actor": 4,
+            "event": 14,
+            "x": 27,
+            "y": 14,
+            "d": 8,
+            "moving": false
+          }
+        ]
+      }
+    },
+    {
+      "time": 8.250999999931082,
+      "text": [],
+      "item": null,
+      "flag": 1,
+      "camera": [
+        0,
+        -2
+      ],
+      "pcGain": 0,
+      "formation": {
+        "returning": false,
+        "hero": {
+          "x": 25.5,
+          "y": 13.5,
+          "d": 8,
+          "moving": false
+        },
+        "members": [
+          {
+            "actor": 3,
+            "event": 13,
+            "x": 24,
+            "y": 14,
+            "d": 8,
+            "moving": false
+          },
+          {
+            "actor": 4,
+            "event": 14,
+            "x": 27,
+            "y": 14,
+            "d": 8,
+            "moving": false
+          }
+        ]
+      }
+    },
+    {
+      "time": 8.368999999947846,
+      "text": [
+        "この先が",
+        "モンスターの王の部屋かな…"
+      ],
+      "item": null,
+      "flag": 1,
+      "camera": [
+        0,
+        -2
+      ],
+      "pcGain": 0,
+      "formation": {
+        "returning": false,
+        "hero": {
+          "x": 25.5,
+          "y": 13.5,
+          "d": 4,
+          "moving": false
+        },
+        "members": [
+          {
+            "actor": 3,
+            "event": 13,
+            "x": 24,
+            "y": 14,
+            "d": 6,
+            "moving": false
+          },
+          {
+            "actor": 4,
+            "event": 14,
+            "x": 27,
+            "y": 14,
+            "d": 4,
+            "moving": false
+          }
+        ]
+      }
+    },
+    {
+      "time": 8.371999999973923,
+      "text": [
+        "この先が",
+        "モンスターの王の部屋かな…"
+      ],
+      "item": null,
+      "flag": 1,
+      "camera": [
+        0,
+        -2
+      ],
+      "pcGain": 0,
+      "formation": {
+        "returning": false,
+        "hero": {
+          "x": 25.5,
+          "y": 13.5,
+          "d": 4,
+          "moving": false
+        },
+        "members": [
+          {
+            "actor": 3,
+            "event": 13,
+            "x": 24,
+            "y": 14,
+            "d": 6,
+            "moving": false
+          },
+          {
+            "actor": 4,
+            "event": 14,
+            "x": 27,
+            "y": 14,
+            "d": 4,
+            "moving": false
+          }
+        ]
+      }
+    },
+    {
+      "time": 8.37899999995716,
+      "text": [
+        "この先が",
+        "モンスターの王の部屋かな…"
+      ],
+      "item": null,
+      "flag": 1,
+      "camera": [
+        0,
+        -2
+      ],
+      "pcGain": 0,
+      "formation": {
+        "returning": false,
+        "hero": {
+          "x": 25.5,
+          "y": 13.5,
+          "d": 4,
+          "moving": false
+        },
+        "members": [
+          {
+            "actor": 3,
+            "event": 13,
+            "x": 24,
+            "y": 14,
+            "d": 6,
+            "moving": false
+          },
+          {
+            "actor": 4,
+            "event": 14,
+            "x": 27,
+            "y": 14,
+            "d": 4,
+            "moving": false
+          }
+        ]
+      }
+    },
+    {
+      "time": 8.560999999986961,
+      "text": [
+        "この先が",
+        "モンスターの王の部屋かな…"
+      ],
+      "item": null,
+      "flag": 1,
+      "camera": [
+        0,
+        -2
+      ],
+      "pcGain": 0,
+      "formation": {
+        "returning": false,
+        "hero": {
+          "x": 25.5,
+          "y": 13.5,
+          "d": 4,
+          "moving": false
+        },
+        "members": [
+          {
+            "actor": 3,
+            "event": 13,
+            "x": 24,
+            "y": 14,
+            "d": 6,
+            "moving": false
+          },
+          {
+            "actor": 4,
+            "event": 14,
+            "x": 27,
+            "y": 14,
+            "d": 4,
+            "moving": false
+          }
+        ]
+      }
+    },
+    {
+      "time": 8.569000000017695,
+      "text": [
+        "この先が",
+        "モンスターの王の部屋かな…"
+      ],
+      "item": null,
+      "flag": 1,
+      "camera": [
+        0,
+        -2
+      ],
+      "pcGain": 0,
+      "formation": {
+        "returning": false,
+        "hero": {
+          "x": 25.5,
+          "y": 13.5,
+          "d": 4,
+          "moving": false
+        },
+        "members": [
+          {
+            "actor": 3,
+            "event": 13,
+            "x": 24,
+            "y": 14,
+            "d": 6,
+            "moving": false
+          },
+          {
+            "actor": 4,
+            "event": 14,
+            "x": 27,
+            "y": 14,
+            "d": 4,
+            "moving": false
+          }
+        ]
+      }
+    },
+    {
+      "time": 8.574000000022352,
+      "text": [
+        "この先が",
+        "モンスターの王の部屋かな…"
+      ],
+      "item": null,
+      "flag": 1,
+      "camera": [
+        0,
+        -2
+      ],
+      "pcGain": 0,
+      "formation": {
+        "returning": false,
+        "hero": {
+          "x": 25.5,
+          "y": 13.5,
+          "d": 4,
+          "moving": false
+        },
+        "members": [
+          {
+            "actor": 3,
+            "event": 13,
+            "x": 24,
+            "y": 14,
+            "d": 6,
+            "moving": false
+          },
+          {
+            "actor": 4,
+            "event": 14,
+            "x": 27,
+            "y": 14,
+            "d": 4,
+            "moving": false
+          }
+        ]
+      }
+    },
+    {
+      "time": 8.581000000005588,
+      "text": [
+        "この先が",
+        "モンスターの王の部屋かな…"
+      ],
+      "item": null,
+      "flag": 1,
+      "camera": [
+        0,
+        -2
+      ],
+      "pcGain": 0,
+      "formation": {
+        "returning": false,
+        "hero": {
+          "x": 25.5,
+          "y": 13.5,
+          "d": 4,
+          "moving": false
+        },
+        "members": [
+          {
+            "actor": 3,
+            "event": 13,
+            "x": 24,
+            "y": 14,
+            "d": 6,
+            "moving": false
+          },
+          {
+            "actor": 4,
+            "event": 14,
+            "x": 27,
+            "y": 14,
+            "d": 4,
+            "moving": false
+          }
+        ]
+      }
+    },
+    {
+      "time": 8.586999999941327,
+      "text": [
+        "この先が",
+        "モンスターの王の部屋かな…"
+      ],
+      "item": null,
+      "flag": 1,
+      "camera": [
+        0,
+        -2
+      ],
+      "pcGain": 0,
+      "formation": {
+        "returning": false,
+        "hero": {
+          "x": 25.5,
+          "y": 13.5,
+          "d": 4,
+          "moving": false
+        },
+        "members": [
+          {
+            "actor": 3,
+            "event": 13,
+            "x": 24,
+            "y": 14,
+            "d": 6,
+            "moving": false
+          },
+          {
+            "actor": 4,
+            "event": 14,
+            "x": 27,
+            "y": 14,
+            "d": 4,
+            "moving": false
+          }
+        ]
+      }
+    },
+    {
+      "time": 8.648999999975786,
+      "text": [
+        "この先が",
+        "モンスターの王の部屋かな…"
+      ],
+      "item": null,
+      "flag": 1,
+      "camera": [
+        0,
+        -2
+      ],
+      "pcGain": 0,
+      "formation": {
+        "returning": false,
+        "hero": {
+          "x": 25.5,
+          "y": 13.5,
+          "d": 4,
+          "moving": false
+        },
+        "members": [
+          {
+            "actor": 3,
+            "event": 13,
+            "x": 24,
+            "y": 14,
+            "d": 6,
+            "moving": false
+          },
+          {
+            "actor": 4,
+            "event": 14,
+            "x": 27,
+            "y": 14,
+            "d": 4,
+            "moving": false
+          }
+        ]
+      }
+    },
+    {
+      "time": 8.65500000002794,
+      "text": [
+        "この先が",
+        "モンスターの王の部屋かな…"
+      ],
+      "item": null,
+      "flag": 1,
+      "camera": [
+        0,
+        -2
+      ],
+      "pcGain": 0,
+      "formation": {
+        "returning": false,
+        "hero": {
+          "x": 25.5,
+          "y": 13.5,
+          "d": 4,
+          "moving": false
+        },
+        "members": [
+          {
+            "actor": 3,
+            "event": 13,
+            "x": 24,
+            "y": 14,
+            "d": 6,
+            "moving": false
+          },
+          {
+            "actor": 4,
+            "event": 14,
+            "x": 27,
+            "y": 14,
+            "d": 4,
+            "moving": false
+          }
+        ]
+      }
+    },
+    {
+      "time": 8.701999999932013,
+      "text": [
+        "この先が",
+        "モンスターの王の部屋かな…"
+      ],
+      "item": null,
+      "flag": 1,
+      "camera": [
+        0,
+        -2
+      ],
+      "pcGain": 0,
+      "formation": {
+        "returning": false,
+        "hero": {
+          "x": 25.5,
+          "y": 13.5,
+          "d": 4,
+          "moving": false
+        },
+        "members": [
+          {
+            "actor": 3,
+            "event": 13,
+            "x": 24,
+            "y": 14,
+            "d": 6,
+            "moving": false
+          },
+          {
+            "actor": 4,
+            "event": 14,
+            "x": 27,
+            "y": 14,
+            "d": 4,
+            "moving": false
+          }
+        ]
+      }
+    },
+    {
+      "time": 8.802000000025146,
+      "text": [
+        "この先が",
+        "モンスターの王の部屋かな…"
+      ],
+      "item": null,
+      "flag": 1,
+      "camera": [
+        0,
+        -2
+      ],
+      "pcGain": 0,
+      "formation": {
+        "returning": false,
+        "hero": {
+          "x": 25.5,
+          "y": 13.5,
+          "d": 4,
+          "moving": false
+        },
+        "members": [
+          {
+            "actor": 3,
+            "event": 13,
+            "x": 24,
+            "y": 14,
+            "d": 6,
+            "moving": false
+          },
+          {
+            "actor": 4,
+            "event": 14,
+            "x": 27,
+            "y": 14,
+            "d": 4,
+            "moving": false
+          }
+        ]
+      }
+    },
+    {
+      "time": 8.85800000000745,
+      "text": [
+        "この先が",
+        "モンスターの王の部屋かな…"
+      ],
+      "item": null,
+      "flag": 1,
+      "camera": [
+        0,
+        -2
+      ],
+      "pcGain": 0,
+      "formation": {
+        "returning": false,
+        "hero": {
+          "x": 25.5,
+          "y": 13.5,
+          "d": 4,
+          "moving": false
+        },
+        "members": [
+          {
+            "actor": 3,
+            "event": 13,
+            "x": 24,
+            "y": 14,
+            "d": 6,
+            "moving": false
+          },
+          {
+            "actor": 4,
+            "event": 14,
+            "x": 27,
+            "y": 14,
+            "d": 4,
+            "moving": false
+          }
+        ]
+      }
+    },
+    {
+      "time": 8.902000000001863,
+      "text": [
+        "この先が",
+        "モンスターの王の部屋かな…"
+      ],
+      "item": null,
+      "flag": 1,
+      "camera": [
+        0,
+        -2
+      ],
+      "pcGain": 0,
+      "formation": {
+        "returning": false,
+        "hero": {
+          "x": 25.5,
+          "y": 13.5,
+          "d": 4,
+          "moving": false
+        },
+        "members": [
+          {
+            "actor": 3,
+            "event": 13,
+            "x": 24,
+            "y": 14,
+            "d": 6,
+            "moving": false
+          },
+          {
+            "actor": 4,
+            "event": 14,
+            "x": 27,
+            "y": 14,
+            "d": 4,
+            "moving": false
+          }
+        ]
+      }
+    },
+    {
+      "time": 8.951999999932013,
+      "text": [
+        "この先が",
+        "モンスターの王の部屋かな…"
+      ],
+      "item": null,
+      "flag": 1,
+      "camera": [
+        0,
+        -2
+      ],
+      "pcGain": 0,
+      "formation": {
+        "returning": false,
+        "hero": {
+          "x": 25.5,
+          "y": 13.5,
+          "d": 4,
+          "moving": false
+        },
+        "members": [
+          {
+            "actor": 3,
+            "event": 13,
+            "x": 24,
+            "y": 14,
+            "d": 6,
+            "moving": false
+          },
+          {
+            "actor": 4,
+            "event": 14,
+            "x": 27,
+            "y": 14,
+            "d": 4,
+            "moving": false
+          }
+        ]
+      }
+    },
+    {
+      "time": 9.003000000026077,
+      "text": [
+        "この先が",
+        "モンスターの王の部屋かな…"
+      ],
+      "item": null,
+      "flag": 1,
+      "camera": [
+        0,
+        -2
+      ],
+      "pcGain": 0,
+      "formation": {
+        "returning": false,
+        "hero": {
+          "x": 25.5,
+          "y": 13.5,
+          "d": 4,
+          "moving": false
+        },
+        "members": [
+          {
+            "actor": 3,
+            "event": 13,
+            "x": 24,
+            "y": 14,
+            "d": 6,
+            "moving": false
+          },
+          {
+            "actor": 4,
+            "event": 14,
+            "x": 27,
+            "y": 14,
+            "d": 4,
+            "moving": false
+          }
+        ]
+      }
+    },
+    {
+      "time": 9.050999999977648,
+      "text": [
+        "この先が",
+        "モンスターの王の部屋かな…"
+      ],
+      "item": null,
+      "flag": 1,
+      "camera": [
+        0,
+        -2
+      ],
+      "pcGain": 0,
+      "formation": {
+        "returning": false,
+        "hero": {
+          "x": 25.5,
+          "y": 13.5,
+          "d": 4,
+          "moving": false
+        },
+        "members": [
+          {
+            "actor": 3,
+            "event": 13,
+            "x": 24,
+            "y": 14,
+            "d": 6,
+            "moving": false
+          },
+          {
+            "actor": 4,
+            "event": 14,
+            "x": 27,
+            "y": 14,
+            "d": 4,
+            "moving": false
+          }
+        ]
+      }
+    },
+    {
+      "time": 9.101000000024214,
+      "text": [
+        "この先が",
+        "モンスターの王の部屋かな…"
+      ],
+      "item": null,
+      "flag": 1,
+      "camera": [
+        0,
+        -2
+      ],
+      "pcGain": 0,
+      "formation": {
+        "returning": false,
+        "hero": {
+          "x": 25.5,
+          "y": 13.5,
+          "d": 4,
+          "moving": false
+        },
+        "members": [
+          {
+            "actor": 3,
+            "event": 13,
+            "x": 24,
+            "y": 14,
+            "d": 6,
+            "moving": false
+          },
+          {
+            "actor": 4,
+            "event": 14,
+            "x": 27,
+            "y": 14,
+            "d": 4,
+            "moving": false
+          }
+        ]
+      }
+    },
+    {
+      "time": 9.152000000001863,
+      "text": [
+        "この先が",
+        "モンスターの王の部屋かな…"
+      ],
+      "item": null,
+      "flag": 1,
+      "camera": [
+        0,
+        -2
+      ],
+      "pcGain": 0,
+      "formation": {
+        "returning": false,
+        "hero": {
+          "x": 25.5,
+          "y": 13.5,
+          "d": 4,
+          "moving": false
+        },
+        "members": [
+          {
+            "actor": 3,
+            "event": 13,
+            "x": 24,
+            "y": 14,
+            "d": 6,
+            "moving": false
+          },
+          {
+            "actor": 4,
+            "event": 14,
+            "x": 27,
+            "y": 14,
+            "d": 4,
+            "moving": false
+          }
+        ]
+      }
+    },
+    {
+      "time": 9.201999999932013,
+      "text": [
+        "この先が",
+        "モンスターの王の部屋かな…"
+      ],
+      "item": null,
+      "flag": 1,
+      "camera": [
+        0,
+        -2
+      ],
+      "pcGain": 0,
+      "formation": {
+        "returning": false,
+        "hero": {
+          "x": 25.5,
+          "y": 13.5,
+          "d": 4,
+          "moving": false
+        },
+        "members": [
+          {
+            "actor": 3,
+            "event": 13,
+            "x": 24,
+            "y": 14,
+            "d": 6,
+            "moving": false
+          },
+          {
+            "actor": 4,
+            "event": 14,
+            "x": 27,
+            "y": 14,
+            "d": 4,
+            "moving": false
+          }
+        ]
+      }
+    },
+    {
+      "time": 9.25199999997858,
+      "text": [
+        "この先が",
+        "モンスターの王の部屋かな…"
+      ],
+      "item": null,
+      "flag": 1,
+      "camera": [
+        0,
+        -2
+      ],
+      "pcGain": 0,
+      "formation": {
+        "returning": false,
+        "hero": {
+          "x": 25.5,
+          "y": 13.5,
+          "d": 4,
+          "moving": false
+        },
+        "members": [
+          {
+            "actor": 3,
+            "event": 13,
+            "x": 24,
+            "y": 14,
+            "d": 6,
+            "moving": false
+          },
+          {
+            "actor": 4,
+            "event": 14,
+            "x": 27,
+            "y": 14,
+            "d": 4,
+            "moving": false
+          }
+        ]
+      }
+    },
+    {
+      "time": 9.302000000025146,
+      "text": [
+        "この先が",
+        "モンスターの王の部屋かな…"
+      ],
+      "item": null,
+      "flag": 1,
+      "camera": [
+        0,
+        -2
+      ],
+      "pcGain": 0,
+      "formation": {
+        "returning": false,
+        "hero": {
+          "x": 25.5,
+          "y": 13.5,
+          "d": 4,
+          "moving": false
+        },
+        "members": [
+          {
+            "actor": 3,
+            "event": 13,
+            "x": 24,
+            "y": 14,
+            "d": 6,
+            "moving": false
+          },
+          {
+            "actor": 4,
+            "event": 14,
+            "x": 27,
+            "y": 14,
+            "d": 4,
+            "moving": false
+          }
+        ]
+      }
+    },
+    {
+      "time": 9.361000000033528,
+      "text": [
+        "この先が",
+        "モンスターの王の部屋かな…"
+      ],
+      "item": null,
+      "flag": 1,
+      "camera": [
+        0,
+        -2
+      ],
+      "pcGain": 0,
+      "formation": {
+        "returning": false,
+        "hero": {
+          "x": 25.5,
+          "y": 13.5,
+          "d": 4,
+          "moving": false
+        },
+        "members": [
+          {
+            "actor": 3,
+            "event": 13,
+            "x": 24,
+            "y": 14,
+            "d": 6,
+            "moving": false
+          },
+          {
+            "actor": 4,
+            "event": 14,
+            "x": 27,
+            "y": 14,
+            "d": 4,
+            "moving": false
+          }
+        ]
+      }
+    },
+    {
+      "time": 9.402000000001863,
+      "text": [
+        "この先が",
+        "モンスターの王の部屋かな…"
+      ],
+      "item": null,
+      "flag": 1,
+      "camera": [
+        0,
+        -2
+      ],
+      "pcGain": 0,
+      "formation": {
+        "returning": false,
+        "hero": {
+          "x": 25.5,
+          "y": 13.5,
+          "d": 4,
+          "moving": false
+        },
+        "members": [
+          {
+            "actor": 3,
+            "event": 13,
+            "x": 24,
+            "y": 14,
+            "d": 6,
+            "moving": false
+          },
+          {
+            "actor": 4,
+            "event": 14,
+            "x": 27,
+            "y": 14,
+            "d": 4,
+            "moving": false
+          }
+        ]
+      }
+    },
+    {
+      "time": 9.451999999932013,
+      "text": [
+        "この先が",
+        "モンスターの王の部屋かな…"
+      ],
+      "item": null,
+      "flag": 1,
+      "camera": [
+        0,
+        -2
+      ],
+      "pcGain": 0,
+      "formation": {
+        "returning": false,
+        "hero": {
+          "x": 25.5,
+          "y": 13.5,
+          "d": 4,
+          "moving": false
+        },
+        "members": [
+          {
+            "actor": 3,
+            "event": 13,
+            "x": 24,
+            "y": 14,
+            "d": 6,
+            "moving": false
+          },
+          {
+            "actor": 4,
+            "event": 14,
+            "x": 27,
+            "y": 14,
+            "d": 4,
+            "moving": false
+          }
+        ]
+      }
+    },
+    {
+      "time": 9.505000000004657,
+      "text": [
+        "この先が",
+        "モンスターの王の部屋かな…"
+      ],
+      "item": null,
+      "flag": 1,
+      "camera": [
+        0,
+        -2
+      ],
+      "pcGain": 0,
+      "formation": {
+        "returning": false,
+        "hero": {
+          "x": 25.5,
+          "y": 13.5,
+          "d": 4,
+          "moving": false
+        },
+        "members": [
+          {
+            "actor": 3,
+            "event": 13,
+            "x": 24,
+            "y": 14,
+            "d": 6,
+            "moving": false
+          },
+          {
+            "actor": 4,
+            "event": 14,
+            "x": 27,
+            "y": 14,
+            "d": 4,
+            "moving": false
+          }
+        ]
+      }
+    },
+    {
+      "time": 9.550999999977648,
+      "text": [
+        "この先が",
+        "モンスターの王の部屋かな…"
+      ],
+      "item": null,
+      "flag": 1,
+      "camera": [
+        0,
+        -2
+      ],
+      "pcGain": 0,
+      "formation": {
+        "returning": false,
+        "hero": {
+          "x": 25.5,
+          "y": 13.5,
+          "d": 4,
+          "moving": false
+        },
+        "members": [
+          {
+            "actor": 3,
+            "event": 13,
+            "x": 24,
+            "y": 14,
+            "d": 6,
+            "moving": false
+          },
+          {
+            "actor": 4,
+            "event": 14,
+            "x": 27,
+            "y": 14,
+            "d": 4,
+            "moving": false
+          }
+        ]
+      }
+    },
+    {
+      "time": 9.603999999933876,
+      "text": [
+        "この先が",
+        "モンスターの王の部屋かな…"
+      ],
+      "item": null,
+      "flag": 1,
+      "camera": [
+        0,
+        -2
+      ],
+      "pcGain": 0,
+      "formation": {
+        "returning": false,
+        "hero": {
+          "x": 25.5,
+          "y": 13.5,
+          "d": 4,
+          "moving": false
+        },
+        "members": [
+          {
+            "actor": 3,
+            "event": 13,
+            "x": 24,
+            "y": 14,
+            "d": 6,
+            "moving": false
+          },
+          {
+            "actor": 4,
+            "event": 14,
+            "x": 27,
+            "y": 14,
+            "d": 4,
+            "moving": false
+          }
+        ]
+      }
+    },
+    {
+      "time": 9.655999999959022,
+      "text": [
+        "この先が",
+        "モンスターの王の部屋かな…"
+      ],
+      "item": null,
+      "flag": 1,
+      "camera": [
+        0,
+        -2
+      ],
+      "pcGain": 0,
+      "formation": {
+        "returning": false,
+        "hero": {
+          "x": 25.5,
+          "y": 13.5,
+          "d": 4,
+          "moving": false
+        },
+        "members": [
+          {
+            "actor": 3,
+            "event": 13,
+            "x": 24,
+            "y": 14,
+            "d": 6,
+            "moving": false
+          },
+          {
+            "actor": 4,
+            "event": 14,
+            "x": 27,
+            "y": 14,
+            "d": 4,
+            "moving": false
+          }
+        ]
+      }
+    },
+    {
+      "time": 9.787000000011176,
+      "text": [
+        "この先が",
+        "モンスターの王の部屋かな…"
+      ],
+      "item": null,
+      "flag": 1,
+      "camera": [
+        0,
+        -2
+      ],
+      "pcGain": 0,
+      "formation": {
+        "returning": false,
+        "hero": {
+          "x": 25.5,
+          "y": 13.5,
+          "d": 4,
+          "moving": false
+        },
+        "members": [
+          {
+            "actor": 3,
+            "event": 13,
+            "x": 24,
+            "y": 14,
+            "d": 6,
+            "moving": false
+          },
+          {
+            "actor": 4,
+            "event": 14,
+            "x": 27,
+            "y": 14,
+            "d": 4,
+            "moving": false
+          }
+        ]
+      }
+    },
+    {
+      "time": 9.788999999989755,
+      "text": [
+        "この先が",
+        "モンスターの王の部屋かな…"
+      ],
+      "item": null,
+      "flag": 1,
+      "camera": [
+        0,
+        -2
+      ],
+      "pcGain": 0,
+      "formation": {
+        "returning": false,
+        "hero": {
+          "x": 25.5,
+          "y": 13.5,
+          "d": 4,
+          "moving": false
+        },
+        "members": [
+          {
+            "actor": 3,
+            "event": 13,
+            "x": 24,
+            "y": 14,
+            "d": 6,
+            "moving": false
+          },
+          {
+            "actor": 4,
+            "event": 14,
+            "x": 27,
+            "y": 14,
+            "d": 4,
+            "moving": false
+          }
+        ]
+      }
+    },
+    {
+      "time": 9.836000000010245,
+      "text": [
+        "この先が",
+        "モンスターの王の部屋かな…"
+      ],
+      "item": null,
+      "flag": 1,
+      "camera": [
+        0,
+        -2
+      ],
+      "pcGain": 0,
+      "formation": {
+        "returning": false,
+        "hero": {
+          "x": 25.5,
+          "y": 13.5,
+          "d": 4,
+          "moving": false
+        },
+        "members": [
+          {
+            "actor": 3,
+            "event": 13,
+            "x": 24,
+            "y": 14,
+            "d": 6,
+            "moving": false
+          },
+          {
+            "actor": 4,
+            "event": 14,
+            "x": 27,
+            "y": 14,
+            "d": 4,
+            "moving": false
+          }
+        ]
+      }
+    },
+    {
+      "time": 9.885999999940395,
+      "text": [
+        "この先が",
+        "モンスターの王の部屋かな…"
+      ],
+      "item": null,
+      "flag": 1,
+      "camera": [
+        0,
+        -2
+      ],
+      "pcGain": 0,
+      "formation": {
+        "returning": false,
+        "hero": {
+          "x": 25.5,
+          "y": 13.5,
+          "d": 4,
+          "moving": false
+        },
+        "members": [
+          {
+            "actor": 3,
+            "event": 13,
+            "x": 24,
+            "y": 14,
+            "d": 6,
+            "moving": false
+          },
+          {
+            "actor": 4,
+            "event": 14,
+            "x": 27,
+            "y": 14,
+            "d": 4,
+            "moving": false
+          }
+        ]
+      }
+    },
+    {
+      "time": 9.952999999979511,
+      "text": [
+        "この先が",
+        "モンスターの王の部屋かな…"
+      ],
+      "item": null,
+      "flag": 1,
+      "camera": [
+        0,
+        -2
+      ],
+      "pcGain": 0,
+      "formation": {
+        "returning": false,
+        "hero": {
+          "x": 25.5,
+          "y": 13.5,
+          "d": 4,
+          "moving": false
+        },
+        "members": [
+          {
+            "actor": 3,
+            "event": 13,
+            "x": 24,
+            "y": 14,
+            "d": 6,
+            "moving": false
+          },
+          {
+            "actor": 4,
+            "event": 14,
+            "x": 27,
+            "y": 14,
+            "d": 4,
+            "moving": false
+          }
+        ]
+      }
+    },
+    {
+      "time": 10.00199999997858,
+      "text": [
+        "この先が",
+        "モンスターの王の部屋かな…"
+      ],
+      "item": null,
+      "flag": 1,
+      "camera": [
+        0,
+        -2
+      ],
+      "pcGain": 0,
+      "formation": {
+        "returning": false,
+        "hero": {
+          "x": 25.5,
+          "y": 13.5,
+          "d": 4,
+          "moving": false
+        },
+        "members": [
+          {
+            "actor": 3,
+            "event": 13,
+            "x": 24,
+            "y": 14,
+            "d": 6,
+            "moving": false
+          },
+          {
+            "actor": 4,
+            "event": 14,
+            "x": 27,
+            "y": 14,
+            "d": 4,
+            "moving": false
+          }
+        ]
+      }
+    },
+    {
+      "time": 10.052000000025146,
+      "text": [
+        "この先が",
+        "モンスターの王の部屋かな…"
+      ],
+      "item": null,
+      "flag": 1,
+      "camera": [
+        0,
+        -2
+      ],
+      "pcGain": 0,
+      "formation": {
+        "returning": false,
+        "hero": {
+          "x": 25.5,
+          "y": 13.5,
+          "d": 4,
+          "moving": false
+        },
+        "members": [
+          {
+            "actor": 3,
+            "event": 13,
+            "x": 24,
+            "y": 14,
+            "d": 6,
+            "moving": false
+          },
+          {
+            "actor": 4,
+            "event": 14,
+            "x": 27,
+            "y": 14,
+            "d": 4,
+            "moving": false
+          }
+        ]
+      }
+    },
+    {
+      "time": 10.150999999954365,
+      "text": [
+        "この先が",
+        "モンスターの王の部屋かな…"
+      ],
+      "item": null,
+      "flag": 1,
+      "camera": [
+        0,
+        -2
+      ],
+      "pcGain": 0,
+      "formation": {
+        "returning": false,
+        "hero": {
+          "x": 25.5,
+          "y": 13.5,
+          "d": 4,
+          "moving": false
+        },
+        "members": [
+          {
+            "actor": 3,
+            "event": 13,
+            "x": 24,
+            "y": 14,
+            "d": 6,
+            "moving": false
+          },
+          {
+            "actor": 4,
+            "event": 14,
+            "x": 27,
+            "y": 14,
+            "d": 4,
+            "moving": false
+          }
+        ]
+      }
+    },
+    {
+      "time": 10.202999999979511,
+      "text": [
+        "この先が",
+        "モンスターの王の部屋かな…"
+      ],
+      "item": null,
+      "flag": 1,
+      "camera": [
+        0,
+        -2
+      ],
+      "pcGain": 0,
+      "formation": {
+        "returning": false,
+        "hero": {
+          "x": 25.5,
+          "y": 13.5,
+          "d": 4,
+          "moving": false
+        },
+        "members": [
+          {
+            "actor": 3,
+            "event": 13,
+            "x": 24,
+            "y": 14,
+            "d": 6,
+            "moving": false
+          },
+          {
+            "actor": 4,
+            "event": 14,
+            "x": 27,
+            "y": 14,
+            "d": 4,
+            "moving": false
+          }
+        ]
+      }
+    },
+    {
+      "time": 10.253000000026077,
+      "text": [
+        "この先が",
+        "モンスターの王の部屋かな…"
+      ],
+      "item": null,
+      "flag": 1,
+      "camera": [
+        0,
+        -2
+      ],
+      "pcGain": 0,
+      "formation": {
+        "returning": false,
+        "hero": {
+          "x": 25.5,
+          "y": 13.5,
+          "d": 4,
+          "moving": false
+        },
+        "members": [
+          {
+            "actor": 3,
+            "event": 13,
+            "x": 24,
+            "y": 14,
+            "d": 6,
+            "moving": false
+          },
+          {
+            "actor": 4,
+            "event": 14,
+            "x": 27,
+            "y": 14,
+            "d": 4,
+            "moving": false
+          }
+        ]
+      }
+    },
+    {
+      "time": 10.302999999956228,
+      "text": [
+        "この先が",
+        "モンスターの王の部屋かな…"
+      ],
+      "item": null,
+      "flag": 1,
+      "camera": [
+        0,
+        -2
+      ],
+      "pcGain": 0,
+      "formation": {
+        "returning": false,
+        "hero": {
+          "x": 25.5,
+          "y": 13.5,
+          "d": 4,
+          "moving": false
+        },
+        "members": [
+          {
+            "actor": 3,
+            "event": 13,
+            "x": 24,
+            "y": 14,
+            "d": 6,
+            "moving": false
+          },
+          {
+            "actor": 4,
+            "event": 14,
+            "x": 27,
+            "y": 14,
+            "d": 4,
+            "moving": false
+          }
+        ]
+      }
+    },
+    {
+      "time": 10.351999999955297,
+      "text": [
+        "この先が",
+        "モンスターの王の部屋かな…"
+      ],
+      "item": null,
+      "flag": 1,
+      "camera": [
+        0,
+        -2
+      ],
+      "pcGain": 0,
+      "formation": {
+        "returning": false,
+        "hero": {
+          "x": 25.5,
+          "y": 13.5,
+          "d": 4,
+          "moving": false
+        },
+        "members": [
+          {
+            "actor": 3,
+            "event": 13,
+            "x": 24,
+            "y": 14,
+            "d": 6,
+            "moving": false
+          },
+          {
+            "actor": 4,
+            "event": 14,
+            "x": 27,
+            "y": 14,
+            "d": 4,
+            "moving": false
+          }
+        ]
+      }
+    },
+    {
+      "time": 10.402000000001863,
+      "text": [
+        "この先が",
+        "モンスターの王の部屋かな…"
+      ],
+      "item": null,
+      "flag": 1,
+      "camera": [
+        0,
+        -2
+      ],
+      "pcGain": 0,
+      "formation": {
+        "returning": false,
+        "hero": {
+          "x": 25.5,
+          "y": 13.5,
+          "d": 4,
+          "moving": false
+        },
+        "members": [
+          {
+            "actor": 3,
+            "event": 13,
+            "x": 24,
+            "y": 14,
+            "d": 6,
+            "moving": false
+          },
+          {
+            "actor": 4,
+            "event": 14,
+            "x": 27,
+            "y": 14,
+            "d": 4,
+            "moving": false
+          }
+        ]
+      }
+    },
+    {
+      "time": 10.503000000026077,
+      "text": [],
+      "item": null,
+      "flag": 1,
+      "camera": [
+        0,
+        -2
+      ],
+      "pcGain": 0,
+      "formation": {
+        "returning": false,
+        "hero": {
+          "x": 25.5,
+          "y": 13.5,
+          "d": 4,
+          "moving": false
+        },
+        "members": [
+          {
+            "actor": 3,
+            "event": 13,
+            "x": 24,
+            "y": 14,
+            "d": 6,
+            "moving": false
+          },
+          {
+            "actor": 4,
+            "event": 14,
+            "x": 27,
+            "y": 14,
+            "d": 4,
+            "moving": false
+          }
+        ]
+      }
+    },
+    {
+      "time": 10.508999999961816,
+      "text": [],
+      "item": null,
+      "flag": 1,
+      "camera": [
+        0,
+        -2
+      ],
+      "pcGain": 0,
+      "formation": {
+        "returning": true,
+        "hero": {
+          "x": 25.5,
+          "y": 13.41161165235168,
+          "d": 8,
+          "moving": true
+        },
+        "members": [
+          {
+            "actor": 3,
+            "event": 13,
+            "x": 24.05,
+            "y": 13.95,
+            "d": 6,
+            "moving": true
+          },
+          {
+            "actor": 4,
+            "event": 14,
+            "x": 26.95,
+            "y": 14.05,
+            "d": 2,
+            "moving": true
+          }
+        ]
+      }
+    },
+    {
+      "time": 10.552000000025146,
+      "text": [],
+      "item": null,
+      "flag": 1,
+      "camera": [
+        0,
+        -1.8368055555555556
+      ],
+      "pcGain": 0,
+      "formation": {
+        "returning": true,
+        "hero": {
+          "x": 25.5,
+          "y": 13.146446609406723,
+          "d": 8,
+          "moving": true
+        },
+        "members": [
+          {
+            "actor": 3,
+            "event": 13,
+            "x": 24.200000000000003,
+            "y": 13.799999999999997,
+            "d": 6,
+            "moving": true
+          },
+          {
+            "actor": 4,
+            "event": 14,
+            "x": 26.799999999999997,
+            "y": 14.200000000000003,
+            "d": 2,
+            "moving": true
+          }
+        ]
+      }
+    },
+    {
+      "time": 10.603000000002794,
+      "text": [],
+      "item": null,
+      "flag": 1,
+      "camera": [
+        0,
+        -1.6050347222222223
+      ],
+      "pcGain": 0,
+      "formation": {
+        "returning": true,
+        "hero": {
+          "x": 25.5,
+          "y": 12.881281566461766,
+          "d": 8,
+          "moving": true
+        },
+        "members": [
+          {
+            "actor": 3,
+            "event": 13,
+            "x": 24.350000000000005,
+            "y": 13.649999999999995,
+            "d": 6,
+            "moving": true
+          },
+          {
+            "actor": 4,
+            "event": 14,
+            "x": 26.649999999999995,
+            "y": 14.350000000000005,
+            "d": 2,
+            "moving": true
+          }
+        ]
+      }
+    },
+    {
+      "time": 10.718999999924563,
+      "text": [],
+      "item": null,
+      "flag": 1,
+      "camera": [
+        0,
+        -1.1883680555555556
+      ],
+      "pcGain": 0,
+      "formation": {
+        "returning": true,
+        "hero": {
+          "x": 25.5,
+          "y": 12.262563132923532,
+          "d": 8,
+          "moving": true
+        },
+        "members": [
+          {
+            "actor": 3,
+            "event": 13,
+            "x": 24.750000000000007,
+            "y": 13.5,
+            "d": 6,
+            "moving": true
+          },
+          {
+            "actor": 4,
+            "event": 14,
+            "x": 26.29999999999999,
+            "y": 14.70000000000001,
+            "d": 2,
+            "moving": true
+          }
+        ]
+      }
+    },
+    {
+      "time": 10.819000000017695,
+      "text": [],
+      "item": null,
+      "flag": 1,
+      "camera": [
+        0,
+        -0.8342013888888888
+      ],
+      "pcGain": 0,
+      "formation": {
+        "returning": true,
+        "hero": {
+          "x": 25.5,
+          "y": 12,
+          "d": 8,
+          "moving": false
+        },
+        "members": [
+          {
+            "actor": 3,
+            "event": 13,
+            "x": 25.125000000000007,
+            "y": 13.5,
+            "d": 6,
+            "moving": true
+          },
+          {
+            "actor": 4,
+            "event": 14,
+            "x": 25.999999999999986,
+            "y": 15.000000000000014,
+            "d": 2,
+            "moving": true
+          }
+        ]
+      }
+    },
+    {
+      "time": 10.868000000016764,
+      "text": [],
+      "item": null,
+      "flag": 1,
+      "camera": [
+        0,
+        -0.6805555555555556
+      ],
+      "pcGain": 0,
+      "formation": {
+        "returning": true,
+        "hero": {
+          "x": 25.5,
+          "y": 12,
+          "d": 8,
+          "moving": false
+        },
+        "members": [
+          {
+            "actor": 3,
+            "event": 13,
+            "x": 25.312500000000007,
+            "y": 13.5,
+            "d": 6,
+            "moving": true
+          },
+          {
+            "actor": 4,
+            "event": 14,
+            "x": 25.849999999999984,
+            "y": 15.150000000000016,
+            "d": 2,
+            "moving": true
+          }
+        ]
+      }
+    },
+    {
+      "time": 10.917999999946915,
+      "text": [],
+      "item": null,
+      "flag": 1,
+      "camera": [
+        0,
+        -0.5425347222222223
+      ],
+      "pcGain": 0,
+      "formation": {
+        "returning": true,
+        "hero": {
+          "x": 25.5,
+          "y": 12,
+          "d": 8,
+          "moving": false
+        },
+        "members": [
+          {
+            "actor": 3,
+            "event": 13,
+            "x": 25.437500000000007,
+            "y": 13.5,
+            "d": 6,
+            "moving": true
+          },
+          {
+            "actor": 4,
+            "event": 14,
+            "x": 25.749999999999982,
+            "y": 15.250000000000018,
+            "d": 2,
+            "moving": true
+          }
+        ]
+      }
+    },
+    {
+      "time": 11.037000000011176,
+      "text": [],
+      "item": null,
+      "flag": 1,
+      "camera": [
+        0,
+        -0.3133680555555556
+      ],
+      "pcGain": 0,
+      "formation": null
+    },
+    {
+      "time": 11.037999999942258,
+      "text": [],
+      "item": null,
+      "flag": 1,
+      "camera": [
+        0,
+        -0.3133680555555556
+      ],
+      "pcGain": 0,
+      "formation": null
+    },
+    {
+      "time": 11.086000000010245,
+      "text": [],
+      "item": null,
+      "flag": 1,
+      "camera": [
+        0,
+        -0.2222222222222221
+      ],
+      "pcGain": 0,
+      "formation": null
+    },
+    {
+      "time": 11.135000000009313,
+      "text": [],
+      "item": null,
+      "flag": 1,
+      "camera": [
+        0,
+        -0.14670138888888884
+      ],
+      "pcGain": 0,
+      "formation": null
+    },
+    {
+      "time": 11.13800000003539,
+      "text": [],
+      "item": null,
+      "flag": 1,
+      "camera": [
+        0,
+        -0.14670138888888884
+      ],
+      "pcGain": 0,
+      "formation": null
+    },
+    {
+      "time": 11.187000000034459,
+      "text": [],
+      "item": null,
+      "flag": 1,
+      "camera": [
+        0,
+        -0.08680555555555536
+      ],
+      "pcGain": 0,
+      "formation": null
+    },
+    {
+      "time": 11.18999999994412,
+      "text": [],
+      "item": null,
+      "flag": 1,
+      "camera": [
+        0,
+        -0.08680555555555536
+      ],
+      "pcGain": 0,
+      "formation": null
+    },
+    {
+      "time": 11.239999999990687,
+      "text": [],
+      "item": null,
+      "flag": 1,
+      "camera": [
+        0,
+        -0.0425347222222221
+      ],
+      "pcGain": 0,
+      "formation": null
+    },
+    {
+      "time": 11.282999999937601,
+      "text": [],
+      "item": null,
+      "flag": 1,
+      "camera": [
+        0,
+        -0.013888888888888618
+      ],
+      "pcGain": 0,
+      "formation": null
+    },
+    {
+      "time": 11.334000000031665,
+      "text": [],
+      "item": null,
+      "flag": 1,
+      "camera": [
+        0,
+        -0.003472222222222321
+      ],
+      "pcGain": 0,
+      "formation": null
+    },
+    {
+      "time": 11.336999999941327,
+      "text": [],
+      "item": null,
+      "flag": 1,
+      "camera": [
+        0,
+        -0.003472222222222321
+      ],
+      "pcGain": 0,
+      "formation": null
+    },
+    {
+      "time": 11.385000000009313,
+      "text": [],
+      "item": null,
+      "flag": 1,
+      "camera": [
+        0,
+        0
+      ],
+      "pcGain": 0,
+      "formation": null
+    },
+    {
+      "time": 11.435999999986961,
+      "text": [],
+      "item": null,
+      "flag": 1,
+      "camera": [
+        0,
+        0
+      ],
+      "pcGain": 0,
+      "formation": null
+    },
+    {
+      "time": 11.437999999965541,
+      "text": [],
+      "item": null,
+      "flag": 1,
+      "camera": [
+        0,
+        0
+      ],
+      "pcGain": 0,
+      "formation": null
+    },
+    {
+      "time": 11.483999999938533,
+      "text": [],
+      "item": null,
+      "flag": 1,
+      "camera": [
+        0,
+        0
+      ],
+      "pcGain": 0,
+      "formation": null
+    },
+    {
+      "time": 11.535999999963678,
+      "text": [],
+      "item": null,
+      "flag": 1,
+      "camera": [
+        0,
+        0
+      ],
+      "pcGain": 0,
+      "formation": null
+    },
+    {
+      "time": 11.588999999919906,
+      "text": [],
+      "item": null,
+      "flag": 1,
+      "camera": [
+        0,
+        0
+      ],
+      "pcGain": 0,
+      "formation": null
+    },
+    {
+      "time": 11.63800000003539,
+      "text": [],
+      "item": null,
+      "flag": 1,
+      "camera": [
+        0,
+        0
+      ],
+      "pcGain": 0,
+      "formation": null
+    },
+    {
+      "time": 11.646999999997206,
+      "text": [],
+      "item": null,
+      "flag": 1,
+      "camera": [
+        0,
+        0
+      ],
+      "pcGain": 0,
+      "formation": null
+    },
+    {
+      "time": 11.689000000013039,
+      "text": [],
+      "item": null,
+      "flag": 1,
+      "camera": [
+        0,
+        0
+      ],
+      "pcGain": 0,
+      "formation": null
+    },
+    {
+      "time": 11.692999999970198,
+      "text": [],
+      "item": null,
+      "flag": 1,
+      "camera": [
+        0,
+        0
+      ],
+      "pcGain": 0,
+      "formation": null
+    },
+    {
+      "time": 11.736000000033528,
+      "text": [],
+      "item": null,
+      "flag": 1,
+      "camera": [
+        0,
+        0
+      ],
+      "pcGain": 0,
+      "formation": null
+    },
+    {
+      "time": 11.785999999963678,
+      "text": [],
+      "item": null,
+      "flag": 1,
+      "camera": [
+        0,
+        0
+      ],
+      "pcGain": 0,
+      "formation": null
+    },
+    {
+      "time": 11.834000000031665,
+      "text": [],
+      "item": null,
+      "flag": 1,
+      "camera": [
+        0,
+        0
+      ],
+      "pcGain": 0,
+      "formation": null
+    },
+    {
+      "time": 11.836000000010245,
+      "text": [],
+      "item": null,
+      "flag": 1,
+      "camera": [
+        0,
+        0
+      ],
+      "pcGain": 0,
+      "formation": null
+    },
+    {
+      "time": 11.886999999987893,
+      "text": [],
+      "item": null,
+      "flag": 1,
+      "camera": [
+        0,
+        0
+      ],
+      "pcGain": 0,
+      "formation": null
+    },
+    {
+      "time": 11.89000000001397,
+      "text": [],
+      "item": null,
+      "flag": 1,
+      "camera": [
+        0,
+        0
+      ],
+      "pcGain": 0,
+      "formation": null
+    },
+    {
+      "time": 11.934999999939464,
+      "text": [],
+      "item": null,
+      "flag": 1,
+      "camera": [
+        0,
+        0
+      ],
+      "pcGain": 0,
+      "formation": null
+    },
+    {
+      "time": 11.937000000034459,
+      "text": [],
+      "item": null,
+      "flag": 1,
+      "camera": [
+        0,
+        0
+      ],
+      "pcGain": 0,
+      "formation": null
+    },
+    {
+      "time": 11.98499999998603,
+      "text": [],
+      "item": null,
+      "flag": 1,
+      "camera": [
+        0,
+        0
+      ],
+      "pcGain": 0,
+      "formation": null
+    },
+    {
+      "time": 11.98699999996461,
+      "text": [],
+      "item": null,
+      "flag": 1,
+      "camera": [
+        0,
+        0
+      ],
+      "pcGain": 0,
+      "formation": null
+    },
+    {
+      "time": 12.037999999942258,
+      "text": [],
+      "item": null,
+      "flag": 1,
+      "camera": [
+        0,
+        0
+      ],
+      "pcGain": 0,
+      "formation": null
+    },
+    {
+      "time": 12.040999999968335,
+      "text": [],
+      "item": null,
+      "flag": 1,
+      "camera": [
+        0,
+        0
+      ],
+      "pcGain": 0,
+      "formation": null
+    },
+    {
+      "time": 12.084999999962747,
+      "text": [],
+      "item": null,
+      "flag": 1,
+      "camera": [
+        0,
+        0
+      ],
+      "pcGain": 0,
+      "formation": null
+    },
+    {
+      "time": 12.086000000010245,
+      "text": [],
+      "item": null,
+      "flag": 1,
+      "camera": [
+        0,
+        0
+      ],
+      "pcGain": 0,
+      "formation": null
+    },
+    {
+      "time": 12.135999999940395,
+      "text": [],
+      "item": null,
+      "flag": 1,
+      "camera": [
+        0,
+        0
+      ],
+      "pcGain": 0,
+      "formation": null
+    },
+    {
+      "time": 12.13800000003539,
+      "text": [],
+      "item": null,
+      "flag": 1,
+      "camera": [
+        0,
+        0
+      ],
+      "pcGain": 0,
+      "formation": null
+    },
+    {
+      "time": 12.187000000034459,
+      "text": [],
+      "item": null,
+      "flag": 1,
+      "camera": [
+        0,
+        0
+      ],
+      "pcGain": 0,
+      "formation": null
+    },
+    {
+      "time": 12.250999999931082,
+      "text": [],
+      "item": null,
+      "flag": 1,
+      "camera": [
+        0,
+        0
+      ],
+      "pcGain": 0,
+      "formation": null
+    },
+    {
+      "time": 12.25199999997858,
+      "text": [],
+      "item": null,
+      "flag": 1,
+      "camera": [
+        0,
+        0
+      ],
+      "pcGain": 0,
+      "formation": null
+    },
+    {
+      "time": 12.351000000024214,
+      "text": [],
+      "item": null,
+      "flag": 1,
+      "camera": [
+        0,
+        0
+      ],
+      "pcGain": 0,
+      "formation": null
+    },
+    {
+      "time": 12.353999999933876,
+      "text": [],
+      "item": null,
+      "flag": 1,
+      "camera": [
+        0,
+        0
+      ],
+      "pcGain": 0,
+      "formation": null
+    },
+    {
+      "time": 12.403999999980442,
+      "text": [],
+      "item": null,
+      "flag": 1,
+      "camera": [
+        0,
+        0
+      ],
+      "pcGain": 0,
+      "formation": null
+    },
+    {
+      "time": 12.451999999932013,
+      "text": [],
+      "item": null,
+      "flag": 1,
+      "camera": [
+        0,
+        0
+      ],
+      "pcGain": 0,
+      "formation": null
+    },
+    {
+      "time": 12.503000000026077,
+      "text": [],
+      "item": null,
+      "flag": 1,
+      "camera": [
+        0,
+        0
+      ],
+      "pcGain": 0,
+      "formation": null
+    },
+    {
+      "time": 12.601999999955297,
+      "text": [],
+      "item": null,
+      "flag": 1,
+      "camera": [
+        0,
+        0
+      ],
+      "pcGain": 0,
+      "formation": null
+    },
+    {
+      "time": 12.650999999954365,
+      "text": [],
+      "item": null,
+      "flag": 1,
+      "camera": [
+        0,
+        0
+      ],
+      "pcGain": 0,
+      "formation": null
+    },
+    {
+      "time": 12.701999999932013,
+      "text": [],
+      "item": null,
+      "flag": 1,
+      "camera": [
+        0,
+        0
+      ],
+      "pcGain": 0,
+      "formation": null
+    },
+    {
+      "time": 12.75199999997858,
+      "text": [],
+      "item": null,
+      "flag": 1,
+      "camera": [
+        0,
+        0
+      ],
+      "pcGain": 0,
+      "formation": null
+    },
+    {
+      "time": 12.802000000025146,
+      "text": [],
+      "item": null,
+      "flag": 1,
+      "camera": [
+        0,
+        0
+      ],
+      "pcGain": 0,
+      "formation": null
+    },
+    {
+      "time": 12.900999999954365,
+      "text": [],
+      "item": null,
+      "flag": 1,
+      "camera": [
+        0,
+        0
+      ],
+      "pcGain": 0,
+      "formation": null
+    },
+    {
+      "time": 12.959000000031665,
+      "text": [],
+      "item": null,
+      "flag": 1,
+      "camera": [
+        0,
+        0
+      ],
+      "pcGain": 0,
+      "formation": null
+    },
+    {
+      "time": 13.017999999923632,
+      "text": [],
+      "item": null,
+      "flag": 1,
+      "camera": [
+        0,
+        0
+      ],
+      "pcGain": 0,
+      "formation": null
+    }
+  ],
+  "messages": [
+    {
+      "text": "カギがかかっているようだ",
+      "frame": 127,
+      "map": 60,
+      "battle": false,
+      "time": 5856.000000028871
+    },
+    {
+      "text": "カギ穴が2つある",
+      "frame": 127,
+      "map": 60,
+      "battle": false,
+      "time": 5856.000000028871
+    },
+    {
+      "text": "カギを選ぼう",
+      "frame": 145,
+      "map": 60,
+      "battle": false,
+      "time": 6187.999999965541
+    },
+    {
+      "text": "カギをもう1本選ぼう",
+      "frame": 313,
+      "map": 60,
+      "battle": false,
+      "time": 9091.000000014901
+    },
+    {
+      "text": "この先が",
+      "frame": 664,
+      "map": 60,
+      "battle": false,
+      "time": 15255.000000004657
+    },
+    {
+      "text": "モンスターの王の部屋かな…",
+      "frame": 664,
+      "map": 60,
+      "battle": false,
+      "time": 15255.000000004657
+    }
+  ],
+  "party": [
+    2,
+    3,
+    4
+  ],
+  "camera": [
+    0,
+    0
+  ],
+  "keys": [
+    0,
+    0
+  ],
+  "flag": 1,
+  "error": null,
+  "audio": {
+    "pcGain": 0,
+    "pcMuted": true,
+    "bgm": "00_New_Dungeon4"
+  }
+}

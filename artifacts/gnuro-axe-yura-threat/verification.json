@@ -1,0 +1,6371 @@
+{
+  "frames": 2712,
+  "firstFrame": 6,
+  "sounds": [
+    {
+      "frame": 1096,
+      "name": "00_result1",
+      "volume": 80,
+      "pitch": 100,
+      "pan": 0
+    },
+    {
+      "frame": 1105,
+      "name": "Sword3",
+      "volume": 90,
+      "pitch": 100,
+      "pan": 0
+    },
+    {
+      "frame": 1109,
+      "name": "Wind1",
+      "volume": 75,
+      "pitch": 90,
+      "pan": 0
+    },
+    {
+      "frame": 1148,
+      "name": "00_result1",
+      "volume": 80,
+      "pitch": 100,
+      "pan": 0
+    },
+    {
+      "frame": 1168,
+      "name": "00_yumi",
+      "volume": 80,
+      "pitch": 100,
+      "pan": 0
+    },
+    {
+      "frame": 1173,
+      "name": "Wind7",
+      "volume": 85,
+      "pitch": 70,
+      "pan": 0
+    },
+    {
+      "frame": 1174,
+      "name": "00_result1",
+      "volume": 80,
+      "pitch": 100,
+      "pan": 0
+    },
+    {
+      "frame": 1175,
+      "name": "Sword2",
+      "volume": 80,
+      "pitch": 100,
+      "pan": 0
+    },
+    {
+      "frame": 1176,
+      "name": "Blow1",
+      "volume": 90,
+      "pitch": 110,
+      "pan": 0
+    },
+    {
+      "frame": 1200,
+      "name": "00_result1",
+      "volume": 80,
+      "pitch": 100,
+      "pan": 0
+    },
+    {
+      "frame": 1212,
+      "name": "Sword3",
+      "volume": 90,
+      "pitch": 100,
+      "pan": 0
+    },
+    {
+      "frame": 1222,
+      "name": "Slash4",
+      "volume": 90,
+      "pitch": 100,
+      "pan": 0
+    },
+    {
+      "frame": 1226,
+      "name": "00_result1",
+      "volume": 80,
+      "pitch": 100,
+      "pan": 0
+    },
+    {
+      "frame": 1228,
+      "name": "Paralyze3",
+      "volume": 80,
+      "pitch": 100,
+      "pan": 0
+    },
+    {
+      "frame": 1229,
+      "name": "00_difficultyUp",
+      "volume": 80,
+      "pitch": 100,
+      "pan": 0
+    },
+    {
+      "frame": 1249,
+      "name": "Thunder6",
+      "volume": 90,
+      "pitch": 100,
+      "pan": 0
+    },
+    {
+      "frame": 1304,
+      "name": "00_result1",
+      "volume": 80,
+      "pitch": 100,
+      "pan": 0
+    },
+    {
+      "frame": 1312,
+      "name": "Sword3",
+      "volume": 90,
+      "pitch": 100,
+      "pan": 0
+    },
+    {
+      "frame": 1317,
+      "name": "00_result1",
+      "volume": 80,
+      "pitch": 100,
+      "pan": 0
+    },
+    {
+      "frame": 1318,
+      "name": "Wind1",
+      "volume": 75,
+      "pitch": 90,
+      "pan": 0
+    },
+    {
+      "frame": 1318,
+      "name": "Machine",
+      "volume": 8,
+      "pitch": 103,
+      "pan": 0
+    },
+    {
+      "frame": 1356,
+      "name": "00_result1",
+      "volume": 80,
+      "pitch": 100,
+      "pan": 0
+    },
+    {
+      "frame": 1363,
+      "name": "Explosion2",
+      "volume": 30,
+      "pitch": 92,
+      "pan": 0
+    },
+    {
+      "frame": 1376,
+      "name": "00_yumi",
+      "volume": 80,
+      "pitch": 100,
+      "pan": 0
+    },
+    {
+      "frame": 1382,
+      "name": "Wind7",
+      "volume": 85,
+      "pitch": 70,
+      "pan": 0
+    },
+    {
+      "frame": 1383,
+      "name": "00_result1",
+      "volume": 80,
+      "pitch": 100,
+      "pan": 0
+    },
+    {
+      "frame": 1384,
+      "name": "Sword2",
+      "volume": 80,
+      "pitch": 100,
+      "pan": 0
+    },
+    {
+      "frame": 1385,
+      "name": "Blow1",
+      "volume": 90,
+      "pitch": 110,
+      "pan": 0
+    },
+    {
+      "frame": 1400,
+      "name": "Explosion1",
+      "volume": 30,
+      "pitch": 88,
+      "pan": 0
+    },
+    {
+      "frame": 1409,
+      "name": "00_result1",
+      "volume": 80,
+      "pitch": 100,
+      "pan": 0
+    },
+    {
+      "frame": 1421,
+      "name": "Sword3",
+      "volume": 90,
+      "pitch": 100,
+      "pan": 0
+    },
+    {
+      "frame": 1434,
+      "name": "Machine",
+      "volume": 8,
+      "pitch": 101,
+      "pan": 0
+    },
+    {
+      "frame": 1435,
+      "name": "00_result1",
+      "volume": 80,
+      "pitch": 100,
+      "pan": 0
+    },
+    {
+      "frame": 1437,
+      "name": "Paralyze3",
+      "volume": 80,
+      "pitch": 100,
+      "pan": 0
+    },
+    {
+      "frame": 1437,
+      "name": "00_difficultyUp",
+      "volume": 80,
+      "pitch": 100,
+      "pan": 0
+    },
+    {
+      "frame": 1449,
+      "name": "Slash4",
+      "volume": 90,
+      "pitch": 100,
+      "pan": 0
+    },
+    {
+      "frame": 1457,
+      "name": "Thunder6",
+      "volume": 90,
+      "pitch": 100,
+      "pan": 0
+    },
+    {
+      "frame": 1825,
+      "name": "Wind1",
+      "volume": 75,
+      "pitch": 90,
+      "pan": 0
+    },
+    {
+      "frame": 1885,
+      "name": "Wind7",
+      "volume": 85,
+      "pitch": 70,
+      "pan": 0
+    },
+    {
+      "frame": 1885,
+      "name": "Earth1",
+      "volume": 90,
+      "pitch": 110,
+      "pan": 0
+    },
+    {
+      "frame": 1885,
+      "name": "Break",
+      "volume": 80,
+      "pitch": 80,
+      "pan": 0
+    },
+    {
+      "frame": 2556,
+      "name": "00_result1",
+      "volume": 80,
+      "pitch": 100,
+      "pan": 0
+    },
+    {
+      "frame": 2568,
+      "name": "Blow1",
+      "volume": 90,
+      "pitch": 100,
+      "pan": 0
+    },
+    {
+      "frame": 2569,
+      "name": "00_result1",
+      "volume": 80,
+      "pitch": 100,
+      "pan": 0
+    },
+    {
+      "frame": 2570,
+      "name": "Machine",
+      "volume": 8,
+      "pitch": 101,
+      "pan": 0
+    },
+    {
+      "frame": 2570,
+      "name": "Wind1",
+      "volume": 75,
+      "pitch": 90,
+      "pan": 0
+    },
+    {
+      "frame": 2609,
+      "name": "00_result1",
+      "volume": 80,
+      "pitch": 100,
+      "pan": 0
+    },
+    {
+      "frame": 2610,
+      "name": "Paralyze3",
+      "volume": 80,
+      "pitch": 100,
+      "pan": 0
+    },
+    {
+      "frame": 2615,
+      "name": "Explosion2",
+      "volume": 30,
+      "pitch": 92,
+      "pan": 0
+    },
+    {
+      "frame": 2634,
+      "name": "Wind7",
+      "volume": 85,
+      "pitch": 70,
+      "pan": 0
+    },
+    {
+      "frame": 2635,
+      "name": "Thunder10",
+      "volume": 80,
+      "pitch": 100,
+      "pan": 0
+    },
+    {
+      "frame": 2635,
+      "name": "00_result1",
+      "volume": 80,
+      "pitch": 100,
+      "pan": 0
+    },
+    {
+      "frame": 2636,
+      "name": "Sword2",
+      "volume": 80,
+      "pitch": 100,
+      "pan": 0
+    },
+    {
+      "frame": 2637,
+      "name": "Blow1",
+      "volume": 90,
+      "pitch": 110,
+      "pan": 0
+    },
+    {
+      "frame": 2648,
+      "name": "00_result1",
+      "volume": 80,
+      "pitch": 100,
+      "pan": 0
+    },
+    {
+      "frame": 2652,
+      "name": "Explosion1",
+      "volume": 30,
+      "pitch": 88,
+      "pan": 0
+    },
+    {
+      "frame": 2660,
+      "name": "00_binta",
+      "volume": 80,
+      "pitch": 100,
+      "pan": 0
+    },
+    {
+      "frame": 2661,
+      "name": "00_result1",
+      "volume": 80,
+      "pitch": 100,
+      "pan": 0
+    },
+    {
+      "frame": 2673,
+      "name": "Blow1",
+      "volume": 90,
+      "pitch": 100,
+      "pan": 0
+    },
+    {
+      "frame": 2686,
+      "name": "Machine",
+      "volume": 8,
+      "pitch": 97,
+      "pan": 0
+    },
+    {
+      "frame": 2687,
+      "name": "00_result1",
+      "volume": 80,
+      "pitch": 100,
+      "pan": 0
+    },
+    {
+      "frame": 2707,
+      "name": "Damage3",
+      "volume": 90,
+      "pitch": 120,
+      "pan": 0
+    },
+    {
+      "frame": 2711,
+      "name": "Thunder3",
+      "volume": 90,
+      "pitch": 120,
+      "pan": 0
+    }
+  ],
+  "guards": [
+    {
+      "frame": 1174,
+      "skillId": 111,
+      "judgment": 0
+    },
+    {
+      "frame": 1383,
+      "skillId": 111,
+      "judgment": 0
+    },
+    {
+      "frame": 2635,
+      "skillId": 111,
+      "judgment": 0
+    }
+  ],
+  "hits": [
+    {
+      "frame": 1103,
+      "skillId": 26,
+      "target": "boss",
+      "actorId": 3,
+      "phase": 0
+    },
+    {
+      "frame": 1175,
+      "skillId": 111,
+      "target": "actor",
+      "actorId": null,
+      "phase": 0
+    },
+    {
+      "frame": 1211,
+      "skillId": 27,
+      "target": "boss",
+      "actorId": 3,
+      "phase": 0
+    },
+    {
+      "frame": 1220,
+      "skillId": 8,
+      "target": "boss",
+      "actorId": 2,
+      "phase": 0
+    },
+    {
+      "frame": 1247,
+      "skillId": 29,
+      "target": "boss",
+      "actorId": 3,
+      "phase": 0
+    },
+    {
+      "frame": 1311,
+      "skillId": 26,
+      "target": "boss",
+      "actorId": 3,
+      "phase": 0
+    },
+    {
+      "frame": 1384,
+      "skillId": 111,
+      "target": "actor",
+      "actorId": null,
+      "phase": 0
+    },
+    {
+      "frame": 1401,
+      "skillId": 48,
+      "target": "boss",
+      "actorId": 4,
+      "phase": 0
+    },
+    {
+      "frame": 1420,
+      "skillId": 27,
+      "target": "boss",
+      "actorId": 3,
+      "phase": 0
+    },
+    {
+      "frame": 1448,
+      "skillId": 8,
+      "target": "boss",
+      "actorId": 2,
+      "phase": 0
+    },
+    {
+      "frame": 1456,
+      "skillId": 29,
+      "target": "boss",
+      "actorId": 3,
+      "phase": 0
+    },
+    {
+      "frame": 2567,
+      "skillId": 6,
+      "target": "boss",
+      "actorId": 2,
+      "phase": 1
+    },
+    {
+      "frame": 2636,
+      "skillId": 111,
+      "target": "actor",
+      "actorId": null,
+      "phase": 1
+    },
+    {
+      "frame": 2653,
+      "skillId": 48,
+      "target": "boss",
+      "actorId": 4,
+      "phase": 1
+    },
+    {
+      "frame": 2659,
+      "skillId": 10,
+      "target": "boss",
+      "actorId": 2,
+      "phase": 1
+    },
+    {
+      "frame": 2672,
+      "skillId": 7,
+      "target": "boss",
+      "actorId": 2,
+      "phase": 1
+    },
+    {
+      "frame": 2705,
+      "skillId": 9,
+      "target": "boss",
+      "actorId": 2,
+      "phase": 1
+    },
+    {
+      "frame": 2710,
+      "skillId": 28,
+      "target": "boss",
+      "actorId": 3,
+      "phase": 1
+    }
+  ],
+  "messages": [
+    {
+      "frame": 16,
+      "text": "\\>幹部グミ・グヌロッベンが あらわれた！\\|\\.\\.\\^",
+      "speaker": null
+    },
+    {
+      "frame": 130,
+      "text": "幹部グミ",
+      "speaker": "enemy"
+    },
+    {
+      "frame": 130,
+      "text": "グヌロッベンだッ！！",
+      "speaker": "enemy"
+    },
+    {
+      "frame": 298,
+      "text": "貴様らまとめて",
+      "speaker": "enemy"
+    },
+    {
+      "frame": 298,
+      "text": "叩きつぶしてやるッ！！",
+      "speaker": "enemy"
+    },
+    {
+      "frame": 476,
+      "text": "斧を回してる…",
+      "speaker": "mii"
+    },
+    {
+      "frame": 476,
+      "text": "\\n[2]、気をつけて！",
+      "speaker": "mii"
+    },
+    {
+      "frame": 654,
+      "text": "わあ、大きな斧！",
+      "speaker": "yume"
+    },
+    {
+      "frame": 654,
+      "text": "ユメちゃんも",
+      "speaker": "yume"
+    },
+    {
+      "frame": 654,
+      "text": "暴れちゃお～っと♪",
+      "speaker": "yume"
+    },
+    {
+      "frame": 1487,
+      "text": "ぬうッ！",
+      "speaker": "enemy"
+    },
+    {
+      "frame": 1487,
+      "text": "ちょこまかと…！",
+      "speaker": "enemy"
+    },
+    {
+      "frame": 1647,
+      "text": "ならば",
+      "speaker": "enemy"
+    },
+    {
+      "frame": 1647,
+      "text": "こっちからだッ！！",
+      "speaker": "enemy"
+    },
+    {
+      "frame": 1963,
+      "text": "ワー！！",
+      "speaker": "mii"
+    },
+    {
+      "frame": 1963,
+      "text": "下の棒が折れた！！",
+      "speaker": "mii"
+    },
+    {
+      "frame": 2127,
+      "text": "あら、真っ二つね",
+      "speaker": "yume"
+    },
+    {
+      "frame": 2261,
+      "text": "ガハハハッ！！",
+      "speaker": "enemy"
+    },
+    {
+      "frame": 2261,
+      "text": "これでも戦えるかァ！！",
+      "speaker": "enemy"
+    }
+  ],
+  "phaseChanges": [
+    {
+      "frame": 1,
+      "seconds": 0.016666666666666666,
+      "phase": 0,
+      "attackPhase": 0,
+      "turn": 0,
+      "since": 0,
+      "skip": false,
+      "progress": 1,
+      "hp": 7000,
+      "running": false,
+      "index": 0,
+      "wait": "",
+      "depth": 0,
+      "message": false,
+      "text": [
+        "\\>幹部グミ・グヌロッベンが あらわれた！\\|\\.\\.\\^"
+      ],
+      "actions": [],
+      "queued": [],
+      "flags": [],
+      "bossScale": 2,
+      "actorIds": [
+        2,
+        3,
+        4
+      ],
+      "allyAttacksDisabled": false
+    },
+    {
+      "frame": 2440,
+      "seconds": 40.666666666666664,
+      "phase": 1,
+      "attackPhase": 0,
+      "turn": 2,
+      "since": 2,
+      "skip": true,
+      "progress": 144.34782608695664,
+      "hp": 5180,
+      "running": false,
+      "index": 53,
+      "wait": "",
+      "depth": 90,
+      "message": false,
+      "text": [],
+      "actions": [],
+      "queued": [
+        [
+          111,
+          2,
+          null
+        ]
+      ],
+      "flags": [
+        "0",
+        "1"
+      ],
+      "bossScale": 2,
+      "actorIds": [
+        2,
+        3,
+        4
+      ],
+      "allyAttacksDisabled": false
+    }
+  ],
+  "trace": [
+    {
+      "frame": 30,
+      "seconds": 0.5,
+      "phase": 0,
+      "attackPhase": 0,
+      "turn": 0,
+      "since": 0,
+      "skip": false,
+      "progress": 30,
+      "hp": 7000,
+      "running": false,
+      "index": 0,
+      "wait": "",
+      "depth": 0,
+      "message": false,
+      "text": [
+        "\\>幹部グミ・グヌロッベンが あらわれた！\\|\\.\\.\\^"
+      ],
+      "actions": [],
+      "queued": [],
+      "flags": [],
+      "bossScale": 2,
+      "actorIds": [
+        2,
+        3,
+        4
+      ],
+      "allyAttacksDisabled": false
+    },
+    {
+      "frame": 60,
+      "seconds": 1,
+      "phase": 0,
+      "attackPhase": 0,
+      "turn": 0,
+      "since": 0,
+      "skip": false,
+      "progress": 60,
+      "hp": 7000,
+      "running": false,
+      "index": 0,
+      "wait": "",
+      "depth": 0,
+      "message": false,
+      "text": [
+        "\\>幹部グミ・グヌロッベンが あらわれた！\\|\\.\\.\\^"
+      ],
+      "actions": [],
+      "queued": [
+        [
+          111,
+          0,
+          null
+        ]
+      ],
+      "flags": [],
+      "bossScale": 2,
+      "actorIds": [
+        2,
+        3,
+        4
+      ],
+      "allyAttacksDisabled": false
+    },
+    {
+      "frame": 90,
+      "seconds": 1.5,
+      "phase": 0,
+      "attackPhase": 0,
+      "turn": 0,
+      "since": 0,
+      "skip": false,
+      "progress": 90,
+      "hp": 7000,
+      "running": false,
+      "index": 0,
+      "wait": "",
+      "depth": 0,
+      "message": false,
+      "text": [
+        "\\>幹部グミ・グヌロッベンが あらわれた！\\|\\.\\.\\^"
+      ],
+      "actions": [],
+      "queued": [
+        [
+          111,
+          0,
+          null
+        ]
+      ],
+      "flags": [],
+      "bossScale": 2,
+      "actorIds": [
+        2,
+        3,
+        4
+      ],
+      "allyAttacksDisabled": false
+    },
+    {
+      "frame": 120,
+      "seconds": 2,
+      "phase": 0,
+      "attackPhase": 0,
+      "turn": 0,
+      "since": 0,
+      "skip": false,
+      "progress": 120,
+      "hp": 7000,
+      "running": true,
+      "index": 8,
+      "wait": "",
+      "depth": 0,
+      "message": false,
+      "text": [
+        "幹部グミ",
+        "グヌロッベンだッ！！"
+      ],
+      "actions": [],
+      "queued": [
+        [
+          111,
+          0,
+          null
+        ]
+      ],
+      "flags": [
+        "0"
+      ],
+      "bossScale": 2,
+      "actorIds": [
+        2,
+        3,
+        4
+      ],
+      "allyAttacksDisabled": false
+    },
+    {
+      "frame": 150,
+      "seconds": 2.5,
+      "phase": 0,
+      "attackPhase": 0,
+      "turn": 0,
+      "since": 0,
+      "skip": false,
+      "progress": 150,
+      "hp": 7000,
+      "running": true,
+      "index": 12,
+      "wait": "message",
+      "depth": 0,
+      "message": false,
+      "text": [
+        "幹部グミ",
+        "グヌロッベンだッ！！"
+      ],
+      "actions": [],
+      "queued": [
+        [
+          111,
+          0,
+          null
+        ]
+      ],
+      "flags": [
+        "0"
+      ],
+      "bossScale": 2,
+      "actorIds": [
+        2,
+        3,
+        4
+      ],
+      "allyAttacksDisabled": false
+    },
+    {
+      "frame": 180,
+      "seconds": 3,
+      "phase": 0,
+      "attackPhase": 0,
+      "turn": 0,
+      "since": 0,
+      "skip": false,
+      "progress": 180,
+      "hp": 7000,
+      "running": true,
+      "index": 12,
+      "wait": "message",
+      "depth": 0,
+      "message": false,
+      "text": [
+        "幹部グミ",
+        "グヌロッベンだッ！！"
+      ],
+      "actions": [],
+      "queued": [
+        [
+          111,
+          0,
+          null
+        ]
+      ],
+      "flags": [
+        "0"
+      ],
+      "bossScale": 2,
+      "actorIds": [
+        2,
+        3,
+        4
+      ],
+      "allyAttacksDisabled": false
+    },
+    {
+      "frame": 210,
+      "seconds": 3.5,
+      "phase": 0,
+      "attackPhase": 0,
+      "turn": 0,
+      "since": 0,
+      "skip": false,
+      "progress": 1.3043478260869676,
+      "hp": 7000,
+      "running": true,
+      "index": 12,
+      "wait": "message",
+      "depth": 0,
+      "message": true,
+      "text": [
+        "幹部グミ",
+        "グヌロッベンだッ！！"
+      ],
+      "actions": [],
+      "queued": [
+        [
+          111,
+          0,
+          null
+        ]
+      ],
+      "flags": [
+        "0"
+      ],
+      "bossScale": 2,
+      "actorIds": [
+        2,
+        3,
+        4
+      ],
+      "allyAttacksDisabled": false
+    },
+    {
+      "frame": 240,
+      "seconds": 4,
+      "phase": 0,
+      "attackPhase": 0,
+      "turn": 0,
+      "since": 0,
+      "skip": false,
+      "progress": 31.304347826086968,
+      "hp": 7000,
+      "running": true,
+      "index": 12,
+      "wait": "message",
+      "depth": 0,
+      "message": true,
+      "text": [
+        "幹部グミ",
+        "グヌロッベンだッ！！"
+      ],
+      "actions": [],
+      "queued": [
+        [
+          111,
+          0,
+          null
+        ]
+      ],
+      "flags": [
+        "0"
+      ],
+      "bossScale": 2,
+      "actorIds": [
+        2,
+        3,
+        4
+      ],
+      "allyAttacksDisabled": false
+    },
+    {
+      "frame": 270,
+      "seconds": 4.5,
+      "phase": 0,
+      "attackPhase": 0,
+      "turn": 0,
+      "since": 0,
+      "skip": false,
+      "progress": 61.30434782608697,
+      "hp": 7000,
+      "running": true,
+      "index": 12,
+      "wait": "message",
+      "depth": 0,
+      "message": true,
+      "text": [
+        "幹部グミ",
+        "グヌロッベンだッ！！"
+      ],
+      "actions": [],
+      "queued": [
+        [
+          111,
+          0,
+          null
+        ]
+      ],
+      "flags": [
+        "0"
+      ],
+      "bossScale": 2,
+      "actorIds": [
+        2,
+        3,
+        4
+      ],
+      "allyAttacksDisabled": false
+    },
+    {
+      "frame": 300,
+      "seconds": 5,
+      "phase": 0,
+      "attackPhase": 0,
+      "turn": 0,
+      "since": 0,
+      "skip": false,
+      "progress": 91.30434782608697,
+      "hp": 7000,
+      "running": true,
+      "index": 17,
+      "wait": "message",
+      "depth": 0,
+      "message": false,
+      "text": [
+        "貴様らまとめて",
+        "叩きつぶしてやるッ！！"
+      ],
+      "actions": [],
+      "queued": [
+        [
+          111,
+          0,
+          null
+        ]
+      ],
+      "flags": [
+        "0"
+      ],
+      "bossScale": 2,
+      "actorIds": [
+        2,
+        3,
+        4
+      ],
+      "allyAttacksDisabled": false
+    },
+    {
+      "frame": 330,
+      "seconds": 5.5,
+      "phase": 0,
+      "attackPhase": 0,
+      "turn": 0,
+      "since": 0,
+      "skip": false,
+      "progress": 121.30434782608697,
+      "hp": 7000,
+      "running": true,
+      "index": 17,
+      "wait": "message",
+      "depth": 0,
+      "message": false,
+      "text": [
+        "貴様らまとめて",
+        "叩きつぶしてやるッ！！"
+      ],
+      "actions": [],
+      "queued": [
+        [
+          111,
+          0,
+          null
+        ]
+      ],
+      "flags": [
+        "0"
+      ],
+      "bossScale": 2,
+      "actorIds": [
+        2,
+        3,
+        4
+      ],
+      "allyAttacksDisabled": false
+    },
+    {
+      "frame": 360,
+      "seconds": 6,
+      "phase": 0,
+      "attackPhase": 0,
+      "turn": 0,
+      "since": 0,
+      "skip": false,
+      "progress": 151.30434782608697,
+      "hp": 7000,
+      "running": true,
+      "index": 17,
+      "wait": "message",
+      "depth": 0,
+      "message": false,
+      "text": [
+        "貴様らまとめて",
+        "叩きつぶしてやるッ！！"
+      ],
+      "actions": [],
+      "queued": [
+        [
+          111,
+          0,
+          null
+        ]
+      ],
+      "flags": [
+        "0"
+      ],
+      "bossScale": 2,
+      "actorIds": [
+        2,
+        3,
+        4
+      ],
+      "allyAttacksDisabled": false
+    },
+    {
+      "frame": 390,
+      "seconds": 6.5,
+      "phase": 0,
+      "attackPhase": 0,
+      "turn": 0,
+      "since": 0,
+      "skip": false,
+      "progress": 181.30434782608697,
+      "hp": 7000,
+      "running": true,
+      "index": 17,
+      "wait": "message",
+      "depth": 0,
+      "message": true,
+      "text": [
+        "貴様らまとめて",
+        "叩きつぶしてやるッ！！"
+      ],
+      "actions": [],
+      "queued": [
+        [
+          111,
+          0,
+          null
+        ]
+      ],
+      "flags": [
+        "0"
+      ],
+      "bossScale": 2,
+      "actorIds": [
+        2,
+        3,
+        4
+      ],
+      "allyAttacksDisabled": false
+    },
+    {
+      "frame": 420,
+      "seconds": 7,
+      "phase": 0,
+      "attackPhase": 0,
+      "turn": 0,
+      "since": 0,
+      "skip": false,
+      "progress": 2.6086956521739353,
+      "hp": 7000,
+      "running": true,
+      "index": 17,
+      "wait": "message",
+      "depth": 0,
+      "message": true,
+      "text": [
+        "貴様らまとめて",
+        "叩きつぶしてやるッ！！"
+      ],
+      "actions": [],
+      "queued": [
+        [
+          111,
+          0,
+          null
+        ]
+      ],
+      "flags": [
+        "0"
+      ],
+      "bossScale": 2,
+      "actorIds": [
+        2,
+        3,
+        4
+      ],
+      "allyAttacksDisabled": false
+    },
+    {
+      "frame": 450,
+      "seconds": 7.5,
+      "phase": 0,
+      "attackPhase": 0,
+      "turn": 0,
+      "since": 0,
+      "skip": false,
+      "progress": 32.608695652173935,
+      "hp": 7000,
+      "running": true,
+      "index": 17,
+      "wait": "message",
+      "depth": 0,
+      "message": true,
+      "text": [
+        "貴様らまとめて",
+        "叩きつぶしてやるッ！！"
+      ],
+      "actions": [],
+      "queued": [
+        [
+          111,
+          0,
+          null
+        ]
+      ],
+      "flags": [
+        "0"
+      ],
+      "bossScale": 2,
+      "actorIds": [
+        2,
+        3,
+        4
+      ],
+      "allyAttacksDisabled": false
+    },
+    {
+      "frame": 480,
+      "seconds": 8,
+      "phase": 0,
+      "attackPhase": 0,
+      "turn": 0,
+      "since": 0,
+      "skip": false,
+      "progress": 62.608695652173935,
+      "hp": 7000,
+      "running": true,
+      "index": 24,
+      "wait": "message",
+      "depth": 0,
+      "message": false,
+      "text": [
+        "斧を回してる…",
+        "\\n[2]、気をつけて！"
+      ],
+      "actions": [],
+      "queued": [
+        [
+          111,
+          0,
+          null
+        ]
+      ],
+      "flags": [
+        "0"
+      ],
+      "bossScale": 2,
+      "actorIds": [
+        2,
+        3,
+        4
+      ],
+      "allyAttacksDisabled": false
+    },
+    {
+      "frame": 510,
+      "seconds": 8.5,
+      "phase": 0,
+      "attackPhase": 0,
+      "turn": 0,
+      "since": 0,
+      "skip": false,
+      "progress": 92.60869565217394,
+      "hp": 7000,
+      "running": true,
+      "index": 24,
+      "wait": "message",
+      "depth": 0,
+      "message": false,
+      "text": [
+        "斧を回してる…",
+        "\\n[2]、気をつけて！"
+      ],
+      "actions": [],
+      "queued": [
+        [
+          111,
+          0,
+          null
+        ]
+      ],
+      "flags": [
+        "0"
+      ],
+      "bossScale": 2,
+      "actorIds": [
+        2,
+        3,
+        4
+      ],
+      "allyAttacksDisabled": false
+    },
+    {
+      "frame": 540,
+      "seconds": 9,
+      "phase": 0,
+      "attackPhase": 0,
+      "turn": 0,
+      "since": 0,
+      "skip": false,
+      "progress": 122.60869565217394,
+      "hp": 7000,
+      "running": true,
+      "index": 24,
+      "wait": "message",
+      "depth": 0,
+      "message": false,
+      "text": [
+        "斧を回してる…",
+        "\\n[2]、気をつけて！"
+      ],
+      "actions": [],
+      "queued": [
+        [
+          111,
+          0,
+          null
+        ]
+      ],
+      "flags": [
+        "0"
+      ],
+      "bossScale": 2,
+      "actorIds": [
+        2,
+        3,
+        4
+      ],
+      "allyAttacksDisabled": false
+    },
+    {
+      "frame": 570,
+      "seconds": 9.5,
+      "phase": 0,
+      "attackPhase": 0,
+      "turn": 0,
+      "since": 0,
+      "skip": false,
+      "progress": 152.60869565217394,
+      "hp": 7000,
+      "running": true,
+      "index": 24,
+      "wait": "message",
+      "depth": 0,
+      "message": true,
+      "text": [
+        "斧を回してる…",
+        "\\n[2]、気をつけて！"
+      ],
+      "actions": [],
+      "queued": [
+        [
+          111,
+          0,
+          null
+        ]
+      ],
+      "flags": [
+        "0"
+      ],
+      "bossScale": 2,
+      "actorIds": [
+        2,
+        3,
+        4
+      ],
+      "allyAttacksDisabled": false
+    },
+    {
+      "frame": 600,
+      "seconds": 10,
+      "phase": 0,
+      "attackPhase": 0,
+      "turn": 0,
+      "since": 0,
+      "skip": false,
+      "progress": 182.60869565217394,
+      "hp": 7000,
+      "running": true,
+      "index": 24,
+      "wait": "message",
+      "depth": 0,
+      "message": true,
+      "text": [
+        "斧を回してる…",
+        "\\n[2]、気をつけて！"
+      ],
+      "actions": [],
+      "queued": [
+        [
+          111,
+          0,
+          null
+        ]
+      ],
+      "flags": [
+        "0"
+      ],
+      "bossScale": 2,
+      "actorIds": [
+        2,
+        3,
+        4
+      ],
+      "allyAttacksDisabled": false
+    },
+    {
+      "frame": 630,
+      "seconds": 10.5,
+      "phase": 0,
+      "attackPhase": 0,
+      "turn": 0,
+      "since": 0,
+      "skip": false,
+      "progress": 3.913043478260903,
+      "hp": 7000,
+      "running": true,
+      "index": 24,
+      "wait": "message",
+      "depth": 0,
+      "message": true,
+      "text": [
+        "斧を回してる…",
+        "\\n[2]、気をつけて！"
+      ],
+      "actions": [],
+      "queued": [
+        [
+          111,
+          0,
+          null
+        ]
+      ],
+      "flags": [
+        "0"
+      ],
+      "bossScale": 2,
+      "actorIds": [
+        2,
+        3,
+        4
+      ],
+      "allyAttacksDisabled": false
+    },
+    {
+      "frame": 660,
+      "seconds": 11,
+      "phase": 0,
+      "attackPhase": 0,
+      "turn": 0,
+      "since": 0,
+      "skip": false,
+      "progress": 33.9130434782609,
+      "hp": 7000,
+      "running": true,
+      "index": 32,
+      "wait": "message",
+      "depth": 0,
+      "message": false,
+      "text": [
+        "わあ、大きな斧！",
+        "ユメちゃんも",
+        "暴れちゃお～っと♪"
+      ],
+      "actions": [],
+      "queued": [
+        [
+          111,
+          0,
+          null
+        ]
+      ],
+      "flags": [
+        "0"
+      ],
+      "bossScale": 2,
+      "actorIds": [
+        2,
+        3,
+        4
+      ],
+      "allyAttacksDisabled": false
+    },
+    {
+      "frame": 690,
+      "seconds": 11.5,
+      "phase": 0,
+      "attackPhase": 0,
+      "turn": 0,
+      "since": 0,
+      "skip": false,
+      "progress": 63.9130434782609,
+      "hp": 7000,
+      "running": true,
+      "index": 32,
+      "wait": "message",
+      "depth": 0,
+      "message": false,
+      "text": [
+        "わあ、大きな斧！",
+        "ユメちゃんも",
+        "暴れちゃお～っと♪"
+      ],
+      "actions": [],
+      "queued": [
+        [
+          111,
+          0,
+          null
+        ]
+      ],
+      "flags": [
+        "0"
+      ],
+      "bossScale": 2,
+      "actorIds": [
+        2,
+        3,
+        4
+      ],
+      "allyAttacksDisabled": false
+    },
+    {
+      "frame": 720,
+      "seconds": 12,
+      "phase": 0,
+      "attackPhase": 0,
+      "turn": 0,
+      "since": 0,
+      "skip": false,
+      "progress": 93.9130434782609,
+      "hp": 7000,
+      "running": true,
+      "index": 32,
+      "wait": "message",
+      "depth": 0,
+      "message": false,
+      "text": [
+        "わあ、大きな斧！",
+        "ユメちゃんも",
+        "暴れちゃお～っと♪"
+      ],
+      "actions": [],
+      "queued": [
+        [
+          111,
+          0,
+          null
+        ]
+      ],
+      "flags": [
+        "0"
+      ],
+      "bossScale": 2,
+      "actorIds": [
+        2,
+        3,
+        4
+      ],
+      "allyAttacksDisabled": false
+    },
+    {
+      "frame": 750,
+      "seconds": 12.5,
+      "phase": 0,
+      "attackPhase": 0,
+      "turn": 0,
+      "since": 0,
+      "skip": false,
+      "progress": 123.9130434782609,
+      "hp": 7000,
+      "running": true,
+      "index": 32,
+      "wait": "message",
+      "depth": 0,
+      "message": false,
+      "text": [
+        "わあ、大きな斧！",
+        "ユメちゃんも",
+        "暴れちゃお～っと♪"
+      ],
+      "actions": [],
+      "queued": [
+        [
+          111,
+          0,
+          null
+        ]
+      ],
+      "flags": [
+        "0"
+      ],
+      "bossScale": 2,
+      "actorIds": [
+        2,
+        3,
+        4
+      ],
+      "allyAttacksDisabled": false
+    },
+    {
+      "frame": 780,
+      "seconds": 13,
+      "phase": 0,
+      "attackPhase": 0,
+      "turn": 0,
+      "since": 0,
+      "skip": false,
+      "progress": 153.9130434782609,
+      "hp": 7000,
+      "running": true,
+      "index": 32,
+      "wait": "message",
+      "depth": 0,
+      "message": true,
+      "text": [
+        "わあ、大きな斧！",
+        "ユメちゃんも",
+        "暴れちゃお～っと♪"
+      ],
+      "actions": [],
+      "queued": [
+        [
+          111,
+          0,
+          null
+        ]
+      ],
+      "flags": [
+        "0"
+      ],
+      "bossScale": 2,
+      "actorIds": [
+        2,
+        3,
+        4
+      ],
+      "allyAttacksDisabled": false
+    },
+    {
+      "frame": 810,
+      "seconds": 13.5,
+      "phase": 0,
+      "attackPhase": 0,
+      "turn": 0,
+      "since": 0,
+      "skip": false,
+      "progress": 183.9130434782609,
+      "hp": 7000,
+      "running": true,
+      "index": 32,
+      "wait": "message",
+      "depth": 0,
+      "message": true,
+      "text": [
+        "わあ、大きな斧！",
+        "ユメちゃんも",
+        "暴れちゃお～っと♪"
+      ],
+      "actions": [],
+      "queued": [
+        [
+          111,
+          0,
+          null
+        ]
+      ],
+      "flags": [
+        "0"
+      ],
+      "bossScale": 2,
+      "actorIds": [
+        2,
+        3,
+        4
+      ],
+      "allyAttacksDisabled": false
+    },
+    {
+      "frame": 840,
+      "seconds": 14,
+      "phase": 0,
+      "attackPhase": 0,
+      "turn": 0,
+      "since": 0,
+      "skip": false,
+      "progress": 5.217391304347871,
+      "hp": 7000,
+      "running": true,
+      "index": 32,
+      "wait": "message",
+      "depth": 0,
+      "message": true,
+      "text": [
+        "わあ、大きな斧！",
+        "ユメちゃんも",
+        "暴れちゃお～っと♪"
+      ],
+      "actions": [],
+      "queued": [
+        [
+          111,
+          0,
+          null
+        ]
+      ],
+      "flags": [
+        "0"
+      ],
+      "bossScale": 2,
+      "actorIds": [
+        2,
+        3,
+        4
+      ],
+      "allyAttacksDisabled": false
+    },
+    {
+      "frame": 870,
+      "seconds": 14.5,
+      "phase": 0,
+      "attackPhase": 0,
+      "turn": 0,
+      "since": 0,
+      "skip": true,
+      "progress": 35.21739130434787,
+      "hp": 7000,
+      "running": false,
+      "index": 35,
+      "wait": "",
+      "depth": 0,
+      "message": false,
+      "text": [
+        "ぬうッ！",
+        "ちょこまかと…！"
+      ],
+      "actions": [],
+      "queued": [
+        [
+          111,
+          0,
+          null
+        ]
+      ],
+      "flags": [
+        "0"
+      ],
+      "bossScale": 2,
+      "actorIds": [
+        2,
+        3,
+        4
+      ],
+      "allyAttacksDisabled": false
+    },
+    {
+      "frame": 900,
+      "seconds": 15,
+      "phase": 0,
+      "attackPhase": 0,
+      "turn": 0,
+      "since": 0,
+      "skip": true,
+      "progress": 65.21739130434787,
+      "hp": 7000,
+      "running": false,
+      "index": 35,
+      "wait": "",
+      "depth": 0,
+      "message": false,
+      "text": [
+        "ぬうッ！",
+        "ちょこまかと…！"
+      ],
+      "actions": [],
+      "queued": [
+        [
+          111,
+          0,
+          null
+        ]
+      ],
+      "flags": [
+        "0"
+      ],
+      "bossScale": 2,
+      "actorIds": [
+        2,
+        3,
+        4
+      ],
+      "allyAttacksDisabled": false
+    },
+    {
+      "frame": 930,
+      "seconds": 15.5,
+      "phase": 0,
+      "attackPhase": 0,
+      "turn": 0,
+      "since": 0,
+      "skip": true,
+      "progress": 95.21739130434787,
+      "hp": 7000,
+      "running": false,
+      "index": 35,
+      "wait": "",
+      "depth": 0,
+      "message": false,
+      "text": [
+        "ぬうッ！",
+        "ちょこまかと…！"
+      ],
+      "actions": [],
+      "queued": [
+        [
+          111,
+          0,
+          null
+        ]
+      ],
+      "flags": [
+        "0"
+      ],
+      "bossScale": 2,
+      "actorIds": [
+        2,
+        3,
+        4
+      ],
+      "allyAttacksDisabled": false
+    },
+    {
+      "frame": 960,
+      "seconds": 16,
+      "phase": 0,
+      "attackPhase": 0,
+      "turn": 0,
+      "since": 0,
+      "skip": true,
+      "progress": 125.21739130434787,
+      "hp": 7000,
+      "running": false,
+      "index": 35,
+      "wait": "",
+      "depth": 0,
+      "message": false,
+      "text": [
+        "ぬうッ！",
+        "ちょこまかと…！"
+      ],
+      "actions": [],
+      "queued": [
+        [
+          111,
+          0,
+          null
+        ]
+      ],
+      "flags": [
+        "0"
+      ],
+      "bossScale": 2,
+      "actorIds": [
+        2,
+        3,
+        4
+      ],
+      "allyAttacksDisabled": false
+    },
+    {
+      "frame": 990,
+      "seconds": 16.5,
+      "phase": 0,
+      "attackPhase": 0,
+      "turn": 0,
+      "since": 0,
+      "skip": true,
+      "progress": 155.21739130434787,
+      "hp": 7000,
+      "running": false,
+      "index": 35,
+      "wait": "",
+      "depth": 0,
+      "message": false,
+      "text": [
+        "ぬうッ！",
+        "ちょこまかと…！"
+      ],
+      "actions": [],
+      "queued": [
+        [
+          111,
+          0,
+          null
+        ]
+      ],
+      "flags": [
+        "0"
+      ],
+      "bossScale": 2,
+      "actorIds": [
+        2,
+        3,
+        4
+      ],
+      "allyAttacksDisabled": false
+    },
+    {
+      "frame": 1020,
+      "seconds": 17,
+      "phase": 0,
+      "attackPhase": 0,
+      "turn": 0,
+      "since": 0,
+      "skip": true,
+      "progress": 185.21739130434787,
+      "hp": 7000,
+      "running": false,
+      "index": 35,
+      "wait": "",
+      "depth": 0,
+      "message": false,
+      "text": [
+        "ぬうッ！",
+        "ちょこまかと…！"
+      ],
+      "actions": [],
+      "queued": [
+        [
+          111,
+          0,
+          null
+        ]
+      ],
+      "flags": [
+        "0"
+      ],
+      "bossScale": 2,
+      "actorIds": [
+        2,
+        3,
+        4
+      ],
+      "allyAttacksDisabled": false
+    },
+    {
+      "frame": 1050,
+      "seconds": 17.5,
+      "phase": 0,
+      "attackPhase": 0,
+      "turn": 0,
+      "since": 0,
+      "skip": false,
+      "progress": 6.521739130434838,
+      "hp": 7000,
+      "running": false,
+      "index": 35,
+      "wait": "",
+      "depth": 0,
+      "message": false,
+      "text": [
+        "ぬうッ！",
+        "ちょこまかと…！"
+      ],
+      "actions": [],
+      "queued": [
+        [
+          111,
+          0,
+          null
+        ]
+      ],
+      "flags": [
+        "0"
+      ],
+      "bossScale": 2,
+      "actorIds": [
+        2,
+        3,
+        4
+      ],
+      "allyAttacksDisabled": false
+    },
+    {
+      "frame": 1080,
+      "seconds": 18,
+      "phase": 0,
+      "attackPhase": 0,
+      "turn": 0,
+      "since": 0,
+      "skip": false,
+      "progress": 36.52173913043484,
+      "hp": 7000,
+      "running": false,
+      "index": 35,
+      "wait": "",
+      "depth": 0,
+      "message": false,
+      "text": [
+        "ぬうッ！",
+        "ちょこまかと…！"
+      ],
+      "actions": [],
+      "queued": [
+        [
+          111,
+          0,
+          null
+        ]
+      ],
+      "flags": [
+        "0"
+      ],
+      "bossScale": 2,
+      "actorIds": [
+        2,
+        3,
+        4
+      ],
+      "allyAttacksDisabled": false
+    },
+    {
+      "frame": 1110,
+      "seconds": 18.5,
+      "phase": 0,
+      "attackPhase": 0,
+      "turn": 0,
+      "since": 0,
+      "skip": false,
+      "progress": 66.52173913043484,
+      "hp": 6983,
+      "running": false,
+      "index": 35,
+      "wait": "",
+      "depth": 0,
+      "message": false,
+      "text": [
+        "ぬうッ！",
+        "ちょこまかと…！"
+      ],
+      "actions": [
+        111
+      ],
+      "queued": [
+        [
+          111,
+          0,
+          true
+        ]
+      ],
+      "flags": [
+        "0"
+      ],
+      "bossScale": 2,
+      "actorIds": [
+        2,
+        3,
+        4
+      ],
+      "allyAttacksDisabled": false
+    },
+    {
+      "frame": 1140,
+      "seconds": 19,
+      "phase": 0,
+      "attackPhase": 0,
+      "turn": 0,
+      "since": 0,
+      "skip": false,
+      "progress": 96.52173913043484,
+      "hp": 6983,
+      "running": false,
+      "index": 35,
+      "wait": "",
+      "depth": 0,
+      "message": false,
+      "text": [
+        "ぬうッ！",
+        "ちょこまかと…！"
+      ],
+      "actions": [
+        111
+      ],
+      "queued": [
+        [
+          111,
+          0,
+          true
+        ]
+      ],
+      "flags": [
+        "0"
+      ],
+      "bossScale": 2,
+      "actorIds": [
+        2,
+        3,
+        4
+      ],
+      "allyAttacksDisabled": false
+    },
+    {
+      "frame": 1170,
+      "seconds": 19.5,
+      "phase": 0,
+      "attackPhase": 0,
+      "turn": 0,
+      "since": 0,
+      "skip": false,
+      "progress": 126.52173913043484,
+      "hp": 6983,
+      "running": false,
+      "index": 35,
+      "wait": "",
+      "depth": 0,
+      "message": false,
+      "text": [
+        "ぬうッ！",
+        "ちょこまかと…！"
+      ],
+      "actions": [
+        111
+      ],
+      "queued": [
+        [
+          111,
+          0,
+          true
+        ]
+      ],
+      "flags": [
+        "0"
+      ],
+      "bossScale": 2,
+      "actorIds": [
+        2,
+        3,
+        4
+      ],
+      "allyAttacksDisabled": false
+    },
+    {
+      "frame": 1200,
+      "seconds": 20,
+      "phase": 0,
+      "attackPhase": 0,
+      "turn": 0,
+      "since": 0,
+      "skip": false,
+      "progress": 156.52173913043484,
+      "hp": 6983,
+      "running": false,
+      "index": 35,
+      "wait": "",
+      "depth": 0,
+      "message": false,
+      "text": [
+        "ぬうッ！",
+        "ちょこまかと…！"
+      ],
+      "actions": [
+        111
+      ],
+      "queued": [
+        [
+          111,
+          0,
+          true
+        ]
+      ],
+      "flags": [
+        "0"
+      ],
+      "bossScale": 2,
+      "actorIds": [
+        2,
+        3,
+        4
+      ],
+      "allyAttacksDisabled": false
+    },
+    {
+      "frame": 1230,
+      "seconds": 20.5,
+      "phase": 0,
+      "attackPhase": 0,
+      "turn": 0,
+      "since": 0,
+      "skip": false,
+      "progress": 186.52173913043484,
+      "hp": 6950,
+      "running": false,
+      "index": 35,
+      "wait": "",
+      "depth": 0,
+      "message": false,
+      "text": [
+        "ぬうッ！",
+        "ちょこまかと…！"
+      ],
+      "actions": [],
+      "queued": [
+        [
+          111,
+          1,
+          null
+        ]
+      ],
+      "flags": [
+        "0"
+      ],
+      "bossScale": 2,
+      "actorIds": [
+        2,
+        3,
+        4
+      ],
+      "allyAttacksDisabled": false
+    },
+    {
+      "frame": 1260,
+      "seconds": 21,
+      "phase": 0,
+      "attackPhase": 0,
+      "turn": 1,
+      "since": 0,
+      "skip": false,
+      "progress": 7.826086956521806,
+      "hp": 6915,
+      "running": false,
+      "index": 35,
+      "wait": "",
+      "depth": 0,
+      "message": false,
+      "text": [
+        "ぬうッ！",
+        "ちょこまかと…！"
+      ],
+      "actions": [],
+      "queued": [
+        [
+          111,
+          1,
+          null
+        ]
+      ],
+      "flags": [
+        "0"
+      ],
+      "bossScale": 2,
+      "actorIds": [
+        2,
+        3,
+        4
+      ],
+      "allyAttacksDisabled": false
+    },
+    {
+      "frame": 1290,
+      "seconds": 21.5,
+      "phase": 0,
+      "attackPhase": 0,
+      "turn": 1,
+      "since": 0,
+      "skip": false,
+      "progress": 37.826086956521806,
+      "hp": 6915,
+      "running": false,
+      "index": 35,
+      "wait": "",
+      "depth": 0,
+      "message": false,
+      "text": [
+        "ぬうッ！",
+        "ちょこまかと…！"
+      ],
+      "actions": [],
+      "queued": [
+        [
+          111,
+          1,
+          null
+        ]
+      ],
+      "flags": [
+        "0"
+      ],
+      "bossScale": 2,
+      "actorIds": [
+        2,
+        3,
+        4
+      ],
+      "allyAttacksDisabled": false
+    },
+    {
+      "frame": 1320,
+      "seconds": 22,
+      "phase": 0,
+      "attackPhase": 0,
+      "turn": 1,
+      "since": 0,
+      "skip": false,
+      "progress": 67.8260869565218,
+      "hp": 6899,
+      "running": false,
+      "index": 35,
+      "wait": "",
+      "depth": 0,
+      "message": false,
+      "text": [
+        "ぬうッ！",
+        "ちょこまかと…！"
+      ],
+      "actions": [
+        111
+      ],
+      "queued": [
+        [
+          111,
+          1,
+          true
+        ]
+      ],
+      "flags": [
+        "0"
+      ],
+      "bossScale": 2,
+      "actorIds": [
+        2,
+        3,
+        4
+      ],
+      "allyAttacksDisabled": false
+    },
+    {
+      "frame": 1350,
+      "seconds": 22.5,
+      "phase": 0,
+      "attackPhase": 0,
+      "turn": 1,
+      "since": 0,
+      "skip": false,
+      "progress": 97.8260869565218,
+      "hp": 6899,
+      "running": false,
+      "index": 35,
+      "wait": "",
+      "depth": 0,
+      "message": false,
+      "text": [
+        "ぬうッ！",
+        "ちょこまかと…！"
+      ],
+      "actions": [
+        111
+      ],
+      "queued": [
+        [
+          111,
+          1,
+          true
+        ]
+      ],
+      "flags": [
+        "0"
+      ],
+      "bossScale": 2,
+      "actorIds": [
+        2,
+        3,
+        4
+      ],
+      "allyAttacksDisabled": false
+    },
+    {
+      "frame": 1380,
+      "seconds": 23,
+      "phase": 0,
+      "attackPhase": 0,
+      "turn": 1,
+      "since": 0,
+      "skip": false,
+      "progress": 127.8260869565218,
+      "hp": 6899,
+      "running": false,
+      "index": 35,
+      "wait": "",
+      "depth": 0,
+      "message": false,
+      "text": [
+        "ぬうッ！",
+        "ちょこまかと…！"
+      ],
+      "actions": [
+        111
+      ],
+      "queued": [
+        [
+          111,
+          1,
+          true
+        ]
+      ],
+      "flags": [
+        "0"
+      ],
+      "bossScale": 2,
+      "actorIds": [
+        2,
+        3,
+        4
+      ],
+      "allyAttacksDisabled": false
+    },
+    {
+      "frame": 1410,
+      "seconds": 23.5,
+      "phase": 0,
+      "attackPhase": 0,
+      "turn": 1,
+      "since": 0,
+      "skip": false,
+      "progress": 157.8260869565218,
+      "hp": 6882,
+      "running": false,
+      "index": 35,
+      "wait": "",
+      "depth": 0,
+      "message": false,
+      "text": [
+        "ぬうッ！",
+        "ちょこまかと…！"
+      ],
+      "actions": [
+        111
+      ],
+      "queued": [
+        [
+          111,
+          1,
+          true
+        ]
+      ],
+      "flags": [
+        "0"
+      ],
+      "bossScale": 2,
+      "actorIds": [
+        2,
+        3,
+        4
+      ],
+      "allyAttacksDisabled": false
+    },
+    {
+      "frame": 1440,
+      "seconds": 24,
+      "phase": 0,
+      "attackPhase": 0,
+      "turn": 1,
+      "since": 0,
+      "skip": false,
+      "progress": 187.8260869565218,
+      "hp": 6863,
+      "running": false,
+      "index": 35,
+      "wait": "",
+      "depth": 0,
+      "message": false,
+      "text": [
+        "ぬうッ！",
+        "ちょこまかと…！"
+      ],
+      "actions": [],
+      "queued": [
+        [
+          111,
+          2,
+          null
+        ]
+      ],
+      "flags": [
+        "0"
+      ],
+      "bossScale": 2,
+      "actorIds": [
+        2,
+        3,
+        4
+      ],
+      "allyAttacksDisabled": false
+    },
+    {
+      "frame": 1470,
+      "seconds": 24.5,
+      "phase": 0,
+      "attackPhase": 0,
+      "turn": 2,
+      "since": 0,
+      "skip": false,
+      "progress": 9.130434782608774,
+      "hp": 5180,
+      "running": true,
+      "index": 7,
+      "wait": "gnuroIdle",
+      "depth": 0,
+      "message": false,
+      "text": [
+        "ぬうッ！",
+        "ちょこまかと…！"
+      ],
+      "actions": [],
+      "queued": [
+        [
+          111,
+          2,
+          null
+        ]
+      ],
+      "flags": [
+        "0",
+        "1"
+      ],
+      "bossScale": 2,
+      "actorIds": [
+        2,
+        3,
+        4
+      ],
+      "allyAttacksDisabled": false
+    },
+    {
+      "frame": 1500,
+      "seconds": 25,
+      "phase": 0,
+      "attackPhase": 0,
+      "turn": 2,
+      "since": 0,
+      "skip": false,
+      "progress": 39.13043478260877,
+      "hp": 5180,
+      "running": true,
+      "index": 12,
+      "wait": "message",
+      "depth": 0,
+      "message": false,
+      "text": [
+        "ぬうッ！",
+        "ちょこまかと…！"
+      ],
+      "actions": [],
+      "queued": [
+        [
+          111,
+          2,
+          null
+        ]
+      ],
+      "flags": [
+        "0",
+        "1"
+      ],
+      "bossScale": 2,
+      "actorIds": [
+        2,
+        3,
+        4
+      ],
+      "allyAttacksDisabled": false
+    },
+    {
+      "frame": 1530,
+      "seconds": 25.5,
+      "phase": 0,
+      "attackPhase": 0,
+      "turn": 2,
+      "since": 0,
+      "skip": false,
+      "progress": 69.13043478260877,
+      "hp": 5180,
+      "running": true,
+      "index": 12,
+      "wait": "message",
+      "depth": 0,
+      "message": false,
+      "text": [
+        "ぬうッ！",
+        "ちょこまかと…！"
+      ],
+      "actions": [],
+      "queued": [
+        [
+          111,
+          2,
+          null
+        ]
+      ],
+      "flags": [
+        "0",
+        "1"
+      ],
+      "bossScale": 2,
+      "actorIds": [
+        2,
+        3,
+        4
+      ],
+      "allyAttacksDisabled": false
+    },
+    {
+      "frame": 1560,
+      "seconds": 26,
+      "phase": 0,
+      "attackPhase": 0,
+      "turn": 2,
+      "since": 0,
+      "skip": false,
+      "progress": 99.13043478260877,
+      "hp": 5180,
+      "running": true,
+      "index": 12,
+      "wait": "message",
+      "depth": 0,
+      "message": true,
+      "text": [
+        "ぬうッ！",
+        "ちょこまかと…！"
+      ],
+      "actions": [],
+      "queued": [
+        [
+          111,
+          2,
+          null
+        ]
+      ],
+      "flags": [
+        "0",
+        "1"
+      ],
+      "bossScale": 2,
+      "actorIds": [
+        2,
+        3,
+        4
+      ],
+      "allyAttacksDisabled": false
+    },
+    {
+      "frame": 1590,
+      "seconds": 26.5,
+      "phase": 0,
+      "attackPhase": 0,
+      "turn": 2,
+      "since": 0,
+      "skip": false,
+      "progress": 129.13043478260877,
+      "hp": 5180,
+      "running": true,
+      "index": 12,
+      "wait": "message",
+      "depth": 0,
+      "message": true,
+      "text": [
+        "ぬうッ！",
+        "ちょこまかと…！"
+      ],
+      "actions": [],
+      "queued": [
+        [
+          111,
+          2,
+          null
+        ]
+      ],
+      "flags": [
+        "0",
+        "1"
+      ],
+      "bossScale": 2,
+      "actorIds": [
+        2,
+        3,
+        4
+      ],
+      "allyAttacksDisabled": false
+    },
+    {
+      "frame": 1620,
+      "seconds": 27,
+      "phase": 0,
+      "attackPhase": 0,
+      "turn": 2,
+      "since": 0,
+      "skip": false,
+      "progress": 159.13043478260877,
+      "hp": 5180,
+      "running": true,
+      "index": 12,
+      "wait": "message",
+      "depth": 0,
+      "message": true,
+      "text": [
+        "ぬうッ！",
+        "ちょこまかと…！"
+      ],
+      "actions": [],
+      "queued": [
+        [
+          111,
+          2,
+          null
+        ]
+      ],
+      "flags": [
+        "0",
+        "1"
+      ],
+      "bossScale": 2,
+      "actorIds": [
+        2,
+        3,
+        4
+      ],
+      "allyAttacksDisabled": false
+    },
+    {
+      "frame": 1650,
+      "seconds": 27.5,
+      "phase": 0,
+      "attackPhase": 0,
+      "turn": 2,
+      "since": 0,
+      "skip": false,
+      "progress": 189.13043478260877,
+      "hp": 5180,
+      "running": true,
+      "index": 15,
+      "wait": "message",
+      "depth": 0,
+      "message": false,
+      "text": [
+        "ならば",
+        "こっちからだッ！！"
+      ],
+      "actions": [],
+      "queued": [
+        [
+          111,
+          2,
+          null
+        ]
+      ],
+      "flags": [
+        "0",
+        "1"
+      ],
+      "bossScale": 2,
+      "actorIds": [
+        2,
+        3,
+        4
+      ],
+      "allyAttacksDisabled": false
+    },
+    {
+      "frame": 1680,
+      "seconds": 28,
+      "phase": 0,
+      "attackPhase": 0,
+      "turn": 2,
+      "since": 0,
+      "skip": false,
+      "progress": 10.434782608695741,
+      "hp": 5180,
+      "running": true,
+      "index": 15,
+      "wait": "message",
+      "depth": 0,
+      "message": false,
+      "text": [
+        "ならば",
+        "こっちからだッ！！"
+      ],
+      "actions": [],
+      "queued": [
+        [
+          111,
+          2,
+          null
+        ]
+      ],
+      "flags": [
+        "0",
+        "1"
+      ],
+      "bossScale": 2,
+      "actorIds": [
+        2,
+        3,
+        4
+      ],
+      "allyAttacksDisabled": false
+    },
+    {
+      "frame": 1710,
+      "seconds": 28.5,
+      "phase": 0,
+      "attackPhase": 0,
+      "turn": 2,
+      "since": 0,
+      "skip": false,
+      "progress": 40.43478260869574,
+      "hp": 5180,
+      "running": true,
+      "index": 15,
+      "wait": "message",
+      "depth": 0,
+      "message": true,
+      "text": [
+        "ならば",
+        "こっちからだッ！！"
+      ],
+      "actions": [],
+      "queued": [
+        [
+          111,
+          2,
+          null
+        ]
+      ],
+      "flags": [
+        "0",
+        "1"
+      ],
+      "bossScale": 2,
+      "actorIds": [
+        2,
+        3,
+        4
+      ],
+      "allyAttacksDisabled": false
+    },
+    {
+      "frame": 1740,
+      "seconds": 29,
+      "phase": 0,
+      "attackPhase": 0,
+      "turn": 2,
+      "since": 0,
+      "skip": false,
+      "progress": 70.43478260869574,
+      "hp": 5180,
+      "running": true,
+      "index": 15,
+      "wait": "message",
+      "depth": 0,
+      "message": true,
+      "text": [
+        "ならば",
+        "こっちからだッ！！"
+      ],
+      "actions": [],
+      "queued": [
+        [
+          111,
+          2,
+          null
+        ]
+      ],
+      "flags": [
+        "0",
+        "1"
+      ],
+      "bossScale": 2,
+      "actorIds": [
+        2,
+        3,
+        4
+      ],
+      "allyAttacksDisabled": false
+    },
+    {
+      "frame": 1770,
+      "seconds": 29.5,
+      "phase": 0,
+      "attackPhase": 0,
+      "turn": 2,
+      "since": 0,
+      "skip": false,
+      "progress": 100.43478260869574,
+      "hp": 5180,
+      "running": true,
+      "index": 15,
+      "wait": "message",
+      "depth": 0,
+      "message": true,
+      "text": [
+        "ならば",
+        "こっちからだッ！！"
+      ],
+      "actions": [],
+      "queued": [
+        [
+          111,
+          2,
+          null
+        ]
+      ],
+      "flags": [
+        "0",
+        "1"
+      ],
+      "bossScale": 2,
+      "actorIds": [
+        2,
+        3,
+        4
+      ],
+      "allyAttacksDisabled": false
+    },
+    {
+      "frame": 1800,
+      "seconds": 30,
+      "phase": 0,
+      "attackPhase": 0,
+      "turn": 2,
+      "since": 0,
+      "skip": false,
+      "progress": 130.43478260869574,
+      "hp": 5180,
+      "running": true,
+      "index": 15,
+      "wait": "message",
+      "depth": 0,
+      "message": true,
+      "text": [
+        "ならば",
+        "こっちからだッ！！"
+      ],
+      "actions": [],
+      "queued": [
+        [
+          111,
+          2,
+          null
+        ]
+      ],
+      "flags": [
+        "0",
+        "1"
+      ],
+      "bossScale": 2,
+      "actorIds": [
+        2,
+        3,
+        4
+      ],
+      "allyAttacksDisabled": false
+    },
+    {
+      "frame": 1830,
+      "seconds": 30.5,
+      "phase": 0,
+      "attackPhase": 0,
+      "turn": 2,
+      "since": 0,
+      "skip": false,
+      "progress": 160.43478260869574,
+      "hp": 5180,
+      "running": true,
+      "index": 21,
+      "wait": "",
+      "depth": 0,
+      "message": false,
+      "text": [
+        "ワー！！",
+        "下の棒が折れた！！"
+      ],
+      "actions": [],
+      "queued": [
+        [
+          111,
+          2,
+          null
+        ]
+      ],
+      "flags": [
+        "0",
+        "1"
+      ],
+      "bossScale": 2,
+      "actorIds": [
+        2,
+        3,
+        4
+      ],
+      "allyAttacksDisabled": false
+    },
+    {
+      "frame": 1860,
+      "seconds": 31,
+      "phase": 0,
+      "attackPhase": 0,
+      "turn": 2,
+      "since": 0,
+      "skip": false,
+      "progress": 190.43478260869574,
+      "hp": 5180,
+      "running": true,
+      "index": 21,
+      "wait": "",
+      "depth": 0,
+      "message": false,
+      "text": [
+        "ワー！！",
+        "下の棒が折れた！！"
+      ],
+      "actions": [],
+      "queued": [
+        [
+          111,
+          2,
+          null
+        ]
+      ],
+      "flags": [
+        "0",
+        "1"
+      ],
+      "bossScale": 2,
+      "actorIds": [
+        2,
+        3,
+        4
+      ],
+      "allyAttacksDisabled": false
+    },
+    {
+      "frame": 1890,
+      "seconds": 31.5,
+      "phase": 0,
+      "attackPhase": 0,
+      "turn": 2,
+      "since": 0,
+      "skip": false,
+      "progress": 11.739130434782709,
+      "hp": 5180,
+      "running": true,
+      "index": 29,
+      "wait": "",
+      "depth": 38.71067681207683,
+      "message": false,
+      "text": [
+        "ワー！！",
+        "下の棒が折れた！！"
+      ],
+      "actions": [],
+      "queued": [
+        [
+          111,
+          2,
+          null
+        ]
+      ],
+      "flags": [
+        "0",
+        "1"
+      ],
+      "bossScale": 2,
+      "actorIds": [
+        2,
+        3,
+        4
+      ],
+      "allyAttacksDisabled": false
+    },
+    {
+      "frame": 1920,
+      "seconds": 32,
+      "phase": 0,
+      "attackPhase": 0,
+      "turn": 2,
+      "since": 0,
+      "skip": false,
+      "progress": 41.73913043478271,
+      "hp": 5180,
+      "running": true,
+      "index": 29,
+      "wait": "",
+      "depth": 84.82877010524828,
+      "message": false,
+      "text": [
+        "ワー！！",
+        "下の棒が折れた！！"
+      ],
+      "actions": [],
+      "queued": [
+        [
+          111,
+          2,
+          null
+        ]
+      ],
+      "flags": [
+        "0",
+        "1"
+      ],
+      "bossScale": 2,
+      "actorIds": [
+        2,
+        3,
+        4
+      ],
+      "allyAttacksDisabled": false
+    },
+    {
+      "frame": 1950,
+      "seconds": 32.5,
+      "phase": 0,
+      "attackPhase": 0,
+      "turn": 2,
+      "since": 0,
+      "skip": false,
+      "progress": 71.73913043478271,
+      "hp": 5180,
+      "running": true,
+      "index": 34,
+      "wait": "",
+      "depth": 90,
+      "message": false,
+      "text": [
+        "ワー！！",
+        "下の棒が折れた！！"
+      ],
+      "actions": [],
+      "queued": [
+        [
+          111,
+          2,
+          null
+        ]
+      ],
+      "flags": [
+        "0",
+        "1"
+      ],
+      "bossScale": 2,
+      "actorIds": [
+        2,
+        3,
+        4
+      ],
+      "allyAttacksDisabled": false
+    },
+    {
+      "frame": 1980,
+      "seconds": 33,
+      "phase": 0,
+      "attackPhase": 0,
+      "turn": 2,
+      "since": 0,
+      "skip": false,
+      "progress": 101.73913043478271,
+      "hp": 5180,
+      "running": true,
+      "index": 40,
+      "wait": "message",
+      "depth": 90,
+      "message": false,
+      "text": [
+        "ワー！！",
+        "下の棒が折れた！！"
+      ],
+      "actions": [],
+      "queued": [
+        [
+          111,
+          2,
+          null
+        ]
+      ],
+      "flags": [
+        "0",
+        "1"
+      ],
+      "bossScale": 2,
+      "actorIds": [
+        2,
+        3,
+        4
+      ],
+      "allyAttacksDisabled": false
+    },
+    {
+      "frame": 2010,
+      "seconds": 33.5,
+      "phase": 0,
+      "attackPhase": 0,
+      "turn": 2,
+      "since": 0,
+      "skip": false,
+      "progress": 131.7391304347827,
+      "hp": 5180,
+      "running": true,
+      "index": 40,
+      "wait": "message",
+      "depth": 90,
+      "message": false,
+      "text": [
+        "ワー！！",
+        "下の棒が折れた！！"
+      ],
+      "actions": [],
+      "queued": [
+        [
+          111,
+          2,
+          null
+        ]
+      ],
+      "flags": [
+        "0",
+        "1"
+      ],
+      "bossScale": 2,
+      "actorIds": [
+        2,
+        3,
+        4
+      ],
+      "allyAttacksDisabled": false
+    },
+    {
+      "frame": 2040,
+      "seconds": 34,
+      "phase": 0,
+      "attackPhase": 0,
+      "turn": 2,
+      "since": 0,
+      "skip": false,
+      "progress": 161.7391304347827,
+      "hp": 5180,
+      "running": true,
+      "index": 40,
+      "wait": "message",
+      "depth": 90,
+      "message": true,
+      "text": [
+        "ワー！！",
+        "下の棒が折れた！！"
+      ],
+      "actions": [],
+      "queued": [
+        [
+          111,
+          2,
+          null
+        ]
+      ],
+      "flags": [
+        "0",
+        "1"
+      ],
+      "bossScale": 2,
+      "actorIds": [
+        2,
+        3,
+        4
+      ],
+      "allyAttacksDisabled": false
+    },
+    {
+      "frame": 2070,
+      "seconds": 34.5,
+      "phase": 0,
+      "attackPhase": 0,
+      "turn": 2,
+      "since": 0,
+      "skip": false,
+      "progress": 191.7391304347827,
+      "hp": 5180,
+      "running": true,
+      "index": 40,
+      "wait": "message",
+      "depth": 90,
+      "message": true,
+      "text": [
+        "ワー！！",
+        "下の棒が折れた！！"
+      ],
+      "actions": [],
+      "queued": [
+        [
+          111,
+          2,
+          null
+        ]
+      ],
+      "flags": [
+        "0",
+        "1"
+      ],
+      "bossScale": 2,
+      "actorIds": [
+        2,
+        3,
+        4
+      ],
+      "allyAttacksDisabled": false
+    },
+    {
+      "frame": 2100,
+      "seconds": 35,
+      "phase": 0,
+      "attackPhase": 0,
+      "turn": 2,
+      "since": 0,
+      "skip": false,
+      "progress": 13.043478260869676,
+      "hp": 5180,
+      "running": true,
+      "index": 40,
+      "wait": "message",
+      "depth": 90,
+      "message": true,
+      "text": [
+        "ワー！！",
+        "下の棒が折れた！！"
+      ],
+      "actions": [],
+      "queued": [
+        [
+          111,
+          2,
+          null
+        ]
+      ],
+      "flags": [
+        "0",
+        "1"
+      ],
+      "bossScale": 2,
+      "actorIds": [
+        2,
+        3,
+        4
+      ],
+      "allyAttacksDisabled": false
+    },
+    {
+      "frame": 2130,
+      "seconds": 35.5,
+      "phase": 0,
+      "attackPhase": 0,
+      "turn": 2,
+      "since": 0,
+      "skip": false,
+      "progress": 43.043478260869676,
+      "hp": 5180,
+      "running": true,
+      "index": 46,
+      "wait": "message",
+      "depth": 90,
+      "message": false,
+      "text": [
+        "あら、真っ二つね"
+      ],
+      "actions": [],
+      "queued": [
+        [
+          111,
+          2,
+          null
+        ]
+      ],
+      "flags": [
+        "0",
+        "1"
+      ],
+      "bossScale": 2,
+      "actorIds": [
+        2,
+        3,
+        4
+      ],
+      "allyAttacksDisabled": false
+    },
+    {
+      "frame": 2160,
+      "seconds": 36,
+      "phase": 0,
+      "attackPhase": 0,
+      "turn": 2,
+      "since": 0,
+      "skip": false,
+      "progress": 73.04347826086968,
+      "hp": 5180,
+      "running": true,
+      "index": 46,
+      "wait": "message",
+      "depth": 90,
+      "message": true,
+      "text": [
+        "あら、真っ二つね"
+      ],
+      "actions": [],
+      "queued": [
+        [
+          111,
+          2,
+          null
+        ]
+      ],
+      "flags": [
+        "0",
+        "1"
+      ],
+      "bossScale": 2,
+      "actorIds": [
+        2,
+        3,
+        4
+      ],
+      "allyAttacksDisabled": false
+    },
+    {
+      "frame": 2190,
+      "seconds": 36.5,
+      "phase": 0,
+      "attackPhase": 0,
+      "turn": 2,
+      "since": 0,
+      "skip": false,
+      "progress": 103.04347826086968,
+      "hp": 5180,
+      "running": true,
+      "index": 46,
+      "wait": "message",
+      "depth": 90,
+      "message": true,
+      "text": [
+        "あら、真っ二つね"
+      ],
+      "actions": [],
+      "queued": [
+        [
+          111,
+          2,
+          null
+        ]
+      ],
+      "flags": [
+        "0",
+        "1"
+      ],
+      "bossScale": 2,
+      "actorIds": [
+        2,
+        3,
+        4
+      ],
+      "allyAttacksDisabled": false
+    },
+    {
+      "frame": 2220,
+      "seconds": 37,
+      "phase": 0,
+      "attackPhase": 0,
+      "turn": 2,
+      "since": 0,
+      "skip": false,
+      "progress": 133.04347826086968,
+      "hp": 5180,
+      "running": true,
+      "index": 46,
+      "wait": "message",
+      "depth": 90,
+      "message": true,
+      "text": [
+        "あら、真っ二つね"
+      ],
+      "actions": [],
+      "queued": [
+        [
+          111,
+          2,
+          null
+        ]
+      ],
+      "flags": [
+        "0",
+        "1"
+      ],
+      "bossScale": 2,
+      "actorIds": [
+        2,
+        3,
+        4
+      ],
+      "allyAttacksDisabled": false
+    },
+    {
+      "frame": 2250,
+      "seconds": 37.5,
+      "phase": 0,
+      "attackPhase": 0,
+      "turn": 2,
+      "since": 0,
+      "skip": false,
+      "progress": 163.04347826086968,
+      "hp": 5180,
+      "running": true,
+      "index": 46,
+      "wait": "message",
+      "depth": 90,
+      "message": true,
+      "text": [
+        "あら、真っ二つね"
+      ],
+      "actions": [],
+      "queued": [
+        [
+          111,
+          2,
+          null
+        ]
+      ],
+      "flags": [
+        "0",
+        "1"
+      ],
+      "bossScale": 2,
+      "actorIds": [
+        2,
+        3,
+        4
+      ],
+      "allyAttacksDisabled": false
+    },
+    {
+      "frame": 2280,
+      "seconds": 38,
+      "phase": 0,
+      "attackPhase": 0,
+      "turn": 2,
+      "since": 0,
+      "skip": false,
+      "progress": 193.04347826086968,
+      "hp": 5180,
+      "running": true,
+      "index": 51,
+      "wait": "message",
+      "depth": 90,
+      "message": false,
+      "text": [
+        "ガハハハッ！！",
+        "これでも戦えるかァ！！"
+      ],
+      "actions": [],
+      "queued": [
+        [
+          111,
+          2,
+          null
+        ]
+      ],
+      "flags": [
+        "0",
+        "1"
+      ],
+      "bossScale": 2,
+      "actorIds": [
+        2,
+        3,
+        4
+      ],
+      "allyAttacksDisabled": false
+    },
+    {
+      "frame": 2310,
+      "seconds": 38.5,
+      "phase": 0,
+      "attackPhase": 0,
+      "turn": 2,
+      "since": 0,
+      "skip": false,
+      "progress": 14.347826086956644,
+      "hp": 5180,
+      "running": true,
+      "index": 51,
+      "wait": "message",
+      "depth": 90,
+      "message": false,
+      "text": [
+        "ガハハハッ！！",
+        "これでも戦えるかァ！！"
+      ],
+      "actions": [],
+      "queued": [
+        [
+          111,
+          2,
+          null
+        ]
+      ],
+      "flags": [
+        "0",
+        "1"
+      ],
+      "bossScale": 2,
+      "actorIds": [
+        2,
+        3,
+        4
+      ],
+      "allyAttacksDisabled": false
+    },
+    {
+      "frame": 2340,
+      "seconds": 39,
+      "phase": 0,
+      "attackPhase": 0,
+      "turn": 2,
+      "since": 0,
+      "skip": false,
+      "progress": 44.347826086956644,
+      "hp": 5180,
+      "running": true,
+      "index": 51,
+      "wait": "message",
+      "depth": 90,
+      "message": true,
+      "text": [
+        "ガハハハッ！！",
+        "これでも戦えるかァ！！"
+      ],
+      "actions": [],
+      "queued": [
+        [
+          111,
+          2,
+          null
+        ]
+      ],
+      "flags": [
+        "0",
+        "1"
+      ],
+      "bossScale": 2,
+      "actorIds": [
+        2,
+        3,
+        4
+      ],
+      "allyAttacksDisabled": false
+    },
+    {
+      "frame": 2370,
+      "seconds": 39.5,
+      "phase": 0,
+      "attackPhase": 0,
+      "turn": 2,
+      "since": 0,
+      "skip": false,
+      "progress": 74.34782608695664,
+      "hp": 5180,
+      "running": true,
+      "index": 51,
+      "wait": "message",
+      "depth": 90,
+      "message": true,
+      "text": [
+        "ガハハハッ！！",
+        "これでも戦えるかァ！！"
+      ],
+      "actions": [],
+      "queued": [
+        [
+          111,
+          2,
+          null
+        ]
+      ],
+      "flags": [
+        "0",
+        "1"
+      ],
+      "bossScale": 2,
+      "actorIds": [
+        2,
+        3,
+        4
+      ],
+      "allyAttacksDisabled": false
+    },
+    {
+      "frame": 2400,
+      "seconds": 40,
+      "phase": 0,
+      "attackPhase": 0,
+      "turn": 2,
+      "since": 0,
+      "skip": false,
+      "progress": 104.34782608695664,
+      "hp": 5180,
+      "running": true,
+      "index": 51,
+      "wait": "message",
+      "depth": 90,
+      "message": true,
+      "text": [
+        "ガハハハッ！！",
+        "これでも戦えるかァ！！"
+      ],
+      "actions": [],
+      "queued": [
+        [
+          111,
+          2,
+          null
+        ]
+      ],
+      "flags": [
+        "0",
+        "1"
+      ],
+      "bossScale": 2,
+      "actorIds": [
+        2,
+        3,
+        4
+      ],
+      "allyAttacksDisabled": false
+    },
+    {
+      "frame": 2430,
+      "seconds": 40.5,
+      "phase": 0,
+      "attackPhase": 0,
+      "turn": 2,
+      "since": 0,
+      "skip": false,
+      "progress": 134.34782608695664,
+      "hp": 5180,
+      "running": true,
+      "index": 51,
+      "wait": "message",
+      "depth": 90,
+      "message": true,
+      "text": [
+        "ガハハハッ！！",
+        "これでも戦えるかァ！！"
+      ],
+      "actions": [],
+      "queued": [
+        [
+          111,
+          2,
+          null
+        ]
+      ],
+      "flags": [
+        "0",
+        "1"
+      ],
+      "bossScale": 2,
+      "actorIds": [
+        2,
+        3,
+        4
+      ],
+      "allyAttacksDisabled": false
+    },
+    {
+      "frame": 2460,
+      "seconds": 41,
+      "phase": 1,
+      "attackPhase": 0,
+      "turn": 2,
+      "since": 2,
+      "skip": true,
+      "progress": 164.34782608695664,
+      "hp": 5180,
+      "running": false,
+      "index": 53,
+      "wait": "",
+      "depth": 90,
+      "message": false,
+      "text": [],
+      "actions": [],
+      "queued": [
+        [
+          111,
+          2,
+          null
+        ]
+      ],
+      "flags": [
+        "0",
+        "1"
+      ],
+      "bossScale": 2,
+      "actorIds": [
+        2,
+        3,
+        4
+      ],
+      "allyAttacksDisabled": false
+    },
+    {
+      "frame": 2490,
+      "seconds": 41.5,
+      "phase": 1,
+      "attackPhase": 0,
+      "turn": 2,
+      "since": 2,
+      "skip": true,
+      "progress": 194.34782608695664,
+      "hp": 5180,
+      "running": false,
+      "index": 53,
+      "wait": "",
+      "depth": 90,
+      "message": false,
+      "text": [],
+      "actions": [],
+      "queued": [
+        [
+          111,
+          2,
+          null
+        ]
+      ],
+      "flags": [
+        "0",
+        "1"
+      ],
+      "bossScale": 2,
+      "actorIds": [
+        2,
+        3,
+        4
+      ],
+      "allyAttacksDisabled": false
+    },
+    {
+      "frame": 2520,
+      "seconds": 42,
+      "phase": 1,
+      "attackPhase": 0,
+      "turn": 2,
+      "since": 2,
+      "skip": false,
+      "progress": 15.652173913043612,
+      "hp": 5180,
+      "running": false,
+      "index": 53,
+      "wait": "",
+      "depth": 90,
+      "message": false,
+      "text": [],
+      "actions": [],
+      "queued": [
+        [
+          111,
+          2,
+          null
+        ]
+      ],
+      "flags": [
+        "0",
+        "1"
+      ],
+      "bossScale": 2,
+      "actorIds": [
+        2,
+        3,
+        4
+      ],
+      "allyAttacksDisabled": false
+    },
+    {
+      "frame": 2550,
+      "seconds": 42.5,
+      "phase": 1,
+      "attackPhase": 0,
+      "turn": 2,
+      "since": 2,
+      "skip": false,
+      "progress": 45.65217391304361,
+      "hp": 5180,
+      "running": false,
+      "index": 53,
+      "wait": "",
+      "depth": 90,
+      "message": false,
+      "text": [],
+      "actions": [
+        111
+      ],
+      "queued": [
+        [
+          111,
+          2,
+          true
+        ]
+      ],
+      "flags": [
+        "0",
+        "1"
+      ],
+      "bossScale": 2,
+      "actorIds": [
+        2,
+        3,
+        4
+      ],
+      "allyAttacksDisabled": false
+    },
+    {
+      "frame": 2580,
+      "seconds": 43,
+      "phase": 1,
+      "attackPhase": 0,
+      "turn": 2,
+      "since": 2,
+      "skip": false,
+      "progress": 75.65217391304361,
+      "hp": 5166,
+      "running": false,
+      "index": 53,
+      "wait": "",
+      "depth": 90,
+      "message": false,
+      "text": [],
+      "actions": [
+        111
+      ],
+      "queued": [
+        [
+          111,
+          2,
+          true
+        ]
+      ],
+      "flags": [
+        "0",
+        "1"
+      ],
+      "bossScale": 2,
+      "actorIds": [
+        2,
+        3,
+        4
+      ],
+      "allyAttacksDisabled": false
+    },
+    {
+      "frame": 2610,
+      "seconds": 43.5,
+      "phase": 1,
+      "attackPhase": 0,
+      "turn": 2,
+      "since": 2,
+      "skip": false,
+      "progress": 105.65217391304361,
+      "hp": 5166,
+      "running": false,
+      "index": 53,
+      "wait": "",
+      "depth": 90,
+      "message": false,
+      "text": [],
+      "actions": [
+        111
+      ],
+      "queued": [
+        [
+          111,
+          2,
+          true
+        ]
+      ],
+      "flags": [
+        "0",
+        "1"
+      ],
+      "bossScale": 2,
+      "actorIds": [
+        2,
+        3,
+        4
+      ],
+      "allyAttacksDisabled": false
+    },
+    {
+      "frame": 2640,
+      "seconds": 44,
+      "phase": 1,
+      "attackPhase": 0,
+      "turn": 2,
+      "since": 2,
+      "skip": false,
+      "progress": 135.6521739130436,
+      "hp": 5166,
+      "running": false,
+      "index": 53,
+      "wait": "",
+      "depth": 90,
+      "message": false,
+      "text": [],
+      "actions": [
+        111
+      ],
+      "queued": [
+        [
+          111,
+          2,
+          true
+        ]
+      ],
+      "flags": [
+        "0",
+        "1"
+      ],
+      "bossScale": 2,
+      "actorIds": [
+        2,
+        3,
+        4
+      ],
+      "allyAttacksDisabled": false
+    },
+    {
+      "frame": 2670,
+      "seconds": 44.5,
+      "phase": 1,
+      "attackPhase": 0,
+      "turn": 2,
+      "since": 2,
+      "skip": false,
+      "progress": 165.6521739130436,
+      "hp": 5121,
+      "running": false,
+      "index": 53,
+      "wait": "",
+      "depth": 90,
+      "message": false,
+      "text": [],
+      "actions": [
+        111
+      ],
+      "queued": [
+        [
+          111,
+          2,
+          true
+        ]
+      ],
+      "flags": [
+        "0",
+        "1"
+      ],
+      "bossScale": 2,
+      "actorIds": [
+        2,
+        3,
+        4
+      ],
+      "allyAttacksDisabled": false
+    },
+    {
+      "frame": 2700,
+      "seconds": 45,
+      "phase": 1,
+      "attackPhase": 0,
+      "turn": 2,
+      "since": 2,
+      "skip": false,
+      "progress": 195.6521739130436,
+      "hp": 5104,
+      "running": false,
+      "index": 53,
+      "wait": "",
+      "depth": 90,
+      "message": false,
+      "text": [],
+      "actions": [],
+      "queued": [
+        [
+          111,
+          3,
+          null
+        ]
+      ],
+      "flags": [
+        "0",
+        "1"
+      ],
+      "bossScale": 2,
+      "actorIds": [
+        2,
+        3,
+        4
+      ],
+      "allyAttacksDisabled": false
+    }
+  ],
+  "jumps": [
+    {
+      "frame": 1083,
+      "duration": 24,
+      "height": 28,
+      "fromX": 544,
+      "fromY": 288,
+      "toX": 372,
+      "toY": 312,
+      "event": false,
+      "returning": false
+    },
+    {
+      "frame": 1197,
+      "duration": 24,
+      "height": 28,
+      "fromX": 372,
+      "fromY": 312,
+      "toX": 544,
+      "toY": 288,
+      "event": false,
+      "returning": true
+    },
+    {
+      "frame": 1292,
+      "duration": 24,
+      "height": 28,
+      "fromX": 544,
+      "fromY": 288,
+      "toX": 372,
+      "toY": 312,
+      "event": false,
+      "returning": false
+    },
+    {
+      "frame": 1406,
+      "duration": 24,
+      "height": 28,
+      "fromX": 372,
+      "fromY": 312,
+      "toX": 544,
+      "toY": 288,
+      "event": false,
+      "returning": true
+    },
+    {
+      "frame": 1801,
+      "duration": 24,
+      "height": 64,
+      "fromX": 544,
+      "fromY": 288,
+      "toX": 543,
+      "toY": 396,
+      "event": true,
+      "returning": false
+    },
+    {
+      "frame": 1939,
+      "duration": 24,
+      "height": 64,
+      "fromX": 543,
+      "fromY": 396,
+      "toX": 544,
+      "toY": 288,
+      "event": true,
+      "returning": true
+    },
+    {
+      "frame": 2544,
+      "duration": 24,
+      "height": 28,
+      "fromX": 544,
+      "fromY": 288,
+      "toX": 372,
+      "toY": 312,
+      "event": false,
+      "returning": false
+    },
+    {
+      "frame": 2658,
+      "duration": 24,
+      "height": 28,
+      "fromX": 372,
+      "fromY": 312,
+      "toX": 544,
+      "toY": 288,
+      "event": false,
+      "returning": true
+    }
+  ],
+  "spins": [
+    {
+      "frame": 298,
+      "movement": 0,
+      "jumpOffset": 0,
+      "event": true
+    },
+    {
+      "frame": 1108,
+      "movement": 0,
+      "jumpOffset": 0,
+      "event": false
+    },
+    {
+      "frame": 1317,
+      "movement": 0,
+      "jumpOffset": 0,
+      "event": false
+    },
+    {
+      "frame": 1825,
+      "movement": 0,
+      "jumpOffset": 0,
+      "event": true
+    },
+    {
+      "frame": 2569,
+      "movement": 0,
+      "jumpOffset": 0,
+      "event": false
+    }
+  ],
+  "breakPoses": [
+    {
+      "frame": 1885,
+      "animationType": 4,
+      "cell": 3,
+      "yura": false,
+      "meshVisible": false,
+      "vertices": []
+    },
+    {
+      "frame": 1886,
+      "animationType": 4,
+      "cell": 6,
+      "yura": true,
+      "meshVisible": false,
+      "vertices": []
+    },
+    {
+      "frame": 1887,
+      "animationType": 4,
+      "cell": 6,
+      "yura": true,
+      "meshVisible": true,
+      "meshStep": 144,
+      "vertices": [
+        -0.7083746194839478,
+        -0.14417192339897156,
+        12.115715980529785,
+        0.5427614450454712,
+        23.092546463012695,
+        0.664018452167511,
+        35.17714309692383,
+        0.1296822875738144
+      ]
+    },
+    {
+      "frame": 1888,
+      "animationType": 4,
+      "cell": 6,
+      "yura": true,
+      "meshVisible": true,
+      "meshStep": 144,
+      "vertices": [
+        -0.7083746194839478,
+        -0.14417192339897156,
+        12.115715980529785,
+        0.5427614450454712,
+        23.092546463012695,
+        0.664018452167511,
+        35.17714309692383,
+        0.1296822875738144
+      ]
+    },
+    {
+      "frame": 1889,
+      "animationType": 4,
+      "cell": 6,
+      "yura": true,
+      "meshVisible": true,
+      "meshStep": 144,
+      "vertices": [
+        -0.7083746194839478,
+        -0.14417192339897156,
+        12.115715980529785,
+        0.5427614450454712,
+        23.092546463012695,
+        0.664018452167511,
+        35.17714309692383,
+        0.1296822875738144
+      ]
+    },
+    {
+      "frame": 1890,
+      "animationType": 4,
+      "cell": 6,
+      "yura": true,
+      "meshVisible": true,
+      "meshStep": 144,
+      "vertices": [
+        -0.7083746194839478,
+        -0.14417192339897156,
+        12.115715980529785,
+        0.5427614450454712,
+        23.092546463012695,
+        0.664018452167511,
+        35.17714309692383,
+        0.1296822875738144
+      ]
+    },
+    {
+      "frame": 1891,
+      "animationType": 4,
+      "cell": 6,
+      "yura": true,
+      "meshVisible": true,
+      "meshStep": 144,
+      "vertices": [
+        -0.7083746194839478,
+        -0.14417192339897156,
+        12.115715980529785,
+        0.5427614450454712,
+        23.092546463012695,
+        0.664018452167511,
+        35.17714309692383,
+        0.1296822875738144
+      ]
+    },
+    {
+      "frame": 1892,
+      "animationType": 4,
+      "cell": 6,
+      "yura": true,
+      "meshVisible": true,
+      "meshStep": 145,
+      "vertices": [
+        0.4022797644138336,
+        0.6741675734519958,
+        11.227128028869629,
+        -0.6032418012619019,
+        22.91844940185547,
+        0.5951682925224304,
+        34.963687896728516,
+        -0.9208296537399292
+      ]
+    },
+    {
+      "frame": 1893,
+      "animationType": 4,
+      "cell": 6,
+      "yura": true,
+      "meshVisible": true,
+      "meshStep": 145,
+      "vertices": [
+        0.4022797644138336,
+        0.6741675734519958,
+        11.227128028869629,
+        -0.6032418012619019,
+        22.91844940185547,
+        0.5951682925224304,
+        34.963687896728516,
+        -0.9208296537399292
+      ]
+    },
+    {
+      "frame": 1894,
+      "animationType": 4,
+      "cell": 6,
+      "yura": true,
+      "meshVisible": true,
+      "meshStep": 145,
+      "vertices": [
+        0.4022797644138336,
+        0.6741675734519958,
+        11.227128028869629,
+        -0.6032418012619019,
+        22.91844940185547,
+        0.5951682925224304,
+        34.963687896728516,
+        -0.9208296537399292
+      ]
+    },
+    {
+      "frame": 1895,
+      "animationType": 4,
+      "cell": 6,
+      "yura": true,
+      "meshVisible": true,
+      "meshStep": 145,
+      "vertices": [
+        0.4022797644138336,
+        0.6741675734519958,
+        11.227128028869629,
+        -0.6032418012619019,
+        22.91844940185547,
+        0.5951682925224304,
+        34.963687896728516,
+        -0.9208296537399292
+      ]
+    },
+    {
+      "frame": 1896,
+      "animationType": 4,
+      "cell": 6,
+      "yura": true,
+      "meshVisible": true,
+      "meshStep": 145,
+      "vertices": [
+        0.4022797644138336,
+        0.6741675734519958,
+        11.227128028869629,
+        -0.6032418012619019,
+        22.91844940185547,
+        0.5951682925224304,
+        34.963687896728516,
+        -0.9208296537399292
+      ]
+    },
+    {
+      "frame": 1897,
+      "animationType": 4,
+      "cell": 6,
+      "yura": true,
+      "meshVisible": true,
+      "meshStep": 145,
+      "vertices": [
+        0.4022797644138336,
+        0.6741675734519958,
+        11.227128028869629,
+        -0.6032418012619019,
+        22.91844940185547,
+        0.5951682925224304,
+        34.963687896728516,
+        -0.9208296537399292
+      ]
+    },
+    {
+      "frame": 1898,
+      "animationType": 4,
+      "cell": 6,
+      "yura": true,
+      "meshVisible": true,
+      "meshStep": 145,
+      "vertices": [
+        0.4022797644138336,
+        0.6741675734519958,
+        11.227128028869629,
+        -0.6032418012619019,
+        22.91844940185547,
+        0.5951682925224304,
+        34.963687896728516,
+        -0.9208296537399292
+      ]
+    },
+    {
+      "frame": 1899,
+      "animationType": 4,
+      "cell": 6,
+      "yura": true,
+      "meshVisible": true,
+      "meshStep": 145,
+      "vertices": [
+        0.4022797644138336,
+        0.6741675734519958,
+        11.227128028869629,
+        -0.6032418012619019,
+        22.91844940185547,
+        0.5951682925224304,
+        34.963687896728516,
+        -0.9208296537399292
+      ]
+    },
+    {
+      "frame": 1900,
+      "animationType": 4,
+      "cell": 6,
+      "yura": true,
+      "meshVisible": true,
+      "meshStep": 145,
+      "vertices": [
+        0.4022797644138336,
+        0.6741675734519958,
+        11.227128028869629,
+        -0.6032418012619019,
+        22.91844940185547,
+        0.5951682925224304,
+        34.963687896728516,
+        -0.9208296537399292
+      ]
+    },
+    {
+      "frame": 1901,
+      "animationType": 4,
+      "cell": 6,
+      "yura": true,
+      "meshVisible": true,
+      "meshStep": 145,
+      "vertices": [
+        0.4022797644138336,
+        0.6741675734519958,
+        11.227128028869629,
+        -0.6032418012619019,
+        22.91844940185547,
+        0.5951682925224304,
+        34.963687896728516,
+        -0.9208296537399292
+      ]
+    },
+    {
+      "frame": 1902,
+      "animationType": 4,
+      "cell": 6,
+      "yura": true,
+      "meshVisible": true,
+      "meshStep": 145,
+      "vertices": [
+        0.4022797644138336,
+        0.6741675734519958,
+        11.227128028869629,
+        -0.6032418012619019,
+        22.91844940185547,
+        0.5951682925224304,
+        34.963687896728516,
+        -0.9208296537399292
+      ]
+    },
+    {
+      "frame": 1903,
+      "animationType": 4,
+      "cell": 6,
+      "yura": true,
+      "meshVisible": true,
+      "meshStep": 145,
+      "vertices": [
+        0.4022797644138336,
+        0.6741675734519958,
+        11.227128028869629,
+        -0.6032418012619019,
+        22.91844940185547,
+        0.5951682925224304,
+        34.963687896728516,
+        -0.9208296537399292
+      ]
+    },
+    {
+      "frame": 1904,
+      "animationType": 4,
+      "cell": 6,
+      "yura": true,
+      "meshVisible": true,
+      "meshStep": 145,
+      "vertices": [
+        0.4022797644138336,
+        0.6741675734519958,
+        11.227128028869629,
+        -0.6032418012619019,
+        22.91844940185547,
+        0.5951682925224304,
+        34.963687896728516,
+        -0.9208296537399292
+      ]
+    },
+    {
+      "frame": 1905,
+      "animationType": 4,
+      "cell": 6,
+      "yura": true,
+      "meshVisible": true,
+      "meshStep": 146,
+      "vertices": [
+        -0.7172090411186218,
+        0.35168495774269104,
+        12.160143852233887,
+        0.9078642129898071,
+        22.67091178894043,
+        -0.05140432342886925,
+        36.01759719848633,
+        -0.05356885492801666
+      ]
+    },
+    {
+      "frame": 1906,
+      "animationType": 4,
+      "cell": 6,
+      "yura": true,
+      "meshVisible": true,
+      "meshStep": 146,
+      "vertices": [
+        -0.7172090411186218,
+        0.35168495774269104,
+        12.160143852233887,
+        0.9078642129898071,
+        22.67091178894043,
+        -0.05140432342886925,
+        36.01759719848633,
+        -0.05356885492801666
+      ]
+    },
+    {
+      "frame": 1907,
+      "animationType": 4,
+      "cell": 6,
+      "yura": true,
+      "meshVisible": true,
+      "meshStep": 146,
+      "vertices": [
+        -0.7172090411186218,
+        0.35168495774269104,
+        12.160143852233887,
+        0.9078642129898071,
+        22.67091178894043,
+        -0.05140432342886925,
+        36.01759719848633,
+        -0.05356885492801666
+      ]
+    },
+    {
+      "frame": 1908,
+      "animationType": 4,
+      "cell": 6,
+      "yura": true,
+      "meshVisible": true,
+      "meshStep": 146,
+      "vertices": [
+        -0.7172090411186218,
+        0.35168495774269104,
+        12.160143852233887,
+        0.9078642129898071,
+        22.67091178894043,
+        -0.05140432342886925,
+        36.01759719848633,
+        -0.05356885492801666
+      ]
+    },
+    {
+      "frame": 1909,
+      "animationType": 4,
+      "cell": 6,
+      "yura": true,
+      "meshVisible": true,
+      "meshStep": 146,
+      "vertices": [
+        -0.7172090411186218,
+        0.35168495774269104,
+        12.160143852233887,
+        0.9078642129898071,
+        22.67091178894043,
+        -0.05140432342886925,
+        36.01759719848633,
+        -0.05356885492801666
+      ]
+    },
+    {
+      "frame": 1910,
+      "animationType": 4,
+      "cell": 6,
+      "yura": true,
+      "meshVisible": true,
+      "meshStep": 146,
+      "vertices": [
+        -0.7172090411186218,
+        0.35168495774269104,
+        12.160143852233887,
+        0.9078642129898071,
+        22.67091178894043,
+        -0.05140432342886925,
+        36.01759719848633,
+        -0.05356885492801666
+      ]
+    },
+    {
+      "frame": 1911,
+      "animationType": 4,
+      "cell": 6,
+      "yura": true,
+      "meshVisible": true,
+      "meshStep": 146,
+      "vertices": [
+        -0.7172090411186218,
+        0.35168495774269104,
+        12.160143852233887,
+        0.9078642129898071,
+        22.67091178894043,
+        -0.05140432342886925,
+        36.01759719848633,
+        -0.05356885492801666
+      ]
+    },
+    {
+      "frame": 1912,
+      "animationType": 4,
+      "cell": 6,
+      "yura": true,
+      "meshVisible": true,
+      "meshStep": 146,
+      "vertices": [
+        -0.7172090411186218,
+        0.35168495774269104,
+        12.160143852233887,
+        0.9078642129898071,
+        22.67091178894043,
+        -0.05140432342886925,
+        36.01759719848633,
+        -0.05356885492801666
+      ]
+    },
+    {
+      "frame": 1913,
+      "animationType": 4,
+      "cell": 6,
+      "yura": true,
+      "meshVisible": true,
+      "meshStep": 146,
+      "vertices": [
+        -0.7172090411186218,
+        0.35168495774269104,
+        12.160143852233887,
+        0.9078642129898071,
+        22.67091178894043,
+        -0.05140432342886925,
+        36.01759719848633,
+        -0.05356885492801666
+      ]
+    },
+    {
+      "frame": 1914,
+      "animationType": 4,
+      "cell": 6,
+      "yura": true,
+      "meshVisible": true,
+      "meshStep": 146,
+      "vertices": [
+        -0.7172090411186218,
+        0.35168495774269104,
+        12.160143852233887,
+        0.9078642129898071,
+        22.67091178894043,
+        -0.05140432342886925,
+        36.01759719848633,
+        -0.05356885492801666
+      ]
+    },
+    {
+      "frame": 1915,
+      "animationType": 4,
+      "cell": 6,
+      "yura": true,
+      "meshVisible": true,
+      "meshStep": 146,
+      "vertices": [
+        -0.7172090411186218,
+        0.35168495774269104,
+        12.160143852233887,
+        0.9078642129898071,
+        22.67091178894043,
+        -0.05140432342886925,
+        36.01759719848633,
+        -0.05356885492801666
+      ]
+    },
+    {
+      "frame": 1916,
+      "animationType": 4,
+      "cell": 6,
+      "yura": true,
+      "meshVisible": true,
+      "meshStep": 146,
+      "vertices": [
+        -0.7172090411186218,
+        0.35168495774269104,
+        12.160143852233887,
+        0.9078642129898071,
+        22.67091178894043,
+        -0.05140432342886925,
+        36.01759719848633,
+        -0.05356885492801666
+      ]
+    },
+    {
+      "frame": 1917,
+      "animationType": 4,
+      "cell": 6,
+      "yura": true,
+      "meshVisible": true,
+      "meshStep": 146,
+      "vertices": [
+        -0.7172090411186218,
+        0.35168495774269104,
+        12.160143852233887,
+        0.9078642129898071,
+        22.67091178894043,
+        -0.05140432342886925,
+        36.01759719848633,
+        -0.05356885492801666
+      ]
+    },
+    {
+      "frame": 1918,
+      "animationType": 4,
+      "cell": 6,
+      "yura": true,
+      "meshVisible": true,
+      "meshStep": 147,
+      "vertices": [
+        0.4022797644138336,
+        0.6741675734519958,
+        11.227128028869629,
+        -0.6032418012619019,
+        22.91844940185547,
+        0.5951682925224304,
+        34.963687896728516,
+        -0.9208296537399292
+      ]
+    },
+    {
+      "frame": 1919,
+      "animationType": 4,
+      "cell": 6,
+      "yura": true,
+      "meshVisible": true,
+      "meshStep": 147,
+      "vertices": [
+        0.4022797644138336,
+        0.6741675734519958,
+        11.227128028869629,
+        -0.6032418012619019,
+        22.91844940185547,
+        0.5951682925224304,
+        34.963687896728516,
+        -0.9208296537399292
+      ]
+    },
+    {
+      "frame": 1920,
+      "animationType": 4,
+      "cell": 6,
+      "yura": true,
+      "meshVisible": true,
+      "meshStep": 147,
+      "vertices": [
+        0.4022797644138336,
+        0.6741675734519958,
+        11.227128028869629,
+        -0.6032418012619019,
+        22.91844940185547,
+        0.5951682925224304,
+        34.963687896728516,
+        -0.9208296537399292
+      ]
+    },
+    {
+      "frame": 1921,
+      "animationType": 4,
+      "cell": 6,
+      "yura": true,
+      "meshVisible": true,
+      "meshStep": 147,
+      "vertices": [
+        0.4022797644138336,
+        0.6741675734519958,
+        11.227128028869629,
+        -0.6032418012619019,
+        22.91844940185547,
+        0.5951682925224304,
+        34.963687896728516,
+        -0.9208296537399292
+      ]
+    },
+    {
+      "frame": 1922,
+      "animationType": 4,
+      "cell": 6,
+      "yura": true,
+      "meshVisible": true,
+      "meshStep": 147,
+      "vertices": [
+        0.4022797644138336,
+        0.6741675734519958,
+        11.227128028869629,
+        -0.6032418012619019,
+        22.91844940185547,
+        0.5951682925224304,
+        34.963687896728516,
+        -0.9208296537399292
+      ]
+    },
+    {
+      "frame": 1923,
+      "animationType": 4,
+      "cell": 6,
+      "yura": true,
+      "meshVisible": true,
+      "meshStep": 147,
+      "vertices": [
+        0.4022797644138336,
+        0.6741675734519958,
+        11.227128028869629,
+        -0.6032418012619019,
+        22.91844940185547,
+        0.5951682925224304,
+        34.963687896728516,
+        -0.9208296537399292
+      ]
+    },
+    {
+      "frame": 1924,
+      "animationType": 4,
+      "cell": 6,
+      "yura": true,
+      "meshVisible": true,
+      "meshStep": 147,
+      "vertices": [
+        0.4022797644138336,
+        0.6741675734519958,
+        11.227128028869629,
+        -0.6032418012619019,
+        22.91844940185547,
+        0.5951682925224304,
+        34.963687896728516,
+        -0.9208296537399292
+      ]
+    },
+    {
+      "frame": 1925,
+      "animationType": 4,
+      "cell": 6,
+      "yura": true,
+      "meshVisible": true,
+      "meshStep": 147,
+      "vertices": [
+        0.4022797644138336,
+        0.6741675734519958,
+        11.227128028869629,
+        -0.6032418012619019,
+        22.91844940185547,
+        0.5951682925224304,
+        34.963687896728516,
+        -0.9208296537399292
+      ]
+    },
+    {
+      "frame": 1926,
+      "animationType": 4,
+      "cell": 6,
+      "yura": true,
+      "meshVisible": true,
+      "meshStep": 147,
+      "vertices": [
+        0.4022797644138336,
+        0.6741675734519958,
+        11.227128028869629,
+        -0.6032418012619019,
+        22.91844940185547,
+        0.5951682925224304,
+        34.963687896728516,
+        -0.9208296537399292
+      ]
+    },
+    {
+      "frame": 1927,
+      "animationType": 4,
+      "cell": 6,
+      "yura": true,
+      "meshVisible": true,
+      "meshStep": 147,
+      "vertices": [
+        0.4022797644138336,
+        0.6741675734519958,
+        11.227128028869629,
+        -0.6032418012619019,
+        22.91844940185547,
+        0.5951682925224304,
+        34.963687896728516,
+        -0.9208296537399292
+      ]
+    },
+    {
+      "frame": 1928,
+      "animationType": 4,
+      "cell": 6,
+      "yura": true,
+      "meshVisible": true,
+      "meshStep": 147,
+      "vertices": [
+        0.4022797644138336,
+        0.6741675734519958,
+        11.227128028869629,
+        -0.6032418012619019,
+        22.91844940185547,
+        0.5951682925224304,
+        34.963687896728516,
+        -0.9208296537399292
+      ]
+    },
+    {
+      "frame": 1929,
+      "animationType": 4,
+      "cell": 6,
+      "yura": true,
+      "meshVisible": true,
+      "meshStep": 147,
+      "vertices": [
+        0.4022797644138336,
+        0.6741675734519958,
+        11.227128028869629,
+        -0.6032418012619019,
+        22.91844940185547,
+        0.5951682925224304,
+        34.963687896728516,
+        -0.9208296537399292
+      ]
+    },
+    {
+      "frame": 1930,
+      "animationType": 4,
+      "cell": 6,
+      "yura": true,
+      "meshVisible": true,
+      "meshStep": 147,
+      "vertices": [
+        0.4022797644138336,
+        0.6741675734519958,
+        11.227128028869629,
+        -0.6032418012619019,
+        22.91844940185547,
+        0.5951682925224304,
+        34.963687896728516,
+        -0.9208296537399292
+      ]
+    },
+    {
+      "frame": 1931,
+      "animationType": 4,
+      "cell": 6,
+      "yura": true,
+      "meshVisible": true,
+      "meshStep": 148,
+      "vertices": [
+        -0.7083746194839478,
+        -0.14417192339897156,
+        12.115715980529785,
+        0.5427614450454712,
+        23.092546463012695,
+        0.664018452167511,
+        35.17714309692383,
+        0.1296822875738144
+      ]
+    },
+    {
+      "frame": 1932,
+      "animationType": 4,
+      "cell": 6,
+      "yura": true,
+      "meshVisible": true,
+      "meshStep": 148,
+      "vertices": [
+        -0.7083746194839478,
+        -0.14417192339897156,
+        12.115715980529785,
+        0.5427614450454712,
+        23.092546463012695,
+        0.664018452167511,
+        35.17714309692383,
+        0.1296822875738144
+      ]
+    },
+    {
+      "frame": 1933,
+      "animationType": 4,
+      "cell": 6,
+      "yura": true,
+      "meshVisible": true,
+      "meshStep": 148,
+      "vertices": [
+        -0.7083746194839478,
+        -0.14417192339897156,
+        12.115715980529785,
+        0.5427614450454712,
+        23.092546463012695,
+        0.664018452167511,
+        35.17714309692383,
+        0.1296822875738144
+      ]
+    },
+    {
+      "frame": 1934,
+      "animationType": 4,
+      "cell": 6,
+      "yura": true,
+      "meshVisible": true,
+      "meshStep": 148,
+      "vertices": [
+        -0.7083746194839478,
+        -0.14417192339897156,
+        12.115715980529785,
+        0.5427614450454712,
+        23.092546463012695,
+        0.664018452167511,
+        35.17714309692383,
+        0.1296822875738144
+      ]
+    },
+    {
+      "frame": 1935,
+      "animationType": 4,
+      "cell": 6,
+      "yura": true,
+      "meshVisible": true,
+      "meshStep": 148,
+      "vertices": [
+        -0.7083746194839478,
+        -0.14417192339897156,
+        12.115715980529785,
+        0.5427614450454712,
+        23.092546463012695,
+        0.664018452167511,
+        35.17714309692383,
+        0.1296822875738144
+      ]
+    },
+    {
+      "frame": 1936,
+      "animationType": 4,
+      "cell": 6,
+      "yura": true,
+      "meshVisible": true,
+      "meshStep": 148,
+      "vertices": [
+        -0.7083746194839478,
+        -0.14417192339897156,
+        12.115715980529785,
+        0.5427614450454712,
+        23.092546463012695,
+        0.664018452167511,
+        35.17714309692383,
+        0.1296822875738144
+      ]
+    },
+    {
+      "frame": 1937,
+      "animationType": 4,
+      "cell": 6,
+      "yura": true,
+      "meshVisible": true,
+      "meshStep": 148,
+      "vertices": [
+        -0.7083746194839478,
+        -0.14417192339897156,
+        12.115715980529785,
+        0.5427614450454712,
+        23.092546463012695,
+        0.664018452167511,
+        35.17714309692383,
+        0.1296822875738144
+      ]
+    },
+    {
+      "frame": 1938,
+      "animationType": 4,
+      "cell": 6,
+      "yura": true,
+      "meshVisible": true,
+      "meshStep": 148,
+      "vertices": [
+        -0.7083746194839478,
+        -0.14417192339897156,
+        12.115715980529785,
+        0.5427614450454712,
+        23.092546463012695,
+        0.664018452167511,
+        35.17714309692383,
+        0.1296822875738144
+      ]
+    }
+  ],
+  "threatPoses": [
+    {
+      "frame": 132,
+      "animationType": 0,
+      "cell": 2,
+      "text": [
+        "幹部グミ",
+        "グヌロッベンだッ！！"
+      ]
+    },
+    {
+      "frame": 138,
+      "animationType": 0,
+      "cell": 2,
+      "text": [
+        "幹部グミ",
+        "グヌロッベンだッ！！"
+      ]
+    },
+    {
+      "frame": 144,
+      "animationType": 0,
+      "cell": 3,
+      "text": [
+        "幹部グミ",
+        "グヌロッベンだッ！！"
+      ]
+    },
+    {
+      "frame": 150,
+      "animationType": 0,
+      "cell": 3,
+      "text": [
+        "幹部グミ",
+        "グヌロッベンだッ！！"
+      ]
+    },
+    {
+      "frame": 156,
+      "animationType": 0,
+      "cell": 3,
+      "text": [
+        "幹部グミ",
+        "グヌロッベンだッ！！"
+      ]
+    },
+    {
+      "frame": 162,
+      "animationType": 0,
+      "cell": 4,
+      "text": [
+        "幹部グミ",
+        "グヌロッベンだッ！！"
+      ]
+    },
+    {
+      "frame": 168,
+      "animationType": 0,
+      "cell": 4,
+      "text": [
+        "幹部グミ",
+        "グヌロッベンだッ！！"
+      ]
+    },
+    {
+      "frame": 174,
+      "animationType": 0,
+      "cell": 5,
+      "text": [
+        "幹部グミ",
+        "グヌロッベンだッ！！"
+      ]
+    },
+    {
+      "frame": 180,
+      "animationType": 0,
+      "cell": 5,
+      "text": [
+        "幹部グミ",
+        "グヌロッベンだッ！！"
+      ]
+    },
+    {
+      "frame": 186,
+      "animationType": 0,
+      "cell": 6,
+      "text": [
+        "幹部グミ",
+        "グヌロッベンだッ！！"
+      ]
+    },
+    {
+      "frame": 192,
+      "animationType": 0,
+      "cell": 6,
+      "text": [
+        "幹部グミ",
+        "グヌロッベンだッ！！"
+      ]
+    },
+    {
+      "frame": 198,
+      "animationType": 0,
+      "cell": 7,
+      "text": [
+        "幹部グミ",
+        "グヌロッベンだッ！！"
+      ]
+    },
+    {
+      "frame": 204,
+      "animationType": 0,
+      "cell": 7,
+      "text": [
+        "幹部グミ",
+        "グヌロッベンだッ！！"
+      ]
+    },
+    {
+      "frame": 210,
+      "animationType": 0,
+      "cell": 0,
+      "text": [
+        "幹部グミ",
+        "グヌロッベンだッ！！"
+      ]
+    },
+    {
+      "frame": 216,
+      "animationType": 0,
+      "cell": 0,
+      "text": [
+        "幹部グミ",
+        "グヌロッベンだッ！！"
+      ]
+    },
+    {
+      "frame": 222,
+      "animationType": 0,
+      "cell": 1,
+      "text": [
+        "幹部グミ",
+        "グヌロッベンだッ！！"
+      ]
+    },
+    {
+      "frame": 228,
+      "animationType": 0,
+      "cell": 1,
+      "text": [
+        "幹部グミ",
+        "グヌロッベンだッ！！"
+      ]
+    },
+    {
+      "frame": 234,
+      "animationType": 0,
+      "cell": 1,
+      "text": [
+        "幹部グミ",
+        "グヌロッベンだッ！！"
+      ]
+    },
+    {
+      "frame": 240,
+      "animationType": 0,
+      "cell": 2,
+      "text": [
+        "幹部グミ",
+        "グヌロッベンだッ！！"
+      ]
+    },
+    {
+      "frame": 246,
+      "animationType": 0,
+      "cell": 2,
+      "text": [
+        "幹部グミ",
+        "グヌロッベンだッ！！"
+      ]
+    },
+    {
+      "frame": 252,
+      "animationType": 0,
+      "cell": 3,
+      "text": [
+        "幹部グミ",
+        "グヌロッベンだッ！！"
+      ]
+    },
+    {
+      "frame": 258,
+      "animationType": 0,
+      "cell": 3,
+      "text": [
+        "幹部グミ",
+        "グヌロッベンだッ！！"
+      ]
+    },
+    {
+      "frame": 264,
+      "animationType": 0,
+      "cell": 4,
+      "text": [
+        "幹部グミ",
+        "グヌロッベンだッ！！"
+      ]
+    },
+    {
+      "frame": 270,
+      "animationType": 0,
+      "cell": 4,
+      "text": [
+        "幹部グミ",
+        "グヌロッベンだッ！！"
+      ]
+    },
+    {
+      "frame": 276,
+      "animationType": 0,
+      "cell": 5,
+      "text": [
+        "幹部グミ",
+        "グヌロッベンだッ！！"
+      ]
+    },
+    {
+      "frame": 282,
+      "animationType": 0,
+      "cell": 5,
+      "text": [
+        "幹部グミ",
+        "グヌロッベンだッ！！"
+      ]
+    },
+    {
+      "frame": 288,
+      "animationType": 0,
+      "cell": 6,
+      "text": [
+        "幹部グミ",
+        "グヌロッベンだッ！！"
+      ]
+    },
+    {
+      "frame": 294,
+      "animationType": 0,
+      "cell": 6,
+      "text": [
+        "幹部グミ",
+        "グヌロッベンだッ！！"
+      ]
+    },
+    {
+      "frame": 300,
+      "animationType": 3,
+      "cell": 0,
+      "text": [
+        "貴様らまとめて",
+        "叩きつぶしてやるッ！！"
+      ]
+    },
+    {
+      "frame": 306,
+      "animationType": 3,
+      "cell": 1,
+      "text": [
+        "貴様らまとめて",
+        "叩きつぶしてやるッ！！"
+      ]
+    },
+    {
+      "frame": 312,
+      "animationType": 3,
+      "cell": 0,
+      "text": [
+        "貴様らまとめて",
+        "叩きつぶしてやるッ！！"
+      ]
+    },
+    {
+      "frame": 318,
+      "animationType": 3,
+      "cell": 1,
+      "text": [
+        "貴様らまとめて",
+        "叩きつぶしてやるッ！！"
+      ]
+    },
+    {
+      "frame": 324,
+      "animationType": 3,
+      "cell": 0,
+      "text": [
+        "貴様らまとめて",
+        "叩きつぶしてやるッ！！"
+      ]
+    },
+    {
+      "frame": 330,
+      "animationType": 3,
+      "cell": 1,
+      "text": [
+        "貴様らまとめて",
+        "叩きつぶしてやるッ！！"
+      ]
+    },
+    {
+      "frame": 336,
+      "animationType": 3,
+      "cell": 0,
+      "text": [
+        "貴様らまとめて",
+        "叩きつぶしてやるッ！！"
+      ]
+    },
+    {
+      "frame": 342,
+      "animationType": 3,
+      "cell": 1,
+      "text": [
+        "貴様らまとめて",
+        "叩きつぶしてやるッ！！"
+      ]
+    },
+    {
+      "frame": 348,
+      "animationType": 3,
+      "cell": 0,
+      "text": [
+        "貴様らまとめて",
+        "叩きつぶしてやるッ！！"
+      ]
+    },
+    {
+      "frame": 354,
+      "animationType": 3,
+      "cell": 1,
+      "text": [
+        "貴様らまとめて",
+        "叩きつぶしてやるッ！！"
+      ]
+    },
+    {
+      "frame": 360,
+      "animationType": 3,
+      "cell": 0,
+      "text": [
+        "貴様らまとめて",
+        "叩きつぶしてやるッ！！"
+      ]
+    },
+    {
+      "frame": 366,
+      "animationType": 3,
+      "cell": 1,
+      "text": [
+        "貴様らまとめて",
+        "叩きつぶしてやるッ！！"
+      ]
+    },
+    {
+      "frame": 372,
+      "animationType": 3,
+      "cell": 0,
+      "text": [
+        "貴様らまとめて",
+        "叩きつぶしてやるッ！！"
+      ]
+    },
+    {
+      "frame": 378,
+      "animationType": 3,
+      "cell": 1,
+      "text": [
+        "貴様らまとめて",
+        "叩きつぶしてやるッ！！"
+      ]
+    },
+    {
+      "frame": 384,
+      "animationType": 3,
+      "cell": 0,
+      "text": [
+        "貴様らまとめて",
+        "叩きつぶしてやるッ！！"
+      ]
+    },
+    {
+      "frame": 390,
+      "animationType": 3,
+      "cell": 1,
+      "text": [
+        "貴様らまとめて",
+        "叩きつぶしてやるッ！！"
+      ]
+    },
+    {
+      "frame": 396,
+      "animationType": 3,
+      "cell": 0,
+      "text": [
+        "貴様らまとめて",
+        "叩きつぶしてやるッ！！"
+      ]
+    },
+    {
+      "frame": 402,
+      "animationType": 3,
+      "cell": 1,
+      "text": [
+        "貴様らまとめて",
+        "叩きつぶしてやるッ！！"
+      ]
+    },
+    {
+      "frame": 408,
+      "animationType": 3,
+      "cell": 0,
+      "text": [
+        "貴様らまとめて",
+        "叩きつぶしてやるッ！！"
+      ]
+    },
+    {
+      "frame": 414,
+      "animationType": 3,
+      "cell": 1,
+      "text": [
+        "貴様らまとめて",
+        "叩きつぶしてやるッ！！"
+      ]
+    },
+    {
+      "frame": 420,
+      "animationType": 3,
+      "cell": 0,
+      "text": [
+        "貴様らまとめて",
+        "叩きつぶしてやるッ！！"
+      ]
+    },
+    {
+      "frame": 426,
+      "animationType": 3,
+      "cell": 1,
+      "text": [
+        "貴様らまとめて",
+        "叩きつぶしてやるッ！！"
+      ]
+    },
+    {
+      "frame": 432,
+      "animationType": 3,
+      "cell": 0,
+      "text": [
+        "貴様らまとめて",
+        "叩きつぶしてやるッ！！"
+      ]
+    },
+    {
+      "frame": 438,
+      "animationType": 3,
+      "cell": 1,
+      "text": [
+        "貴様らまとめて",
+        "叩きつぶしてやるッ！！"
+      ]
+    },
+    {
+      "frame": 444,
+      "animationType": 3,
+      "cell": 0,
+      "text": [
+        "貴様らまとめて",
+        "叩きつぶしてやるッ！！"
+      ]
+    },
+    {
+      "frame": 450,
+      "animationType": 3,
+      "cell": 1,
+      "text": [
+        "貴様らまとめて",
+        "叩きつぶしてやるッ！！"
+      ]
+    },
+    {
+      "frame": 456,
+      "animationType": 3,
+      "cell": 0,
+      "text": [
+        "貴様らまとめて",
+        "叩きつぶしてやるッ！！"
+      ]
+    },
+    {
+      "frame": 462,
+      "animationType": 3,
+      "cell": 1,
+      "text": [
+        "貴様らまとめて",
+        "叩きつぶしてやるッ！！"
+      ]
+    },
+    {
+      "frame": 468,
+      "animationType": 3,
+      "cell": 0,
+      "text": [
+        "貴様らまとめて",
+        "叩きつぶしてやるッ！！"
+      ]
+    },
+    {
+      "frame": 474,
+      "animationType": 3,
+      "cell": 1,
+      "text": [
+        "貴様らまとめて",
+        "叩きつぶしてやるッ！！"
+      ]
+    },
+    {
+      "frame": 1488,
+      "animationType": 0,
+      "cell": 2,
+      "text": [
+        "ぬうッ！",
+        "ちょこまかと…！"
+      ]
+    },
+    {
+      "frame": 1494,
+      "animationType": 0,
+      "cell": 2,
+      "text": [
+        "ぬうッ！",
+        "ちょこまかと…！"
+      ]
+    },
+    {
+      "frame": 1500,
+      "animationType": 0,
+      "cell": 3,
+      "text": [
+        "ぬうッ！",
+        "ちょこまかと…！"
+      ]
+    },
+    {
+      "frame": 1506,
+      "animationType": 0,
+      "cell": 3,
+      "text": [
+        "ぬうッ！",
+        "ちょこまかと…！"
+      ]
+    },
+    {
+      "frame": 1512,
+      "animationType": 0,
+      "cell": 3,
+      "text": [
+        "ぬうッ！",
+        "ちょこまかと…！"
+      ]
+    },
+    {
+      "frame": 1518,
+      "animationType": 0,
+      "cell": 4,
+      "text": [
+        "ぬうッ！",
+        "ちょこまかと…！"
+      ]
+    },
+    {
+      "frame": 1524,
+      "animationType": 0,
+      "cell": 4,
+      "text": [
+        "ぬうッ！",
+        "ちょこまかと…！"
+      ]
+    },
+    {
+      "frame": 1530,
+      "animationType": 0,
+      "cell": 5,
+      "text": [
+        "ぬうッ！",
+        "ちょこまかと…！"
+      ]
+    },
+    {
+      "frame": 1536,
+      "animationType": 0,
+      "cell": 5,
+      "text": [
+        "ぬうッ！",
+        "ちょこまかと…！"
+      ]
+    },
+    {
+      "frame": 1542,
+      "animationType": 0,
+      "cell": 6,
+      "text": [
+        "ぬうッ！",
+        "ちょこまかと…！"
+      ]
+    },
+    {
+      "frame": 1548,
+      "animationType": 0,
+      "cell": 6,
+      "text": [
+        "ぬうッ！",
+        "ちょこまかと…！"
+      ]
+    },
+    {
+      "frame": 1554,
+      "animationType": 0,
+      "cell": 7,
+      "text": [
+        "ぬうッ！",
+        "ちょこまかと…！"
+      ]
+    },
+    {
+      "frame": 1560,
+      "animationType": 0,
+      "cell": 7,
+      "text": [
+        "ぬうッ！",
+        "ちょこまかと…！"
+      ]
+    },
+    {
+      "frame": 1566,
+      "animationType": 0,
+      "cell": 0,
+      "text": [
+        "ぬうッ！",
+        "ちょこまかと…！"
+      ]
+    },
+    {
+      "frame": 1572,
+      "animationType": 0,
+      "cell": 0,
+      "text": [
+        "ぬうッ！",
+        "ちょこまかと…！"
+      ]
+    },
+    {
+      "frame": 1578,
+      "animationType": 0,
+      "cell": 0,
+      "text": [
+        "ぬうッ！",
+        "ちょこまかと…！"
+      ]
+    },
+    {
+      "frame": 1584,
+      "animationType": 0,
+      "cell": 1,
+      "text": [
+        "ぬうッ！",
+        "ちょこまかと…！"
+      ]
+    },
+    {
+      "frame": 1590,
+      "animationType": 0,
+      "cell": 1,
+      "text": [
+        "ぬうッ！",
+        "ちょこまかと…！"
+      ]
+    },
+    {
+      "frame": 1596,
+      "animationType": 0,
+      "cell": 2,
+      "text": [
+        "ぬうッ！",
+        "ちょこまかと…！"
+      ]
+    },
+    {
+      "frame": 1602,
+      "animationType": 0,
+      "cell": 2,
+      "text": [
+        "ぬうッ！",
+        "ちょこまかと…！"
+      ]
+    },
+    {
+      "frame": 1608,
+      "animationType": 0,
+      "cell": 3,
+      "text": [
+        "ぬうッ！",
+        "ちょこまかと…！"
+      ]
+    },
+    {
+      "frame": 1614,
+      "animationType": 0,
+      "cell": 3,
+      "text": [
+        "ぬうッ！",
+        "ちょこまかと…！"
+      ]
+    },
+    {
+      "frame": 1620,
+      "animationType": 0,
+      "cell": 4,
+      "text": [
+        "ぬうッ！",
+        "ちょこまかと…！"
+      ]
+    },
+    {
+      "frame": 1626,
+      "animationType": 0,
+      "cell": 4,
+      "text": [
+        "ぬうッ！",
+        "ちょこまかと…！"
+      ]
+    },
+    {
+      "frame": 1632,
+      "animationType": 0,
+      "cell": 5,
+      "text": [
+        "ぬうッ！",
+        "ちょこまかと…！"
+      ]
+    },
+    {
+      "frame": 1638,
+      "animationType": 0,
+      "cell": 5,
+      "text": [
+        "ぬうッ！",
+        "ちょこまかと…！"
+      ]
+    },
+    {
+      "frame": 1644,
+      "animationType": 0,
+      "cell": 6,
+      "text": [
+        "ぬうッ！",
+        "ちょこまかと…！"
+      ]
+    },
+    {
+      "frame": 1650,
+      "animationType": 0,
+      "cell": 6,
+      "text": [
+        "ならば",
+        "こっちからだッ！！"
+      ]
+    },
+    {
+      "frame": 1656,
+      "animationType": 0,
+      "cell": 6,
+      "text": [
+        "ならば",
+        "こっちからだッ！！"
+      ]
+    },
+    {
+      "frame": 1662,
+      "animationType": 0,
+      "cell": 7,
+      "text": [
+        "ならば",
+        "こっちからだッ！！"
+      ]
+    },
+    {
+      "frame": 1668,
+      "animationType": 0,
+      "cell": 7,
+      "text": [
+        "ならば",
+        "こっちからだッ！！"
+      ]
+    },
+    {
+      "frame": 1674,
+      "animationType": 0,
+      "cell": 0,
+      "text": [
+        "ならば",
+        "こっちからだッ！！"
+      ]
+    },
+    {
+      "frame": 1680,
+      "animationType": 0,
+      "cell": 0,
+      "text": [
+        "ならば",
+        "こっちからだッ！！"
+      ]
+    },
+    {
+      "frame": 1686,
+      "animationType": 0,
+      "cell": 1,
+      "text": [
+        "ならば",
+        "こっちからだッ！！"
+      ]
+    },
+    {
+      "frame": 1692,
+      "animationType": 0,
+      "cell": 1,
+      "text": [
+        "ならば",
+        "こっちからだッ！！"
+      ]
+    },
+    {
+      "frame": 1698,
+      "animationType": 0,
+      "cell": 2,
+      "text": [
+        "ならば",
+        "こっちからだッ！！"
+      ]
+    },
+    {
+      "frame": 1704,
+      "animationType": 0,
+      "cell": 2,
+      "text": [
+        "ならば",
+        "こっちからだッ！！"
+      ]
+    },
+    {
+      "frame": 1710,
+      "animationType": 0,
+      "cell": 3,
+      "text": [
+        "ならば",
+        "こっちからだッ！！"
+      ]
+    },
+    {
+      "frame": 1716,
+      "animationType": 0,
+      "cell": 3,
+      "text": [
+        "ならば",
+        "こっちからだッ！！"
+      ]
+    },
+    {
+      "frame": 1722,
+      "animationType": 0,
+      "cell": 4,
+      "text": [
+        "ならば",
+        "こっちからだッ！！"
+      ]
+    },
+    {
+      "frame": 1728,
+      "animationType": 0,
+      "cell": 4,
+      "text": [
+        "ならば",
+        "こっちからだッ！！"
+      ]
+    },
+    {
+      "frame": 1734,
+      "animationType": 0,
+      "cell": 4,
+      "text": [
+        "ならば",
+        "こっちからだッ！！"
+      ]
+    },
+    {
+      "frame": 1740,
+      "animationType": 0,
+      "cell": 5,
+      "text": [
+        "ならば",
+        "こっちからだッ！！"
+      ]
+    },
+    {
+      "frame": 1746,
+      "animationType": 0,
+      "cell": 5,
+      "text": [
+        "ならば",
+        "こっちからだッ！！"
+      ]
+    },
+    {
+      "frame": 1752,
+      "animationType": 0,
+      "cell": 6,
+      "text": [
+        "ならば",
+        "こっちからだッ！！"
+      ]
+    },
+    {
+      "frame": 1758,
+      "animationType": 0,
+      "cell": 6,
+      "text": [
+        "ならば",
+        "こっちからだッ！！"
+      ]
+    },
+    {
+      "frame": 1764,
+      "animationType": 0,
+      "cell": 7,
+      "text": [
+        "ならば",
+        "こっちからだッ！！"
+      ]
+    },
+    {
+      "frame": 1770,
+      "animationType": 0,
+      "cell": 7,
+      "text": [
+        "ならば",
+        "こっちからだッ！！"
+      ]
+    },
+    {
+      "frame": 1776,
+      "animationType": 0,
+      "cell": 0,
+      "text": [
+        "ならば",
+        "こっちからだッ！！"
+      ]
+    },
+    {
+      "frame": 1782,
+      "animationType": 0,
+      "cell": 0,
+      "text": [
+        "ならば",
+        "こっちからだッ！！"
+      ]
+    },
+    {
+      "frame": 1788,
+      "animationType": 0,
+      "cell": 1,
+      "text": [
+        "ならば",
+        "こっちからだッ！！"
+      ]
+    },
+    {
+      "frame": 1794,
+      "animationType": 0,
+      "cell": 1,
+      "text": [
+        "ならば",
+        "こっちからだッ！！"
+      ]
+    },
+    {
+      "frame": 1800,
+      "animationType": 0,
+      "cell": 2,
+      "text": [
+        "ならば",
+        "こっちからだッ！！"
+      ]
+    },
+    {
+      "frame": 1806,
+      "animationType": 0,
+      "cell": 2,
+      "text": []
+    },
+    {
+      "frame": 1812,
+      "animationType": 0,
+      "cell": 2,
+      "text": []
+    },
+    {
+      "frame": 1818,
+      "animationType": 0,
+      "cell": 3,
+      "text": []
+    },
+    {
+      "frame": 1824,
+      "animationType": 0,
+      "cell": 3,
+      "text": []
+    },
+    {
+      "frame": 1830,
+      "animationType": 3,
+      "cell": 1,
+      "text": []
+    },
+    {
+      "frame": 1836,
+      "animationType": 3,
+      "cell": 0,
+      "text": []
+    },
+    {
+      "frame": 1842,
+      "animationType": 3,
+      "cell": 1,
+      "text": []
+    },
+    {
+      "frame": 1848,
+      "animationType": 3,
+      "cell": 0,
+      "text": []
+    },
+    {
+      "frame": 1854,
+      "animationType": 3,
+      "cell": 1,
+      "text": []
+    },
+    {
+      "frame": 1860,
+      "animationType": 3,
+      "cell": 0,
+      "text": []
+    },
+    {
+      "frame": 1866,
+      "animationType": 4,
+      "cell": 0,
+      "text": []
+    },
+    {
+      "frame": 1872,
+      "animationType": 4,
+      "cell": 1,
+      "text": []
+    },
+    {
+      "frame": 1878,
+      "animationType": 4,
+      "cell": 2,
+      "text": []
+    },
+    {
+      "frame": 1884,
+      "animationType": 4,
+      "cell": 3,
+      "text": []
+    }
+  ],
+  "bgm": {
+    "loopStart": 0,
+    "loopLength": 83.47823129251702
+  }
+}

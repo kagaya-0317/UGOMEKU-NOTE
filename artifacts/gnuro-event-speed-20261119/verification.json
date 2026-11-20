@@ -1,0 +1,6847 @@
+{
+  "nativeBattleForcedVictoryForReturn": true,
+  "cases": [
+    {
+      "party": [
+        2,
+        3,
+        4
+      ],
+      "speed": 4.5,
+      "nativeBattle": true,
+      "initial": {
+        "heroSpeed": 4.5,
+        "members": [
+          {
+            "actor": 3,
+            "speed": 4
+          },
+          {
+            "actor": 4,
+            "speed": 4
+          }
+        ],
+        "captured": 4.5
+      },
+      "after": {
+        "speed": 4.5,
+        "camera": [
+          0,
+          0
+        ],
+        "shown": true,
+        "proxiesHidden": true,
+        "rows": [
+          {
+            "actor": 2,
+            "phase": "approach",
+            "speed": 4.5,
+            "real": 4.5,
+            "dx": 0,
+            "dy": 0.08838834764831915
+          },
+          {
+            "actor": 3,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.05000000000000071,
+            "dy": 0.05000000000000071
+          },
+          {
+            "actor": 4,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.05000000000000071,
+            "dy": 0.05000000000000071
+          },
+          {
+            "actor": 2,
+            "phase": "approach",
+            "speed": 4.5,
+            "real": 4.5,
+            "dx": 0,
+            "dy": 0.08838834764831915
+          },
+          {
+            "actor": 3,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.05000000000000071,
+            "dy": 0.05000000000000071
+          },
+          {
+            "actor": 4,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.05000000000000071,
+            "dy": 0.05000000000000071
+          },
+          {
+            "actor": 2,
+            "phase": "approach",
+            "speed": 4.5,
+            "real": 4.5,
+            "dx": 0,
+            "dy": 0.08838834764831915
+          },
+          {
+            "actor": 3,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.05000000000000071,
+            "dy": 0.05000000000000071
+          },
+          {
+            "actor": 4,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.05000000000000071,
+            "dy": 0.05000000000000071
+          },
+          {
+            "actor": 2,
+            "phase": "approach",
+            "speed": 4.5,
+            "real": 4.5,
+            "dx": 0,
+            "dy": 0.08838834764831915
+          },
+          {
+            "actor": 3,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.05000000000000071,
+            "dy": 0.05000000000000071
+          },
+          {
+            "actor": 4,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.05000000000000071,
+            "dy": 0.05000000000000071
+          },
+          {
+            "actor": 2,
+            "phase": "approach",
+            "speed": 4.5,
+            "real": 4.5,
+            "dx": 0,
+            "dy": 0.08838834764831915
+          },
+          {
+            "actor": 3,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.05000000000000071,
+            "dy": 0.05000000000000071
+          },
+          {
+            "actor": 4,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.05000000000000071,
+            "dy": 0.05000000000000071
+          },
+          {
+            "actor": 2,
+            "phase": "approach",
+            "speed": 4.5,
+            "real": 4.5,
+            "dx": 0,
+            "dy": 0.08838834764831915
+          },
+          {
+            "actor": 3,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.05000000000000071,
+            "dy": 0.05000000000000071
+          },
+          {
+            "actor": 4,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.05000000000000071,
+            "dy": 0.05000000000000071
+          },
+          {
+            "actor": 2,
+            "phase": "approach",
+            "speed": 4.5,
+            "real": 4.5,
+            "dx": 0,
+            "dy": 0.08838834764831915
+          },
+          {
+            "actor": 3,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.05000000000000071,
+            "dy": 0.05000000000000071
+          },
+          {
+            "actor": 4,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.05000000000000071,
+            "dy": 0.05000000000000071
+          },
+          {
+            "actor": 2,
+            "phase": "approach",
+            "speed": 4.5,
+            "real": 4.5,
+            "dx": 0,
+            "dy": 0.08838834764831915
+          },
+          {
+            "actor": 3,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.05000000000000071,
+            "dy": 0.05000000000000071
+          },
+          {
+            "actor": 4,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.05000000000000071,
+            "dy": 0.05000000000000071
+          },
+          {
+            "actor": 2,
+            "phase": "approach",
+            "speed": 4.5,
+            "real": 4.5,
+            "dx": 0,
+            "dy": 0.08838834764831915
+          },
+          {
+            "actor": 3,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.05000000000000071,
+            "dy": 0.05000000000000071
+          },
+          {
+            "actor": 4,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.05000000000000071,
+            "dy": 0.05000000000000071
+          },
+          {
+            "actor": 2,
+            "phase": "approach",
+            "speed": 4.5,
+            "real": 4.5,
+            "dx": 0,
+            "dy": 0.08838834764831915
+          },
+          {
+            "actor": 3,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.05000000000000071,
+            "dy": 0.05000000000000071
+          },
+          {
+            "actor": 4,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.05000000000000071,
+            "dy": 0.05000000000000071
+          },
+          {
+            "actor": 2,
+            "phase": "approach",
+            "speed": 4.5,
+            "real": 4.5,
+            "dx": 0,
+            "dy": 0.08838834764831915
+          },
+          {
+            "actor": 3,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.05000000000000071,
+            "dy": 0.05000000000000071
+          },
+          {
+            "actor": 4,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.05000000000000071,
+            "dy": 0.05000000000000071
+          },
+          {
+            "actor": 2,
+            "phase": "approach",
+            "speed": 4.5,
+            "real": 4.5,
+            "dx": 0,
+            "dy": 0.08838834764831915
+          },
+          {
+            "actor": 3,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.05000000000000071,
+            "dy": 0.05000000000000071
+          },
+          {
+            "actor": 4,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.05000000000000071,
+            "dy": 0.05000000000000071
+          },
+          {
+            "actor": 2,
+            "phase": "approach",
+            "speed": 4.5,
+            "real": 4.5,
+            "dx": 0,
+            "dy": 0.08838834764831915
+          },
+          {
+            "actor": 3,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.05000000000000071,
+            "dy": 0.05000000000000071
+          },
+          {
+            "actor": 4,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.05000000000000071,
+            "dy": 0.05000000000000071
+          },
+          {
+            "actor": 2,
+            "phase": "approach",
+            "speed": 4.5,
+            "real": 4.5,
+            "dx": 0,
+            "dy": 0.08838834764831915
+          },
+          {
+            "actor": 3,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.05000000000000071,
+            "dy": 0.05000000000000071
+          },
+          {
+            "actor": 4,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.05000000000000071,
+            "dy": 0.05000000000000071
+          },
+          {
+            "actor": 2,
+            "phase": "approach",
+            "speed": 4.5,
+            "real": 4.5,
+            "dx": 0,
+            "dy": 0.08838834764831915
+          },
+          {
+            "actor": 3,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.05000000000000071,
+            "dy": 0.05000000000000071
+          },
+          {
+            "actor": 4,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.05000000000000071,
+            "dy": 0.05000000000000071
+          },
+          {
+            "actor": 2,
+            "phase": "approach",
+            "speed": 4.5,
+            "real": 4.5,
+            "dx": 0,
+            "dy": 0.08838834764831915
+          },
+          {
+            "actor": 3,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.05000000000000071,
+            "dy": 0.05000000000000071
+          },
+          {
+            "actor": 4,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.05000000000000071,
+            "dy": 0.05000000000000071
+          },
+          {
+            "actor": 2,
+            "phase": "approach",
+            "speed": 4.5,
+            "real": 4.5,
+            "dx": 0,
+            "dy": 0.08838834764831915
+          },
+          {
+            "actor": 3,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.05000000000000071,
+            "dy": 0.05000000000000071
+          },
+          {
+            "actor": 4,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.05000000000000071,
+            "dy": 0.05000000000000071
+          },
+          {
+            "actor": 2,
+            "phase": "approach",
+            "speed": 4.5,
+            "real": 4.5,
+            "dx": 0,
+            "dy": 0.08838834764831915
+          },
+          {
+            "actor": 3,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.05000000000000071,
+            "dy": 0.05000000000000071
+          },
+          {
+            "actor": 4,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.05000000000000071,
+            "dy": 0.05000000000000071
+          },
+          {
+            "actor": 2,
+            "phase": "approach",
+            "speed": 4.5,
+            "real": 4.5,
+            "dx": 0,
+            "dy": 0.08838834764831915
+          },
+          {
+            "actor": 3,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.05000000000000071,
+            "dy": 0.05000000000000071
+          },
+          {
+            "actor": 4,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.05000000000000071,
+            "dy": 0.05000000000000071
+          },
+          {
+            "actor": 2,
+            "phase": "approach",
+            "speed": 4.5,
+            "real": 4.5,
+            "dx": 0,
+            "dy": 0.08838834764831915
+          },
+          {
+            "actor": 3,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.05000000000000071,
+            "dy": 0.05000000000000071
+          },
+          {
+            "actor": 4,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.05000000000000071,
+            "dy": 0.05000000000000071
+          },
+          {
+            "actor": 2,
+            "phase": "approach",
+            "speed": 4.5,
+            "real": 4.5,
+            "dx": 0,
+            "dy": 0.08838834764831915
+          },
+          {
+            "actor": 3,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.05000000000000071,
+            "dy": 0.05000000000000071
+          },
+          {
+            "actor": 4,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.05000000000000071,
+            "dy": 0.05000000000000071
+          },
+          {
+            "actor": 2,
+            "phase": "approach",
+            "speed": 4.5,
+            "real": 4.5,
+            "dx": 0,
+            "dy": 0.08838834764831915
+          },
+          {
+            "actor": 3,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.05000000000000071,
+            "dy": 0.05000000000000071
+          },
+          {
+            "actor": 4,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.05000000000000071,
+            "dy": 0.05000000000000071
+          },
+          {
+            "actor": 2,
+            "phase": "approach",
+            "speed": 4.5,
+            "real": 4.5,
+            "dx": 0,
+            "dy": 0.08838834764831915
+          },
+          {
+            "actor": 3,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.05000000000000071,
+            "dy": 0.05000000000000071
+          },
+          {
+            "actor": 4,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.05000000000000071,
+            "dy": 0.05000000000000071
+          },
+          {
+            "actor": 2,
+            "phase": "approach",
+            "speed": 4.5,
+            "real": 4.5,
+            "dx": 0,
+            "dy": 0.08838834764831915
+          },
+          {
+            "actor": 3,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.05000000000000071,
+            "dy": 0.05000000000000071
+          },
+          {
+            "actor": 4,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.05000000000000071,
+            "dy": 0.05000000000000071
+          },
+          {
+            "actor": 2,
+            "phase": "approach",
+            "speed": 4.5,
+            "real": 4.5,
+            "dx": 0,
+            "dy": 0.08838834764831915
+          },
+          {
+            "actor": 3,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.05000000000000071,
+            "dy": 0.05000000000000071
+          },
+          {
+            "actor": 4,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.05000000000000071,
+            "dy": 0.05000000000000071
+          },
+          {
+            "actor": 2,
+            "phase": "approach",
+            "speed": 4.5,
+            "real": 4.5,
+            "dx": 0,
+            "dy": 0.08838834764831915
+          },
+          {
+            "actor": 3,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.05000000000000071,
+            "dy": 0.05000000000000071
+          },
+          {
+            "actor": 4,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.05000000000000071,
+            "dy": 0.05000000000000071
+          },
+          {
+            "actor": 2,
+            "phase": "approach",
+            "speed": 4.5,
+            "real": 4.5,
+            "dx": 0,
+            "dy": 0.08838834764831915
+          },
+          {
+            "actor": 3,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.05000000000000071,
+            "dy": 0.05000000000000071
+          },
+          {
+            "actor": 4,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.05000000000000071,
+            "dy": 0.05000000000000071
+          },
+          {
+            "actor": 2,
+            "phase": "approach",
+            "speed": 4.5,
+            "real": 4.5,
+            "dx": 0,
+            "dy": 0.08838834764831915
+          },
+          {
+            "actor": 3,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.05000000000000071,
+            "dy": 0.05000000000000071
+          },
+          {
+            "actor": 4,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.05000000000000071,
+            "dy": 0.05000000000000071
+          },
+          {
+            "actor": 2,
+            "phase": "approach",
+            "speed": 4.5,
+            "real": 4.5,
+            "dx": 0,
+            "dy": 0.08838834764831915
+          },
+          {
+            "actor": 3,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.049999999999979394,
+            "dy": 0.0625
+          },
+          {
+            "actor": 4,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.049999999999979394,
+            "dy": 0.0625
+          },
+          {
+            "actor": 2,
+            "phase": "approach",
+            "speed": 4.5,
+            "real": 4.5,
+            "dx": 0,
+            "dy": 0.08838834764831915
+          },
+          {
+            "actor": 3,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 4,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 2,
+            "phase": "approach",
+            "speed": 4.5,
+            "real": 4.5,
+            "dx": 0,
+            "dy": 0.08838834764831915
+          },
+          {
+            "actor": 3,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 4,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 2,
+            "phase": "approach",
+            "speed": 4.5,
+            "real": 4.5,
+            "dx": 0,
+            "dy": 0.08838834764831915
+          },
+          {
+            "actor": 3,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 4,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 2,
+            "phase": "approach",
+            "speed": 4.5,
+            "real": 4.5,
+            "dx": 0,
+            "dy": 0.08838834764831915
+          },
+          {
+            "actor": 3,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 4,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 2,
+            "phase": "approach",
+            "speed": 4.5,
+            "real": 4.5,
+            "dx": 0,
+            "dy": 0.08838834764831915
+          },
+          {
+            "actor": 3,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 4,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 2,
+            "phase": "approach",
+            "speed": 4.5,
+            "real": 4.5,
+            "dx": 0,
+            "dy": 0.08838834764831915
+          },
+          {
+            "actor": 3,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 4,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 2,
+            "phase": "approach",
+            "speed": 4.5,
+            "real": 4.5,
+            "dx": 0,
+            "dy": 0.08838834764831915
+          },
+          {
+            "actor": 3,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 4,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 2,
+            "phase": "approach",
+            "speed": 4.5,
+            "real": 4.5,
+            "dx": 0,
+            "dy": 0.08838834764831915
+          },
+          {
+            "actor": 3,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 4,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 2,
+            "phase": "approach",
+            "speed": 4.5,
+            "real": 4.5,
+            "dx": 0,
+            "dy": 0.08838834764831915
+          },
+          {
+            "actor": 3,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 4,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 2,
+            "phase": "approach",
+            "speed": 4.5,
+            "real": 4.5,
+            "dx": 0,
+            "dy": 0.05285444171555298
+          },
+          {
+            "actor": 3,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 4,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 3,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 4,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 3,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 4,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 3,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 4,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 3,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 4,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 3,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 4,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 3,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 4,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 3,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 4,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 3,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 4,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 3,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 4,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 3,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 4,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 3,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 4,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 3,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 4,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 3,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 4,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 3,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 4,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 3,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 4,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 3,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 4,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 3,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 4,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 3,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 4,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 3,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 4,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 3,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 4,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 3,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 4,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 3,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 4,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 3,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 4,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 3,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 4,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 3,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 4,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 3,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 4,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 3,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 4,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 3,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 4,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 3,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 4,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 3,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 4,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 3,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 4,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 3,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 4,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 3,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 4,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 3,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 4,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 3,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 4,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 3,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 4,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 3,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 4,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 3,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.049999999999979394
+          },
+          {
+            "actor": 4,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 4,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 4,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 4,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 4,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 4,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 4,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 4,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 4,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 4,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 4,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 4,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 4,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 4,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 4,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 4,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 4,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 4,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 4,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 4,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 4,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 4,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 4,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 4,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 4,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 4,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 4,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 4,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 4,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 4,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 4,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 4,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 4,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.049999999999979394
+          },
+          {
+            "actor": 3,
+            "phase": "return",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.05000000000000071,
+            "dy": 0.05000000000000071
+          },
+          {
+            "actor": 4,
+            "phase": "return",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.05000000000000071,
+            "dy": 0.05000000000000071
+          },
+          {
+            "actor": 3,
+            "phase": "return",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.05000000000000071,
+            "dy": 0.05000000000000071
+          },
+          {
+            "actor": 4,
+            "phase": "return",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.05000000000000071,
+            "dy": 0.05000000000000071
+          },
+          {
+            "actor": 3,
+            "phase": "return",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.05000000000000071,
+            "dy": 0.05000000000000071
+          },
+          {
+            "actor": 4,
+            "phase": "return",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.05000000000000071,
+            "dy": 0.05000000000000071
+          },
+          {
+            "actor": 3,
+            "phase": "return",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.05000000000000071,
+            "dy": 0.05000000000000071
+          },
+          {
+            "actor": 4,
+            "phase": "return",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.05000000000000071,
+            "dy": 0.05000000000000071
+          },
+          {
+            "actor": 3,
+            "phase": "return",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.05000000000000071,
+            "dy": 0.05000000000000071
+          },
+          {
+            "actor": 4,
+            "phase": "return",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.05000000000000071,
+            "dy": 0.05000000000000071
+          },
+          {
+            "actor": 3,
+            "phase": "return",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.05000000000000071,
+            "dy": 0.05000000000000071
+          },
+          {
+            "actor": 4,
+            "phase": "return",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.05000000000000071,
+            "dy": 0.05000000000000071
+          },
+          {
+            "actor": 3,
+            "phase": "return",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.05000000000000071,
+            "dy": 0.05000000000000071
+          },
+          {
+            "actor": 4,
+            "phase": "return",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.05000000000000071,
+            "dy": 0.05000000000000071
+          },
+          {
+            "actor": 3,
+            "phase": "return",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.05000000000000071,
+            "dy": 0.05000000000000071
+          },
+          {
+            "actor": 4,
+            "phase": "return",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.05000000000000071,
+            "dy": 0.05000000000000071
+          },
+          {
+            "actor": 3,
+            "phase": "return",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.05000000000000071,
+            "dy": 0.05000000000000071
+          },
+          {
+            "actor": 4,
+            "phase": "return",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.05000000000000071,
+            "dy": 0.05000000000000071
+          },
+          {
+            "actor": 3,
+            "phase": "return",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.05000000000000071,
+            "dy": 0.05000000000000071
+          },
+          {
+            "actor": 4,
+            "phase": "return",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.05000000000000071,
+            "dy": 0.05000000000000071
+          },
+          {
+            "actor": 3,
+            "phase": "return",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.05000000000000071,
+            "dy": 0.05000000000000071
+          },
+          {
+            "actor": 4,
+            "phase": "return",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.05000000000000071,
+            "dy": 0.05000000000000071
+          },
+          {
+            "actor": 3,
+            "phase": "return",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.05000000000000071,
+            "dy": 0.05000000000000071
+          },
+          {
+            "actor": 4,
+            "phase": "return",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.05000000000000071,
+            "dy": 0.05000000000000071
+          },
+          {
+            "actor": 3,
+            "phase": "return",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.05000000000000071,
+            "dy": 0.05000000000000071
+          },
+          {
+            "actor": 4,
+            "phase": "return",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.05000000000000071,
+            "dy": 0.05000000000000071
+          },
+          {
+            "actor": 3,
+            "phase": "return",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.05000000000000071,
+            "dy": 0.05000000000000071
+          },
+          {
+            "actor": 4,
+            "phase": "return",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.05000000000000071,
+            "dy": 0.05000000000000071
+          },
+          {
+            "actor": 3,
+            "phase": "return",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.05000000000000071,
+            "dy": 0.05000000000000071
+          },
+          {
+            "actor": 4,
+            "phase": "return",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.05000000000000071,
+            "dy": 0.05000000000000071
+          },
+          {
+            "actor": 3,
+            "phase": "return",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.05000000000000071,
+            "dy": 0.05000000000000071
+          },
+          {
+            "actor": 4,
+            "phase": "return",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.05000000000000071,
+            "dy": 0.05000000000000071
+          },
+          {
+            "actor": 3,
+            "phase": "return",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.05000000000000071,
+            "dy": 0.05000000000000071
+          },
+          {
+            "actor": 4,
+            "phase": "return",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.05000000000000071,
+            "dy": 0.05000000000000071
+          },
+          {
+            "actor": 3,
+            "phase": "return",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.05000000000000071,
+            "dy": 0.05000000000000071
+          },
+          {
+            "actor": 4,
+            "phase": "return",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.05000000000000071,
+            "dy": 0.05000000000000071
+          },
+          {
+            "actor": 3,
+            "phase": "return",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.05000000000000071,
+            "dy": 0.05000000000000071
+          },
+          {
+            "actor": 4,
+            "phase": "return",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.05000000000000071,
+            "dy": 0.05000000000000071
+          },
+          {
+            "actor": 3,
+            "phase": "return",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.05000000000000071,
+            "dy": 0.0499999999999865
+          },
+          {
+            "actor": 4,
+            "phase": "return",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.05000000000000071,
+            "dy": 0.05000000000000071
+          },
+          {
+            "actor": 3,
+            "phase": "return",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.0625,
+            "dy": 0
+          },
+          {
+            "actor": 4,
+            "phase": "return",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.05000000000000071,
+            "dy": 0.05000000000000071
+          },
+          {
+            "actor": 3,
+            "phase": "return",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.0625,
+            "dy": 0
+          },
+          {
+            "actor": 4,
+            "phase": "return",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.05000000000000071,
+            "dy": 0.05000000000000071
+          },
+          {
+            "actor": 3,
+            "phase": "return",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.0625,
+            "dy": 0
+          },
+          {
+            "actor": 4,
+            "phase": "return",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.05000000000000071,
+            "dy": 0.05000000000000071
+          },
+          {
+            "actor": 3,
+            "phase": "return",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.0625,
+            "dy": 0
+          },
+          {
+            "actor": 4,
+            "phase": "return",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.05000000000000071,
+            "dy": 0.05000000000000071
+          },
+          {
+            "actor": 3,
+            "phase": "return",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.0625,
+            "dy": 0
+          },
+          {
+            "actor": 4,
+            "phase": "return",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.05000000000000071,
+            "dy": 0.05000000000000071
+          },
+          {
+            "actor": 3,
+            "phase": "return",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.0625,
+            "dy": 0
+          },
+          {
+            "actor": 4,
+            "phase": "return",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.05000000000000071,
+            "dy": 0.05000000000000071
+          },
+          {
+            "actor": 3,
+            "phase": "return",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.0625,
+            "dy": 0
+          },
+          {
+            "actor": 4,
+            "phase": "return",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.05000000000000071,
+            "dy": 0.05000000000000071
+          },
+          {
+            "actor": 3,
+            "phase": "return",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.06249999999998579,
+            "dy": 0
+          },
+          {
+            "actor": 4,
+            "phase": "return",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.05000000000000071,
+            "dy": 0.05000000000000071
+          },
+          {
+            "actor": 4,
+            "phase": "return",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.05000000000000071,
+            "dy": 0.05000000000000071
+          },
+          {
+            "actor": 4,
+            "phase": "return",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.049999999999979394,
+            "dy": 0.0625
+          },
+          {
+            "actor": 4,
+            "phase": "return",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 4,
+            "phase": "return",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 4,
+            "phase": "return",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 4,
+            "phase": "return",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 4,
+            "phase": "return",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 4,
+            "phase": "return",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 4,
+            "phase": "return",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 4,
+            "phase": "return",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 4,
+            "phase": "return",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 4,
+            "phase": "return",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 4,
+            "phase": "return",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 4,
+            "phase": "return",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 4,
+            "phase": "return",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 4,
+            "phase": "return",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 4,
+            "phase": "return",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 4,
+            "phase": "return",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 4,
+            "phase": "return",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 4,
+            "phase": "return",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 4,
+            "phase": "return",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 4,
+            "phase": "return",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 4,
+            "phase": "return",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 4,
+            "phase": "return",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 4,
+            "phase": "return",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 4,
+            "phase": "return",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.049999999999979394
+          }
+        ],
+        "error": null
+      },
+      "following": {
+        "speed": 4.5,
+        "count": 2
+      }
+    },
+    {
+      "party": [
+        2,
+        4,
+        3
+      ],
+      "speed": 3.5,
+      "initial": {
+        "heroSpeed": 3.5,
+        "members": [
+          {
+            "actor": 3,
+            "speed": 4
+          },
+          {
+            "actor": 4,
+            "speed": 4
+          }
+        ],
+        "captured": 3.5
+      },
+      "after": {
+        "speed": 3.5,
+        "camera": [
+          0,
+          0
+        ],
+        "shown": true,
+        "proxiesHidden": true,
+        "rows": [
+          {
+            "actor": 2,
+            "phase": "approach",
+            "speed": 3.5,
+            "real": 3.5,
+            "dx": 0,
+            "dy": 0.04419417382415958
+          },
+          {
+            "actor": 3,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.05000000000000071,
+            "dy": 0.05000000000000071
+          },
+          {
+            "actor": 4,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.05000000000000071,
+            "dy": 0.05000000000000071
+          },
+          {
+            "actor": 2,
+            "phase": "approach",
+            "speed": 3.5,
+            "real": 3.5,
+            "dx": 0,
+            "dy": 0.04419417382415958
+          },
+          {
+            "actor": 3,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.05000000000000071,
+            "dy": 0.05000000000000071
+          },
+          {
+            "actor": 4,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.05000000000000071,
+            "dy": 0.05000000000000071
+          },
+          {
+            "actor": 2,
+            "phase": "approach",
+            "speed": 3.5,
+            "real": 3.5,
+            "dx": 0,
+            "dy": 0.04419417382415958
+          },
+          {
+            "actor": 3,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.05000000000000071,
+            "dy": 0.05000000000000071
+          },
+          {
+            "actor": 4,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.05000000000000071,
+            "dy": 0.05000000000000071
+          },
+          {
+            "actor": 2,
+            "phase": "approach",
+            "speed": 3.5,
+            "real": 3.5,
+            "dx": 0,
+            "dy": 0.04419417382415958
+          },
+          {
+            "actor": 3,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.05000000000000071,
+            "dy": 0.05000000000000071
+          },
+          {
+            "actor": 4,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.05000000000000071,
+            "dy": 0.05000000000000071
+          },
+          {
+            "actor": 2,
+            "phase": "approach",
+            "speed": 3.5,
+            "real": 3.5,
+            "dx": 0,
+            "dy": 0.04419417382415958
+          },
+          {
+            "actor": 3,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.05000000000000071,
+            "dy": 0.05000000000000071
+          },
+          {
+            "actor": 4,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.05000000000000071,
+            "dy": 0.05000000000000071
+          },
+          {
+            "actor": 2,
+            "phase": "approach",
+            "speed": 3.5,
+            "real": 3.5,
+            "dx": 0,
+            "dy": 0.04419417382415958
+          },
+          {
+            "actor": 3,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.05000000000000071,
+            "dy": 0.05000000000000071
+          },
+          {
+            "actor": 4,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.05000000000000071,
+            "dy": 0.05000000000000071
+          },
+          {
+            "actor": 2,
+            "phase": "approach",
+            "speed": 3.5,
+            "real": 3.5,
+            "dx": 0,
+            "dy": 0.04419417382415958
+          },
+          {
+            "actor": 3,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.05000000000000071,
+            "dy": 0.05000000000000071
+          },
+          {
+            "actor": 4,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.05000000000000071,
+            "dy": 0.05000000000000071
+          },
+          {
+            "actor": 2,
+            "phase": "approach",
+            "speed": 3.5,
+            "real": 3.5,
+            "dx": 0,
+            "dy": 0.04419417382415958
+          },
+          {
+            "actor": 3,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.05000000000000071,
+            "dy": 0.05000000000000071
+          },
+          {
+            "actor": 4,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.05000000000000071,
+            "dy": 0.05000000000000071
+          },
+          {
+            "actor": 2,
+            "phase": "approach",
+            "speed": 3.5,
+            "real": 3.5,
+            "dx": 0,
+            "dy": 0.04419417382415958
+          },
+          {
+            "actor": 3,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.05000000000000071,
+            "dy": 0.05000000000000071
+          },
+          {
+            "actor": 4,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.05000000000000071,
+            "dy": 0.05000000000000071
+          },
+          {
+            "actor": 2,
+            "phase": "approach",
+            "speed": 3.5,
+            "real": 3.5,
+            "dx": 0,
+            "dy": 0.04419417382415958
+          },
+          {
+            "actor": 3,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.05000000000000071,
+            "dy": 0.05000000000000071
+          },
+          {
+            "actor": 4,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.05000000000000071,
+            "dy": 0.05000000000000071
+          },
+          {
+            "actor": 2,
+            "phase": "approach",
+            "speed": 3.5,
+            "real": 3.5,
+            "dx": 0,
+            "dy": 0.04419417382415958
+          },
+          {
+            "actor": 3,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.05000000000000071,
+            "dy": 0.05000000000000071
+          },
+          {
+            "actor": 4,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.05000000000000071,
+            "dy": 0.05000000000000071
+          },
+          {
+            "actor": 2,
+            "phase": "approach",
+            "speed": 3.5,
+            "real": 3.5,
+            "dx": 0,
+            "dy": 0.04419417382415958
+          },
+          {
+            "actor": 3,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.05000000000000071,
+            "dy": 0.05000000000000071
+          },
+          {
+            "actor": 4,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.05000000000000071,
+            "dy": 0.05000000000000071
+          },
+          {
+            "actor": 2,
+            "phase": "approach",
+            "speed": 3.5,
+            "real": 3.5,
+            "dx": 0,
+            "dy": 0.04419417382415958
+          },
+          {
+            "actor": 3,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.05000000000000071,
+            "dy": 0.05000000000000071
+          },
+          {
+            "actor": 4,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.05000000000000071,
+            "dy": 0.05000000000000071
+          },
+          {
+            "actor": 2,
+            "phase": "approach",
+            "speed": 3.5,
+            "real": 3.5,
+            "dx": 0,
+            "dy": 0.04419417382415958
+          },
+          {
+            "actor": 3,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.05000000000000071,
+            "dy": 0.05000000000000071
+          },
+          {
+            "actor": 4,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.05000000000000071,
+            "dy": 0.05000000000000071
+          },
+          {
+            "actor": 2,
+            "phase": "approach",
+            "speed": 3.5,
+            "real": 3.5,
+            "dx": 0,
+            "dy": 0.04419417382415958
+          },
+          {
+            "actor": 3,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.05000000000000071,
+            "dy": 0.05000000000000071
+          },
+          {
+            "actor": 4,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.05000000000000071,
+            "dy": 0.05000000000000071
+          },
+          {
+            "actor": 2,
+            "phase": "approach",
+            "speed": 3.5,
+            "real": 3.5,
+            "dx": 0,
+            "dy": 0.04419417382415958
+          },
+          {
+            "actor": 3,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.05000000000000071,
+            "dy": 0.05000000000000071
+          },
+          {
+            "actor": 4,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.05000000000000071,
+            "dy": 0.05000000000000071
+          },
+          {
+            "actor": 2,
+            "phase": "approach",
+            "speed": 3.5,
+            "real": 3.5,
+            "dx": 0,
+            "dy": 0.04419417382415958
+          },
+          {
+            "actor": 3,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.05000000000000071,
+            "dy": 0.05000000000000071
+          },
+          {
+            "actor": 4,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.05000000000000071,
+            "dy": 0.05000000000000071
+          },
+          {
+            "actor": 2,
+            "phase": "approach",
+            "speed": 3.5,
+            "real": 3.5,
+            "dx": 0,
+            "dy": 0.04419417382415958
+          },
+          {
+            "actor": 3,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.05000000000000071,
+            "dy": 0.05000000000000071
+          },
+          {
+            "actor": 4,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.05000000000000071,
+            "dy": 0.05000000000000071
+          },
+          {
+            "actor": 2,
+            "phase": "approach",
+            "speed": 3.5,
+            "real": 3.5,
+            "dx": 0,
+            "dy": 0.04419417382415958
+          },
+          {
+            "actor": 3,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.05000000000000071,
+            "dy": 0.05000000000000071
+          },
+          {
+            "actor": 4,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.05000000000000071,
+            "dy": 0.05000000000000071
+          },
+          {
+            "actor": 2,
+            "phase": "approach",
+            "speed": 3.5,
+            "real": 3.5,
+            "dx": 0,
+            "dy": 0.04419417382415958
+          },
+          {
+            "actor": 3,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.05000000000000071,
+            "dy": 0.05000000000000071
+          },
+          {
+            "actor": 4,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.05000000000000071,
+            "dy": 0.05000000000000071
+          },
+          {
+            "actor": 2,
+            "phase": "approach",
+            "speed": 3.5,
+            "real": 3.5,
+            "dx": 0,
+            "dy": 0.04419417382415958
+          },
+          {
+            "actor": 3,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.05000000000000071,
+            "dy": 0.05000000000000071
+          },
+          {
+            "actor": 4,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.05000000000000071,
+            "dy": 0.05000000000000071
+          },
+          {
+            "actor": 2,
+            "phase": "approach",
+            "speed": 3.5,
+            "real": 3.5,
+            "dx": 0,
+            "dy": 0.04419417382415958
+          },
+          {
+            "actor": 3,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.05000000000000071,
+            "dy": 0.05000000000000071
+          },
+          {
+            "actor": 4,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.05000000000000071,
+            "dy": 0.05000000000000071
+          },
+          {
+            "actor": 2,
+            "phase": "approach",
+            "speed": 3.5,
+            "real": 3.5,
+            "dx": 0,
+            "dy": 0.04419417382415958
+          },
+          {
+            "actor": 3,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.05000000000000071,
+            "dy": 0.05000000000000071
+          },
+          {
+            "actor": 4,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.05000000000000071,
+            "dy": 0.05000000000000071
+          },
+          {
+            "actor": 2,
+            "phase": "approach",
+            "speed": 3.5,
+            "real": 3.5,
+            "dx": 0,
+            "dy": 0.04419417382415958
+          },
+          {
+            "actor": 3,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.05000000000000071,
+            "dy": 0.05000000000000071
+          },
+          {
+            "actor": 4,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.05000000000000071,
+            "dy": 0.05000000000000071
+          },
+          {
+            "actor": 2,
+            "phase": "approach",
+            "speed": 3.5,
+            "real": 3.5,
+            "dx": 0,
+            "dy": 0.04419417382415958
+          },
+          {
+            "actor": 3,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.05000000000000071,
+            "dy": 0.05000000000000071
+          },
+          {
+            "actor": 4,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.05000000000000071,
+            "dy": 0.05000000000000071
+          },
+          {
+            "actor": 2,
+            "phase": "approach",
+            "speed": 3.5,
+            "real": 3.5,
+            "dx": 0,
+            "dy": 0.04419417382415958
+          },
+          {
+            "actor": 3,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.05000000000000071,
+            "dy": 0.05000000000000071
+          },
+          {
+            "actor": 4,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.05000000000000071,
+            "dy": 0.05000000000000071
+          },
+          {
+            "actor": 2,
+            "phase": "approach",
+            "speed": 3.5,
+            "real": 3.5,
+            "dx": 0,
+            "dy": 0.04419417382415958
+          },
+          {
+            "actor": 3,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.05000000000000071,
+            "dy": 0.05000000000000071
+          },
+          {
+            "actor": 4,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.05000000000000071,
+            "dy": 0.05000000000000071
+          },
+          {
+            "actor": 2,
+            "phase": "approach",
+            "speed": 3.5,
+            "real": 3.5,
+            "dx": 0,
+            "dy": 0.04419417382415958
+          },
+          {
+            "actor": 3,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.05000000000000071,
+            "dy": 0.05000000000000071
+          },
+          {
+            "actor": 4,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.05000000000000071,
+            "dy": 0.05000000000000071
+          },
+          {
+            "actor": 2,
+            "phase": "approach",
+            "speed": 3.5,
+            "real": 3.5,
+            "dx": 0,
+            "dy": 0.04419417382415958
+          },
+          {
+            "actor": 3,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.049999999999979394,
+            "dy": 0.0625
+          },
+          {
+            "actor": 4,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.049999999999979394,
+            "dy": 0.0625
+          },
+          {
+            "actor": 2,
+            "phase": "approach",
+            "speed": 3.5,
+            "real": 3.5,
+            "dx": 0,
+            "dy": 0.04419417382415958
+          },
+          {
+            "actor": 3,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 4,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 2,
+            "phase": "approach",
+            "speed": 3.5,
+            "real": 3.5,
+            "dx": 0,
+            "dy": 0.04419417382415958
+          },
+          {
+            "actor": 3,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 4,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 2,
+            "phase": "approach",
+            "speed": 3.5,
+            "real": 3.5,
+            "dx": 0,
+            "dy": 0.04419417382415958
+          },
+          {
+            "actor": 3,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 4,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 2,
+            "phase": "approach",
+            "speed": 3.5,
+            "real": 3.5,
+            "dx": 0,
+            "dy": 0.04419417382415958
+          },
+          {
+            "actor": 3,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 4,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 2,
+            "phase": "approach",
+            "speed": 3.5,
+            "real": 3.5,
+            "dx": 0,
+            "dy": 0.04419417382415958
+          },
+          {
+            "actor": 3,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 4,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 2,
+            "phase": "approach",
+            "speed": 3.5,
+            "real": 3.5,
+            "dx": 0,
+            "dy": 0.04419417382415958
+          },
+          {
+            "actor": 3,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 4,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 2,
+            "phase": "approach",
+            "speed": 3.5,
+            "real": 3.5,
+            "dx": 0,
+            "dy": 0.04419417382415958
+          },
+          {
+            "actor": 3,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 4,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 2,
+            "phase": "approach",
+            "speed": 3.5,
+            "real": 3.5,
+            "dx": 0,
+            "dy": 0.04419417382415958
+          },
+          {
+            "actor": 3,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 4,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 2,
+            "phase": "approach",
+            "speed": 3.5,
+            "real": 3.5,
+            "dx": 0,
+            "dy": 0.04419417382415958
+          },
+          {
+            "actor": 3,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 4,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 2,
+            "phase": "approach",
+            "speed": 3.5,
+            "real": 3.5,
+            "dx": 0,
+            "dy": 0.04419417382415958
+          },
+          {
+            "actor": 3,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 4,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 2,
+            "phase": "approach",
+            "speed": 3.5,
+            "real": 3.5,
+            "dx": 0,
+            "dy": 0.04419417382415958
+          },
+          {
+            "actor": 3,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 4,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 2,
+            "phase": "approach",
+            "speed": 3.5,
+            "real": 3.5,
+            "dx": 0,
+            "dy": 0.04419417382415958
+          },
+          {
+            "actor": 3,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 4,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 2,
+            "phase": "approach",
+            "speed": 3.5,
+            "real": 3.5,
+            "dx": 0,
+            "dy": 0.04419417382415958
+          },
+          {
+            "actor": 3,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 4,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 2,
+            "phase": "approach",
+            "speed": 3.5,
+            "real": 3.5,
+            "dx": 0,
+            "dy": 0.04419417382415958
+          },
+          {
+            "actor": 3,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 4,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 2,
+            "phase": "approach",
+            "speed": 3.5,
+            "real": 3.5,
+            "dx": 0,
+            "dy": 0.04419417382415958
+          },
+          {
+            "actor": 3,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 4,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 2,
+            "phase": "approach",
+            "speed": 3.5,
+            "real": 3.5,
+            "dx": 0,
+            "dy": 0.04419417382415958
+          },
+          {
+            "actor": 3,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 4,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 2,
+            "phase": "approach",
+            "speed": 3.5,
+            "real": 3.5,
+            "dx": 0,
+            "dy": 0.04419417382415958
+          },
+          {
+            "actor": 3,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 4,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 2,
+            "phase": "approach",
+            "speed": 3.5,
+            "real": 3.5,
+            "dx": 0,
+            "dy": 0.04419417382415958
+          },
+          {
+            "actor": 3,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 4,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 2,
+            "phase": "approach",
+            "speed": 3.5,
+            "real": 3.5,
+            "dx": 0,
+            "dy": 0.04419417382415958
+          },
+          {
+            "actor": 3,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 4,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 2,
+            "phase": "approach",
+            "speed": 3.5,
+            "real": 3.5,
+            "dx": 0,
+            "dy": 0.04419417382415958
+          },
+          {
+            "actor": 3,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 4,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 2,
+            "phase": "approach",
+            "speed": 3.5,
+            "real": 3.5,
+            "dx": 0,
+            "dy": 0.04419417382415958
+          },
+          {
+            "actor": 3,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 4,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 2,
+            "phase": "approach",
+            "speed": 3.5,
+            "real": 3.5,
+            "dx": 0,
+            "dy": 0.04419417382415958
+          },
+          {
+            "actor": 3,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 4,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 2,
+            "phase": "approach",
+            "speed": 3.5,
+            "real": 3.5,
+            "dx": 0,
+            "dy": 0.04419417382415958
+          },
+          {
+            "actor": 3,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 4,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 2,
+            "phase": "approach",
+            "speed": 3.5,
+            "real": 3.5,
+            "dx": 0,
+            "dy": 0.04419417382415958
+          },
+          {
+            "actor": 3,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 4,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 2,
+            "phase": "approach",
+            "speed": 3.5,
+            "real": 3.5,
+            "dx": 0,
+            "dy": 0.04419417382415958
+          },
+          {
+            "actor": 3,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 4,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 2,
+            "phase": "approach",
+            "speed": 3.5,
+            "real": 3.5,
+            "dx": 0,
+            "dy": 0.04419417382415958
+          },
+          {
+            "actor": 3,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 4,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 2,
+            "phase": "approach",
+            "speed": 3.5,
+            "real": 3.5,
+            "dx": 0,
+            "dy": 0.04419417382415958
+          },
+          {
+            "actor": 3,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 4,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 2,
+            "phase": "approach",
+            "speed": 3.5,
+            "real": 3.5,
+            "dx": 0,
+            "dy": 0.04419417382415958
+          },
+          {
+            "actor": 3,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 4,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 2,
+            "phase": "approach",
+            "speed": 3.5,
+            "real": 3.5,
+            "dx": 0,
+            "dy": 0.04419417382415958
+          },
+          {
+            "actor": 3,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 4,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 2,
+            "phase": "approach",
+            "speed": 3.5,
+            "real": 3.5,
+            "dx": 0,
+            "dy": 0.04419417382415958
+          },
+          {
+            "actor": 3,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 4,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 2,
+            "phase": "approach",
+            "speed": 3.5,
+            "real": 3.5,
+            "dx": 0,
+            "dy": 0.04419417382415958
+          },
+          {
+            "actor": 3,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 4,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 2,
+            "phase": "approach",
+            "speed": 3.5,
+            "real": 3.5,
+            "dx": 0,
+            "dy": 0.04419417382415958
+          },
+          {
+            "actor": 3,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 4,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 2,
+            "phase": "approach",
+            "speed": 3.5,
+            "real": 3.5,
+            "dx": 0,
+            "dy": 0.04419417382415958
+          },
+          {
+            "actor": 3,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 4,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 2,
+            "phase": "approach",
+            "speed": 3.5,
+            "real": 3.5,
+            "dx": 0,
+            "dy": 0.04419417382415958
+          },
+          {
+            "actor": 3,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 4,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 2,
+            "phase": "approach",
+            "speed": 3.5,
+            "real": 3.5,
+            "dx": 0,
+            "dy": 0.04419417382415958
+          },
+          {
+            "actor": 3,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 4,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 2,
+            "phase": "approach",
+            "speed": 3.5,
+            "real": 3.5,
+            "dx": 0,
+            "dy": 0.04419417382415958
+          },
+          {
+            "actor": 3,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 4,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 2,
+            "phase": "approach",
+            "speed": 3.5,
+            "real": 3.5,
+            "dx": 0,
+            "dy": 0.04419417382415958
+          },
+          {
+            "actor": 3,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 4,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 2,
+            "phase": "approach",
+            "speed": 3.5,
+            "real": 3.5,
+            "dx": 0,
+            "dy": 0.04419417382415958
+          },
+          {
+            "actor": 3,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 4,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 2,
+            "phase": "approach",
+            "speed": 3.5,
+            "real": 3.5,
+            "dx": 0,
+            "dy": 0.04419417382415958
+          },
+          {
+            "actor": 3,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 4,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 2,
+            "phase": "approach",
+            "speed": 3.5,
+            "real": 3.5,
+            "dx": 0,
+            "dy": 0.04419417382415958
+          },
+          {
+            "actor": 3,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 4,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 2,
+            "phase": "approach",
+            "speed": 3.5,
+            "real": 3.5,
+            "dx": 0,
+            "dy": 0.04419417382415958
+          },
+          {
+            "actor": 3,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 4,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 2,
+            "phase": "approach",
+            "speed": 3.5,
+            "real": 3.5,
+            "dx": 0,
+            "dy": 0.04419417382415958
+          },
+          {
+            "actor": 3,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 4,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 2,
+            "phase": "approach",
+            "speed": 3.5,
+            "real": 3.5,
+            "dx": 0,
+            "dy": 0.04419417382415958
+          },
+          {
+            "actor": 3,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 4,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 2,
+            "phase": "approach",
+            "speed": 3.5,
+            "real": 3.5,
+            "dx": 0,
+            "dy": 0.04419417382415958
+          },
+          {
+            "actor": 3,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 4,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 2,
+            "phase": "approach",
+            "speed": 3.5,
+            "real": 3.5,
+            "dx": 0,
+            "dy": 0.04419417382415958
+          },
+          {
+            "actor": 3,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 4,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 2,
+            "phase": "approach",
+            "speed": 3.5,
+            "real": 3.5,
+            "dx": 0,
+            "dy": 0.04419417382415958
+          },
+          {
+            "actor": 3,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 4,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 2,
+            "phase": "approach",
+            "speed": 3.5,
+            "real": 3.5,
+            "dx": 0,
+            "dy": 0.04419417382415958
+          },
+          {
+            "actor": 3,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 4,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 2,
+            "phase": "approach",
+            "speed": 3.5,
+            "real": 3.5,
+            "dx": 0,
+            "dy": 0.04419417382415958
+          },
+          {
+            "actor": 3,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 4,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.049999999999979394
+          },
+          {
+            "actor": 2,
+            "phase": "approach",
+            "speed": 3.5,
+            "real": 3.5,
+            "dx": 0,
+            "dy": 0.04419417382415958
+          },
+          {
+            "actor": 3,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 2,
+            "phase": "approach",
+            "speed": 3.5,
+            "real": 3.5,
+            "dx": 0,
+            "dy": 0.008660267891393403
+          },
+          {
+            "actor": 3,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 3,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 3,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 3,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 3,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 3,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 3,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 3,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 3,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 3,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 3,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 3,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 3,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 3,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 3,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 3,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 3,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 3,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 3,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 3,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 3,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 3,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 3,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 3,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 3,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 3,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 3,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 3,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 3,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 3,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 3,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.049999999999979394
+          },
+          {
+            "actor": 3,
+            "phase": "return",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.05000000000000071,
+            "dy": 0.05000000000000071
+          },
+          {
+            "actor": 4,
+            "phase": "return",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.05000000000000071,
+            "dy": 0.05000000000000071
+          },
+          {
+            "actor": 3,
+            "phase": "return",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.05000000000000071,
+            "dy": 0.05000000000000071
+          },
+          {
+            "actor": 4,
+            "phase": "return",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.05000000000000071,
+            "dy": 0.05000000000000071
+          },
+          {
+            "actor": 3,
+            "phase": "return",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.05000000000000071,
+            "dy": 0.05000000000000071
+          },
+          {
+            "actor": 4,
+            "phase": "return",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.05000000000000071,
+            "dy": 0.05000000000000071
+          },
+          {
+            "actor": 3,
+            "phase": "return",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.05000000000000071,
+            "dy": 0.05000000000000071
+          },
+          {
+            "actor": 4,
+            "phase": "return",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.05000000000000071,
+            "dy": 0.05000000000000071
+          },
+          {
+            "actor": 3,
+            "phase": "return",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.05000000000000071,
+            "dy": 0.05000000000000071
+          },
+          {
+            "actor": 4,
+            "phase": "return",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.05000000000000071,
+            "dy": 0.05000000000000071
+          },
+          {
+            "actor": 3,
+            "phase": "return",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.05000000000000071,
+            "dy": 0.05000000000000071
+          },
+          {
+            "actor": 4,
+            "phase": "return",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.05000000000000071,
+            "dy": 0.05000000000000071
+          },
+          {
+            "actor": 3,
+            "phase": "return",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.05000000000000071,
+            "dy": 0.05000000000000071
+          },
+          {
+            "actor": 4,
+            "phase": "return",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.05000000000000071,
+            "dy": 0.05000000000000071
+          },
+          {
+            "actor": 3,
+            "phase": "return",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.05000000000000071,
+            "dy": 0.05000000000000071
+          },
+          {
+            "actor": 4,
+            "phase": "return",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.05000000000000071,
+            "dy": 0.05000000000000071
+          },
+          {
+            "actor": 3,
+            "phase": "return",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.05000000000000071,
+            "dy": 0.05000000000000071
+          },
+          {
+            "actor": 4,
+            "phase": "return",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.05000000000000071,
+            "dy": 0.05000000000000071
+          },
+          {
+            "actor": 3,
+            "phase": "return",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.05000000000000071,
+            "dy": 0.05000000000000071
+          },
+          {
+            "actor": 4,
+            "phase": "return",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.05000000000000071,
+            "dy": 0.05000000000000071
+          },
+          {
+            "actor": 3,
+            "phase": "return",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.05000000000000071,
+            "dy": 0.05000000000000071
+          },
+          {
+            "actor": 4,
+            "phase": "return",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.05000000000000071,
+            "dy": 0.05000000000000071
+          },
+          {
+            "actor": 3,
+            "phase": "return",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.05000000000000071,
+            "dy": 0.05000000000000071
+          },
+          {
+            "actor": 4,
+            "phase": "return",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.05000000000000071,
+            "dy": 0.05000000000000071
+          },
+          {
+            "actor": 3,
+            "phase": "return",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.05000000000000071,
+            "dy": 0.05000000000000071
+          },
+          {
+            "actor": 4,
+            "phase": "return",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.05000000000000071,
+            "dy": 0.05000000000000071
+          },
+          {
+            "actor": 3,
+            "phase": "return",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.05000000000000071,
+            "dy": 0.05000000000000071
+          },
+          {
+            "actor": 4,
+            "phase": "return",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.05000000000000071,
+            "dy": 0.05000000000000071
+          },
+          {
+            "actor": 3,
+            "phase": "return",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.05000000000000071,
+            "dy": 0.05000000000000071
+          },
+          {
+            "actor": 4,
+            "phase": "return",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.05000000000000071,
+            "dy": 0.05000000000000071
+          },
+          {
+            "actor": 3,
+            "phase": "return",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.05000000000000071,
+            "dy": 0.05000000000000071
+          },
+          {
+            "actor": 4,
+            "phase": "return",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.05000000000000071,
+            "dy": 0.05000000000000071
+          },
+          {
+            "actor": 3,
+            "phase": "return",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.05000000000000071,
+            "dy": 0.05000000000000071
+          },
+          {
+            "actor": 4,
+            "phase": "return",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.05000000000000071,
+            "dy": 0.05000000000000071
+          },
+          {
+            "actor": 3,
+            "phase": "return",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.05000000000000071,
+            "dy": 0.05000000000000071
+          },
+          {
+            "actor": 4,
+            "phase": "return",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.05000000000000071,
+            "dy": 0.05000000000000071
+          },
+          {
+            "actor": 3,
+            "phase": "return",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.05000000000000071,
+            "dy": 0.05000000000000071
+          },
+          {
+            "actor": 4,
+            "phase": "return",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.05000000000000071,
+            "dy": 0.05000000000000071
+          },
+          {
+            "actor": 3,
+            "phase": "return",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.05000000000000071,
+            "dy": 0.05000000000000071
+          },
+          {
+            "actor": 4,
+            "phase": "return",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.05000000000000071,
+            "dy": 0.0499999999999865
+          },
+          {
+            "actor": 3,
+            "phase": "return",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.05000000000000071,
+            "dy": 0.05000000000000071
+          },
+          {
+            "actor": 4,
+            "phase": "return",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.0625,
+            "dy": 0
+          },
+          {
+            "actor": 3,
+            "phase": "return",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.05000000000000071,
+            "dy": 0.05000000000000071
+          },
+          {
+            "actor": 4,
+            "phase": "return",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.0625,
+            "dy": 0
+          },
+          {
+            "actor": 3,
+            "phase": "return",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.05000000000000071,
+            "dy": 0.05000000000000071
+          },
+          {
+            "actor": 4,
+            "phase": "return",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.0625,
+            "dy": 0
+          },
+          {
+            "actor": 3,
+            "phase": "return",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.05000000000000071,
+            "dy": 0.05000000000000071
+          },
+          {
+            "actor": 4,
+            "phase": "return",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.0625,
+            "dy": 0
+          },
+          {
+            "actor": 3,
+            "phase": "return",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.05000000000000071,
+            "dy": 0.05000000000000071
+          },
+          {
+            "actor": 4,
+            "phase": "return",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.0625,
+            "dy": 0
+          },
+          {
+            "actor": 3,
+            "phase": "return",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.05000000000000071,
+            "dy": 0.05000000000000071
+          },
+          {
+            "actor": 4,
+            "phase": "return",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.0625,
+            "dy": 0
+          },
+          {
+            "actor": 3,
+            "phase": "return",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.05000000000000071,
+            "dy": 0.05000000000000071
+          },
+          {
+            "actor": 4,
+            "phase": "return",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.0625,
+            "dy": 0
+          },
+          {
+            "actor": 3,
+            "phase": "return",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.05000000000000071,
+            "dy": 0.05000000000000071
+          },
+          {
+            "actor": 4,
+            "phase": "return",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.06249999999998579,
+            "dy": 0
+          },
+          {
+            "actor": 3,
+            "phase": "return",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.05000000000000071,
+            "dy": 0.05000000000000071
+          },
+          {
+            "actor": 3,
+            "phase": "return",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.049999999999979394,
+            "dy": 0.0625
+          },
+          {
+            "actor": 3,
+            "phase": "return",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 3,
+            "phase": "return",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 3,
+            "phase": "return",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 3,
+            "phase": "return",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 3,
+            "phase": "return",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 3,
+            "phase": "return",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 3,
+            "phase": "return",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 3,
+            "phase": "return",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 3,
+            "phase": "return",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 3,
+            "phase": "return",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 3,
+            "phase": "return",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 3,
+            "phase": "return",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 3,
+            "phase": "return",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 3,
+            "phase": "return",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 3,
+            "phase": "return",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 3,
+            "phase": "return",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 3,
+            "phase": "return",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 3,
+            "phase": "return",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 3,
+            "phase": "return",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 3,
+            "phase": "return",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 3,
+            "phase": "return",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 3,
+            "phase": "return",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 3,
+            "phase": "return",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 3,
+            "phase": "return",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.049999999999979394
+          }
+        ],
+        "error": null
+      },
+      "following": {
+        "speed": 3.5,
+        "count": 2
+      }
+    },
+    {
+      "party": [
+        2,
+        4
+      ],
+      "speed": 4.5,
+      "initial": {
+        "heroSpeed": 4.5,
+        "members": [
+          {
+            "actor": 4,
+            "speed": 4
+          }
+        ],
+        "captured": 4.5
+      },
+      "after": {
+        "speed": 4.5,
+        "camera": [
+          0,
+          0
+        ],
+        "shown": true,
+        "proxiesHidden": true,
+        "rows": [
+          {
+            "actor": 2,
+            "phase": "approach",
+            "speed": 4.5,
+            "real": 4.5,
+            "dx": 0,
+            "dy": 0.08838834764831915
+          },
+          {
+            "actor": 4,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.05000000000000071,
+            "dy": 0.05000000000000071
+          },
+          {
+            "actor": 2,
+            "phase": "approach",
+            "speed": 4.5,
+            "real": 4.5,
+            "dx": 0,
+            "dy": 0.08838834764831915
+          },
+          {
+            "actor": 4,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.05000000000000071,
+            "dy": 0.05000000000000071
+          },
+          {
+            "actor": 2,
+            "phase": "approach",
+            "speed": 4.5,
+            "real": 4.5,
+            "dx": 0,
+            "dy": 0.08838834764831915
+          },
+          {
+            "actor": 4,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.05000000000000071,
+            "dy": 0.05000000000000071
+          },
+          {
+            "actor": 2,
+            "phase": "approach",
+            "speed": 4.5,
+            "real": 4.5,
+            "dx": 0,
+            "dy": 0.08838834764831915
+          },
+          {
+            "actor": 4,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.05000000000000071,
+            "dy": 0.05000000000000071
+          },
+          {
+            "actor": 2,
+            "phase": "approach",
+            "speed": 4.5,
+            "real": 4.5,
+            "dx": 0,
+            "dy": 0.08838834764831915
+          },
+          {
+            "actor": 4,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.05000000000000071,
+            "dy": 0.05000000000000071
+          },
+          {
+            "actor": 2,
+            "phase": "approach",
+            "speed": 4.5,
+            "real": 4.5,
+            "dx": 0,
+            "dy": 0.08838834764831915
+          },
+          {
+            "actor": 4,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.05000000000000071,
+            "dy": 0.05000000000000071
+          },
+          {
+            "actor": 2,
+            "phase": "approach",
+            "speed": 4.5,
+            "real": 4.5,
+            "dx": 0,
+            "dy": 0.08838834764831915
+          },
+          {
+            "actor": 4,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.05000000000000071,
+            "dy": 0.05000000000000071
+          },
+          {
+            "actor": 2,
+            "phase": "approach",
+            "speed": 4.5,
+            "real": 4.5,
+            "dx": 0,
+            "dy": 0.08838834764831915
+          },
+          {
+            "actor": 4,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.05000000000000071,
+            "dy": 0.05000000000000071
+          },
+          {
+            "actor": 2,
+            "phase": "approach",
+            "speed": 4.5,
+            "real": 4.5,
+            "dx": 0,
+            "dy": 0.08838834764831915
+          },
+          {
+            "actor": 4,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.05000000000000071,
+            "dy": 0.05000000000000071
+          },
+          {
+            "actor": 2,
+            "phase": "approach",
+            "speed": 4.5,
+            "real": 4.5,
+            "dx": 0,
+            "dy": 0.08838834764831915
+          },
+          {
+            "actor": 4,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.05000000000000071,
+            "dy": 0.05000000000000071
+          },
+          {
+            "actor": 2,
+            "phase": "approach",
+            "speed": 4.5,
+            "real": 4.5,
+            "dx": 0,
+            "dy": 0.08838834764831915
+          },
+          {
+            "actor": 4,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.05000000000000071,
+            "dy": 0.05000000000000071
+          },
+          {
+            "actor": 2,
+            "phase": "approach",
+            "speed": 4.5,
+            "real": 4.5,
+            "dx": 0,
+            "dy": 0.08838834764831915
+          },
+          {
+            "actor": 4,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.05000000000000071,
+            "dy": 0.05000000000000071
+          },
+          {
+            "actor": 2,
+            "phase": "approach",
+            "speed": 4.5,
+            "real": 4.5,
+            "dx": 0,
+            "dy": 0.08838834764831915
+          },
+          {
+            "actor": 4,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.05000000000000071,
+            "dy": 0.05000000000000071
+          },
+          {
+            "actor": 2,
+            "phase": "approach",
+            "speed": 4.5,
+            "real": 4.5,
+            "dx": 0,
+            "dy": 0.08838834764831915
+          },
+          {
+            "actor": 4,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.05000000000000071,
+            "dy": 0.05000000000000071
+          },
+          {
+            "actor": 2,
+            "phase": "approach",
+            "speed": 4.5,
+            "real": 4.5,
+            "dx": 0,
+            "dy": 0.08838834764831915
+          },
+          {
+            "actor": 4,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.05000000000000071,
+            "dy": 0.05000000000000071
+          },
+          {
+            "actor": 2,
+            "phase": "approach",
+            "speed": 4.5,
+            "real": 4.5,
+            "dx": 0,
+            "dy": 0.08838834764831915
+          },
+          {
+            "actor": 4,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.05000000000000071,
+            "dy": 0.05000000000000071
+          },
+          {
+            "actor": 2,
+            "phase": "approach",
+            "speed": 4.5,
+            "real": 4.5,
+            "dx": 0,
+            "dy": 0.08838834764831915
+          },
+          {
+            "actor": 4,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.05000000000000071,
+            "dy": 0.05000000000000071
+          },
+          {
+            "actor": 2,
+            "phase": "approach",
+            "speed": 4.5,
+            "real": 4.5,
+            "dx": 0,
+            "dy": 0.08838834764831915
+          },
+          {
+            "actor": 4,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.05000000000000071,
+            "dy": 0.05000000000000071
+          },
+          {
+            "actor": 2,
+            "phase": "approach",
+            "speed": 4.5,
+            "real": 4.5,
+            "dx": 0,
+            "dy": 0.08838834764831915
+          },
+          {
+            "actor": 4,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.05000000000000071,
+            "dy": 0.05000000000000071
+          },
+          {
+            "actor": 2,
+            "phase": "approach",
+            "speed": 4.5,
+            "real": 4.5,
+            "dx": 0,
+            "dy": 0.08838834764831915
+          },
+          {
+            "actor": 4,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.05000000000000071,
+            "dy": 0.05000000000000071
+          },
+          {
+            "actor": 2,
+            "phase": "approach",
+            "speed": 4.5,
+            "real": 4.5,
+            "dx": 0,
+            "dy": 0.08838834764831915
+          },
+          {
+            "actor": 4,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.05000000000000071,
+            "dy": 0.05000000000000071
+          },
+          {
+            "actor": 2,
+            "phase": "approach",
+            "speed": 4.5,
+            "real": 4.5,
+            "dx": 0,
+            "dy": 0.08838834764831915
+          },
+          {
+            "actor": 4,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.05000000000000071,
+            "dy": 0.05000000000000071
+          },
+          {
+            "actor": 2,
+            "phase": "approach",
+            "speed": 4.5,
+            "real": 4.5,
+            "dx": 0,
+            "dy": 0.08838834764831915
+          },
+          {
+            "actor": 4,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.05000000000000071,
+            "dy": 0.05000000000000071
+          },
+          {
+            "actor": 2,
+            "phase": "approach",
+            "speed": 4.5,
+            "real": 4.5,
+            "dx": 0,
+            "dy": 0.08838834764831915
+          },
+          {
+            "actor": 4,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.05000000000000071,
+            "dy": 0.05000000000000071
+          },
+          {
+            "actor": 2,
+            "phase": "approach",
+            "speed": 4.5,
+            "real": 4.5,
+            "dx": 0,
+            "dy": 0.08838834764831915
+          },
+          {
+            "actor": 4,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.05000000000000071,
+            "dy": 0.05000000000000071
+          },
+          {
+            "actor": 2,
+            "phase": "approach",
+            "speed": 4.5,
+            "real": 4.5,
+            "dx": 0,
+            "dy": 0.08838834764831915
+          },
+          {
+            "actor": 4,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.05000000000000071,
+            "dy": 0.05000000000000071
+          },
+          {
+            "actor": 2,
+            "phase": "approach",
+            "speed": 4.5,
+            "real": 4.5,
+            "dx": 0,
+            "dy": 0.08838834764831915
+          },
+          {
+            "actor": 4,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.05000000000000071,
+            "dy": 0.05000000000000071
+          },
+          {
+            "actor": 2,
+            "phase": "approach",
+            "speed": 4.5,
+            "real": 4.5,
+            "dx": 0,
+            "dy": 0.08838834764831915
+          },
+          {
+            "actor": 4,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.05000000000000071,
+            "dy": 0.05000000000000071
+          },
+          {
+            "actor": 2,
+            "phase": "approach",
+            "speed": 4.5,
+            "real": 4.5,
+            "dx": 0,
+            "dy": 0.08838834764831915
+          },
+          {
+            "actor": 4,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.049999999999979394,
+            "dy": 0.0625
+          },
+          {
+            "actor": 2,
+            "phase": "approach",
+            "speed": 4.5,
+            "real": 4.5,
+            "dx": 0,
+            "dy": 0.08838834764831915
+          },
+          {
+            "actor": 4,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 2,
+            "phase": "approach",
+            "speed": 4.5,
+            "real": 4.5,
+            "dx": 0,
+            "dy": 0.08838834764831915
+          },
+          {
+            "actor": 4,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 2,
+            "phase": "approach",
+            "speed": 4.5,
+            "real": 4.5,
+            "dx": 0,
+            "dy": 0.08838834764831915
+          },
+          {
+            "actor": 4,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 2,
+            "phase": "approach",
+            "speed": 4.5,
+            "real": 4.5,
+            "dx": 0,
+            "dy": 0.08838834764831915
+          },
+          {
+            "actor": 4,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 2,
+            "phase": "approach",
+            "speed": 4.5,
+            "real": 4.5,
+            "dx": 0,
+            "dy": 0.08838834764831915
+          },
+          {
+            "actor": 4,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 2,
+            "phase": "approach",
+            "speed": 4.5,
+            "real": 4.5,
+            "dx": 0,
+            "dy": 0.08838834764831915
+          },
+          {
+            "actor": 4,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 2,
+            "phase": "approach",
+            "speed": 4.5,
+            "real": 4.5,
+            "dx": 0,
+            "dy": 0.08838834764831915
+          },
+          {
+            "actor": 4,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 2,
+            "phase": "approach",
+            "speed": 4.5,
+            "real": 4.5,
+            "dx": 0,
+            "dy": 0.08838834764831915
+          },
+          {
+            "actor": 4,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 2,
+            "phase": "approach",
+            "speed": 4.5,
+            "real": 4.5,
+            "dx": 0,
+            "dy": 0.08838834764831915
+          },
+          {
+            "actor": 4,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 2,
+            "phase": "approach",
+            "speed": 4.5,
+            "real": 4.5,
+            "dx": 0,
+            "dy": 0.05285444171555298
+          },
+          {
+            "actor": 4,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 4,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 4,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 4,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 4,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 4,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 4,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 4,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 4,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 4,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 4,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 4,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 4,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 4,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 4,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 4,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 4,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 4,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 4,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 4,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 4,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 4,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 4,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 4,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 4,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 4,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 4,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 4,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 4,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 4,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 4,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 4,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 4,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 4,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 4,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 4,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 4,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 4,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.0625
+          },
+          {
+            "actor": 4,
+            "phase": "approach",
+            "speed": 4,
+            "real": 4,
+            "dx": 0,
+            "dy": 0.049999999999979394
+          },
+          {
+            "actor": 4,
+            "phase": "return",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.05000000000000071,
+            "dy": 0.05000000000000071
+          },
+          {
+            "actor": 4,
+            "phase": "return",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.05000000000000071,
+            "dy": 0.05000000000000071
+          },
+          {
+            "actor": 4,
+            "phase": "return",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.05000000000000071,
+            "dy": 0.05000000000000071
+          },
+          {
+            "actor": 4,
+            "phase": "return",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.05000000000000071,
+            "dy": 0.05000000000000071
+          },
+          {
+            "actor": 4,
+            "phase": "return",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.05000000000000071,
+            "dy": 0.05000000000000071
+          },
+          {
+            "actor": 4,
+            "phase": "return",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.05000000000000071,
+            "dy": 0.05000000000000071
+          },
+          {
+            "actor": 4,
+            "phase": "return",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.05000000000000071,
+            "dy": 0.05000000000000071
+          },
+          {
+            "actor": 4,
+            "phase": "return",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.05000000000000071,
+            "dy": 0.05000000000000071
+          },
+          {
+            "actor": 4,
+            "phase": "return",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.05000000000000071,
+            "dy": 0.05000000000000071
+          },
+          {
+            "actor": 4,
+            "phase": "return",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.05000000000000071,
+            "dy": 0.05000000000000071
+          },
+          {
+            "actor": 4,
+            "phase": "return",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.05000000000000071,
+            "dy": 0.05000000000000071
+          },
+          {
+            "actor": 4,
+            "phase": "return",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.05000000000000071,
+            "dy": 0.05000000000000071
+          },
+          {
+            "actor": 4,
+            "phase": "return",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.05000000000000071,
+            "dy": 0.05000000000000071
+          },
+          {
+            "actor": 4,
+            "phase": "return",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.05000000000000071,
+            "dy": 0.05000000000000071
+          },
+          {
+            "actor": 4,
+            "phase": "return",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.05000000000000071,
+            "dy": 0.05000000000000071
+          },
+          {
+            "actor": 4,
+            "phase": "return",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.05000000000000071,
+            "dy": 0.05000000000000071
+          },
+          {
+            "actor": 4,
+            "phase": "return",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.05000000000000071,
+            "dy": 0.05000000000000071
+          },
+          {
+            "actor": 4,
+            "phase": "return",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.05000000000000071,
+            "dy": 0.05000000000000071
+          },
+          {
+            "actor": 4,
+            "phase": "return",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.05000000000000071,
+            "dy": 0.05000000000000071
+          },
+          {
+            "actor": 4,
+            "phase": "return",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.05000000000000071,
+            "dy": 0.0499999999999865
+          },
+          {
+            "actor": 4,
+            "phase": "return",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.0625,
+            "dy": 0
+          },
+          {
+            "actor": 4,
+            "phase": "return",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.0625,
+            "dy": 0
+          },
+          {
+            "actor": 4,
+            "phase": "return",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.0625,
+            "dy": 0
+          },
+          {
+            "actor": 4,
+            "phase": "return",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.0625,
+            "dy": 0
+          },
+          {
+            "actor": 4,
+            "phase": "return",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.0625,
+            "dy": 0
+          },
+          {
+            "actor": 4,
+            "phase": "return",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.0625,
+            "dy": 0
+          },
+          {
+            "actor": 4,
+            "phase": "return",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.0625,
+            "dy": 0
+          },
+          {
+            "actor": 4,
+            "phase": "return",
+            "speed": 4,
+            "real": 4,
+            "dx": 0.06249999999998579,
+            "dy": 0
+          }
+        ],
+        "error": null
+      },
+      "following": {
+        "speed": 4.5,
+        "count": 1
+      }
+    },
+    {
+      "party": [
+        2
+      ],
+      "speed": 4.5,
+      "initial": {
+        "heroSpeed": 4.5,
+        "members": [],
+        "captured": 4.5
+      },
+      "after": {
+        "speed": 4.5,
+        "camera": [
+          0,
+          0
+        ],
+        "shown": true,
+        "proxiesHidden": true,
+        "rows": [
+          {
+            "actor": 2,
+            "phase": "approach",
+            "speed": 4.5,
+            "real": 4.5,
+            "dx": 0,
+            "dy": 0.08838834764831915
+          },
+          {
+            "actor": 2,
+            "phase": "approach",
+            "speed": 4.5,
+            "real": 4.5,
+            "dx": 0,
+            "dy": 0.08838834764831915
+          },
+          {
+            "actor": 2,
+            "phase": "approach",
+            "speed": 4.5,
+            "real": 4.5,
+            "dx": 0,
+            "dy": 0.08838834764831915
+          },
+          {
+            "actor": 2,
+            "phase": "approach",
+            "speed": 4.5,
+            "real": 4.5,
+            "dx": 0,
+            "dy": 0.08838834764831915
+          },
+          {
+            "actor": 2,
+            "phase": "approach",
+            "speed": 4.5,
+            "real": 4.5,
+            "dx": 0,
+            "dy": 0.08838834764831915
+          },
+          {
+            "actor": 2,
+            "phase": "approach",
+            "speed": 4.5,
+            "real": 4.5,
+            "dx": 0,
+            "dy": 0.08838834764831915
+          },
+          {
+            "actor": 2,
+            "phase": "approach",
+            "speed": 4.5,
+            "real": 4.5,
+            "dx": 0,
+            "dy": 0.08838834764831915
+          },
+          {
+            "actor": 2,
+            "phase": "approach",
+            "speed": 4.5,
+            "real": 4.5,
+            "dx": 0,
+            "dy": 0.08838834764831915
+          },
+          {
+            "actor": 2,
+            "phase": "approach",
+            "speed": 4.5,
+            "real": 4.5,
+            "dx": 0,
+            "dy": 0.08838834764831915
+          },
+          {
+            "actor": 2,
+            "phase": "approach",
+            "speed": 4.5,
+            "real": 4.5,
+            "dx": 0,
+            "dy": 0.08838834764831915
+          },
+          {
+            "actor": 2,
+            "phase": "approach",
+            "speed": 4.5,
+            "real": 4.5,
+            "dx": 0,
+            "dy": 0.08838834764831915
+          },
+          {
+            "actor": 2,
+            "phase": "approach",
+            "speed": 4.5,
+            "real": 4.5,
+            "dx": 0,
+            "dy": 0.08838834764831915
+          },
+          {
+            "actor": 2,
+            "phase": "approach",
+            "speed": 4.5,
+            "real": 4.5,
+            "dx": 0,
+            "dy": 0.08838834764831915
+          },
+          {
+            "actor": 2,
+            "phase": "approach",
+            "speed": 4.5,
+            "real": 4.5,
+            "dx": 0,
+            "dy": 0.08838834764831915
+          },
+          {
+            "actor": 2,
+            "phase": "approach",
+            "speed": 4.5,
+            "real": 4.5,
+            "dx": 0,
+            "dy": 0.08838834764831915
+          },
+          {
+            "actor": 2,
+            "phase": "approach",
+            "speed": 4.5,
+            "real": 4.5,
+            "dx": 0,
+            "dy": 0.08838834764831915
+          },
+          {
+            "actor": 2,
+            "phase": "approach",
+            "speed": 4.5,
+            "real": 4.5,
+            "dx": 0,
+            "dy": 0.08838834764831915
+          },
+          {
+            "actor": 2,
+            "phase": "approach",
+            "speed": 4.5,
+            "real": 4.5,
+            "dx": 0,
+            "dy": 0.08838834764831915
+          },
+          {
+            "actor": 2,
+            "phase": "approach",
+            "speed": 4.5,
+            "real": 4.5,
+            "dx": 0,
+            "dy": 0.08838834764831915
+          },
+          {
+            "actor": 2,
+            "phase": "approach",
+            "speed": 4.5,
+            "real": 4.5,
+            "dx": 0,
+            "dy": 0.08838834764831915
+          },
+          {
+            "actor": 2,
+            "phase": "approach",
+            "speed": 4.5,
+            "real": 4.5,
+            "dx": 0,
+            "dy": 0.08838834764831915
+          },
+          {
+            "actor": 2,
+            "phase": "approach",
+            "speed": 4.5,
+            "real": 4.5,
+            "dx": 0,
+            "dy": 0.08838834764831915
+          },
+          {
+            "actor": 2,
+            "phase": "approach",
+            "speed": 4.5,
+            "real": 4.5,
+            "dx": 0,
+            "dy": 0.08838834764831915
+          },
+          {
+            "actor": 2,
+            "phase": "approach",
+            "speed": 4.5,
+            "real": 4.5,
+            "dx": 0,
+            "dy": 0.08838834764831915
+          },
+          {
+            "actor": 2,
+            "phase": "approach",
+            "speed": 4.5,
+            "real": 4.5,
+            "dx": 0,
+            "dy": 0.08838834764831915
+          },
+          {
+            "actor": 2,
+            "phase": "approach",
+            "speed": 4.5,
+            "real": 4.5,
+            "dx": 0,
+            "dy": 0.08838834764831915
+          },
+          {
+            "actor": 2,
+            "phase": "approach",
+            "speed": 4.5,
+            "real": 4.5,
+            "dx": 0,
+            "dy": 0.08838834764831915
+          },
+          {
+            "actor": 2,
+            "phase": "approach",
+            "speed": 4.5,
+            "real": 4.5,
+            "dx": 0,
+            "dy": 0.08838834764831915
+          },
+          {
+            "actor": 2,
+            "phase": "approach",
+            "speed": 4.5,
+            "real": 4.5,
+            "dx": 0,
+            "dy": 0.08838834764831915
+          },
+          {
+            "actor": 2,
+            "phase": "approach",
+            "speed": 4.5,
+            "real": 4.5,
+            "dx": 0,
+            "dy": 0.08838834764831915
+          },
+          {
+            "actor": 2,
+            "phase": "approach",
+            "speed": 4.5,
+            "real": 4.5,
+            "dx": 0,
+            "dy": 0.08838834764831915
+          },
+          {
+            "actor": 2,
+            "phase": "approach",
+            "speed": 4.5,
+            "real": 4.5,
+            "dx": 0,
+            "dy": 0.08838834764831915
+          },
+          {
+            "actor": 2,
+            "phase": "approach",
+            "speed": 4.5,
+            "real": 4.5,
+            "dx": 0,
+            "dy": 0.08838834764831915
+          },
+          {
+            "actor": 2,
+            "phase": "approach",
+            "speed": 4.5,
+            "real": 4.5,
+            "dx": 0,
+            "dy": 0.08838834764831915
+          },
+          {
+            "actor": 2,
+            "phase": "approach",
+            "speed": 4.5,
+            "real": 4.5,
+            "dx": 0,
+            "dy": 0.08838834764831915
+          },
+          {
+            "actor": 2,
+            "phase": "approach",
+            "speed": 4.5,
+            "real": 4.5,
+            "dx": 0,
+            "dy": 0.08838834764831915
+          },
+          {
+            "actor": 2,
+            "phase": "approach",
+            "speed": 4.5,
+            "real": 4.5,
+            "dx": 0,
+            "dy": 0.08838834764831915
+          },
+          {
+            "actor": 2,
+            "phase": "approach",
+            "speed": 4.5,
+            "real": 4.5,
+            "dx": 0,
+            "dy": 0.08838834764831915
+          },
+          {
+            "actor": 2,
+            "phase": "approach",
+            "speed": 4.5,
+            "real": 4.5,
+            "dx": 0,
+            "dy": 0.05285444171555298
+          }
+        ],
+        "error": null
+      },
+      "following": {
+        "speed": 4.5,
+        "count": 0
+      }
+    }
+  ],
+  "unchangedOtherEncounter": {
+    "before": 4.5,
+    "during": [
+      3,
+      3,
+      3
+    ],
+    "after": 4.5
+  }
+}

@@ -1,0 +1,7634 @@
+{
+  "forcedVictory": false,
+  "initialSound": {
+    "pcOutputMuted": true,
+    "speakerGain": 0,
+    "blockedSpeakerConnections": 1,
+    "context": "running",
+    "track": "live",
+    "rms": 0.2059314333171216,
+    "bgm": "00_New_Dungeon4"
+  },
+  "seconds": 36.127000000094995,
+  "messages": [
+    {
+      "text": "ぐるるるる…",
+      "frame": 186,
+      "map": 60,
+      "battle": false,
+      "time": 6187.999999965541
+    },
+    {
+      "text": "我は魔王城の番犬",
+      "frame": 284,
+      "map": 60,
+      "battle": false,
+      "time": 8229.000000050291
+    },
+    {
+      "text": "「死の猛獣」なり…",
+      "frame": 284,
+      "map": 60,
+      "battle": false,
+      "time": 8229.000000050291
+    },
+    {
+      "text": "侵入者どもを",
+      "frame": 406,
+      "map": 60,
+      "battle": false,
+      "time": 10371.00000004284
+    },
+    {
+      "text": "生かしておくわけには",
+      "frame": 406,
+      "map": 60,
+      "battle": false,
+      "time": 10371.00000004284
+    },
+    {
+      "text": "いかぬのじゃ！！",
+      "frame": 406,
+      "map": 60,
+      "battle": false,
+      "time": 10371.00000004284
+    },
+    {
+      "text": "ぬおッ！？",
+      "frame": 642,
+      "map": 60,
+      "battle": true,
+      "time": 16288.999999989755
+    },
+    {
+      "text": "なぜこちら側に！？",
+      "frame": 740,
+      "map": 60,
+      "battle": true,
+      "time": 18342.99999999348
+    },
+    {
+      "text": "間違えたなり！！",
+      "frame": 740,
+      "map": 60,
+      "battle": true,
+      "time": 18342.99999999348
+    },
+    {
+      "text": "でも…こっち側も",
+      "frame": 853,
+      "map": 60,
+      "battle": true,
+      "time": 20474.000000045635
+    },
+    {
+      "text": "なんだか悪くないのじゃ",
+      "frame": 853,
+      "map": 60,
+      "battle": true,
+      "time": 20474.000000045635
+    },
+    {
+      "text": "ヘッヘッ…",
+      "frame": 968,
+      "map": 60,
+      "battle": true,
+      "time": 22630.000000004657
+    },
+    {
+      "text": "うむ…仕方ない",
+      "frame": 1207,
+      "map": 60,
+      "battle": false,
+      "time": 29087.999999988824
+    },
+    {
+      "text": "通行を許可しようぞ",
+      "frame": 1207,
+      "map": 60,
+      "battle": false,
+      "time": 29087.999999988824
+    },
+    {
+      "text": "我々…なんだか",
+      "frame": 1309,
+      "map": 60,
+      "battle": false,
+      "time": 31324.00000002235
+    },
+    {
+      "text": "友達になれた気がするのじゃ",
+      "frame": 1309,
+      "map": 60,
+      "battle": false,
+      "time": 31324.00000002235
+    },
+    {
+      "text": "ヘッヘッ…",
+      "frame": 1420,
+      "map": 60,
+      "battle": false,
+      "time": 33491.999999969266
+    }
+  ],
+  "trace": [
+    {
+      "time": 0.1650000000372529,
+      "scene": "Scene_Map",
+      "text": [],
+      "brightness": 255,
+      "camera": [
+        0,
+        0
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": null,
+      "popup": null
+    },
+    {
+      "time": 0.17100000008940697,
+      "scene": "Scene_Map",
+      "text": [],
+      "brightness": 255,
+      "camera": [
+        0,
+        0
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": null,
+      "popup": null
+    },
+    {
+      "time": 0.1720000000204891,
+      "scene": "Scene_Map",
+      "text": [],
+      "brightness": 255,
+      "camera": [
+        0,
+        0
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": null,
+      "popup": null
+    },
+    {
+      "time": 0.33400000003166497,
+      "scene": "Scene_Map",
+      "text": [],
+      "brightness": 255,
+      "camera": [
+        0,
+        0
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": null,
+      "popup": null
+    },
+    {
+      "time": 0.5530000000726432,
+      "scene": "Scene_Map",
+      "text": [],
+      "brightness": 255,
+      "camera": [
+        0,
+        0
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": null,
+      "popup": null
+    },
+    {
+      "time": 0.5570000000298023,
+      "scene": "Scene_Map",
+      "text": [],
+      "brightness": 255,
+      "camera": [
+        0,
+        0
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": null,
+      "popup": null
+    },
+    {
+      "time": 0.671000000089407,
+      "scene": "Scene_Map",
+      "text": [],
+      "brightness": 255,
+      "camera": [
+        0,
+        0
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": null,
+      "popup": null
+    },
+    {
+      "time": 0.7770000000018626,
+      "scene": "Scene_Map",
+      "text": [],
+      "brightness": 255,
+      "camera": [
+        0,
+        0
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": null,
+      "popup": null
+    },
+    {
+      "time": 0.7810000000754371,
+      "scene": "Scene_Map",
+      "text": [],
+      "brightness": 255,
+      "camera": [
+        0,
+        0
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": null,
+      "popup": null
+    },
+    {
+      "time": 0.7830000000540167,
+      "scene": "Scene_Map",
+      "text": [],
+      "brightness": 255,
+      "camera": [
+        0,
+        0
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": null,
+      "popup": null
+    },
+    {
+      "time": 0.8699999999953434,
+      "scene": "Scene_Map",
+      "text": [],
+      "brightness": 255,
+      "camera": [
+        0,
+        0
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": null,
+      "popup": null
+    },
+    {
+      "time": 1.0850000000791624,
+      "scene": "Scene_Map",
+      "text": [],
+      "brightness": 255,
+      "camera": [
+        0,
+        0
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": null,
+      "popup": null
+    },
+    {
+      "time": 1.090000000083819,
+      "scene": "Scene_Map",
+      "text": [],
+      "brightness": 255,
+      "camera": [
+        0,
+        0
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": null,
+      "popup": null
+    },
+    {
+      "time": 1.1920000000391155,
+      "scene": "Scene_Map",
+      "text": [],
+      "brightness": 255,
+      "camera": [
+        0,
+        0
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": null,
+      "popup": null
+    },
+    {
+      "time": 1.1980000000912696,
+      "scene": "Scene_Map",
+      "text": [],
+      "brightness": 255,
+      "camera": [
+        0,
+        0
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": null,
+      "popup": null
+    },
+    {
+      "time": 1.3040000000037253,
+      "scene": "Scene_Map",
+      "text": [],
+      "brightness": 255,
+      "camera": [
+        -0.040798611111111105,
+        -0.2828703703703703
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": null,
+      "popup": null
+    },
+    {
+      "time": 1.4390000000130385,
+      "scene": "Scene_Map",
+      "text": [],
+      "brightness": 255,
+      "camera": [
+        -0.1171875,
+        -0.8125
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": null,
+      "popup": null
+    },
+    {
+      "time": 1.5420000000158325,
+      "scene": "Scene_Map",
+      "text": [],
+      "brightness": 255,
+      "camera": [
+        -0.18663194444444445,
+        -1.2939814814814816
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": null,
+      "popup": null
+    },
+    {
+      "time": 1.547000000020489,
+      "scene": "Scene_Map",
+      "text": [],
+      "brightness": 255,
+      "camera": [
+        -0.18663194444444445,
+        -1.2939814814814816
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": null,
+      "popup": null
+    },
+    {
+      "time": 1.6660000000847504,
+      "scene": "Scene_Map",
+      "text": [],
+      "brightness": 255,
+      "camera": [
+        -0.24913194444444445,
+        -1.727314814814815
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": null,
+      "popup": null
+    },
+    {
+      "time": 1.8020000000251457,
+      "scene": "Scene_Map",
+      "text": [],
+      "brightness": 255,
+      "camera": [
+        -0.3046875,
+        -2.1125000000000003
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": null,
+      "popup": null
+    },
+    {
+      "time": 1.9020000000018626,
+      "scene": "Scene_Map",
+      "text": [],
+      "brightness": 255,
+      "camera": [
+        -0.3532986111111111,
+        -2.449537037037037
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": null,
+      "popup": null
+    },
+    {
+      "time": 2.0040000000735745,
+      "scene": "Scene_Map",
+      "text": [],
+      "brightness": 255,
+      "camera": [
+        -0.3949652777777778,
+        -2.738425925925926
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": null,
+      "popup": null
+    },
+    {
+      "time": 2.102000000071712,
+      "scene": "Scene_Map",
+      "text": [],
+      "brightness": 255,
+      "camera": [
+        -0.4296875,
+        -2.979166666666667
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": null,
+      "popup": null
+    },
+    {
+      "time": 2.2020000000484288,
+      "scene": "Scene_Map",
+      "text": [],
+      "brightness": 255,
+      "camera": [
+        -0.45746527777777773,
+        -3.171759259259259
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": null,
+      "popup": null
+    },
+    {
+      "time": 2.300000000046566,
+      "scene": "Scene_Map",
+      "text": [],
+      "brightness": 255,
+      "camera": [
+        -0.47829861111111116,
+        -3.316203703703704
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": null,
+      "popup": null
+    },
+    {
+      "time": 2.4320000000298023,
+      "scene": "Scene_Map",
+      "text": [],
+      "brightness": 255,
+      "camera": [
+        -0.4921875,
+        -3.4124999999999996
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": null,
+      "popup": null
+    },
+    {
+      "time": 2.434000000008382,
+      "scene": "Scene_Map",
+      "text": [],
+      "brightness": 255,
+      "camera": [
+        -0.4921875,
+        -3.4124999999999996
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": null,
+      "popup": null
+    },
+    {
+      "time": 2.518000000040047,
+      "scene": "Scene_Map",
+      "text": [],
+      "brightness": 255,
+      "camera": [
+        -0.4991319444444444,
+        -3.460648148148148
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": null,
+      "popup": null
+    },
+    {
+      "time": 2.6199999999953434,
+      "scene": "Scene_Map",
+      "text": [],
+      "brightness": 255,
+      "camera": [
+        -0.5,
+        -3.466666666666667
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": null,
+      "popup": null
+    },
+    {
+      "time": 2.774000000092201,
+      "scene": "Scene_Map",
+      "text": [
+        "ぐるるるる…"
+      ],
+      "brightness": 255,
+      "camera": [
+        -0.5,
+        -3.466666666666667
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": null,
+      "popup": {
+        "x": 159,
+        "y": 143.93940579753223,
+        "w": 210,
+        "h": 113,
+        "tone": 0
+      }
+    },
+    {
+      "time": 2.9570000000530854,
+      "scene": "Scene_Map",
+      "text": [
+        "ぐるるるる…"
+      ],
+      "brightness": 255,
+      "camera": [
+        -0.5,
+        -3.466666666666667
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": null,
+      "popup": {
+        "x": 159,
+        "y": 144.2212533337297,
+        "w": 210,
+        "h": 113,
+        "tone": 0
+      }
+    },
+    {
+      "time": 2.962000000057742,
+      "scene": "Scene_Map",
+      "text": [
+        "ぐるるるる…"
+      ],
+      "brightness": 255,
+      "camera": [
+        -0.5,
+        -3.466666666666667
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": null,
+      "popup": {
+        "x": 159,
+        "y": 144.2212533337297,
+        "w": 210,
+        "h": 113,
+        "tone": 0
+      }
+    },
+    {
+      "time": 3.084000000031665,
+      "scene": "Scene_Map",
+      "text": [
+        "ぐるるるる…"
+      ],
+      "brightness": 255,
+      "camera": [
+        -0.5,
+        -3.466666666666667
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": null,
+      "popup": {
+        "x": 159,
+        "y": 144.2212533337297,
+        "w": 210,
+        "h": 113,
+        "tone": 0
+      }
+    },
+    {
+      "time": 3.184000000008382,
+      "scene": "Scene_Map",
+      "text": [
+        "ぐるるるる…"
+      ],
+      "brightness": 255,
+      "camera": [
+        -0.5,
+        -3.466666666666667
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": null,
+      "popup": {
+        "x": 159,
+        "y": 144.2212533337297,
+        "w": 210,
+        "h": 113,
+        "tone": 0
+      }
+    },
+    {
+      "time": 3.2889999999897555,
+      "scene": "Scene_Map",
+      "text": [
+        "ぐるるるる…"
+      ],
+      "brightness": 255,
+      "camera": [
+        -0.5,
+        -3.466666666666667
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": null,
+      "popup": {
+        "x": 159,
+        "y": 144.2212533337297,
+        "w": 210,
+        "h": 113,
+        "tone": 0
+      }
+    },
+    {
+      "time": 3.2910000000847504,
+      "scene": "Scene_Map",
+      "text": [
+        "ぐるるるる…"
+      ],
+      "brightness": 255,
+      "camera": [
+        -0.5,
+        -3.466666666666667
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": null,
+      "popup": {
+        "x": 159,
+        "y": 144.2212533337297,
+        "w": 210,
+        "h": 113,
+        "tone": 0
+      }
+    },
+    {
+      "time": 3.4020000000018626,
+      "scene": "Scene_Map",
+      "text": [
+        "ぐるるるる…"
+      ],
+      "brightness": 255,
+      "camera": [
+        -0.5,
+        -3.466666666666667
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": null,
+      "popup": {
+        "x": 159,
+        "y": 144.2212533337297,
+        "w": 210,
+        "h": 113,
+        "tone": 0
+      }
+    },
+    {
+      "time": 3.5010000000474975,
+      "scene": "Scene_Map",
+      "text": [
+        "ぐるるるる…"
+      ],
+      "brightness": 255,
+      "camera": [
+        -0.5,
+        -3.466666666666667
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": null,
+      "popup": {
+        "x": 159,
+        "y": 144.2212533337297,
+        "w": 210,
+        "h": 113,
+        "tone": 0
+      }
+    },
+    {
+      "time": 3.612000000081025,
+      "scene": "Scene_Map",
+      "text": [
+        "ぐるるるる…"
+      ],
+      "brightness": 255,
+      "camera": [
+        -0.5,
+        -3.466666666666667
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": null,
+      "popup": {
+        "x": 159,
+        "y": 144.2212533337297,
+        "w": 210,
+        "h": 113,
+        "tone": 0
+      }
+    },
+    {
+      "time": 3.6140000000596046,
+      "scene": "Scene_Map",
+      "text": [
+        "ぐるるるる…"
+      ],
+      "brightness": 255,
+      "camera": [
+        -0.5,
+        -3.466666666666667
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": null,
+      "popup": {
+        "x": 159,
+        "y": 144.2212533337297,
+        "w": 210,
+        "h": 113,
+        "tone": 0
+      }
+    },
+    {
+      "time": 3.7170000000623986,
+      "scene": "Scene_Map",
+      "text": [
+        "ぐるるるる…"
+      ],
+      "brightness": 255,
+      "camera": [
+        -0.5,
+        -3.466666666666667
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": null,
+      "popup": {
+        "x": 159,
+        "y": 144.2212533337297,
+        "w": 210,
+        "h": 113,
+        "tone": 0
+      }
+    },
+    {
+      "time": 3.837999999988824,
+      "scene": "Scene_Map",
+      "text": [
+        "ぐるるるる…"
+      ],
+      "brightness": 255,
+      "camera": [
+        -0.5,
+        -3.466666666666667
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": null,
+      "popup": {
+        "x": 159,
+        "y": 144.2212533337297,
+        "w": 210,
+        "h": 113,
+        "tone": 0
+      }
+    },
+    {
+      "time": 3.8429999999934807,
+      "scene": "Scene_Map",
+      "text": [
+        "ぐるるるる…"
+      ],
+      "brightness": 255,
+      "camera": [
+        -0.5,
+        -3.466666666666667
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": null,
+      "popup": {
+        "x": 159,
+        "y": 144.2212533337297,
+        "w": 210,
+        "h": 113,
+        "tone": 0
+      }
+    },
+    {
+      "time": 3.8450000000884756,
+      "scene": "Scene_Map",
+      "text": [
+        "ぐるるるる…"
+      ],
+      "brightness": 255,
+      "camera": [
+        -0.5,
+        -3.466666666666667
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": null,
+      "popup": {
+        "x": 159,
+        "y": 144.2212533337297,
+        "w": 210,
+        "h": 113,
+        "tone": 0
+      }
+    },
+    {
+      "time": 3.9949999999953434,
+      "scene": "Scene_Map",
+      "text": [
+        "ぐるるるる…"
+      ],
+      "brightness": 255,
+      "camera": [
+        -0.5,
+        -3.466666666666667
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": null,
+      "popup": {
+        "x": 159,
+        "y": 144.2212533337297,
+        "w": 210,
+        "h": 113,
+        "tone": 0
+      }
+    },
+    {
+      "time": 4.12300000002142,
+      "scene": "Scene_Map",
+      "text": [
+        "ぐるるるる…"
+      ],
+      "brightness": 255,
+      "camera": [
+        -0.5,
+        -3.466666666666667
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": null,
+      "popup": {
+        "x": 159,
+        "y": 144.2212533337297,
+        "w": 210,
+        "h": 113,
+        "tone": 0
+      }
+    },
+    {
+      "time": 4.1260000000474975,
+      "scene": "Scene_Map",
+      "text": [
+        "ぐるるるる…"
+      ],
+      "brightness": 255,
+      "camera": [
+        -0.5,
+        -3.466666666666667
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": null,
+      "popup": {
+        "x": 159,
+        "y": 144.2212533337297,
+        "w": 210,
+        "h": 113,
+        "tone": 0
+      }
+    },
+    {
+      "time": 4.237000000081025,
+      "scene": "Scene_Map",
+      "text": [
+        "ぐるるるる…"
+      ],
+      "brightness": 255,
+      "camera": [
+        -0.5,
+        -3.466666666666667
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": null,
+      "popup": {
+        "x": 159,
+        "y": 144.2212533337297,
+        "w": 210,
+        "h": 113,
+        "tone": 0
+      }
+    },
+    {
+      "time": 4.363000000012107,
+      "scene": "Scene_Map",
+      "text": [
+        "ぐるるるる…"
+      ],
+      "brightness": 255,
+      "camera": [
+        -0.5,
+        -3.466666666666667
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": null,
+      "popup": {
+        "x": 159,
+        "y": 144.2212533337297,
+        "w": 210,
+        "h": 113,
+        "tone": 0
+      }
+    },
+    {
+      "time": 4.364000000059605,
+      "scene": "Scene_Map",
+      "text": [
+        "ぐるるるる…"
+      ],
+      "brightness": 255,
+      "camera": [
+        -0.5,
+        -3.466666666666667
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": null,
+      "popup": {
+        "x": 159,
+        "y": 144.2212533337297,
+        "w": 210,
+        "h": 113,
+        "tone": 0
+      }
+    },
+    {
+      "time": 4.5,
+      "scene": "Scene_Map",
+      "text": [
+        "ぐるるるる…"
+      ],
+      "brightness": 255,
+      "camera": [
+        -0.5,
+        -3.466666666666667
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": null,
+      "popup": {
+        "x": 159,
+        "y": 144.2212533337297,
+        "w": 210,
+        "h": 113,
+        "tone": 0
+      }
+    },
+    {
+      "time": 4.5010000000474975,
+      "scene": "Scene_Map",
+      "text": [
+        "ぐるるるる…"
+      ],
+      "brightness": 255,
+      "camera": [
+        -0.5,
+        -3.466666666666667
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": null,
+      "popup": {
+        "x": 159,
+        "y": 144.2212533337297,
+        "w": 210,
+        "h": 113,
+        "tone": 0
+      }
+    },
+    {
+      "time": 4.621000000042841,
+      "scene": "Scene_Map",
+      "text": [
+        "ぐるるるる…"
+      ],
+      "brightness": 255,
+      "camera": [
+        -0.5,
+        -3.466666666666667
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": null,
+      "popup": {
+        "x": 159,
+        "y": 144.2212533337297,
+        "w": 210,
+        "h": 113,
+        "tone": 0
+      }
+    },
+    {
+      "time": 4.743000000016764,
+      "scene": "Scene_Map",
+      "text": [
+        "ぐるるるる…"
+      ],
+      "brightness": 255,
+      "camera": [
+        -0.5,
+        -3.466666666666667
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": null,
+      "popup": {
+        "x": 159,
+        "y": 144.2212533337297,
+        "w": 210,
+        "h": 113,
+        "tone": 0
+      }
+    },
+    {
+      "time": 4.752000000094995,
+      "scene": "Scene_Map",
+      "text": [
+        "ぐるるるる…"
+      ],
+      "brightness": 255,
+      "camera": [
+        -0.5,
+        -3.466666666666667
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": null,
+      "popup": {
+        "x": 159,
+        "y": 144.2212533337297,
+        "w": 210,
+        "h": 113,
+        "tone": 0
+      }
+    },
+    {
+      "time": 4.885000000009313,
+      "scene": "Scene_Map",
+      "text": [
+        "我は魔王城の番犬",
+        "「死の猛獣」なり…"
+      ],
+      "brightness": 255,
+      "camera": [
+        -0.5,
+        -3.466666666666667
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": null,
+      "popup": {
+        "x": 104,
+        "y": 80.83737616967306,
+        "w": 320,
+        "h": 146,
+        "tone": 0
+      }
+    },
+    {
+      "time": 4.975000000093132,
+      "scene": "Scene_Map",
+      "text": [
+        "我は魔王城の番犬",
+        "「死の猛獣」なり…"
+      ],
+      "brightness": 255,
+      "camera": [
+        -0.5,
+        -3.466666666666667
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": null,
+      "popup": {
+        "x": 104,
+        "y": 80.83737616967306,
+        "w": 320,
+        "h": 146,
+        "tone": 0
+      }
+    },
+    {
+      "time": 5.1730000000679865,
+      "scene": "Scene_Map",
+      "text": [
+        "我は魔王城の番犬",
+        "「死の猛獣」なり…"
+      ],
+      "brightness": 255,
+      "camera": [
+        -0.5,
+        -3.466666666666667
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": null,
+      "popup": {
+        "x": 104,
+        "y": 80.83737616967306,
+        "w": 320,
+        "h": 146,
+        "tone": 0
+      }
+    },
+    {
+      "time": 5.176000000094064,
+      "scene": "Scene_Map",
+      "text": [
+        "我は魔王城の番犬",
+        "「死の猛獣」なり…"
+      ],
+      "brightness": 255,
+      "camera": [
+        -0.5,
+        -3.466666666666667
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": null,
+      "popup": {
+        "x": 104,
+        "y": 80.83737616967306,
+        "w": 320,
+        "h": 146,
+        "tone": 0
+      }
+    },
+    {
+      "time": 5.271999999997206,
+      "scene": "Scene_Map",
+      "text": [
+        "我は魔王城の番犬",
+        "「死の猛獣」なり…"
+      ],
+      "brightness": 255,
+      "camera": [
+        -0.5,
+        -3.466666666666667
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": null,
+      "popup": {
+        "x": 104,
+        "y": 80.83737616967306,
+        "w": 320,
+        "h": 146,
+        "tone": 0
+      }
+    },
+    {
+      "time": 5.470000000088476,
+      "scene": "Scene_Map",
+      "text": [
+        "我は魔王城の番犬",
+        "「死の猛獣」なり…"
+      ],
+      "brightness": 255,
+      "camera": [
+        -0.5,
+        -3.466666666666667
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": null,
+      "popup": {
+        "x": 104,
+        "y": 80.83737616967306,
+        "w": 320,
+        "h": 146,
+        "tone": 0
+      }
+    },
+    {
+      "time": 5.575000000069849,
+      "scene": "Scene_Map",
+      "text": [
+        "我は魔王城の番犬",
+        "「死の猛獣」なり…"
+      ],
+      "brightness": 255,
+      "camera": [
+        -0.5,
+        -3.466666666666667
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": null,
+      "popup": {
+        "x": 104,
+        "y": 80.83737616967306,
+        "w": 320,
+        "h": 146,
+        "tone": 0
+      }
+    },
+    {
+      "time": 5.783000000054017,
+      "scene": "Scene_Map",
+      "text": [
+        "我は魔王城の番犬",
+        "「死の猛獣」なり…"
+      ],
+      "brightness": 255,
+      "camera": [
+        -0.5,
+        -3.466666666666667
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": null,
+      "popup": {
+        "x": 104,
+        "y": 80.83737616967306,
+        "w": 320,
+        "h": 146,
+        "tone": 0
+      }
+    },
+    {
+      "time": 5.785000000032596,
+      "scene": "Scene_Map",
+      "text": [
+        "我は魔王城の番犬",
+        "「死の猛獣」なり…"
+      ],
+      "brightness": 255,
+      "camera": [
+        -0.5,
+        -3.466666666666667
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": null,
+      "popup": {
+        "x": 104,
+        "y": 80.83737616967306,
+        "w": 320,
+        "h": 146,
+        "tone": 0
+      }
+    },
+    {
+      "time": 6.014000000082888,
+      "scene": "Scene_Map",
+      "text": [
+        "我は魔王城の番犬",
+        "「死の猛獣」なり…"
+      ],
+      "brightness": 255,
+      "camera": [
+        -0.5,
+        -3.466666666666667
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": null,
+      "popup": {
+        "x": 104,
+        "y": 80.83737616967306,
+        "w": 320,
+        "h": 146,
+        "tone": 0
+      }
+    },
+    {
+      "time": 6.021000000066124,
+      "scene": "Scene_Map",
+      "text": [
+        "我は魔王城の番犬",
+        "「死の猛獣」なり…"
+      ],
+      "brightness": 255,
+      "camera": [
+        -0.5,
+        -3.466666666666667
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": null,
+      "popup": {
+        "x": 104,
+        "y": 80.83737616967306,
+        "w": 320,
+        "h": 146,
+        "tone": 0
+      }
+    },
+    {
+      "time": 6.133000000030734,
+      "scene": "Scene_Map",
+      "text": [
+        "我は魔王城の番犬",
+        "「死の猛獣」なり…"
+      ],
+      "brightness": 255,
+      "camera": [
+        -0.5,
+        -3.466666666666667
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": null,
+      "popup": {
+        "x": 104,
+        "y": 80.83737616967306,
+        "w": 320,
+        "h": 146,
+        "tone": 0
+      }
+    },
+    {
+      "time": 6.143000000040047,
+      "scene": "Scene_Map",
+      "text": [
+        "我は魔王城の番犬",
+        "「死の猛獣」なり…"
+      ],
+      "brightness": 255,
+      "camera": [
+        -0.5,
+        -3.466666666666667
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": null,
+      "popup": {
+        "x": 104,
+        "y": 80.83737616967306,
+        "w": 320,
+        "h": 146,
+        "tone": 0
+      }
+    },
+    {
+      "time": 6.271999999997206,
+      "scene": "Scene_Map",
+      "text": [
+        "我は魔王城の番犬",
+        "「死の猛獣」なり…"
+      ],
+      "brightness": 255,
+      "camera": [
+        -0.5,
+        -3.466666666666667
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": null,
+      "popup": {
+        "x": 104,
+        "y": 80.83737616967306,
+        "w": 320,
+        "h": 146,
+        "tone": 0
+      }
+    },
+    {
+      "time": 6.275000000023283,
+      "scene": "Scene_Map",
+      "text": [
+        "我は魔王城の番犬",
+        "「死の猛獣」なり…"
+      ],
+      "brightness": 255,
+      "camera": [
+        -0.5,
+        -3.466666666666667
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": null,
+      "popup": {
+        "x": 104,
+        "y": 80.83737616967306,
+        "w": 320,
+        "h": 146,
+        "tone": 0
+      }
+    },
+    {
+      "time": 6.652000000001863,
+      "scene": "Scene_Map",
+      "text": [
+        "我は魔王城の番犬",
+        "「死の猛獣」なり…"
+      ],
+      "brightness": 255,
+      "camera": [
+        -0.5,
+        -3.466666666666667
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": null,
+      "popup": {
+        "x": 104,
+        "y": 80.83737616967306,
+        "w": 320,
+        "h": 146,
+        "tone": 0
+      }
+    },
+    {
+      "time": 6.753000000026077,
+      "scene": "Scene_Map",
+      "text": [
+        "我は魔王城の番犬",
+        "「死の猛獣」なり…"
+      ],
+      "brightness": 255,
+      "camera": [
+        -0.5,
+        -3.466666666666667
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": null,
+      "popup": {
+        "x": 104,
+        "y": 80.83737616967306,
+        "w": 320,
+        "h": 146,
+        "tone": 0
+      }
+    },
+    {
+      "time": 6.967999999993481,
+      "scene": "Scene_Map",
+      "text": [
+        "侵入者どもを",
+        "生かしておくわけには",
+        "いかぬのじゃ！！"
+      ],
+      "brightness": 255,
+      "camera": [
+        -0.5,
+        -3.466666666666667
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": null,
+      "popup": {
+        "x": 95,
+        "y": 47.52499999713143,
+        "w": 338,
+        "h": 179,
+        "tone": 1
+      }
+    },
+    {
+      "time": 7.0640000000130385,
+      "scene": "Scene_Map",
+      "text": [
+        "侵入者どもを",
+        "生かしておくわけには",
+        "いかぬのじゃ！！"
+      ],
+      "brightness": 255,
+      "camera": [
+        -0.5,
+        -3.466666666666667
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": null,
+      "popup": {
+        "x": 95,
+        "y": 47.52499999713143,
+        "w": 338,
+        "h": 179,
+        "tone": 1
+      }
+    },
+    {
+      "time": 7.1540000000968575,
+      "scene": "Scene_Map",
+      "text": [
+        "侵入者どもを",
+        "生かしておくわけには",
+        "いかぬのじゃ！！"
+      ],
+      "brightness": 255,
+      "camera": [
+        -0.5,
+        -3.466666666666667
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": null,
+      "popup": {
+        "x": 95,
+        "y": 47.52499999713143,
+        "w": 338,
+        "h": 179,
+        "tone": 1
+      }
+    },
+    {
+      "time": 7.271999999997206,
+      "scene": "Scene_Map",
+      "text": [
+        "侵入者どもを",
+        "生かしておくわけには",
+        "いかぬのじゃ！！"
+      ],
+      "brightness": 255,
+      "camera": [
+        -0.5,
+        -3.466666666666667
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": null,
+      "popup": {
+        "x": 95,
+        "y": 47.52499999713143,
+        "w": 338,
+        "h": 179,
+        "tone": 1
+      }
+    },
+    {
+      "time": 7.40500000002794,
+      "scene": "Scene_Map",
+      "text": [
+        "侵入者どもを",
+        "生かしておくわけには",
+        "いかぬのじゃ！！"
+      ],
+      "brightness": 255,
+      "camera": [
+        -0.5,
+        -3.466666666666667
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": null,
+      "popup": {
+        "x": 95,
+        "y": 47.52499999713143,
+        "w": 338,
+        "h": 179,
+        "tone": 1
+      }
+    },
+    {
+      "time": 7.516000000061467,
+      "scene": "Scene_Map",
+      "text": [
+        "侵入者どもを",
+        "生かしておくわけには",
+        "いかぬのじゃ！！"
+      ],
+      "brightness": 255,
+      "camera": [
+        -0.5,
+        -3.466666666666667
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": null,
+      "popup": {
+        "x": 95,
+        "y": 47.52499999713143,
+        "w": 338,
+        "h": 179,
+        "tone": 1
+      }
+    },
+    {
+      "time": 7.6510000000707805,
+      "scene": "Scene_Map",
+      "text": [
+        "侵入者どもを",
+        "生かしておくわけには",
+        "いかぬのじゃ！！"
+      ],
+      "brightness": 255,
+      "camera": [
+        -0.5,
+        -3.466666666666667
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": null,
+      "popup": {
+        "x": 95,
+        "y": 47.52499999713143,
+        "w": 338,
+        "h": 179,
+        "tone": 1
+      }
+    },
+    {
+      "time": 7.755000000004657,
+      "scene": "Scene_Map",
+      "text": [
+        "侵入者どもを",
+        "生かしておくわけには",
+        "いかぬのじゃ！！"
+      ],
+      "brightness": 255,
+      "camera": [
+        -0.5,
+        -3.466666666666667
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": null,
+      "popup": {
+        "x": 95,
+        "y": 47.52499999713143,
+        "w": 338,
+        "h": 179,
+        "tone": 1
+      }
+    },
+    {
+      "time": 7.850000000093132,
+      "scene": "Scene_Map",
+      "text": [
+        "侵入者どもを",
+        "生かしておくわけには",
+        "いかぬのじゃ！！"
+      ],
+      "brightness": 255,
+      "camera": [
+        -0.5,
+        -3.466666666666667
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": null,
+      "popup": {
+        "x": 95,
+        "y": 47.52499999713143,
+        "w": 338,
+        "h": 179,
+        "tone": 1
+      }
+    },
+    {
+      "time": 8.023000000044703,
+      "scene": "Scene_Map",
+      "text": [
+        "侵入者どもを",
+        "生かしておくわけには",
+        "いかぬのじゃ！！"
+      ],
+      "brightness": 255,
+      "camera": [
+        -0.5,
+        -3.466666666666667
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": null,
+      "popup": {
+        "x": 95,
+        "y": 47.52499999713143,
+        "w": 338,
+        "h": 179,
+        "tone": 1
+      }
+    },
+    {
+      "time": 8.024000000092201,
+      "scene": "Scene_Map",
+      "text": [
+        "侵入者どもを",
+        "生かしておくわけには",
+        "いかぬのじゃ！！"
+      ],
+      "brightness": 255,
+      "camera": [
+        -0.5,
+        -3.466666666666667
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": null,
+      "popup": {
+        "x": 95,
+        "y": 47.52499999713143,
+        "w": 338,
+        "h": 179,
+        "tone": 1
+      }
+    },
+    {
+      "time": 8.02600000007078,
+      "scene": "Scene_Map",
+      "text": [
+        "侵入者どもを",
+        "生かしておくわけには",
+        "いかぬのじゃ！！"
+      ],
+      "brightness": 255,
+      "camera": [
+        -0.5,
+        -3.466666666666667
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": null,
+      "popup": {
+        "x": 95,
+        "y": 47.52499999713143,
+        "w": 338,
+        "h": 179,
+        "tone": 1
+      }
+    },
+    {
+      "time": 8.029000000096858,
+      "scene": "Scene_Map",
+      "text": [
+        "侵入者どもを",
+        "生かしておくわけには",
+        "いかぬのじゃ！！"
+      ],
+      "brightness": 255,
+      "camera": [
+        -0.5,
+        -3.466666666666667
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": null,
+      "popup": {
+        "x": 95,
+        "y": 47.52499999713143,
+        "w": 338,
+        "h": 179,
+        "tone": 1
+      }
+    },
+    {
+      "time": 8.03000000002794,
+      "scene": "Scene_Map",
+      "text": [
+        "侵入者どもを",
+        "生かしておくわけには",
+        "いかぬのじゃ！！"
+      ],
+      "brightness": 255,
+      "camera": [
+        -0.5,
+        -3.466666666666667
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": null,
+      "popup": {
+        "x": 95,
+        "y": 47.52499999713143,
+        "w": 338,
+        "h": 179,
+        "tone": 1
+      }
+    },
+    {
+      "time": 8.031000000075437,
+      "scene": "Scene_Map",
+      "text": [
+        "侵入者どもを",
+        "生かしておくわけには",
+        "いかぬのじゃ！！"
+      ],
+      "brightness": 255,
+      "camera": [
+        -0.5,
+        -3.466666666666667
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": null,
+      "popup": {
+        "x": 95,
+        "y": 47.52499999713143,
+        "w": 338,
+        "h": 179,
+        "tone": 1
+      }
+    },
+    {
+      "time": 8.118000000016764,
+      "scene": "Scene_Map",
+      "text": [
+        "侵入者どもを",
+        "生かしておくわけには",
+        "いかぬのじゃ！！"
+      ],
+      "brightness": 255,
+      "camera": [
+        -0.5,
+        -3.466666666666667
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": null,
+      "popup": {
+        "x": 95,
+        "y": 47.52499999713143,
+        "w": 338,
+        "h": 179,
+        "tone": 1
+      }
+    },
+    {
+      "time": 8.219000000040978,
+      "scene": "Scene_Map",
+      "text": [
+        "侵入者どもを",
+        "生かしておくわけには",
+        "いかぬのじゃ！！"
+      ],
+      "brightness": 255,
+      "camera": [
+        -0.5,
+        -3.466666666666667
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": null,
+      "popup": {
+        "x": 95,
+        "y": 47.52499999713143,
+        "w": 338,
+        "h": 179,
+        "tone": 1
+      }
+    },
+    {
+      "time": 8.351000000024214,
+      "scene": "Scene_Map",
+      "text": [
+        "侵入者どもを",
+        "生かしておくわけには",
+        "いかぬのじゃ！！"
+      ],
+      "brightness": 255,
+      "camera": [
+        -0.5,
+        -3.466666666666667
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": null,
+      "popup": {
+        "x": 95,
+        "y": 47.52499999713143,
+        "w": 338,
+        "h": 179,
+        "tone": 1
+      }
+    },
+    {
+      "time": 8.351000000024214,
+      "scene": "Scene_Map",
+      "text": [
+        "侵入者どもを",
+        "生かしておくわけには",
+        "いかぬのじゃ！！"
+      ],
+      "brightness": 255,
+      "camera": [
+        -0.5,
+        -3.466666666666667
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": null,
+      "popup": {
+        "x": 95,
+        "y": 47.52499999713143,
+        "w": 338,
+        "h": 179,
+        "tone": 1
+      }
+    },
+    {
+      "time": 8.737000000081025,
+      "scene": "Scene_Map",
+      "text": [
+        "侵入者どもを",
+        "生かしておくわけには",
+        "いかぬのじゃ！！"
+      ],
+      "brightness": 255,
+      "camera": [
+        -0.5,
+        -3.466666666666667
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": null,
+      "popup": {
+        "x": 95,
+        "y": 47.52499999713143,
+        "w": 338,
+        "h": 179,
+        "tone": 1
+      }
+    },
+    {
+      "time": 8.739999999990687,
+      "scene": "Scene_Map",
+      "text": [
+        "侵入者どもを",
+        "生かしておくわけには",
+        "いかぬのじゃ！！"
+      ],
+      "brightness": 255,
+      "camera": [
+        -0.5,
+        -3.466666666666667
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": null,
+      "popup": {
+        "x": 95,
+        "y": 47.52499999713143,
+        "w": 338,
+        "h": 179,
+        "tone": 1
+      }
+    },
+    {
+      "time": 8.906000000075437,
+      "scene": "Scene_Map",
+      "text": [
+        "侵入者どもを",
+        "生かしておくわけには",
+        "いかぬのじゃ！！"
+      ],
+      "brightness": 255,
+      "camera": [
+        -0.5,
+        -3.466666666666667
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": null,
+      "popup": {
+        "x": 95,
+        "y": 47.52499999713143,
+        "w": 338,
+        "h": 179,
+        "tone": 1
+      }
+    },
+    {
+      "time": 8.908000000054017,
+      "scene": "Scene_Map",
+      "text": [
+        "侵入者どもを",
+        "生かしておくわけには",
+        "いかぬのじゃ！！"
+      ],
+      "brightness": 255,
+      "camera": [
+        -0.5,
+        -3.466666666666667
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": null,
+      "popup": {
+        "x": 95,
+        "y": 47.52499999713143,
+        "w": 338,
+        "h": 179,
+        "tone": 1
+      }
+    },
+    {
+      "time": 9.009000000078231,
+      "scene": "Scene_Map",
+      "text": [
+        "侵入者どもを",
+        "生かしておくわけには",
+        "いかぬのじゃ！！"
+      ],
+      "brightness": 255,
+      "camera": [
+        -0.5,
+        -3.466666666666667
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": null,
+      "popup": {
+        "x": 95,
+        "y": 47.52499999713143,
+        "w": 338,
+        "h": 179,
+        "tone": 1
+      }
+    },
+    {
+      "time": 9.26500000001397,
+      "scene": "Scene_Map",
+      "text": [],
+      "brightness": 255,
+      "camera": [
+        -0.5,
+        -3.466666666666667
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": null,
+      "popup": null
+    },
+    {
+      "time": 9.366000000038184,
+      "scene": "Scene_Map",
+      "text": [],
+      "brightness": 255,
+      "camera": [
+        -0.5,
+        -3.466666666666667
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": null,
+      "popup": null
+    },
+    {
+      "time": 9.452000000048429,
+      "scene": "Scene_Map",
+      "text": [],
+      "brightness": 255,
+      "camera": [
+        -0.5,
+        -3.466666666666667
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": null,
+      "popup": null
+    },
+    {
+      "time": 9.658000000054017,
+      "scene": "Scene_Map",
+      "text": [],
+      "brightness": 255,
+      "camera": [
+        -0.5,
+        -3.466666666666667
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": null,
+      "popup": null
+    },
+    {
+      "time": 9.661000000080094,
+      "scene": "Scene_Map",
+      "text": [],
+      "brightness": 255,
+      "camera": [
+        -0.5,
+        -3.466666666666667
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": null,
+      "popup": null
+    },
+    {
+      "time": 9.790000000037253,
+      "scene": "Scene_Map",
+      "text": [],
+      "brightness": 255,
+      "camera": [
+        -0.5,
+        -3.466666666666667
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": null,
+      "popup": null
+    },
+    {
+      "time": 9.79100000008475,
+      "scene": "Scene_Map",
+      "text": [],
+      "brightness": 255,
+      "camera": [
+        -0.5,
+        -3.466666666666667
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": null,
+      "popup": null
+    },
+    {
+      "time": 9.894000000087544,
+      "scene": "Scene_Map",
+      "text": [],
+      "brightness": 255,
+      "camera": [
+        -0.5,
+        -3.466666666666667
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": null,
+      "popup": null
+    },
+    {
+      "time": 9.896999999997206,
+      "scene": "Scene_Map",
+      "text": [],
+      "brightness": 255,
+      "camera": [
+        -0.5,
+        -3.466666666666667
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": null,
+      "popup": null
+    },
+    {
+      "time": 10.002000000094995,
+      "scene": "Scene_Map",
+      "text": [],
+      "brightness": 255,
+      "camera": [
+        -0.5,
+        -3.466666666666667
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": null,
+      "popup": null
+    },
+    {
+      "time": 10.14000000001397,
+      "scene": "Scene_Map",
+      "text": [],
+      "brightness": 255,
+      "camera": [
+        -0.5,
+        -3.466666666666667
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": null,
+      "popup": null
+    },
+    {
+      "time": 10.193000000086613,
+      "scene": "Scene_Map",
+      "text": [],
+      "brightness": 255,
+      "camera": [
+        -0.5,
+        -3.466666666666667
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": null,
+      "popup": null
+    },
+    {
+      "time": 10.714000000036322,
+      "scene": "Scene_Map",
+      "text": [],
+      "brightness": 0,
+      "camera": [
+        -0.5,
+        -3.466666666666667
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": null,
+      "popup": null
+    },
+    {
+      "time": 10.844000000040978,
+      "scene": "Scene_Map",
+      "text": [],
+      "brightness": 0,
+      "camera": [
+        -0.5,
+        -3.466666666666667
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": null,
+      "popup": null
+    },
+    {
+      "time": 10.989999999990687,
+      "scene": "Scene_Map",
+      "text": [],
+      "brightness": 0,
+      "camera": [
+        -0.5,
+        -3.466666666666667
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": null,
+      "popup": null
+    },
+    {
+      "time": 11.103000000002794,
+      "scene": "Scene_Map",
+      "text": [],
+      "brightness": 0,
+      "camera": [
+        -0.5,
+        -3.466666666666667
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": null,
+      "popup": null
+    },
+    {
+      "time": 11.629000000073574,
+      "scene": "Scene_NewBattle",
+      "text": [],
+      "brightness": 17,
+      "camera": [
+        -0.5,
+        -3.466666666666667
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": {
+        "x": 64,
+        "y": 372,
+        "scale": 1.2
+      },
+      "popup": null
+    },
+    {
+      "time": 11.630000000004657,
+      "scene": "Scene_NewBattle",
+      "text": [],
+      "brightness": 25.5,
+      "camera": [
+        -0.5,
+        -3.466666666666667
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": {
+        "x": 64,
+        "y": 372,
+        "scale": 1.2
+      },
+      "popup": null
+    },
+    {
+      "time": 11.633000000030734,
+      "scene": "Scene_NewBattle",
+      "text": [],
+      "brightness": 34,
+      "camera": [
+        -0.5,
+        -3.466666666666667
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": {
+        "x": 64,
+        "y": 372,
+        "scale": 1.2
+      },
+      "popup": null
+    },
+    {
+      "time": 11.634000000078231,
+      "scene": "Scene_NewBattle",
+      "text": [],
+      "brightness": 42.5,
+      "camera": [
+        -0.5,
+        -3.466666666666667
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": {
+        "x": 64,
+        "y": 372,
+        "scale": 1.2
+      },
+      "popup": null
+    },
+    {
+      "time": 11.635000000009313,
+      "scene": "Scene_NewBattle",
+      "text": [],
+      "brightness": 51,
+      "camera": [
+        -0.5,
+        -3.466666666666667
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": {
+        "x": 64,
+        "y": 372,
+        "scale": 1.2
+      },
+      "popup": null
+    },
+    {
+      "time": 11.63600000005681,
+      "scene": "Scene_NewBattle",
+      "text": [],
+      "brightness": 59.5,
+      "camera": [
+        -0.5,
+        -3.466666666666667
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": {
+        "x": 64,
+        "y": 372,
+        "scale": 1.2
+      },
+      "popup": null
+    },
+    {
+      "time": 11.636999999987893,
+      "scene": "Scene_NewBattle",
+      "text": [],
+      "brightness": 68,
+      "camera": [
+        -0.5,
+        -3.466666666666667
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": {
+        "x": 64,
+        "y": 372,
+        "scale": 1.2
+      },
+      "popup": null
+    },
+    {
+      "time": 11.639000000082888,
+      "scene": "Scene_NewBattle",
+      "text": [],
+      "brightness": 76.5,
+      "camera": [
+        -0.5,
+        -3.466666666666667
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": {
+        "x": 64,
+        "y": 372,
+        "scale": 1.2
+      },
+      "popup": null
+    },
+    {
+      "time": 11.64000000001397,
+      "scene": "Scene_NewBattle",
+      "text": [],
+      "brightness": 85,
+      "camera": [
+        -0.5,
+        -3.466666666666667
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": {
+        "x": 64,
+        "y": 372,
+        "scale": 1.2
+      },
+      "popup": null
+    },
+    {
+      "time": 11.64199999999255,
+      "scene": "Scene_NewBattle",
+      "text": [],
+      "brightness": 93.5,
+      "camera": [
+        -0.5,
+        -3.466666666666667
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": {
+        "x": 64,
+        "y": 372,
+        "scale": 1.2
+      },
+      "popup": null
+    },
+    {
+      "time": 11.645000000018626,
+      "scene": "Scene_NewBattle",
+      "text": [],
+      "brightness": 102,
+      "camera": [
+        -0.5,
+        -3.466666666666667
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": {
+        "x": 64,
+        "y": 372,
+        "scale": 1.2
+      },
+      "popup": null
+    },
+    {
+      "time": 11.646999999997206,
+      "scene": "Scene_NewBattle",
+      "text": [],
+      "brightness": 110.5,
+      "camera": [
+        -0.5,
+        -3.466666666666667
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": {
+        "x": 64,
+        "y": 372,
+        "scale": 1.2
+      },
+      "popup": null
+    },
+    {
+      "time": 11.648000000044703,
+      "scene": "Scene_NewBattle",
+      "text": [],
+      "brightness": 119,
+      "camera": [
+        -0.5,
+        -3.466666666666667
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": {
+        "x": 64,
+        "y": 372,
+        "scale": 1.2
+      },
+      "popup": null
+    },
+    {
+      "time": 11.649000000092201,
+      "scene": "Scene_NewBattle",
+      "text": [],
+      "brightness": 127.5,
+      "camera": [
+        -0.5,
+        -3.466666666666667
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": {
+        "x": 64,
+        "y": 372,
+        "scale": 1.2
+      },
+      "popup": null
+    },
+    {
+      "time": 11.650000000023283,
+      "scene": "Scene_NewBattle",
+      "text": [],
+      "brightness": 136,
+      "camera": [
+        -0.5,
+        -3.466666666666667
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": {
+        "x": 64,
+        "y": 372,
+        "scale": 1.2
+      },
+      "popup": null
+    },
+    {
+      "time": 12.227000000071712,
+      "scene": "Scene_NewBattle",
+      "text": [],
+      "brightness": 255,
+      "camera": [
+        -0.5,
+        -3.466666666666667
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": {
+        "x": 64,
+        "y": 372,
+        "scale": 1.2
+      },
+      "popup": null
+    },
+    {
+      "time": 12.337999999988824,
+      "scene": "Scene_NewBattle",
+      "text": [],
+      "brightness": 255,
+      "camera": [
+        -0.5,
+        -3.466666666666667
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": {
+        "x": 64,
+        "y": 372,
+        "scale": 1.2
+      },
+      "popup": null
+    },
+    {
+      "time": 12.436000000103377,
+      "scene": "Scene_NewBattle",
+      "text": [],
+      "brightness": 255,
+      "camera": [
+        -0.5,
+        -3.466666666666667
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": {
+        "x": 64,
+        "y": 372,
+        "scale": 1.2
+      },
+      "popup": null
+    },
+    {
+      "time": 12.535000000032596,
+      "scene": "Scene_NewBattle",
+      "text": [],
+      "brightness": 255,
+      "camera": [
+        -0.5,
+        -3.466666666666667
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": {
+        "x": 64,
+        "y": 372,
+        "scale": 1.2
+      },
+      "popup": null
+    },
+    {
+      "time": 12.536000000080094,
+      "scene": "Scene_NewBattle",
+      "text": [],
+      "brightness": 255,
+      "camera": [
+        -0.5,
+        -3.466666666666667
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": {
+        "x": 64,
+        "y": 372,
+        "scale": 1.2
+      },
+      "popup": null
+    },
+    {
+      "time": 12.634000000078231,
+      "scene": "Scene_NewBattle",
+      "text": [],
+      "brightness": 255,
+      "camera": [
+        -0.5,
+        -3.466666666666667
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": {
+        "x": 64,
+        "y": 372,
+        "scale": 1.2
+      },
+      "popup": null
+    },
+    {
+      "time": 12.735000000102445,
+      "scene": "Scene_NewBattle",
+      "text": [],
+      "brightness": 255,
+      "camera": [
+        -0.5,
+        -3.466666666666667
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": {
+        "x": 64,
+        "y": 372,
+        "scale": 1.2
+      },
+      "popup": null
+    },
+    {
+      "time": 12.736000000033528,
+      "scene": "Scene_NewBattle",
+      "text": [],
+      "brightness": 255,
+      "camera": [
+        -0.5,
+        -3.466666666666667
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": {
+        "x": 64,
+        "y": 372,
+        "scale": 1.2
+      },
+      "popup": null
+    },
+    {
+      "time": 12.837999999988824,
+      "scene": "Scene_NewBattle",
+      "text": [
+        "ぬおッ！？"
+      ],
+      "brightness": 255,
+      "camera": [
+        -0.5,
+        -3.466666666666667
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": {
+        "x": 64,
+        "y": 372,
+        "scale": 1.2
+      },
+      "popup": {
+        "x": 0,
+        "y": 324,
+        "w": 816,
+        "h": 300,
+        "tone": 1
+      }
+    },
+    {
+      "time": 13.008000000030734,
+      "scene": "Scene_NewBattle",
+      "text": [
+        "ぬおッ！？"
+      ],
+      "brightness": 255,
+      "camera": [
+        -0.5,
+        -3.466666666666667
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": {
+        "x": 64,
+        "y": 372,
+        "scale": 1.2
+      },
+      "popup": {
+        "x": 408,
+        "y": 170.5625,
+        "w": 187,
+        "h": 113,
+        "tone": 1
+      }
+    },
+    {
+      "time": 13.114000000059605,
+      "scene": "Scene_NewBattle",
+      "text": [
+        "ぬおッ！？"
+      ],
+      "brightness": 255,
+      "camera": [
+        -0.5,
+        -3.466666666666667
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": {
+        "x": 64,
+        "y": 372,
+        "scale": 1.2
+      },
+      "popup": {
+        "x": 408,
+        "y": 170.5625,
+        "w": 187,
+        "h": 113,
+        "tone": 1
+      }
+    },
+    {
+      "time": 13.12300000002142,
+      "scene": "Scene_NewBattle",
+      "text": [
+        "ぬおッ！？"
+      ],
+      "brightness": 255,
+      "camera": [
+        -0.5,
+        -3.466666666666667
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": {
+        "x": 64,
+        "y": 372,
+        "scale": 1.2
+      },
+      "popup": {
+        "x": 408,
+        "y": 170.5625,
+        "w": 187,
+        "h": 113,
+        "tone": 1
+      }
+    },
+    {
+      "time": 13.209000000031665,
+      "scene": "Scene_NewBattle",
+      "text": [
+        "ぬおッ！？"
+      ],
+      "brightness": 255,
+      "camera": [
+        -0.5,
+        -3.466666666666667
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": {
+        "x": 64,
+        "y": 372,
+        "scale": 1.2
+      },
+      "popup": {
+        "x": 408,
+        "y": 170.5625,
+        "w": 187,
+        "h": 113,
+        "tone": 1
+      }
+    },
+    {
+      "time": 13.315999999991618,
+      "scene": "Scene_NewBattle",
+      "text": [
+        "ぬおッ！？"
+      ],
+      "brightness": 255,
+      "camera": [
+        -0.5,
+        -3.466666666666667
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": {
+        "x": 64,
+        "y": 372,
+        "scale": 1.2
+      },
+      "popup": {
+        "x": 408,
+        "y": 170.5625,
+        "w": 187,
+        "h": 113,
+        "tone": 1
+      }
+    },
+    {
+      "time": 13.529000000096858,
+      "scene": "Scene_NewBattle",
+      "text": [
+        "ぬおッ！？"
+      ],
+      "brightness": 255,
+      "camera": [
+        -0.5,
+        -3.466666666666667
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": {
+        "x": 64,
+        "y": 372,
+        "scale": 1.2
+      },
+      "popup": {
+        "x": 408,
+        "y": 170.5625,
+        "w": 187,
+        "h": 113,
+        "tone": 1
+      }
+    },
+    {
+      "time": 13.53000000002794,
+      "scene": "Scene_NewBattle",
+      "text": [
+        "ぬおッ！？"
+      ],
+      "brightness": 255,
+      "camera": [
+        -0.5,
+        -3.466666666666667
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": {
+        "x": 64,
+        "y": 372,
+        "scale": 1.2
+      },
+      "popup": {
+        "x": 408,
+        "y": 170.5625,
+        "w": 187,
+        "h": 113,
+        "tone": 1
+      }
+    },
+    {
+      "time": 13.53200000000652,
+      "scene": "Scene_NewBattle",
+      "text": [
+        "ぬおッ！？"
+      ],
+      "brightness": 255,
+      "camera": [
+        -0.5,
+        -3.466666666666667
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": {
+        "x": 64,
+        "y": 372,
+        "scale": 1.2
+      },
+      "popup": {
+        "x": 408,
+        "y": 170.5625,
+        "w": 187,
+        "h": 113,
+        "tone": 1
+      }
+    },
+    {
+      "time": 13.619999999995343,
+      "scene": "Scene_NewBattle",
+      "text": [
+        "ぬおッ！？"
+      ],
+      "brightness": 255,
+      "camera": [
+        -0.5,
+        -3.466666666666667
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": {
+        "x": 64,
+        "y": 372,
+        "scale": 1.2
+      },
+      "popup": {
+        "x": 408,
+        "y": 170.5625,
+        "w": 187,
+        "h": 113,
+        "tone": 1
+      }
+    },
+    {
+      "time": 13.77600000007078,
+      "scene": "Scene_NewBattle",
+      "text": [
+        "ぬおッ！？"
+      ],
+      "brightness": 255,
+      "camera": [
+        -0.5,
+        -3.466666666666667
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": {
+        "x": 64,
+        "y": 372,
+        "scale": 1.2
+      },
+      "popup": {
+        "x": 408,
+        "y": 170.5625,
+        "w": 187,
+        "h": 113,
+        "tone": 1
+      }
+    },
+    {
+      "time": 13.78000000002794,
+      "scene": "Scene_NewBattle",
+      "text": [
+        "ぬおッ！？"
+      ],
+      "brightness": 255,
+      "camera": [
+        -0.5,
+        -3.466666666666667
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": {
+        "x": 64,
+        "y": 372,
+        "scale": 1.2
+      },
+      "popup": {
+        "x": 408,
+        "y": 170.5625,
+        "w": 187,
+        "h": 113,
+        "tone": 1
+      }
+    },
+    {
+      "time": 13.78200000000652,
+      "scene": "Scene_NewBattle",
+      "text": [
+        "ぬおッ！？"
+      ],
+      "brightness": 255,
+      "camera": [
+        -0.5,
+        -3.466666666666667
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": {
+        "x": 64,
+        "y": 372,
+        "scale": 1.2
+      },
+      "popup": {
+        "x": 408,
+        "y": 170.5625,
+        "w": 187,
+        "h": 113,
+        "tone": 1
+      }
+    },
+    {
+      "time": 13.783000000054017,
+      "scene": "Scene_NewBattle",
+      "text": [
+        "ぬおッ！？"
+      ],
+      "brightness": 255,
+      "camera": [
+        -0.5,
+        -3.466666666666667
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": {
+        "x": 64,
+        "y": 372,
+        "scale": 1.2
+      },
+      "popup": {
+        "x": 408,
+        "y": 170.5625,
+        "w": 187,
+        "h": 113,
+        "tone": 1
+      }
+    },
+    {
+      "time": 13.994999999995343,
+      "scene": "Scene_NewBattle",
+      "text": [
+        "ぬおッ！？"
+      ],
+      "brightness": 255,
+      "camera": [
+        -0.5,
+        -3.466666666666667
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": {
+        "x": 64,
+        "y": 372,
+        "scale": 1.2
+      },
+      "popup": {
+        "x": 408,
+        "y": 170.5625,
+        "w": 187,
+        "h": 113,
+        "tone": 1
+      }
+    },
+    {
+      "time": 13.999000000068918,
+      "scene": "Scene_NewBattle",
+      "text": [
+        "ぬおッ！？"
+      ],
+      "brightness": 255,
+      "camera": [
+        -0.5,
+        -3.466666666666667
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": {
+        "x": 64,
+        "y": 372,
+        "scale": 1.2
+      },
+      "popup": {
+        "x": 408,
+        "y": 170.5625,
+        "w": 187,
+        "h": 113,
+        "tone": 1
+      }
+    },
+    {
+      "time": 14.104000000050291,
+      "scene": "Scene_NewBattle",
+      "text": [
+        "ぬおッ！？"
+      ],
+      "brightness": 255,
+      "camera": [
+        -0.5,
+        -3.466666666666667
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": {
+        "x": 64,
+        "y": 372,
+        "scale": 1.2
+      },
+      "popup": {
+        "x": 408,
+        "y": 170.5625,
+        "w": 187,
+        "h": 113,
+        "tone": 1
+      }
+    },
+    {
+      "time": 14.109000000054948,
+      "scene": "Scene_NewBattle",
+      "text": [
+        "ぬおッ！？"
+      ],
+      "brightness": 255,
+      "camera": [
+        -0.5,
+        -3.466666666666667
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": {
+        "x": 64,
+        "y": 372,
+        "scale": 1.2
+      },
+      "popup": {
+        "x": 408,
+        "y": 170.5625,
+        "w": 187,
+        "h": 113,
+        "tone": 1
+      }
+    },
+    {
+      "time": 14.220000000088476,
+      "scene": "Scene_NewBattle",
+      "text": [
+        "ぬおッ！？"
+      ],
+      "brightness": 255,
+      "camera": [
+        -0.5,
+        -3.466666666666667
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": {
+        "x": 64,
+        "y": 372,
+        "scale": 1.2
+      },
+      "popup": {
+        "x": 408,
+        "y": 170.5625,
+        "w": 187,
+        "h": 113,
+        "tone": 1
+      }
+    },
+    {
+      "time": 14.312000000034459,
+      "scene": "Scene_NewBattle",
+      "text": [
+        "ぬおッ！？"
+      ],
+      "brightness": 255,
+      "camera": [
+        -0.5,
+        -3.466666666666667
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": {
+        "x": 64,
+        "y": 372,
+        "scale": 1.2
+      },
+      "popup": {
+        "x": 408,
+        "y": 170.5625,
+        "w": 187,
+        "h": 113,
+        "tone": 1
+      }
+    },
+    {
+      "time": 14.406000000075437,
+      "scene": "Scene_NewBattle",
+      "text": [
+        "ぬおッ！？"
+      ],
+      "brightness": 255,
+      "camera": [
+        -0.5,
+        -3.466666666666667
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": {
+        "x": 64,
+        "y": 372,
+        "scale": 1.2
+      },
+      "popup": {
+        "x": 408,
+        "y": 170.5625,
+        "w": 187,
+        "h": 113,
+        "tone": 1
+      }
+    },
+    {
+      "time": 14.52800000004936,
+      "scene": "Scene_NewBattle",
+      "text": [
+        "ぬおッ！？"
+      ],
+      "brightness": 255,
+      "camera": [
+        -0.5,
+        -3.466666666666667
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": {
+        "x": 64,
+        "y": 372,
+        "scale": 1.2
+      },
+      "popup": {
+        "x": 408,
+        "y": 170.5625,
+        "w": 187,
+        "h": 113,
+        "tone": 1
+      }
+    },
+    {
+      "time": 14.619000000064261,
+      "scene": "Scene_NewBattle",
+      "text": [
+        "ぬおッ！？"
+      ],
+      "brightness": 255,
+      "camera": [
+        -0.5,
+        -3.466666666666667
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": {
+        "x": 64,
+        "y": 372,
+        "scale": 1.2
+      },
+      "popup": {
+        "x": 408,
+        "y": 170.5625,
+        "w": 187,
+        "h": 113,
+        "tone": 1
+      }
+    },
+    {
+      "time": 14.619999999995343,
+      "scene": "Scene_NewBattle",
+      "text": [
+        "ぬおッ！？"
+      ],
+      "brightness": 255,
+      "camera": [
+        -0.5,
+        -3.466666666666667
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": {
+        "x": 64,
+        "y": 372,
+        "scale": 1.2
+      },
+      "popup": {
+        "x": 408,
+        "y": 170.5625,
+        "w": 187,
+        "h": 113,
+        "tone": 1
+      }
+    },
+    {
+      "time": 14.732000000076368,
+      "scene": "Scene_NewBattle",
+      "text": [
+        "ぬおッ！？"
+      ],
+      "brightness": 255,
+      "camera": [
+        -0.5,
+        -3.466666666666667
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": {
+        "x": 64,
+        "y": 372,
+        "scale": 1.2
+      },
+      "popup": {
+        "x": 408,
+        "y": 170.5625,
+        "w": 187,
+        "h": 113,
+        "tone": 1
+      }
+    },
+    {
+      "time": 14.826000000000931,
+      "scene": "Scene_NewBattle",
+      "text": [
+        "ぬおッ！？"
+      ],
+      "brightness": 255,
+      "camera": [
+        -0.5,
+        -3.466666666666667
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": {
+        "x": 64,
+        "y": 372,
+        "scale": 1.2
+      },
+      "popup": {
+        "x": 408,
+        "y": 170.5625,
+        "w": 187,
+        "h": 113,
+        "tone": 1
+      }
+    },
+    {
+      "time": 15.021000000066124,
+      "scene": "Scene_NewBattle",
+      "text": [
+        "なぜこちら側に！？",
+        "間違えたなり！！"
+      ],
+      "brightness": 255,
+      "camera": [
+        -0.5,
+        -3.466666666666667
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": {
+        "x": 64,
+        "y": 372,
+        "scale": 1.2
+      },
+      "popup": {
+        "x": 408,
+        "y": 137.25,
+        "w": 302,
+        "h": 146,
+        "tone": 1
+      }
+    },
+    {
+      "time": 15.224000000045635,
+      "scene": "Scene_NewBattle",
+      "text": [
+        "なぜこちら側に！？",
+        "間違えたなり！！"
+      ],
+      "brightness": 255,
+      "camera": [
+        -0.5,
+        -3.466666666666667
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": {
+        "x": 64,
+        "y": 372,
+        "scale": 1.2
+      },
+      "popup": {
+        "x": 408,
+        "y": 137.25,
+        "w": 302,
+        "h": 146,
+        "tone": 1
+      }
+    },
+    {
+      "time": 15.421000000089407,
+      "scene": "Scene_NewBattle",
+      "text": [
+        "なぜこちら側に！？",
+        "間違えたなり！！"
+      ],
+      "brightness": 255,
+      "camera": [
+        -0.5,
+        -3.466666666666667
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": {
+        "x": 64,
+        "y": 372,
+        "scale": 1.2
+      },
+      "popup": {
+        "x": 408,
+        "y": 137.25,
+        "w": 302,
+        "h": 146,
+        "tone": 1
+      }
+    },
+    {
+      "time": 15.524000000092201,
+      "scene": "Scene_NewBattle",
+      "text": [
+        "なぜこちら側に！？",
+        "間違えたなり！！"
+      ],
+      "brightness": 255,
+      "camera": [
+        -0.5,
+        -3.466666666666667
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": {
+        "x": 64,
+        "y": 372,
+        "scale": 1.2
+      },
+      "popup": {
+        "x": 408,
+        "y": 137.25,
+        "w": 302,
+        "h": 146,
+        "tone": 1
+      }
+    },
+    {
+      "time": 15.62100000004284,
+      "scene": "Scene_NewBattle",
+      "text": [
+        "なぜこちら側に！？",
+        "間違えたなり！！"
+      ],
+      "brightness": 255,
+      "camera": [
+        -0.5,
+        -3.466666666666667
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": {
+        "x": 64,
+        "y": 372,
+        "scale": 1.2
+      },
+      "popup": {
+        "x": 408,
+        "y": 137.25,
+        "w": 302,
+        "h": 146,
+        "tone": 1
+      }
+    },
+    {
+      "time": 15.722000000067055,
+      "scene": "Scene_NewBattle",
+      "text": [
+        "なぜこちら側に！？",
+        "間違えたなり！！"
+      ],
+      "brightness": 255,
+      "camera": [
+        -0.5,
+        -3.466666666666667
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": {
+        "x": 64,
+        "y": 372,
+        "scale": 1.2
+      },
+      "popup": {
+        "x": 408,
+        "y": 137.25,
+        "w": 302,
+        "h": 146,
+        "tone": 1
+      }
+    },
+    {
+      "time": 15.724000000045635,
+      "scene": "Scene_NewBattle",
+      "text": [
+        "なぜこちら側に！？",
+        "間違えたなり！！"
+      ],
+      "brightness": 255,
+      "camera": [
+        -0.5,
+        -3.466666666666667
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": {
+        "x": 64,
+        "y": 372,
+        "scale": 1.2
+      },
+      "popup": {
+        "x": 408,
+        "y": 137.25,
+        "w": 302,
+        "h": 146,
+        "tone": 1
+      }
+    },
+    {
+      "time": 15.820999999996275,
+      "scene": "Scene_NewBattle",
+      "text": [
+        "なぜこちら側に！？",
+        "間違えたなり！！"
+      ],
+      "brightness": 255,
+      "camera": [
+        -0.5,
+        -3.466666666666667
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": {
+        "x": 64,
+        "y": 372,
+        "scale": 1.2
+      },
+      "popup": {
+        "x": 408,
+        "y": 137.25,
+        "w": 302,
+        "h": 146,
+        "tone": 1
+      }
+    },
+    {
+      "time": 15.918999999994412,
+      "scene": "Scene_NewBattle",
+      "text": [
+        "なぜこちら側に！？",
+        "間違えたなり！！"
+      ],
+      "brightness": 255,
+      "camera": [
+        -0.5,
+        -3.466666666666667
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": {
+        "x": 64,
+        "y": 372,
+        "scale": 1.2
+      },
+      "popup": {
+        "x": 408,
+        "y": 137.25,
+        "w": 302,
+        "h": 146,
+        "tone": 1
+      }
+    },
+    {
+      "time": 16.12300000002142,
+      "scene": "Scene_NewBattle",
+      "text": [
+        "なぜこちら側に！？",
+        "間違えたなり！！"
+      ],
+      "brightness": 255,
+      "camera": [
+        -0.5,
+        -3.466666666666667
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": {
+        "x": 64,
+        "y": 372,
+        "scale": 1.2
+      },
+      "popup": {
+        "x": 408,
+        "y": 137.25,
+        "w": 302,
+        "h": 146,
+        "tone": 1
+      }
+    },
+    {
+      "time": 16.334000000031665,
+      "scene": "Scene_NewBattle",
+      "text": [
+        "なぜこちら側に！？",
+        "間違えたなり！！"
+      ],
+      "brightness": 255,
+      "camera": [
+        -0.5,
+        -3.466666666666667
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": {
+        "x": 64,
+        "y": 372,
+        "scale": 1.2
+      },
+      "popup": {
+        "x": 408,
+        "y": 137.25,
+        "w": 302,
+        "h": 146,
+        "tone": 1
+      }
+    },
+    {
+      "time": 16.336000000010245,
+      "scene": "Scene_NewBattle",
+      "text": [
+        "なぜこちら側に！？",
+        "間違えたなり！！"
+      ],
+      "brightness": 255,
+      "camera": [
+        -0.5,
+        -3.466666666666667
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": {
+        "x": 64,
+        "y": 372,
+        "scale": 1.2
+      },
+      "popup": {
+        "x": 408,
+        "y": 137.25,
+        "w": 302,
+        "h": 146,
+        "tone": 1
+      }
+    },
+    {
+      "time": 16.436000000103377,
+      "scene": "Scene_NewBattle",
+      "text": [
+        "なぜこちら側に！？",
+        "間違えたなり！！"
+      ],
+      "brightness": 255,
+      "camera": [
+        -0.5,
+        -3.466666666666667
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": {
+        "x": 64,
+        "y": 372,
+        "scale": 1.2
+      },
+      "popup": {
+        "x": 408,
+        "y": 137.25,
+        "w": 302,
+        "h": 146,
+        "tone": 1
+      }
+    },
+    {
+      "time": 16.440999999991618,
+      "scene": "Scene_NewBattle",
+      "text": [
+        "なぜこちら側に！？",
+        "間違えたなり！！"
+      ],
+      "brightness": 255,
+      "camera": [
+        -0.5,
+        -3.466666666666667
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": {
+        "x": 64,
+        "y": 372,
+        "scale": 1.2
+      },
+      "popup": {
+        "x": 408,
+        "y": 137.25,
+        "w": 302,
+        "h": 146,
+        "tone": 1
+      }
+    },
+    {
+      "time": 16.57400000002235,
+      "scene": "Scene_NewBattle",
+      "text": [
+        "なぜこちら側に！？",
+        "間違えたなり！！"
+      ],
+      "brightness": 255,
+      "camera": [
+        -0.5,
+        -3.466666666666667
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": {
+        "x": 64,
+        "y": 372,
+        "scale": 1.2
+      },
+      "popup": {
+        "x": 408,
+        "y": 137.25,
+        "w": 302,
+        "h": 146,
+        "tone": 1
+      }
+    },
+    {
+      "time": 16.67000000004191,
+      "scene": "Scene_NewBattle",
+      "text": [
+        "なぜこちら側に！？",
+        "間違えたなり！！"
+      ],
+      "brightness": 255,
+      "camera": [
+        -0.5,
+        -3.466666666666667
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": {
+        "x": 64,
+        "y": 372,
+        "scale": 1.2
+      },
+      "popup": {
+        "x": 408,
+        "y": 137.25,
+        "w": 302,
+        "h": 146,
+        "tone": 1
+      }
+    },
+    {
+      "time": 16.771999999997206,
+      "scene": "Scene_NewBattle",
+      "text": [
+        "なぜこちら側に！？",
+        "間違えたなり！！"
+      ],
+      "brightness": 255,
+      "camera": [
+        -0.5,
+        -3.466666666666667
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": {
+        "x": 64,
+        "y": 372,
+        "scale": 1.2
+      },
+      "popup": {
+        "x": 408,
+        "y": 137.25,
+        "w": 302,
+        "h": 146,
+        "tone": 1
+      }
+    },
+    {
+      "time": 17.11900000006426,
+      "scene": "Scene_NewBattle",
+      "text": [
+        "でも…こっち側も",
+        "なんだか悪くないのじゃ"
+      ],
+      "brightness": 255,
+      "camera": [
+        -0.5,
+        -3.466666666666667
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": {
+        "x": 64,
+        "y": 372,
+        "scale": 1.2
+      },
+      "popup": {
+        "x": 408,
+        "y": 137.25,
+        "w": 365,
+        "h": 146,
+        "tone": 0
+      }
+    },
+    {
+      "time": 17.21799999999348,
+      "scene": "Scene_NewBattle",
+      "text": [
+        "でも…こっち側も",
+        "なんだか悪くないのじゃ"
+      ],
+      "brightness": 255,
+      "camera": [
+        -0.5,
+        -3.466666666666667
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": {
+        "x": 64,
+        "y": 372,
+        "scale": 1.2
+      },
+      "popup": {
+        "x": 408,
+        "y": 137.25,
+        "w": 365,
+        "h": 146,
+        "tone": 0
+      }
+    },
+    {
+      "time": 17.322000000043772,
+      "scene": "Scene_NewBattle",
+      "text": [
+        "でも…こっち側も",
+        "なんだか悪くないのじゃ"
+      ],
+      "brightness": 255,
+      "camera": [
+        -0.5,
+        -3.466666666666667
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": {
+        "x": 64,
+        "y": 372,
+        "scale": 1.2
+      },
+      "popup": {
+        "x": 408,
+        "y": 137.25,
+        "w": 365,
+        "h": 146,
+        "tone": 0
+      }
+    },
+    {
+      "time": 17.32600000000093,
+      "scene": "Scene_NewBattle",
+      "text": [
+        "でも…こっち側も",
+        "なんだか悪くないのじゃ"
+      ],
+      "brightness": 255,
+      "camera": [
+        -0.5,
+        -3.466666666666667
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": {
+        "x": 64,
+        "y": 372,
+        "scale": 1.2
+      },
+      "popup": {
+        "x": 408,
+        "y": 137.25,
+        "w": 365,
+        "h": 146,
+        "tone": 0
+      }
+    },
+    {
+      "time": 17.534000000101514,
+      "scene": "Scene_NewBattle",
+      "text": [
+        "でも…こっち側も",
+        "なんだか悪くないのじゃ"
+      ],
+      "brightness": 255,
+      "camera": [
+        -0.5,
+        -3.466666666666667
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": {
+        "x": 64,
+        "y": 372,
+        "scale": 1.2
+      },
+      "popup": {
+        "x": 408,
+        "y": 137.25,
+        "w": 365,
+        "h": 146,
+        "tone": 0
+      }
+    },
+    {
+      "time": 17.63400000007823,
+      "scene": "Scene_NewBattle",
+      "text": [
+        "でも…こっち側も",
+        "なんだか悪くないのじゃ"
+      ],
+      "brightness": 255,
+      "camera": [
+        -0.5,
+        -3.466666666666667
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": {
+        "x": 64,
+        "y": 372,
+        "scale": 1.2
+      },
+      "popup": {
+        "x": 408,
+        "y": 137.25,
+        "w": 365,
+        "h": 146,
+        "tone": 0
+      }
+    },
+    {
+      "time": 17.63600000005681,
+      "scene": "Scene_NewBattle",
+      "text": [
+        "でも…こっち側も",
+        "なんだか悪くないのじゃ"
+      ],
+      "brightness": 255,
+      "camera": [
+        -0.5,
+        -3.466666666666667
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": {
+        "x": 64,
+        "y": 372,
+        "scale": 1.2
+      },
+      "popup": {
+        "x": 408,
+        "y": 137.25,
+        "w": 365,
+        "h": 146,
+        "tone": 0
+      }
+    },
+    {
+      "time": 17.736000000033528,
+      "scene": "Scene_NewBattle",
+      "text": [
+        "でも…こっち側も",
+        "なんだか悪くないのじゃ"
+      ],
+      "brightness": 255,
+      "camera": [
+        -0.5,
+        -3.466666666666667
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": {
+        "x": 64,
+        "y": 372,
+        "scale": 1.2
+      },
+      "popup": {
+        "x": 408,
+        "y": 137.25,
+        "w": 365,
+        "h": 146,
+        "tone": 0
+      }
+    },
+    {
+      "time": 17.737000000081025,
+      "scene": "Scene_NewBattle",
+      "text": [
+        "でも…こっち側も",
+        "なんだか悪くないのじゃ"
+      ],
+      "brightness": 255,
+      "camera": [
+        -0.5,
+        -3.466666666666667
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": {
+        "x": 64,
+        "y": 372,
+        "scale": 1.2
+      },
+      "popup": {
+        "x": 408,
+        "y": 137.25,
+        "w": 365,
+        "h": 146,
+        "tone": 0
+      }
+    },
+    {
+      "time": 17.835000000079162,
+      "scene": "Scene_NewBattle",
+      "text": [
+        "でも…こっち側も",
+        "なんだか悪くないのじゃ"
+      ],
+      "brightness": 255,
+      "camera": [
+        -0.5,
+        -3.466666666666667
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": {
+        "x": 64,
+        "y": 372,
+        "scale": 1.2
+      },
+      "popup": {
+        "x": 408,
+        "y": 137.25,
+        "w": 365,
+        "h": 146,
+        "tone": 0
+      }
+    },
+    {
+      "time": 17.836000000010245,
+      "scene": "Scene_NewBattle",
+      "text": [
+        "でも…こっち側も",
+        "なんだか悪くないのじゃ"
+      ],
+      "brightness": 255,
+      "camera": [
+        -0.5,
+        -3.466666666666667
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": {
+        "x": 64,
+        "y": 372,
+        "scale": 1.2
+      },
+      "popup": {
+        "x": 408,
+        "y": 137.25,
+        "w": 365,
+        "h": 146,
+        "tone": 0
+      }
+    },
+    {
+      "time": 17.934000000008382,
+      "scene": "Scene_NewBattle",
+      "text": [
+        "でも…こっち側も",
+        "なんだか悪くないのじゃ"
+      ],
+      "brightness": 255,
+      "camera": [
+        -0.5,
+        -3.466666666666667
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": {
+        "x": 64,
+        "y": 372,
+        "scale": 1.2
+      },
+      "popup": {
+        "x": 408,
+        "y": 137.25,
+        "w": 365,
+        "h": 146,
+        "tone": 0
+      }
+    },
+    {
+      "time": 17.936000000103377,
+      "scene": "Scene_NewBattle",
+      "text": [
+        "でも…こっち側も",
+        "なんだか悪くないのじゃ"
+      ],
+      "brightness": 255,
+      "camera": [
+        -0.5,
+        -3.466666666666667
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": {
+        "x": 64,
+        "y": 372,
+        "scale": 1.2
+      },
+      "popup": {
+        "x": 408,
+        "y": 137.25,
+        "w": 365,
+        "h": 146,
+        "tone": 0
+      }
+    },
+    {
+      "time": 18.037000000011176,
+      "scene": "Scene_NewBattle",
+      "text": [
+        "でも…こっち側も",
+        "なんだか悪くないのじゃ"
+      ],
+      "brightness": 255,
+      "camera": [
+        -0.5,
+        -3.466666666666667
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": {
+        "x": 64,
+        "y": 372,
+        "scale": 1.2
+      },
+      "popup": {
+        "x": 408,
+        "y": 137.25,
+        "w": 365,
+        "h": 146,
+        "tone": 0
+      }
+    },
+    {
+      "time": 18.038999999989755,
+      "scene": "Scene_NewBattle",
+      "text": [
+        "でも…こっち側も",
+        "なんだか悪くないのじゃ"
+      ],
+      "brightness": 255,
+      "camera": [
+        -0.5,
+        -3.466666666666667
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": {
+        "x": 64,
+        "y": 372,
+        "scale": 1.2
+      },
+      "popup": {
+        "x": 408,
+        "y": 137.25,
+        "w": 365,
+        "h": 146,
+        "tone": 0
+      }
+    },
+    {
+      "time": 18.135000000009313,
+      "scene": "Scene_NewBattle",
+      "text": [
+        "でも…こっち側も",
+        "なんだか悪くないのじゃ"
+      ],
+      "brightness": 255,
+      "camera": [
+        -0.5,
+        -3.466666666666667
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": {
+        "x": 64,
+        "y": 372,
+        "scale": 1.2
+      },
+      "popup": {
+        "x": 408,
+        "y": 137.25,
+        "w": 365,
+        "h": 146,
+        "tone": 0
+      }
+    },
+    {
+      "time": 18.136999999987893,
+      "scene": "Scene_NewBattle",
+      "text": [
+        "でも…こっち側も",
+        "なんだか悪くないのじゃ"
+      ],
+      "brightness": 255,
+      "camera": [
+        -0.5,
+        -3.466666666666667
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": {
+        "x": 64,
+        "y": 372,
+        "scale": 1.2
+      },
+      "popup": {
+        "x": 408,
+        "y": 137.25,
+        "w": 365,
+        "h": 146,
+        "tone": 0
+      }
+    },
+    {
+      "time": 18.238000000012107,
+      "scene": "Scene_NewBattle",
+      "text": [
+        "でも…こっち側も",
+        "なんだか悪くないのじゃ"
+      ],
+      "brightness": 255,
+      "camera": [
+        -0.5,
+        -3.466666666666667
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": {
+        "x": 64,
+        "y": 372,
+        "scale": 1.2
+      },
+      "popup": {
+        "x": 408,
+        "y": 137.25,
+        "w": 365,
+        "h": 146,
+        "tone": 0
+      }
+    },
+    {
+      "time": 18.377000000094995,
+      "scene": "Scene_NewBattle",
+      "text": [
+        "でも…こっち側も",
+        "なんだか悪くないのじゃ"
+      ],
+      "brightness": 255,
+      "camera": [
+        -0.5,
+        -3.466666666666667
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": {
+        "x": 64,
+        "y": 372,
+        "scale": 1.2
+      },
+      "popup": {
+        "x": 408,
+        "y": 137.25,
+        "w": 365,
+        "h": 146,
+        "tone": 0
+      }
+    },
+    {
+      "time": 18.378000000026077,
+      "scene": "Scene_NewBattle",
+      "text": [
+        "でも…こっち側も",
+        "なんだか悪くないのじゃ"
+      ],
+      "brightness": 255,
+      "camera": [
+        -0.5,
+        -3.466666666666667
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": {
+        "x": 64,
+        "y": 372,
+        "scale": 1.2
+      },
+      "popup": {
+        "x": 408,
+        "y": 137.25,
+        "w": 365,
+        "h": 146,
+        "tone": 0
+      }
+    },
+    {
+      "time": 18.542000000015832,
+      "scene": "Scene_NewBattle",
+      "text": [
+        "でも…こっち側も",
+        "なんだか悪くないのじゃ"
+      ],
+      "brightness": 255,
+      "camera": [
+        -0.5,
+        -3.466666666666667
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": {
+        "x": 64,
+        "y": 372,
+        "scale": 1.2
+      },
+      "popup": {
+        "x": 408,
+        "y": 137.25,
+        "w": 365,
+        "h": 146,
+        "tone": 0
+      }
+    },
+    {
+      "time": 18.553000000072643,
+      "scene": "Scene_NewBattle",
+      "text": [
+        "でも…こっち側も",
+        "なんだか悪くないのじゃ"
+      ],
+      "brightness": 255,
+      "camera": [
+        -0.5,
+        -3.466666666666667
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": {
+        "x": 64,
+        "y": 372,
+        "scale": 1.2
+      },
+      "popup": {
+        "x": 408,
+        "y": 137.25,
+        "w": 365,
+        "h": 146,
+        "tone": 0
+      }
+    },
+    {
+      "time": 18.722999999998137,
+      "scene": "Scene_NewBattle",
+      "text": [
+        "でも…こっち側も",
+        "なんだか悪くないのじゃ"
+      ],
+      "brightness": 255,
+      "camera": [
+        -0.5,
+        -3.466666666666667
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": {
+        "x": 64,
+        "y": 372,
+        "scale": 1.2
+      },
+      "popup": {
+        "x": 408,
+        "y": 137.25,
+        "w": 365,
+        "h": 146,
+        "tone": 0
+      }
+    },
+    {
+      "time": 18.724000000045635,
+      "scene": "Scene_NewBattle",
+      "text": [
+        "でも…こっち側も",
+        "なんだか悪くないのじゃ"
+      ],
+      "brightness": 255,
+      "camera": [
+        -0.5,
+        -3.466666666666667
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": {
+        "x": 64,
+        "y": 372,
+        "scale": 1.2
+      },
+      "popup": {
+        "x": 408,
+        "y": 137.25,
+        "w": 365,
+        "h": 146,
+        "tone": 0
+      }
+    },
+    {
+      "time": 18.82300000009127,
+      "scene": "Scene_NewBattle",
+      "text": [
+        "でも…こっち側も",
+        "なんだか悪くないのじゃ"
+      ],
+      "brightness": 255,
+      "camera": [
+        -0.5,
+        -3.466666666666667
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": {
+        "x": 64,
+        "y": 372,
+        "scale": 1.2
+      },
+      "popup": {
+        "x": 408,
+        "y": 137.25,
+        "w": 365,
+        "h": 146,
+        "tone": 0
+      }
+    },
+    {
+      "time": 19.021000000066124,
+      "scene": "Scene_NewBattle",
+      "text": [
+        "でも…こっち側も",
+        "なんだか悪くないのじゃ"
+      ],
+      "brightness": 255,
+      "camera": [
+        -0.5,
+        -3.466666666666667
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": {
+        "x": 64,
+        "y": 372,
+        "scale": 1.2
+      },
+      "popup": {
+        "x": 408,
+        "y": 137.25,
+        "w": 365,
+        "h": 146,
+        "tone": 0
+      }
+    },
+    {
+      "time": 19.13400000007823,
+      "scene": "Scene_NewBattle",
+      "text": [
+        "でも…こっち側も",
+        "なんだか悪くないのじゃ"
+      ],
+      "brightness": 255,
+      "camera": [
+        -0.5,
+        -3.466666666666667
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": {
+        "x": 64,
+        "y": 372,
+        "scale": 1.2
+      },
+      "popup": {
+        "x": 408,
+        "y": 137.25,
+        "w": 365,
+        "h": 146,
+        "tone": 0
+      }
+    },
+    {
+      "time": 19.279000000096858,
+      "scene": "Scene_NewBattle",
+      "text": [
+        "ヘッヘッ…"
+      ],
+      "brightness": 255,
+      "camera": [
+        -0.5,
+        -3.466666666666667
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": {
+        "x": 64,
+        "y": 372,
+        "scale": 1.2
+      },
+      "popup": {
+        "x": 408,
+        "y": 170.5625,
+        "w": 199,
+        "h": 113,
+        "tone": 0
+      }
+    },
+    {
+      "time": 19.288999999989755,
+      "scene": "Scene_NewBattle",
+      "text": [
+        "ヘッヘッ…"
+      ],
+      "brightness": 255,
+      "camera": [
+        -0.5,
+        -3.466666666666667
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": {
+        "x": 64,
+        "y": 372,
+        "scale": 1.2
+      },
+      "popup": {
+        "x": 408,
+        "y": 170.5625,
+        "w": 199,
+        "h": 113,
+        "tone": 0
+      }
+    },
+    {
+      "time": 19.378000000026077,
+      "scene": "Scene_NewBattle",
+      "text": [
+        "ヘッヘッ…"
+      ],
+      "brightness": 255,
+      "camera": [
+        -0.5,
+        -3.466666666666667
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": {
+        "x": 64,
+        "y": 372,
+        "scale": 1.2
+      },
+      "popup": {
+        "x": 408,
+        "y": 170.5625,
+        "w": 199,
+        "h": 113,
+        "tone": 0
+      }
+    },
+    {
+      "time": 19.570999999996275,
+      "scene": "Scene_NewBattle",
+      "text": [
+        "ヘッヘッ…"
+      ],
+      "brightness": 255,
+      "camera": [
+        -0.5,
+        -3.466666666666667
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": {
+        "x": 64,
+        "y": 372,
+        "scale": 1.2
+      },
+      "popup": {
+        "x": 408,
+        "y": 170.5625,
+        "w": 199,
+        "h": 113,
+        "tone": 0
+      }
+    },
+    {
+      "time": 19.684000000008382,
+      "scene": "Scene_NewBattle",
+      "text": [
+        "ヘッヘッ…"
+      ],
+      "brightness": 255,
+      "camera": [
+        -0.5,
+        -3.466666666666667
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": {
+        "x": 64,
+        "y": 372,
+        "scale": 1.2
+      },
+      "popup": {
+        "x": 408,
+        "y": 170.5625,
+        "w": 199,
+        "h": 113,
+        "tone": 0
+      }
+    },
+    {
+      "time": 19.8080000000773,
+      "scene": "Scene_NewBattle",
+      "text": [
+        "ヘッヘッ…"
+      ],
+      "brightness": 255,
+      "camera": [
+        -0.5,
+        -3.466666666666667
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": {
+        "x": 64,
+        "y": 372,
+        "scale": 1.2
+      },
+      "popup": {
+        "x": 408,
+        "y": 170.5625,
+        "w": 199,
+        "h": 113,
+        "tone": 0
+      }
+    },
+    {
+      "time": 19.90100000007078,
+      "scene": "Scene_NewBattle",
+      "text": [
+        "ヘッヘッ…"
+      ],
+      "brightness": 255,
+      "camera": [
+        -0.5,
+        -3.466666666666667
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": {
+        "x": 64,
+        "y": 372,
+        "scale": 1.2
+      },
+      "popup": {
+        "x": 408,
+        "y": 170.5625,
+        "w": 199,
+        "h": 113,
+        "tone": 0
+      }
+    },
+    {
+      "time": 20.10700000007637,
+      "scene": "Scene_NewBattle",
+      "text": [
+        "ヘッヘッ…"
+      ],
+      "brightness": 255,
+      "camera": [
+        -0.5,
+        -3.466666666666667
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": {
+        "x": 64,
+        "y": 372,
+        "scale": 1.2
+      },
+      "popup": {
+        "x": 408,
+        "y": 170.5625,
+        "w": 199,
+        "h": 113,
+        "tone": 0
+      }
+    },
+    {
+      "time": 20.20100000000093,
+      "scene": "Scene_NewBattle",
+      "text": [
+        "ヘッヘッ…"
+      ],
+      "brightness": 255,
+      "camera": [
+        -0.5,
+        -3.466666666666667
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": {
+        "x": 64,
+        "y": 372,
+        "scale": 1.2
+      },
+      "popup": {
+        "x": 408,
+        "y": 170.5625,
+        "w": 199,
+        "h": 113,
+        "tone": 0
+      }
+    },
+    {
+      "time": 20.302000000025146,
+      "scene": "Scene_NewBattle",
+      "text": [
+        "ヘッヘッ…"
+      ],
+      "brightness": 255,
+      "camera": [
+        -0.5,
+        -3.466666666666667
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": {
+        "x": 64,
+        "y": 372,
+        "scale": 1.2
+      },
+      "popup": {
+        "x": 408,
+        "y": 170.5625,
+        "w": 199,
+        "h": 113,
+        "tone": 0
+      }
+    },
+    {
+      "time": 20.42200000002049,
+      "scene": "Scene_NewBattle",
+      "text": [
+        "ヘッヘッ…"
+      ],
+      "brightness": 255,
+      "camera": [
+        -0.5,
+        -3.466666666666667
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": {
+        "x": 64,
+        "y": 372,
+        "scale": 1.2
+      },
+      "popup": {
+        "x": 408,
+        "y": 170.5625,
+        "w": 199,
+        "h": 113,
+        "tone": 0
+      }
+    },
+    {
+      "time": 20.423000000067987,
+      "scene": "Scene_NewBattle",
+      "text": [
+        "ヘッヘッ…"
+      ],
+      "brightness": 255,
+      "camera": [
+        -0.5,
+        -3.466666666666667
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": {
+        "x": 64,
+        "y": 372,
+        "scale": 1.2
+      },
+      "popup": {
+        "x": 408,
+        "y": 170.5625,
+        "w": 199,
+        "h": 113,
+        "tone": 0
+      }
+    },
+    {
+      "time": 20.62200000009034,
+      "scene": "Scene_NewBattle",
+      "text": [
+        "ヘッヘッ…"
+      ],
+      "brightness": 255,
+      "camera": [
+        -0.5,
+        -3.466666666666667
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": {
+        "x": 64,
+        "y": 372,
+        "scale": 1.2
+      },
+      "popup": {
+        "x": 408,
+        "y": 170.5625,
+        "w": 199,
+        "h": 113,
+        "tone": 0
+      }
+    },
+    {
+      "time": 20.720000000088476,
+      "scene": "Scene_NewBattle",
+      "text": [
+        "ヘッヘッ…"
+      ],
+      "brightness": 255,
+      "camera": [
+        -0.5,
+        -3.466666666666667
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": {
+        "x": 64,
+        "y": 372,
+        "scale": 1.2
+      },
+      "popup": {
+        "x": 408,
+        "y": 170.5625,
+        "w": 199,
+        "h": 113,
+        "tone": 0
+      }
+    },
+    {
+      "time": 20.720000000088476,
+      "scene": "Scene_NewBattle",
+      "text": [
+        "ヘッヘッ…"
+      ],
+      "brightness": 255,
+      "camera": [
+        -0.5,
+        -3.466666666666667
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": {
+        "x": 64,
+        "y": 372,
+        "scale": 1.2
+      },
+      "popup": {
+        "x": 408,
+        "y": 170.5625,
+        "w": 199,
+        "h": 113,
+        "tone": 0
+      }
+    },
+    {
+      "time": 20.82300000009127,
+      "scene": "Scene_NewBattle",
+      "text": [
+        "ヘッヘッ…"
+      ],
+      "brightness": 255,
+      "camera": [
+        -0.5,
+        -3.466666666666667
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": {
+        "x": 64,
+        "y": 372,
+        "scale": 1.2
+      },
+      "popup": {
+        "x": 408,
+        "y": 170.5625,
+        "w": 199,
+        "h": 113,
+        "tone": 0
+      }
+    },
+    {
+      "time": 20.82400000002235,
+      "scene": "Scene_NewBattle",
+      "text": [
+        "ヘッヘッ…"
+      ],
+      "brightness": 255,
+      "camera": [
+        -0.5,
+        -3.466666666666667
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": {
+        "x": 64,
+        "y": 372,
+        "scale": 1.2
+      },
+      "popup": {
+        "x": 408,
+        "y": 170.5625,
+        "w": 199,
+        "h": 113,
+        "tone": 0
+      }
+    },
+    {
+      "time": 20.921000000089407,
+      "scene": "Scene_NewBattle",
+      "text": [
+        "ヘッヘッ…"
+      ],
+      "brightness": 255,
+      "camera": [
+        -0.5,
+        -3.466666666666667
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": {
+        "x": 64,
+        "y": 372,
+        "scale": 1.2
+      },
+      "popup": {
+        "x": 408,
+        "y": 170.5625,
+        "w": 199,
+        "h": 113,
+        "tone": 0
+      }
+    },
+    {
+      "time": 21.01699999999255,
+      "scene": "Scene_NewBattle",
+      "text": [
+        "ヘッヘッ…"
+      ],
+      "brightness": 255,
+      "camera": [
+        -0.5,
+        -3.466666666666667
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": {
+        "x": 64,
+        "y": 372,
+        "scale": 1.2
+      },
+      "popup": {
+        "x": 408,
+        "y": 170.5625,
+        "w": 199,
+        "h": 113,
+        "tone": 0
+      }
+    },
+    {
+      "time": 21.019000000087544,
+      "scene": "Scene_NewBattle",
+      "text": [
+        "ヘッヘッ…"
+      ],
+      "brightness": 255,
+      "camera": [
+        -0.5,
+        -3.466666666666667
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": {
+        "x": 64,
+        "y": 372,
+        "scale": 1.2
+      },
+      "popup": {
+        "x": 408,
+        "y": 170.5625,
+        "w": 199,
+        "h": 113,
+        "tone": 0
+      }
+    },
+    {
+      "time": 21.13800000003539,
+      "scene": "Scene_NewBattle",
+      "text": [],
+      "brightness": 255,
+      "camera": [
+        -0.5,
+        -3.466666666666667
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": {
+        "x": 64,
+        "y": 372,
+        "scale": 1.2
+      },
+      "popup": null
+    },
+    {
+      "time": 21.234000000054948,
+      "scene": "Scene_NewBattle",
+      "text": [],
+      "brightness": 255,
+      "camera": [
+        -0.5,
+        -3.466666666666667
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": {
+        "x": 64,
+        "y": 372,
+        "scale": 1.2
+      },
+      "popup": null
+    },
+    {
+      "time": 21.3410000000149,
+      "scene": "Scene_NewBattle",
+      "text": [],
+      "brightness": 255,
+      "camera": [
+        -0.5,
+        -3.466666666666667
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": {
+        "x": 64,
+        "y": 372,
+        "scale": 1.2
+      },
+      "popup": null
+    },
+    {
+      "time": 21.3420000000624,
+      "scene": "Scene_NewBattle",
+      "text": [],
+      "brightness": 255,
+      "camera": [
+        -0.5,
+        -3.466666666666667
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": {
+        "x": 64,
+        "y": 372,
+        "scale": 1.2
+      },
+      "popup": null
+    },
+    {
+      "time": 21.45100000000093,
+      "scene": "Scene_NewBattle",
+      "text": [],
+      "brightness": 255,
+      "camera": [
+        -0.5,
+        -3.466666666666667
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": {
+        "x": 64,
+        "y": 372,
+        "scale": 1.2
+      },
+      "popup": null
+    },
+    {
+      "time": 21.6490000000922,
+      "scene": "Scene_NewBattle",
+      "text": [],
+      "brightness": 255,
+      "camera": [
+        -0.5,
+        -3.466666666666667
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": {
+        "x": 64,
+        "y": 372,
+        "scale": 1.2
+      },
+      "popup": null
+    },
+    {
+      "time": 21.784000000101514,
+      "scene": "Scene_NewBattle",
+      "text": [],
+      "brightness": 255,
+      "camera": [
+        -0.5,
+        -3.466666666666667
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": {
+        "x": 64,
+        "y": 372,
+        "scale": 1.2
+      },
+      "popup": null
+    },
+    {
+      "time": 21.788999999989755,
+      "scene": "Scene_NewBattle",
+      "text": [],
+      "brightness": 255,
+      "camera": [
+        -0.5,
+        -3.466666666666667
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": {
+        "x": 64,
+        "y": 372,
+        "scale": 1.2
+      },
+      "popup": null
+    },
+    {
+      "time": 21.986000000033528,
+      "scene": "Scene_NewBattle",
+      "text": [],
+      "brightness": 255,
+      "camera": [
+        -0.5,
+        -3.466666666666667
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": {
+        "x": 64,
+        "y": 372,
+        "scale": 1.2
+      },
+      "popup": null
+    },
+    {
+      "time": 22.212000000057742,
+      "scene": "Scene_NewBattle",
+      "text": [],
+      "brightness": 0,
+      "camera": [
+        -0.5,
+        -3.466666666666667
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": {
+        "x": 64,
+        "y": 372,
+        "scale": 1.2
+      },
+      "popup": null
+    },
+    {
+      "time": 22.23100000002887,
+      "scene": "Scene_NewBattle",
+      "text": [],
+      "brightness": 0,
+      "camera": [
+        -0.5,
+        -3.466666666666667
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": {
+        "x": 64,
+        "y": 372,
+        "scale": 1.2
+      },
+      "popup": null
+    },
+    {
+      "time": 22.24200000008568,
+      "scene": "Scene_NewBattle",
+      "text": [],
+      "brightness": 0,
+      "camera": [
+        -0.5,
+        -3.466666666666667
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": {
+        "x": 64,
+        "y": 372,
+        "scale": 1.2
+      },
+      "popup": null
+    },
+    {
+      "time": 22.54300000006333,
+      "scene": "Scene_NewBattle",
+      "text": [],
+      "brightness": 0,
+      "camera": [
+        -0.5,
+        -3.466666666666667
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": {
+        "x": 64,
+        "y": 372,
+        "scale": 1.2
+      },
+      "popup": null
+    },
+    {
+      "time": 22.65500000002794,
+      "scene": "Scene_NewBattle",
+      "text": [],
+      "brightness": 0,
+      "camera": [
+        -0.5,
+        -3.466666666666667
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": {
+        "x": 64,
+        "y": 372,
+        "scale": 1.2
+      },
+      "popup": null
+    },
+    {
+      "time": 22.659000000101514,
+      "scene": "Scene_NewBattle",
+      "text": [],
+      "brightness": 0,
+      "camera": [
+        -0.5,
+        -3.466666666666667
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": {
+        "x": 64,
+        "y": 372,
+        "scale": 1.2
+      },
+      "popup": null
+    },
+    {
+      "time": 22.771999999997206,
+      "scene": "Scene_NewBattle",
+      "text": [],
+      "brightness": 0,
+      "camera": [
+        -0.5,
+        -3.466666666666667
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": {
+        "x": 64,
+        "y": 372,
+        "scale": 1.2
+      },
+      "popup": null
+    },
+    {
+      "time": 22.926000000094064,
+      "scene": "Scene_NewBattle",
+      "text": [],
+      "brightness": 0,
+      "camera": [
+        -0.5,
+        -3.466666666666667
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": {
+        "x": 64,
+        "y": 372,
+        "scale": 1.2
+      },
+      "popup": null
+    },
+    {
+      "time": 22.938000000081956,
+      "scene": "Scene_NewBattle",
+      "text": [],
+      "brightness": 0,
+      "camera": [
+        -0.5,
+        -3.466666666666667
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": {
+        "x": 64,
+        "y": 372,
+        "scale": 1.2
+      },
+      "popup": null
+    },
+    {
+      "time": 23.020000000018626,
+      "scene": "Scene_NewBattle",
+      "text": [],
+      "brightness": 0,
+      "camera": [
+        -0.5,
+        -3.466666666666667
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": {
+        "x": 64,
+        "y": 372,
+        "scale": 1.2
+      },
+      "popup": null
+    },
+    {
+      "time": 23.738000000012107,
+      "scene": "Scene_Map",
+      "text": [],
+      "brightness": 21.25,
+      "camera": [
+        -0.5,
+        -3.466666666666667
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": null,
+      "popup": null
+    },
+    {
+      "time": 23.739000000059605,
+      "scene": "Scene_Map",
+      "text": [],
+      "brightness": 31.875,
+      "camera": [
+        -0.5,
+        -3.466666666666667
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": null,
+      "popup": null
+    },
+    {
+      "time": 23.739999999990687,
+      "scene": "Scene_Map",
+      "text": [],
+      "brightness": 42.5,
+      "camera": [
+        -0.5,
+        -3.466666666666667
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": null,
+      "popup": null
+    },
+    {
+      "time": 23.741000000038184,
+      "scene": "Scene_Map",
+      "text": [],
+      "brightness": 53.125,
+      "camera": [
+        -0.5,
+        -3.466666666666667
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": null,
+      "popup": null
+    },
+    {
+      "time": 25.11900000006426,
+      "scene": "Scene_Map",
+      "text": [],
+      "brightness": 255,
+      "camera": [
+        -0.5,
+        -3.466666666666667
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": null,
+      "popup": null
+    },
+    {
+      "time": 25.221000000019558,
+      "scene": "Scene_Map",
+      "text": [],
+      "brightness": 255,
+      "camera": [
+        -0.5,
+        -3.466666666666667
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": null,
+      "popup": null
+    },
+    {
+      "time": 25.224000000045635,
+      "scene": "Scene_Map",
+      "text": [],
+      "brightness": 255,
+      "camera": [
+        -0.5,
+        -3.466666666666667
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": null,
+      "popup": null
+    },
+    {
+      "time": 25.320999999996275,
+      "scene": "Scene_Map",
+      "text": [],
+      "brightness": 255,
+      "camera": [
+        -0.5,
+        -3.466666666666667
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": null,
+      "popup": null
+    },
+    {
+      "time": 25.511999999987893,
+      "scene": "Scene_Map",
+      "text": [],
+      "brightness": 255,
+      "camera": [
+        -0.5,
+        -3.466666666666667
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": null,
+      "popup": null
+    },
+    {
+      "time": 25.62100000004284,
+      "scene": "Scene_Map",
+      "text": [],
+      "brightness": 255,
+      "camera": [
+        -0.5,
+        -3.466666666666667
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": null,
+      "popup": null
+    },
+    {
+      "time": 25.84299999999348,
+      "scene": "Scene_Map",
+      "text": [
+        "うむ…仕方ない",
+        "通行を許可しようぞ"
+      ],
+      "brightness": 255,
+      "camera": [
+        -0.5,
+        -3.466666666666667
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": null,
+      "popup": {
+        "x": 101,
+        "y": 80.83749999999952,
+        "w": 326,
+        "h": 146,
+        "tone": 0
+      }
+    },
+    {
+      "time": 25.957000000053085,
+      "scene": "Scene_Map",
+      "text": [
+        "うむ…仕方ない",
+        "通行を許可しようぞ"
+      ],
+      "brightness": 255,
+      "camera": [
+        -0.5,
+        -3.466666666666667
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": null,
+      "popup": {
+        "x": 101,
+        "y": 80.83749999999952,
+        "w": 326,
+        "h": 146,
+        "tone": 0
+      }
+    },
+    {
+      "time": 26.154000000096858,
+      "scene": "Scene_Map",
+      "text": [
+        "うむ…仕方ない",
+        "通行を許可しようぞ"
+      ],
+      "brightness": 255,
+      "camera": [
+        -0.5,
+        -3.466666666666667
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": null,
+      "popup": {
+        "x": 101,
+        "y": 80.83749999999952,
+        "w": 326,
+        "h": 146,
+        "tone": 0
+      }
+    },
+    {
+      "time": 26.163000000058673,
+      "scene": "Scene_Map",
+      "text": [
+        "うむ…仕方ない",
+        "通行を許可しようぞ"
+      ],
+      "brightness": 255,
+      "camera": [
+        -0.5,
+        -3.466666666666667
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": null,
+      "popup": {
+        "x": 101,
+        "y": 80.83749999999952,
+        "w": 326,
+        "h": 146,
+        "tone": 0
+      }
+    },
+    {
+      "time": 26.302000000025146,
+      "scene": "Scene_Map",
+      "text": [
+        "うむ…仕方ない",
+        "通行を許可しようぞ"
+      ],
+      "brightness": 255,
+      "camera": [
+        -0.5,
+        -3.466666666666667
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": null,
+      "popup": {
+        "x": 101,
+        "y": 80.83749999999952,
+        "w": 326,
+        "h": 146,
+        "tone": 0
+      }
+    },
+    {
+      "time": 26.44800000009127,
+      "scene": "Scene_Map",
+      "text": [
+        "うむ…仕方ない",
+        "通行を許可しようぞ"
+      ],
+      "brightness": 255,
+      "camera": [
+        -0.5,
+        -3.466666666666667
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": null,
+      "popup": {
+        "x": 101,
+        "y": 80.83749999999952,
+        "w": 326,
+        "h": 146,
+        "tone": 0
+      }
+    },
+    {
+      "time": 26.54100000008475,
+      "scene": "Scene_Map",
+      "text": [
+        "うむ…仕方ない",
+        "通行を許可しようぞ"
+      ],
+      "brightness": 255,
+      "camera": [
+        -0.5,
+        -3.466666666666667
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": null,
+      "popup": {
+        "x": 101,
+        "y": 80.83749999999952,
+        "w": 326,
+        "h": 146,
+        "tone": 0
+      }
+    },
+    {
+      "time": 26.63400000007823,
+      "scene": "Scene_Map",
+      "text": [
+        "うむ…仕方ない",
+        "通行を許可しようぞ"
+      ],
+      "brightness": 255,
+      "camera": [
+        -0.5,
+        -3.466666666666667
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": null,
+      "popup": {
+        "x": 101,
+        "y": 80.83749999999952,
+        "w": 326,
+        "h": 146,
+        "tone": 0
+      }
+    },
+    {
+      "time": 26.784000000101514,
+      "scene": "Scene_Map",
+      "text": [
+        "うむ…仕方ない",
+        "通行を許可しようぞ"
+      ],
+      "brightness": 255,
+      "camera": [
+        -0.5,
+        -3.466666666666667
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": null,
+      "popup": {
+        "x": 101,
+        "y": 80.83749999999952,
+        "w": 326,
+        "h": 146,
+        "tone": 0
+      }
+    },
+    {
+      "time": 26.787000000011176,
+      "scene": "Scene_Map",
+      "text": [
+        "うむ…仕方ない",
+        "通行を許可しようぞ"
+      ],
+      "brightness": 255,
+      "camera": [
+        -0.5,
+        -3.466666666666667
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": null,
+      "popup": {
+        "x": 101,
+        "y": 80.83749999999952,
+        "w": 326,
+        "h": 146,
+        "tone": 0
+      }
+    },
+    {
+      "time": 26.972999999998137,
+      "scene": "Scene_Map",
+      "text": [
+        "うむ…仕方ない",
+        "通行を許可しようぞ"
+      ],
+      "brightness": 255,
+      "camera": [
+        -0.5,
+        -3.466666666666667
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": null,
+      "popup": {
+        "x": 101,
+        "y": 80.83749999999952,
+        "w": 326,
+        "h": 146,
+        "tone": 0
+      }
+    },
+    {
+      "time": 27.152000000001863,
+      "scene": "Scene_Map",
+      "text": [
+        "うむ…仕方ない",
+        "通行を許可しようぞ"
+      ],
+      "brightness": 255,
+      "camera": [
+        -0.5,
+        -3.466666666666667
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": null,
+      "popup": {
+        "x": 101,
+        "y": 80.83749999999952,
+        "w": 326,
+        "h": 146,
+        "tone": 0
+      }
+    },
+    {
+      "time": 27.254000000073574,
+      "scene": "Scene_Map",
+      "text": [
+        "うむ…仕方ない",
+        "通行を許可しようぞ"
+      ],
+      "brightness": 255,
+      "camera": [
+        -0.5,
+        -3.466666666666667
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": null,
+      "popup": {
+        "x": 101,
+        "y": 80.83749999999952,
+        "w": 326,
+        "h": 146,
+        "tone": 0
+      }
+    },
+    {
+      "time": 27.353000000002794,
+      "scene": "Scene_Map",
+      "text": [
+        "うむ…仕方ない",
+        "通行を許可しようぞ"
+      ],
+      "brightness": 255,
+      "camera": [
+        -0.5,
+        -3.466666666666667
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": null,
+      "popup": {
+        "x": 101,
+        "y": 80.83749999999952,
+        "w": 326,
+        "h": 146,
+        "tone": 0
+      }
+    },
+    {
+      "time": 27.45100000000093,
+      "scene": "Scene_Map",
+      "text": [
+        "うむ…仕方ない",
+        "通行を許可しようぞ"
+      ],
+      "brightness": 255,
+      "camera": [
+        -0.5,
+        -3.466666666666667
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": null,
+      "popup": {
+        "x": 101,
+        "y": 80.83749999999952,
+        "w": 326,
+        "h": 146,
+        "tone": 0
+      }
+    },
+    {
+      "time": 27.552000000025146,
+      "scene": "Scene_Map",
+      "text": [
+        "うむ…仕方ない",
+        "通行を許可しようぞ"
+      ],
+      "brightness": 255,
+      "camera": [
+        -0.5,
+        -3.466666666666667
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": null,
+      "popup": {
+        "x": 101,
+        "y": 80.83749999999952,
+        "w": 326,
+        "h": 146,
+        "tone": 0
+      }
+    },
+    {
+      "time": 27.962999999988824,
+      "scene": "Scene_Map",
+      "text": [
+        "我々…なんだか",
+        "友達になれた気がするのじゃ"
+      ],
+      "brightness": 255,
+      "camera": [
+        -0.5,
+        -3.466666666666667
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": null,
+      "popup": {
+        "x": 51.5,
+        "y": 80.83749999999952,
+        "w": 425,
+        "h": 146,
+        "tone": 0
+      }
+    },
+    {
+      "time": 27.9670000000624,
+      "scene": "Scene_Map",
+      "text": [
+        "我々…なんだか",
+        "友達になれた気がするのじゃ"
+      ],
+      "brightness": 255,
+      "camera": [
+        -0.5,
+        -3.466666666666667
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": null,
+      "popup": {
+        "x": 51.5,
+        "y": 80.83749999999952,
+        "w": 425,
+        "h": 146,
+        "tone": 0
+      }
+    },
+    {
+      "time": 28.06000000005588,
+      "scene": "Scene_Map",
+      "text": [
+        "我々…なんだか",
+        "友達になれた気がするのじゃ"
+      ],
+      "brightness": 255,
+      "camera": [
+        -0.5,
+        -3.466666666666667
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": null,
+      "popup": {
+        "x": 51.5,
+        "y": 80.83749999999952,
+        "w": 425,
+        "h": 146,
+        "tone": 0
+      }
+    },
+    {
+      "time": 28.290000000037253,
+      "scene": "Scene_Map",
+      "text": [
+        "我々…なんだか",
+        "友達になれた気がするのじゃ"
+      ],
+      "brightness": 255,
+      "camera": [
+        -0.5,
+        -3.466666666666667
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": null,
+      "popup": {
+        "x": 51.5,
+        "y": 80.83749999999952,
+        "w": 425,
+        "h": 146,
+        "tone": 0
+      }
+    },
+    {
+      "time": 28.29500000004191,
+      "scene": "Scene_Map",
+      "text": [
+        "我々…なんだか",
+        "友達になれた気がするのじゃ"
+      ],
+      "brightness": 255,
+      "camera": [
+        -0.5,
+        -3.466666666666667
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": null,
+      "popup": {
+        "x": 51.5,
+        "y": 80.83749999999952,
+        "w": 425,
+        "h": 146,
+        "tone": 0
+      }
+    },
+    {
+      "time": 28.400000000023283,
+      "scene": "Scene_Map",
+      "text": [
+        "我々…なんだか",
+        "友達になれた気がするのじゃ"
+      ],
+      "brightness": 255,
+      "camera": [
+        -0.5,
+        -3.466666666666667
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": null,
+      "popup": {
+        "x": 51.5,
+        "y": 80.83749999999952,
+        "w": 425,
+        "h": 146,
+        "tone": 0
+      }
+    },
+    {
+      "time": 28.505000000004657,
+      "scene": "Scene_Map",
+      "text": [
+        "我々…なんだか",
+        "友達になれた気がするのじゃ"
+      ],
+      "brightness": 255,
+      "camera": [
+        -0.5,
+        -3.466666666666667
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": null,
+      "popup": {
+        "x": 51.5,
+        "y": 80.83749999999952,
+        "w": 425,
+        "h": 146,
+        "tone": 0
+      }
+    },
+    {
+      "time": 28.613000000012107,
+      "scene": "Scene_Map",
+      "text": [
+        "我々…なんだか",
+        "友達になれた気がするのじゃ"
+      ],
+      "brightness": 255,
+      "camera": [
+        -0.5,
+        -3.466666666666667
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": null,
+      "popup": {
+        "x": 51.5,
+        "y": 80.83749999999952,
+        "w": 425,
+        "h": 146,
+        "tone": 0
+      }
+    },
+    {
+      "time": 28.79100000008475,
+      "scene": "Scene_Map",
+      "text": [
+        "我々…なんだか",
+        "友達になれた気がするのじゃ"
+      ],
+      "brightness": 255,
+      "camera": [
+        -0.5,
+        -3.466666666666667
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": null,
+      "popup": {
+        "x": 51.5,
+        "y": 80.83749999999952,
+        "w": 425,
+        "h": 146,
+        "tone": 0
+      }
+    },
+    {
+      "time": 28.87200000009034,
+      "scene": "Scene_Map",
+      "text": [
+        "我々…なんだか",
+        "友達になれた気がするのじゃ"
+      ],
+      "brightness": 255,
+      "camera": [
+        -0.5,
+        -3.466666666666667
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": null,
+      "popup": {
+        "x": 51.5,
+        "y": 80.83749999999952,
+        "w": 425,
+        "h": 146,
+        "tone": 0
+      }
+    },
+    {
+      "time": 29.087999999988824,
+      "scene": "Scene_Map",
+      "text": [
+        "我々…なんだか",
+        "友達になれた気がするのじゃ"
+      ],
+      "brightness": 255,
+      "camera": [
+        -0.5,
+        -3.466666666666667
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": null,
+      "popup": {
+        "x": 51.5,
+        "y": 80.83749999999952,
+        "w": 425,
+        "h": 146,
+        "tone": 0
+      }
+    },
+    {
+      "time": 29.224000000045635,
+      "scene": "Scene_Map",
+      "text": [
+        "我々…なんだか",
+        "友達になれた気がするのじゃ"
+      ],
+      "brightness": 255,
+      "camera": [
+        -0.5,
+        -3.466666666666667
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": null,
+      "popup": {
+        "x": 51.5,
+        "y": 80.83749999999952,
+        "w": 425,
+        "h": 146,
+        "tone": 0
+      }
+    },
+    {
+      "time": 29.334000000031665,
+      "scene": "Scene_Map",
+      "text": [
+        "我々…なんだか",
+        "友達になれた気がするのじゃ"
+      ],
+      "brightness": 255,
+      "camera": [
+        -0.5,
+        -3.466666666666667
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": null,
+      "popup": {
+        "x": 51.5,
+        "y": 80.83749999999952,
+        "w": 425,
+        "h": 146,
+        "tone": 0
+      }
+    },
+    {
+      "time": 29.3410000000149,
+      "scene": "Scene_Map",
+      "text": [
+        "我々…なんだか",
+        "友達になれた気がするのじゃ"
+      ],
+      "brightness": 255,
+      "camera": [
+        -0.5,
+        -3.466666666666667
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": null,
+      "popup": {
+        "x": 51.5,
+        "y": 80.83749999999952,
+        "w": 425,
+        "h": 146,
+        "tone": 0
+      }
+    },
+    {
+      "time": 29.5580000000773,
+      "scene": "Scene_Map",
+      "text": [
+        "我々…なんだか",
+        "友達になれた気がするのじゃ"
+      ],
+      "brightness": 255,
+      "camera": [
+        -0.5,
+        -3.466666666666667
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": null,
+      "popup": {
+        "x": 51.5,
+        "y": 80.83749999999952,
+        "w": 425,
+        "h": 146,
+        "tone": 0
+      }
+    },
+    {
+      "time": 29.68900000001304,
+      "scene": "Scene_Map",
+      "text": [
+        "我々…なんだか",
+        "友達になれた気がするのじゃ"
+      ],
+      "brightness": 255,
+      "camera": [
+        -0.5,
+        -3.466666666666667
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": null,
+      "popup": {
+        "x": 51.5,
+        "y": 80.83749999999952,
+        "w": 425,
+        "h": 146,
+        "tone": 0
+      }
+    },
+    {
+      "time": 29.69900000002235,
+      "scene": "Scene_Map",
+      "text": [
+        "我々…なんだか",
+        "友達になれた気がするのじゃ"
+      ],
+      "brightness": 255,
+      "camera": [
+        -0.5,
+        -3.466666666666667
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": null,
+      "popup": {
+        "x": 51.5,
+        "y": 80.83749999999952,
+        "w": 425,
+        "h": 146,
+        "tone": 0
+      }
+    },
+    {
+      "time": 29.79899999999907,
+      "scene": "Scene_Map",
+      "text": [
+        "我々…なんだか",
+        "友達になれた気がするのじゃ"
+      ],
+      "brightness": 255,
+      "camera": [
+        -0.5,
+        -3.466666666666667
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": null,
+      "popup": {
+        "x": 51.5,
+        "y": 80.83749999999952,
+        "w": 425,
+        "h": 146,
+        "tone": 0
+      }
+    },
+    {
+      "time": 30.070999999996275,
+      "scene": "Scene_Map",
+      "text": [
+        "ヘッヘッ…"
+      ],
+      "brightness": 255,
+      "camera": [
+        -0.5,
+        -3.466666666666667
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": null,
+      "popup": {
+        "x": 164.5,
+        "y": 147.46249999999952,
+        "w": 199,
+        "h": 113,
+        "tone": 0
+      }
+    },
+    {
+      "time": 30.18900000001304,
+      "scene": "Scene_Map",
+      "text": [
+        "ヘッヘッ…"
+      ],
+      "brightness": 255,
+      "camera": [
+        -0.5,
+        -3.466666666666667
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": null,
+      "popup": {
+        "x": 164.5,
+        "y": 147.46249999999952,
+        "w": 199,
+        "h": 113,
+        "tone": 0
+      }
+    },
+    {
+      "time": 30.270000000018626,
+      "scene": "Scene_Map",
+      "text": [
+        "ヘッヘッ…"
+      ],
+      "brightness": 255,
+      "camera": [
+        -0.5,
+        -3.466666666666667
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": null,
+      "popup": {
+        "x": 164.5,
+        "y": 147.46249999999952,
+        "w": 199,
+        "h": 113,
+        "tone": 0
+      }
+    },
+    {
+      "time": 30.374000000068918,
+      "scene": "Scene_Map",
+      "text": [
+        "ヘッヘッ…"
+      ],
+      "brightness": 255,
+      "camera": [
+        -0.5,
+        -3.466666666666667
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": null,
+      "popup": {
+        "x": 164.5,
+        "y": 147.46249999999952,
+        "w": 199,
+        "h": 113,
+        "tone": 0
+      }
+    },
+    {
+      "time": 30.471000000019558,
+      "scene": "Scene_Map",
+      "text": [
+        "ヘッヘッ…"
+      ],
+      "brightness": 255,
+      "camera": [
+        -0.5,
+        -3.466666666666667
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": null,
+      "popup": {
+        "x": 164.5,
+        "y": 147.46249999999952,
+        "w": 199,
+        "h": 113,
+        "tone": 0
+      }
+    },
+    {
+      "time": 30.570999999996275,
+      "scene": "Scene_Map",
+      "text": [
+        "ヘッヘッ…"
+      ],
+      "brightness": 255,
+      "camera": [
+        -0.5,
+        -3.466666666666667
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": null,
+      "popup": {
+        "x": 164.5,
+        "y": 147.46249999999952,
+        "w": 199,
+        "h": 113,
+        "tone": 0
+      }
+    },
+    {
+      "time": 30.57700000004843,
+      "scene": "Scene_Map",
+      "text": [
+        "ヘッヘッ…"
+      ],
+      "brightness": 255,
+      "camera": [
+        -0.5,
+        -3.466666666666667
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": null,
+      "popup": {
+        "x": 164.5,
+        "y": 147.46249999999952,
+        "w": 199,
+        "h": 113,
+        "tone": 0
+      }
+    },
+    {
+      "time": 30.770000000018626,
+      "scene": "Scene_Map",
+      "text": [
+        "ヘッヘッ…"
+      ],
+      "brightness": 255,
+      "camera": [
+        -0.5,
+        -3.466666666666667
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": null,
+      "popup": {
+        "x": 164.5,
+        "y": 147.46249999999952,
+        "w": 199,
+        "h": 113,
+        "tone": 0
+      }
+    },
+    {
+      "time": 30.775000000023283,
+      "scene": "Scene_Map",
+      "text": [
+        "ヘッヘッ…"
+      ],
+      "brightness": 255,
+      "camera": [
+        -0.5,
+        -3.466666666666667
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": null,
+      "popup": {
+        "x": 164.5,
+        "y": 147.46249999999952,
+        "w": 199,
+        "h": 113,
+        "tone": 0
+      }
+    },
+    {
+      "time": 30.86900000006426,
+      "scene": "Scene_Map",
+      "text": [
+        "ヘッヘッ…"
+      ],
+      "brightness": 255,
+      "camera": [
+        -0.5,
+        -3.466666666666667
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": null,
+      "popup": {
+        "x": 164.5,
+        "y": 147.46249999999952,
+        "w": 199,
+        "h": 113,
+        "tone": 0
+      }
+    },
+    {
+      "time": 31.087000000057742,
+      "scene": "Scene_Map",
+      "text": [
+        "ヘッヘッ…"
+      ],
+      "brightness": 255,
+      "camera": [
+        -0.5,
+        -3.466666666666667
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": null,
+      "popup": {
+        "x": 164.5,
+        "y": 147.46249999999952,
+        "w": 199,
+        "h": 113,
+        "tone": 0
+      }
+    },
+    {
+      "time": 31.2170000000624,
+      "scene": "Scene_Map",
+      "text": [
+        "ヘッヘッ…"
+      ],
+      "brightness": 255,
+      "camera": [
+        -0.5,
+        -3.466666666666667
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": null,
+      "popup": {
+        "x": 164.5,
+        "y": 147.46249999999952,
+        "w": 199,
+        "h": 113,
+        "tone": 0
+      }
+    },
+    {
+      "time": 31.315999999991618,
+      "scene": "Scene_Map",
+      "text": [
+        "ヘッヘッ…"
+      ],
+      "brightness": 255,
+      "camera": [
+        -0.5,
+        -3.466666666666667
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": null,
+      "popup": {
+        "x": 164.5,
+        "y": 147.46249999999952,
+        "w": 199,
+        "h": 113,
+        "tone": 0
+      }
+    },
+    {
+      "time": 31.40300000004936,
+      "scene": "Scene_Map",
+      "text": [
+        "ヘッヘッ…"
+      ],
+      "brightness": 255,
+      "camera": [
+        -0.5,
+        -3.466666666666667
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": null,
+      "popup": {
+        "x": 164.5,
+        "y": 147.46249999999952,
+        "w": 199,
+        "h": 113,
+        "tone": 0
+      }
+    },
+    {
+      "time": 31.601000000024214,
+      "scene": "Scene_Map",
+      "text": [
+        "ヘッヘッ…"
+      ],
+      "brightness": 255,
+      "camera": [
+        -0.5,
+        -3.466666666666667
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": null,
+      "popup": {
+        "x": 164.5,
+        "y": 147.46249999999952,
+        "w": 199,
+        "h": 113,
+        "tone": 0
+      }
+    },
+    {
+      "time": 31.81000000005588,
+      "scene": "Scene_Map",
+      "text": [
+        "ヘッヘッ…"
+      ],
+      "brightness": 255,
+      "camera": [
+        -0.5,
+        -3.466666666666667
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": null,
+      "popup": {
+        "x": 164.5,
+        "y": 147.46249999999952,
+        "w": 199,
+        "h": 113,
+        "tone": 0
+      }
+    },
+    {
+      "time": 31.90100000007078,
+      "scene": "Scene_Map",
+      "text": [
+        "ヘッヘッ…"
+      ],
+      "brightness": 255,
+      "camera": [
+        -0.5,
+        -3.466666666666667
+      ],
+      "event": true,
+      "forming": true,
+      "returning": false,
+      "guest": null,
+      "popup": {
+        "x": 164.5,
+        "y": 147.46249999999952,
+        "w": 199,
+        "h": 113,
+        "tone": 0
+      }
+    },
+    {
+      "time": 32.00300000002608,
+      "scene": "Scene_Map",
+      "text": [],
+      "brightness": 255,
+      "camera": [
+        -0.4201388888888889,
+        -2.912962962962963
+      ],
+      "event": true,
+      "forming": true,
+      "returning": true,
+      "guest": null,
+      "popup": null
+    },
+    {
+      "time": 32.10200000007171,
+      "scene": "Scene_Map",
+      "text": [],
+      "brightness": 255,
+      "camera": [
+        -0.3133680555555556,
+        -2.172685185185185
+      ],
+      "event": true,
+      "forming": true,
+      "returning": true,
+      "guest": null,
+      "popup": null
+    },
+    {
+      "time": 32.20100000000093,
+      "scene": "Scene_Map",
+      "text": [],
+      "brightness": 255,
+      "camera": [
+        -0.2222222222222222,
+        -1.540740740740741
+      ],
+      "event": true,
+      "forming": true,
+      "returning": true,
+      "guest": null,
+      "popup": null
+    },
+    {
+      "time": 32.40600000007544,
+      "scene": "Scene_Map",
+      "text": [],
+      "brightness": 255,
+      "camera": [
+        -0.08680555555555558,
+        -0.6018518518518516
+      ],
+      "event": true,
+      "forming": true,
+      "returning": true,
+      "guest": null,
+      "popup": null
+    },
+    {
+      "time": 32.412000000011176,
+      "scene": "Scene_Map",
+      "text": [],
+      "brightness": 255,
+      "camera": [
+        -0.08680555555555558,
+        -0.6018518518518516
+      ],
+      "event": true,
+      "forming": true,
+      "returning": true,
+      "guest": null,
+      "popup": null
+    },
+    {
+      "time": 32.504000000073574,
+      "scene": "Scene_Map",
+      "text": [],
+      "brightness": 255,
+      "camera": [
+        -0.042534722222222265,
+        -0.2949074074074076
+      ],
+      "event": true,
+      "forming": true,
+      "returning": true,
+      "guest": null,
+      "popup": null
+    },
+    {
+      "time": 32.62400000006892,
+      "scene": "Scene_Map",
+      "text": [],
+      "brightness": 255,
+      "camera": [
+        -0.01388888888888895,
+        -0.09629629629629655
+      ],
+      "event": true,
+      "forming": true,
+      "returning": true,
+      "guest": null,
+      "popup": null
+    },
+    {
+      "time": 32.85500000009779,
+      "scene": "Scene_Map",
+      "text": [],
+      "brightness": 255,
+      "camera": [
+        0,
+        0
+      ],
+      "event": true,
+      "forming": false,
+      "returning": false,
+      "guest": null,
+      "popup": null
+    },
+    {
+      "time": 32.96000000007916,
+      "scene": "Scene_Map",
+      "text": [],
+      "brightness": 255,
+      "camera": [
+        0,
+        0
+      ],
+      "event": true,
+      "forming": false,
+      "returning": false,
+      "guest": null,
+      "popup": null
+    },
+    {
+      "time": 33.05500000005122,
+      "scene": "Scene_Map",
+      "text": [],
+      "brightness": 255,
+      "camera": [
+        0,
+        0
+      ],
+      "event": true,
+      "forming": false,
+      "returning": false,
+      "guest": null,
+      "popup": null
+    },
+    {
+      "time": 33.35000000009313,
+      "scene": "Scene_Map",
+      "text": [],
+      "brightness": 255,
+      "camera": [
+        0,
+        0
+      ],
+      "event": true,
+      "forming": false,
+      "returning": false,
+      "guest": null,
+      "popup": null
+    },
+    {
+      "time": 33.455000000074506,
+      "scene": "Scene_Map",
+      "text": [],
+      "brightness": 255,
+      "camera": [
+        0,
+        0
+      ],
+      "event": true,
+      "forming": false,
+      "returning": false,
+      "guest": null,
+      "popup": null
+    },
+    {
+      "time": 33.457000000053085,
+      "scene": "Scene_Map",
+      "text": [],
+      "brightness": 255,
+      "camera": [
+        0,
+        0
+      ],
+      "event": true,
+      "forming": false,
+      "returning": false,
+      "guest": null,
+      "popup": null
+    },
+    {
+      "time": 33.56599999999162,
+      "scene": "Scene_Map",
+      "text": [],
+      "brightness": 255,
+      "camera": [
+        0,
+        0
+      ],
+      "event": true,
+      "forming": false,
+      "returning": false,
+      "guest": null,
+      "popup": null
+    },
+    {
+      "time": 33.6830000000773,
+      "scene": "Scene_Map",
+      "text": [],
+      "brightness": 255,
+      "camera": [
+        0,
+        0
+      ],
+      "event": true,
+      "forming": false,
+      "returning": false,
+      "guest": null,
+      "popup": null
+    },
+    {
+      "time": 33.785000000032596,
+      "scene": "Scene_Map",
+      "text": [],
+      "brightness": 255,
+      "camera": [
+        0,
+        0
+      ],
+      "event": false,
+      "forming": false,
+      "returning": false,
+      "guest": null,
+      "popup": null
+    },
+    {
+      "time": 33.90400000009686,
+      "scene": "Scene_Map",
+      "text": [],
+      "brightness": 255,
+      "camera": [
+        0,
+        0
+      ],
+      "event": false,
+      "forming": false,
+      "returning": false,
+      "guest": null,
+      "popup": null
+    },
+    {
+      "time": 33.90500000002794,
+      "scene": "Scene_Map",
+      "text": [],
+      "brightness": 255,
+      "camera": [
+        0,
+        0
+      ],
+      "event": false,
+      "forming": false,
+      "returning": false,
+      "guest": null,
+      "popup": null
+    },
+    {
+      "time": 34.036000000080094,
+      "scene": "Scene_Map",
+      "text": [],
+      "brightness": 255,
+      "camera": [
+        0,
+        0
+      ],
+      "event": false,
+      "forming": false,
+      "returning": false,
+      "guest": null,
+      "popup": null
+    },
+    {
+      "time": 34.18900000001304,
+      "scene": "Scene_Map",
+      "text": [],
+      "brightness": 255,
+      "camera": [
+        0,
+        0
+      ],
+      "event": false,
+      "forming": false,
+      "returning": false,
+      "guest": null,
+      "popup": null
+    },
+    {
+      "time": 34.360000000102445,
+      "scene": "Scene_Map",
+      "text": [],
+      "brightness": 255,
+      "camera": [
+        0,
+        0
+      ],
+      "event": false,
+      "forming": false,
+      "returning": false,
+      "guest": null,
+      "popup": null
+    },
+    {
+      "time": 34.362000000081025,
+      "scene": "Scene_Map",
+      "text": [],
+      "brightness": 255,
+      "camera": [
+        0,
+        0
+      ],
+      "event": false,
+      "forming": false,
+      "returning": false,
+      "guest": null,
+      "popup": null
+    },
+    {
+      "time": 34.51800000004005,
+      "scene": "Scene_Map",
+      "text": [],
+      "brightness": 255,
+      "camera": [
+        0,
+        0
+      ],
+      "event": false,
+      "forming": false,
+      "returning": false,
+      "guest": null,
+      "popup": null
+    },
+    {
+      "time": 34.688000000081956,
+      "scene": "Scene_Map",
+      "text": [],
+      "brightness": 255,
+      "camera": [
+        0,
+        0
+      ],
+      "event": false,
+      "forming": false,
+      "returning": false,
+      "guest": null,
+      "popup": null
+    },
+    {
+      "time": 34.68900000001304,
+      "scene": "Scene_Map",
+      "text": [],
+      "brightness": 255,
+      "camera": [
+        0,
+        0
+      ],
+      "event": false,
+      "forming": false,
+      "returning": false,
+      "guest": null,
+      "popup": null
+    },
+    {
+      "time": 34.692000000039116,
+      "scene": "Scene_Map",
+      "text": [],
+      "brightness": 255,
+      "camera": [
+        0,
+        0
+      ],
+      "event": false,
+      "forming": false,
+      "returning": false,
+      "guest": null,
+      "popup": null
+    },
+    {
+      "time": 34.98600000003353,
+      "scene": "Scene_Map",
+      "text": [],
+      "brightness": 255,
+      "camera": [
+        0,
+        0
+      ],
+      "event": false,
+      "forming": false,
+      "returning": false,
+      "guest": null,
+      "popup": null
+    },
+    {
+      "time": 35.14500000001863,
+      "scene": "Scene_Map",
+      "text": [],
+      "brightness": 255,
+      "camera": [
+        0,
+        0
+      ],
+      "event": false,
+      "forming": false,
+      "returning": false,
+      "guest": null,
+      "popup": null
+    },
+    {
+      "time": 35.1480000000447,
+      "scene": "Scene_Map",
+      "text": [],
+      "brightness": 255,
+      "camera": [
+        0,
+        0
+      ],
+      "event": false,
+      "forming": false,
+      "returning": false,
+      "guest": null,
+      "popup": null
+    },
+    {
+      "time": 35.239000000059605,
+      "scene": "Scene_Map",
+      "text": [],
+      "brightness": 255,
+      "camera": [
+        0,
+        0
+      ],
+      "event": false,
+      "forming": false,
+      "returning": false,
+      "guest": null,
+      "popup": null
+    },
+    {
+      "time": 35.336000000010245,
+      "scene": "Scene_Map",
+      "text": [],
+      "brightness": 255,
+      "camera": [
+        0,
+        0
+      ],
+      "event": false,
+      "forming": false,
+      "returning": false,
+      "guest": null,
+      "popup": null
+    },
+    {
+      "time": 35.337999999988824,
+      "scene": "Scene_Map",
+      "text": [],
+      "brightness": 255,
+      "camera": [
+        0,
+        0
+      ],
+      "event": false,
+      "forming": false,
+      "returning": false,
+      "guest": null,
+      "popup": null
+    },
+    {
+      "time": 35.43500000005588,
+      "scene": "Scene_Map",
+      "text": [],
+      "brightness": 255,
+      "camera": [
+        0,
+        0
+      ],
+      "event": false,
+      "forming": false,
+      "returning": false,
+      "guest": null,
+      "popup": null
+    },
+    {
+      "time": 35.53300000005402,
+      "scene": "Scene_Map",
+      "text": [],
+      "brightness": 255,
+      "camera": [
+        0,
+        0
+      ],
+      "event": false,
+      "forming": false,
+      "returning": false,
+      "guest": null,
+      "popup": null
+    },
+    {
+      "time": 35.756000000052154,
+      "scene": "Scene_Map",
+      "text": [],
+      "brightness": 255,
+      "camera": [
+        0,
+        0
+      ],
+      "event": false,
+      "forming": false,
+      "returning": false,
+      "guest": null,
+      "popup": null
+    },
+    {
+      "time": 35.868000000016764,
+      "scene": "Scene_Map",
+      "text": [],
+      "brightness": 255,
+      "camera": [
+        0,
+        0
+      ],
+      "event": false,
+      "forming": false,
+      "returning": false,
+      "guest": null,
+      "popup": null
+    },
+    {
+      "time": 35.96000000007916,
+      "scene": "Scene_Map",
+      "text": [],
+      "brightness": 255,
+      "camera": [
+        0,
+        0
+      ],
+      "event": false,
+      "forming": false,
+      "returning": false,
+      "guest": null,
+      "popup": null
+    }
+  ],
+  "party": [
+    2,
+    3,
+    4
+  ],
+  "camera": [
+    0,
+    0
+  ],
+  "shown": true,
+  "chest": 1,
+  "error": null,
+  "audio": {
+    "pcOutputMuted": true,
+    "speakerGain": 0,
+    "blockedSpeakerConnections": 1,
+    "bgm": "00_New_Dungeon4"
+  }
+}

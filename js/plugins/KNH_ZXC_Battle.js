@@ -831,8 +831,10 @@ function Sprite_Bullet() {
         if (sk && sk.animationId) {
             //固有のアニメーション
             var anim = $dataAnimations[sk.animationId];
+            if (window.KNH_ZXC_Battle_Yume && KNH_ZXC_Battle_Yume.damageAnimation)
+                anim = KNH_ZXC_Battle_Yume.damageAnimation(ssp, sk, anim);
             this.playAnimation(
-                $dataAnimations[sk.animationId], tsp.x,
+                anim, tsp.x,
                 tsp.y - (anim.position === 2 ? 0 : tsp.height / 2 * tsp.scale.y + (tsp._dummy ? 40 : 0)) 
             );
             //星アニメーション
@@ -3102,6 +3104,9 @@ function Sprite_Bullet() {
         if (imageName === 'arrow') this._frames = 1, this._frameCount = 8, this._autoRotation = true;
         else if (imageName === 'laser') this._frames = 3, this._frameCount = 6, this._autoRotation = true, this._laser = true;
         else if (imageName === 'bowling') this._frames = 6, this._frameCount = 6;
+        else if (imageName === 'artilleryShell') this._frames = 6, this._frameCount = 6;
+        else if (imageName === 'missile') this._frames = 6, this._frameCount = 6, this._autoRotation = true;
+        else if (imageName === 'chargedShot') this._frames = 6, this._frameCount = 3, this._autoRotation = true;
         else if (imageName === 'pigBreath') this._frames = 6, this._frameCount = 8;
         else if (imageName === 'biribiri') this._frames = 6, this._frameCount = 6, this._moveParam3 = Math.randomInt(360);
         else if (imageName === 'hikidashi') this._frames = 3, this._frameCount = 8, this._autoRotation = true;

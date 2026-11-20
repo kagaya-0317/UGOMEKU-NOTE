@@ -1,0 +1,8930 @@
+{
+  "seconds": 36.47399999992922,
+  "messages": [
+    {
+      "text": "ワシは幹部",
+      "frame": 599,
+      "map": 54,
+      "battle": false,
+      "time": 13136.00000005681
+    },
+    {
+      "text": "グミ・グヌロッベン！",
+      "frame": 599,
+      "map": 54,
+      "battle": false,
+      "time": 13136.999999987893
+    },
+    {
+      "text": "ワシは四天王の中でも、",
+      "frame": 711,
+      "map": 54,
+      "battle": false,
+      "time": 15035.999999963678
+    },
+    {
+      "text": "最強の腕力を持つ男…",
+      "frame": 711,
+      "map": 54,
+      "battle": false,
+      "time": 15035.999999963678
+    },
+    {
+      "text": "この先へ進みたければ…",
+      "frame": 823,
+      "map": 54,
+      "battle": false,
+      "time": 16937.00000003446
+    },
+    {
+      "text": "ワシを倒していくの！？",
+      "frame": 823,
+      "map": 54,
+      "battle": false,
+      "time": 16937.00000003446
+    },
+    {
+      "text": "クックック…",
+      "frame": 938,
+      "map": 54,
+      "battle": false,
+      "time": 18854.999999981374
+    },
+    {
+      "text": "ワーッハッハッハ！",
+      "frame": 1035,
+      "map": 54,
+      "battle": false,
+      "time": 20486.99999996461
+    },
+    {
+      "text": "ドワッハッハッハ！",
+      "frame": 1134,
+      "map": 54,
+      "battle": false,
+      "time": 22152.000000001863
+    },
+    {
+      "text": "ドワーッハッハッハ！",
+      "frame": 1232,
+      "map": 54,
+      "battle": false,
+      "time": 23836.000000010245
+    },
+    {
+      "text": "ブワッハッハッハ！",
+      "frame": 1327,
+      "map": 54,
+      "battle": false,
+      "time": 25538.999999989755
+    },
+    {
+      "text": "おっと、失礼しました",
+      "frame": 1441,
+      "map": 54,
+      "battle": false,
+      "time": 27520.000000018626
+    },
+    {
+      "text": "では、改めまして…",
+      "frame": 1547,
+      "map": 54,
+      "battle": false,
+      "time": 29320.999999996275
+    },
+    {
+      "text": "ワシのこの斧で、",
+      "frame": 1641,
+      "map": 54,
+      "battle": false,
+      "time": 31005.000000004657
+    },
+    {
+      "text": "みじん切りにしてくれるわ！！",
+      "frame": 1641,
+      "map": 54,
+      "battle": false,
+      "time": 31005.000000004657
+    },
+    {
+      "text": "\\>幹部グミ・グヌロッベンが あらわれた！\\|\\.\\.\\^",
+      "frame": 1861,
+      "map": 54,
+      "battle": true,
+      "time": 35314.00000001304
+    }
+  ],
+  "trace": [
+    {
+      "frame": 293,
+      "people": [
+        {
+          "actor": 2,
+          "x": 10,
+          "y": 18.96875,
+          "visible": true
+        },
+        {
+          "actor": 3,
+          "x": 9.975,
+          "y": 20.475,
+          "visible": true
+        },
+        {
+          "actor": 4,
+          "x": 10.025,
+          "y": 22.475,
+          "visible": true
+        }
+      ],
+      "camera": [
+        0,
+        0
+      ],
+      "bossHeight": 240,
+      "bubble": null
+    },
+    {
+      "frame": 296,
+      "people": [
+        {
+          "actor": 2,
+          "x": 10,
+          "y": 18.78125,
+          "visible": true
+        },
+        {
+          "actor": 3,
+          "x": 9.824999999999998,
+          "y": 20.32500000000001,
+          "visible": true
+        },
+        {
+          "actor": 4,
+          "x": 10.175000000000002,
+          "y": 22.32500000000001,
+          "visible": true
+        }
+      ],
+      "camera": [
+        0,
+        0
+      ],
+      "bossHeight": 240,
+      "bubble": null
+    },
+    {
+      "frame": 302,
+      "people": [
+        {
+          "actor": 2,
+          "x": 10,
+          "y": 18.59375,
+          "visible": true
+        },
+        {
+          "actor": 3,
+          "x": 9.674999999999995,
+          "y": 20.17500000000002,
+          "visible": true
+        },
+        {
+          "actor": 4,
+          "x": 10.325000000000005,
+          "y": 22.17500000000002,
+          "visible": true
+        }
+      ],
+      "camera": [
+        0,
+        0
+      ],
+      "bossHeight": 240,
+      "bubble": null
+    },
+    {
+      "frame": 308,
+      "people": [
+        {
+          "actor": 2,
+          "x": 10,
+          "y": 18.40625,
+          "visible": true
+        },
+        {
+          "actor": 3,
+          "x": 9.524999999999993,
+          "y": 20.025000000000027,
+          "visible": true
+        },
+        {
+          "actor": 4,
+          "x": 10.475000000000007,
+          "y": 22.025000000000027,
+          "visible": true
+        }
+      ],
+      "camera": [
+        0,
+        0
+      ],
+      "bossHeight": 240,
+      "bubble": null
+    },
+    {
+      "frame": 314,
+      "people": [
+        {
+          "actor": 2,
+          "x": 10,
+          "y": 18.21875,
+          "visible": true
+        },
+        {
+          "actor": 3,
+          "x": 9.374999999999991,
+          "y": 19.875000000000036,
+          "visible": true
+        },
+        {
+          "actor": 4,
+          "x": 10.625000000000009,
+          "y": 21.875000000000036,
+          "visible": true
+        }
+      ],
+      "camera": [
+        0,
+        0
+      ],
+      "bossHeight": 240,
+      "bubble": null
+    },
+    {
+      "frame": 320,
+      "people": [
+        {
+          "actor": 2,
+          "x": 10,
+          "y": 18.03125,
+          "visible": true
+        },
+        {
+          "actor": 3,
+          "x": 9.224999999999989,
+          "y": 19.725000000000044,
+          "visible": true
+        },
+        {
+          "actor": 4,
+          "x": 10.775000000000011,
+          "y": 21.725000000000044,
+          "visible": true
+        }
+      ],
+      "camera": [
+        0,
+        0
+      ],
+      "bossHeight": 240,
+      "bubble": null
+    },
+    {
+      "frame": 326,
+      "people": [
+        {
+          "actor": 2,
+          "x": 10,
+          "y": 17.84375,
+          "visible": true
+        },
+        {
+          "actor": 3,
+          "x": 9.074999999999987,
+          "y": 19.575000000000053,
+          "visible": true
+        },
+        {
+          "actor": 4,
+          "x": 10.925000000000013,
+          "y": 21.575000000000053,
+          "visible": true
+        }
+      ],
+      "camera": [
+        0,
+        0
+      ],
+      "bossHeight": 240,
+      "bubble": null
+    },
+    {
+      "frame": 332,
+      "people": [
+        {
+          "actor": 2,
+          "x": 10,
+          "y": 17.65625,
+          "visible": true
+        },
+        {
+          "actor": 3,
+          "x": 8.924999999999985,
+          "y": 19.42500000000006,
+          "visible": true
+        },
+        {
+          "actor": 4,
+          "x": 11.075000000000015,
+          "y": 21.42500000000006,
+          "visible": true
+        }
+      ],
+      "camera": [
+        0,
+        0
+      ],
+      "bossHeight": 240,
+      "bubble": null
+    },
+    {
+      "frame": 338,
+      "people": [
+        {
+          "actor": 2,
+          "x": 10,
+          "y": 17.46875,
+          "visible": true
+        },
+        {
+          "actor": 3,
+          "x": 8.774999999999983,
+          "y": 19.27500000000007,
+          "visible": true
+        },
+        {
+          "actor": 4,
+          "x": 11.225000000000017,
+          "y": 21.27500000000007,
+          "visible": true
+        }
+      ],
+      "camera": [
+        0,
+        0
+      ],
+      "bossHeight": 240,
+      "bubble": null
+    },
+    {
+      "frame": 344,
+      "people": [
+        {
+          "actor": 2,
+          "x": 10,
+          "y": 17.28125,
+          "visible": true
+        },
+        {
+          "actor": 3,
+          "x": 8.62499999999998,
+          "y": 19.125000000000078,
+          "visible": true
+        },
+        {
+          "actor": 4,
+          "x": 11.37500000000002,
+          "y": 21.125000000000078,
+          "visible": true
+        }
+      ],
+      "camera": [
+        0,
+        0
+      ],
+      "bossHeight": 240,
+      "bubble": null
+    },
+    {
+      "frame": 350,
+      "people": [
+        {
+          "actor": 2,
+          "x": 10,
+          "y": 17.09375,
+          "visible": true
+        },
+        {
+          "actor": 3,
+          "x": 8.5,
+          "y": 18.962500000000084,
+          "visible": true
+        },
+        {
+          "actor": 4,
+          "x": 11.5,
+          "y": 20.962500000000084,
+          "visible": true
+        }
+      ],
+      "camera": [
+        0,
+        0
+      ],
+      "bossHeight": 240,
+      "bubble": null
+    },
+    {
+      "frame": 356,
+      "people": [
+        {
+          "actor": 2,
+          "x": 10,
+          "y": 16.90625,
+          "visible": true
+        },
+        {
+          "actor": 3,
+          "x": 8.5,
+          "y": 18.775000000000084,
+          "visible": true
+        },
+        {
+          "actor": 4,
+          "x": 11.5,
+          "y": 20.775000000000084,
+          "visible": true
+        }
+      ],
+      "camera": [
+        0,
+        0
+      ],
+      "bossHeight": 240,
+      "bubble": null
+    },
+    {
+      "frame": 362,
+      "people": [
+        {
+          "actor": 2,
+          "x": 10,
+          "y": 16.71875,
+          "visible": true
+        },
+        {
+          "actor": 3,
+          "x": 8.5,
+          "y": 18.587500000000084,
+          "visible": true
+        },
+        {
+          "actor": 4,
+          "x": 11.5,
+          "y": 20.587500000000084,
+          "visible": true
+        }
+      ],
+      "camera": [
+        0,
+        0
+      ],
+      "bossHeight": 240,
+      "bubble": null
+    },
+    {
+      "frame": 368,
+      "people": [
+        {
+          "actor": 2,
+          "x": 10,
+          "y": 16.53125,
+          "visible": true
+        },
+        {
+          "actor": 3,
+          "x": 8.5,
+          "y": 18.400000000000084,
+          "visible": true
+        },
+        {
+          "actor": 4,
+          "x": 11.5,
+          "y": 20.400000000000084,
+          "visible": true
+        }
+      ],
+      "camera": [
+        0,
+        0
+      ],
+      "bossHeight": 240,
+      "bubble": null
+    },
+    {
+      "frame": 374,
+      "people": [
+        {
+          "actor": 2,
+          "x": 10,
+          "y": 16.34375,
+          "visible": true
+        },
+        {
+          "actor": 3,
+          "x": 8.5,
+          "y": 18.212500000000084,
+          "visible": true
+        },
+        {
+          "actor": 4,
+          "x": 11.5,
+          "y": 20.212500000000084,
+          "visible": true
+        }
+      ],
+      "camera": [
+        0,
+        0
+      ],
+      "bossHeight": 240,
+      "bubble": null
+    },
+    {
+      "frame": 380,
+      "people": [
+        {
+          "actor": 2,
+          "x": 10,
+          "y": 16.15625,
+          "visible": true
+        },
+        {
+          "actor": 3,
+          "x": 8.5,
+          "y": 18.025000000000084,
+          "visible": true
+        },
+        {
+          "actor": 4,
+          "x": 11.5,
+          "y": 20.025000000000084,
+          "visible": true
+        }
+      ],
+      "camera": [
+        0,
+        0
+      ],
+      "bossHeight": 240,
+      "bubble": null
+    },
+    {
+      "frame": 386,
+      "people": [
+        {
+          "actor": 2,
+          "x": 10,
+          "y": 15.96875,
+          "visible": true
+        },
+        {
+          "actor": 3,
+          "x": 8.5,
+          "y": 17.837500000000084,
+          "visible": true
+        },
+        {
+          "actor": 4,
+          "x": 11.5,
+          "y": 19.837500000000084,
+          "visible": true
+        }
+      ],
+      "camera": [
+        0,
+        0
+      ],
+      "bossHeight": 240,
+      "bubble": null
+    },
+    {
+      "frame": 392,
+      "people": [
+        {
+          "actor": 2,
+          "x": 10,
+          "y": 15.78125,
+          "visible": true
+        },
+        {
+          "actor": 3,
+          "x": 8.5,
+          "y": 17.650000000000084,
+          "visible": true
+        },
+        {
+          "actor": 4,
+          "x": 11.5,
+          "y": 19.650000000000084,
+          "visible": true
+        }
+      ],
+      "camera": [
+        0,
+        0
+      ],
+      "bossHeight": 240,
+      "bubble": null
+    },
+    {
+      "frame": 398,
+      "people": [
+        {
+          "actor": 2,
+          "x": 10,
+          "y": 15.59375,
+          "visible": true
+        },
+        {
+          "actor": 3,
+          "x": 8.5,
+          "y": 17.462500000000084,
+          "visible": true
+        },
+        {
+          "actor": 4,
+          "x": 11.5,
+          "y": 19.462500000000084,
+          "visible": true
+        }
+      ],
+      "camera": [
+        0,
+        0
+      ],
+      "bossHeight": 240,
+      "bubble": null
+    },
+    {
+      "frame": 404,
+      "people": [
+        {
+          "actor": 2,
+          "x": 10,
+          "y": 15.5,
+          "visible": true
+        },
+        {
+          "actor": 3,
+          "x": 8.5,
+          "y": 17.275000000000084,
+          "visible": true
+        },
+        {
+          "actor": 4,
+          "x": 11.5,
+          "y": 19.275000000000084,
+          "visible": true
+        }
+      ],
+      "camera": [
+        0,
+        0
+      ],
+      "bossHeight": 240,
+      "bubble": null
+    },
+    {
+      "frame": 410,
+      "people": [
+        {
+          "actor": 2,
+          "x": 10,
+          "y": 15.5,
+          "visible": true
+        },
+        {
+          "actor": 3,
+          "x": 8.5,
+          "y": 17.087500000000084,
+          "visible": true
+        },
+        {
+          "actor": 4,
+          "x": 11.5,
+          "y": 19.087500000000084,
+          "visible": true
+        }
+      ],
+      "camera": [
+        0,
+        0
+      ],
+      "bossHeight": 240,
+      "bubble": null
+    },
+    {
+      "frame": 416,
+      "people": [
+        {
+          "actor": 2,
+          "x": 10,
+          "y": 15.5,
+          "visible": true
+        },
+        {
+          "actor": 3,
+          "x": 8.5,
+          "y": 16.900000000000084,
+          "visible": true
+        },
+        {
+          "actor": 4,
+          "x": 11.5,
+          "y": 18.900000000000084,
+          "visible": true
+        }
+      ],
+      "camera": [
+        0,
+        0
+      ],
+      "bossHeight": 240,
+      "bubble": null
+    },
+    {
+      "frame": 422,
+      "people": [
+        {
+          "actor": 2,
+          "x": 10,
+          "y": 15.5,
+          "visible": true
+        },
+        {
+          "actor": 3,
+          "x": 8.5,
+          "y": 16.712500000000084,
+          "visible": true
+        },
+        {
+          "actor": 4,
+          "x": 11.5,
+          "y": 18.712500000000084,
+          "visible": true
+        }
+      ],
+      "camera": [
+        0,
+        0
+      ],
+      "bossHeight": 240,
+      "bubble": null
+    },
+    {
+      "frame": 428,
+      "people": [
+        {
+          "actor": 2,
+          "x": 10,
+          "y": 15.5,
+          "visible": true
+        },
+        {
+          "actor": 3,
+          "x": 8.5,
+          "y": 16.525000000000084,
+          "visible": true
+        },
+        {
+          "actor": 4,
+          "x": 11.5,
+          "y": 18.525000000000084,
+          "visible": true
+        }
+      ],
+      "camera": [
+        0,
+        0
+      ],
+      "bossHeight": 240,
+      "bubble": null
+    },
+    {
+      "frame": 434,
+      "people": [
+        {
+          "actor": 2,
+          "x": 10,
+          "y": 15.5,
+          "visible": true
+        },
+        {
+          "actor": 3,
+          "x": 8.5,
+          "y": 16.337500000000084,
+          "visible": true
+        },
+        {
+          "actor": 4,
+          "x": 11.5,
+          "y": 18.337500000000084,
+          "visible": true
+        }
+      ],
+      "camera": [
+        0,
+        0
+      ],
+      "bossHeight": 240,
+      "bubble": null
+    },
+    {
+      "frame": 440,
+      "people": [
+        {
+          "actor": 2,
+          "x": 10,
+          "y": 15.5,
+          "visible": true
+        },
+        {
+          "actor": 3,
+          "x": 8.5,
+          "y": 16.150000000000084,
+          "visible": true
+        },
+        {
+          "actor": 4,
+          "x": 11.5,
+          "y": 18.150000000000084,
+          "visible": true
+        }
+      ],
+      "camera": [
+        0,
+        0
+      ],
+      "bossHeight": 240,
+      "bubble": null
+    },
+    {
+      "frame": 446,
+      "people": [
+        {
+          "actor": 2,
+          "x": 10,
+          "y": 15.5,
+          "visible": true
+        },
+        {
+          "actor": 3,
+          "x": 8.5,
+          "y": 16,
+          "visible": true
+        },
+        {
+          "actor": 4,
+          "x": 11.5,
+          "y": 17.962500000000084,
+          "visible": true
+        }
+      ],
+      "camera": [
+        0,
+        0
+      ],
+      "bossHeight": 240,
+      "bubble": null
+    },
+    {
+      "frame": 452,
+      "people": [
+        {
+          "actor": 2,
+          "x": 10,
+          "y": 15.5,
+          "visible": true
+        },
+        {
+          "actor": 3,
+          "x": 8.5,
+          "y": 16,
+          "visible": true
+        },
+        {
+          "actor": 4,
+          "x": 11.5,
+          "y": 17.775000000000084,
+          "visible": true
+        }
+      ],
+      "camera": [
+        0,
+        0
+      ],
+      "bossHeight": 240,
+      "bubble": null
+    },
+    {
+      "frame": 457,
+      "people": [
+        {
+          "actor": 2,
+          "x": 10,
+          "y": 15.5,
+          "visible": true
+        },
+        {
+          "actor": 3,
+          "x": 8.5,
+          "y": 16,
+          "visible": true
+        },
+        {
+          "actor": 4,
+          "x": 11.5,
+          "y": 17.587500000000084,
+          "visible": true
+        }
+      ],
+      "camera": [
+        0,
+        0
+      ],
+      "bossHeight": 240,
+      "bubble": null
+    },
+    {
+      "frame": 463,
+      "people": [
+        {
+          "actor": 2,
+          "x": 10,
+          "y": 15.5,
+          "visible": true
+        },
+        {
+          "actor": 3,
+          "x": 8.5,
+          "y": 16,
+          "visible": true
+        },
+        {
+          "actor": 4,
+          "x": 11.5,
+          "y": 17.400000000000084,
+          "visible": true
+        }
+      ],
+      "camera": [
+        0,
+        0
+      ],
+      "bossHeight": 240,
+      "bubble": null
+    },
+    {
+      "frame": 469,
+      "people": [
+        {
+          "actor": 2,
+          "x": 10,
+          "y": 15.5,
+          "visible": true
+        },
+        {
+          "actor": 3,
+          "x": 8.5,
+          "y": 16,
+          "visible": true
+        },
+        {
+          "actor": 4,
+          "x": 11.5,
+          "y": 17.212500000000084,
+          "visible": true
+        }
+      ],
+      "camera": [
+        0,
+        0
+      ],
+      "bossHeight": 240,
+      "bubble": null
+    },
+    {
+      "frame": 475,
+      "people": [
+        {
+          "actor": 2,
+          "x": 10,
+          "y": 15.5,
+          "visible": true
+        },
+        {
+          "actor": 3,
+          "x": 8.5,
+          "y": 16,
+          "visible": true
+        },
+        {
+          "actor": 4,
+          "x": 11.5,
+          "y": 17.025000000000084,
+          "visible": true
+        }
+      ],
+      "camera": [
+        0,
+        0
+      ],
+      "bossHeight": 240,
+      "bubble": null
+    },
+    {
+      "frame": 481,
+      "people": [
+        {
+          "actor": 2,
+          "x": 10,
+          "y": 15.5,
+          "visible": true
+        },
+        {
+          "actor": 3,
+          "x": 8.5,
+          "y": 16,
+          "visible": true
+        },
+        {
+          "actor": 4,
+          "x": 11.5,
+          "y": 16.837500000000084,
+          "visible": true
+        }
+      ],
+      "camera": [
+        0,
+        0
+      ],
+      "bossHeight": 240,
+      "bubble": null
+    },
+    {
+      "frame": 487,
+      "people": [
+        {
+          "actor": 2,
+          "x": 10,
+          "y": 15.5,
+          "visible": true
+        },
+        {
+          "actor": 3,
+          "x": 8.5,
+          "y": 16,
+          "visible": true
+        },
+        {
+          "actor": 4,
+          "x": 11.5,
+          "y": 16.650000000000084,
+          "visible": true
+        }
+      ],
+      "camera": [
+        0,
+        0
+      ],
+      "bossHeight": 240,
+      "bubble": null
+    },
+    {
+      "frame": 493,
+      "people": [
+        {
+          "actor": 2,
+          "x": 10,
+          "y": 15.5,
+          "visible": true
+        },
+        {
+          "actor": 3,
+          "x": 8.5,
+          "y": 16,
+          "visible": true
+        },
+        {
+          "actor": 4,
+          "x": 11.5,
+          "y": 16.462500000000084,
+          "visible": true
+        }
+      ],
+      "camera": [
+        0,
+        0
+      ],
+      "bossHeight": 240,
+      "bubble": null
+    },
+    {
+      "frame": 499,
+      "people": [
+        {
+          "actor": 2,
+          "x": 10,
+          "y": 15.5,
+          "visible": true
+        },
+        {
+          "actor": 3,
+          "x": 8.5,
+          "y": 16,
+          "visible": true
+        },
+        {
+          "actor": 4,
+          "x": 11.5,
+          "y": 16.275000000000084,
+          "visible": true
+        }
+      ],
+      "camera": [
+        0,
+        0
+      ],
+      "bossHeight": 240,
+      "bubble": null
+    },
+    {
+      "frame": 505,
+      "people": [
+        {
+          "actor": 2,
+          "x": 10,
+          "y": 15.5,
+          "visible": true
+        },
+        {
+          "actor": 3,
+          "x": 8.5,
+          "y": 16,
+          "visible": true
+        },
+        {
+          "actor": 4,
+          "x": 11.5,
+          "y": 16.087500000000084,
+          "visible": true
+        }
+      ],
+      "camera": [
+        0,
+        0
+      ],
+      "bossHeight": 240,
+      "bubble": null
+    },
+    {
+      "frame": 510,
+      "people": [
+        {
+          "actor": 2,
+          "x": 10,
+          "y": 15.5,
+          "visible": true
+        },
+        {
+          "actor": 3,
+          "x": 8.5,
+          "y": 16,
+          "visible": true
+        },
+        {
+          "actor": 4,
+          "x": 11.5,
+          "y": 16,
+          "visible": true
+        }
+      ],
+      "camera": [
+        0,
+        0
+      ],
+      "bossHeight": 240,
+      "bubble": null
+    },
+    {
+      "frame": 516,
+      "people": [
+        {
+          "actor": 2,
+          "x": 10,
+          "y": 15.5,
+          "visible": true
+        },
+        {
+          "actor": 3,
+          "x": 8.5,
+          "y": 16,
+          "visible": true
+        },
+        {
+          "actor": 4,
+          "x": 11.5,
+          "y": 16,
+          "visible": true
+        }
+      ],
+      "camera": [
+        0,
+        -0.6655092592592592
+      ],
+      "bossHeight": 240,
+      "bubble": null
+    },
+    {
+      "frame": 522,
+      "people": [
+        {
+          "actor": 2,
+          "x": 10,
+          "y": 15.5,
+          "visible": true
+        },
+        {
+          "actor": 3,
+          "x": 8.5,
+          "y": 16,
+          "visible": true
+        },
+        {
+          "actor": 4,
+          "x": 11.5,
+          "y": 16,
+          "visible": true
+        }
+      ],
+      "camera": [
+        0,
+        -1.273148148148148
+      ],
+      "bossHeight": 240,
+      "bubble": null
+    },
+    {
+      "frame": 528,
+      "people": [
+        {
+          "actor": 2,
+          "x": 10,
+          "y": 15.5,
+          "visible": true
+        },
+        {
+          "actor": 3,
+          "x": 8.5,
+          "y": 16,
+          "visible": true
+        },
+        {
+          "actor": 4,
+          "x": 11.5,
+          "y": 16,
+          "visible": true
+        }
+      ],
+      "camera": [
+        0,
+        -1.8229166666666665
+      ],
+      "bossHeight": 240,
+      "bubble": null
+    },
+    {
+      "frame": 534,
+      "people": [
+        {
+          "actor": 2,
+          "x": 10,
+          "y": 15.5,
+          "visible": true
+        },
+        {
+          "actor": 3,
+          "x": 8.5,
+          "y": 16,
+          "visible": true
+        },
+        {
+          "actor": 4,
+          "x": 11.5,
+          "y": 16,
+          "visible": true
+        }
+      ],
+      "camera": [
+        0,
+        -2.3148148148148144
+      ],
+      "bossHeight": 240,
+      "bubble": null
+    },
+    {
+      "frame": 540,
+      "people": [
+        {
+          "actor": 2,
+          "x": 10,
+          "y": 15.5,
+          "visible": true
+        },
+        {
+          "actor": 3,
+          "x": 8.5,
+          "y": 16,
+          "visible": true
+        },
+        {
+          "actor": 4,
+          "x": 11.5,
+          "y": 16,
+          "visible": true
+        }
+      ],
+      "camera": [
+        0,
+        -2.748842592592592
+      ],
+      "bossHeight": 240,
+      "bubble": null
+    },
+    {
+      "frame": 546,
+      "people": [
+        {
+          "actor": 2,
+          "x": 10,
+          "y": 15.5,
+          "visible": true
+        },
+        {
+          "actor": 3,
+          "x": 8.5,
+          "y": 16,
+          "visible": true
+        },
+        {
+          "actor": 4,
+          "x": 11.5,
+          "y": 16,
+          "visible": true
+        }
+      ],
+      "camera": [
+        0,
+        -3.1249999999999996
+      ],
+      "bossHeight": 240,
+      "bubble": null
+    },
+    {
+      "frame": 552,
+      "people": [
+        {
+          "actor": 2,
+          "x": 10,
+          "y": 15.5,
+          "visible": true
+        },
+        {
+          "actor": 3,
+          "x": 8.5,
+          "y": 16,
+          "visible": true
+        },
+        {
+          "actor": 4,
+          "x": 11.5,
+          "y": 16,
+          "visible": true
+        }
+      ],
+      "camera": [
+        0,
+        -3.4432870370370363
+      ],
+      "bossHeight": 240,
+      "bubble": null
+    },
+    {
+      "frame": 558,
+      "people": [
+        {
+          "actor": 2,
+          "x": 10,
+          "y": 15.5,
+          "visible": true
+        },
+        {
+          "actor": 3,
+          "x": 8.5,
+          "y": 16,
+          "visible": true
+        },
+        {
+          "actor": 4,
+          "x": 11.5,
+          "y": 16,
+          "visible": true
+        }
+      ],
+      "camera": [
+        0,
+        -3.7037037037037033
+      ],
+      "bossHeight": 240,
+      "bubble": null
+    },
+    {
+      "frame": 564,
+      "people": [
+        {
+          "actor": 2,
+          "x": 10,
+          "y": 15.5,
+          "visible": true
+        },
+        {
+          "actor": 3,
+          "x": 8.5,
+          "y": 16,
+          "visible": true
+        },
+        {
+          "actor": 4,
+          "x": 11.5,
+          "y": 16,
+          "visible": true
+        }
+      ],
+      "camera": [
+        0,
+        -3.9062499999999996
+      ],
+      "bossHeight": 240,
+      "bubble": null
+    },
+    {
+      "frame": 570,
+      "people": [
+        {
+          "actor": 2,
+          "x": 10,
+          "y": 15.5,
+          "visible": true
+        },
+        {
+          "actor": 3,
+          "x": 8.5,
+          "y": 16,
+          "visible": true
+        },
+        {
+          "actor": 4,
+          "x": 11.5,
+          "y": 16,
+          "visible": true
+        }
+      ],
+      "camera": [
+        0,
+        -4.050925925925925
+      ],
+      "bossHeight": 240,
+      "bubble": null
+    },
+    {
+      "frame": 576,
+      "people": [
+        {
+          "actor": 2,
+          "x": 10,
+          "y": 15.5,
+          "visible": true
+        },
+        {
+          "actor": 3,
+          "x": 8.5,
+          "y": 16,
+          "visible": true
+        },
+        {
+          "actor": 4,
+          "x": 11.5,
+          "y": 16,
+          "visible": true
+        }
+      ],
+      "camera": [
+        0,
+        -4.137731481481481
+      ],
+      "bossHeight": 240,
+      "bubble": null
+    },
+    {
+      "frame": 582,
+      "people": [
+        {
+          "actor": 2,
+          "x": 10,
+          "y": 15.5,
+          "visible": true
+        },
+        {
+          "actor": 3,
+          "x": 8.5,
+          "y": 16,
+          "visible": true
+        },
+        {
+          "actor": 4,
+          "x": 11.5,
+          "y": 16,
+          "visible": true
+        }
+      ],
+      "camera": [
+        0,
+        -4.166666666666666
+      ],
+      "bossHeight": 240,
+      "bubble": null
+    },
+    {
+      "frame": 588,
+      "people": [
+        {
+          "actor": 2,
+          "x": 10,
+          "y": 15.5,
+          "visible": true
+        },
+        {
+          "actor": 3,
+          "x": 8.5,
+          "y": 16,
+          "visible": true
+        },
+        {
+          "actor": 4,
+          "x": 11.5,
+          "y": 16,
+          "visible": true
+        }
+      ],
+      "camera": [
+        0,
+        -4.166666666666666
+      ],
+      "bossHeight": 240,
+      "bubble": null
+    },
+    {
+      "frame": 594,
+      "people": [
+        {
+          "actor": 2,
+          "x": 10,
+          "y": 15.5,
+          "visible": true
+        },
+        {
+          "actor": 3,
+          "x": 8.5,
+          "y": 16,
+          "visible": true
+        },
+        {
+          "actor": 4,
+          "x": 11.5,
+          "y": 16,
+          "visible": true
+        }
+      ],
+      "camera": [
+        0,
+        -4.166666666666666
+      ],
+      "bossHeight": 240,
+      "bubble": null
+    },
+    {
+      "frame": 600,
+      "people": [
+        {
+          "actor": 2,
+          "x": 10,
+          "y": 15.5,
+          "visible": true
+        },
+        {
+          "actor": 3,
+          "x": 8.5,
+          "y": 16,
+          "visible": true
+        },
+        {
+          "actor": 4,
+          "x": 11.5,
+          "y": 16,
+          "visible": true
+        }
+      ],
+      "camera": [
+        0,
+        -4.166666666666666
+      ],
+      "bossHeight": 240,
+      "bubble": {
+        "x": 258.5,
+        "y": 26.649768810766034,
+        "width": 299,
+        "height": 179
+      }
+    },
+    {
+      "frame": 604,
+      "people": [
+        {
+          "actor": 2,
+          "x": 10,
+          "y": 15.5,
+          "visible": true
+        },
+        {
+          "actor": 3,
+          "x": 8.5,
+          "y": 16,
+          "visible": true
+        },
+        {
+          "actor": 4,
+          "x": 11.5,
+          "y": 16,
+          "visible": true
+        }
+      ],
+      "camera": [
+        0,
+        -4.166666666666666
+      ],
+      "bossHeight": 240,
+      "bubble": {
+        "x": 258.5,
+        "y": 26.85278730590477,
+        "width": 299,
+        "height": 179
+      }
+    },
+    {
+      "frame": 610,
+      "people": [
+        {
+          "actor": 2,
+          "x": 10,
+          "y": 15.5,
+          "visible": true
+        },
+        {
+          "actor": 3,
+          "x": 8.5,
+          "y": 16,
+          "visible": true
+        },
+        {
+          "actor": 4,
+          "x": 11.5,
+          "y": 16,
+          "visible": true
+        }
+      ],
+      "camera": [
+        0,
+        -4.166666666666666
+      ],
+      "bossHeight": 240,
+      "bubble": {
+        "x": 258.5,
+        "y": 26.85278730590477,
+        "width": 299,
+        "height": 179
+      }
+    },
+    {
+      "frame": 616,
+      "people": [
+        {
+          "actor": 2,
+          "x": 10,
+          "y": 15.5,
+          "visible": true
+        },
+        {
+          "actor": 3,
+          "x": 8.5,
+          "y": 16,
+          "visible": true
+        },
+        {
+          "actor": 4,
+          "x": 11.5,
+          "y": 16,
+          "visible": true
+        }
+      ],
+      "camera": [
+        0,
+        -4.166666666666666
+      ],
+      "bossHeight": 240,
+      "bubble": {
+        "x": 258.5,
+        "y": 26.85278730590477,
+        "width": 299,
+        "height": 179
+      }
+    },
+    {
+      "frame": 622,
+      "people": [
+        {
+          "actor": 2,
+          "x": 10,
+          "y": 15.5,
+          "visible": true
+        },
+        {
+          "actor": 3,
+          "x": 8.5,
+          "y": 16,
+          "visible": true
+        },
+        {
+          "actor": 4,
+          "x": 11.5,
+          "y": 16,
+          "visible": true
+        }
+      ],
+      "camera": [
+        0,
+        -4.166666666666666
+      ],
+      "bossHeight": 240,
+      "bubble": {
+        "x": 258.5,
+        "y": 26.85278730590477,
+        "width": 299,
+        "height": 179
+      }
+    },
+    {
+      "frame": 628,
+      "people": [
+        {
+          "actor": 2,
+          "x": 10,
+          "y": 15.5,
+          "visible": true
+        },
+        {
+          "actor": 3,
+          "x": 8.5,
+          "y": 16,
+          "visible": true
+        },
+        {
+          "actor": 4,
+          "x": 11.5,
+          "y": 16,
+          "visible": true
+        }
+      ],
+      "camera": [
+        0,
+        -4.166666666666666
+      ],
+      "bossHeight": 240,
+      "bubble": {
+        "x": 258.5,
+        "y": 26.85278730590477,
+        "width": 299,
+        "height": 179
+      }
+    },
+    {
+      "frame": 634,
+      "people": [
+        {
+          "actor": 2,
+          "x": 10,
+          "y": 15.5,
+          "visible": true
+        },
+        {
+          "actor": 3,
+          "x": 8.5,
+          "y": 16,
+          "visible": true
+        },
+        {
+          "actor": 4,
+          "x": 11.5,
+          "y": 16,
+          "visible": true
+        }
+      ],
+      "camera": [
+        0,
+        -4.166666666666666
+      ],
+      "bossHeight": 240,
+      "bubble": {
+        "x": 258.5,
+        "y": 26.85278730590477,
+        "width": 299,
+        "height": 179
+      }
+    },
+    {
+      "frame": 640,
+      "people": [
+        {
+          "actor": 2,
+          "x": 10,
+          "y": 15.5,
+          "visible": true
+        },
+        {
+          "actor": 3,
+          "x": 8.5,
+          "y": 16,
+          "visible": true
+        },
+        {
+          "actor": 4,
+          "x": 11.5,
+          "y": 16,
+          "visible": true
+        }
+      ],
+      "camera": [
+        0,
+        -4.166666666666666
+      ],
+      "bossHeight": 240,
+      "bubble": {
+        "x": 258.5,
+        "y": 26.85278730590477,
+        "width": 299,
+        "height": 179
+      }
+    },
+    {
+      "frame": 646,
+      "people": [
+        {
+          "actor": 2,
+          "x": 10,
+          "y": 15.5,
+          "visible": true
+        },
+        {
+          "actor": 3,
+          "x": 8.5,
+          "y": 16,
+          "visible": true
+        },
+        {
+          "actor": 4,
+          "x": 11.5,
+          "y": 16,
+          "visible": true
+        }
+      ],
+      "camera": [
+        0,
+        -4.166666666666666
+      ],
+      "bossHeight": 240,
+      "bubble": {
+        "x": 258.5,
+        "y": 26.85278730590477,
+        "width": 299,
+        "height": 179
+      }
+    },
+    {
+      "frame": 652,
+      "people": [
+        {
+          "actor": 2,
+          "x": 10,
+          "y": 15.5,
+          "visible": true
+        },
+        {
+          "actor": 3,
+          "x": 8.5,
+          "y": 16,
+          "visible": true
+        },
+        {
+          "actor": 4,
+          "x": 11.5,
+          "y": 16,
+          "visible": true
+        }
+      ],
+      "camera": [
+        0,
+        -4.166666666666666
+      ],
+      "bossHeight": 240,
+      "bubble": {
+        "x": 258.5,
+        "y": 26.85278730590477,
+        "width": 299,
+        "height": 179
+      }
+    },
+    {
+      "frame": 658,
+      "people": [
+        {
+          "actor": 2,
+          "x": 10,
+          "y": 15.5,
+          "visible": true
+        },
+        {
+          "actor": 3,
+          "x": 8.5,
+          "y": 16,
+          "visible": true
+        },
+        {
+          "actor": 4,
+          "x": 11.5,
+          "y": 16,
+          "visible": true
+        }
+      ],
+      "camera": [
+        0,
+        -4.166666666666666
+      ],
+      "bossHeight": 240,
+      "bubble": {
+        "x": 258.5,
+        "y": 26.85278730590477,
+        "width": 299,
+        "height": 179
+      }
+    },
+    {
+      "frame": 664,
+      "people": [
+        {
+          "actor": 2,
+          "x": 10,
+          "y": 15.5,
+          "visible": true
+        },
+        {
+          "actor": 3,
+          "x": 8.5,
+          "y": 16,
+          "visible": true
+        },
+        {
+          "actor": 4,
+          "x": 11.5,
+          "y": 16,
+          "visible": true
+        }
+      ],
+      "camera": [
+        0,
+        -4.166666666666666
+      ],
+      "bossHeight": 240,
+      "bubble": {
+        "x": 258.5,
+        "y": 26.85278730590477,
+        "width": 299,
+        "height": 179
+      }
+    },
+    {
+      "frame": 670,
+      "people": [
+        {
+          "actor": 2,
+          "x": 10,
+          "y": 15.5,
+          "visible": true
+        },
+        {
+          "actor": 3,
+          "x": 8.5,
+          "y": 16,
+          "visible": true
+        },
+        {
+          "actor": 4,
+          "x": 11.5,
+          "y": 16,
+          "visible": true
+        }
+      ],
+      "camera": [
+        0,
+        -4.166666666666666
+      ],
+      "bossHeight": 240,
+      "bubble": {
+        "x": 258.5,
+        "y": 26.85278730590477,
+        "width": 299,
+        "height": 179
+      }
+    },
+    {
+      "frame": 676,
+      "people": [
+        {
+          "actor": 2,
+          "x": 10,
+          "y": 15.5,
+          "visible": true
+        },
+        {
+          "actor": 3,
+          "x": 8.5,
+          "y": 16,
+          "visible": true
+        },
+        {
+          "actor": 4,
+          "x": 11.5,
+          "y": 16,
+          "visible": true
+        }
+      ],
+      "camera": [
+        0,
+        -4.166666666666666
+      ],
+      "bossHeight": 240,
+      "bubble": {
+        "x": 258.5,
+        "y": 26.85278730590477,
+        "width": 299,
+        "height": 179
+      }
+    },
+    {
+      "frame": 682,
+      "people": [
+        {
+          "actor": 2,
+          "x": 10,
+          "y": 15.5,
+          "visible": true
+        },
+        {
+          "actor": 3,
+          "x": 8.5,
+          "y": 16,
+          "visible": true
+        },
+        {
+          "actor": 4,
+          "x": 11.5,
+          "y": 16,
+          "visible": true
+        }
+      ],
+      "camera": [
+        0,
+        -4.166666666666666
+      ],
+      "bossHeight": 240,
+      "bubble": {
+        "x": 258.5,
+        "y": 26.85278730590477,
+        "width": 299,
+        "height": 179
+      }
+    },
+    {
+      "frame": 688,
+      "people": [
+        {
+          "actor": 2,
+          "x": 10,
+          "y": 15.5,
+          "visible": true
+        },
+        {
+          "actor": 3,
+          "x": 8.5,
+          "y": 16,
+          "visible": true
+        },
+        {
+          "actor": 4,
+          "x": 11.5,
+          "y": 16,
+          "visible": true
+        }
+      ],
+      "camera": [
+        0,
+        -4.166666666666666
+      ],
+      "bossHeight": 240,
+      "bubble": {
+        "x": 258.5,
+        "y": 26.85278730590477,
+        "width": 299,
+        "height": 179
+      }
+    },
+    {
+      "frame": 694,
+      "people": [
+        {
+          "actor": 2,
+          "x": 10,
+          "y": 15.5,
+          "visible": true
+        },
+        {
+          "actor": 3,
+          "x": 8.5,
+          "y": 16,
+          "visible": true
+        },
+        {
+          "actor": 4,
+          "x": 11.5,
+          "y": 16,
+          "visible": true
+        }
+      ],
+      "camera": [
+        0,
+        -4.166666666666666
+      ],
+      "bossHeight": 240,
+      "bubble": {
+        "x": 258.5,
+        "y": 26.85278730590477,
+        "width": 299,
+        "height": 179
+      }
+    },
+    {
+      "frame": 700,
+      "people": [
+        {
+          "actor": 2,
+          "x": 10,
+          "y": 15.5,
+          "visible": true
+        },
+        {
+          "actor": 3,
+          "x": 8.5,
+          "y": 16,
+          "visible": true
+        },
+        {
+          "actor": 4,
+          "x": 11.5,
+          "y": 16,
+          "visible": true
+        }
+      ],
+      "camera": [
+        0,
+        -4.166666666666666
+      ],
+      "bossHeight": 240,
+      "bubble": {
+        "x": 258.5,
+        "y": 26.85278730590477,
+        "width": 299,
+        "height": 179
+      }
+    },
+    {
+      "frame": 706,
+      "people": [
+        {
+          "actor": 2,
+          "x": 10,
+          "y": 15.5,
+          "visible": true
+        },
+        {
+          "actor": 3,
+          "x": 8.5,
+          "y": 16,
+          "visible": true
+        },
+        {
+          "actor": 4,
+          "x": 11.5,
+          "y": 16,
+          "visible": true
+        }
+      ],
+      "camera": [
+        0,
+        -4.166666666666666
+      ],
+      "bossHeight": 240,
+      "bubble": {
+        "x": 258.5,
+        "y": 26.85278730590477,
+        "width": 299,
+        "height": 179
+      }
+    },
+    {
+      "frame": 712,
+      "people": [
+        {
+          "actor": 2,
+          "x": 10,
+          "y": 15.5,
+          "visible": true
+        },
+        {
+          "actor": 3,
+          "x": 8.5,
+          "y": 16,
+          "visible": true
+        },
+        {
+          "actor": 4,
+          "x": 11.5,
+          "y": 16,
+          "visible": true
+        }
+      ],
+      "camera": [
+        0,
+        -4.166666666666666
+      ],
+      "bossHeight": 240,
+      "bubble": {
+        "x": 230.5,
+        "y": 62.49981108870074,
+        "width": 355,
+        "height": 146
+      }
+    },
+    {
+      "frame": 716,
+      "people": [
+        {
+          "actor": 2,
+          "x": 10,
+          "y": 15.5,
+          "visible": true
+        },
+        {
+          "actor": 3,
+          "x": 8.5,
+          "y": 16,
+          "visible": true
+        },
+        {
+          "actor": 4,
+          "x": 11.5,
+          "y": 16,
+          "visible": true
+        }
+      ],
+      "camera": [
+        0,
+        -4.166666666666666
+      ],
+      "bossHeight": 240,
+      "bubble": {
+        "x": 230.5,
+        "y": 62.49981108870074,
+        "width": 355,
+        "height": 146
+      }
+    },
+    {
+      "frame": 722,
+      "people": [
+        {
+          "actor": 2,
+          "x": 10,
+          "y": 15.5,
+          "visible": true
+        },
+        {
+          "actor": 3,
+          "x": 8.5,
+          "y": 16,
+          "visible": true
+        },
+        {
+          "actor": 4,
+          "x": 11.5,
+          "y": 16,
+          "visible": true
+        }
+      ],
+      "camera": [
+        0,
+        -4.166666666666666
+      ],
+      "bossHeight": 240,
+      "bubble": {
+        "x": 230.5,
+        "y": 62.49981108870074,
+        "width": 355,
+        "height": 146
+      }
+    },
+    {
+      "frame": 728,
+      "people": [
+        {
+          "actor": 2,
+          "x": 10,
+          "y": 15.5,
+          "visible": true
+        },
+        {
+          "actor": 3,
+          "x": 8.5,
+          "y": 16,
+          "visible": true
+        },
+        {
+          "actor": 4,
+          "x": 11.5,
+          "y": 16,
+          "visible": true
+        }
+      ],
+      "camera": [
+        0,
+        -4.166666666666666
+      ],
+      "bossHeight": 240,
+      "bubble": {
+        "x": 230.5,
+        "y": 62.49981108870074,
+        "width": 355,
+        "height": 146
+      }
+    },
+    {
+      "frame": 734,
+      "people": [
+        {
+          "actor": 2,
+          "x": 10,
+          "y": 15.5,
+          "visible": true
+        },
+        {
+          "actor": 3,
+          "x": 8.5,
+          "y": 16,
+          "visible": true
+        },
+        {
+          "actor": 4,
+          "x": 11.5,
+          "y": 16,
+          "visible": true
+        }
+      ],
+      "camera": [
+        0,
+        -4.166666666666666
+      ],
+      "bossHeight": 240,
+      "bubble": {
+        "x": 230.5,
+        "y": 62.49981108870074,
+        "width": 355,
+        "height": 146
+      }
+    },
+    {
+      "frame": 740,
+      "people": [
+        {
+          "actor": 2,
+          "x": 10,
+          "y": 15.5,
+          "visible": true
+        },
+        {
+          "actor": 3,
+          "x": 8.5,
+          "y": 16,
+          "visible": true
+        },
+        {
+          "actor": 4,
+          "x": 11.5,
+          "y": 16,
+          "visible": true
+        }
+      ],
+      "camera": [
+        0,
+        -4.166666666666666
+      ],
+      "bossHeight": 240,
+      "bubble": {
+        "x": 230.5,
+        "y": 62.49981108870074,
+        "width": 355,
+        "height": 146
+      }
+    },
+    {
+      "frame": 746,
+      "people": [
+        {
+          "actor": 2,
+          "x": 10,
+          "y": 15.5,
+          "visible": true
+        },
+        {
+          "actor": 3,
+          "x": 8.5,
+          "y": 16,
+          "visible": true
+        },
+        {
+          "actor": 4,
+          "x": 11.5,
+          "y": 16,
+          "visible": true
+        }
+      ],
+      "camera": [
+        0,
+        -4.166666666666666
+      ],
+      "bossHeight": 240,
+      "bubble": {
+        "x": 230.5,
+        "y": 62.49981108870074,
+        "width": 355,
+        "height": 146
+      }
+    },
+    {
+      "frame": 752,
+      "people": [
+        {
+          "actor": 2,
+          "x": 10,
+          "y": 15.5,
+          "visible": true
+        },
+        {
+          "actor": 3,
+          "x": 8.5,
+          "y": 16,
+          "visible": true
+        },
+        {
+          "actor": 4,
+          "x": 11.5,
+          "y": 16,
+          "visible": true
+        }
+      ],
+      "camera": [
+        0,
+        -4.166666666666666
+      ],
+      "bossHeight": 240,
+      "bubble": {
+        "x": 230.5,
+        "y": 62.49981108870074,
+        "width": 355,
+        "height": 146
+      }
+    },
+    {
+      "frame": 758,
+      "people": [
+        {
+          "actor": 2,
+          "x": 10,
+          "y": 15.5,
+          "visible": true
+        },
+        {
+          "actor": 3,
+          "x": 8.5,
+          "y": 16,
+          "visible": true
+        },
+        {
+          "actor": 4,
+          "x": 11.5,
+          "y": 16,
+          "visible": true
+        }
+      ],
+      "camera": [
+        0,
+        -4.166666666666666
+      ],
+      "bossHeight": 240,
+      "bubble": {
+        "x": 230.5,
+        "y": 62.49981108870074,
+        "width": 355,
+        "height": 146
+      }
+    },
+    {
+      "frame": 764,
+      "people": [
+        {
+          "actor": 2,
+          "x": 10,
+          "y": 15.5,
+          "visible": true
+        },
+        {
+          "actor": 3,
+          "x": 8.5,
+          "y": 16,
+          "visible": true
+        },
+        {
+          "actor": 4,
+          "x": 11.5,
+          "y": 16,
+          "visible": true
+        }
+      ],
+      "camera": [
+        0,
+        -4.166666666666666
+      ],
+      "bossHeight": 240,
+      "bubble": {
+        "x": 230.5,
+        "y": 62.49981108870074,
+        "width": 355,
+        "height": 146
+      }
+    },
+    {
+      "frame": 770,
+      "people": [
+        {
+          "actor": 2,
+          "x": 10,
+          "y": 15.5,
+          "visible": true
+        },
+        {
+          "actor": 3,
+          "x": 8.5,
+          "y": 16,
+          "visible": true
+        },
+        {
+          "actor": 4,
+          "x": 11.5,
+          "y": 16,
+          "visible": true
+        }
+      ],
+      "camera": [
+        0,
+        -4.166666666666666
+      ],
+      "bossHeight": 240,
+      "bubble": {
+        "x": 230.5,
+        "y": 62.49981108870074,
+        "width": 355,
+        "height": 146
+      }
+    },
+    {
+      "frame": 776,
+      "people": [
+        {
+          "actor": 2,
+          "x": 10,
+          "y": 15.5,
+          "visible": true
+        },
+        {
+          "actor": 3,
+          "x": 8.5,
+          "y": 16,
+          "visible": true
+        },
+        {
+          "actor": 4,
+          "x": 11.5,
+          "y": 16,
+          "visible": true
+        }
+      ],
+      "camera": [
+        0,
+        -4.166666666666666
+      ],
+      "bossHeight": 240,
+      "bubble": {
+        "x": 230.5,
+        "y": 62.49981108870074,
+        "width": 355,
+        "height": 146
+      }
+    },
+    {
+      "frame": 782,
+      "people": [
+        {
+          "actor": 2,
+          "x": 10,
+          "y": 15.5,
+          "visible": true
+        },
+        {
+          "actor": 3,
+          "x": 8.5,
+          "y": 16,
+          "visible": true
+        },
+        {
+          "actor": 4,
+          "x": 11.5,
+          "y": 16,
+          "visible": true
+        }
+      ],
+      "camera": [
+        0,
+        -4.166666666666666
+      ],
+      "bossHeight": 240,
+      "bubble": {
+        "x": 230.5,
+        "y": 62.49981108870074,
+        "width": 355,
+        "height": 146
+      }
+    },
+    {
+      "frame": 788,
+      "people": [
+        {
+          "actor": 2,
+          "x": 10,
+          "y": 15.5,
+          "visible": true
+        },
+        {
+          "actor": 3,
+          "x": 8.5,
+          "y": 16,
+          "visible": true
+        },
+        {
+          "actor": 4,
+          "x": 11.5,
+          "y": 16,
+          "visible": true
+        }
+      ],
+      "camera": [
+        0,
+        -4.166666666666666
+      ],
+      "bossHeight": 240,
+      "bubble": {
+        "x": 230.5,
+        "y": 62.49981108870074,
+        "width": 355,
+        "height": 146
+      }
+    },
+    {
+      "frame": 794,
+      "people": [
+        {
+          "actor": 2,
+          "x": 10,
+          "y": 15.5,
+          "visible": true
+        },
+        {
+          "actor": 3,
+          "x": 8.5,
+          "y": 16,
+          "visible": true
+        },
+        {
+          "actor": 4,
+          "x": 11.5,
+          "y": 16,
+          "visible": true
+        }
+      ],
+      "camera": [
+        0,
+        -4.166666666666666
+      ],
+      "bossHeight": 240,
+      "bubble": {
+        "x": 230.5,
+        "y": 62.49981108870074,
+        "width": 355,
+        "height": 146
+      }
+    },
+    {
+      "frame": 800,
+      "people": [
+        {
+          "actor": 2,
+          "x": 10,
+          "y": 15.5,
+          "visible": true
+        },
+        {
+          "actor": 3,
+          "x": 8.5,
+          "y": 16,
+          "visible": true
+        },
+        {
+          "actor": 4,
+          "x": 11.5,
+          "y": 16,
+          "visible": true
+        }
+      ],
+      "camera": [
+        0,
+        -4.166666666666666
+      ],
+      "bossHeight": 240,
+      "bubble": {
+        "x": 230.5,
+        "y": 62.49981108870074,
+        "width": 355,
+        "height": 146
+      }
+    },
+    {
+      "frame": 806,
+      "people": [
+        {
+          "actor": 2,
+          "x": 10,
+          "y": 15.5,
+          "visible": true
+        },
+        {
+          "actor": 3,
+          "x": 8.5,
+          "y": 16,
+          "visible": true
+        },
+        {
+          "actor": 4,
+          "x": 11.5,
+          "y": 16,
+          "visible": true
+        }
+      ],
+      "camera": [
+        0,
+        -4.166666666666666
+      ],
+      "bossHeight": 240,
+      "bubble": {
+        "x": 230.5,
+        "y": 62.49981108870074,
+        "width": 355,
+        "height": 146
+      }
+    },
+    {
+      "frame": 812,
+      "people": [
+        {
+          "actor": 2,
+          "x": 10,
+          "y": 15.5,
+          "visible": true
+        },
+        {
+          "actor": 3,
+          "x": 8.5,
+          "y": 16,
+          "visible": true
+        },
+        {
+          "actor": 4,
+          "x": 11.5,
+          "y": 16,
+          "visible": true
+        }
+      ],
+      "camera": [
+        0,
+        -4.166666666666666
+      ],
+      "bossHeight": 240,
+      "bubble": {
+        "x": 230.5,
+        "y": 62.49981108870074,
+        "width": 355,
+        "height": 146
+      }
+    },
+    {
+      "frame": 818,
+      "people": [
+        {
+          "actor": 2,
+          "x": 10,
+          "y": 15.5,
+          "visible": true
+        },
+        {
+          "actor": 3,
+          "x": 8.5,
+          "y": 16,
+          "visible": true
+        },
+        {
+          "actor": 4,
+          "x": 11.5,
+          "y": 16,
+          "visible": true
+        }
+      ],
+      "camera": [
+        0,
+        -4.166666666666666
+      ],
+      "bossHeight": 240,
+      "bubble": {
+        "x": 230.5,
+        "y": 62.49981108870074,
+        "width": 355,
+        "height": 146
+      }
+    },
+    {
+      "frame": 824,
+      "people": [
+        {
+          "actor": 2,
+          "x": 10,
+          "y": 15.5,
+          "visible": true
+        },
+        {
+          "actor": 3,
+          "x": 8.5,
+          "y": 16,
+          "visible": true
+        },
+        {
+          "actor": 4,
+          "x": 11.5,
+          "y": 16,
+          "visible": true
+        }
+      ],
+      "camera": [
+        0,
+        -4.166666666666666
+      ],
+      "bossHeight": 240,
+      "bubble": {
+        "x": 211.5,
+        "y": 62.499999985937194,
+        "width": 393,
+        "height": 146
+      }
+    },
+    {
+      "frame": 830,
+      "people": [
+        {
+          "actor": 2,
+          "x": 10,
+          "y": 15.5,
+          "visible": true
+        },
+        {
+          "actor": 3,
+          "x": 8.5,
+          "y": 16,
+          "visible": true
+        },
+        {
+          "actor": 4,
+          "x": 11.5,
+          "y": 16,
+          "visible": true
+        }
+      ],
+      "camera": [
+        0,
+        -4.166666666666666
+      ],
+      "bossHeight": 240,
+      "bubble": {
+        "x": 211.5,
+        "y": 62.499999985937194,
+        "width": 393,
+        "height": 146
+      }
+    },
+    {
+      "frame": 836,
+      "people": [
+        {
+          "actor": 2,
+          "x": 10,
+          "y": 15.5,
+          "visible": true
+        },
+        {
+          "actor": 3,
+          "x": 8.5,
+          "y": 16,
+          "visible": true
+        },
+        {
+          "actor": 4,
+          "x": 11.5,
+          "y": 16,
+          "visible": true
+        }
+      ],
+      "camera": [
+        0,
+        -4.166666666666666
+      ],
+      "bossHeight": 240,
+      "bubble": {
+        "x": 211.5,
+        "y": 62.499999985937194,
+        "width": 393,
+        "height": 146
+      }
+    },
+    {
+      "frame": 842,
+      "people": [
+        {
+          "actor": 2,
+          "x": 10,
+          "y": 15.5,
+          "visible": true
+        },
+        {
+          "actor": 3,
+          "x": 8.5,
+          "y": 16,
+          "visible": true
+        },
+        {
+          "actor": 4,
+          "x": 11.5,
+          "y": 16,
+          "visible": true
+        }
+      ],
+      "camera": [
+        0,
+        -4.166666666666666
+      ],
+      "bossHeight": 240,
+      "bubble": {
+        "x": 211.5,
+        "y": 62.499999985937194,
+        "width": 393,
+        "height": 146
+      }
+    },
+    {
+      "frame": 848,
+      "people": [
+        {
+          "actor": 2,
+          "x": 10,
+          "y": 15.5,
+          "visible": true
+        },
+        {
+          "actor": 3,
+          "x": 8.5,
+          "y": 16,
+          "visible": true
+        },
+        {
+          "actor": 4,
+          "x": 11.5,
+          "y": 16,
+          "visible": true
+        }
+      ],
+      "camera": [
+        0,
+        -4.166666666666666
+      ],
+      "bossHeight": 240,
+      "bubble": {
+        "x": 211.5,
+        "y": 62.499999985937194,
+        "width": 393,
+        "height": 146
+      }
+    },
+    {
+      "frame": 854,
+      "people": [
+        {
+          "actor": 2,
+          "x": 10,
+          "y": 15.5,
+          "visible": true
+        },
+        {
+          "actor": 3,
+          "x": 8.5,
+          "y": 16,
+          "visible": true
+        },
+        {
+          "actor": 4,
+          "x": 11.5,
+          "y": 16,
+          "visible": true
+        }
+      ],
+      "camera": [
+        0,
+        -4.166666666666666
+      ],
+      "bossHeight": 240,
+      "bubble": {
+        "x": 211.5,
+        "y": 62.499999985937194,
+        "width": 393,
+        "height": 146
+      }
+    },
+    {
+      "frame": 860,
+      "people": [
+        {
+          "actor": 2,
+          "x": 10,
+          "y": 15.5,
+          "visible": true
+        },
+        {
+          "actor": 3,
+          "x": 8.5,
+          "y": 16,
+          "visible": true
+        },
+        {
+          "actor": 4,
+          "x": 11.5,
+          "y": 16,
+          "visible": true
+        }
+      ],
+      "camera": [
+        0,
+        -4.166666666666666
+      ],
+      "bossHeight": 240,
+      "bubble": {
+        "x": 211.5,
+        "y": 62.499999985937194,
+        "width": 393,
+        "height": 146
+      }
+    },
+    {
+      "frame": 866,
+      "people": [
+        {
+          "actor": 2,
+          "x": 10,
+          "y": 15.5,
+          "visible": true
+        },
+        {
+          "actor": 3,
+          "x": 8.5,
+          "y": 16,
+          "visible": true
+        },
+        {
+          "actor": 4,
+          "x": 11.5,
+          "y": 16,
+          "visible": true
+        }
+      ],
+      "camera": [
+        0,
+        -4.166666666666666
+      ],
+      "bossHeight": 240,
+      "bubble": {
+        "x": 211.5,
+        "y": 62.499999985937194,
+        "width": 393,
+        "height": 146
+      }
+    },
+    {
+      "frame": 872,
+      "people": [
+        {
+          "actor": 2,
+          "x": 10,
+          "y": 15.5,
+          "visible": true
+        },
+        {
+          "actor": 3,
+          "x": 8.5,
+          "y": 16,
+          "visible": true
+        },
+        {
+          "actor": 4,
+          "x": 11.5,
+          "y": 16,
+          "visible": true
+        }
+      ],
+      "camera": [
+        0,
+        -4.166666666666666
+      ],
+      "bossHeight": 240,
+      "bubble": {
+        "x": 211.5,
+        "y": 62.499999985937194,
+        "width": 393,
+        "height": 146
+      }
+    },
+    {
+      "frame": 878,
+      "people": [
+        {
+          "actor": 2,
+          "x": 10,
+          "y": 15.5,
+          "visible": true
+        },
+        {
+          "actor": 3,
+          "x": 8.5,
+          "y": 16,
+          "visible": true
+        },
+        {
+          "actor": 4,
+          "x": 11.5,
+          "y": 16,
+          "visible": true
+        }
+      ],
+      "camera": [
+        0,
+        -4.166666666666666
+      ],
+      "bossHeight": 240,
+      "bubble": {
+        "x": 211.5,
+        "y": 62.499999985937194,
+        "width": 393,
+        "height": 146
+      }
+    },
+    {
+      "frame": 884,
+      "people": [
+        {
+          "actor": 2,
+          "x": 10,
+          "y": 15.5,
+          "visible": true
+        },
+        {
+          "actor": 3,
+          "x": 8.5,
+          "y": 16,
+          "visible": true
+        },
+        {
+          "actor": 4,
+          "x": 11.5,
+          "y": 16,
+          "visible": true
+        }
+      ],
+      "camera": [
+        0,
+        -4.166666666666666
+      ],
+      "bossHeight": 240,
+      "bubble": {
+        "x": 211.5,
+        "y": 62.499999985937194,
+        "width": 393,
+        "height": 146
+      }
+    },
+    {
+      "frame": 890,
+      "people": [
+        {
+          "actor": 2,
+          "x": 10,
+          "y": 15.5,
+          "visible": true
+        },
+        {
+          "actor": 3,
+          "x": 8.5,
+          "y": 16,
+          "visible": true
+        },
+        {
+          "actor": 4,
+          "x": 11.5,
+          "y": 16,
+          "visible": true
+        }
+      ],
+      "camera": [
+        0,
+        -4.166666666666666
+      ],
+      "bossHeight": 240,
+      "bubble": {
+        "x": 211.5,
+        "y": 62.499999985937194,
+        "width": 393,
+        "height": 146
+      }
+    },
+    {
+      "frame": 896,
+      "people": [
+        {
+          "actor": 2,
+          "x": 10,
+          "y": 15.5,
+          "visible": true
+        },
+        {
+          "actor": 3,
+          "x": 8.5,
+          "y": 16,
+          "visible": true
+        },
+        {
+          "actor": 4,
+          "x": 11.5,
+          "y": 16,
+          "visible": true
+        }
+      ],
+      "camera": [
+        0,
+        -4.166666666666666
+      ],
+      "bossHeight": 240,
+      "bubble": {
+        "x": 211.5,
+        "y": 62.499999985937194,
+        "width": 393,
+        "height": 146
+      }
+    },
+    {
+      "frame": 902,
+      "people": [
+        {
+          "actor": 2,
+          "x": 10,
+          "y": 15.5,
+          "visible": true
+        },
+        {
+          "actor": 3,
+          "x": 8.5,
+          "y": 16,
+          "visible": true
+        },
+        {
+          "actor": 4,
+          "x": 11.5,
+          "y": 16,
+          "visible": true
+        }
+      ],
+      "camera": [
+        0,
+        -4.166666666666666
+      ],
+      "bossHeight": 240,
+      "bubble": {
+        "x": 211.5,
+        "y": 62.499999985937194,
+        "width": 393,
+        "height": 146
+      }
+    },
+    {
+      "frame": 908,
+      "people": [
+        {
+          "actor": 2,
+          "x": 10,
+          "y": 15.5,
+          "visible": true
+        },
+        {
+          "actor": 3,
+          "x": 8.5,
+          "y": 16,
+          "visible": true
+        },
+        {
+          "actor": 4,
+          "x": 11.5,
+          "y": 16,
+          "visible": true
+        }
+      ],
+      "camera": [
+        0,
+        -4.166666666666666
+      ],
+      "bossHeight": 240,
+      "bubble": {
+        "x": 211.5,
+        "y": 62.499999985937194,
+        "width": 393,
+        "height": 146
+      }
+    },
+    {
+      "frame": 914,
+      "people": [
+        {
+          "actor": 2,
+          "x": 10,
+          "y": 15.5,
+          "visible": true
+        },
+        {
+          "actor": 3,
+          "x": 8.5,
+          "y": 16,
+          "visible": true
+        },
+        {
+          "actor": 4,
+          "x": 11.5,
+          "y": 16,
+          "visible": true
+        }
+      ],
+      "camera": [
+        0,
+        -4.166666666666666
+      ],
+      "bossHeight": 240,
+      "bubble": {
+        "x": 211.5,
+        "y": 62.499999985937194,
+        "width": 393,
+        "height": 146
+      }
+    },
+    {
+      "frame": 920,
+      "people": [
+        {
+          "actor": 2,
+          "x": 10,
+          "y": 15.5,
+          "visible": true
+        },
+        {
+          "actor": 3,
+          "x": 8.5,
+          "y": 16,
+          "visible": true
+        },
+        {
+          "actor": 4,
+          "x": 11.5,
+          "y": 16,
+          "visible": true
+        }
+      ],
+      "camera": [
+        0,
+        -4.166666666666666
+      ],
+      "bossHeight": 240,
+      "bubble": {
+        "x": 211.5,
+        "y": 62.499999985937194,
+        "width": 393,
+        "height": 146
+      }
+    },
+    {
+      "frame": 926,
+      "people": [
+        {
+          "actor": 2,
+          "x": 10,
+          "y": 15.5,
+          "visible": true
+        },
+        {
+          "actor": 3,
+          "x": 8.5,
+          "y": 16,
+          "visible": true
+        },
+        {
+          "actor": 4,
+          "x": 11.5,
+          "y": 16,
+          "visible": true
+        }
+      ],
+      "camera": [
+        0,
+        -4.166666666666666
+      ],
+      "bossHeight": 240,
+      "bubble": {
+        "x": 211.5,
+        "y": 62.499999985937194,
+        "width": 393,
+        "height": 146
+      }
+    },
+    {
+      "frame": 932,
+      "people": [
+        {
+          "actor": 2,
+          "x": 10,
+          "y": 15.5,
+          "visible": true
+        },
+        {
+          "actor": 3,
+          "x": 8.5,
+          "y": 16,
+          "visible": true
+        },
+        {
+          "actor": 4,
+          "x": 11.5,
+          "y": 16,
+          "visible": true
+        }
+      ],
+      "camera": [
+        0,
+        -4.166666666666666
+      ],
+      "bossHeight": 240,
+      "bubble": {
+        "x": 211.5,
+        "y": 62.499999985937194,
+        "width": 393,
+        "height": 146
+      }
+    },
+    {
+      "frame": 938,
+      "people": [
+        {
+          "actor": 2,
+          "x": 10,
+          "y": 15.5,
+          "visible": true
+        },
+        {
+          "actor": 3,
+          "x": 8.5,
+          "y": 16,
+          "visible": true
+        },
+        {
+          "actor": 4,
+          "x": 11.5,
+          "y": 16,
+          "visible": true
+        }
+      ],
+      "camera": [
+        0,
+        -4.166666666666666
+      ],
+      "bossHeight": 240,
+      "bubble": null
+    },
+    {
+      "frame": 943,
+      "people": [
+        {
+          "actor": 2,
+          "x": 10,
+          "y": 15.5,
+          "visible": true
+        },
+        {
+          "actor": 3,
+          "x": 8.5,
+          "y": 16,
+          "visible": true
+        },
+        {
+          "actor": 4,
+          "x": 11.5,
+          "y": 16,
+          "visible": true
+        }
+      ],
+      "camera": [
+        0,
+        -4.166666666666666
+      ],
+      "bossHeight": 240,
+      "bubble": {
+        "x": 307.5,
+        "y": 95.81249999999895,
+        "width": 201,
+        "height": 113
+      }
+    },
+    {
+      "frame": 949,
+      "people": [
+        {
+          "actor": 2,
+          "x": 10,
+          "y": 15.5,
+          "visible": true
+        },
+        {
+          "actor": 3,
+          "x": 8.5,
+          "y": 16,
+          "visible": true
+        },
+        {
+          "actor": 4,
+          "x": 11.5,
+          "y": 16,
+          "visible": true
+        }
+      ],
+      "camera": [
+        0,
+        -4.166666666666666
+      ],
+      "bossHeight": 240,
+      "bubble": {
+        "x": 307.5,
+        "y": 95.81249999999895,
+        "width": 201,
+        "height": 113
+      }
+    },
+    {
+      "frame": 955,
+      "people": [
+        {
+          "actor": 2,
+          "x": 10,
+          "y": 15.5,
+          "visible": true
+        },
+        {
+          "actor": 3,
+          "x": 8.5,
+          "y": 16,
+          "visible": true
+        },
+        {
+          "actor": 4,
+          "x": 11.5,
+          "y": 16,
+          "visible": true
+        }
+      ],
+      "camera": [
+        0,
+        -4.166666666666666
+      ],
+      "bossHeight": 240,
+      "bubble": {
+        "x": 307.5,
+        "y": 95.81249999999895,
+        "width": 201,
+        "height": 113
+      }
+    },
+    {
+      "frame": 961,
+      "people": [
+        {
+          "actor": 2,
+          "x": 10,
+          "y": 15.5,
+          "visible": true
+        },
+        {
+          "actor": 3,
+          "x": 8.5,
+          "y": 16,
+          "visible": true
+        },
+        {
+          "actor": 4,
+          "x": 11.5,
+          "y": 16,
+          "visible": true
+        }
+      ],
+      "camera": [
+        0,
+        -4.166666666666666
+      ],
+      "bossHeight": 240,
+      "bubble": {
+        "x": 307.5,
+        "y": 95.81249999999895,
+        "width": 201,
+        "height": 113
+      }
+    },
+    {
+      "frame": 967,
+      "people": [
+        {
+          "actor": 2,
+          "x": 10,
+          "y": 15.5,
+          "visible": true
+        },
+        {
+          "actor": 3,
+          "x": 8.5,
+          "y": 16,
+          "visible": true
+        },
+        {
+          "actor": 4,
+          "x": 11.5,
+          "y": 16,
+          "visible": true
+        }
+      ],
+      "camera": [
+        0,
+        -4.166666666666666
+      ],
+      "bossHeight": 240,
+      "bubble": {
+        "x": 307.5,
+        "y": 95.81249999999895,
+        "width": 201,
+        "height": 113
+      }
+    },
+    {
+      "frame": 973,
+      "people": [
+        {
+          "actor": 2,
+          "x": 10,
+          "y": 15.5,
+          "visible": true
+        },
+        {
+          "actor": 3,
+          "x": 8.5,
+          "y": 16,
+          "visible": true
+        },
+        {
+          "actor": 4,
+          "x": 11.5,
+          "y": 16,
+          "visible": true
+        }
+      ],
+      "camera": [
+        0,
+        -4.166666666666666
+      ],
+      "bossHeight": 240,
+      "bubble": {
+        "x": 307.5,
+        "y": 95.81249999999895,
+        "width": 201,
+        "height": 113
+      }
+    },
+    {
+      "frame": 979,
+      "people": [
+        {
+          "actor": 2,
+          "x": 10,
+          "y": 15.5,
+          "visible": true
+        },
+        {
+          "actor": 3,
+          "x": 8.5,
+          "y": 16,
+          "visible": true
+        },
+        {
+          "actor": 4,
+          "x": 11.5,
+          "y": 16,
+          "visible": true
+        }
+      ],
+      "camera": [
+        0,
+        -4.166666666666666
+      ],
+      "bossHeight": 240,
+      "bubble": {
+        "x": 307.5,
+        "y": 95.81249999999895,
+        "width": 201,
+        "height": 113
+      }
+    },
+    {
+      "frame": 985,
+      "people": [
+        {
+          "actor": 2,
+          "x": 10,
+          "y": 15.5,
+          "visible": true
+        },
+        {
+          "actor": 3,
+          "x": 8.5,
+          "y": 16,
+          "visible": true
+        },
+        {
+          "actor": 4,
+          "x": 11.5,
+          "y": 16,
+          "visible": true
+        }
+      ],
+      "camera": [
+        0,
+        -4.166666666666666
+      ],
+      "bossHeight": 240,
+      "bubble": {
+        "x": 307.5,
+        "y": 95.81249999999895,
+        "width": 201,
+        "height": 113
+      }
+    },
+    {
+      "frame": 991,
+      "people": [
+        {
+          "actor": 2,
+          "x": 10,
+          "y": 15.5,
+          "visible": true
+        },
+        {
+          "actor": 3,
+          "x": 8.5,
+          "y": 16,
+          "visible": true
+        },
+        {
+          "actor": 4,
+          "x": 11.5,
+          "y": 16,
+          "visible": true
+        }
+      ],
+      "camera": [
+        0,
+        -4.166666666666666
+      ],
+      "bossHeight": 240,
+      "bubble": {
+        "x": 307.5,
+        "y": 95.81249999999895,
+        "width": 201,
+        "height": 113
+      }
+    },
+    {
+      "frame": 997,
+      "people": [
+        {
+          "actor": 2,
+          "x": 10,
+          "y": 15.5,
+          "visible": true
+        },
+        {
+          "actor": 3,
+          "x": 8.5,
+          "y": 16,
+          "visible": true
+        },
+        {
+          "actor": 4,
+          "x": 11.5,
+          "y": 16,
+          "visible": true
+        }
+      ],
+      "camera": [
+        0,
+        -4.166666666666666
+      ],
+      "bossHeight": 240,
+      "bubble": {
+        "x": 307.5,
+        "y": 95.81249999999895,
+        "width": 201,
+        "height": 113
+      }
+    },
+    {
+      "frame": 1003,
+      "people": [
+        {
+          "actor": 2,
+          "x": 10,
+          "y": 15.5,
+          "visible": true
+        },
+        {
+          "actor": 3,
+          "x": 8.5,
+          "y": 16,
+          "visible": true
+        },
+        {
+          "actor": 4,
+          "x": 11.5,
+          "y": 16,
+          "visible": true
+        }
+      ],
+      "camera": [
+        0,
+        -4.166666666666666
+      ],
+      "bossHeight": 240,
+      "bubble": {
+        "x": 307.5,
+        "y": 95.81249999999895,
+        "width": 201,
+        "height": 113
+      }
+    },
+    {
+      "frame": 1009,
+      "people": [
+        {
+          "actor": 2,
+          "x": 10,
+          "y": 15.5,
+          "visible": true
+        },
+        {
+          "actor": 3,
+          "x": 8.5,
+          "y": 16,
+          "visible": true
+        },
+        {
+          "actor": 4,
+          "x": 11.5,
+          "y": 16,
+          "visible": true
+        }
+      ],
+      "camera": [
+        0,
+        -4.166666666666666
+      ],
+      "bossHeight": 240,
+      "bubble": {
+        "x": 307.5,
+        "y": 95.81249999999895,
+        "width": 201,
+        "height": 113
+      }
+    },
+    {
+      "frame": 1015,
+      "people": [
+        {
+          "actor": 2,
+          "x": 10,
+          "y": 15.5,
+          "visible": true
+        },
+        {
+          "actor": 3,
+          "x": 8.5,
+          "y": 16,
+          "visible": true
+        },
+        {
+          "actor": 4,
+          "x": 11.5,
+          "y": 16,
+          "visible": true
+        }
+      ],
+      "camera": [
+        0,
+        -4.166666666666666
+      ],
+      "bossHeight": 240,
+      "bubble": {
+        "x": 307.5,
+        "y": 95.81249999999895,
+        "width": 201,
+        "height": 113
+      }
+    },
+    {
+      "frame": 1021,
+      "people": [
+        {
+          "actor": 2,
+          "x": 10,
+          "y": 15.5,
+          "visible": true
+        },
+        {
+          "actor": 3,
+          "x": 8.5,
+          "y": 16,
+          "visible": true
+        },
+        {
+          "actor": 4,
+          "x": 11.5,
+          "y": 16,
+          "visible": true
+        }
+      ],
+      "camera": [
+        0,
+        -4.166666666666666
+      ],
+      "bossHeight": 240,
+      "bubble": {
+        "x": 307.5,
+        "y": 95.81249999999895,
+        "width": 201,
+        "height": 113
+      }
+    },
+    {
+      "frame": 1027,
+      "people": [
+        {
+          "actor": 2,
+          "x": 10,
+          "y": 15.5,
+          "visible": true
+        },
+        {
+          "actor": 3,
+          "x": 8.5,
+          "y": 16,
+          "visible": true
+        },
+        {
+          "actor": 4,
+          "x": 11.5,
+          "y": 16,
+          "visible": true
+        }
+      ],
+      "camera": [
+        0,
+        -4.166666666666666
+      ],
+      "bossHeight": 240,
+      "bubble": {
+        "x": 307.5,
+        "y": 95.81249999999895,
+        "width": 201,
+        "height": 113
+      }
+    },
+    {
+      "frame": 1033,
+      "people": [
+        {
+          "actor": 2,
+          "x": 10,
+          "y": 15.5,
+          "visible": true
+        },
+        {
+          "actor": 3,
+          "x": 8.5,
+          "y": 16,
+          "visible": true
+        },
+        {
+          "actor": 4,
+          "x": 11.5,
+          "y": 16,
+          "visible": true
+        }
+      ],
+      "camera": [
+        0,
+        -4.166666666666666
+      ],
+      "bossHeight": 240,
+      "bubble": {
+        "x": 307.5,
+        "y": 95.81249999999895,
+        "width": 201,
+        "height": 113
+      }
+    },
+    {
+      "frame": 1038,
+      "people": [
+        {
+          "actor": 2,
+          "x": 10,
+          "y": 15.5,
+          "visible": true
+        },
+        {
+          "actor": 3,
+          "x": 8.5,
+          "y": 16,
+          "visible": true
+        },
+        {
+          "actor": 4,
+          "x": 11.5,
+          "y": 16,
+          "visible": true
+        }
+      ],
+      "camera": [
+        0,
+        -4.166666666666666
+      ],
+      "bossHeight": 240,
+      "bubble": {
+        "x": 275,
+        "y": 95.81249999999946,
+        "width": 266,
+        "height": 113
+      }
+    },
+    {
+      "frame": 1044,
+      "people": [
+        {
+          "actor": 2,
+          "x": 10,
+          "y": 15.5,
+          "visible": true
+        },
+        {
+          "actor": 3,
+          "x": 8.5,
+          "y": 16,
+          "visible": true
+        },
+        {
+          "actor": 4,
+          "x": 11.5,
+          "y": 16,
+          "visible": true
+        }
+      ],
+      "camera": [
+        0,
+        -4.166666666666666
+      ],
+      "bossHeight": 240,
+      "bubble": {
+        "x": 275,
+        "y": 95.81249999999946,
+        "width": 266,
+        "height": 113
+      }
+    },
+    {
+      "frame": 1050,
+      "people": [
+        {
+          "actor": 2,
+          "x": 10,
+          "y": 15.5,
+          "visible": true
+        },
+        {
+          "actor": 3,
+          "x": 8.5,
+          "y": 16,
+          "visible": true
+        },
+        {
+          "actor": 4,
+          "x": 11.5,
+          "y": 16,
+          "visible": true
+        }
+      ],
+      "camera": [
+        0,
+        -4.166666666666666
+      ],
+      "bossHeight": 240,
+      "bubble": {
+        "x": 275,
+        "y": 95.81249999999946,
+        "width": 266,
+        "height": 113
+      }
+    },
+    {
+      "frame": 1056,
+      "people": [
+        {
+          "actor": 2,
+          "x": 10,
+          "y": 15.5,
+          "visible": true
+        },
+        {
+          "actor": 3,
+          "x": 8.5,
+          "y": 16,
+          "visible": true
+        },
+        {
+          "actor": 4,
+          "x": 11.5,
+          "y": 16,
+          "visible": true
+        }
+      ],
+      "camera": [
+        0,
+        -4.166666666666666
+      ],
+      "bossHeight": 240,
+      "bubble": {
+        "x": 275,
+        "y": 95.81249999999946,
+        "width": 266,
+        "height": 113
+      }
+    },
+    {
+      "frame": 1062,
+      "people": [
+        {
+          "actor": 2,
+          "x": 10,
+          "y": 15.5,
+          "visible": true
+        },
+        {
+          "actor": 3,
+          "x": 8.5,
+          "y": 16,
+          "visible": true
+        },
+        {
+          "actor": 4,
+          "x": 11.5,
+          "y": 16,
+          "visible": true
+        }
+      ],
+      "camera": [
+        0,
+        -4.166666666666666
+      ],
+      "bossHeight": 240,
+      "bubble": {
+        "x": 275,
+        "y": 95.81249999999946,
+        "width": 266,
+        "height": 113
+      }
+    },
+    {
+      "frame": 1068,
+      "people": [
+        {
+          "actor": 2,
+          "x": 10,
+          "y": 15.5,
+          "visible": true
+        },
+        {
+          "actor": 3,
+          "x": 8.5,
+          "y": 16,
+          "visible": true
+        },
+        {
+          "actor": 4,
+          "x": 11.5,
+          "y": 16,
+          "visible": true
+        }
+      ],
+      "camera": [
+        0,
+        -4.166666666666666
+      ],
+      "bossHeight": 240,
+      "bubble": {
+        "x": 275,
+        "y": 95.81249999999946,
+        "width": 266,
+        "height": 113
+      }
+    },
+    {
+      "frame": 1074,
+      "people": [
+        {
+          "actor": 2,
+          "x": 10,
+          "y": 15.5,
+          "visible": true
+        },
+        {
+          "actor": 3,
+          "x": 8.5,
+          "y": 16,
+          "visible": true
+        },
+        {
+          "actor": 4,
+          "x": 11.5,
+          "y": 16,
+          "visible": true
+        }
+      ],
+      "camera": [
+        0,
+        -4.166666666666666
+      ],
+      "bossHeight": 240,
+      "bubble": {
+        "x": 275,
+        "y": 95.81249999999946,
+        "width": 266,
+        "height": 113
+      }
+    },
+    {
+      "frame": 1080,
+      "people": [
+        {
+          "actor": 2,
+          "x": 10,
+          "y": 15.5,
+          "visible": true
+        },
+        {
+          "actor": 3,
+          "x": 8.5,
+          "y": 16,
+          "visible": true
+        },
+        {
+          "actor": 4,
+          "x": 11.5,
+          "y": 16,
+          "visible": true
+        }
+      ],
+      "camera": [
+        0,
+        -4.166666666666666
+      ],
+      "bossHeight": 240,
+      "bubble": {
+        "x": 275,
+        "y": 95.81249999999946,
+        "width": 266,
+        "height": 113
+      }
+    },
+    {
+      "frame": 1086,
+      "people": [
+        {
+          "actor": 2,
+          "x": 10,
+          "y": 15.5,
+          "visible": true
+        },
+        {
+          "actor": 3,
+          "x": 8.5,
+          "y": 16,
+          "visible": true
+        },
+        {
+          "actor": 4,
+          "x": 11.5,
+          "y": 16,
+          "visible": true
+        }
+      ],
+      "camera": [
+        0,
+        -4.166666666666666
+      ],
+      "bossHeight": 240,
+      "bubble": {
+        "x": 275,
+        "y": 95.81249999999946,
+        "width": 266,
+        "height": 113
+      }
+    },
+    {
+      "frame": 1092,
+      "people": [
+        {
+          "actor": 2,
+          "x": 10,
+          "y": 15.5,
+          "visible": true
+        },
+        {
+          "actor": 3,
+          "x": 8.5,
+          "y": 16,
+          "visible": true
+        },
+        {
+          "actor": 4,
+          "x": 11.5,
+          "y": 16,
+          "visible": true
+        }
+      ],
+      "camera": [
+        0,
+        -4.166666666666666
+      ],
+      "bossHeight": 240,
+      "bubble": {
+        "x": 275,
+        "y": 95.81249999999946,
+        "width": 266,
+        "height": 113
+      }
+    },
+    {
+      "frame": 1098,
+      "people": [
+        {
+          "actor": 2,
+          "x": 10,
+          "y": 15.5,
+          "visible": true
+        },
+        {
+          "actor": 3,
+          "x": 8.5,
+          "y": 16,
+          "visible": true
+        },
+        {
+          "actor": 4,
+          "x": 11.5,
+          "y": 16,
+          "visible": true
+        }
+      ],
+      "camera": [
+        0,
+        -4.166666666666666
+      ],
+      "bossHeight": 240,
+      "bubble": {
+        "x": 275,
+        "y": 95.81249999999946,
+        "width": 266,
+        "height": 113
+      }
+    },
+    {
+      "frame": 1104,
+      "people": [
+        {
+          "actor": 2,
+          "x": 10,
+          "y": 15.5,
+          "visible": true
+        },
+        {
+          "actor": 3,
+          "x": 8.5,
+          "y": 16,
+          "visible": true
+        },
+        {
+          "actor": 4,
+          "x": 11.5,
+          "y": 16,
+          "visible": true
+        }
+      ],
+      "camera": [
+        0,
+        -4.166666666666666
+      ],
+      "bossHeight": 240,
+      "bubble": {
+        "x": 275,
+        "y": 95.81249999999946,
+        "width": 266,
+        "height": 113
+      }
+    },
+    {
+      "frame": 1110,
+      "people": [
+        {
+          "actor": 2,
+          "x": 10,
+          "y": 15.5,
+          "visible": true
+        },
+        {
+          "actor": 3,
+          "x": 8.5,
+          "y": 16,
+          "visible": true
+        },
+        {
+          "actor": 4,
+          "x": 11.5,
+          "y": 16,
+          "visible": true
+        }
+      ],
+      "camera": [
+        0,
+        -4.166666666666666
+      ],
+      "bossHeight": 240,
+      "bubble": {
+        "x": 275,
+        "y": 95.81249999999946,
+        "width": 266,
+        "height": 113
+      }
+    },
+    {
+      "frame": 1116,
+      "people": [
+        {
+          "actor": 2,
+          "x": 10,
+          "y": 15.5,
+          "visible": true
+        },
+        {
+          "actor": 3,
+          "x": 8.5,
+          "y": 16,
+          "visible": true
+        },
+        {
+          "actor": 4,
+          "x": 11.5,
+          "y": 16,
+          "visible": true
+        }
+      ],
+      "camera": [
+        0,
+        -4.166666666666666
+      ],
+      "bossHeight": 240,
+      "bubble": {
+        "x": 275,
+        "y": 95.81249999999946,
+        "width": 266,
+        "height": 113
+      }
+    },
+    {
+      "frame": 1122,
+      "people": [
+        {
+          "actor": 2,
+          "x": 10,
+          "y": 15.5,
+          "visible": true
+        },
+        {
+          "actor": 3,
+          "x": 8.5,
+          "y": 16,
+          "visible": true
+        },
+        {
+          "actor": 4,
+          "x": 11.5,
+          "y": 16,
+          "visible": true
+        }
+      ],
+      "camera": [
+        0,
+        -4.166666666666666
+      ],
+      "bossHeight": 240,
+      "bubble": {
+        "x": 275,
+        "y": 95.81249999999946,
+        "width": 266,
+        "height": 113
+      }
+    },
+    {
+      "frame": 1128,
+      "people": [
+        {
+          "actor": 2,
+          "x": 10,
+          "y": 15.5,
+          "visible": true
+        },
+        {
+          "actor": 3,
+          "x": 8.5,
+          "y": 16,
+          "visible": true
+        },
+        {
+          "actor": 4,
+          "x": 11.5,
+          "y": 16,
+          "visible": true
+        }
+      ],
+      "camera": [
+        0,
+        -4.166666666666666
+      ],
+      "bossHeight": 240,
+      "bubble": {
+        "x": 275,
+        "y": 95.81249999999946,
+        "width": 266,
+        "height": 113
+      }
+    },
+    {
+      "frame": 1134,
+      "people": [
+        {
+          "actor": 2,
+          "x": 10,
+          "y": 15.5,
+          "visible": true
+        },
+        {
+          "actor": 3,
+          "x": 8.5,
+          "y": 16,
+          "visible": true
+        },
+        {
+          "actor": 4,
+          "x": 11.5,
+          "y": 16,
+          "visible": true
+        }
+      ],
+      "camera": [
+        0,
+        -4.166666666666666
+      ],
+      "bossHeight": 240,
+      "bubble": null
+    },
+    {
+      "frame": 1139,
+      "people": [
+        {
+          "actor": 2,
+          "x": 10,
+          "y": 15.5,
+          "visible": true
+        },
+        {
+          "actor": 3,
+          "x": 8.5,
+          "y": 16,
+          "visible": true
+        },
+        {
+          "actor": 4,
+          "x": 11.5,
+          "y": 16,
+          "visible": true
+        }
+      ],
+      "camera": [
+        0,
+        -4.166666666666666
+      ],
+      "bossHeight": 240,
+      "bubble": {
+        "x": 276.5,
+        "y": 95.81249999999946,
+        "width": 263,
+        "height": 113
+      }
+    },
+    {
+      "frame": 1145,
+      "people": [
+        {
+          "actor": 2,
+          "x": 10,
+          "y": 15.5,
+          "visible": true
+        },
+        {
+          "actor": 3,
+          "x": 8.5,
+          "y": 16,
+          "visible": true
+        },
+        {
+          "actor": 4,
+          "x": 11.5,
+          "y": 16,
+          "visible": true
+        }
+      ],
+      "camera": [
+        0,
+        -4.166666666666666
+      ],
+      "bossHeight": 240,
+      "bubble": {
+        "x": 276.5,
+        "y": 95.81249999999946,
+        "width": 263,
+        "height": 113
+      }
+    },
+    {
+      "frame": 1150,
+      "people": [
+        {
+          "actor": 2,
+          "x": 10,
+          "y": 15.5,
+          "visible": true
+        },
+        {
+          "actor": 3,
+          "x": 8.5,
+          "y": 16,
+          "visible": true
+        },
+        {
+          "actor": 4,
+          "x": 11.5,
+          "y": 16,
+          "visible": true
+        }
+      ],
+      "camera": [
+        0,
+        -4.166666666666666
+      ],
+      "bossHeight": 240,
+      "bubble": {
+        "x": 276.5,
+        "y": 95.81249999999946,
+        "width": 263,
+        "height": 113
+      }
+    },
+    {
+      "frame": 1156,
+      "people": [
+        {
+          "actor": 2,
+          "x": 10,
+          "y": 15.5,
+          "visible": true
+        },
+        {
+          "actor": 3,
+          "x": 8.5,
+          "y": 16,
+          "visible": true
+        },
+        {
+          "actor": 4,
+          "x": 11.5,
+          "y": 16,
+          "visible": true
+        }
+      ],
+      "camera": [
+        0,
+        -4.166666666666666
+      ],
+      "bossHeight": 240,
+      "bubble": {
+        "x": 276.5,
+        "y": 95.81249999999946,
+        "width": 263,
+        "height": 113
+      }
+    },
+    {
+      "frame": 1162,
+      "people": [
+        {
+          "actor": 2,
+          "x": 10,
+          "y": 15.5,
+          "visible": true
+        },
+        {
+          "actor": 3,
+          "x": 8.5,
+          "y": 16,
+          "visible": true
+        },
+        {
+          "actor": 4,
+          "x": 11.5,
+          "y": 16,
+          "visible": true
+        }
+      ],
+      "camera": [
+        0,
+        -4.166666666666666
+      ],
+      "bossHeight": 240,
+      "bubble": {
+        "x": 276.5,
+        "y": 95.81249999999946,
+        "width": 263,
+        "height": 113
+      }
+    },
+    {
+      "frame": 1168,
+      "people": [
+        {
+          "actor": 2,
+          "x": 10,
+          "y": 15.5,
+          "visible": true
+        },
+        {
+          "actor": 3,
+          "x": 8.5,
+          "y": 16,
+          "visible": true
+        },
+        {
+          "actor": 4,
+          "x": 11.5,
+          "y": 16,
+          "visible": true
+        }
+      ],
+      "camera": [
+        0,
+        -4.166666666666666
+      ],
+      "bossHeight": 240,
+      "bubble": {
+        "x": 276.5,
+        "y": 95.81249999999946,
+        "width": 263,
+        "height": 113
+      }
+    },
+    {
+      "frame": 1174,
+      "people": [
+        {
+          "actor": 2,
+          "x": 10,
+          "y": 15.5,
+          "visible": true
+        },
+        {
+          "actor": 3,
+          "x": 8.5,
+          "y": 16,
+          "visible": true
+        },
+        {
+          "actor": 4,
+          "x": 11.5,
+          "y": 16,
+          "visible": true
+        }
+      ],
+      "camera": [
+        0,
+        -4.166666666666666
+      ],
+      "bossHeight": 240,
+      "bubble": {
+        "x": 276.5,
+        "y": 95.81249999999946,
+        "width": 263,
+        "height": 113
+      }
+    },
+    {
+      "frame": 1180,
+      "people": [
+        {
+          "actor": 2,
+          "x": 10,
+          "y": 15.5,
+          "visible": true
+        },
+        {
+          "actor": 3,
+          "x": 8.5,
+          "y": 16,
+          "visible": true
+        },
+        {
+          "actor": 4,
+          "x": 11.5,
+          "y": 16,
+          "visible": true
+        }
+      ],
+      "camera": [
+        0,
+        -4.166666666666666
+      ],
+      "bossHeight": 240,
+      "bubble": {
+        "x": 276.5,
+        "y": 95.81249999999946,
+        "width": 263,
+        "height": 113
+      }
+    },
+    {
+      "frame": 1186,
+      "people": [
+        {
+          "actor": 2,
+          "x": 10,
+          "y": 15.5,
+          "visible": true
+        },
+        {
+          "actor": 3,
+          "x": 8.5,
+          "y": 16,
+          "visible": true
+        },
+        {
+          "actor": 4,
+          "x": 11.5,
+          "y": 16,
+          "visible": true
+        }
+      ],
+      "camera": [
+        0,
+        -4.166666666666666
+      ],
+      "bossHeight": 240,
+      "bubble": {
+        "x": 276.5,
+        "y": 95.81249999999946,
+        "width": 263,
+        "height": 113
+      }
+    },
+    {
+      "frame": 1192,
+      "people": [
+        {
+          "actor": 2,
+          "x": 10,
+          "y": 15.5,
+          "visible": true
+        },
+        {
+          "actor": 3,
+          "x": 8.5,
+          "y": 16,
+          "visible": true
+        },
+        {
+          "actor": 4,
+          "x": 11.5,
+          "y": 16,
+          "visible": true
+        }
+      ],
+      "camera": [
+        0,
+        -4.166666666666666
+      ],
+      "bossHeight": 240,
+      "bubble": {
+        "x": 276.5,
+        "y": 95.81249999999946,
+        "width": 263,
+        "height": 113
+      }
+    },
+    {
+      "frame": 1198,
+      "people": [
+        {
+          "actor": 2,
+          "x": 10,
+          "y": 15.5,
+          "visible": true
+        },
+        {
+          "actor": 3,
+          "x": 8.5,
+          "y": 16,
+          "visible": true
+        },
+        {
+          "actor": 4,
+          "x": 11.5,
+          "y": 16,
+          "visible": true
+        }
+      ],
+      "camera": [
+        0,
+        -4.166666666666666
+      ],
+      "bossHeight": 240,
+      "bubble": {
+        "x": 276.5,
+        "y": 95.81249999999946,
+        "width": 263,
+        "height": 113
+      }
+    },
+    {
+      "frame": 1204,
+      "people": [
+        {
+          "actor": 2,
+          "x": 10,
+          "y": 15.5,
+          "visible": true
+        },
+        {
+          "actor": 3,
+          "x": 8.5,
+          "y": 16,
+          "visible": true
+        },
+        {
+          "actor": 4,
+          "x": 11.5,
+          "y": 16,
+          "visible": true
+        }
+      ],
+      "camera": [
+        0,
+        -4.166666666666666
+      ],
+      "bossHeight": 240,
+      "bubble": {
+        "x": 276.5,
+        "y": 95.81249999999946,
+        "width": 263,
+        "height": 113
+      }
+    },
+    {
+      "frame": 1210,
+      "people": [
+        {
+          "actor": 2,
+          "x": 10,
+          "y": 15.5,
+          "visible": true
+        },
+        {
+          "actor": 3,
+          "x": 8.5,
+          "y": 16,
+          "visible": true
+        },
+        {
+          "actor": 4,
+          "x": 11.5,
+          "y": 16,
+          "visible": true
+        }
+      ],
+      "camera": [
+        0,
+        -4.166666666666666
+      ],
+      "bossHeight": 240,
+      "bubble": {
+        "x": 276.5,
+        "y": 95.81249999999946,
+        "width": 263,
+        "height": 113
+      }
+    },
+    {
+      "frame": 1216,
+      "people": [
+        {
+          "actor": 2,
+          "x": 10,
+          "y": 15.5,
+          "visible": true
+        },
+        {
+          "actor": 3,
+          "x": 8.5,
+          "y": 16,
+          "visible": true
+        },
+        {
+          "actor": 4,
+          "x": 11.5,
+          "y": 16,
+          "visible": true
+        }
+      ],
+      "camera": [
+        0,
+        -4.166666666666666
+      ],
+      "bossHeight": 240,
+      "bubble": {
+        "x": 276.5,
+        "y": 95.81249999999946,
+        "width": 263,
+        "height": 113
+      }
+    },
+    {
+      "frame": 1222,
+      "people": [
+        {
+          "actor": 2,
+          "x": 10,
+          "y": 15.5,
+          "visible": true
+        },
+        {
+          "actor": 3,
+          "x": 8.5,
+          "y": 16,
+          "visible": true
+        },
+        {
+          "actor": 4,
+          "x": 11.5,
+          "y": 16,
+          "visible": true
+        }
+      ],
+      "camera": [
+        0,
+        -4.166666666666666
+      ],
+      "bossHeight": 240,
+      "bubble": {
+        "x": 276.5,
+        "y": 95.81249999999946,
+        "width": 263,
+        "height": 113
+      }
+    },
+    {
+      "frame": 1227,
+      "people": [
+        {
+          "actor": 2,
+          "x": 10,
+          "y": 15.5,
+          "visible": true
+        },
+        {
+          "actor": 3,
+          "x": 8.5,
+          "y": 16,
+          "visible": true
+        },
+        {
+          "actor": 4,
+          "x": 11.5,
+          "y": 16,
+          "visible": true
+        }
+      ],
+      "camera": [
+        0,
+        -4.166666666666666
+      ],
+      "bossHeight": 240,
+      "bubble": {
+        "x": 276.5,
+        "y": 95.81249999999946,
+        "width": 263,
+        "height": 113
+      }
+    },
+    {
+      "frame": 1233,
+      "people": [
+        {
+          "actor": 2,
+          "x": 10,
+          "y": 15.5,
+          "visible": true
+        },
+        {
+          "actor": 3,
+          "x": 8.5,
+          "y": 16,
+          "visible": true
+        },
+        {
+          "actor": 4,
+          "x": 11.5,
+          "y": 16,
+          "visible": true
+        }
+      ],
+      "camera": [
+        0,
+        -4.166666666666666
+      ],
+      "bossHeight": 240,
+      "bubble": {
+        "x": 264,
+        "y": 95.81249999999946,
+        "width": 288,
+        "height": 113
+      }
+    },
+    {
+      "frame": 1238,
+      "people": [
+        {
+          "actor": 2,
+          "x": 10,
+          "y": 15.5,
+          "visible": true
+        },
+        {
+          "actor": 3,
+          "x": 8.5,
+          "y": 16,
+          "visible": true
+        },
+        {
+          "actor": 4,
+          "x": 11.5,
+          "y": 16,
+          "visible": true
+        }
+      ],
+      "camera": [
+        0,
+        -4.166666666666666
+      ],
+      "bossHeight": 240,
+      "bubble": {
+        "x": 264,
+        "y": 95.81249999999946,
+        "width": 288,
+        "height": 113
+      }
+    },
+    {
+      "frame": 1244,
+      "people": [
+        {
+          "actor": 2,
+          "x": 10,
+          "y": 15.5,
+          "visible": true
+        },
+        {
+          "actor": 3,
+          "x": 8.5,
+          "y": 16,
+          "visible": true
+        },
+        {
+          "actor": 4,
+          "x": 11.5,
+          "y": 16,
+          "visible": true
+        }
+      ],
+      "camera": [
+        0,
+        -4.166666666666666
+      ],
+      "bossHeight": 240,
+      "bubble": {
+        "x": 264,
+        "y": 95.81249999999946,
+        "width": 288,
+        "height": 113
+      }
+    },
+    {
+      "frame": 1249,
+      "people": [
+        {
+          "actor": 2,
+          "x": 10,
+          "y": 15.5,
+          "visible": true
+        },
+        {
+          "actor": 3,
+          "x": 8.5,
+          "y": 16,
+          "visible": true
+        },
+        {
+          "actor": 4,
+          "x": 11.5,
+          "y": 16,
+          "visible": true
+        }
+      ],
+      "camera": [
+        0,
+        -4.166666666666666
+      ],
+      "bossHeight": 240,
+      "bubble": {
+        "x": 264,
+        "y": 95.81249999999946,
+        "width": 288,
+        "height": 113
+      }
+    },
+    {
+      "frame": 1255,
+      "people": [
+        {
+          "actor": 2,
+          "x": 10,
+          "y": 15.5,
+          "visible": true
+        },
+        {
+          "actor": 3,
+          "x": 8.5,
+          "y": 16,
+          "visible": true
+        },
+        {
+          "actor": 4,
+          "x": 11.5,
+          "y": 16,
+          "visible": true
+        }
+      ],
+      "camera": [
+        0,
+        -4.166666666666666
+      ],
+      "bossHeight": 240,
+      "bubble": {
+        "x": 264,
+        "y": 95.81249999999946,
+        "width": 288,
+        "height": 113
+      }
+    },
+    {
+      "frame": 1261,
+      "people": [
+        {
+          "actor": 2,
+          "x": 10,
+          "y": 15.5,
+          "visible": true
+        },
+        {
+          "actor": 3,
+          "x": 8.5,
+          "y": 16,
+          "visible": true
+        },
+        {
+          "actor": 4,
+          "x": 11.5,
+          "y": 16,
+          "visible": true
+        }
+      ],
+      "camera": [
+        0,
+        -4.166666666666666
+      ],
+      "bossHeight": 240,
+      "bubble": {
+        "x": 264,
+        "y": 95.81249999999946,
+        "width": 288,
+        "height": 113
+      }
+    },
+    {
+      "frame": 1267,
+      "people": [
+        {
+          "actor": 2,
+          "x": 10,
+          "y": 15.5,
+          "visible": true
+        },
+        {
+          "actor": 3,
+          "x": 8.5,
+          "y": 16,
+          "visible": true
+        },
+        {
+          "actor": 4,
+          "x": 11.5,
+          "y": 16,
+          "visible": true
+        }
+      ],
+      "camera": [
+        0,
+        -4.166666666666666
+      ],
+      "bossHeight": 240,
+      "bubble": {
+        "x": 264,
+        "y": 95.81249999999946,
+        "width": 288,
+        "height": 113
+      }
+    },
+    {
+      "frame": 1273,
+      "people": [
+        {
+          "actor": 2,
+          "x": 10,
+          "y": 15.5,
+          "visible": true
+        },
+        {
+          "actor": 3,
+          "x": 8.5,
+          "y": 16,
+          "visible": true
+        },
+        {
+          "actor": 4,
+          "x": 11.5,
+          "y": 16,
+          "visible": true
+        }
+      ],
+      "camera": [
+        0,
+        -4.166666666666666
+      ],
+      "bossHeight": 240,
+      "bubble": {
+        "x": 264,
+        "y": 95.81249999999946,
+        "width": 288,
+        "height": 113
+      }
+    },
+    {
+      "frame": 1278,
+      "people": [
+        {
+          "actor": 2,
+          "x": 10,
+          "y": 15.5,
+          "visible": true
+        },
+        {
+          "actor": 3,
+          "x": 8.5,
+          "y": 16,
+          "visible": true
+        },
+        {
+          "actor": 4,
+          "x": 11.5,
+          "y": 16,
+          "visible": true
+        }
+      ],
+      "camera": [
+        0,
+        -4.166666666666666
+      ],
+      "bossHeight": 240,
+      "bubble": {
+        "x": 264,
+        "y": 95.81249999999946,
+        "width": 288,
+        "height": 113
+      }
+    },
+    {
+      "frame": 1283,
+      "people": [
+        {
+          "actor": 2,
+          "x": 10,
+          "y": 15.5,
+          "visible": true
+        },
+        {
+          "actor": 3,
+          "x": 8.5,
+          "y": 16,
+          "visible": true
+        },
+        {
+          "actor": 4,
+          "x": 11.5,
+          "y": 16,
+          "visible": true
+        }
+      ],
+      "camera": [
+        0,
+        -4.166666666666666
+      ],
+      "bossHeight": 240,
+      "bubble": {
+        "x": 264,
+        "y": 95.81249999999946,
+        "width": 288,
+        "height": 113
+      }
+    },
+    {
+      "frame": 1289,
+      "people": [
+        {
+          "actor": 2,
+          "x": 10,
+          "y": 15.5,
+          "visible": true
+        },
+        {
+          "actor": 3,
+          "x": 8.5,
+          "y": 16,
+          "visible": true
+        },
+        {
+          "actor": 4,
+          "x": 11.5,
+          "y": 16,
+          "visible": true
+        }
+      ],
+      "camera": [
+        0,
+        -4.166666666666666
+      ],
+      "bossHeight": 240,
+      "bubble": {
+        "x": 264,
+        "y": 95.81249999999946,
+        "width": 288,
+        "height": 113
+      }
+    },
+    {
+      "frame": 1295,
+      "people": [
+        {
+          "actor": 2,
+          "x": 10,
+          "y": 15.5,
+          "visible": true
+        },
+        {
+          "actor": 3,
+          "x": 8.5,
+          "y": 16,
+          "visible": true
+        },
+        {
+          "actor": 4,
+          "x": 11.5,
+          "y": 16,
+          "visible": true
+        }
+      ],
+      "camera": [
+        0,
+        -4.166666666666666
+      ],
+      "bossHeight": 240,
+      "bubble": {
+        "x": 264,
+        "y": 95.81249999999946,
+        "width": 288,
+        "height": 113
+      }
+    },
+    {
+      "frame": 1301,
+      "people": [
+        {
+          "actor": 2,
+          "x": 10,
+          "y": 15.5,
+          "visible": true
+        },
+        {
+          "actor": 3,
+          "x": 8.5,
+          "y": 16,
+          "visible": true
+        },
+        {
+          "actor": 4,
+          "x": 11.5,
+          "y": 16,
+          "visible": true
+        }
+      ],
+      "camera": [
+        0,
+        -4.166666666666666
+      ],
+      "bossHeight": 240,
+      "bubble": {
+        "x": 264,
+        "y": 95.81249999999946,
+        "width": 288,
+        "height": 113
+      }
+    },
+    {
+      "frame": 1305,
+      "people": [
+        {
+          "actor": 2,
+          "x": 10,
+          "y": 15.5,
+          "visible": true
+        },
+        {
+          "actor": 3,
+          "x": 8.5,
+          "y": 16,
+          "visible": true
+        },
+        {
+          "actor": 4,
+          "x": 11.5,
+          "y": 16,
+          "visible": true
+        }
+      ],
+      "camera": [
+        0,
+        -4.166666666666666
+      ],
+      "bossHeight": 240,
+      "bubble": {
+        "x": 264,
+        "y": 95.81249999999946,
+        "width": 288,
+        "height": 113
+      }
+    },
+    {
+      "frame": 1310,
+      "people": [
+        {
+          "actor": 2,
+          "x": 10,
+          "y": 15.5,
+          "visible": true
+        },
+        {
+          "actor": 3,
+          "x": 8.5,
+          "y": 16,
+          "visible": true
+        },
+        {
+          "actor": 4,
+          "x": 11.5,
+          "y": 16,
+          "visible": true
+        }
+      ],
+      "camera": [
+        0,
+        -4.166666666666666
+      ],
+      "bossHeight": 240,
+      "bubble": {
+        "x": 264,
+        "y": 95.81249999999946,
+        "width": 288,
+        "height": 113
+      }
+    },
+    {
+      "frame": 1316,
+      "people": [
+        {
+          "actor": 2,
+          "x": 10,
+          "y": 15.5,
+          "visible": true
+        },
+        {
+          "actor": 3,
+          "x": 8.5,
+          "y": 16,
+          "visible": true
+        },
+        {
+          "actor": 4,
+          "x": 11.5,
+          "y": 16,
+          "visible": true
+        }
+      ],
+      "camera": [
+        0,
+        -4.166666666666666
+      ],
+      "bossHeight": 240,
+      "bubble": {
+        "x": 264,
+        "y": 95.81249999999946,
+        "width": 288,
+        "height": 113
+      }
+    },
+    {
+      "frame": 1322,
+      "people": [
+        {
+          "actor": 2,
+          "x": 10,
+          "y": 15.5,
+          "visible": true
+        },
+        {
+          "actor": 3,
+          "x": 8.5,
+          "y": 16,
+          "visible": true
+        },
+        {
+          "actor": 4,
+          "x": 11.5,
+          "y": 16,
+          "visible": true
+        }
+      ],
+      "camera": [
+        0,
+        -4.166666666666666
+      ],
+      "bossHeight": 240,
+      "bubble": {
+        "x": 264,
+        "y": 95.81249999999946,
+        "width": 288,
+        "height": 113
+      }
+    },
+    {
+      "frame": 1328,
+      "people": [
+        {
+          "actor": 2,
+          "x": 10,
+          "y": 15.5,
+          "visible": true
+        },
+        {
+          "actor": 3,
+          "x": 8.5,
+          "y": 16,
+          "visible": true
+        },
+        {
+          "actor": 4,
+          "x": 11.5,
+          "y": 16,
+          "visible": true
+        }
+      ],
+      "camera": [
+        0,
+        -4.166666666666666
+      ],
+      "bossHeight": 240,
+      "bubble": {
+        "x": 272,
+        "y": 95.81249999999946,
+        "width": 272,
+        "height": 113
+      }
+    },
+    {
+      "frame": 1332,
+      "people": [
+        {
+          "actor": 2,
+          "x": 10,
+          "y": 15.5,
+          "visible": true
+        },
+        {
+          "actor": 3,
+          "x": 8.5,
+          "y": 16,
+          "visible": true
+        },
+        {
+          "actor": 4,
+          "x": 11.5,
+          "y": 16,
+          "visible": true
+        }
+      ],
+      "camera": [
+        0,
+        -4.166666666666666
+      ],
+      "bossHeight": 240,
+      "bubble": {
+        "x": 272,
+        "y": 95.81249999999946,
+        "width": 272,
+        "height": 113
+      }
+    },
+    {
+      "frame": 1337,
+      "people": [
+        {
+          "actor": 2,
+          "x": 10,
+          "y": 15.5,
+          "visible": true
+        },
+        {
+          "actor": 3,
+          "x": 8.5,
+          "y": 16,
+          "visible": true
+        },
+        {
+          "actor": 4,
+          "x": 11.5,
+          "y": 16,
+          "visible": true
+        }
+      ],
+      "camera": [
+        0,
+        -4.166666666666666
+      ],
+      "bossHeight": 240,
+      "bubble": {
+        "x": 272,
+        "y": 95.81249999999946,
+        "width": 272,
+        "height": 113
+      }
+    },
+    {
+      "frame": 1343,
+      "people": [
+        {
+          "actor": 2,
+          "x": 10,
+          "y": 15.5,
+          "visible": true
+        },
+        {
+          "actor": 3,
+          "x": 8.5,
+          "y": 16,
+          "visible": true
+        },
+        {
+          "actor": 4,
+          "x": 11.5,
+          "y": 16,
+          "visible": true
+        }
+      ],
+      "camera": [
+        0,
+        -4.166666666666666
+      ],
+      "bossHeight": 240,
+      "bubble": {
+        "x": 272,
+        "y": 95.81249999999946,
+        "width": 272,
+        "height": 113
+      }
+    },
+    {
+      "frame": 1349,
+      "people": [
+        {
+          "actor": 2,
+          "x": 10,
+          "y": 15.5,
+          "visible": true
+        },
+        {
+          "actor": 3,
+          "x": 8.5,
+          "y": 16,
+          "visible": true
+        },
+        {
+          "actor": 4,
+          "x": 11.5,
+          "y": 16,
+          "visible": true
+        }
+      ],
+      "camera": [
+        0,
+        -4.166666666666666
+      ],
+      "bossHeight": 240,
+      "bubble": {
+        "x": 272,
+        "y": 95.81249999999946,
+        "width": 272,
+        "height": 113
+      }
+    },
+    {
+      "frame": 1355,
+      "people": [
+        {
+          "actor": 2,
+          "x": 10,
+          "y": 15.5,
+          "visible": true
+        },
+        {
+          "actor": 3,
+          "x": 8.5,
+          "y": 16,
+          "visible": true
+        },
+        {
+          "actor": 4,
+          "x": 11.5,
+          "y": 16,
+          "visible": true
+        }
+      ],
+      "camera": [
+        0,
+        -4.166666666666666
+      ],
+      "bossHeight": 240,
+      "bubble": {
+        "x": 272,
+        "y": 95.81249999999946,
+        "width": 272,
+        "height": 113
+      }
+    },
+    {
+      "frame": 1361,
+      "people": [
+        {
+          "actor": 2,
+          "x": 10,
+          "y": 15.5,
+          "visible": true
+        },
+        {
+          "actor": 3,
+          "x": 8.5,
+          "y": 16,
+          "visible": true
+        },
+        {
+          "actor": 4,
+          "x": 11.5,
+          "y": 16,
+          "visible": true
+        }
+      ],
+      "camera": [
+        0,
+        -4.166666666666666
+      ],
+      "bossHeight": 240,
+      "bubble": {
+        "x": 272,
+        "y": 95.81249999999946,
+        "width": 272,
+        "height": 113
+      }
+    },
+    {
+      "frame": 1367,
+      "people": [
+        {
+          "actor": 2,
+          "x": 10,
+          "y": 15.5,
+          "visible": true
+        },
+        {
+          "actor": 3,
+          "x": 8.5,
+          "y": 16,
+          "visible": true
+        },
+        {
+          "actor": 4,
+          "x": 11.5,
+          "y": 16,
+          "visible": true
+        }
+      ],
+      "camera": [
+        0,
+        -4.166666666666666
+      ],
+      "bossHeight": 240,
+      "bubble": {
+        "x": 272,
+        "y": 95.81249999999946,
+        "width": 272,
+        "height": 113
+      }
+    },
+    {
+      "frame": 1373,
+      "people": [
+        {
+          "actor": 2,
+          "x": 10,
+          "y": 15.5,
+          "visible": true
+        },
+        {
+          "actor": 3,
+          "x": 8.5,
+          "y": 16,
+          "visible": true
+        },
+        {
+          "actor": 4,
+          "x": 11.5,
+          "y": 16,
+          "visible": true
+        }
+      ],
+      "camera": [
+        0,
+        -4.166666666666666
+      ],
+      "bossHeight": 240,
+      "bubble": {
+        "x": 272,
+        "y": 95.81249999999946,
+        "width": 272,
+        "height": 113
+      }
+    },
+    {
+      "frame": 1379,
+      "people": [
+        {
+          "actor": 2,
+          "x": 10,
+          "y": 15.5,
+          "visible": true
+        },
+        {
+          "actor": 3,
+          "x": 8.5,
+          "y": 16,
+          "visible": true
+        },
+        {
+          "actor": 4,
+          "x": 11.5,
+          "y": 16,
+          "visible": true
+        }
+      ],
+      "camera": [
+        0,
+        -4.166666666666666
+      ],
+      "bossHeight": 240,
+      "bubble": {
+        "x": 272,
+        "y": 95.81249999999946,
+        "width": 272,
+        "height": 113
+      }
+    },
+    {
+      "frame": 1385,
+      "people": [
+        {
+          "actor": 2,
+          "x": 10,
+          "y": 15.5,
+          "visible": true
+        },
+        {
+          "actor": 3,
+          "x": 8.5,
+          "y": 16,
+          "visible": true
+        },
+        {
+          "actor": 4,
+          "x": 11.5,
+          "y": 16,
+          "visible": true
+        }
+      ],
+      "camera": [
+        0,
+        -4.166666666666666
+      ],
+      "bossHeight": 240,
+      "bubble": {
+        "x": 272,
+        "y": 95.81249999999946,
+        "width": 272,
+        "height": 113
+      }
+    },
+    {
+      "frame": 1391,
+      "people": [
+        {
+          "actor": 2,
+          "x": 10,
+          "y": 15.5,
+          "visible": true
+        },
+        {
+          "actor": 3,
+          "x": 8.5,
+          "y": 16,
+          "visible": true
+        },
+        {
+          "actor": 4,
+          "x": 11.5,
+          "y": 16,
+          "visible": true
+        }
+      ],
+      "camera": [
+        0,
+        -4.166666666666666
+      ],
+      "bossHeight": 240,
+      "bubble": {
+        "x": 272,
+        "y": 95.81249999999946,
+        "width": 272,
+        "height": 113
+      }
+    },
+    {
+      "frame": 1397,
+      "people": [
+        {
+          "actor": 2,
+          "x": 10,
+          "y": 15.5,
+          "visible": true
+        },
+        {
+          "actor": 3,
+          "x": 8.5,
+          "y": 16,
+          "visible": true
+        },
+        {
+          "actor": 4,
+          "x": 11.5,
+          "y": 16,
+          "visible": true
+        }
+      ],
+      "camera": [
+        0,
+        -4.166666666666666
+      ],
+      "bossHeight": 240,
+      "bubble": {
+        "x": 272,
+        "y": 95.81249999999946,
+        "width": 272,
+        "height": 113
+      }
+    },
+    {
+      "frame": 1403,
+      "people": [
+        {
+          "actor": 2,
+          "x": 10,
+          "y": 15.5,
+          "visible": true
+        },
+        {
+          "actor": 3,
+          "x": 8.5,
+          "y": 16,
+          "visible": true
+        },
+        {
+          "actor": 4,
+          "x": 11.5,
+          "y": 16,
+          "visible": true
+        }
+      ],
+      "camera": [
+        0,
+        -4.166666666666666
+      ],
+      "bossHeight": 240,
+      "bubble": {
+        "x": 272,
+        "y": 95.81249999999946,
+        "width": 272,
+        "height": 113
+      }
+    },
+    {
+      "frame": 1409,
+      "people": [
+        {
+          "actor": 2,
+          "x": 10,
+          "y": 15.5,
+          "visible": true
+        },
+        {
+          "actor": 3,
+          "x": 8.5,
+          "y": 16,
+          "visible": true
+        },
+        {
+          "actor": 4,
+          "x": 11.5,
+          "y": 16,
+          "visible": true
+        }
+      ],
+      "camera": [
+        0,
+        -4.166666666666666
+      ],
+      "bossHeight": 240,
+      "bubble": {
+        "x": 272,
+        "y": 95.81249999999946,
+        "width": 272,
+        "height": 113
+      }
+    },
+    {
+      "frame": 1415,
+      "people": [
+        {
+          "actor": 2,
+          "x": 10,
+          "y": 15.5,
+          "visible": true
+        },
+        {
+          "actor": 3,
+          "x": 8.5,
+          "y": 16,
+          "visible": true
+        },
+        {
+          "actor": 4,
+          "x": 11.5,
+          "y": 16,
+          "visible": true
+        }
+      ],
+      "camera": [
+        0,
+        -4.166666666666666
+      ],
+      "bossHeight": 240,
+      "bubble": {
+        "x": 272,
+        "y": 95.81249999999946,
+        "width": 272,
+        "height": 113
+      }
+    },
+    {
+      "frame": 1421,
+      "people": [
+        {
+          "actor": 2,
+          "x": 10,
+          "y": 15.5,
+          "visible": true
+        },
+        {
+          "actor": 3,
+          "x": 8.5,
+          "y": 16,
+          "visible": true
+        },
+        {
+          "actor": 4,
+          "x": 11.5,
+          "y": 16,
+          "visible": true
+        }
+      ],
+      "camera": [
+        0,
+        -4.166666666666666
+      ],
+      "bossHeight": 240,
+      "bubble": {
+        "x": 272,
+        "y": 95.81249999999946,
+        "width": 272,
+        "height": 113
+      }
+    },
+    {
+      "frame": 1426,
+      "people": [
+        {
+          "actor": 2,
+          "x": 10,
+          "y": 15.5,
+          "visible": true
+        },
+        {
+          "actor": 3,
+          "x": 8.5,
+          "y": 16,
+          "visible": true
+        },
+        {
+          "actor": 4,
+          "x": 11.5,
+          "y": 16,
+          "visible": true
+        }
+      ],
+      "camera": [
+        0,
+        -4.166666666666666
+      ],
+      "bossHeight": 240,
+      "bubble": null
+    },
+    {
+      "frame": 1431,
+      "people": [
+        {
+          "actor": 2,
+          "x": 10,
+          "y": 15.5,
+          "visible": true
+        },
+        {
+          "actor": 3,
+          "x": 8.5,
+          "y": 16,
+          "visible": true
+        },
+        {
+          "actor": 4,
+          "x": 11.5,
+          "y": 16,
+          "visible": true
+        }
+      ],
+      "camera": [
+        0,
+        -4.166666666666666
+      ],
+      "bossHeight": 240,
+      "bubble": null
+    },
+    {
+      "frame": 1437,
+      "people": [
+        {
+          "actor": 2,
+          "x": 10,
+          "y": 15.5,
+          "visible": true
+        },
+        {
+          "actor": 3,
+          "x": 8.5,
+          "y": 16,
+          "visible": true
+        },
+        {
+          "actor": 4,
+          "x": 11.5,
+          "y": 16,
+          "visible": true
+        }
+      ],
+      "camera": [
+        0,
+        -4.166666666666666
+      ],
+      "bossHeight": 240,
+      "bubble": null
+    },
+    {
+      "frame": 1443,
+      "people": [
+        {
+          "actor": 2,
+          "x": 10,
+          "y": 15.5,
+          "visible": true
+        },
+        {
+          "actor": 3,
+          "x": 8.5,
+          "y": 16,
+          "visible": true
+        },
+        {
+          "actor": 4,
+          "x": 11.5,
+          "y": 16,
+          "visible": true
+        }
+      ],
+      "camera": [
+        0,
+        -4.166666666666666
+      ],
+      "bossHeight": 240,
+      "bubble": {
+        "x": 253.5,
+        "y": 95.81249999999946,
+        "width": 309,
+        "height": 113
+      }
+    },
+    {
+      "frame": 1449,
+      "people": [
+        {
+          "actor": 2,
+          "x": 10,
+          "y": 15.5,
+          "visible": true
+        },
+        {
+          "actor": 3,
+          "x": 8.5,
+          "y": 16,
+          "visible": true
+        },
+        {
+          "actor": 4,
+          "x": 11.5,
+          "y": 16,
+          "visible": true
+        }
+      ],
+      "camera": [
+        0,
+        -4.166666666666666
+      ],
+      "bossHeight": 240,
+      "bubble": {
+        "x": 253.5,
+        "y": 95.81249999999946,
+        "width": 309,
+        "height": 113
+      }
+    },
+    {
+      "frame": 1455,
+      "people": [
+        {
+          "actor": 2,
+          "x": 10,
+          "y": 15.5,
+          "visible": true
+        },
+        {
+          "actor": 3,
+          "x": 8.5,
+          "y": 16,
+          "visible": true
+        },
+        {
+          "actor": 4,
+          "x": 11.5,
+          "y": 16,
+          "visible": true
+        }
+      ],
+      "camera": [
+        0,
+        -4.166666666666666
+      ],
+      "bossHeight": 240,
+      "bubble": {
+        "x": 253.5,
+        "y": 95.81249999999946,
+        "width": 309,
+        "height": 113
+      }
+    },
+    {
+      "frame": 1461,
+      "people": [
+        {
+          "actor": 2,
+          "x": 10,
+          "y": 15.5,
+          "visible": true
+        },
+        {
+          "actor": 3,
+          "x": 8.5,
+          "y": 16,
+          "visible": true
+        },
+        {
+          "actor": 4,
+          "x": 11.5,
+          "y": 16,
+          "visible": true
+        }
+      ],
+      "camera": [
+        0,
+        -4.166666666666666
+      ],
+      "bossHeight": 240,
+      "bubble": {
+        "x": 253.5,
+        "y": 95.81249999999946,
+        "width": 309,
+        "height": 113
+      }
+    },
+    {
+      "frame": 1467,
+      "people": [
+        {
+          "actor": 2,
+          "x": 10,
+          "y": 15.5,
+          "visible": true
+        },
+        {
+          "actor": 3,
+          "x": 8.5,
+          "y": 16,
+          "visible": true
+        },
+        {
+          "actor": 4,
+          "x": 11.5,
+          "y": 16,
+          "visible": true
+        }
+      ],
+      "camera": [
+        0,
+        -4.166666666666666
+      ],
+      "bossHeight": 240,
+      "bubble": {
+        "x": 253.5,
+        "y": 95.81249999999946,
+        "width": 309,
+        "height": 113
+      }
+    },
+    {
+      "frame": 1473,
+      "people": [
+        {
+          "actor": 2,
+          "x": 10,
+          "y": 15.5,
+          "visible": true
+        },
+        {
+          "actor": 3,
+          "x": 8.5,
+          "y": 16,
+          "visible": true
+        },
+        {
+          "actor": 4,
+          "x": 11.5,
+          "y": 16,
+          "visible": true
+        }
+      ],
+      "camera": [
+        0,
+        -4.166666666666666
+      ],
+      "bossHeight": 240,
+      "bubble": {
+        "x": 253.5,
+        "y": 95.81249999999946,
+        "width": 309,
+        "height": 113
+      }
+    },
+    {
+      "frame": 1479,
+      "people": [
+        {
+          "actor": 2,
+          "x": 10,
+          "y": 15.5,
+          "visible": true
+        },
+        {
+          "actor": 3,
+          "x": 8.5,
+          "y": 16,
+          "visible": true
+        },
+        {
+          "actor": 4,
+          "x": 11.5,
+          "y": 16,
+          "visible": true
+        }
+      ],
+      "camera": [
+        0,
+        -4.166666666666666
+      ],
+      "bossHeight": 240,
+      "bubble": {
+        "x": 253.5,
+        "y": 95.81249999999946,
+        "width": 309,
+        "height": 113
+      }
+    },
+    {
+      "frame": 1485,
+      "people": [
+        {
+          "actor": 2,
+          "x": 10,
+          "y": 15.5,
+          "visible": true
+        },
+        {
+          "actor": 3,
+          "x": 8.5,
+          "y": 16,
+          "visible": true
+        },
+        {
+          "actor": 4,
+          "x": 11.5,
+          "y": 16,
+          "visible": true
+        }
+      ],
+      "camera": [
+        0,
+        -4.166666666666666
+      ],
+      "bossHeight": 240,
+      "bubble": {
+        "x": 253.5,
+        "y": 95.81249999999946,
+        "width": 309,
+        "height": 113
+      }
+    },
+    {
+      "frame": 1491,
+      "people": [
+        {
+          "actor": 2,
+          "x": 10,
+          "y": 15.5,
+          "visible": true
+        },
+        {
+          "actor": 3,
+          "x": 8.5,
+          "y": 16,
+          "visible": true
+        },
+        {
+          "actor": 4,
+          "x": 11.5,
+          "y": 16,
+          "visible": true
+        }
+      ],
+      "camera": [
+        0,
+        -4.166666666666666
+      ],
+      "bossHeight": 240,
+      "bubble": {
+        "x": 253.5,
+        "y": 95.81249999999946,
+        "width": 309,
+        "height": 113
+      }
+    },
+    {
+      "frame": 1497,
+      "people": [
+        {
+          "actor": 2,
+          "x": 10,
+          "y": 15.5,
+          "visible": true
+        },
+        {
+          "actor": 3,
+          "x": 8.5,
+          "y": 16,
+          "visible": true
+        },
+        {
+          "actor": 4,
+          "x": 11.5,
+          "y": 16,
+          "visible": true
+        }
+      ],
+      "camera": [
+        0,
+        -4.166666666666666
+      ],
+      "bossHeight": 240,
+      "bubble": {
+        "x": 253.5,
+        "y": 95.81249999999946,
+        "width": 309,
+        "height": 113
+      }
+    },
+    {
+      "frame": 1503,
+      "people": [
+        {
+          "actor": 2,
+          "x": 10,
+          "y": 15.5,
+          "visible": true
+        },
+        {
+          "actor": 3,
+          "x": 8.5,
+          "y": 16,
+          "visible": true
+        },
+        {
+          "actor": 4,
+          "x": 11.5,
+          "y": 16,
+          "visible": true
+        }
+      ],
+      "camera": [
+        0,
+        -4.166666666666666
+      ],
+      "bossHeight": 240,
+      "bubble": {
+        "x": 253.5,
+        "y": 95.81249999999946,
+        "width": 309,
+        "height": 113
+      }
+    },
+    {
+      "frame": 1509,
+      "people": [
+        {
+          "actor": 2,
+          "x": 10,
+          "y": 15.5,
+          "visible": true
+        },
+        {
+          "actor": 3,
+          "x": 8.5,
+          "y": 16,
+          "visible": true
+        },
+        {
+          "actor": 4,
+          "x": 11.5,
+          "y": 16,
+          "visible": true
+        }
+      ],
+      "camera": [
+        0,
+        -4.166666666666666
+      ],
+      "bossHeight": 240,
+      "bubble": {
+        "x": 253.5,
+        "y": 95.81249999999946,
+        "width": 309,
+        "height": 113
+      }
+    },
+    {
+      "frame": 1515,
+      "people": [
+        {
+          "actor": 2,
+          "x": 10,
+          "y": 15.5,
+          "visible": true
+        },
+        {
+          "actor": 3,
+          "x": 8.5,
+          "y": 16,
+          "visible": true
+        },
+        {
+          "actor": 4,
+          "x": 11.5,
+          "y": 16,
+          "visible": true
+        }
+      ],
+      "camera": [
+        0,
+        -4.166666666666666
+      ],
+      "bossHeight": 240,
+      "bubble": {
+        "x": 253.5,
+        "y": 95.81249999999946,
+        "width": 309,
+        "height": 113
+      }
+    },
+    {
+      "frame": 1521,
+      "people": [
+        {
+          "actor": 2,
+          "x": 10,
+          "y": 15.5,
+          "visible": true
+        },
+        {
+          "actor": 3,
+          "x": 8.5,
+          "y": 16,
+          "visible": true
+        },
+        {
+          "actor": 4,
+          "x": 11.5,
+          "y": 16,
+          "visible": true
+        }
+      ],
+      "camera": [
+        0,
+        -4.166666666666666
+      ],
+      "bossHeight": 240,
+      "bubble": {
+        "x": 253.5,
+        "y": 95.81249999999946,
+        "width": 309,
+        "height": 113
+      }
+    },
+    {
+      "frame": 1527,
+      "people": [
+        {
+          "actor": 2,
+          "x": 10,
+          "y": 15.5,
+          "visible": true
+        },
+        {
+          "actor": 3,
+          "x": 8.5,
+          "y": 16,
+          "visible": true
+        },
+        {
+          "actor": 4,
+          "x": 11.5,
+          "y": 16,
+          "visible": true
+        }
+      ],
+      "camera": [
+        0,
+        -4.166666666666666
+      ],
+      "bossHeight": 240,
+      "bubble": {
+        "x": 253.5,
+        "y": 95.81249999999946,
+        "width": 309,
+        "height": 113
+      }
+    },
+    {
+      "frame": 1533,
+      "people": [
+        {
+          "actor": 2,
+          "x": 10,
+          "y": 15.5,
+          "visible": true
+        },
+        {
+          "actor": 3,
+          "x": 8.5,
+          "y": 16,
+          "visible": true
+        },
+        {
+          "actor": 4,
+          "x": 11.5,
+          "y": 16,
+          "visible": true
+        }
+      ],
+      "camera": [
+        0,
+        -4.166666666666666
+      ],
+      "bossHeight": 240,
+      "bubble": {
+        "x": 253.5,
+        "y": 95.81249999999946,
+        "width": 309,
+        "height": 113
+      }
+    },
+    {
+      "frame": 1537,
+      "people": [
+        {
+          "actor": 2,
+          "x": 10,
+          "y": 15.5,
+          "visible": true
+        },
+        {
+          "actor": 3,
+          "x": 8.5,
+          "y": 16,
+          "visible": true
+        },
+        {
+          "actor": 4,
+          "x": 11.5,
+          "y": 16,
+          "visible": true
+        }
+      ],
+      "camera": [
+        0,
+        -4.166666666666666
+      ],
+      "bossHeight": 240,
+      "bubble": {
+        "x": 253.5,
+        "y": 95.81249999999946,
+        "width": 309,
+        "height": 113
+      }
+    },
+    {
+      "frame": 1543,
+      "people": [
+        {
+          "actor": 2,
+          "x": 10,
+          "y": 15.5,
+          "visible": true
+        },
+        {
+          "actor": 3,
+          "x": 8.5,
+          "y": 16,
+          "visible": true
+        },
+        {
+          "actor": 4,
+          "x": 11.5,
+          "y": 16,
+          "visible": true
+        }
+      ],
+      "camera": [
+        0,
+        -4.166666666666666
+      ],
+      "bossHeight": 240,
+      "bubble": {
+        "x": 253.5,
+        "y": 95.81249999999946,
+        "width": 309,
+        "height": 113
+      }
+    },
+    {
+      "frame": 1548,
+      "people": [
+        {
+          "actor": 2,
+          "x": 10,
+          "y": 15.5,
+          "visible": true
+        },
+        {
+          "actor": 3,
+          "x": 8.5,
+          "y": 16,
+          "visible": true
+        },
+        {
+          "actor": 4,
+          "x": 11.5,
+          "y": 16,
+          "visible": true
+        }
+      ],
+      "camera": [
+        0,
+        -4.166666666666666
+      ],
+      "bossHeight": 240,
+      "bubble": {
+        "x": 254,
+        "y": 95.81249999999946,
+        "width": 308,
+        "height": 113
+      }
+    },
+    {
+      "frame": 1552,
+      "people": [
+        {
+          "actor": 2,
+          "x": 10,
+          "y": 15.5,
+          "visible": true
+        },
+        {
+          "actor": 3,
+          "x": 8.5,
+          "y": 16,
+          "visible": true
+        },
+        {
+          "actor": 4,
+          "x": 11.5,
+          "y": 16,
+          "visible": true
+        }
+      ],
+      "camera": [
+        0,
+        -4.166666666666666
+      ],
+      "bossHeight": 240,
+      "bubble": {
+        "x": 254,
+        "y": 95.81249999999946,
+        "width": 308,
+        "height": 113
+      }
+    },
+    {
+      "frame": 1558,
+      "people": [
+        {
+          "actor": 2,
+          "x": 10,
+          "y": 15.5,
+          "visible": true
+        },
+        {
+          "actor": 3,
+          "x": 8.5,
+          "y": 16,
+          "visible": true
+        },
+        {
+          "actor": 4,
+          "x": 11.5,
+          "y": 16,
+          "visible": true
+        }
+      ],
+      "camera": [
+        0,
+        -4.166666666666666
+      ],
+      "bossHeight": 240,
+      "bubble": {
+        "x": 254,
+        "y": 95.81249999999946,
+        "width": 308,
+        "height": 113
+      }
+    },
+    {
+      "frame": 1564,
+      "people": [
+        {
+          "actor": 2,
+          "x": 10,
+          "y": 15.5,
+          "visible": true
+        },
+        {
+          "actor": 3,
+          "x": 8.5,
+          "y": 16,
+          "visible": true
+        },
+        {
+          "actor": 4,
+          "x": 11.5,
+          "y": 16,
+          "visible": true
+        }
+      ],
+      "camera": [
+        0,
+        -4.166666666666666
+      ],
+      "bossHeight": 240,
+      "bubble": {
+        "x": 254,
+        "y": 95.81249999999946,
+        "width": 308,
+        "height": 113
+      }
+    },
+    {
+      "frame": 1570,
+      "people": [
+        {
+          "actor": 2,
+          "x": 10,
+          "y": 15.5,
+          "visible": true
+        },
+        {
+          "actor": 3,
+          "x": 8.5,
+          "y": 16,
+          "visible": true
+        },
+        {
+          "actor": 4,
+          "x": 11.5,
+          "y": 16,
+          "visible": true
+        }
+      ],
+      "camera": [
+        0,
+        -4.166666666666666
+      ],
+      "bossHeight": 240,
+      "bubble": {
+        "x": 254,
+        "y": 95.81249999999946,
+        "width": 308,
+        "height": 113
+      }
+    },
+    {
+      "frame": 1576,
+      "people": [
+        {
+          "actor": 2,
+          "x": 10,
+          "y": 15.5,
+          "visible": true
+        },
+        {
+          "actor": 3,
+          "x": 8.5,
+          "y": 16,
+          "visible": true
+        },
+        {
+          "actor": 4,
+          "x": 11.5,
+          "y": 16,
+          "visible": true
+        }
+      ],
+      "camera": [
+        0,
+        -4.166666666666666
+      ],
+      "bossHeight": 240,
+      "bubble": {
+        "x": 254,
+        "y": 95.81249999999946,
+        "width": 308,
+        "height": 113
+      }
+    },
+    {
+      "frame": 1582,
+      "people": [
+        {
+          "actor": 2,
+          "x": 10,
+          "y": 15.5,
+          "visible": true
+        },
+        {
+          "actor": 3,
+          "x": 8.5,
+          "y": 16,
+          "visible": true
+        },
+        {
+          "actor": 4,
+          "x": 11.5,
+          "y": 16,
+          "visible": true
+        }
+      ],
+      "camera": [
+        0,
+        -4.166666666666666
+      ],
+      "bossHeight": 240,
+      "bubble": {
+        "x": 254,
+        "y": 95.81249999999946,
+        "width": 308,
+        "height": 113
+      }
+    },
+    {
+      "frame": 1588,
+      "people": [
+        {
+          "actor": 2,
+          "x": 10,
+          "y": 15.5,
+          "visible": true
+        },
+        {
+          "actor": 3,
+          "x": 8.5,
+          "y": 16,
+          "visible": true
+        },
+        {
+          "actor": 4,
+          "x": 11.5,
+          "y": 16,
+          "visible": true
+        }
+      ],
+      "camera": [
+        0,
+        -4.166666666666666
+      ],
+      "bossHeight": 240,
+      "bubble": {
+        "x": 254,
+        "y": 95.81249999999946,
+        "width": 308,
+        "height": 113
+      }
+    },
+    {
+      "frame": 1593,
+      "people": [
+        {
+          "actor": 2,
+          "x": 10,
+          "y": 15.5,
+          "visible": true
+        },
+        {
+          "actor": 3,
+          "x": 8.5,
+          "y": 16,
+          "visible": true
+        },
+        {
+          "actor": 4,
+          "x": 11.5,
+          "y": 16,
+          "visible": true
+        }
+      ],
+      "camera": [
+        0,
+        -4.166666666666666
+      ],
+      "bossHeight": 240,
+      "bubble": {
+        "x": 254,
+        "y": 95.81249999999946,
+        "width": 308,
+        "height": 113
+      }
+    },
+    {
+      "frame": 1598,
+      "people": [
+        {
+          "actor": 2,
+          "x": 10,
+          "y": 15.5,
+          "visible": true
+        },
+        {
+          "actor": 3,
+          "x": 8.5,
+          "y": 16,
+          "visible": true
+        },
+        {
+          "actor": 4,
+          "x": 11.5,
+          "y": 16,
+          "visible": true
+        }
+      ],
+      "camera": [
+        0,
+        -4.166666666666666
+      ],
+      "bossHeight": 240,
+      "bubble": {
+        "x": 254,
+        "y": 95.81249999999946,
+        "width": 308,
+        "height": 113
+      }
+    },
+    {
+      "frame": 1604,
+      "people": [
+        {
+          "actor": 2,
+          "x": 10,
+          "y": 15.5,
+          "visible": true
+        },
+        {
+          "actor": 3,
+          "x": 8.5,
+          "y": 16,
+          "visible": true
+        },
+        {
+          "actor": 4,
+          "x": 11.5,
+          "y": 16,
+          "visible": true
+        }
+      ],
+      "camera": [
+        0,
+        -4.166666666666666
+      ],
+      "bossHeight": 240,
+      "bubble": {
+        "x": 254,
+        "y": 95.81249999999946,
+        "width": 308,
+        "height": 113
+      }
+    },
+    {
+      "frame": 1610,
+      "people": [
+        {
+          "actor": 2,
+          "x": 10,
+          "y": 15.5,
+          "visible": true
+        },
+        {
+          "actor": 3,
+          "x": 8.5,
+          "y": 16,
+          "visible": true
+        },
+        {
+          "actor": 4,
+          "x": 11.5,
+          "y": 16,
+          "visible": true
+        }
+      ],
+      "camera": [
+        0,
+        -4.166666666666666
+      ],
+      "bossHeight": 240,
+      "bubble": {
+        "x": 254,
+        "y": 95.81249999999946,
+        "width": 308,
+        "height": 113
+      }
+    },
+    {
+      "frame": 1616,
+      "people": [
+        {
+          "actor": 2,
+          "x": 10,
+          "y": 15.5,
+          "visible": true
+        },
+        {
+          "actor": 3,
+          "x": 8.5,
+          "y": 16,
+          "visible": true
+        },
+        {
+          "actor": 4,
+          "x": 11.5,
+          "y": 16,
+          "visible": true
+        }
+      ],
+      "camera": [
+        0,
+        -4.166666666666666
+      ],
+      "bossHeight": 240,
+      "bubble": {
+        "x": 254,
+        "y": 95.81249999999946,
+        "width": 308,
+        "height": 113
+      }
+    },
+    {
+      "frame": 1622,
+      "people": [
+        {
+          "actor": 2,
+          "x": 10,
+          "y": 15.5,
+          "visible": true
+        },
+        {
+          "actor": 3,
+          "x": 8.5,
+          "y": 16,
+          "visible": true
+        },
+        {
+          "actor": 4,
+          "x": 11.5,
+          "y": 16,
+          "visible": true
+        }
+      ],
+      "camera": [
+        0,
+        -4.166666666666666
+      ],
+      "bossHeight": 240,
+      "bubble": {
+        "x": 254,
+        "y": 95.81249999999946,
+        "width": 308,
+        "height": 113
+      }
+    },
+    {
+      "frame": 1627,
+      "people": [
+        {
+          "actor": 2,
+          "x": 10,
+          "y": 15.5,
+          "visible": true
+        },
+        {
+          "actor": 3,
+          "x": 8.5,
+          "y": 16,
+          "visible": true
+        },
+        {
+          "actor": 4,
+          "x": 11.5,
+          "y": 16,
+          "visible": true
+        }
+      ],
+      "camera": [
+        0,
+        -4.166666666666666
+      ],
+      "bossHeight": 240,
+      "bubble": {
+        "x": 254,
+        "y": 95.81249999999946,
+        "width": 308,
+        "height": 113
+      }
+    },
+    {
+      "frame": 1633,
+      "people": [
+        {
+          "actor": 2,
+          "x": 10,
+          "y": 15.5,
+          "visible": true
+        },
+        {
+          "actor": 3,
+          "x": 8.5,
+          "y": 16,
+          "visible": true
+        },
+        {
+          "actor": 4,
+          "x": 11.5,
+          "y": 16,
+          "visible": true
+        }
+      ],
+      "camera": [
+        0,
+        -4.166666666666666
+      ],
+      "bossHeight": 240,
+      "bubble": {
+        "x": 254,
+        "y": 95.81249999999946,
+        "width": 308,
+        "height": 113
+      }
+    },
+    {
+      "frame": 1639,
+      "people": [
+        {
+          "actor": 2,
+          "x": 10,
+          "y": 15.5,
+          "visible": true
+        },
+        {
+          "actor": 3,
+          "x": 8.5,
+          "y": 16,
+          "visible": true
+        },
+        {
+          "actor": 4,
+          "x": 11.5,
+          "y": 16,
+          "visible": true
+        }
+      ],
+      "camera": [
+        0,
+        -4.166666666666666
+      ],
+      "bossHeight": 240,
+      "bubble": {
+        "x": 254,
+        "y": 95.81249999999946,
+        "width": 308,
+        "height": 113
+      }
+    },
+    {
+      "frame": 1643,
+      "people": [
+        {
+          "actor": 2,
+          "x": 10,
+          "y": 15.5,
+          "visible": true
+        },
+        {
+          "actor": 3,
+          "x": 8.5,
+          "y": 16,
+          "visible": true
+        },
+        {
+          "actor": 4,
+          "x": 11.5,
+          "y": 16,
+          "visible": true
+        }
+      ],
+      "camera": [
+        0,
+        -4.166666666666666
+      ],
+      "bossHeight": 240,
+      "bubble": {
+        "x": 202,
+        "y": 62.49999999999946,
+        "width": 412,
+        "height": 146
+      }
+    },
+    {
+      "frame": 1649,
+      "people": [
+        {
+          "actor": 2,
+          "x": 10,
+          "y": 15.5,
+          "visible": true
+        },
+        {
+          "actor": 3,
+          "x": 8.5,
+          "y": 16,
+          "visible": true
+        },
+        {
+          "actor": 4,
+          "x": 11.5,
+          "y": 16,
+          "visible": true
+        }
+      ],
+      "camera": [
+        0,
+        -4.166666666666666
+      ],
+      "bossHeight": 240,
+      "bubble": {
+        "x": 202,
+        "y": 62.49999999999946,
+        "width": 412,
+        "height": 146
+      }
+    },
+    {
+      "frame": 1655,
+      "people": [
+        {
+          "actor": 2,
+          "x": 10,
+          "y": 15.5,
+          "visible": true
+        },
+        {
+          "actor": 3,
+          "x": 8.5,
+          "y": 16,
+          "visible": true
+        },
+        {
+          "actor": 4,
+          "x": 11.5,
+          "y": 16,
+          "visible": true
+        }
+      ],
+      "camera": [
+        0,
+        -4.166666666666666
+      ],
+      "bossHeight": 240,
+      "bubble": {
+        "x": 202,
+        "y": 62.49999999999946,
+        "width": 412,
+        "height": 146
+      }
+    },
+    {
+      "frame": 1659,
+      "people": [
+        {
+          "actor": 2,
+          "x": 10,
+          "y": 15.5,
+          "visible": true
+        },
+        {
+          "actor": 3,
+          "x": 8.5,
+          "y": 16,
+          "visible": true
+        },
+        {
+          "actor": 4,
+          "x": 11.5,
+          "y": 16,
+          "visible": true
+        }
+      ],
+      "camera": [
+        0,
+        -4.166666666666666
+      ],
+      "bossHeight": 240,
+      "bubble": {
+        "x": 202,
+        "y": 62.49999999999946,
+        "width": 412,
+        "height": 146
+      }
+    },
+    {
+      "frame": 1664,
+      "people": [
+        {
+          "actor": 2,
+          "x": 10,
+          "y": 15.5,
+          "visible": true
+        },
+        {
+          "actor": 3,
+          "x": 8.5,
+          "y": 16,
+          "visible": true
+        },
+        {
+          "actor": 4,
+          "x": 11.5,
+          "y": 16,
+          "visible": true
+        }
+      ],
+      "camera": [
+        0,
+        -4.166666666666666
+      ],
+      "bossHeight": 240,
+      "bubble": {
+        "x": 202,
+        "y": 62.49999999999946,
+        "width": 412,
+        "height": 146
+      }
+    },
+    {
+      "frame": 1670,
+      "people": [
+        {
+          "actor": 2,
+          "x": 10,
+          "y": 15.5,
+          "visible": true
+        },
+        {
+          "actor": 3,
+          "x": 8.5,
+          "y": 16,
+          "visible": true
+        },
+        {
+          "actor": 4,
+          "x": 11.5,
+          "y": 16,
+          "visible": true
+        }
+      ],
+      "camera": [
+        0,
+        -4.166666666666666
+      ],
+      "bossHeight": 240,
+      "bubble": {
+        "x": 202,
+        "y": 62.49999999999946,
+        "width": 412,
+        "height": 146
+      }
+    },
+    {
+      "frame": 1676,
+      "people": [
+        {
+          "actor": 2,
+          "x": 10,
+          "y": 15.5,
+          "visible": true
+        },
+        {
+          "actor": 3,
+          "x": 8.5,
+          "y": 16,
+          "visible": true
+        },
+        {
+          "actor": 4,
+          "x": 11.5,
+          "y": 16,
+          "visible": true
+        }
+      ],
+      "camera": [
+        0,
+        -4.166666666666666
+      ],
+      "bossHeight": 240,
+      "bubble": {
+        "x": 202,
+        "y": 62.49999999999946,
+        "width": 412,
+        "height": 146
+      }
+    },
+    {
+      "frame": 1682,
+      "people": [
+        {
+          "actor": 2,
+          "x": 10,
+          "y": 15.5,
+          "visible": true
+        },
+        {
+          "actor": 3,
+          "x": 8.5,
+          "y": 16,
+          "visible": true
+        },
+        {
+          "actor": 4,
+          "x": 11.5,
+          "y": 16,
+          "visible": true
+        }
+      ],
+      "camera": [
+        0,
+        -4.166666666666666
+      ],
+      "bossHeight": 240,
+      "bubble": {
+        "x": 202,
+        "y": 62.49999999999946,
+        "width": 412,
+        "height": 146
+      }
+    },
+    {
+      "frame": 1688,
+      "people": [
+        {
+          "actor": 2,
+          "x": 10,
+          "y": 15.5,
+          "visible": true
+        },
+        {
+          "actor": 3,
+          "x": 8.5,
+          "y": 16,
+          "visible": true
+        },
+        {
+          "actor": 4,
+          "x": 11.5,
+          "y": 16,
+          "visible": true
+        }
+      ],
+      "camera": [
+        0,
+        -4.166666666666666
+      ],
+      "bossHeight": 240,
+      "bubble": {
+        "x": 202,
+        "y": 62.49999999999946,
+        "width": 412,
+        "height": 146
+      }
+    },
+    {
+      "frame": 1694,
+      "people": [
+        {
+          "actor": 2,
+          "x": 10,
+          "y": 15.5,
+          "visible": true
+        },
+        {
+          "actor": 3,
+          "x": 8.5,
+          "y": 16,
+          "visible": true
+        },
+        {
+          "actor": 4,
+          "x": 11.5,
+          "y": 16,
+          "visible": true
+        }
+      ],
+      "camera": [
+        0,
+        -4.166666666666666
+      ],
+      "bossHeight": 240,
+      "bubble": {
+        "x": 202,
+        "y": 62.49999999999946,
+        "width": 412,
+        "height": 146
+      }
+    },
+    {
+      "frame": 1700,
+      "people": [
+        {
+          "actor": 2,
+          "x": 10,
+          "y": 15.5,
+          "visible": true
+        },
+        {
+          "actor": 3,
+          "x": 8.5,
+          "y": 16,
+          "visible": true
+        },
+        {
+          "actor": 4,
+          "x": 11.5,
+          "y": 16,
+          "visible": true
+        }
+      ],
+      "camera": [
+        0,
+        -4.166666666666666
+      ],
+      "bossHeight": 240,
+      "bubble": {
+        "x": 202,
+        "y": 62.49999999999946,
+        "width": 412,
+        "height": 146
+      }
+    },
+    {
+      "frame": 1706,
+      "people": [
+        {
+          "actor": 2,
+          "x": 10,
+          "y": 15.5,
+          "visible": true
+        },
+        {
+          "actor": 3,
+          "x": 8.5,
+          "y": 16,
+          "visible": true
+        },
+        {
+          "actor": 4,
+          "x": 11.5,
+          "y": 16,
+          "visible": true
+        }
+      ],
+      "camera": [
+        0,
+        -4.166666666666666
+      ],
+      "bossHeight": 240,
+      "bubble": {
+        "x": 202,
+        "y": 62.49999999999946,
+        "width": 412,
+        "height": 146
+      }
+    },
+    {
+      "frame": 1712,
+      "people": [
+        {
+          "actor": 2,
+          "x": 10,
+          "y": 15.5,
+          "visible": true
+        },
+        {
+          "actor": 3,
+          "x": 8.5,
+          "y": 16,
+          "visible": true
+        },
+        {
+          "actor": 4,
+          "x": 11.5,
+          "y": 16,
+          "visible": true
+        }
+      ],
+      "camera": [
+        0,
+        -4.166666666666666
+      ],
+      "bossHeight": 240,
+      "bubble": {
+        "x": 202,
+        "y": 62.49999999999946,
+        "width": 412,
+        "height": 146
+      }
+    },
+    {
+      "frame": 1718,
+      "people": [
+        {
+          "actor": 2,
+          "x": 10,
+          "y": 15.5,
+          "visible": true
+        },
+        {
+          "actor": 3,
+          "x": 8.5,
+          "y": 16,
+          "visible": true
+        },
+        {
+          "actor": 4,
+          "x": 11.5,
+          "y": 16,
+          "visible": true
+        }
+      ],
+      "camera": [
+        0,
+        -4.166666666666666
+      ],
+      "bossHeight": 240,
+      "bubble": {
+        "x": 202,
+        "y": 62.49999999999946,
+        "width": 412,
+        "height": 146
+      }
+    },
+    {
+      "frame": 1724,
+      "people": [
+        {
+          "actor": 2,
+          "x": 10,
+          "y": 15.5,
+          "visible": true
+        },
+        {
+          "actor": 3,
+          "x": 8.5,
+          "y": 16,
+          "visible": true
+        },
+        {
+          "actor": 4,
+          "x": 11.5,
+          "y": 16,
+          "visible": true
+        }
+      ],
+      "camera": [
+        0,
+        -4.166666666666666
+      ],
+      "bossHeight": 240,
+      "bubble": {
+        "x": 202,
+        "y": 62.49999999999946,
+        "width": 412,
+        "height": 146
+      }
+    },
+    {
+      "frame": 1730,
+      "people": [
+        {
+          "actor": 2,
+          "x": 10,
+          "y": 15.5,
+          "visible": true
+        },
+        {
+          "actor": 3,
+          "x": 8.5,
+          "y": 16,
+          "visible": true
+        },
+        {
+          "actor": 4,
+          "x": 11.5,
+          "y": 16,
+          "visible": true
+        }
+      ],
+      "camera": [
+        0,
+        -4.166666666666666
+      ],
+      "bossHeight": 240,
+      "bubble": {
+        "x": 202,
+        "y": 62.49999999999946,
+        "width": 412,
+        "height": 146
+      }
+    },
+    {
+      "frame": 1736,
+      "people": [
+        {
+          "actor": 2,
+          "x": 10,
+          "y": 15.5,
+          "visible": true
+        },
+        {
+          "actor": 3,
+          "x": 8.5,
+          "y": 16,
+          "visible": true
+        },
+        {
+          "actor": 4,
+          "x": 11.5,
+          "y": 16,
+          "visible": true
+        }
+      ],
+      "camera": [
+        0,
+        -4.166666666666666
+      ],
+      "bossHeight": 240,
+      "bubble": {
+        "x": 202,
+        "y": 62.49999999999946,
+        "width": 412,
+        "height": 146
+      }
+    },
+    {
+      "frame": 1742,
+      "people": [
+        {
+          "actor": 2,
+          "x": 10,
+          "y": 15.5,
+          "visible": true
+        },
+        {
+          "actor": 3,
+          "x": 8.5,
+          "y": 16,
+          "visible": true
+        },
+        {
+          "actor": 4,
+          "x": 11.5,
+          "y": 16,
+          "visible": true
+        }
+      ],
+      "camera": [
+        0,
+        -4.166666666666666
+      ],
+      "bossHeight": 240,
+      "bubble": {
+        "x": 202,
+        "y": 62.49999999999946,
+        "width": 412,
+        "height": 146
+      }
+    },
+    {
+      "frame": 1748,
+      "people": [
+        {
+          "actor": 2,
+          "x": 10,
+          "y": 15.5,
+          "visible": true
+        },
+        {
+          "actor": 3,
+          "x": 8.5,
+          "y": 16,
+          "visible": true
+        },
+        {
+          "actor": 4,
+          "x": 11.5,
+          "y": 16,
+          "visible": true
+        }
+      ],
+      "camera": [
+        0,
+        -4.166666666666666
+      ],
+      "bossHeight": 240,
+      "bubble": {
+        "x": 202,
+        "y": 62.49999999999946,
+        "width": 412,
+        "height": 146
+      }
+    },
+    {
+      "frame": 1754,
+      "people": [
+        {
+          "actor": 2,
+          "x": 10,
+          "y": 15.5,
+          "visible": true
+        },
+        {
+          "actor": 3,
+          "x": 8.5,
+          "y": 16,
+          "visible": true
+        },
+        {
+          "actor": 4,
+          "x": 11.5,
+          "y": 16,
+          "visible": true
+        }
+      ],
+      "camera": [
+        0,
+        -4.166666666666666
+      ],
+      "bossHeight": 240,
+      "bubble": null
+    },
+    {
+      "frame": 1757,
+      "people": [
+        {
+          "actor": 2,
+          "x": 10,
+          "y": 15.5,
+          "visible": true
+        },
+        {
+          "actor": 3,
+          "x": 8.5,
+          "y": 16,
+          "visible": true
+        },
+        {
+          "actor": 4,
+          "x": 11.5,
+          "y": 16,
+          "visible": true
+        }
+      ],
+      "camera": [
+        0,
+        -4.166666666666666
+      ],
+      "bossHeight": 240,
+      "bubble": null
+    },
+    {
+      "frame": 1763,
+      "people": [
+        {
+          "actor": 2,
+          "x": 10,
+          "y": 15.5,
+          "visible": true
+        },
+        {
+          "actor": 3,
+          "x": 8.5,
+          "y": 16,
+          "visible": true
+        },
+        {
+          "actor": 4,
+          "x": 11.5,
+          "y": 16,
+          "visible": true
+        }
+      ],
+      "camera": [
+        0,
+        -4.166666666666666
+      ],
+      "bossHeight": 240,
+      "bubble": null
+    },
+    {
+      "frame": 1769,
+      "people": [
+        {
+          "actor": 2,
+          "x": 10,
+          "y": 15.5,
+          "visible": true
+        },
+        {
+          "actor": 3,
+          "x": 8.5,
+          "y": 16,
+          "visible": true
+        },
+        {
+          "actor": 4,
+          "x": 11.5,
+          "y": 16,
+          "visible": true
+        }
+      ],
+      "camera": [
+        0,
+        -4.166666666666666
+      ],
+      "bossHeight": 240,
+      "bubble": null
+    },
+    {
+      "frame": 1775,
+      "people": [
+        {
+          "actor": 2,
+          "x": 10,
+          "y": 15.5,
+          "visible": true
+        },
+        {
+          "actor": 3,
+          "x": 8.5,
+          "y": 16,
+          "visible": true
+        },
+        {
+          "actor": 4,
+          "x": 11.5,
+          "y": 16,
+          "visible": true
+        }
+      ],
+      "camera": [
+        0,
+        -4.166666666666666
+      ],
+      "bossHeight": 240,
+      "bubble": null
+    },
+    {
+      "frame": 1781,
+      "people": [
+        {
+          "actor": 2,
+          "x": 10,
+          "y": 15.5,
+          "visible": true
+        },
+        {
+          "actor": 3,
+          "x": 8.5,
+          "y": 16,
+          "visible": true
+        },
+        {
+          "actor": 4,
+          "x": 11.5,
+          "y": 16,
+          "visible": true
+        }
+      ],
+      "camera": [
+        0,
+        -4.166666666666666
+      ],
+      "bossHeight": 240,
+      "bubble": null
+    },
+    {
+      "frame": 1787,
+      "people": [
+        {
+          "actor": 2,
+          "x": 10,
+          "y": 15.5,
+          "visible": true
+        },
+        {
+          "actor": 3,
+          "x": 8.5,
+          "y": 16,
+          "visible": true
+        },
+        {
+          "actor": 4,
+          "x": 11.5,
+          "y": 16,
+          "visible": true
+        }
+      ],
+      "camera": [
+        0,
+        -4.166666666666666
+      ],
+      "bossHeight": 240,
+      "bubble": null
+    },
+    {
+      "frame": 1793,
+      "people": [
+        {
+          "actor": 2,
+          "x": 10,
+          "y": 15.5,
+          "visible": true
+        },
+        {
+          "actor": 3,
+          "x": 8.5,
+          "y": 16,
+          "visible": true
+        },
+        {
+          "actor": 4,
+          "x": 11.5,
+          "y": 16,
+          "visible": true
+        }
+      ],
+      "camera": [
+        0,
+        -4.166666666666666
+      ],
+      "bossHeight": 240,
+      "bubble": null
+    },
+    {
+      "frame": 1799,
+      "people": [
+        {
+          "actor": 2,
+          "x": 10,
+          "y": 15.5,
+          "visible": true
+        },
+        {
+          "actor": 3,
+          "x": 8.5,
+          "y": 16,
+          "visible": true
+        },
+        {
+          "actor": 4,
+          "x": 11.5,
+          "y": 16,
+          "visible": true
+        }
+      ],
+      "camera": [
+        0,
+        -4.166666666666666
+      ],
+      "bossHeight": 240,
+      "bubble": null
+    },
+    {
+      "frame": 1804,
+      "people": [
+        {
+          "actor": 2,
+          "x": 10,
+          "y": 15.5,
+          "visible": true
+        },
+        {
+          "actor": 3,
+          "x": 8.5,
+          "y": 16,
+          "visible": true
+        },
+        {
+          "actor": 4,
+          "x": 11.5,
+          "y": 16,
+          "visible": true
+        }
+      ],
+      "camera": [
+        0,
+        -4.166666666666666
+      ],
+      "bossHeight": 240,
+      "bubble": null
+    },
+    {
+      "frame": 1808,
+      "people": [
+        {
+          "actor": 2,
+          "x": 10,
+          "y": 15.5,
+          "visible": true
+        },
+        {
+          "actor": 3,
+          "x": 8.5,
+          "y": 16,
+          "visible": true
+        },
+        {
+          "actor": 4,
+          "x": 11.5,
+          "y": 16,
+          "visible": true
+        }
+      ],
+      "camera": [
+        0,
+        -4.166666666666666
+      ],
+      "bossHeight": 240,
+      "bubble": null
+    },
+    {
+      "frame": 1809,
+      "people": [
+        {
+          "actor": 2,
+          "x": 10,
+          "y": 15.5,
+          "visible": true
+        },
+        {
+          "actor": 3,
+          "x": 8.5,
+          "y": 16,
+          "visible": true
+        },
+        {
+          "actor": 4,
+          "x": 11.5,
+          "y": 16,
+          "visible": true
+        }
+      ],
+      "camera": [
+        0,
+        -4.166666666666666
+      ],
+      "bossHeight": 240,
+      "bubble": null
+    },
+    {
+      "frame": 1812,
+      "people": [
+        {
+          "actor": 2,
+          "x": 10,
+          "y": 15.5,
+          "visible": true
+        },
+        {
+          "actor": 3,
+          "x": 8.5,
+          "y": 16,
+          "visible": true
+        },
+        {
+          "actor": 4,
+          "x": 11.5,
+          "y": 16,
+          "visible": true
+        }
+      ],
+      "camera": [
+        0,
+        -4.166666666666666
+      ],
+      "bossHeight": 240,
+      "bubble": null
+    },
+    {
+      "frame": 1817,
+      "people": [
+        {
+          "actor": 2,
+          "x": 10,
+          "y": 15.5,
+          "visible": true
+        },
+        {
+          "actor": 3,
+          "x": 8.5,
+          "y": 16,
+          "visible": true
+        },
+        {
+          "actor": 4,
+          "x": 11.5,
+          "y": 16,
+          "visible": true
+        }
+      ],
+      "camera": [
+        0,
+        -4.166666666666666
+      ],
+      "bossHeight": 240,
+      "bubble": null
+    },
+    {
+      "frame": 1823,
+      "people": [
+        {
+          "actor": 2,
+          "x": 10,
+          "y": 15.5,
+          "visible": true
+        },
+        {
+          "actor": 3,
+          "x": 8.5,
+          "y": 16,
+          "visible": true
+        },
+        {
+          "actor": 4,
+          "x": 11.5,
+          "y": 16,
+          "visible": true
+        }
+      ],
+      "camera": [
+        0,
+        -4.166666666666666
+      ],
+      "bossHeight": 240,
+      "bubble": null
+    },
+    {
+      "frame": 1829,
+      "people": [
+        {
+          "actor": 2,
+          "x": 10,
+          "y": 15.5,
+          "visible": true
+        },
+        {
+          "actor": 3,
+          "x": 8.5,
+          "y": 16,
+          "visible": true
+        },
+        {
+          "actor": 4,
+          "x": 11.5,
+          "y": 16,
+          "visible": true
+        }
+      ],
+      "camera": [
+        0,
+        -4.166666666666666
+      ],
+      "bossHeight": 240,
+      "bubble": null
+    },
+    {
+      "frame": 1835,
+      "people": [
+        {
+          "actor": 2,
+          "x": 10,
+          "y": 15.5,
+          "visible": true
+        },
+        {
+          "actor": 3,
+          "x": 8.5,
+          "y": 16,
+          "visible": true
+        },
+        {
+          "actor": 4,
+          "x": 11.5,
+          "y": 16,
+          "visible": true
+        }
+      ],
+      "camera": [
+        0,
+        -4.166666666666666
+      ],
+      "bossHeight": 240,
+      "bubble": null
+    },
+    {
+      "frame": 1841,
+      "people": [
+        {
+          "actor": 2,
+          "x": 10,
+          "y": 15.5,
+          "visible": true
+        },
+        {
+          "actor": 3,
+          "x": 8.5,
+          "y": 16,
+          "visible": true
+        },
+        {
+          "actor": 4,
+          "x": 11.5,
+          "y": 16,
+          "visible": true
+        }
+      ],
+      "camera": [
+        0,
+        -4.166666666666666
+      ],
+      "bossHeight": 240,
+      "bubble": null
+    },
+    {
+      "frame": 1846,
+      "people": [
+        {
+          "actor": 2,
+          "x": 10,
+          "y": 15.5,
+          "visible": true
+        },
+        {
+          "actor": 3,
+          "x": 8.5,
+          "y": 16,
+          "visible": true
+        },
+        {
+          "actor": 4,
+          "x": 11.5,
+          "y": 16,
+          "visible": true
+        }
+      ],
+      "camera": [
+        0,
+        -4.166666666666666
+      ],
+      "bossHeight": 240,
+      "bubble": null
+    },
+    {
+      "frame": 1852,
+      "people": [
+        {
+          "actor": 2,
+          "x": 10,
+          "y": 15.5,
+          "visible": true
+        },
+        {
+          "actor": 3,
+          "x": 8.5,
+          "y": 16,
+          "visible": true
+        },
+        {
+          "actor": 4,
+          "x": 11.5,
+          "y": 16,
+          "visible": true
+        }
+      ],
+      "camera": [
+        0,
+        -4.166666666666666
+      ],
+      "bossHeight": 240,
+      "bubble": null
+    }
+  ],
+  "hits": [
+    {
+      "actor": true,
+      "skill": 6,
+      "time": 39873.00000002142
+    }
+  ],
+  "party": [
+    2,
+    3,
+    4
+  ],
+  "scale": 2,
+  "attacksDisabled": false,
+  "troop": 43,
+  "flag": 1
+}
